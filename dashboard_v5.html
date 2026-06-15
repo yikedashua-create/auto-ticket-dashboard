@@ -1814,5 +1814,18 @@ window.addEventListener("resize", () => {
 
 loadData();
 </script>
+<script>
+  // Streamlit 容器自适应：把 body 真实高度回传给父窗口
+  // 配合 app.py 的 st.components.v1.html，iframe 高度会自动跟随
+  setInterval(() => {
+    try {
+      const h = document.body.scrollHeight;
+      window.parent.postMessage(
+        { isStreamlitMessage: true, type: 'streamlit:setFrameHeight', height: h },
+        '*'
+      );
+    } catch (e) {}
+  }, 500);
+</script>
 </body>
 </html>

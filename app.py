@@ -59,11 +59,10 @@ else:
     html = html.replace("<body>", "<body>" + injection, 1)
 
 # ============== 5. 渲染（关键：保真 + 撑满容器） ==============
-# 用 st.html 而非 components.v1.html：
-#   - components.v1.html 是隔离 iframe，会带边框和固定高度，底部留白
-#   - st.html 直接把 HTML 渲染到 Streamlit 容器内，body 高度自动撑开，无白条
-# Streamlit 1.27+ 支持，1.36 肯定有
-st.html(html)
+# 用 components.v1.html 保留 style/JS（st.html 会过滤 <style> 标签，CSS 全丢）
+# height=800 是初始值，dashboard_v5.html 末尾的 JS 会动态把 body 真实高度
+# postMessage 给 streamlit，iframe 高度自动跟随内容
+st.components.v1.html(html, height=800, scrolling=False)
 
 # ============== 6. 底部状态条（可选，方便排查） ==============
 try:
