@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>自动出票数据看板 · v5</title>
+<style>html, body { background: #0a0e1a; margin: 0; }</style>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"
         onerror="this.onerror=null;this.src='https://unpkg.com/echarts@5/dist/echarts.min.js'"></script>
 <style>
@@ -11,7 +12,12 @@
     font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
     background: #0a0e1a;
     color: #e0e6f0;
-    padding: 14px 20px;
+    padding: 0 20px;
+    margin: 0;
+  }
+  /* 自适应：屏幕很宽（>1750px）时让布局居中避免拉伸 */
+  .layout-wrapper {
+    max-width: 100%;
   }
   .title {
     text-align: center;

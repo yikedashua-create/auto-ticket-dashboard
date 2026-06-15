@@ -58,10 +58,12 @@ else:
     # 兜底：插到 <body> 开头
     html = html.replace("<body>", "<body>" + injection, 1)
 
-# ============== 5. 渲染（关键：st.components.v1.html 保真） ==============
-# height 给个足够大的值，scrolling=True 保险（内容再多也不截）
-# iframe 隔离环境，Streamlit 不会动里面的 CSS——1:1 复刻本地效果
-st.components.v1.html(html, height=5000, scrolling=True)
+# ============== 5. 渲染（关键：保真 + 撑满容器） ==============
+# 用 st.html 而非 components.v1.html：
+#   - components.v1.html 是隔离 iframe，会带边框和固定高度，底部留白
+#   - st.html 直接把 HTML 渲染到 Streamlit 容器内，body 高度自动撑开，无白条
+# Streamlit 1.27+ 支持，1.36 肯定有
+st.html(html)
 
 # ============== 6. 底部状态条（可选，方便排查） ==============
 try:
