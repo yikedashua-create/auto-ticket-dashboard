@@ -1950,34 +1950,8 @@ function renderFail() {
 let currentDrillKey = null;  // 当前展开的下钻，格式 "B-3" 或 "D-5"
 let currentFamilyKey = null; // 当前展开的族，格式 "fam-B-0"
 
-// 复用：把 reason 归到族（与 gen_dashboard_data.py family_reason 保持一致）
-const FAMILY_RULES_JS = [
-  [/取票失败/, "取票失败"],
-  [/反采同程.*询价失败/, "反采同程 - 询价失败"],
-  [/反采同程.*询价/, "反采同程 - 询价异常"],
-  [/反采携程海外.*询价失败/, "反采携程海外 - 询价失败"],
-  [/反采携程海外.*询价/, "反采携程海外 - 询价异常"],
-  [/航班管家.*询价失败/, "航班管家 - 询价失败"],
-  [/航班管家.*询价/, "航班管家 - 询价异常"],
-  [/.+询价失败/, "其他渠道 - 询价失败"],
-  [/反采同程.*亏损大于/, "反采同程 - 政策亏损过大"],
-  [/反采携程海外.*亏损大于/, "反采携程海外 - 政策亏损过大"],
-  [/反采同程.*亏损/, "反采同程 - 政策亏损"],
-  [/反采携程海外.*亏损/, "反采携程海外 - 政策亏损"],
-  [/.+亏损大于/, "其他渠道 - 政策亏损过大"],
-  [/^支付失败/, "支付失败"],
-  [/^原平台状态/, "原平台状态检测失败"],
-  [/预定失败.*内部程序异常/, "预定失败 - 内部程序异常"],
-  [/辅营/, "辅营订单处理"],
-  [/证件|乘客信息|实名/, "证件/乘客信息异常"],
-];
-function reasonToFamily(reason) {
-  if (!reason) return "";
-  for (const [re, fam] of FAMILY_RULES_JS) {
-    if (re.test(reason)) return fam;
-  }
-  return reason;
-}
+// v11：复用 getFamily（同一套规则源，避免重复维护）
+// 老逻辑：const FAMILY_RULES_JS = [...]; function reasonToFamily() {...} —— 已废弃（与 getFamily 重复，且用的是 v9 老规则）
 
 // 族级展开：显示该族下所有原始原因（清洗后但未族聚合）
 function toggleFamilyDrill(path, famIdx, rowEl) {
@@ -1994,8 +1968,8 @@ function toggleFamilyDrill(path, famIdx, rowEl) {
   if (!fam) return;
   currentFamilyKey = key;
 
-  // 找出该族下所有原始原因（用 reasonToFamily 匹配）
-  const reasons = allReasons.filter(r => reasonToFamily(r.full) === fam.family);
+  // v11 修复：用 getFamily（v10 环节规则）匹配族名，不再用废弃的 reasonToFamily
+  const reasons = allReasons.filter(r => getFamily(r.full) === fam.family);
 
   // 在族行下方插入二级面板
   const colspan = 5;
