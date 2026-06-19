@@ -384,8 +384,7 @@
       <div class="nav-item" data-page="platform">🏢 平台渠道</div>
       <div class="nav-item" data-page="staff">👥 人员绩效</div>
       <div class="nav-item" data-page="path-d">🚨 D 路径异常</div>
-      <div class="nav-item" data-page="stage">🔧 流程归因</div>
-      <div class="nav-item" data-page="fail">⚠️ 失败根因</div>
+      <div class="nav-item" data-page="failAnalysis">🔍 失败分析</div>
       <div class="nav-section">
         <div class="nav-section-title">📊 数据</div>
         <div class="nav-mini" id="navDateRange">5月1-31日</div>
@@ -1963,6 +1962,238 @@ function renderFail() {
   });
 }
 
+/* ============== 失败分析（A+C 合并版：流程归因 + 失败根因） ==============
+ * - 上半：流程归因（漏斗图 + 5 大环节 + 未走完）—— 订单卡在哪一环
+ * - 下半：失败根因族级表（B/D 垂直堆叠，按 8 大环节分类）—— 为什么失败
+ * 
+ * 设计动机（2026-06-19）：
+ * 原来两套体系（流程归因用"失败原因"当前卡点，失败根因用"第一次失败原因"根因）
+ * 各自独立成页，用户需要来回切。本合并让用户在一个页面里：
+ *   1. 先看流程归因漏斗：哪一环出问题了（数字概览）
+ *   2. 再看失败根因族级：这一环里哪种错误最多（细分归因）
+ *   3. 点族行展开：原始 reason（5 维度下钻）
+ */
+function renderFailureAnalysis() {
+  // 1. 流程归因数据
+  const s = CURRENT_DATA.stage_distribution || [];
+  const subs = CURRENT_DATA.stage_subcategory || [];
+  const totalFail = CURRENT_DATA.total_fail_orders || 0;
+  const cs = COMPARE_DATA;
+
+  const cmpStageMap = {};
+  if (cs && cs.stage_distribution) {
+    cs.stage_distribution.forEach(st => { cmpStageMap[st.stage] = st; });
+  }
+  const cmpTotalFail = (cs && cs.total_fail_orders) || 0;
+
+  // 2. 失败根因数据（B/D）
+  const bFamilies = (CURRENT_DATA.fail_families_B || []).slice(0, 30);
+  const dFamilies = (CURRENT_DATA.fail_families_D || []).slice(0, 30);
+  const bReasonsAll = CURRENT_DATA.fail_reasons_B.slice(0, 30);
+  const dReasonsAll = CURRENT_DATA.fail_reasons_D.slice(0, 30);
+
+  const cmpBMap = {};
+  const cmpDMap = {};
+  if (cs) {
+    (cs.fail_reasons_B || []).forEach(r => { cmpBMap[r.full] = r; });
+    (cs.fail_reasons_D || []).forEach(r => { cmpDMap[r.full] = r; });
+  }
+  const cmpBFamMap = {};
+  const cmpDFamMap = {};
+  if (cs) {
+    (cs.fail_families_B || []).forEach(f => { cmpBFamMap[f.family] = f; });
+    (cs.fail_families_D || []).forEach(f => { cmpDFamMap[f.family] = f; });
+  }
+
+  // 3. 流程归因：5 大环节 + 未走完（共 6 个）的 KPI 条
+  const monthLabel = CURRENT_MONTH === "all" ? "全月" : CURRENT_MONTH;
+  const stageKpiHtml = s.map(st => {
+    const cmp = cmpStageMap[st.stage];
+    const cmpBadgeHtml = cmp
+      ? fmt.cmp(st.total - cmp.total, cmp.total, "amount", false)
+      : `<span class="cmp-no">无对比基准</span>`;
+    return `<div class="kpi" style="border-color:${st.color}">
+      <div class="kpi-label" style="color:${st.color}">${stageIcon(st.stage)} ${st.stage}</div>
+      <div class="kpi-value" style="color:${st.color}">${st.total.toLocaleString()}</div>
+      <div class="kpi-foot">${st.pct}% · B:${st.B} D:${st.D}</div>
+      <div class="kpi-sub-row">${cmpBadgeHtml}</div>
+    </div>`;
+  }).join("");
+
+  // 4. 失败根因族级行（同 renderFail）
+  const bFamilyRow = (f, i) => {
+    const cmp = cmpBFamMap[f.family];
+    const cmpBadge = cs
+      ? (cmp ? fmt.cmp(f.count - cmp.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
+      : "—";
+    const stageColor = getStageColor(f.family);
+    return `<tr onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+      <td>${i + 1}</td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
+      <td>${fmt.num(f.count)}</td>
+      <td>${fmt.pct(f.count / CURRENT_DATA.summary.B * 100)}</td>
+      <td style="font-size:11px">${cmpBadge}</td>
+    </tr>`;
+  };
+  const dFamilyRow = (f, i) => {
+    const cmp = cmpDFamMap[f.family];
+    const cmpBadge = cs
+      ? (cmp ? fmt.cmp(f.count - cmp.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
+      : "—";
+    const stageColor = getStageColor(f.family);
+    return `<tr onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+      <td>${i + 1}</td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
+      <td>${fmt.num(f.count)}</td>
+      <td>${fmt.pct(f.count / CURRENT_DATA.summary.D * 100)}</td>
+      <td style="font-size:11px">${cmpBadge}</td>
+    </tr>`;
+  };
+
+  // 5. 失败根因族级环节汇总条
+  const bStages = groupByStage(CURRENT_DATA.fail_families_B || []);
+  const dStages = groupByStage(CURRENT_DATA.fail_families_D || []);
+  const stageSummaryHtml = (stages, total) => {
+    if (!stages.length) return "";
+    const cells = stages.map(s => {
+      const color = getStageColor(s.stage + "-x");
+      return `<div style="flex:1;min-width:90px;background:#0a1929;border-left:3px solid ${color};padding:8px 10px;margin-right:6px;border-radius:3px">
+        <div style="font-size:11px;color:#7a8ba0">${escapeHtml(s.stage)}</div>
+        <div style="font-size:18px;font-weight:bold;color:${color}">${fmt.num(s.count)}</div>
+        <div style="font-size:10px;color:#7a8ba0">${fmt.pct(s.count / total * 100)}</div>
+      </div>`;
+    }).join("");
+    return `<div style="display:flex;flex-wrap:wrap;margin-bottom:12px">${cells}</div>`;
+  };
+
+  const cmpBHdr = cs
+    ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：B ${fmt.num(cs.summary.B)} 单</span>`
+    : "";
+  const cmpDHdr = cs
+    ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：D ${fmt.num(cs.summary.D)} 单</span>`
+    : "";
+
+  // 6. HTML 主体：流程归因上半 + 失败根因族级下半
+  const html = `
+    <!-- ============== 上半：流程归因（漏斗图） ============== -->
+    <div class="section">
+      <div class="section-title">🔍 流程归因 · ${monthLabel}
+        <span class="badge badge-info">B+D 总失败 ${totalFail.toLocaleString()} 单</span>
+        ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
+      </div>
+      <div class="chart-hint" style="margin-bottom:8px">
+        5 大环节（预定/支付/取票/回填/验真）+ 兜底（未走完）。每个环节展示总单数 / B 单 / D 单。
+      </div>
+      <div class="kpi-row cols-6">${stageKpiHtml}</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔻 流程漏斗图 · 订单卡在哪一环（5 大流程 + 兜底）</div>
+      <div class="chart-hint" style="margin-bottom:8px">
+        漏斗图按环节从大到小排列。柱越宽 = 该环节失败单越多。点击图例可隐藏某环节。
+      </div>
+      <div id="chartFailAnalysisFunnel" style="height:360px"></div>
+    </div>
+
+    <!-- ============== 下半：B 路径 失败根因 ============== -->
+    <div class="section">
+      <div class="section-title">⚠️ B 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.B)} 单）
+        <span class="badge badge-warn">点击族名展开原始 Top 5</span>
+        ${cmpBHdr}
+      </div>
+      <div class="chart-box" style="margin-top:14px">
+        <div class="chart-title">🎯 B 路径 8 大环节汇总（哪一环出问题）</div>
+        ${stageSummaryHtml(bStages, CURRENT_DATA.summary.B)}
+      </div>
+      <div class="chart-box" style="margin-top:14px">
+        <div class="chart-title">📋 B 路径 失败根因 Top 30（族级，按环节色编码）</div>
+        <table class="data-table">
+          <thead>
+            <tr><th>排名</th><th>族名</th><th>单数</th><th>占比（B 路径）</th>
+              ${cs ? '<th>vs ' + COMPARE_LABEL + '</th>' : ''}
+            </tr>
+          </thead>
+          <tbody id="bFamilyTbody">${bFamilies.map(bFamilyRow).join("")}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============== 下半：D 路径 失败根因 ============== -->
+    <div class="section">
+      <div class="section-title">🚨 D 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.D)} 单）
+        ${cmpDHdr}
+      </div>
+      <div class="chart-box" style="margin-top:14px">
+        <div class="chart-title">🎯 D 路径 8 大环节汇总（哪一环出问题）</div>
+        ${stageSummaryHtml(dStages, CURRENT_DATA.summary.D)}
+      </div>
+      <div class="chart-box" style="margin-top:14px">
+        <div class="chart-title">📋 D 路径 失败根因 Top 30（族级，按环节色编码）</div>
+        <table class="data-table">
+          <thead>
+            <tr><th>排名</th><th>族名</th><th>单数</th><th>占比（D 路径）</th>
+              ${cs ? '<th>vs ' + COMPARE_LABEL + '</th>' : ''}
+            </tr>
+          </thead>
+          <tbody id="dFamilyTbody">${dFamilies.map(dFamilyRow).join("")}</tbody>
+        </table>
+      </div>
+    </div>
+  `;
+  document.getElementById("mainArea").innerHTML = html;
+
+  // 7. 渲染漏斗图（ECharts funnel）
+  setTimeout(() => {
+    const funnelData = s.map(st => ({
+      name: `${stageIcon(st.stage)} ${st.stage}`,
+      value: st.total,
+      itemStyle: { color: st.color },
+      _raw: st,
+    }));
+    const funnel = echarts.init(document.getElementById("chartFailAnalysisFunnel"));
+    funnel.setOption({
+      tooltip: {
+        trigger: "item",
+        formatter: (p) => {
+          const st = p.data._raw;
+          const cmp = cmpStageMap[st.stage];
+          let html = `<b>${st.stage}</b><br/>` +
+                     `当前: ${fmt.num(st.total)} 单 (${st.pct}%)<br/>` +
+                     `B: ${fmt.num(st.B)} 单 / D: ${fmt.num(st.D)} 单`;
+          if (cmp) {
+            const diff = st.total - cmp.total;
+            html += `<br/>${COMPARE_LABEL}: ${fmt.num(cmp.total)} 单<br/>差值: ${diff >= 0 ? '+' : ''}${fmt.num(diff)}`;
+          }
+          return html;
+        }
+      },
+      legend: { bottom: 0, textStyle: { color: "#aab5c5" } },
+      series: [{
+        type: "funnel",
+        left: "10%",
+        right: "10%",
+        top: "10%",
+        bottom: "15%",
+        width: "80%",
+        sort: "descending",
+        gap: 4,
+        label: {
+          show: true,
+          position: "inside",
+          color: "#e0e6f0",
+          formatter: (p) => `${p.name}\n${fmt.num(p.value)} 单 (${p.data._raw.pct}%)`,
+        },
+        labelLine: { show: false },
+        itemStyle: { borderWidth: 1, borderColor: "#0a1929" },
+        emphasis: { label: { fontSize: 14 } },
+        data: funnelData,
+      }]
+    });
+    chartInstances["failAnalysisFunnel"] = funnel;
+  }, 50);
+}
+
+
 /* ============== 失败根因下钻面板 ============== */
 let currentDrillKey = null;  // 当前展开的下钻，格式 "B-3" 或 "D-5"
 let currentFamilyKey = null; // 当前展开的族，格式 "fam-B-0"
@@ -2308,8 +2539,10 @@ function renderAll() {
     case "platform": renderPlatform(); break;
     case "staff": renderStaff(); break;
     case "path-d": renderPathD(); break;
-    case "stage": renderStage(); break;
-    case "fail": renderFail(); break;
+    case "failAnalysis": renderFailureAnalysis(); break;
+    // 兼容旧 hash（如果用户收藏了 /stage 或 /fail）
+    case "stage": renderFailureAnalysis(); break;
+    case "fail": renderFailureAnalysis(); break;
     default: renderOverview();
   }
 }
