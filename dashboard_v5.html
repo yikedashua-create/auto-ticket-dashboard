@@ -1962,35 +1962,23 @@ function renderFail() {
   });
 }
 
-/* ============== 失败分析（A+C 合并版：流程归因 + 失败根因） ==============
- * - 上半：流程归因（漏斗图 + 5 大环节 + 未走完）—— 订单卡在哪一环
- * - 下半：失败根因族级表（B/D 垂直堆叠，按 8 大环节分类）—— 为什么失败
- * 
- * 设计动机（2026-06-19）：
- * 原来两套体系（流程归因用"失败原因"当前卡点，失败根因用"第一次失败原因"根因）
- * 各自独立成页，用户需要来回切。本合并让用户在一个页面里：
- *   1. 先看流程归因漏斗：哪一环出问题了（数字概览）
- *   2. 再看失败根因族级：这一环里哪种错误最多（细分归因）
- *   3. 点族行展开：原始 reason（5 维度下钻）
+/* ============== 失败分析（v12 纯失败根因，删掉流程归因） ==============
+ * - 8 大环节族级表（B/D 垂直堆叠）—— 失败归因
+ * - 流程归因已删（漏斗图 + KPI 条 + 子分类明细都不要了，避免和族级重复）
+ *
+ * 设计动机（2026-06-20 改进）：
+ * 用户反馈流程归因 + 失败根因并存重复，且 B 路径族展开卡顿。
+ *   1. 删流程归因：流程归因用"失败原因"当前卡点 vs 失败根因用"第一次失败原因"根因，
+ *      两套数据不同但容易被用户混淆。保留更精准的失败根因。
+ *   2. 修 B 路径卡顿：之前每次点族行要遍历 1526 项 reason × 37 条正则 = 5.6 万次匹配。
+ *      现在后端预计算 family 字段，前端直接 O(1) 比较。
  */
 function renderFailureAnalysis() {
-  // 1. 流程归因数据
-  const s = CURRENT_DATA.stage_distribution || [];
-  const subs = CURRENT_DATA.stage_subcategory || [];
-  const totalFail = CURRENT_DATA.total_fail_orders || 0;
+  // 1. 失败根因数据（B/D）
   const cs = COMPARE_DATA;
 
-  const cmpStageMap = {};
-  if (cs && cs.stage_distribution) {
-    cs.stage_distribution.forEach(st => { cmpStageMap[st.stage] = st; });
-  }
-  const cmpTotalFail = (cs && cs.total_fail_orders) || 0;
-
-  // 2. 失败根因数据（B/D）
   const bFamilies = (CURRENT_DATA.fail_families_B || []).slice(0, 30);
   const dFamilies = (CURRENT_DATA.fail_families_D || []).slice(0, 30);
-  const bReasonsAll = CURRENT_DATA.fail_reasons_B.slice(0, 30);
-  const dReasonsAll = CURRENT_DATA.fail_reasons_D.slice(0, 30);
 
   const cmpBMap = {};
   const cmpDMap = {};
@@ -2005,22 +1993,7 @@ function renderFailureAnalysis() {
     (cs.fail_families_D || []).forEach(f => { cmpDFamMap[f.family] = f; });
   }
 
-  // 3. 流程归因：5 大环节 + 未走完（共 6 个）的 KPI 条
-  const monthLabel = CURRENT_MONTH === "all" ? "全月" : CURRENT_MONTH;
-  const stageKpiHtml = s.map(st => {
-    const cmp = cmpStageMap[st.stage];
-    const cmpBadgeHtml = cmp
-      ? fmt.cmp(st.total - cmp.total, cmp.total, "amount", false)
-      : `<span class="cmp-no">无对比基准</span>`;
-    return `<div class="kpi" style="border-color:${st.color}">
-      <div class="kpi-label" style="color:${st.color}">${stageIcon(st.stage)} ${st.stage}</div>
-      <div class="kpi-value" style="color:${st.color}">${st.total.toLocaleString()}</div>
-      <div class="kpi-foot">${st.pct}% · B:${st.B} D:${st.D}</div>
-      <div class="kpi-sub-row">${cmpBadgeHtml}</div>
-    </div>`;
-  }).join("");
-
-  // 4. 失败根因族级行（同 renderFail）
+  // 2. 失败根因族级行
   const bFamilyRow = (f, i) => {
     const cmp = cmpBFamMap[f.family];
     const cmpBadge = cs
@@ -2050,7 +2023,7 @@ function renderFailureAnalysis() {
     </tr>`;
   };
 
-  // 5. 失败根因族级环节汇总条
+  // 3. 失败根因族级环节汇总条
   const bStages = groupByStage(CURRENT_DATA.fail_families_B || []);
   const dStages = groupByStage(CURRENT_DATA.fail_families_D || []);
   const stageSummaryHtml = (stages, total) => {
@@ -2073,33 +2046,15 @@ function renderFailureAnalysis() {
     ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：D ${fmt.num(cs.summary.D)} 单</span>`
     : "";
 
-  // 6. HTML 主体：流程归因上半 + 失败根因族级下半
+  // 4. HTML 主体：B 路径族级 + D 路径族级（垂直堆叠）
   const html = `
-    <!-- ============== 上半：流程归因（漏斗图） ============== -->
-    <div class="section">
-      <div class="section-title">🔍 流程归因 · ${monthLabel}
-        <span class="badge badge-info">B+D 总失败 ${totalFail.toLocaleString()} 单</span>
-        ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
-      </div>
-      <div class="chart-hint" style="margin-bottom:8px">
-        5 大环节（预定/支付/取票/回填/验真）+ 兜底（未走完）。每个环节展示总单数 / B 单 / D 单。
-      </div>
-      <div class="kpi-row cols-6">${stageKpiHtml}</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">🔻 流程漏斗图 · 订单卡在哪一环（5 大流程 + 兜底）</div>
-      <div class="chart-hint" style="margin-bottom:8px">
-        漏斗图按环节从大到小排列。柱越宽 = 该环节失败单越多。点击图例可隐藏某环节。
-      </div>
-      <div id="chartFailAnalysisFunnel" style="height:360px"></div>
-    </div>
-
-    <!-- ============== 下半：B 路径 失败根因 ============== -->
     <div class="section">
       <div class="section-title">⚠️ B 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.B)} 单）
         <span class="badge badge-warn">点击族名展开原始 Top 5</span>
         ${cmpBHdr}
+      </div>
+      <div class="chart-hint" style="margin-bottom:8px">
+        8 大环节（人工/系统/预定/支付/取票/验真/回填/平台）+ 其他。色块编码 = 环节类别。
       </div>
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">🎯 B 路径 8 大环节汇总（哪一环出问题）</div>
@@ -2118,7 +2073,6 @@ function renderFailureAnalysis() {
       </div>
     </div>
 
-    <!-- ============== 下半：D 路径 失败根因 ============== -->
     <div class="section">
       <div class="section-title">🚨 D 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.D)} 单）
         ${cmpDHdr}
@@ -2141,56 +2095,6 @@ function renderFailureAnalysis() {
     </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
-
-  // 7. 渲染漏斗图（ECharts funnel）
-  setTimeout(() => {
-    const funnelData = s.map(st => ({
-      name: `${stageIcon(st.stage)} ${st.stage}`,
-      value: st.total,
-      itemStyle: { color: st.color },
-      _raw: st,
-    }));
-    const funnel = echarts.init(document.getElementById("chartFailAnalysisFunnel"));
-    funnel.setOption({
-      tooltip: {
-        trigger: "item",
-        formatter: (p) => {
-          const st = p.data._raw;
-          const cmp = cmpStageMap[st.stage];
-          let html = `<b>${st.stage}</b><br/>` +
-                     `当前: ${fmt.num(st.total)} 单 (${st.pct}%)<br/>` +
-                     `B: ${fmt.num(st.B)} 单 / D: ${fmt.num(st.D)} 单`;
-          if (cmp) {
-            const diff = st.total - cmp.total;
-            html += `<br/>${COMPARE_LABEL}: ${fmt.num(cmp.total)} 单<br/>差值: ${diff >= 0 ? '+' : ''}${fmt.num(diff)}`;
-          }
-          return html;
-        }
-      },
-      legend: { bottom: 0, textStyle: { color: "#aab5c5" } },
-      series: [{
-        type: "funnel",
-        left: "10%",
-        right: "10%",
-        top: "10%",
-        bottom: "15%",
-        width: "80%",
-        sort: "descending",
-        gap: 4,
-        label: {
-          show: true,
-          position: "inside",
-          color: "#e0e6f0",
-          formatter: (p) => `${p.name}\n${fmt.num(p.value)} 单 (${p.data._raw.pct}%)`,
-        },
-        labelLine: { show: false },
-        itemStyle: { borderWidth: 1, borderColor: "#0a1929" },
-        emphasis: { label: { fontSize: 14 } },
-        data: funnelData,
-      }]
-    });
-    chartInstances["failAnalysisFunnel"] = funnel;
-  }, 50);
 }
 
 
@@ -2216,8 +2120,9 @@ function toggleFamilyDrill(path, famIdx, rowEl) {
   if (!fam) return;
   currentFamilyKey = key;
 
-  // v11 修复：用 getFamily（v10 环节规则）匹配族名，不再用废弃的 reasonToFamily
-  const reasons = allReasons.filter(r => getFamily(r.full) === fam.family);
+  // v12 优化：直接读 r.family（后端预计算好的），不再每次调 getFamily
+  // 之前 B 路径 1526 项 × 37 条正则 = 5.6 万次正则匹配 → 点族行卡顿
+  const reasons = allReasons.filter(r => r.family === fam.family);
 
   // 在族行下方插入二级面板
   const colspan = 5;
