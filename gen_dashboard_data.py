@@ -604,13 +604,15 @@ def build_month_data(df, month_label):
         s = s.replace("\n", " ").replace("\r", " ")
         return s[:n] + ("..." if len(s) > n else "")
 
-    # v6 修复：fail_reasons 改为全量（之前 .most_common(30) 截断导致族级数据不一致）
+    # v12 修复：fail_reasons 预计算 family 字段（前端不再每次调用 getFamily）
+    # 之前 B 路径 1526 项 × 37 条正则 = 5.6 万次正则匹配 → 点族行卡顿
+    # 修法：后端一次性归族，存到 reason 的 family 字段；前端 O(1) Map 查询
     out["fail_reasons_B"] = [
-        {"reason": short(k, 80), "full": k, "count": v}
+        {"reason": short(k, 80), "full": k, "count": v, "family": family_reason(k) or "(无)"}
         for k, v in fail_reasons_b.most_common()  # 全量
     ]
     out["fail_reasons_D"] = [
-        {"reason": short(k, 80), "full": k, "count": v}
+        {"reason": short(k, 80), "full": k, "count": v, "family": family_reason(k) or "(无)"}
         for k, v in fail_reasons_d.most_common()  # 全量
     ]
     # 族级 Top（看板默认展示，Top 15 足够，前端限制显示 Top 10）
