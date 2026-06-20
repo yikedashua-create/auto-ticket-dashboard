@@ -116,15 +116,124 @@ REASON_CLEANUP_RULES = [
 
 
 def clean_reason_text(reason: str) -> str:
-    """对单条 reason 文本应用清洗规则。返回清洗后文本；清洗后为空则返回空串。"""
+    """对单条 reason 文本应用清洗规则。返回清洗后文本；清洗后为空则返回空串。
+
+    流程（2026-06-20 升级）：
+      1) 骨架归一（自动识别"变量 token"替换为占位符）  ← 新增：自动适配未知 reason 类型
+      2) 正则白名单清洗（极端噪音）
+    """
     if reason is None:
         return ""
     s = str(reason).strip()
     if not s or s.lower() in ("nan", "none", "null", ""):
         return ""
+    # 第 1 步：骨架归一（自动变量识别 + 业务占位符替换）
+    s = skeleton_normalize(s)
+    # 第 2 步：正则兜底（极端噪音）
     for pattern, replacement in REASON_CLEANUP_RULES:
         s = re.sub(pattern, replacement, s)
     s = s.strip()
+    return s
+
+
+# ============================================================
+# 骨架归一器（2026-06-20 用户要求"系统自动处理相似类型"）
+# ============================================================
+# 核心思想：把 reason 文本当成 token 序列，自动识别"变量部分"
+# （订单号/账号ID/金额/时间戳/乘客姓名/JSON 片段）替换成占位符。
+# 相同骨架的不同变体自动合并，不需要为每种新 reason 写新规则。
+#
+# 规则按"特异性从高到低"排序：长的、独特的 pattern 先匹配，
+# 短的、通用的 pattern 后匹配（避免误吃）。
+# ============================================================
+
+# 占位符常量（用不易出现的字符串，避免和真实 reason 文本冲突）
+_PLACEHOLDER = {
+    "ORDER_FAIL": "【已生单失败】",      # 已生单:XXX{...JSON...} 整段
+    "ORDER_ID":   "【订单号】",           # 各类订单号（字母+数字混合，含渠道前缀）
+    "PURE_NUM":   "【数字ID】",           # 纯数字订单 ID（13+ 位）
+    "USER_ID":    "【账号ID】",           # [][]账号ID 前缀
+    "ACCOUNT":    "【账号】",             # --账号 后缀
+    "USER":       "【用户】",             # @用户名
+    "TIME":       "【时间】",             # 时间戳
+    "AMOUNT":     "【金额】",             # 数值（亏损/盈利/利润 系列）
+    "PASSENGER":  "【乘客】",             # 乘客姓名（全大写英文）
+    "JSON":       "【JSON】",             # JSON 片段
+    "TICKET":     "【BKT票号】",          # BKT/PVT 开头票号（4字母+数字）
+    "URL":        "【URL】",               # URL
+    "EMAIL":      "【邮箱】",             # 邮箱
+    "NUM_SHORT":  "【数字】",              # 短数字（4-9 位）
+    "HEX":        "【HEX】",              # 16进制（如 0x0d）
+}
+
+# 骨架归一规则（按"特异性从高到低"排序）
+SKELETON_NORMALIZE_RULES = [
+    # === 高优先级：整段复合结构 ===
+    # 已生单:XXX{...JSON...} 整段（含嵌套 JSON）
+    (r"已生单\s*[:：]\s*[A-Za-z0-9]+\s*\{(?:[^{}]|\{[^{}]*\})*\}", _PLACEHOLDER["ORDER_FAIL"]),
+    # traceId/serialNo JSON 片段
+    (r"\{'traceId'[^}]*\}", _PLACEHOLDER["JSON"]),
+    (r'\{"traceId"[^}]*\}', _PLACEHOLDER["JSON"]),
+    # 一般 JSON 对象（含嵌套）
+    (r"\{(?:[^{}]|\{[^{}]*\})*\}", _PLACEHOLDER["JSON"]),
+    # [][]账号ID 前缀（含 @、允许空 [])
+    (r"\[\s*\]\s*\[\s*[@]?[A-Za-z0-9_*@.\-]+\s*\]\s*", _PLACEHOLDER["USER_ID"]),
+    # --账号后缀（账号 + 多个 -xxx 段，如 --sag1416 或 --200308@Lsy）
+    (r"\s+--\s*[@]?[A-Za-z0-9_*@.\-]+(?:\s*-\s*[A-Za-z0-9_*@.\-]+)*\s*$", " " + _PLACEHOLDER["ACCOUNT"]),
+    # 孤立 -- 后缀
+    (r"\s+--\s*$", " " + _PLACEHOLDER["ACCOUNT"]),
+    # @用户名（独立标记）
+    (r"[@][A-Za-z][A-Za-z0-9_*\-]*\b", _PLACEHOLDER["USER"]),
+    # 邮箱
+    (r"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}", _PLACEHOLDER["EMAIL"]),
+    # URL（http/https）
+    (r"https?://[^\s,，。；;]+", _PLACEHOLDER["URL"]),
+
+    # === 中优先级：明显的"业务变量"标识 ===
+    # 时间戳（2026-05-30 12:34:56 / 2026-05-30）
+    (r"\d{4}[-/]\d{1,2}[-/]\d{1,2}(?:[ T]\d{1,2}:\d{2}(?::\d{2})?)?", _PLACEHOLDER["TIME"]),
+    # 数值（亏损/盈利/利润系列：-10.0 / 20.0 / 0.0）
+    (r"(亏损大于|盈利大于|利润大于|亏损|盈利|利润)[:：]?\s*-?\d+(?:\.\d+)?", r"\1:" + _PLACEHOLDER["AMOUNT"]),
+    # BKT/PVT/VBX 开头票号（4字母+数字）
+    (r"\b[A-Z]{3,4}\d{5,}\b", _PLACEHOLDER["TICKET"]),
+    # 乘客姓名（全大写英文 + / + 1+ 大写英文，常见于国际航班，如 LIU/Y、HARRISON/JOHN、TANTIKUN/TIDAPORN）
+    (r"(?<![A-Za-z0-9])[A-Z]{2,}[/.][A-Z]+(?![A-Za-z0-9])", _PLACEHOLDER["PASSENGER"]),
+    # 16进制（0x0d, 0xab 等）
+    (r"0[xX][0-9a-fA-F]+", _PLACEHOLDER["HEX"]),
+
+    # === 中优先级：订单号类（含前缀字母） ===
+    # 14 位带字母前缀订单号（IT7MQV260601INRJ0431, BKTVVGY260601LW0H...）
+    (r"(?<![A-Za-z0-9])[A-Z]{1,3}[A-Z0-9]{12,}(?![A-Za-z0-9])", _PLACEHOLDER["ORDER_ID"]),
+    # 7-12 位大写字母数字订单号（BKVRUGS / BKVLLAF / BKVKRLO / BKVKHCZ 全 7 位纯字母）
+    # 模式：2-4 个大写字母 + 4+ 个字母数字
+    # 注：会偶尔误吃英文单词（如 CARDIUM），但不会被分到任何业务族，无伤大雅
+    (r"(?<![A-Za-z0-9])[A-Z]{2,4}[A-Z0-9]{4,}(?![A-Za-z0-9])", _PLACEHOLDER["ORDER_ID"]),
+    # 13+ 位纯字母数字（兜底）
+    (r"(?<![A-Za-z0-9])[A-Za-z0-9]{13,}(?![A-Za-z0-9])", _PLACEHOLDER["ORDER_ID"]),
+
+    # === 低优先级：纯数字 ===
+    # 10+ 位纯数字订单 ID
+    (r"\b\d{10,}\b", _PLACEHOLDER["PURE_NUM"]),
+    # 4-9 位短数字（订单号片段、航班号 1234-5678 等）—— 谨慎：可能误吃
+    # 只吃独立词（前后是空格或中文）的数字
+    (r"(?<=[\s,，:：])\d{4,9}(?=[\s,，:：])", _PLACEHOLDER["NUM_SHORT"]),
+]
+
+
+def skeleton_normalize(reason: str) -> str:
+    """骨架归一：自动识别 reason 文本中的"变量 token"（订单号/账号ID/金额/时间戳/乘客姓名等），
+    替换为占位符。相同骨架的不同变体会被归并成同一条。
+
+    优点：
+      - 新 reason 进来时不用写新规则，骨架归一器自动处理
+      - 避免每种变体（订单号不同、账号不同）都拆成单独一行
+      - 把"业务骨架"暴露出来，更容易做族级聚合
+    """
+    if not reason:
+        return ""
+    s = reason
+    for pattern, replacement in SKELETON_NORMALIZE_RULES:
+        s = re.sub(pattern, replacement, s)
     return s
 
 
