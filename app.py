@@ -62,10 +62,9 @@ else:
 # 用 components.v1.html 保留 style/JS（st.html 会过滤 <style> 标签，CSS 全丢）
 # height 给个够大的值（5000），scrolling=True 让内容超出时 iframe 内部出滚动条
 # （不靠 streamlit 主页面滚动，避免双滚动条冲突）
-import base64
 b64 = base64.b64encode(html.encode("utf-8")).decode("ascii")
 data_uri = f"data:text/html;base64,{b64}"
-st.iframe(data_uri, height=5000)
+st.iframe(html, height=5000)
 
 # ============== 6. 底部状态条（可选，方便排查） ==============
 try:
