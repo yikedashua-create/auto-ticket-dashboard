@@ -22,7 +22,8 @@ from datetime import datetime
 from collections import defaultdict, Counter
 
 DATA_DIR = r"C:\Users\admin\Desktop\出票总订单数据"
-OUT_DIR = r"C:\Users\admin\.mavis\sessions\mvs_b0c94c62a23e4172a7ba820eb07f096a\workspace"
+# v10（2026-06-22）：输出到脚本所在目录，Streamlit Cloud / 本地都能直接读到
+OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 出票成功状态（用于路径切分）
 # 关键：VALID_TICKET_FAIL 名字带"FAIL"但实际是"出票完成"（2026-06-13 用户指正）
@@ -445,7 +446,13 @@ FAMILY_SUB_NORMALIZE_RULES = {
     ],
 
     # === 预定失败 - 预定异常族 ===
+    # v10（2026-06-22）：压缩 115 → 30 变体
+    # 三大头：
+    #   - `预定失败 原因为:` 前缀（光 594 单变体一个）→ 删
+    #   - `预定失败 ` 短前缀（"未找到预定服务:xxx"/"无有效预留号码:xxx"）→ 删
+    #   - 末尾渠道名（反采同程/春秋官网/MF官网...）→ 删
     "预定失败-预定异常": [
+        # === 既有规则（v9.1）保留 ===
         # "已生单:" 前缀——JSON msg 已提取后，"已生单:"是冗余前缀
         (r"^已生单\s*[:：]\s*", ""),
         # "内部程序异常/Internal system error" 归一
@@ -463,6 +470,149 @@ FAMILY_SUB_NORMALIZE_RULES = {
         (r"参数无效", ""),
         # "生单失败:..." 整段
         (r"生单失败[:：][^\n]+", "生单失败"),
+
+        # === v10 新增（2026-06-22）===
+        # 1) 删 `预定失败 原因为:` 长前缀（覆盖绝大多数变体，最大头）
+        (r"^预定失败\s*原因为[:：]\s*", ""),
+        # 2) 删 `预定失败 ` 短前缀（覆盖 "未找到预定服务:xxx" / "无有效预留号码:xxx" 等不带"原因为:"的变体）
+        (r"^预定失败\s+", ""),
+        # 3) 删末尾渠道名（白名单，14 个渠道）+ 可选 `--账号ID` 后缀
+        # v10.3 修复：合并渠道名 + `--账号` 后缀，避免 `MF官网--200308LSY` 漏网
+        (r"\s+(反采同程APP|反采同程|春秋官网|MF官网|香港港版APP|港版APP|agoda|航班管家接口|反采携程海外|九元官网|飞猪|淘宝|瑞安|反采携程)(?:\s*--\s*[A-Za-z0-9_!*@.-]+)?\s*$", ""),
+        # 4) 删客气前缀 `非常抱歉 ` `您好 `
+        (r"^(非常抱歉|您好)\s+", ""),
+
+        # 5) 中英双描述归一为中文
+        (r"舱位已售完\s*/\s*The cabin class has been sold out", "舱位已售完"),
+        (r"姓名不合法\s*/\s*last name or first name parameter invalid", "姓名不合法"),
+        (r"乘客为失信人\s*/\s*Discredited passenger", "乘客为失信人"),
+        (r"乘客重复预定\s*/\s*Duplicate passenger reservation", "乘客重复预定"),
+
+        # 6) 业务子类合并
+        # 业务前置检查异常 各种子描述（"或者..."/"不可再预定"/"请稍后再试"）→ 统一
+        (r"业务前置检查异常\s+或者根据规则当前旅客不可预定当前航班", "业务前置检查异常"),
+        (r"业务前置检查异常\s+不可再预定", "业务前置检查异常"),
+        (r"业务前置检查异常\s+请稍后再试", "业务前置检查异常"),
+        # 价格售完 / 机票售完（去 "请重新查询 或致电专属客服" 尾巴）
+        (r"您预订的价格已售完.*", "您预订的价格已售完"),
+        (r"您本次机票预订失败.*", "机票预订失败"),
+        # ip 异常
+        (r"ip异常\s+请重试", "ip异常"),
+        # 业务异常 验证已超时
+        (r"业务异常\s*[-—]\s*验证已超时.*", "业务异常 验证已超时"),
+        # 失信人（多渠道统一为一个标签）
+        (r"乘客被国家机关列入失信人名单.*?(?:暂时无法预订机票|若已解除.*)?", "乘客为失信人"),
+        (r"限制失信人在乘坐交通工具时选择飞机.*", "乘客为失信人"),
+        # 重复预定（英文 + 中文统一）
+        (r"Duplicate booking:[^\n]+", "重复预定"),
+        # 占限额失败 / 0 <a href> 噪声
+        (r"占限额失败\s*<[^>]*>", "占限额失败"),
+        (r"^\s*0\s*<[^>]*>\s*$", ""),
+
+        # === v10.1（2026-06-22）新增：账号标记 + 后缀 + 杂项 ===
+        # 7) `[账号ID!]` 前缀（如 `[200308LSY!]`），不是 `[回调消息]`（中文业务前缀）才删
+        # v10.2 修复：账号 ID 首字符可能是数字（200308LSY），首字符改成 `[A-Za-z0-9]`
+        # 注：`--账号` 后缀已合并进规则 3 渠道白名单处理
+        (r"^\s*\[[A-Za-z0-9][A-Za-z0-9_!*@.-]{2,}!?\]\s*", ""),
+        # 9) agoda `[回调消息]...` 数值/子描述归一
+        (r"\[回调消息\]\s*亏损拦截！拦截金额[:：]\s*[\d.]+", "亏损拦截 (回调消息)"),
+        (r"\[回调消息\]\s*暂不支持多人单", "暂不支持多人单 (回调消息)"),
+        (r"\[回调消息\]\s*未匹配到对应航班", "未匹配到对应航班 (回调消息)"),
+        (r"\[回调消息\]\s*获取货币汇率失败", "获取货币汇率失败 (回调消息)"),
+        (r"\[回调消息\]\s*该渠道暂不支持该乘机人类型", "该渠道暂不支持该乘机人类型 (回调消息)"),
+        (r"\[回调消息\]\s*起飞时间不匹配", "起飞时间不匹配 (回调消息)"),
+        (r"\[回调消息\]\s*预定失败[:：]该订单需要护照号", "需要护照号 (回调消息)"),
+        (r"\[回调消息\]\s*航班搜索超时未找到匹配航班", "航班搜索超时 (回调消息)"),
+        (r"\[回调消息\]\s*Target page context or browser has been closed", "Target page context closed (回调消息)"),
+        (r"\[回调消息\]\s*预订失败\s*人工核实[:：]\s*此预订似乎是重复预订。?", "预订失败 重复预订 (回调消息)"),
+        (r"\[回调消息\]\s*支付失败\s*考虑银行卡问题\s*人工核实[:：]\s*支付未完成", "支付失败 银行卡问题 (回调消息)"),
+        (r"\[回调消息\]\s*未知错误\s*请重试", "未知错误 (回调消息)"),
+        (r"\[回调消息\]\s*航线查询异常", "航线查询异常 (回调消息)"),
+        (r"\[回调消息\]\s*请人工检查支付结果", "请人工检查支付结果 (回调消息)"),
+        (r"\[回调消息\]\s*\[娟婷中行\d+\]\s*页面文字[:：].+", "页面文字异常 (回调消息)"),
+        # 10) 到达/起飞时间不一致（数值归一）
+        (r"到达时间不一致[:：]\s*\d{1,2}[:：]\d{2}", "到达时间不一致"),
+        (r"起飞时间不一致[:：]\s*\d{1,2}[:：]\d{2}", "起飞时间不一致"),
+        # 11) An unknown error / Connection reset / 5004 错误码前缀
+        (r"An unknown error occurred\.?", "未知错误"),
+        (r"Connection reset", "网络异常"),
+        (r"^5004\|", ""),
+        (r"^500$", "HTTP 500"),
+        (r"^_086$", "086"),
+        # 12) 业务子类合并
+        (r"key获取失败", "Key 获取失败"),
+        (r"生成临时订单异常", "生单失败"),
+        (r"确认订单失败[:：]创建订单失败[:：]预订PNR失败", "预订PNR失败"),
+        (r"确认舱位失败\s*请重试", "确认舱位失败"),
+        (r"组合产品信息已变化.*?下单", "组合产品信息已变化"),
+        (r"在售舱位发生变换.*?查询", "在售舱位发生变换"),
+        (r"匹配到多个订单\s*请人工处理", "匹配到多个订单"),
+        (r"取消保险优惠失败\s*请重试", "取消保险优惠失败"),
+        (r"当前手机号码存在安全风险.*?修改", "手机号码存在安全风险"),
+        (r"联系人姓名输入过长.*?字", "联系人姓名过长"),
+        (r"航线查询失败\s*请重订", "航线查询失败"),
+        (r"获取失败\s*请重订", "获取失败"),
+        (r"添加到产品.*?数量为\d+\s*实际数量为\d+。?", "乘客数量无效"),
+        (r"获取bookingId异常", "获取 bookingId 异常"),
+        (r"获取s6\s*cookie失败\s*请重试", "获取 s6 cookie 失败"),
+        (r"乘机人已存在或乘机人数量已满", "乘机人已存在或满"),
+        (r"参数certNo不能为空", "证件号不能为空"),
+        (r"抱歉\s*管家为您占座失败.*?舱位预订。?", "管家占座失败"),
+        (r"登录ip异常\s*请重试", "ip异常"),
+        (r"登陆失败请重试", "登录失败"),
+        # 13) `[回调消息]xxx` 通用 fallback：剩余未匹配的具体业务，统一保留 "(回调消息)" 标识
+        (r"^\[回调消息\]\s*", "(回调消息) "),
+
+        # === v10.2（2026-06-22）第二轮精准修复 ===
+        # 14) 5020 失信人法条
+        (r"^5020\|.*", "乘客为失信人"),
+        # 15) 失信人长尾巴
+        (r"乘客为失信人\s+暂时无法预订机票.*", "乘客为失信人"),
+        # 16) 下单时异常尾部子描述
+        (r"下单时异常\s+请人工核\S+", "下单时异常 请人工查询"),
+        # 17) 乘机人已预订相同行程
+        (r"乘机人已预订相同行程订单.*", "乘机人已预订相同行程"),
+        # 18) 起飞时间不一致数值归一
+        (r"起飞时间不一致[:：]\s*\d{1,2}[:：]\d{2}", "起飞时间不一致"),
+        # 19) 暂无价格 / 边缘
+        (r"暂无价格!?", "暂无价格"),
+        # 20) `__` / `__003` 乱码（多个下划线开头）
+        (r"^_{2,}\s*\d*$", "(无)"),
+        # 21) 当前航班已售完
+        (r"当前航班已售完", "当前航班已售完"),
+        # 22) 年龄限制购票（双语）
+        (r"年龄被限制购票/Age-restricted", "年龄被限制购票"),
+        # 23) 起飞时间不一致
+        (r"起飞时间不一致[:：]\s*\d{1,2}[:：]\d{2}", "起飞时间不一致"),
+        # agoda 回调消息（统一加 "(回调消息)" 后缀区分）
+        (r"\[回调消息\]\s*未知错误\s*请重试", "未知错误 (回调消息)"),
+        (r"\[回调消息\]\s*航线查询异常", "航线查询异常 (回调消息)"),
+        (r"\[回调消息\]\s*请人工检查支付结果", "请人工检查支付结果 (回调消息)"),
+        # ERR_ (未知错误)
+        (r"^ERR_?\s*$", "ERR"),
+        # 页面停留超时（去 "请刷新后获取最新页面。" 尾巴）
+        (r"您在此页面停留超过20分钟.*?页面。?", "页面停留超过20分钟"),
+        # Proxy tunnel 整段（前面不管剩什么，统一成一个标签）
+        (r"Unable to tunnel through proxy[^\n]+", "Unable to tunnel through proxy"),
+        # JSON 解析错误 / Python 空引用
+        (r"Number Array Object or token[^\n]+", "JSON 解析异常"),
+        (r"NoneType[^\n]+", "Python 对象空引用"),
+        # 下单异常
+        (r"下单时异常\s+请人工查询是否下单成功", "下单时异常 请人工查询"),
+        (r"下单失败\s+此账号没有匹配到订单", "此账号没有匹配到订单"),
+        # 护照 / 实名 / 证件
+        (r"请填写正确的护照号码", "护照号码不正确"),
+        (r"暂时只支持护照", "仅支持护照"),
+        (r"此单需要实名认证", "需要实名认证"),
+        (r"该渠道暂不支持该证件类型", "渠道不支持该证件类型"),
+        # 询价数据失效
+        (r"询价数据失效.*", "询价数据失效"),
+        # 登录状态
+        (r"登录状态失效\s+请维护", "登录状态失效"),
+        # 繁体 → 简体
+        (r"請重新搜尋以獲取最新結果", "请重新搜索获取最新结果"),
+        # 占限额失败（去 HTML 尾巴；和上面那条合并）
+        (r"占限额失败\s*<[^>]*>", "占限额失败"),
     ],
 
     # === 预定失败 - 未匹配规则族 ===
@@ -1062,34 +1212,32 @@ def build_month_data(df, month_label):
     #   2) B/D 路径：先 第一次失败原因，fallback 到 失败原因
     #   3) 应用文本清洗规则（去邮箱/时间戳/订单号/null/技术字段）
     #   4) 族聚合：把相似根因归到业务族（"取票失败"/"询价失败"/"亏损"等）
-    fail_reasons_b = Counter()
-    fail_reasons_d = Counter()
-    # 族级聚合（B/D 分别）
+    # v10.4 修复（2026-06-22）：用 (cleaned_after, fam) 复合 key 累加，
+    #   避免 `(无)` / `Java 数组越界` 这类 cleaned_after 在多个族都出现时
+    #   pre_fam 字典被覆盖导致 reason family 字段错算（族级 vs reason 累加不一致）
+    reason_counter_b = {}  # (cleaned_after, fam) -> count
+    reason_counter_d = {}
     fail_families_b = Counter()
     fail_families_d = Counter()
     for _, r in df.iterrows():
         p = r["path"]
-        # A 路径不参与失败根因分析
         if p == "A":
             continue
-        # 清洗 + fallback
         cleaned = get_root_reason(r)
         if not cleaned:
-            cleaned = "(无)"  # 真没原因（B/D 路径才会到这里）
-        # 先用骨架归一 + 族级归一得到 family
-        # 关键：family 必须用"族内归一前"的 cleaned 算（族内归一改后的字符串不再匹配关键字）
-        fam = family_reason(cleaned) or "(无)"
-        # 族内二级归一：把同一族内的"业务子描述变体"统一成占位符
-        # 关键约束：只能族内合并，不能跨族
-        cleaned = family_sub_normalize(cleaned, fam)
-        # 族内归一后可能变空字符串（删空了所有子描述），fallback 到 "(无)"
-        if not cleaned or not cleaned.strip():
             cleaned = "(无)"
+        # fam 用族内归一前的 cleaned 算（族内归一改后可能不再匹配关键字）
+        fam = family_reason(cleaned) or "(无)"
+        cleaned_after = family_sub_normalize(cleaned, fam)
+        if not cleaned_after or not cleaned_after.strip():
+            cleaned_after = "(无)"
         if p == "B":
-            fail_reasons_b[cleaned] += 1
+            key = (cleaned_after, fam)
+            reason_counter_b[key] = reason_counter_b.get(key, 0) + 1
             fail_families_b[fam] += 1
         elif p == "D":
-            fail_reasons_d[cleaned] += 1
+            key = (cleaned_after, fam)
+            reason_counter_d[key] = reason_counter_d.get(key, 0) + 1
             fail_families_d[fam] += 1
 
     # 简化：取前 60 字
@@ -1097,35 +1245,14 @@ def build_month_data(df, month_label):
         s = s.replace("\n", " ").replace("\r", " ")
         return s[:n] + ("..." if len(s) > n else "")
 
-    # v12 修复：fail_reasons 预计算 family 字段（前端不再每次调用 getFamily）
-    # 之前 B 路径 1526 项 × 37 条正则 = 5.6 万次正则匹配 → 点族行卡顿
-    # 修法：后端一次性归族，存到 reason 的 family 字段；前端 O(1) Map 查询
-    # v13 修复：family 字段必须用"族内归一前"的 cleaned 算（family 已经在循环里算过了，存到 pre_fam 字典）
-    # 用 pre_fam 字典查 family（避免族内归一改后 cleaned 算错族）
-    pre_fam_b = {}
-    pre_fam_d = {}
-    # 重新跑一遍 pre-family（轻量：只算 cleaned 一次的 family）
-    for _, r in df.iterrows():
-        p = r["path"]
-        if p == "A":
-            continue
-        cleaned = get_root_reason(r)
-        if not cleaned:
-            cleaned = "(无)"
-        fam = family_reason(cleaned) or "(无)"
-        cleaned_after = family_sub_normalize(cleaned, fam)
-        if p == "B":
-            pre_fam_b[cleaned_after] = fam
-        elif p == "D":
-            pre_fam_d[cleaned_after] = fam
-
+    # 输出：family 字段直接来自复合 key 的 fam，不再查 pre_fam 字典
     out["fail_reasons_B"] = [
-        {"reason": short(k, 80), "full": k, "count": v, "family": pre_fam_b.get(k, "(无)")}
-        for k, v in fail_reasons_b.most_common()  # 全量
+        {"reason": short(k[0], 80), "full": k[0], "count": v, "family": k[1]}
+        for k, v in sorted(reason_counter_b.items(), key=lambda kv: -kv[1])
     ]
     out["fail_reasons_D"] = [
-        {"reason": short(k, 80), "full": k, "count": v, "family": pre_fam_d.get(k, "(无)")}
-        for k, v in fail_reasons_d.most_common()  # 全量
+        {"reason": short(k[0], 80), "full": k[0], "count": v, "family": k[1]}
+        for k, v in sorted(reason_counter_d.items(), key=lambda kv: -kv[1])
     ]
     # 族级 Top（看板默认展示，Top 15 足够，前端限制显示 Top 10）
     out["fail_families_B"] = [
@@ -1136,6 +1263,13 @@ def build_month_data(df, month_label):
         {"family": k, "count": v}
         for k, v in fail_families_d.most_common()
     ]
+    # 简化：取前 60 字
+    def short(s, n=60):
+        s = s.replace("\n", " ").replace("\r", " ")
+        return s[:n] + ("..." if len(s) > n else "")
+
+
+
 
     # ========== Top 10 失败根因下钻数据（5 维度）==========
     # 为 Top 10 根因预计算：平台分布 / 航司分布 / 航司×平台交叉 / 日期趋势 / 员工救场
