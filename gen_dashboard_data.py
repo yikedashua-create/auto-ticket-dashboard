@@ -1575,10 +1575,11 @@ def main():
             for k in ["airline", "platform", "channel", "staff"]:
                 if k in day_data and isinstance(day_data[k], list):
                     day_data[k] = day_data[k][:5]
-            # 精简：失败原因 Top 10
-            for k in ["fail_reasons_B", "fail_reasons_D"]:
-                if k in day_data and isinstance(day_data[k], list):
-                    day_data[k] = day_data[k][:10]
+            # 精简：失败原因**不截断**（v10.8 修复，2026-06-23）
+            # 之前切 Top 10 导致日表族内变体被截断：例如"预定失败-预定异常"族 6-21 有 21 个变体 63 单
+            # 切 Top 10 后该族只剩 2 个变体 14 单（差 49 单），族总 vs 变体累加对不上
+            # 不截断让 dashboard 展开族时能拿到完整变体 list（单日变体数通常 < 100，影响不大）
+            # 航司/平台/渠道/员工/阶段子类 继续 Top 5/10 精简（这些不影响族聚合一致性）
             # 精简：subcategory Top 10
             if "stage_subcategory" in day_data and isinstance(day_data["stage_subcategory"], list):
                 day_data["stage_subcategory"] = day_data["stage_subcategory"][:10]
