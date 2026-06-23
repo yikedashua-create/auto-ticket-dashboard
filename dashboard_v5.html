@@ -207,6 +207,12 @@
   .drill-chart-title { color: #00e5ff; font-size: 12px; font-weight: 600; margin-bottom: 8px; padding-left: 4px; border-left: 2px solid #00e5ff; }
   .family-subtable { margin-top: 8px; }
   .family-subtable .data-table { font-size: 11px; }
+  /* 4 路径对比表（紧凑版） */
+  .path-compare-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; }
+  .path-compare-table th { padding: 5px 8px; color: #7a8ba0; font-weight: 500; border-bottom: 1px solid #1e3a5f; background: #0a0e1a; text-align: right; }
+  .path-compare-table th:first-child { text-align: left; }
+  .path-compare-table td { padding: 5px 8px; border-bottom: 1px solid #1e3a5f40; color: #b0c4de; text-align: right; }
+  .path-compare-table td:first-child { text-align: left; font-weight: 600; }
   .drill-btn { background: #0a1a2e; border: 1px solid #1e3a5f; color: #00e5ff; padding: 2px 8px; border-radius: 3px; cursor: pointer; font-size: 11px; }
   .drill-btn:hover { background: #1e3a5f; color: #fff; }
   .data-table th {
@@ -749,10 +755,12 @@ function renderOverview() {
         <div class="chart-box">
           <div class="chart-title">📊 4 路径订单分布</div>
           <div id="chart-pathPie" class="chart-area" style="height:280px"></div>
+          <div id="table-pathOrders"></div>
         </div>
         <div class="chart-box">
           <div class="chart-title">💰 4 路径利润对比（核心财务）</div>
           <div id="chart-pathProfit" class="chart-area" style="height:280px"></div>
+          <div id="table-pathProfit"></div>
         </div>
       </div>
     </div>
@@ -777,6 +785,9 @@ function renderOverview() {
     </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
+
+  // 4 路径订单/利润对比明细表（v10.9：默认展示订单数 + vs 对比，避免 hover 才能看到）
+  renderPathComparisonTables();
 
   // 4 路径饼图（含对比 tooltip）
   const cs2 = COMPARE_DATA ? COMPARE_DATA.summary : null;
@@ -894,6 +905,81 @@ function computePathProfit() {
     { name: "C", sum: s.C * avgP * 1.4, avg: avgP * 1.4 },
     { name: "D", sum: 0, avg: 0 },
   ];
+}
+
+/* v10.9 新增（2026-06-23）：渲染 4 路径订单/利润对比明细表
+ * 用户报问题截图："总览是不是缺了四个路径对应的订单总数，以及对比情况"
+ * - 之前 donut chart label 只显示 {b} {d}%（路径名+百分比），订单数 + vs 对比仅在 hover tooltip 里能看到
+ * - 修复：在两个图表下方各加一个紧凑对比表（4 行 × 5 列），让用户能直接看到订单数/利润/对比
+ */
+function renderPathComparisonTables() {
+  const s = CURRENT_DATA.summary;
+  const cs = COMPARE_DATA ? COMPARE_DATA.summary : null;
+  const pathOrder = [
+    { key: "A", label: "A", color: color.A },
+    { key: "B", label: "B", color: color.B },
+    { key: "C", label: "C", color: color.C },
+    { key: "D", label: "D", color: color.D },
+  ];
+  // 工具：变化箭头
+  const fmtDiff = (diff) => {
+    if (diff === null || diff === undefined) return '<span style="color:#7a8ba0">—</span>';
+    const sign = diff > 0 ? "+" : (diff < 0 ? "" : "·");
+    const arrow = diff > 0 ? "↑" : (diff < 0 ? "↓" : "→");
+    const c = diff > 0 ? "#00d4aa" : (diff < 0 ? "#ff4757" : "#7a8ba0");
+    return `<span style="color:${c}">${arrow} ${sign}${fmt.num(diff)}</span>`;
+  };
+  // 1) 订单对比表
+  const ordersHtml = `<table class="path-compare-table">
+    <thead>
+      <tr><th>路径</th><th>订单数</th><th>占比</th><th>${cs ? "对比基准" : ""}</th><th>${cs ? "变化" : ""}</th></tr>
+    </thead>
+    <tbody>
+      ${pathOrder.map(p => {
+        const cur = s[p.key] || 0;
+        const prev = cs ? (cs[p.key] || 0) : null;
+        const diff = prev !== null ? cur - prev : null;
+        const ratio = s.total_orders ? (cur / s.total_orders * 100).toFixed(1) + "%" : "—";
+        return `<tr>
+          <td><span style="display:inline-block;width:10px;height:10px;background:${p.color};border-radius:2px;margin-right:6px;vertical-align:middle"></span>${p.label}</td>
+          <td>${fmt.num(cur)}</td>
+          <td>${ratio}</td>
+          <td>${prev !== null ? fmt.num(prev) : '<span style="color:#7a8ba0">—</span>'}</td>
+          <td>${fmtDiff(diff)}</td>
+        </tr>`;
+      }).join("")}
+    </tbody>
+  </table>`;
+  const el1 = document.getElementById("table-pathOrders");
+  if (el1) el1.innerHTML = ordersHtml;
+  // 2) 利润对比表
+  const profByPath = computePathProfit();
+  const prevProf = COMPARE_DATA ? (COMPARE_DATA.path_profit || []) : null;
+  const prevMap = prevProf ? Object.fromEntries(prevProf.map(p => [p.name, p])) : null;
+  const profitHtml = `<table class="path-compare-table">
+    <thead>
+      <tr><th>路径</th><th>总利润</th><th>单均</th><th>${prevMap ? "对比基准" : ""}</th><th>${prevMap ? "变化" : ""}</th></tr>
+    </thead>
+    <tbody>
+      ${profByPath.map(p => {
+        const prev = prevMap ? prevMap[p.name] : null;
+        const diff = prev ? p.sum - prev.sum : null;
+        const sumStr = (p.sum >= 0 ? "+" : "") + Math.round(p.sum).toLocaleString();
+        const sumColor = p.sum >= 0 ? "#00d4aa" : "#ff4757";
+        const avgStr = (p.avg >= 0 ? "+" : "") + p.avg.toFixed(2);
+        const pathColor = p.name === "A" ? color.A : p.name === "B" ? color.B : p.name === "C" ? color.C : color.D;
+        return `<tr>
+          <td><span style="display:inline-block;width:10px;height:10px;background:${pathColor};border-radius:2px;margin-right:6px;vertical-align:middle"></span>${p.name}</td>
+          <td style="color:${sumColor}">${sumStr}</td>
+          <td>${avgStr}</td>
+          <td>${prev ? Math.round(prev.sum).toLocaleString() : '<span style="color:#7a8ba0">—</span>'}</td>
+          <td>${fmtDiff(diff)}</td>
+        </tr>`;
+      }).join("")}
+    </tbody>
+  </table>`;
+  const el2 = document.getElementById("table-pathProfit");
+  if (el2) el2.innerHTML = profitHtml;
 }
 
 /* ============== 页面：31天趋势 ============== */
