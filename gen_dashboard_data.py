@@ -1281,26 +1281,31 @@ def build_month_data(df, month_label):
     def build_drilldown(target_path, top_n=10):
         """为 Top N 失败根因生成 5 维度下钻数据。
 
+        v10.7 修复（2026-06-23）：改用 cleaned reason（经过骨架归一 + 清洗），
+        跟 fail_reasons_B 索引对齐。之前用 raw `第一次失败原因` 字段，
+        导致 cleaned idx=N 对应的 drilldown 数据是 raw reason idx=N 的（错位）。
+
         不用 reason_counter 二次匹配（可能因 strip/类型问题导致 0 匹配），
-        直接从 df 拿该 path 的所有订单，groupby("第一次失败原因") 后
+        直接从 df 拿该 path 的所有订单，按 cleaned reason groupby 后
         按 counter 排序取 Top N。
         """
         # 该路径的所有订单
         path_df = df[df["path"] == target_path].copy()
         if path_df.empty:
             return []
-        # 计算每个 reason 的 count
-        reason_full = path_df["第一次失败原因"].fillna("").astype(str).str.strip()
-        reason_full_nonempty = reason_full[reason_full != ""]
-        cnt = reason_full_nonempty.value_counts().head(top_n)
+        # v10.7：用 cleaned reason 排序，跟 fail_reasons_B 对齐
+        cleaned_reasons = path_df.apply(lambda r: get_root_reason(r), axis=1)
+        cleaned_reasons = cleaned_reasons.fillna("").astype(str).str.strip()
+        cleaned_nonempty = cleaned_reasons[cleaned_reasons != ""]
+        cnt = cleaned_nonempty.value_counts().head(top_n)
         drills = []
         for reason_text, top_count in cnt.items():
             # 用 numpy 数组按位置匹配（避免索引对齐问题）
-            sub = path_df[reason_full == reason_text]
+            sub = path_df[cleaned_reasons == reason_text]
             n_sub = len(sub)
             if n_sub == 0:
                 # fallback：substring 匹配
-                sub = path_df[reason_full.str.contains(reason_text, regex=False, na=False)]
+                sub = path_df[cleaned_reasons.str.contains(reason_text, regex=False, na=False)]
                 n_sub = len(sub)
             if n_sub == 0:
                 continue
