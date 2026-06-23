@@ -389,7 +389,6 @@
       <div class="nav-item" data-page="airline">✈️ 航司深度分析</div>
       <div class="nav-item" data-page="platform">🏢 平台渠道</div>
       <div class="nav-item" data-page="staff">👥 人员绩效</div>
-      <div class="nav-item" data-page="path-d">🚨 D 路径异常</div>
       <div class="nav-item" data-page="failAnalysis">🔍 失败分析</div>
       <div class="nav-section">
         <div class="nav-section-title">📊 数据</div>
@@ -402,7 +401,6 @@
         <div class="nav-mini">A 全自动成功</div>
         <div class="nav-mini">B 自动失败被人工救场</div>
         <div class="nav-mini">C 政策强制人工</div>
-        <div class="nav-mini">D 票未出完异常</div>
       </div>
     </div>
 
@@ -1459,115 +1457,6 @@ function renderStaff() {
   });
 }
 
-/* ============== 页面：D 路径异常 ============== */
-function renderPathD() {
-  // 9C 占 D 的比例
-  const nineC = CURRENT_DATA.airline.find(a => a.airline === "9C");
-  const nineC_D = nineC ? nineC.D : 0;
-  const totalD = CURRENT_DATA.summary.D;
-
-  // D 平台状态
-  const statusTop = CURRENT_DATA.plat_status_D.slice(0, 10);
-
-  // D 失败原因 top
-  const dReasons = CURRENT_DATA.fail_reasons_D.slice(0, 15);
-
-  // 9C 渠道来源
-  const channelBy9C = CURRENT_DATA.channel.filter(c => c.D > 0).slice(0, 10);
-
-  const html = `
-    <div class="section">
-      <div class="section-title">🚨 D 路径异常订单深度分析
-        <span class="badge badge-danger">${fmt.num(totalD)} 单 · 占 ${fmt.pct(CURRENT_DATA.summary.D_ratio)}</span>
-      </div>
-      <div class="kpi-row cols-5" style="margin-bottom:14px">
-        <div class="kpi danger">
-          <div class="kpi-label">总 D 异常</div>
-          <div class="kpi-value red">${fmt.num(totalD)}</div>
-          <div class="kpi-sub">占全部 ${fmt.pct(CURRENT_DATA.summary.D_ratio)}</div>
-        </div>
-        <div class="kpi danger">
-          <div class="kpi-label">9C 航司 D</div>
-          <div class="kpi-value red">${fmt.num(nineC_D)}</div>
-          <div class="kpi-sub">占 D 路径 ${fmt.pct(nineC_D/totalD*100)}</div>
-        </div>
-        <div class="kpi warning">
-          <div class="kpi-label">D 路径总影响</div>
-          <div class="kpi-value yellow">票未出完</div>
-          <div class="kpi-sub">需全额退款给客户</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">9C 自动化率</div>
-          <div class="kpi-value">${nineC ? fmt.pct(nineC.auto_coverage_rate) : '-'}</div>
-        </div>
-      </div>
-      <div class="grid-2x2">
-        <div class="chart-box">
-          <div class="chart-title">📊 D 路径平台状态分布</div>
-          <div id="chart-dStatus" class="chart-area" style="height:320px"></div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">📊 D 路径 Top 失败原因</div>
-          <div id="chart-dReason" class="chart-area" style="height:320px"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">🎯 D 路径优化重点
-        <span class="badge badge-danger">立即行动</span>
-      </div>
-      <div class="insight-box danger">
-        <div class="insight-title">🔴 9C 航司是头号异常源</div>
-        9C 占全部订单的 <b>62.1%</b>，D 路径单量 <b>${fmt.num(nineC_D)}</b>（占 D 路径的 ${fmt.pct(nineC_D/totalD*100)}）。
-        9C 自动化覆盖率 96.6%，但 D 占比 3.2% 高于平均。建议：① 重复订单检查规则加强；② 9C 反采渠道优先度重新评估。
-      </div>
-      <div class="insight-box warning">
-        <div class="insight-title">🟠 "拒绝出票" 是头号失败模式</div>
-        D 路径中 <b>${statusTop[0] ? statusTop[0].count : 0} 单</b>（占 D 路径 ${statusTop[0] ? fmt.pct(statusTop[0].count/totalD*100) : '0%'}）平台状态为"${statusTop[0] ? statusTop[0].status : '-'}"，
-        主要原因：订单存在重复 / 订单取消。
-      </div>
-      <div class="insight-box info">
-        <div class="insight-title">🔵 头号失败原因</div>
-        "${dReasons[0] ? dReasons[0].reason : '-'}" 出现 <b>${dReasons[0] ? dReasons[0].count : 0}</b> 次。
-        ${dReasons[1] ? `次之："${dReasons[1].reason}" (${dReasons[1].count} 次)` : ''}
-      </div>
-    </div>
-  `;
-  document.getElementById("mainArea").innerHTML = html;
-
-  // 平台状态
-  createChart("chart-dStatus", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
-      formatter: p => `${p.name}<br>${fmt.num(p.value)} 单 (${p.percent}%)` },
-    series: [{
-      type: "pie", radius: ["40%", "70%"],
-      label: { color: "#e0e6f0", formatter: "{b}\n{d}%", fontSize: 11 },
-      data: statusTop.map(s => ({
-        name: s.status, value: s.count,
-        itemStyle: { color: s.status === "拒绝出票" ? color.D : color.cyan }
-      })),
-    }],
-  });
-
-  // D 路径失败原因
-  createChart("chart-dReason", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 200, right: 30, top: 20, bottom: 30 },
-    xAxis: { type: "value", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "category",
-              data: dReasons.map(r => r.reason).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10 } },
-    series: [{
-      type: "bar", data: dReasons.map(r => r.count).reverse(),
-      itemStyle: { color: color.D },
-      label: { show: true, position: "right", color: "#e0e6f0" },
-    }],
-  });
-}
 
 /* ============== 页面：流程归因 ============== */
 function renderStage() {
@@ -2563,7 +2452,6 @@ function renderAll() {
     case "airline": renderAirline(); break;
     case "platform": renderPlatform(); break;
     case "staff": renderStaff(); break;
-    case "path-d": renderPathD(); break;
     case "failAnalysis": renderFailureAnalysis(); break;
     // 兼容旧 hash（如果用户收藏了 /stage 或 /fail）
     case "stage": renderFailureAnalysis(); break;
