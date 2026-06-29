@@ -1577,6 +1577,16 @@ def main():
             daily_detail[date] = day_data
         months_data[m]["daily_detail"] = daily_detail
         print(f"  [daily_detail] {len(daily_detail)} 天")
+        # v10.12 增量校验（2026-06-29）：源 xlsx 数 vs daily_detail 数，防止漏读
+        # 之前 v10.11 跑 6-22 漏读就是因为没这层校验
+        month_prefix = f"{m}-"
+        src_count = sum(1 for f in os.listdir(DATA_DIR)
+                        if f.startswith(month_prefix) and f.endswith(".xlsx"))
+        if src_count != len(daily_detail):
+            print(f"  ⚠️ [校验] {m} 源 xlsx={src_count}, daily_detail={len(daily_detail)}, "
+                  f"差 {src_count - len(daily_detail)} 天！可能是 xlsx 写入时机问题，建议重跑。")
+        else:
+            print(f"  ✅ [校验] {m} {src_count} 天对齐")
 
     # ========== 写入 ==========
     out_path = os.path.join(OUT_DIR, "dashboard_data.json")
