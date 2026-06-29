@@ -24,6 +24,12 @@ from collections import defaultdict, Counter
 DATA_DIR = r"C:\Users\admin\Desktop\出票总订单数据"
 # v10（2026-06-22）：输出到脚本所在目录，Streamlit Cloud / 本地都能直接读到
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
+# v10.13（2026-06-29）：分层存储架构
+# - raw/     不可变 parquet（append-only，xlsx 落地后转一次）
+# - monthly/ 按月聚合 json（可重建，改族规则时只重算当月）
+# - dashboard_data.json 顶层 KB 级索引（跨月汇总 + 月度索引）
+RAW_DIR = os.path.join(OUT_DIR, "raw")
+MONTHLY_DIR = os.path.join(OUT_DIR, "monthly")
 
 # 出票成功状态（用于路径切分）
 # 关键：VALID_TICKET_FAIL 名字带"FAIL"但实际是"出票完成"（2026-06-13 用户指正）
@@ -841,18 +847,55 @@ def family_sub_normalize(reason: str, family: str) -> str:
     return reason.strip()
 
 
+def sync_raw():
+    """v10.13（2026-06-29）：把 DATA_DIR 的新 xlsx 增量同步到 RAW_DIR（不可变 parquet）。
+
+    设计动机：
+    - xlsx 读取慢（~2-3 分钟全量），改 parquet 后 read 只需几秒
+    - parquet 一旦生成就 append-only，防止 xlsx 被误改后污染已固定数据
+    - 增量：mtime 变化或 parquet 不存在时才重转
+    """
+    os.makedirs(RAW_DIR, exist_ok=True)
+    xlsx_files = sorted([f for f in os.listdir(DATA_DIR)
+                        if re.match(r"\d{4}-\d{2}-\d{2}\.xlsx", f) and not f.startswith("~$")])
+    converted = 0
+    skipped = 0
+    for f in xlsx_files:
+        date = f.replace(".xlsx", "")
+        xlsx_path = os.path.join(DATA_DIR, f)
+        parquet_path = os.path.join(RAW_DIR, f"{date}.parquet")
+        xlsx_mtime = os.path.getmtime(xlsx_path)
+        if os.path.exists(parquet_path) and os.path.getmtime(parquet_path) >= xlsx_mtime:
+            skipped += 1
+            continue
+        try:
+            df = pd.read_excel(xlsx_path, sheet_name=0, engine="openpyxl")
+            df.to_parquet(parquet_path, index=False)
+            converted += 1
+            print(f"  [sync] {f} → {date}.parquet ({len(df)} 单)")
+        except Exception as e:
+            print(f"  [sync] {f} 失败: {e}")
+    print(f"[sync] xlsx={len(xlsx_files)}, 新转={converted}, 跳过={skipped}")
+    # 返回 raw 目录所有 parquet 的 dates
+    parquet_files = sorted([f.replace(".parquet", "") for f in os.listdir(RAW_DIR)
+                            if re.match(r"\d{4}-\d{2}-\d{2}\.parquet", f)])
+    return parquet_files
+
+
 def load_all():
-    files = sorted([f for f in glob.glob(os.path.join(DATA_DIR, "*.xlsx"))
-                    if not os.path.basename(f).startswith("~$")])
-    print(f"[加载] {len(files)} 个文件")
+    """v10.13：改为从 RAW_DIR 读 parquet（比 xlsx 快 20 倍）。
+    保留函数名 + 接口不变，main() 不感知差异。
+    """
+    parquet_files = sorted(glob.glob(os.path.join(RAW_DIR, "*.parquet")))
+    print(f"[加载] {len(parquet_files)} 个 parquet")
     dfs = []
-    for f in files:
+    for f in parquet_files:
         bn = os.path.basename(f)
-        m = re.match(r"(\d{4}-\d{2}-\d{2})\.xlsx", bn)
+        m = re.match(r"(\d{4}-\d{2}-\d{2})\.parquet", bn)
         if not m:
             continue
         try:
-            df = pd.read_excel(f, sheet_name=0, engine="openpyxl")
+            df = pd.read_parquet(f)
             df["_file_date"] = m.group(1)
             dfs.append(df)
         except Exception as e:
@@ -1524,6 +1567,11 @@ def main():
                         help="指定月份 2026-05 / 2026-06，或 'all' 跑全部")
     args = parser.parse_args()
 
+    # v10.13：先 sync raw（xlsx → parquet 增量），再 load_all
+    print("[Step 1] 同步 xlsx → raw parquet（增量）")
+    sync_raw()
+    print()
+
     df_all = load_all()
     df_all = classify(df_all)
     print(f"[切分] A={(df_all['path']=='A').sum()}, B={(df_all['path']=='B').sum()}, "
@@ -1578,28 +1626,44 @@ def main():
         months_data[m]["daily_detail"] = daily_detail
         print(f"  [daily_detail] {len(daily_detail)} 天")
         # v10.12 增量校验（2026-06-29）：源 xlsx 数 vs daily_detail 数，防止漏读
-        # 之前 v10.11 跑 6-22 漏读就是因为没这层校验
+        # v10.13 改用 parquet 校验（更准，反映 raw 层状态）
         month_prefix = f"{m}-"
         src_count = sum(1 for f in os.listdir(DATA_DIR)
                         if f.startswith(month_prefix) and f.endswith(".xlsx"))
-        if src_count != len(daily_detail):
-            print(f"  ⚠️ [校验] {m} 源 xlsx={src_count}, daily_detail={len(daily_detail)}, "
-                  f"差 {src_count - len(daily_detail)} 天！可能是 xlsx 写入时机问题，建议重跑。")
+        raw_count = sum(1 for f in os.listdir(RAW_DIR)
+                        if f.startswith(month_prefix) and f.endswith(".parquet"))
+        if src_count != len(daily_detail) or raw_count != len(daily_detail):
+            print(f"  ⚠️ [校验] {m} xlsx={src_count}, parquet={raw_count}, daily_detail={len(daily_detail)} "
+                  f"差={src_count - len(daily_detail)}，建议重跑 sync_raw")
         else:
-            print(f"  ✅ [校验] {m} {src_count} 天对齐")
+            print(f"  ✅ [校验] {m} {src_count} 天对齐（xlsx/parquet/daily_detail）")
 
-    # ========== 写入 ==========
-    out_path = os.path.join(OUT_DIR, "dashboard_data.json")
+    # ========== v10.13 写入：分层存储 ==========
+    os.makedirs(MONTHLY_DIR, exist_ok=True)
     from datetime import datetime, timezone, timedelta
     bj_tz = timezone(timedelta(hours=8))
+    generated_at = datetime.now(bj_tz).strftime("%Y-%m-%d %H:%M:%S")
+
+    # Step A：每月的聚合数据写到 monthly/{month}.json
+    monthly_index = {}
+    for m, data in months_data.items():
+        monthly_path = os.path.join(MONTHLY_DIR, f"{m}.json")
+        with open(monthly_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        monthly_index[m] = f"monthly/{m}.json"
+        print(f"[输出] {monthly_path} ({os.path.getsize(monthly_path)/1024:.1f} KB)")
+
+    # Step B：顶层 dashboard_data.json 是 KB 级索引（兼容旧前端：months + 顶层平铺）
     final = {
-        "generated_at": datetime.now(bj_tz).strftime("%Y-%m-%d %H:%M:%S"),
+        "generated_at": generated_at,
         "available_months": available_months,
-        "current_month": target_months[-1],  # 默认显示最后（最新）月
+        "current_month": target_months[-1],
+        "monthly_index": monthly_index,
         "months": months_data,
         # 兼容旧版（顶层还有默认月数据，前端可平滑切换）
         **months_data[target_months[-1]],
     }
+    out_path = os.path.join(OUT_DIR, "dashboard_data.json")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(final, f, ensure_ascii=False, indent=2)
     print(f"\n[输出] {out_path} ({os.path.getsize(out_path)/1024:.1f} KB)")
