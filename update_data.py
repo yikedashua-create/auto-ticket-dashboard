@@ -18,7 +18,6 @@ import os
 import re
 import sys
 import subprocess
-import ctypes
 from datetime import datetime, timezone, timedelta
 
 # ============== 配置 ==============
@@ -34,39 +33,24 @@ SHORTCUT_BAT = "更新数据.bat"
 
 
 def show_result(title, message, is_error=False):
-    """弹窗显示结果（✅/❌）
-    v10.14.1（2026-06-30）：改用 Windows 原生 MessageBoxW（ctypes）替代 tkinter
-    原因：tkinter 弹窗在某些 Windows 环境（无显示子系统 / root withdraw 冲突）会闪退
-    优势：跨 Windows 版本稳定、阻塞模态、不依赖额外库
-    兜底：写 _last_result.txt + print，弹窗失败也能看到结果
+    """显示结果（✅/❌）
+    v10.14.2（2026-07-02）：彻底放弃弹窗
+    原因：tkinter 和 ctypes.MessageBoxW 在用户 Windows 环境都闪退（GUI 子系统兼容问题）
+    方案：写 _last_result.txt + print 到 cmd，由 bat 脚本调 notepad 打开文件
+    优势：纯文件 I/O + cmd 输出，不依赖任何 GUI 框架，绝对不闪退
     """
     icon = "✖" if is_error else "✔"
     full_title = f"{icon} {title}"
-    # 1) 写文件兜底（弹窗失败也能查）
+    # 1) 写文件（兜底，永远成功）
     try:
         log_path = os.path.join(SCRIPT_DIR, "_last_result.txt")
         with open(log_path, "w", encoding="utf-8") as f:
             f.write(f"{full_title}\n{'=' * 50}\n{message}\n")
-    except Exception:
-        pass
-    # 2) print 到 stdout（cmd 能看到）
+    except Exception as e:
+        print(f"[警告] 写结果文件失败：{e}")
+    # 2) print 到 stdout（cmd 窗口看）
     print(f"\n{full_title}\n{'-' * 50}\n{message}\n")
     sys.stdout.flush()
-    # 3) Windows 原生消息框（最稳）
-    try:
-        # MB_TOPMOST (0x1000) | MB_ICONINFORMATION (0x40) / MB_ICONERROR (0x10)
-        icon_flag = 0x10 if is_error else 0x40
-        ret = ctypes.windll.user32.MessageBoxW(0, message, full_title, 0x1000 | icon_flag)
-        return ret
-    except Exception as e:
-        # 弹窗失败（无 GUI / pywin32 问题）—— 让用户在 cmd 看
-        print(f"[提示] 弹窗显示失败：{e}")
-        print(f"[提示] 完整结果已写入：{log_path}")
-        try:
-            input("\n按 Enter 退出...")
-        except EOFError:
-            pass
-        return None
 
 
 def ensure_desktop_shortcut():
