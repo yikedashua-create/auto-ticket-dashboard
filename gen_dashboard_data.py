@@ -847,32 +847,34 @@ def family_sub_normalize(reason: str, family: str) -> str:
     return reason.strip()
 
 
-def sync_raw():
+def sync_raw(force=False):
     """v10.13（2026-06-29）：把 DATA_DIR 的新 xlsx 增量同步到 RAW_DIR（不可变 parquet）。
 
-    设计动机：
-    - xlsx 读取慢（~2-3 分钟全量），改 parquet 后 read 只需几秒
-    - parquet 一旦生成就 append-only，防止 xlsx 被误改后污染已固定数据
-    - 增量：mtime 变化或 parquet 不存在时才重转
+    v10.14.4（2026-07-02）：加 force 参数
+    - 默认增量：mtime 变化或 parquet 不存在时才重转
+    - force=True：忽略 mtime 检查，强制全转（xlsx 重新上传但 mtime 顺序倒挂时用）
     """
     os.makedirs(RAW_DIR, exist_ok=True)
     xlsx_files = sorted([f for f in os.listdir(DATA_DIR)
                         if re.match(r"\d{4}-\d{2}-\d{2}\.xlsx", f) and not f.startswith("~$")])
     converted = 0
     skipped = 0
+    if force:
+        print(f"[sync] --force 模式：强制全转 {len(xlsx_files)} 个 xlsx")
     for f in xlsx_files:
         date = f.replace(".xlsx", "")
         xlsx_path = os.path.join(DATA_DIR, f)
         parquet_path = os.path.join(RAW_DIR, f"{date}.parquet")
-        xlsx_mtime = os.path.getmtime(xlsx_path)
-        if os.path.exists(parquet_path) and os.path.getmtime(parquet_path) >= xlsx_mtime:
-            skipped += 1
-            continue
+        if not force:
+            xlsx_mtime = os.path.getmtime(xlsx_path)
+            if os.path.exists(parquet_path) and os.path.getmtime(parquet_path) >= xlsx_mtime:
+                skipped += 1
+                continue
         try:
             df = pd.read_excel(xlsx_path, sheet_name=0, engine="openpyxl")
             df.to_parquet(parquet_path, index=False)
             converted += 1
-            print(f"  [sync] {f} → {date}.parquet ({len(df)} 单)")
+            print(f"  [sync] {f} -> {date}.parquet ({len(df)} 单)")
         except Exception as e:
             print(f"  [sync] {f} 失败: {e}")
     print(f"[sync] xlsx={len(xlsx_files)}, 新转={converted}, 跳过={skipped}")
@@ -1565,11 +1567,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--month", default="all",
                         help="指定月份 2026-05 / 2026-06，或 'all' 跑全部")
+    parser.add_argument("--force", action="store_true",
+                        help="强制全转所有 xlsx → parquet（xlsx 重新上传但 mtime 顺序倒挂时用）")
     args = parser.parse_args()
 
     # v10.13：先 sync raw（xlsx → parquet 增量），再 load_all
     print("[Step 1] 同步 xlsx → raw parquet（增量）")
-    sync_raw()
+    sync_raw(force=args.force)
     print()
 
     df_all = load_all()
