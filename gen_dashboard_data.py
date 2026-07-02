@@ -1633,10 +1633,10 @@ def main():
         raw_count = sum(1 for f in os.listdir(RAW_DIR)
                         if f.startswith(month_prefix) and f.endswith(".parquet"))
         if src_count != len(daily_detail) or raw_count != len(daily_detail):
-            print(f"  ⚠️ [校验] {m} xlsx={src_count}, parquet={raw_count}, daily_detail={len(daily_detail)} "
+            print(f"  [WARN] {m} xlsx={src_count}, parquet={raw_count}, daily_detail={len(daily_detail)} "
                   f"差={src_count - len(daily_detail)}，建议重跑 sync_raw")
         else:
-            print(f"  ✅ [校验] {m} {src_count} 天对齐（xlsx/parquet/daily_detail）")
+            print(f"  [OK] {m} {src_count} 天对齐（xlsx/parquet/daily_detail）")
 
     # ========== v10.13 写入：分层存储 ==========
     os.makedirs(MONTHLY_DIR, exist_ok=True)
