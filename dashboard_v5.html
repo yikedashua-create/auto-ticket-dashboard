@@ -2088,7 +2088,7 @@ function renderFamilyReasonRows(reasons, allReasons, path, fam, expanded) {
     const diffSign = diff > 0 ? "+" : (diff < 0 ? "" : "±");
     const diffColor = diff > 0 ? "#00d4aa" : (diff < 0 ? "#ff4757" : "#7a8ba0");
     const diffArrow = diff > 0 ? "↑" : (diff < 0 ? "↓" : "→");
-    const prevLabel = r.prev_month ? r.prev_month : "上月";
+    const prevLabel = r.prev_month ? r.prev_month : "前一天";
     return `
     <tr>
       <td>${i + 1}</td>
@@ -2096,7 +2096,7 @@ function renderFamilyReasonRows(reasons, allReasons, path, fam, expanded) {
       <td>${fmt.num(r.count)}</td>
       <td>${fmt.pct(r.count / fam.count * 100)}</td>
       <td style="color:${diffColor}">${diffArrow} ${diffSign}${fmt.num(diff)}</td>
-      <td style="color:#7a8ba0">${fmt.num(prev)} <span style="font-size:10px">(${prevLabel})</span></td>
+      <td style="color:#7a8ba0">${fmt.num(prev)} <span style="font-size:10px">(前一天)</span></td>
       <td>
         <button class="drill-btn" onclick="toggleDrill('${path}', ${allReasons.indexOf(r)}, this.closest('tr'))">5 维度下钻 ▾</button>
       </td>
@@ -2173,7 +2173,7 @@ function toggleFamilyDrill(path, famIdx, rowEl) {
       <div class="family-subtable">
         <table class="data-table">
           <thead>
-            <tr><th style="width:50px">#</th><th>原始根因（清洗后）</th><th>单数</th><th>占比</th><th>vs 上月</th><th>上月单数</th><th>钻取</th></tr>
+            <tr><th style="width:50px">#</th><th>原始根因（清洗后）</th><th>单数</th><th>占比</th><th>vs 前一天</th><th>前一天单数</th><th>钻取</th></tr>
           </thead>
           <tbody>
             ${renderFamilyReasonRows(reasons, allReasons, path, fam, currentFamilyExpanded)}

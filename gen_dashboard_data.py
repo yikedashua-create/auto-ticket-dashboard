@@ -1605,6 +1605,8 @@ def main():
         # 按日再聚合一次（v6 增强：日份切换时所有详细数据可用）
         # 单日数据精简版：只保留前 5 维度 + 失败原因 + 平台状态 + 阶段分布
         daily_detail = {}
+        prev_day_reasons_b = {}  # v10.14.6: 前一天 fail_reasons_B reason->count
+        prev_day_reasons_d = {}  # 同上 D 路径
         for date in sorted(df_m["_file_date"].unique()):
             df_day = df_m[df_m["_file_date"] == date].copy()
             if len(df_day) == 0:
@@ -1626,6 +1628,17 @@ def main():
             if "stage_subcategory" in day_data and isinstance(day_data["stage_subcategory"], list):
                 day_data["stage_subcategory"] = day_data["stage_subcategory"][:10]
             # plat_status_D 全留（量小）
+            # v10.14.6（2026-07-02）：给 fail_reasons_B/D 加 prev_count（来自前一天）
+            # 用户反馈：变体对比基准应该是"前一天"，不是"上月"
+            for r in day_data.get('fail_reasons_B', []):
+                r['prev_count'] = prev_day_reasons_b.get(r['reason'], 0)
+                r['prev_month'] = date  # prev 基准 = 前一天日期
+            for r in day_data.get('fail_reasons_D', []):
+                r['prev_count'] = prev_day_reasons_d.get(r['reason'], 0)
+                r['prev_month'] = date
+            # 更新 prev 为当前（用于下一天的对比）
+            prev_day_reasons_b = {r['reason']: r['count'] for r in day_data.get('fail_reasons_B', [])}
+            prev_day_reasons_d = {r['reason']: r['count'] for r in day_data.get('fail_reasons_D', [])}
             daily_detail[date] = day_data
         months_data[m]["daily_detail"] = daily_detail
         print(f"  [daily_detail] {len(daily_detail)} 天")
