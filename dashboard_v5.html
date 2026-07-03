@@ -424,6 +424,12 @@
 /* ============== 数据加载 ============== */
 let DATA = null;          // 完整的多月数据 {available_months, current_month, months: {...}}
 let CURRENT_DATA = null;  // 当前选中的数据（可能是月或日或全月）
+// v10.14.7: failAnalysis 根据"选月/选日"切换数据源，存全局变量供 toggleFamilyDrill 用
+let CURRENT_FAIL_FAMILIES_B = null;
+let CURRENT_FAIL_FAMILIES_D = null;
+let CURRENT_FAIL_REASONS_B = null;
+let CURRENT_FAIL_REASONS_D = null;
+let CURRENT_FAIL_VIEW = "monthly";  // "monthly" or "daily"
 let CURRENT_MONTH = null; // 当前月份
 let CURRENT_DAY = "all";  // 当前日（"all"=全月，"01"~"31"=具体日）
 let COMPARE_DATA = null;  // 对比基准数据（上一周期）
@@ -1950,10 +1956,43 @@ function renderFail() {
  */
 function renderFailureAnalysis() {
   // 1. 失败根因数据（B/D）
+  // v10.14.7（2026-07-03）：根据"选月/选日"切换数据源
+  //   - 选月（day="all"）：用顶层 fail_reasons_B（prev_count=上月）
+  //   - 选日（day!=all）：用 daily_detail[date].fail_reasons_B（prev_count=前一天）
+  const isDayView = CURRENT_DAY && CURRENT_DAY !== "all";
+  let curMonthData = CURRENT_DATA.months && CURRENT_DATA.months[CURRENT_MONTH];
+  let curFailReasonsB, curFailReasonsD, curFailFamiliesB, curFailFamiliesD;
+  let curSummaryB, curSummaryD, curTotalB, curTotalD;
+  if (isDayView && curMonthData && curMonthData.daily_detail) {
+    const dateKey = `${CURRENT_MONTH}-${CURRENT_DAY.padStart(2, "0")}`;
+    const dayData = curMonthData.daily_detail[dateKey];
+    if (dayData) {
+      curFailReasonsB = dayData.fail_reasons_B || [];
+      curFailReasonsD = dayData.fail_reasons_D || [];
+      curFailFamiliesB = dayData.fail_families_B || [];
+      curFailFamiliesD = dayData.fail_families_D || [];
+      curSummaryB = dayData.summary.B;
+      curSummaryD = dayData.summary.D;
+      curTotalB = dayData.summary.total_orders;
+      curTotalD = dayData.summary.total_orders;
+    }
+  }
+  // 兜底：如果日表没数据（罕见），用顶层
+  if (!curFailReasonsB) {
+    curFailReasonsB = curFailReasonsB || [];
+    curFailReasonsD = curFailReasonsD || [];
+    curFailFamiliesB = curFailFamiliesB || [];
+    curFailFamiliesD = curFailFamiliesD || [];
+    curSummaryB = curSummaryB;
+    curSummaryD = curSummaryD;
+    curTotalB = curTotalB;
+    curTotalD = curTotalB;
+  }
+
   const cs = COMPARE_DATA;
 
-  const bFamilies = (CURRENT_DATA.fail_families_B || []).slice(0, 30);
-  const dFamilies = (CURRENT_DATA.fail_families_D || []).slice(0, 30);
+  const bFamilies = (curFailFamiliesB || []).slice(0, 30);
+  const dFamilies = (curFailFamiliesD || []).slice(0, 30);
 
   const cmpBMap = {};
   const cmpDMap = {};
@@ -1979,7 +2018,7 @@ function renderFailureAnalysis() {
       <td>${i + 1}</td>
       <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
-      <td>${fmt.pct(f.count / CURRENT_DATA.summary.B * 100)}</td>
+      <td>${fmt.pct(f.count / curSummaryB * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
     </tr>`;
   };
@@ -1993,14 +2032,14 @@ function renderFailureAnalysis() {
       <td>${i + 1}</td>
       <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
-      <td>${fmt.pct(f.count / CURRENT_DATA.summary.D * 100)}</td>
+      <td>${fmt.pct(f.count / curSummaryD * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
     </tr>`;
   };
 
   // 3. 失败根因族级环节汇总条
-  const bStages = groupByStage(CURRENT_DATA.fail_families_B || []);
-  const dStages = groupByStage(CURRENT_DATA.fail_families_D || []);
+  const bStages = groupByStage(curFailFamiliesB || []);
+  const dStages = groupByStage(curFailFamiliesD || []);
   const stageSummaryHtml = (stages, total) => {
     if (!stages.length) return "";
     const cells = stages.map(s => {
@@ -2024,7 +2063,7 @@ function renderFailureAnalysis() {
   // 4. HTML 主体：B 路径族级 + D 路径族级（垂直堆叠）
   const html = `
     <div class="section">
-      <div class="section-title">⚠️ B 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.B)} 单）
+      <div class="section-title">⚠️ B 路径失败根因（按出票环节 · ${fmt.num(curSummaryB)} 单）
         <span class="badge badge-warn">点击族名展开原始 Top 5</span>
         ${cmpBHdr}
       </div>
@@ -2033,7 +2072,7 @@ function renderFailureAnalysis() {
       </div>
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">🎯 B 路径 8 大环节汇总（哪一环出问题）</div>
-        ${stageSummaryHtml(bStages, CURRENT_DATA.summary.B)}
+        ${stageSummaryHtml(bStages, curSummaryB)}
       </div>
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">📋 B 路径 失败根因 Top 30（族级，按环节色编码）</div>
@@ -2049,12 +2088,12 @@ function renderFailureAnalysis() {
     </div>
 
     <div class="section">
-      <div class="section-title">🚨 D 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.D)} 单）
+      <div class="section-title">🚨 D 路径失败根因（按出票环节 · ${fmt.num(curSummaryD)} 单）
         ${cmpDHdr}
       </div>
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">🎯 D 路径 8 大环节汇总（哪一环出问题）</div>
-        ${stageSummaryHtml(dStages, CURRENT_DATA.summary.D)}
+        ${stageSummaryHtml(dStages, curSummaryD)}
       </div>
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">📋 D 路径 失败根因 Top 30（族级，按环节色编码）</div>
@@ -2079,16 +2118,18 @@ let currentFamilyKey = null; // 当前展开的族，格式 "fam-B-0"
 let currentFamilyExpanded = false; // 当前族展开是否显示全部 reason（默认 Top 20）
 
 // 族展开里的 reason 表格渲染（v12 拆出来单独函数，支持"展开全部"切换）
-// v10.14.5（2026-07-02）：加 vs 上月对比列（用 prev_count 字段）
+// v10.14.7（2026-07-03）：prevLabel 动态显示（不再是写死"前一天"）
 function renderFamilyReasonRows(reasons, allReasons, path, fam, expanded) {
   const shown = expanded ? reasons : reasons.slice(0, 20);
+  // v10.14.7: prevLabel 根据"选月/选日"动态显示
+  const isDayView = CURRENT_DAY && CURRENT_DAY !== "all";
   const rows = shown.map((r, i) => {
     const prev = r.prev_count || 0;
     const diff = r.count - prev;
     const diffSign = diff > 0 ? "+" : (diff < 0 ? "" : "±");
     const diffColor = diff > 0 ? "#00d4aa" : (diff < 0 ? "#ff4757" : "#7a8ba0");
     const diffArrow = diff > 0 ? "↑" : (diff < 0 ? "↓" : "→");
-    const prevLabel = r.prev_month ? r.prev_month : "前一天";
+    const prevLabel = isDayView ? "前一天" : (r.prev_month || "上月");
     return `
     <tr>
       <td>${i + 1}</td>
@@ -2096,7 +2137,7 @@ function renderFamilyReasonRows(reasons, allReasons, path, fam, expanded) {
       <td>${fmt.num(r.count)}</td>
       <td>${fmt.pct(r.count / fam.count * 100)}</td>
       <td style="color:${diffColor}">${diffArrow} ${diffSign}${fmt.num(diff)}</td>
-      <td style="color:#7a8ba0">${fmt.num(prev)} <span style="font-size:10px">(前一天)</span></td>
+      <td style="color:#7a8ba0">${fmt.num(prev)} <span style="font-size:10px">(${prevLabel})</span></td>
       <td>
         <button class="drill-btn" onclick="toggleDrill('${path}', ${allReasons.indexOf(r)}, this.closest('tr'))">5 维度下钻 ▾</button>
       </td>
@@ -2126,8 +2167,8 @@ function toggleExpandFamily() {
   const m = key && key.match(/^fam-([BD])-(\d+)$/);
   if (!m) return;
   const path = m[1], famIdx = parseInt(m[2]);
-  const families = path === "B" ? (CURRENT_DATA.fail_families_B || []) : (CURRENT_DATA.fail_families_D || []);
-  const allReasons = path === "B" ? (CURRENT_DATA.fail_reasons_B || []) : (CURRENT_DATA.fail_reasons_D || []);
+  const families = path === "B" ? (CURRENT_FAIL_FAMILIES_B || []) : (CURRENT_FAIL_FAMILIES_D || []);
+  const allReasons = path === "B" ? (CURRENT_FAIL_REASONS_B || []) : (CURRENT_FAIL_REASONS_D || []);
   const fam = families[famIdx];
   const reasons = allReasons.filter(r => r.family === fam.family);
   panel.innerHTML = renderFamilyReasonRows(reasons, allReasons, path, fam, currentFamilyExpanded);
@@ -2142,15 +2183,14 @@ function toggleFamilyDrill(path, famIdx, rowEl) {
   }
   collapseFamilyDrill();
   collapseDrill();
-  const families = path === "B" ? (CURRENT_DATA.fail_families_B || []) : (CURRENT_DATA.fail_families_D || []);
-  const allReasons = path === "B" ? (CURRENT_DATA.fail_reasons_B || []) : (CURRENT_DATA.fail_reasons_D || []);
+  const families = path === "B" ? (CURRENT_FAIL_FAMILIES_B || []) : (CURRENT_FAIL_FAMILIES_D || []);
+  const allReasons = path === "B" ? (CURRENT_FAIL_REASONS_B || []) : (CURRENT_FAIL_REASONS_D || []);
   const fam = families[famIdx];
   if (!fam) return;
   currentFamilyKey = key;
   currentFamilyExpanded = false; // 默认折叠状态
 
   // v12 优化：直接读 r.family（后端预计算好的），不再每次调 getFamily
-  // 之前 B 路径 1526 项 × 37 条正则 = 5.6 万次正则匹配 → 点族行卡顿
   const reasons = allReasons.filter(r => r.family === fam.family);
 
   // 在族行下方插入二级面板
@@ -2159,13 +2199,13 @@ function toggleFamilyDrill(path, famIdx, rowEl) {
   const newTr = document.createElement("tr");
   newTr.id = "family-drill-row";
   newTr.classList.add("drill-row");
-  // 标题栏 + 关闭按钮 + 原始原因表格 + 5 维度钻取按钮
+  // 标题 + 关闭按钮 + 原始原因表格 + 5 维度钻取按钮
   newTr.innerHTML = `<td colspan="${colspan}" style="padding:0; background:#0a1424">
     <div class="drill-panel">
       <div class="drill-header">
         <div class="drill-title">
           <span style="color:#00e5ff">▾ ${escapeHtml(fam.family)}</span>
-          <span class="badge badge-info" style="margin-left:8px">共 ${fmt.num(fam.count)} 单</span>
+          <span class="badge badge-info" style="margin-left:8px">${fmt.num(fam.count)} 单</span>
           <span class="badge badge-warn" style="margin-left:4px">包含 ${reasons.length} 个原始根因</span>
         </div>
         <button class="drill-close" onclick="collapseFamilyDrill()">收起 ✕</button>
@@ -2173,7 +2213,7 @@ function toggleFamilyDrill(path, famIdx, rowEl) {
       <div class="family-subtable">
         <table class="data-table">
           <thead>
-            <tr><th style="width:50px">#</th><th>原始根因（清洗后）</th><th>单数</th><th>占比</th><th>vs 前一天</th><th>前一天单数</th><th>钻取</th></tr>
+            <tr><th style="width:50px">#</th><th>原始根因（清洗后）</th><th>单数</th><th>占比</th><th>vs 基准</th><th>基准单数</th><th>钻取</th></tr>
           </thead>
           <tbody>
             ${renderFamilyReasonRows(reasons, allReasons, path, fam, currentFamilyExpanded)}
