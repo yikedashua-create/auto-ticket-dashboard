@@ -1977,16 +1977,16 @@ function renderFailureAnalysis() {
       curTotalD = dayData.summary.total_orders;
     }
   }
-  // 兜底：如果日表没数据（罕见），用顶层
+  // 兜底：如果日表没数据 / 选月视图，用顶层
   if (!curFailReasonsB) {
-    curFailReasonsB = curFailReasonsB || [];
-    curFailReasonsD = curFailReasonsD || [];
-    curFailFamiliesB = curFailFamiliesB || [];
-    curFailFamiliesD = curFailFamiliesD || [];
-    curSummaryB = curSummaryB;
-    curSummaryD = curSummaryD;
-    curTotalB = curTotalB;
-    curTotalD = curTotalB;
+    curFailReasonsB = CURRENT_DATA.fail_reasons_B || [];
+    curFailReasonsD = CURRENT_DATA.fail_reasons_D || [];
+    curFailFamiliesB = CURRENT_DATA.fail_families_B || [];
+    curFailFamiliesD = CURRENT_DATA.fail_families_D || [];
+    curSummaryB = CURRENT_DATA.summary.B;
+    curSummaryD = CURRENT_DATA.summary.D;
+    curTotalB = CURRENT_DATA.summary.total_orders;
+    curTotalD = CURRENT_DATA.summary.total_orders;
   }
 
   const cs = COMPARE_DATA;
