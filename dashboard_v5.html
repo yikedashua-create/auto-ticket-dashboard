@@ -2109,6 +2109,12 @@ function renderFailureAnalysis() {
     </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
+  // v10.14.7: 把当前视图的数据存全局变量，供 toggleFamilyDrill / toggleExpandFamily 用
+  CURRENT_FAIL_FAMILIES_B = curFailFamiliesB;
+  CURRENT_FAIL_FAMILIES_D = curFailFamiliesD;
+  CURRENT_FAIL_REASONS_B = curFailReasonsB;
+  CURRENT_FAIL_REASONS_D = curFailReasonsD;
+  CURRENT_FAIL_VIEW = isDayView ? "daily" : "monthly";
 }
 
 
