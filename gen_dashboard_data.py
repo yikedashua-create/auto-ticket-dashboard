@@ -965,6 +965,32 @@ def safe_num(series):
     return pd.to_numeric(series, errors="coerce").dropna()
 
 
+def atomic_write_json(path, data):
+    """原子写入 JSON 文件（写 tmp + fsync + os.replace 原子重命名）。
+
+    防止脚本中途挂掉（磁盘满 / 系统崩 / 断电）留半截 JSON：
+      - 先写到 <path>.tmp
+      - flush + os.fsync 强制刷盘（避免 OS 缓存层丢数据）
+      - os.replace 原子重命名（POSIX rename + Windows MoveFileEx 等价语义）
+
+    失败时清理 tmp 文件，避免下次再写到坏 tmp。
+    """
+    tmp_path = path + ".tmp"
+    try:
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+            f.flush()
+            os.fsync(f.fileno())  # 强制刷盘
+        os.replace(tmp_path, path)  # 原子重命名
+    except Exception:
+        if os.path.exists(tmp_path):
+            try:
+                os.remove(tmp_path)
+            except OSError:
+                pass
+        raise
+
+
 # ============================================================
 # 流程归类规则（v4 定版）
 # 5 阶段：预定/支付/取票/回填/验真 + 1 兜底（流程未走完）
@@ -1684,12 +1710,11 @@ def main():
             r['prev_count'] = prev_d.get(r['reason'], 0)
             r['prev_month'] = prev_m
 
-    # Step A：每月的聚合数据写到 monthly/{month}.json
+    # Step A：每月的聚合数据写到 monthly/{month}.json（原子写入）
     monthly_index = {}
     for m, data in months_data.items():
         monthly_path = os.path.join(MONTHLY_DIR, f"{m}.json")
-        with open(monthly_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+        atomic_write_json(monthly_path, data)
         monthly_index[m] = f"monthly/{m}.json"
         print(f"[输出] {monthly_path} ({os.path.getsize(monthly_path)/1024:.1f} KB)")
 
@@ -1704,8 +1729,7 @@ def main():
         **months_data[target_months[-1]],
     }
     out_path = os.path.join(OUT_DIR, "dashboard_data.json")
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(final, f, ensure_ascii=False, indent=2)
+    atomic_write_json(out_path, final)
     print(f"\n[输出] {out_path} ({os.path.getsize(out_path)/1024:.1f} KB)")
     print(f"[统计] 月份={target_months}，"
           f"总单数={sum(months_data[m]['summary']['total_orders'] for m in target_months):,}")
