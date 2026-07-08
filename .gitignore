@@ -3,7 +3,8 @@ __pycache__/
 preview_*.png
 *.log
 _*.txt
-_*.py
+# 临时 _xxx.py 脚本（_ 后必须至少一个非下划线字符，避免误匹配 __main__.py / __init__.py）
+_[A-Za-z][A-Za-z0-9_]*\.py
 _*.png
 _*.out
 update_dashboard.*
