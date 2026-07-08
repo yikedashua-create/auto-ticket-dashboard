@@ -102,9 +102,20 @@ def run_gen(gen_script: str, cwd: str) -> StepResult:
 
 
 def git_add(repo_dir: str) -> StepResult:
-    """git add dashboard_data.json monthly/ raw/（只 add 这 3 个，不污染其他文件）"""
+    """git add 只跟踪必要的文件（不污染其他）
+
+    注意：不要直接 add auto_sync/（会把 status.db 等运行时数据加进去）
+    """
+    # 1) 数据文件
+    # 2) 源码文件（只看 *.py，不含 data/ 子目录里的运行数据）
+    # 3) 启动脚本
     return _run(
-        ["git", "add", "dashboard_data.json", "monthly/", "raw/", "auto_sync/", "gen_dashboard_data.py"],
+        ["git", "add",
+         "dashboard_data.json", "monthly/", "raw/",
+         "gen_dashboard_data.py",
+         "auto_sync/*.py", "auto_sync/__init__.py",
+         "auto_sync/__main__.py", "auto_sync/examples/",
+         "start_auto_sync.bat", "requirements.txt"],
         cwd=repo_dir,
     )
 

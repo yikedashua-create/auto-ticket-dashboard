@@ -33,4 +33,10 @@ dashboard_final_v4.html
 scan_ticket_poll.txt
 classify_stage_report.txt
 C'
+
+# auto_sync 运行时数据（不要入库）
+auto_sync/data/*.db
+auto_sync/data/*.db-journal
+auto_sync/data/*.db-wal
+auto_sync/data/*.db-shm
 .github_token
