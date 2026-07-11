@@ -34,6 +34,30 @@ from .status import StatusStore
 from .trigger import TriggerResult, execute_trigger
 
 log = logging.getLogger("auto_sync.watcher")
+
+# v1.1：加文件日志（pythonw.exe 没 stdout，daemon 模式下日志必须写文件）
+# 路径：__file__ = auto-ticket-dashboard/auto_sync/watcher.py
+# dirname 一次 = auto_sync/   dirname 两次 = auto-ticket-dashboard/
+_log_file_path = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "auto_sync", "data", "auto_sync.log",
+)
+try:
+    os.makedirs(os.path.dirname(_log_file_path), exist_ok=True)
+    _file_handler = logging.FileHandler(_log_file_path, encoding="utf-8")
+    _file_handler.setFormatter(logging.Formatter(
+        "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    ))
+    # 给所有 auto_sync.* logger 加文件 handler
+    for name in ["auto_sync", "auto_sync.watcher", "auto_sync.manager", "auto_sync.trigger", "auto_sync.status"]:
+        logging.getLogger(name).addHandler(_file_handler)
+    logging.getLogger("auto_sync").setLevel(logging.INFO)
+except Exception as _e:
+    # 文件日志失败不致命（用 stdout 兜底）
+    _file_handler = None
+    print(f"auto_sync 文件日志初始化失败: {_e}")
+
 BJ_TZ = timezone(timedelta(hours=8))
 
 
@@ -137,6 +161,65 @@ class WatcherWorker:
         )
 
         log.info(f"WatcherWorker 已启动，监控 {self.config.watch_dir}")
+
+        # v1.1 改进：启动时扫描"最新 1 个 xlsx"，如果它比上次 trigger 新，就处理
+        # 解决：watchdog Observer 不监听启动前已存在的文件（用户重启 daemon 后旧文件漏处理）
+        self._executor.submit(self._scan_existing_on_startup)
+
+    def _scan_existing_on_startup(self):
+        """启动时扫描最新 1 个 xlsx，避免漏同步
+
+        触发条件（OR，满足任一就处理）：
+          1. 上次触发是 failed（必须重试）
+          2. 上次触发的文件 != 最新 xlsx（有新文件）
+          3. 从未触发过
+        """
+        try:
+            # 找最新的 .xlsx
+            candidates = []
+            for fn in os.listdir(self.config.watch_dir):
+                if not fn.lower().endswith(".xlsx"):
+                    continue
+                if _matches_any(fn, self.config.ignore_patterns):
+                    continue
+                fp = os.path.join(self.config.watch_dir, fn)
+                if os.path.isfile(fp):
+                    candidates.append((os.path.getmtime(fp), fp))
+            if not candidates:
+                log.info("启动扫描：目录无 xlsx 文件")
+                return
+            candidates.sort(reverse=True)
+            latest_mtime, latest_path = candidates[0]
+            latest_name = os.path.basename(latest_path)
+
+            status = self.status_store.get_status()
+            last_file = status.last_file
+            last_status = status.last_status
+
+            should_process = False
+            reason = ""
+
+            if not last_file:
+                # 从未触发过
+                should_process = True
+                reason = "从未触发过"
+            elif last_status != "success":
+                # 上次失败 → 必须重试（但跳过同文件，避免无限循环）
+                should_process = True
+                reason = f"上次失败（{last_status}），重试"
+            elif last_file != latest_name:
+                # 上次成功但处理的是旧文件 → 新文件没处理过
+                should_process = True
+                reason = f"最新文件 {latest_name} 没处理过（上次是 {last_file}）"
+            else:
+                # 上次成功且是同一文件 → 跳过
+                log.info(f"启动扫描：最新 xlsx ({latest_name}) 上次已成功处理，跳过")
+                return
+
+            log.info(f"启动扫描：{reason}，自动处理 {latest_name}")
+            self.on_file_event(latest_path, "startup_scan")
+        except Exception as e:
+            log.exception(f"启动扫描异常: {e}")
 
     def stop(self, timeout: float = 10.0):
         """停止"""

@@ -65,11 +65,22 @@ def asdict_step(s: StepResult):
 def _run(cmd: List[str], cwd: Optional[str] = None, timeout: int = 600) -> StepResult:
     """运行一条 shell 命令，记录耗时/输出/错误
 
-    关键：把 "python" 替换为 sys.executable（避免 subprocess 找到系统 Python 而不是当前 venv）
+    关键：把 "python" 替换为合适的 Python 解释器：
+      - 如果当前 sys.executable 是 pythonw.exe（daemon 模式），不能直接用
+        （pythonw.exe 无 console，跑 subprocess 会失败）
+      - 用 python.exe（保证是普通 Python，能跑子进程）
+      - 用 sys._MEIPASS / sys.executable 的目录（保留 venv 信息）
     """
-    cmd = list(cmd)  # 拷贝，避免修改原 list
+    cmd = list(cmd)
     if cmd[0] == "python":
-        cmd[0] = sys.executable
+        # 取 sys.executable 所在目录的 python.exe（不是 pythonw.exe）
+        py_dir = os.path.dirname(sys.executable)
+        candidate = os.path.join(py_dir, "python.exe")
+        if os.path.exists(candidate):
+            cmd[0] = candidate
+        else:
+            # fallback：用 sys.executable 本身（venv 没 python.exe 时）
+            cmd[0] = sys.executable
     name = " ".join([os.path.basename(c) for c in cmd[:3]])
     t0 = time.time()
     try:
