@@ -444,7 +444,9 @@ async function loadData() {
     if (typeof window.__DASHBOARD_DATA__ !== "undefined" && window.__DASHBOARD_DATA__) {
       data = window.__DASHBOARD_DATA__;
     } else {
-      const resp = await fetch("dashboard_data.json");
+      // 2026-07-17 改：本地 / Streamlit 都走 jsDelivr CDN，自动 gzip + 国内 CDN 节点
+      const DATA_URL = "https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@main/dashboard_data.json";
+      const resp = await fetch(DATA_URL, { cache: "no-store" });
       data = await resp.json();
     }
     DATA = data;
