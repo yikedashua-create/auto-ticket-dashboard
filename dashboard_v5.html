@@ -444,8 +444,11 @@ async function loadData() {
     if (typeof window.__DASHBOARD_DATA__ !== "undefined" && window.__DASHBOARD_DATA__) {
       data = window.__DASHBOARD_DATA__;
     } else {
-      // 2026-07-17 改：本地 / Streamlit 都走 jsDelivr CDN，自动 gzip + 国内 CDN 节点
-      const DATA_URL = "https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@main/dashboard_data.json";
+      // 2026-07-17 改：本地 / Streamlit 都走 jsDelivr CDN
+      // 用最新 commit hash 作 URL 段，**绕过 jsDelivr CDN 缓存**（每次 commit 变 URL，jsDelivr 当新 URL 返回）
+      // streamlit cloud 不会自动 re-deploy，必须手动 Reboot app 才能拉到这个新 HTML
+      const COMMIT = "81b0179";  // ← 每次 git push 后手动改成最新 commit 前 7 位
+      const DATA_URL = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       const resp = await fetch(DATA_URL, { cache: "no-store" });
       data = await resp.json();
     }
