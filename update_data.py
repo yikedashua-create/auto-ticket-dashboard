@@ -206,7 +206,7 @@ def format_success_message(kpi, commit_msg):
         f"git commit: {commit_msg or '(无变更)'}",
         f"git push: 成功 → Streamlit Cloud 自动重新部署",
         f"",
-        f"刷新 dashboard: https://xu-zhe-pool.streamlit.app",
+        f"刷新 dashboard: https://auto-ticket-dashboard.streamlit.app/",
     ]
     return "\n".join(lines)
 
