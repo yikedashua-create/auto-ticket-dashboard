@@ -20,6 +20,14 @@ import sys
 import subprocess
 from datetime import datetime, timezone, timedelta
 
+# 2026-07-17 修复：Windows cmd 默认 GBK 编码，打印 ✓/✖ 这类 Unicode 字符
+# 会 UnicodeEncodeError 崩溃。强制 stdout 用 UTF-8（Python 3.7+）。
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass  # 旧版 Python 跳过，崩了再走 ASCII 兜底
+
 # ============== 配置 ==============
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 GEN_SCRIPT = os.path.join(SCRIPT_DIR, "gen_dashboard_data.py")
@@ -39,7 +47,8 @@ def show_result(title, message, is_error=False):
     方案：写 _last_result.txt + print 到 cmd，由 bat 脚本调 notepad 打开文件
     优势：纯文件 I/O + cmd 输出，不依赖任何 GUI 框架，绝对不闪退
     """
-    icon = "✖" if is_error else "✔"
+    # 2026-07-17 修复：原 "✖"/"✔" 在 Windows GBK 编码下崩码。改 ASCII 兜底。
+    icon = "[FAIL]" if is_error else "[OK]"
     full_title = f"{icon} {title}"
     # 1) 写文件（兜底，永远成功）
     try:
