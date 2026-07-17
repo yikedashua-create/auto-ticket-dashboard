@@ -21,7 +21,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ============== 2. 加载数据 ==============
+# ============== 2. 顶部状态条（先让 streamlit 有反应） ==============
+st.title("📊 自动出票数据看板")
+
+# ============== 3. 加载数据 ==============
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_data.json")
 
 if not os.path.exists(DATA_FILE):
@@ -32,7 +35,20 @@ if not os.path.exists(DATA_FILE):
 with open(DATA_FILE, "r", encoding="utf-8") as f:
     data_text = f.read()
 
-# ============== 3. 加载 HTML 模板 ==============
+try:
+    data = json.loads(data_text)
+    months = data.get("available_months", [])
+    total = data.get("summary", {}).get("total_orders", 0)
+    current = data.get("current_month", "")
+    st.success(
+        f"✅ 数据加载成功 · 当前月份：**{current}** · 可选：**{months}** · "
+        f"总单数：**{total:,}** · 刷新时间：**{data.get('generated_at', 'N/A')}**"
+    )
+except Exception as e:
+    st.error(f"❌ JSON 解析失败: {e}")
+    st.stop()
+
+# ============== 4. 加载 HTML 模板 ==============
 HTML_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_v5.html")
 if not os.path.exists(HTML_FILE):
     st.error(f"❌ 找不到 HTML 模板：{HTML_FILE}")
@@ -41,47 +57,22 @@ if not os.path.exists(HTML_FILE):
 with open(HTML_FILE, "r", encoding="utf-8") as f:
     html = f.read()
 
-# ============== 4. 注入数据到 HTML（核心） ==============
-# HTML 里的 loadData() 会优先读 window.__DASHBOARD_DATA__
-# 用 JSON 序列化 + </script> 防御，避免 HTML 解析出错
+# ============== 5. 注入数据到 HTML ==============
 safe_data = (
     data_text
-    .replace("</script>", "<\\/script>")   # 防止 JSON 里的 </script> 提前闭合
-    .replace("<!--", "<\\!--")              # 防止 HTML 注释闭合
+    .replace("</script>", "<\\/script>")
+    .replace("<!--", "<\\!--")
 )
 
-# 在 <head> 末尾注入 window.__DASHBOARD_DATA__
 injection = f"<script>window.__DASHBOARD_DATA__ = {safe_data};</script>"
 if "</head>" in html:
     html = html.replace("</head>", injection + "</head>", 1)
 else:
-    # 兜底：插到 <body> 开头
     html = html.replace("<body>", "<body>" + injection, 1)
 
-# ============== 5. 渲染（关键：保真 + 撑满容器） ==============
-# 2026-06-20 修复：st.components.v1.html 在 2026-06-01 后被 streamlit 废弃。
-# 换成 st.iframe（streamlit 1.56+）。
-#
-# 关键：streamlit 1.58 的 st.iframe 自动检测 src 类型：
-#   - 以 http/https/data 开头 → 当 URL
-#   - 以 / 开头 → 当相对 URL
-#   - 是现有文件路径 → 读 HTML 用 srcdoc 嵌入
-#   - 其他（包括 <!DOCTYPE html> 开头的）→ 当作 HTML 字符串，用 srcdoc 嵌入
-#
-# 直接传 html 字符串即可：streamlit 会用 srcdoc 嵌入（iframe srcdoc 属性，
-# 浏览器把整个 HTML 渲染在 iframe 里），既保留 JS 执行、又没 data URI 体积限制。
-st.iframe(html, height=5000)
+# ============== 6. 渲染：用 components.html（streamlit 1.30+ 稳定） ==============
+# 2026-07-17 修复：st.iframe 在 streamlit 1.58 处理大 srcdoc 时 hang/空白
+# 改回 streamlit.components.v1.html（更老但更稳）
+import streamlit.components.v1 as components
 
-# ============== 6. 底部状态条（可选，方便排查） ==============
-try:
-    data = json.loads(data_text)
-    months = data.get("available_months", [])
-    total = data.get("summary", {}).get("total_orders", 0)
-    current = data.get("current_month", "")
-    st.caption(
-        f"📅 数据月份：{current} · 可选：{months} · "
-        f"📊 总单数：{total:,} · "
-        f"🕐 看板刷新：{data.get('generated_at', 'N/A')}"
-    )
-except Exception:
-    pass
+components.html(html, height=5000, scrolling=True)
