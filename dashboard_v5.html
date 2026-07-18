@@ -399,8 +399,8 @@
       <div class="nav-section">
         <div class="nav-section-title">💡 业务定义</div>
         <div class="nav-mini">A 全自动成功</div>
-        <div class="nav-mini">B 自动失败被人工救场</div>
-        <div class="nav-mini">C 政策强制人工</div>
+        <div class="nav-mini">B 全自动失败</div>
+        <div class="nav-mini">C 订单转人工</div>
       </div>
     </div>
 
@@ -802,13 +802,13 @@ function renderOverview() {
   const cs2 = COMPARE_DATA ? COMPARE_DATA.summary : null;
   const pieData = [
     { name: "A 全自动成功", value: s.A, itemStyle: { color: color.A } },
-    { name: "B 转人工救场", value: s.B, itemStyle: { color: color.B } },
-    { name: "C 纯人工", value: s.C, itemStyle: { color: color.C } },
-    { name: "D 异常", value: s.D, itemStyle: { color: color.D } },
+    { name: "B 全自动失败", value: s.B, itemStyle: { color: color.B } },
+    { name: "C 订单转人工", value: s.C, itemStyle: { color: color.C } },
+    { name: "D 订单处理中", value: s.D, itemStyle: { color: color.D } },
   ];
   const tooltipFmt = (p) => {
     if (!cs2) return "{b}<br>{c} 单 ({d}%)";
-    const prev = { "A 全自动成功": cs2.A, "B 转人工救场": cs2.B, "C 纯人工": cs2.C, "D 异常": cs2.D }[p.name] ?? 0;
+    const prev = { "A 全自动成功": cs2.A, "B 全自动失败": cs2.B, "C 订单转人工": cs2.C, "D 订单处理中": cs2.D }[p.name] ?? 0;
     const diff = p.value - prev;
     const sign = diff > 0 ? "+" : (diff < 0 ? "" : "·");
     return "{b}<br>当前: {c} 单 ({d}%)<br>对比: " + prev + " 单<br>差: " + sign + diff + " 单";
@@ -842,7 +842,7 @@ function renderOverview() {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
     legend: { ...baseEchartsOpt.legend, data: ["总利润", "单均利润"] },
-    xAxis: { type: "category", data: ["A 全自动", "B 转人工", "C 纯人工", "D 异常"],
+    xAxis: { type: "category", data: ["A 全自动成功", "B 全自动失败", "C 订单转人工", "D 订单处理中"],
               axisLabel: { color: "#7a8ba0" } },
     yAxis: [
       { type: "value", name: "总利润(元)", axisLabel: { color: "#7a8ba0" },
@@ -1109,15 +1109,16 @@ function renderTrend() {
 
 /* ============== 页面：航司深度 ============== */
 function renderAirline() {
-  const top = CURRENT_DATA.airline.slice(0, 15);
+  // 2026-07-18 优化：航司深度分析全量展示（不是 Top 15）
+  const top = CURRENT_DATA.airline;
   const html = `
     <div class="section">
-      <div class="section-title">✈️ 航司排名（Top 15 · 按订单量）
+      <div class="section-title">✈️ 航司排名（全量 · 按订单量）
         <span class="badge badge-info">${CURRENT_DATA.airline.length} 个航司</span>
       </div>
       <div class="grid-2x2">
         <div class="chart-box">
-          <div class="chart-title">📊 Top 15 航司订单量</div>
+          <div class="chart-title">📊 全量航司订单量</div>
           <div id="chart-airlineBar" class="chart-area" style="height:380px"></div>
         </div>
         <div class="chart-box">
@@ -1162,14 +1163,14 @@ function renderAirline() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // Top 15 订单量
+  // 全量航司订单量
   createChart("chart-airlineBar", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
       formatter: p => `${p[0].name}<br>${fmt.num(p[0].value)} 单` },
-    grid: { left: 50, right: 30, top: 20, bottom: 80 },
+    grid: { left: 50, right: 30, top: 20, bottom: 120 },
     xAxis: { type: "category", data: top.map(a => a.airline + " " + a.name),
-              axisLabel: { color: "#7a8ba0", rotate: 40, fontSize: 10 } },
+              axisLabel: { color: "#7a8ba0", rotate: 60, fontSize: 9, interval: Math.max(0, Math.floor(top.length / 30) - 1) } },
     yAxis: { type: "value", name: "订单量", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
     series: [{
@@ -1180,15 +1181,15 @@ function renderAirline() {
     }],
   });
 
-  // 航司利润率
+  // 航司利润率（全量）
   createChart("chart-airlineProfit", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 70, right: 30, top: 20, bottom: 80 },
+    grid: { left: 90, right: 30, top: 20, bottom: 20 },
     xAxis: { type: "value", name: "利润(元)", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
     yAxis: { type: "category", data: top.map(a => a.airline + " " + a.name).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10 } },
+              axisLabel: { color: "#7a8ba0", fontSize: 9, interval: Math.max(0, Math.floor(top.length / 30) - 1) } },
     series: [{
       type: "bar", data: top.map(a => a.profit_sum).reverse(),
       itemStyle: {
@@ -1380,11 +1381,11 @@ function renderStaff() {
           <div class="kpi-value green">${fmt.num(CURRENT_DATA.staff.reduce((s, x) => s + x.B, 0))}</div>
         </div>
         <div class="kpi warning">
-          <div class="kpi-label">纯人工（C路径）</div>
+          <div class="kpi-label">订单转人工（C路径）</div>
           <div class="kpi-value yellow">${fmt.num(CURRENT_DATA.staff.reduce((s, x) => s + x.C, 0))}</div>
         </div>
         <div class="kpi danger">
-          <div class="kpi-label">异常处理（D路径）</div>
+          <div class="kpi-label">订单处理中（D路径）</div>
           <div class="kpi-value red">${fmt.num(CURRENT_DATA.staff.reduce((s, x) => s + x.D, 0))}</div>
         </div>
       </div>
@@ -1403,7 +1404,7 @@ function renderStaff() {
         <div style="max-height: 500px; overflow-y: auto;">
           <table class="data-table">
             <thead>
-              <tr><th>员工</th><th>接单</th><th>B救场</th><th>C纯人工</th><th>D异常</th><th>救场率</th><th>单均</th><th>盈利%</th><th>总利润</th></tr>
+              <tr><th>员工</th><th>接单</th><th>B全自动失败</th><th>C订单转人工</th><th>D订单处理中</th><th>救场率</th><th>单均</th><th>盈利%</th><th>总利润</th></tr>
             </thead>
             <tbody>
               ${CURRENT_DATA.staff.map(s => `
