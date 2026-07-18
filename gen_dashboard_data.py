@@ -1106,6 +1106,45 @@ def build_month_data(df, month_label):
         "profit_pos_rate": round(profit_pos/len(profit_all)*100, 2) if len(profit_all) else 0,
     }
 
+    # 2026-07-18 新增：自然周聚合（该月内 W1/W2/W3/W4/W5，dashboard 周对比用）
+    # 每月 1-7 号=W1，8-14=W2，15-21=W3，22-28=W4，29+=W5
+    if "daily" in out and out["daily"]:
+        natural_weekly_def = {}
+        for r in out["daily"]:
+            dt = datetime.strptime(r["date"], "%Y-%m-%d")
+            day = dt.day
+            # 该月内第几周：1-7=W1, 8-14=W2, 15-21=W3, 22-28=W4, 29-31=W5
+            wn = (day - 1) // 7 + 1
+            wk = f"W{wn}"
+            if wk not in natural_weekly_def:
+                natural_weekly_def[wk] = {
+                    "week": wk, "days": [],
+                    "A": 0, "B": 0, "C": 0, "D": 0, "total": 0,
+                    "profit_sum": 0.0,
+                }
+            w = natural_weekly_def[wk]
+            w["A"] += r["A"]; w["B"] += r["B"]; w["C"] += r["C"]; w["D"] += r["D"]
+            w["total"] += r["total"]; w["profit_sum"] += r["profit_sum"]
+            w["days"].append(r["date"])
+
+        natural_weekly = []
+        for wk in sorted(natural_weekly_def.keys()):
+            w = natural_weekly_def[wk]
+            auto = w["A"] + w["B"]
+            natural_weekly.append({
+                "week": wk,
+                "date_range": f"{min(w['days'])}~{max(w['days'])}",
+                "days": w["days"],
+                "total": w["total"], "A": w["A"], "B": w["B"], "C": w["C"], "D": w["D"],
+                "auto_coverage_rate": round(auto / w["total"] * 100, 2) if w["total"] else 0,
+                "auto_succ_rate": round(w["A"] / auto * 100, 2) if auto else 0,
+                "A_ratio": round(w["A"] / w["total"] * 100, 2) if w["total"] else 0,
+                "B_ratio": round(w["B"] / w["total"] * 100, 2) if w["total"] else 0,
+                "profit_sum": round(w["profit_sum"], 2),
+                "avg_profit": round(w["profit_sum"] / w["total"], 2) if w["total"] else 0,
+            })
+        out["summary"]["natural_weekly"] = natural_weekly
+
     # 2026-07-18 新增：今日各小时分桶（取该月最后一天，dashboard 折线图用）
     if "_file_date" in df.columns and not df.empty:
         last_date = df["_file_date"].max()
