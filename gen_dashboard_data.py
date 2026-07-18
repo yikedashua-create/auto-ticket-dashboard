@@ -1688,6 +1688,9 @@ def main():
 
     # 逐月聚合
     months_data = {}
+    # D30（2026-07-18）：跨月跟踪前一日 platform 数据（让 7-1 vs 6-30 也能对比）
+    # 结构：{ platform_name: {"total": n, "A": a, "B": b, "C": c, "D": d} }
+    prev_day_platform = {}
     for m in target_months:
         df_m = df_all[df_all["_month"] == m].copy()
         print(f"\n[跑] {m} · {len(df_m):,} 单 · {df_m['_file_date'].nunique()} 天")
@@ -1698,6 +1701,7 @@ def main():
         daily_detail = {}
         prev_day_reasons_b = {}  # v10.14.6: 前一天 fail_reasons_B reason->count
         prev_day_reasons_d = {}  # 同上 D 订单处理中
+        prev_date_str = None  # D30：前一天的日期（跨月也正确，因为 prev_day_platform 跨月持久化）
         for date in sorted(df_m["_file_date"].unique()):
             df_day = df_m[df_m["_file_date"] == date].copy()
             if len(df_day) == 0:
@@ -1706,6 +1710,9 @@ def main():
             # 精简：去掉单日用不到的字段
             day_data.pop("weekly", None)
             day_data.pop("insights", None)
+            # D30：先抓当天的完整 platform list（截断前），用于明天 prev 基准
+            today_platform_full = {p['platform']: {k: p[k] for k in ('total', 'A', 'B', 'C', 'D')}
+                                    for p in day_data.get('platform', [])}
             # 精简：航司/平台/渠道/员工 只保留前 5（单日 Top5 足够看）
             # 2026-07-18 优化：航司 (airline) 不截断，全量展示（单日最多 ~30 个航司，体量可控）
             # 平台/渠道/员工 仍 Top 5（这些不影响业务诊断）
@@ -1716,6 +1723,16 @@ def main():
             for k in ["platform", "channel", "staff"]:
                 if k in day_data and isinstance(day_data[k], list):
                     day_data[k] = day_data[k][:5]
+            # D30：给截断后的 platform 数组加 prev_total/prev_A/prev_B/prev_C/prev_D
+            # 缺失平台 = 0（昨天没单）。跨月场景：7-1 的 prev = 6-30（prev_day_platform 跨月持久化）
+            for p in day_data.get('platform', []):
+                prev_p = prev_day_platform.get(p['platform'], {})
+                p['prev_total'] = prev_p.get('total', 0)
+                p['prev_A'] = prev_p.get('A', 0)
+                p['prev_B'] = prev_p.get('B', 0)
+                p['prev_C'] = prev_p.get('C', 0)
+                p['prev_D'] = prev_p.get('D', 0)
+                p['prev_date'] = prev_date_str  # D30：prev 基准 = 前一天日期（首日为 null）
             # 精简：失败原因**不截断**（v10.8 修复，2026-06-23）
             # 之前切 Top 10 导致日表族内变体被截断：例如"预定环节-预定异常"族 6-21 有 21 个变体 63 单
             # 切 Top 10 后该族只剩 2 个变体 14 单（差 49 单），族总 vs 变体累加对不上
@@ -1736,6 +1753,9 @@ def main():
             # 更新 prev 为当前（用于下一天的对比）
             prev_day_reasons_b = {r['reason']: r['count'] for r in day_data.get('fail_reasons_B', [])}
             prev_day_reasons_d = {r['reason']: r['count'] for r in day_data.get('fail_reasons_D', [])}
+            # D30：更新 prev_day_platform = 当天完整数据（明天 prev 基准）
+            prev_day_platform = today_platform_full
+            prev_date_str = date  # D30：明天用
             daily_detail[date] = day_data
         months_data[m]["daily_detail"] = daily_detail
         print(f"  [daily_detail] {len(daily_detail)} 天")

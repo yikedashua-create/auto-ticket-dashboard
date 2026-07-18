@@ -15807,7 +15807,13 @@
           "auto_coverage_rate": 92.95,
           "auto_succ_rate": 70.85,
           "profit_sum": -72.46,
-          "avg_profit": -0.08
+          "avg_profit": -0.08,
+          "prev_total": 567,
+          "prev_A": 358,
+          "prev_B": 160,
+          "prev_C": 15,
+          "prev_D": 34,
+          "prev_date": null
         },
         {
           "platform": "向上比客国际",
@@ -15819,7 +15825,13 @@
           "auto_coverage_rate": 89.55,
           "auto_succ_rate": 46.17,
           "profit_sum": 3784.66,
-          "avg_profit": 5.94
+          "avg_profit": 5.94,
+          "prev_total": 295,
+          "prev_A": 131,
+          "prev_B": 147,
+          "prev_C": 14,
+          "prev_D": 3,
+          "prev_date": null
         },
         {
           "platform": "携程国际",
@@ -15831,7 +15843,13 @@
           "auto_coverage_rate": 98.56,
           "auto_succ_rate": 87.99,
           "profit_sum": -15159.72,
-          "avg_profit": -24.57
+          "avg_profit": -24.57,
+          "prev_total": 461,
+          "prev_A": 421,
+          "prev_B": 36,
+          "prev_C": 0,
+          "prev_D": 4,
+          "prev_date": null
         },
         {
           "platform": "同程国际",
@@ -15843,7 +15861,13 @@
           "auto_coverage_rate": 94.59,
           "auto_succ_rate": 76.66,
           "profit_sum": -12971.02,
-          "avg_profit": -28.32
+          "avg_profit": -28.32,
+          "prev_total": 355,
+          "prev_A": 277,
+          "prev_B": 43,
+          "prev_C": 27,
+          "prev_D": 8,
+          "prev_date": null
         },
         {
           "platform": "淘宝国际",
@@ -15855,7 +15879,13 @@
           "auto_coverage_rate": 91.67,
           "auto_succ_rate": 52.84,
           "profit_sum": -2764.46,
-          "avg_profit": -14.63
+          "avg_profit": -14.63,
+          "prev_total": 153,
+          "prev_A": 45,
+          "prev_B": 92,
+          "prev_C": 10,
+          "prev_D": 6,
+          "prev_date": null
         }
       ],
       "channel": [
@@ -19687,7 +19717,13 @@
           "auto_coverage_rate": 94.71,
           "auto_succ_rate": 73.58,
           "profit_sum": -6051.53,
-          "avg_profit": -5.12
+          "avg_profit": -5.12,
+          "prev_total": 908,
+          "prev_A": 598,
+          "prev_B": 246,
+          "prev_C": 56,
+          "prev_D": 8,
+          "prev_date": "2026-06-01"
         },
         {
           "platform": "携程国际",
@@ -19699,7 +19735,13 @@
           "auto_coverage_rate": 98.23,
           "auto_succ_rate": 90.18,
           "profit_sum": -14044.38,
-          "avg_profit": -22.87
+          "avg_profit": -22.87,
+          "prev_total": 625,
+          "prev_A": 542,
+          "prev_B": 74,
+          "prev_C": 1,
+          "prev_D": 8,
+          "prev_date": "2026-06-01"
         },
         {
           "platform": "向上比客国际",
@@ -19711,7 +19753,13 @@
           "auto_coverage_rate": 84.81,
           "auto_succ_rate": 57.14,
           "profit_sum": 1794.61,
-          "avg_profit": 2.93
+          "avg_profit": 2.93,
+          "prev_total": 641,
+          "prev_A": 265,
+          "prev_B": 309,
+          "prev_C": 66,
+          "prev_D": 1,
+          "prev_date": "2026-06-01"
         },
         {
           "platform": "同程国际",
@@ -19723,7 +19771,13 @@
           "auto_coverage_rate": 97.71,
           "auto_succ_rate": 88.28,
           "profit_sum": -9915.29,
-          "avg_profit": -19.14
+          "avg_profit": -19.14,
+          "prev_total": 462,
+          "prev_A": 335,
+          "prev_B": 102,
+          "prev_C": 22,
+          "prev_D": 3,
+          "prev_date": "2026-06-01"
         },
         {
           "platform": "淘宝国际",
@@ -19735,7 +19789,13 @@
           "auto_coverage_rate": 96.42,
           "auto_succ_rate": 62.83,
           "profit_sum": -5308.12,
-          "avg_profit": -19.03
+          "avg_profit": -19.03,
+          "prev_total": 192,
+          "prev_A": 93,
+          "prev_B": 83,
+          "prev_C": 14,
+          "prev_D": 2,
+          "prev_date": "2026-06-01"
         }
       ],
       "channel": [
@@ -23806,7 +23866,13 @@
           "auto_coverage_rate": 93.46,
           "auto_succ_rate": 72.69,
           "profit_sum": 871.1,
-          "avg_profit": 1.08
+          "avg_profit": 1.08,
+          "prev_total": 1191,
+          "prev_A": 830,
+          "prev_B": 298,
+          "prev_C": 52,
+          "prev_D": 11,
+          "prev_date": "2026-06-02"
         },
         {
           "platform": "携程国际",
@@ -23818,7 +23884,13 @@
           "auto_coverage_rate": 96.34,
           "auto_succ_rate": 91.96,
           "profit_sum": -16423.44,
-          "avg_profit": -23.56
+          "avg_profit": -23.56,
+          "prev_total": 622,
+          "prev_A": 551,
+          "prev_B": 60,
+          "prev_C": 1,
+          "prev_D": 10,
+          "prev_date": "2026-06-02"
         },
         {
           "platform": "同程国际",
@@ -23830,7 +23902,13 @@
           "auto_coverage_rate": 98.3,
           "auto_succ_rate": 87.33,
           "profit_sum": -8684.13,
-          "avg_profit": -16.45
+          "avg_profit": -16.45,
+          "prev_total": 524,
+          "prev_A": 452,
+          "prev_B": 60,
+          "prev_C": 4,
+          "prev_D": 8,
+          "prev_date": "2026-06-02"
         },
         {
           "platform": "向上比客国际",
@@ -23842,7 +23920,13 @@
           "auto_coverage_rate": 77.29,
           "auto_succ_rate": 32.47,
           "profit_sum": 1070.95,
-          "avg_profit": 2.14
+          "avg_profit": 2.14,
+          "prev_total": 619,
+          "prev_A": 300,
+          "prev_B": 225,
+          "prev_C": 91,
+          "prev_D": 3,
+          "prev_date": "2026-06-02"
         },
         {
           "platform": "淘宝国际",
@@ -23854,7 +23938,13 @@
           "auto_coverage_rate": 88.46,
           "auto_succ_rate": 57.76,
           "profit_sum": -3205.98,
-          "avg_profit": -17.71
+          "avg_profit": -17.71,
+          "prev_total": 279,
+          "prev_A": 169,
+          "prev_B": 100,
+          "prev_C": 10,
+          "prev_D": 0,
+          "prev_date": "2026-06-02"
         }
       ],
       "channel": [
@@ -27537,7 +27627,13 @@
           "auto_coverage_rate": 94.23,
           "auto_succ_rate": 66.16,
           "profit_sum": 2683.94,
-          "avg_profit": 4.37
+          "avg_profit": 4.37,
+          "prev_total": 811,
+          "prev_A": 551,
+          "prev_B": 207,
+          "prev_C": 47,
+          "prev_D": 6,
+          "prev_date": "2026-06-03"
         },
         {
           "platform": "同程国际",
@@ -27549,7 +27645,13 @@
           "auto_coverage_rate": 97.86,
           "auto_succ_rate": 83.37,
           "profit_sum": -7527.78,
-          "avg_profit": -16.36
+          "avg_profit": -16.36,
+          "prev_total": 530,
+          "prev_A": 455,
+          "prev_B": 66,
+          "prev_C": 3,
+          "prev_D": 6,
+          "prev_date": "2026-06-03"
         },
         {
           "platform": "携程国际",
@@ -27561,7 +27663,13 @@
           "auto_coverage_rate": 98.9,
           "auto_succ_rate": 86.7,
           "profit_sum": -8197.39,
-          "avg_profit": -18.18
+          "avg_profit": -18.18,
+          "prev_total": 710,
+          "prev_A": 629,
+          "prev_B": 55,
+          "prev_C": 11,
+          "prev_D": 15,
+          "prev_date": "2026-06-03"
         },
         {
           "platform": "向上比客国际",
@@ -27573,7 +27681,13 @@
           "auto_coverage_rate": 58.84,
           "auto_succ_rate": 30.99,
           "profit_sum": 4544.96,
-          "avg_profit": 12.8
+          "avg_profit": 12.8,
+          "prev_total": 502,
+          "prev_A": 126,
+          "prev_B": 262,
+          "prev_C": 112,
+          "prev_D": 2,
+          "prev_date": "2026-06-03"
         },
         {
           "platform": "淘宝国际",
@@ -27585,7 +27699,13 @@
           "auto_coverage_rate": 93.05,
           "auto_succ_rate": 70.12,
           "profit_sum": -3038.13,
-          "avg_profit": -11.82
+          "avg_profit": -11.82,
+          "prev_total": 182,
+          "prev_A": 93,
+          "prev_B": 68,
+          "prev_C": 20,
+          "prev_D": 1,
+          "prev_date": "2026-06-03"
         }
       ],
       "channel": [
@@ -30912,7 +31032,13 @@
           "auto_coverage_rate": 84.6,
           "auto_succ_rate": 71.74,
           "profit_sum": -3200.45,
-          "avg_profit": -7.5
+          "avg_profit": -7.5,
+          "prev_total": 624,
+          "prev_A": 389,
+          "prev_B": 199,
+          "prev_C": 27,
+          "prev_D": 9,
+          "prev_date": "2026-06-04"
         },
         {
           "platform": "携程国际",
@@ -30924,7 +31050,13 @@
           "auto_coverage_rate": 98.91,
           "auto_succ_rate": 81.22,
           "profit_sum": -7745.22,
-          "avg_profit": -21.4
+          "avg_profit": -21.4,
+          "prev_total": 456,
+          "prev_A": 391,
+          "prev_B": 60,
+          "prev_C": 0,
+          "prev_D": 5,
+          "prev_date": "2026-06-04"
         },
         {
           "platform": "同程国际",
@@ -30936,7 +31068,13 @@
           "auto_coverage_rate": 90.34,
           "auto_succ_rate": 76.9,
           "profit_sum": -4317.36,
-          "avg_profit": -13.62
+          "avg_profit": -13.62,
+          "prev_total": 467,
+          "prev_A": 381,
+          "prev_B": 76,
+          "prev_C": 4,
+          "prev_D": 6,
+          "prev_date": "2026-06-04"
         },
         {
           "platform": "向上比客国际",
@@ -30948,7 +31086,13 @@
           "auto_coverage_rate": 71.53,
           "auto_succ_rate": 68.25,
           "profit_sum": 1901.93,
-          "avg_profit": 6.56
+          "avg_profit": 6.56,
+          "prev_total": 362,
+          "prev_A": 66,
+          "prev_B": 147,
+          "prev_C": 144,
+          "prev_D": 5,
+          "prev_date": "2026-06-04"
         },
         {
           "platform": "淘宝国际",
@@ -30960,7 +31104,13 @@
           "auto_coverage_rate": 85.99,
           "auto_succ_rate": 78.65,
           "profit_sum": -3862.4,
-          "avg_profit": -18.66
+          "avg_profit": -18.66,
+          "prev_total": 259,
+          "prev_A": 169,
+          "prev_B": 72,
+          "prev_C": 17,
+          "prev_D": 1,
+          "prev_date": "2026-06-04"
         }
       ],
       "channel": [
@@ -34147,7 +34297,13 @@
           "auto_coverage_rate": 87.78,
           "auto_succ_rate": 75.1,
           "profit_sum": -75.02,
-          "avg_profit": -0.14
+          "avg_profit": -0.14,
+          "prev_total": 435,
+          "prev_A": 264,
+          "prev_B": 104,
+          "prev_C": 54,
+          "prev_D": 13,
+          "prev_date": "2026-06-05"
         },
         {
           "platform": "同程国际",
@@ -34159,7 +34315,13 @@
           "auto_coverage_rate": 87.0,
           "auto_succ_rate": 80.51,
           "profit_sum": -5475.43,
-          "avg_profit": -12.59
+          "avg_profit": -12.59,
+          "prev_total": 321,
+          "prev_A": 223,
+          "prev_B": 67,
+          "prev_C": 27,
+          "prev_D": 4,
+          "prev_date": "2026-06-05"
         },
         {
           "platform": "携程国际",
@@ -34171,7 +34333,13 @@
           "auto_coverage_rate": 99.39,
           "auto_succ_rate": 74.54,
           "profit_sum": -7036.44,
-          "avg_profit": -21.52
+          "avg_profit": -21.52,
+          "prev_total": 366,
+          "prev_A": 294,
+          "prev_B": 68,
+          "prev_C": 0,
+          "prev_D": 4,
+          "prev_date": "2026-06-05"
         },
         {
           "platform": "向上比客国际",
@@ -34183,7 +34351,13 @@
           "auto_coverage_rate": 58.47,
           "auto_succ_rate": 85.23,
           "profit_sum": 4060.97,
-          "avg_profit": 13.54
+          "avg_profit": 13.54,
+          "prev_total": 295,
+          "prev_A": 144,
+          "prev_B": 67,
+          "prev_C": 80,
+          "prev_D": 4,
+          "prev_date": "2026-06-05"
         },
         {
           "platform": "淘宝国际",
@@ -34195,7 +34369,13 @@
           "auto_coverage_rate": 78.39,
           "auto_succ_rate": 75.14,
           "profit_sum": -3846.04,
-          "avg_profit": -16.44
+          "avg_profit": -16.44,
+          "prev_total": 207,
+          "prev_A": 140,
+          "prev_B": 38,
+          "prev_C": 29,
+          "prev_D": 0,
+          "prev_date": "2026-06-05"
         }
       ],
       "channel": [
@@ -37285,7 +37465,13 @@
           "auto_coverage_rate": 90.41,
           "auto_succ_rate": 74.28,
           "profit_sum": -1679.71,
-          "avg_profit": -2.78
+          "avg_profit": -2.78,
+          "prev_total": 581,
+          "prev_A": 383,
+          "prev_B": 127,
+          "prev_C": 44,
+          "prev_D": 27,
+          "prev_date": "2026-06-06"
         },
         {
           "platform": "向上比客国际",
@@ -37297,7 +37483,13 @@
           "auto_coverage_rate": 87.38,
           "auto_succ_rate": 65.67,
           "profit_sum": 2437.66,
-          "avg_profit": 4.0
+          "avg_profit": 4.0,
+          "prev_total": 301,
+          "prev_A": 150,
+          "prev_B": 26,
+          "prev_C": 124,
+          "prev_D": 1,
+          "prev_date": "2026-06-06"
         },
         {
           "platform": "携程国际",
@@ -37309,7 +37501,13 @@
           "auto_coverage_rate": 97.08,
           "auto_succ_rate": 71.69,
           "profit_sum": -6736.04,
-          "avg_profit": -20.29
+          "avg_profit": -20.29,
+          "prev_total": 328,
+          "prev_A": 243,
+          "prev_B": 83,
+          "prev_C": 0,
+          "prev_D": 2,
+          "prev_date": "2026-06-06"
         },
         {
           "platform": "同程国际",
@@ -37321,7 +37519,13 @@
           "auto_coverage_rate": 85.29,
           "auto_succ_rate": 71.13,
           "profit_sum": -4816.38,
-          "avg_profit": -15.1
+          "avg_profit": -15.1,
+          "prev_total": 454,
+          "prev_A": 318,
+          "prev_B": 77,
+          "prev_C": 41,
+          "prev_D": 18,
+          "prev_date": "2026-06-06"
         },
         {
           "platform": "淘宝国际",
@@ -37333,7 +37537,13 @@
           "auto_coverage_rate": 91.37,
           "auto_succ_rate": 68.5,
           "profit_sum": -2205.85,
-          "avg_profit": -15.98
+          "avg_profit": -15.98,
+          "prev_total": 236,
+          "prev_A": 139,
+          "prev_B": 46,
+          "prev_C": 50,
+          "prev_D": 1,
+          "prev_date": "2026-06-06"
         }
       ],
       "channel": [
@@ -40678,7 +40888,13 @@
           "auto_coverage_rate": 98.79,
           "auto_succ_rate": 81.66,
           "profit_sum": -18036.13,
-          "avg_profit": -22.05
+          "avg_profit": -22.05,
+          "prev_total": 342,
+          "prev_A": 238,
+          "prev_B": 94,
+          "prev_C": 0,
+          "prev_D": 10,
+          "prev_date": "2026-06-07"
         },
         {
           "platform": "去哪儿国际",
@@ -40690,7 +40906,13 @@
           "auto_coverage_rate": 94.86,
           "auto_succ_rate": 71.36,
           "profit_sum": -5537.66,
-          "avg_profit": -9.09
+          "avg_profit": -9.09,
+          "prev_total": 615,
+          "prev_A": 413,
+          "prev_B": 143,
+          "prev_C": 44,
+          "prev_D": 15,
+          "prev_date": "2026-06-07"
         },
         {
           "platform": "向上比客国际",
@@ -40702,7 +40924,13 @@
           "auto_coverage_rate": 79.63,
           "auto_succ_rate": 72.41,
           "profit_sum": 15.04,
-          "avg_profit": 0.03
+          "avg_profit": 0.03,
+          "prev_total": 610,
+          "prev_A": 350,
+          "prev_B": 183,
+          "prev_C": 76,
+          "prev_D": 1,
+          "prev_date": "2026-06-07"
         },
         {
           "platform": "同程国际",
@@ -40714,7 +40942,13 @@
           "auto_coverage_rate": 94.66,
           "auto_succ_rate": 77.15,
           "profit_sum": -6409.67,
-          "avg_profit": -16.87
+          "avg_profit": -16.87,
+          "prev_total": 333,
+          "prev_A": 202,
+          "prev_B": 82,
+          "prev_C": 38,
+          "prev_D": 11,
+          "prev_date": "2026-06-07"
         },
         {
           "platform": "淘宝国际",
@@ -40726,7 +40960,13 @@
           "auto_coverage_rate": 94.32,
           "auto_succ_rate": 72.89,
           "profit_sum": -4410.19,
-          "avg_profit": -26.1
+          "avg_profit": -26.1,
+          "prev_total": 139,
+          "prev_A": 87,
+          "prev_B": 40,
+          "prev_C": 10,
+          "prev_D": 2,
+          "prev_date": "2026-06-07"
         }
       ],
       "channel": [
@@ -44222,7 +44462,13 @@
           "auto_coverage_rate": 94.58,
           "auto_succ_rate": 74.68,
           "profit_sum": -2695.62,
-          "avg_profit": -4.14
+          "avg_profit": -4.14,
+          "prev_total": 622,
+          "prev_A": 421,
+          "prev_B": 169,
+          "prev_C": 16,
+          "prev_D": 16,
+          "prev_date": "2026-06-08"
         },
         {
           "platform": "向上比客国际",
@@ -44234,7 +44480,13 @@
           "auto_coverage_rate": 81.33,
           "auto_succ_rate": 76.64,
           "profit_sum": 1217.49,
-          "avg_profit": 2.04
+          "avg_profit": 2.04,
+          "prev_total": 437,
+          "prev_A": 252,
+          "prev_B": 96,
+          "prev_C": 85,
+          "prev_D": 4,
+          "prev_date": "2026-06-08"
         },
         {
           "platform": "携程国际",
@@ -44246,7 +44498,13 @@
           "auto_coverage_rate": 99.09,
           "auto_succ_rate": 84.63,
           "profit_sum": -10039.91,
-          "avg_profit": -23.03
+          "avg_profit": -23.03,
+          "prev_total": 828,
+          "prev_A": 668,
+          "prev_B": 150,
+          "prev_C": 0,
+          "prev_D": 10,
+          "prev_date": "2026-06-08"
         },
         {
           "platform": "同程国际",
@@ -44258,7 +44516,13 @@
           "auto_coverage_rate": 88.81,
           "auto_succ_rate": 73.17,
           "profit_sum": -6286.02,
-          "avg_profit": -25.35
+          "avg_profit": -25.35,
+          "prev_total": 393,
+          "prev_A": 287,
+          "prev_B": 85,
+          "prev_C": 7,
+          "prev_D": 14,
+          "prev_date": "2026-06-08"
         },
         {
           "platform": "淘宝国际",
@@ -44270,7 +44534,13 @@
           "auto_coverage_rate": 97.32,
           "auto_succ_rate": 63.3,
           "profit_sum": -3881.46,
-          "avg_profit": -17.64
+          "avg_profit": -17.64,
+          "prev_total": 176,
+          "prev_A": 121,
+          "prev_B": 45,
+          "prev_C": 3,
+          "prev_D": 7,
+          "prev_date": "2026-06-08"
         }
       ],
       "channel": [
@@ -47661,7 +47931,13 @@
           "auto_coverage_rate": 99.11,
           "auto_succ_rate": 88.71,
           "profit_sum": -20714.49,
-          "avg_profit": -23.33
+          "avg_profit": -23.33,
+          "prev_total": 440,
+          "prev_A": 369,
+          "prev_B": 67,
+          "prev_C": 0,
+          "prev_D": 4,
+          "prev_date": "2026-06-09"
         },
         {
           "platform": "去哪儿国际",
@@ -47673,7 +47949,13 @@
           "auto_coverage_rate": 97.34,
           "auto_succ_rate": 73.53,
           "profit_sum": -3912.82,
-          "avg_profit": -5.24
+          "avg_profit": -5.24,
+          "prev_total": 664,
+          "prev_A": 469,
+          "prev_B": 159,
+          "prev_C": 21,
+          "prev_D": 15,
+          "prev_date": "2026-06-09"
         },
         {
           "platform": "向上比客国际",
@@ -47685,7 +47967,13 @@
           "auto_coverage_rate": 91.96,
           "auto_succ_rate": 67.77,
           "profit_sum": 2221.64,
-          "avg_profit": 3.99
+          "avg_profit": 3.99,
+          "prev_total": 600,
+          "prev_A": 374,
+          "prev_B": 114,
+          "prev_C": 112,
+          "prev_D": 0,
+          "prev_date": "2026-06-09"
         },
         {
           "platform": "同程国际",
@@ -47697,7 +47985,13 @@
           "auto_coverage_rate": 91.13,
           "auto_succ_rate": 82.16,
           "profit_sum": -5979.57,
-          "avg_profit": -15.99
+          "avg_profit": -15.99,
+          "prev_total": 277,
+          "prev_A": 180,
+          "prev_B": 66,
+          "prev_C": 3,
+          "prev_D": 28,
+          "prev_date": "2026-06-09"
         },
         {
           "platform": "淘宝国际",
@@ -47709,7 +48003,13 @@
           "auto_coverage_rate": 96.91,
           "auto_succ_rate": 52.23,
           "profit_sum": -1246.37,
-          "avg_profit": -7.74
+          "avg_profit": -7.74,
+          "prev_total": 224,
+          "prev_A": 138,
+          "prev_B": 80,
+          "prev_C": 1,
+          "prev_D": 5,
+          "prev_date": "2026-06-09"
         }
       ],
       "channel": [
@@ -51178,7 +51478,13 @@
           "auto_coverage_rate": 98.65,
           "auto_succ_rate": 87.7,
           "profit_sum": -17800.58,
-          "avg_profit": -24.28
+          "avg_profit": -24.28,
+          "prev_total": 894,
+          "prev_A": 786,
+          "prev_B": 100,
+          "prev_C": 2,
+          "prev_D": 6,
+          "prev_date": "2026-06-10"
         },
         {
           "platform": "去哪儿国际",
@@ -51190,7 +51496,13 @@
           "auto_coverage_rate": 97.98,
           "auto_succ_rate": 75.99,
           "profit_sum": 327.29,
-          "avg_profit": 0.55
+          "avg_profit": 0.55,
+          "prev_total": 753,
+          "prev_A": 539,
+          "prev_B": 194,
+          "prev_C": 13,
+          "prev_D": 7,
+          "prev_date": "2026-06-10"
         },
         {
           "platform": "同程国际",
@@ -51202,7 +51514,13 @@
           "auto_coverage_rate": 90.62,
           "auto_succ_rate": 84.34,
           "profit_sum": -6521.26,
-          "avg_profit": -16.39
+          "avg_profit": -16.39,
+          "prev_total": 406,
+          "prev_A": 304,
+          "prev_B": 66,
+          "prev_C": 0,
+          "prev_D": 36,
+          "prev_date": "2026-06-10"
         },
         {
           "platform": "向上比客国际",
@@ -51214,7 +51532,13 @@
           "auto_coverage_rate": 82.91,
           "auto_succ_rate": 76.36,
           "profit_sum": 3273.38,
-          "avg_profit": 8.27
+          "avg_profit": 8.27,
+          "prev_total": 560,
+          "prev_A": 349,
+          "prev_B": 166,
+          "prev_C": 40,
+          "prev_D": 5,
+          "prev_date": "2026-06-10"
         },
         {
           "platform": "淘宝国际",
@@ -51226,7 +51550,13 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 44.12,
           "profit_sum": -1006.36,
-          "avg_profit": -7.4
+          "avg_profit": -7.4,
+          "prev_total": 162,
+          "prev_A": 82,
+          "prev_B": 75,
+          "prev_C": 3,
+          "prev_D": 2,
+          "prev_date": "2026-06-10"
         }
       ],
       "channel": [
@@ -54549,7 +54879,13 @@
           "auto_coverage_rate": 98.75,
           "auto_succ_rate": 89.04,
           "profit_sum": -16437.44,
-          "avg_profit": -23.05
+          "avg_profit": -23.05,
+          "prev_total": 742,
+          "prev_A": 642,
+          "prev_B": 90,
+          "prev_C": 0,
+          "prev_D": 10,
+          "prev_date": "2026-06-11"
         },
         {
           "platform": "去哪儿国际",
@@ -54561,7 +54897,13 @@
           "auto_coverage_rate": 94.97,
           "auto_succ_rate": 80.39,
           "profit_sum": -1088.71,
-          "avg_profit": -1.89
+          "avg_profit": -1.89,
+          "prev_total": 595,
+          "prev_A": 443,
+          "prev_B": 140,
+          "prev_C": 6,
+          "prev_D": 6,
+          "prev_date": "2026-06-11"
         },
         {
           "platform": "向上比客国际",
@@ -54573,7 +54915,13 @@
           "auto_coverage_rate": 88.83,
           "auto_succ_rate": 80.7,
           "profit_sum": 2330.56,
-          "avg_profit": 6.1
+          "avg_profit": 6.1,
+          "prev_total": 398,
+          "prev_A": 252,
+          "prev_B": 78,
+          "prev_C": 67,
+          "prev_D": 1,
+          "prev_date": "2026-06-11"
         },
         {
           "platform": "同程国际",
@@ -54585,7 +54933,13 @@
           "auto_coverage_rate": 96.47,
           "auto_succ_rate": 80.28,
           "profit_sum": -5640.43,
-          "avg_profit": -15.84
+          "avg_profit": -15.84,
+          "prev_total": 437,
+          "prev_A": 334,
+          "prev_B": 62,
+          "prev_C": 0,
+          "prev_D": 41,
+          "prev_date": "2026-06-11"
         },
         {
           "platform": "淘宝国际",
@@ -54597,7 +54951,13 @@
           "auto_coverage_rate": 97.61,
           "auto_succ_rate": 41.67,
           "profit_sum": -1722.94,
-          "avg_profit": -8.28
+          "avg_profit": -8.28,
+          "prev_total": 136,
+          "prev_A": 60,
+          "prev_B": 76,
+          "prev_C": 0,
+          "prev_D": 0,
+          "prev_date": "2026-06-11"
         }
       ],
       "channel": [
@@ -57873,7 +58233,13 @@
           "auto_coverage_rate": 98.21,
           "auto_succ_rate": 87.73,
           "profit_sum": -13722.92,
-          "avg_profit": -22.65
+          "avg_profit": -22.65,
+          "prev_total": 721,
+          "prev_A": 634,
+          "prev_B": 78,
+          "prev_C": 0,
+          "prev_D": 9,
+          "prev_date": "2026-06-12"
         },
         {
           "platform": "去哪儿国际",
@@ -57885,7 +58251,13 @@
           "auto_coverage_rate": 86.79,
           "auto_succ_rate": 69.77,
           "profit_sum": 42.42,
-          "avg_profit": 0.09
+          "avg_profit": 0.09,
+          "prev_total": 596,
+          "prev_A": 455,
+          "prev_B": 111,
+          "prev_C": 11,
+          "prev_D": 19,
+          "prev_date": "2026-06-12"
         },
         {
           "platform": "向上比客国际",
@@ -57897,7 +58269,13 @@
           "auto_coverage_rate": 89.57,
           "auto_succ_rate": 69.84,
           "profit_sum": 2395.67,
-          "avg_profit": 5.7
+          "avg_profit": 5.7,
+          "prev_total": 385,
+          "prev_A": 276,
+          "prev_B": 66,
+          "prev_C": 42,
+          "prev_D": 1,
+          "prev_date": "2026-06-12"
         },
         {
           "platform": "同程国际",
@@ -57909,7 +58287,13 @@
           "auto_coverage_rate": 91.63,
           "auto_succ_rate": 81.74,
           "profit_sum": -4327.9,
-          "avg_profit": -17.96
+          "avg_profit": -17.96,
+          "prev_total": 368,
+          "prev_A": 285,
+          "prev_B": 70,
+          "prev_C": 1,
+          "prev_D": 12,
+          "prev_date": "2026-06-12"
         },
         {
           "platform": "淘宝国际",
@@ -57921,7 +58305,13 @@
           "auto_coverage_rate": 97.52,
           "auto_succ_rate": 44.07,
           "profit_sum": -851.11,
-          "avg_profit": -7.27
+          "avg_profit": -7.27,
+          "prev_total": 209,
+          "prev_A": 85,
+          "prev_B": 119,
+          "prev_C": 2,
+          "prev_D": 3,
+          "prev_date": "2026-06-12"
         }
       ],
       "channel": [
@@ -61319,7 +61709,13 @@
           "auto_coverage_rate": 98.47,
           "auto_succ_rate": 91.55,
           "profit_sum": -13611.87,
-          "avg_profit": -23.27
+          "avg_profit": -23.27,
+          "prev_total": 614,
+          "prev_A": 529,
+          "prev_B": 74,
+          "prev_C": 2,
+          "prev_D": 9,
+          "prev_date": "2026-06-13"
         },
         {
           "platform": "向上比客国际",
@@ -61331,7 +61727,13 @@
           "auto_coverage_rate": 93.68,
           "auto_succ_rate": 69.5,
           "profit_sum": 2445.97,
-          "avg_profit": 5.78
+          "avg_profit": 5.78,
+          "prev_total": 422,
+          "prev_A": 264,
+          "prev_B": 114,
+          "prev_C": 43,
+          "prev_D": 1,
+          "prev_date": "2026-06-13"
         },
         {
           "platform": "去哪儿国际",
@@ -61343,7 +61745,13 @@
           "auto_coverage_rate": 94.43,
           "auto_succ_rate": 76.41,
           "profit_sum": 3056.28,
-          "avg_profit": 8.11
+          "avg_profit": 8.11,
+          "prev_total": 507,
+          "prev_A": 307,
+          "prev_B": 133,
+          "prev_C": 7,
+          "prev_D": 60,
+          "prev_date": "2026-06-13"
         },
         {
           "platform": "同程国际",
@@ -61355,7 +61763,13 @@
           "auto_coverage_rate": 98.8,
           "auto_succ_rate": 80.97,
           "profit_sum": -3600.65,
-          "avg_profit": -14.58
+          "avg_profit": -14.58,
+          "prev_total": 263,
+          "prev_A": 197,
+          "prev_B": 44,
+          "prev_C": 0,
+          "prev_D": 22,
+          "prev_date": "2026-06-13"
         },
         {
           "platform": "淘宝国际",
@@ -61367,7 +61781,13 @@
           "auto_coverage_rate": 99.15,
           "auto_succ_rate": 55.17,
           "profit_sum": -145.22,
-          "avg_profit": -1.25
+          "avg_profit": -1.25,
+          "prev_total": 121,
+          "prev_A": 52,
+          "prev_B": 66,
+          "prev_C": 0,
+          "prev_D": 3,
+          "prev_date": "2026-06-13"
         }
       ],
       "channel": [
@@ -64466,7 +64886,13 @@
           "auto_coverage_rate": 99.15,
           "auto_succ_rate": 88.88,
           "profit_sum": -16963.35,
-          "avg_profit": -20.66
+          "avg_profit": -20.66,
+          "prev_total": 589,
+          "prev_A": 531,
+          "prev_B": 49,
+          "prev_C": 4,
+          "prev_D": 5,
+          "prev_date": "2026-06-14"
         },
         {
           "platform": "向上比客国际",
@@ -64478,7 +64904,13 @@
           "auto_coverage_rate": 89.17,
           "auto_succ_rate": 79.54,
           "profit_sum": 5409.68,
-          "avg_profit": 6.65
+          "avg_profit": 6.65,
+          "prev_total": 427,
+          "prev_A": 278,
+          "prev_B": 122,
+          "prev_C": 26,
+          "prev_D": 1,
+          "prev_date": "2026-06-14"
         },
         {
           "platform": "去哪儿国际",
@@ -64490,7 +64922,13 @@
           "auto_coverage_rate": 91.76,
           "auto_succ_rate": 72.79,
           "profit_sum": 5.65,
-          "avg_profit": 0.01
+          "avg_profit": 0.01,
+          "prev_total": 395,
+          "prev_A": 285,
+          "prev_B": 88,
+          "prev_C": 5,
+          "prev_D": 17,
+          "prev_date": "2026-06-14"
         },
         {
           "platform": "同程国际",
@@ -64502,7 +64940,13 @@
           "auto_coverage_rate": 86.58,
           "auto_succ_rate": 79.46,
           "profit_sum": -4679.05,
-          "avg_profit": -18.0
+          "avg_profit": -18.0,
+          "prev_total": 250,
+          "prev_A": 200,
+          "prev_B": 47,
+          "prev_C": 0,
+          "prev_D": 3,
+          "prev_date": "2026-06-14"
         },
         {
           "platform": "淘宝国际",
@@ -64514,7 +64958,13 @@
           "auto_coverage_rate": 98.19,
           "auto_succ_rate": 57.6,
           "profit_sum": -5194.93,
-          "avg_profit": -23.94
+          "avg_profit": -23.94,
+          "prev_total": 117,
+          "prev_A": 64,
+          "prev_B": 52,
+          "prev_C": 0,
+          "prev_D": 1,
+          "prev_date": "2026-06-14"
         }
       ],
       "channel": [
@@ -68230,7 +68680,13 @@
           "auto_coverage_rate": 87.74,
           "auto_succ_rate": 80.96,
           "profit_sum": -958.92,
-          "avg_profit": -1.15
+          "avg_profit": -1.15,
+          "prev_total": 765,
+          "prev_A": 511,
+          "prev_B": 191,
+          "prev_C": 3,
+          "prev_D": 60,
+          "prev_date": "2026-06-15"
         },
         {
           "platform": "携程国际",
@@ -68242,7 +68698,13 @@
           "auto_coverage_rate": 98.69,
           "auto_succ_rate": 92.21,
           "profit_sum": -15254.45,
-          "avg_profit": -22.5
+          "avg_profit": -22.5,
+          "prev_total": 825,
+          "prev_A": 727,
+          "prev_B": 91,
+          "prev_C": 3,
+          "prev_D": 4,
+          "prev_date": "2026-06-15"
         },
         {
           "platform": "向上比客国际",
@@ -68254,7 +68716,13 @@
           "auto_coverage_rate": 85.96,
           "auto_succ_rate": 71.9,
           "profit_sum": 4056.1,
-          "avg_profit": 7.62
+          "avg_profit": 7.62,
+          "prev_total": 822,
+          "prev_A": 583,
+          "prev_B": 150,
+          "prev_C": 82,
+          "prev_D": 7,
+          "prev_date": "2026-06-15"
         },
         {
           "platform": "同程国际",
@@ -68266,7 +68734,13 @@
           "auto_coverage_rate": 91.27,
           "auto_succ_rate": 80.86,
           "profit_sum": -4186.48,
-          "avg_profit": -13.64
+          "avg_profit": -13.64,
+          "prev_total": 298,
+          "prev_A": 205,
+          "prev_B": 53,
+          "prev_C": 0,
+          "prev_D": 40,
+          "prev_date": "2026-06-15"
         },
         {
           "platform": "淘宝国际",
@@ -68278,7 +68752,13 @@
           "auto_coverage_rate": 98.0,
           "auto_succ_rate": 24.49,
           "profit_sum": -3348.52,
-          "avg_profit": -17.17
+          "avg_profit": -17.17,
+          "prev_total": 221,
+          "prev_A": 125,
+          "prev_B": 92,
+          "prev_C": 2,
+          "prev_D": 2,
+          "prev_date": "2026-06-15"
         }
       ],
       "channel": [
@@ -71720,7 +72200,13 @@
           "auto_coverage_rate": 97.36,
           "auto_succ_rate": 92.33,
           "profit_sum": -18527.1,
-          "avg_profit": -21.62
+          "avg_profit": -21.62,
+          "prev_total": 689,
+          "prev_A": 627,
+          "prev_B": 53,
+          "prev_C": 0,
+          "prev_D": 9,
+          "prev_date": "2026-06-16"
         },
         {
           "platform": "去哪儿国际",
@@ -71732,7 +72218,13 @@
           "auto_coverage_rate": 96.64,
           "auto_succ_rate": 79.92,
           "profit_sum": -2165.51,
-          "avg_profit": -2.84
+          "avg_profit": -2.84,
+          "prev_total": 946,
+          "prev_A": 672,
+          "prev_B": 158,
+          "prev_C": 8,
+          "prev_D": 108,
+          "prev_date": "2026-06-16"
         },
         {
           "platform": "向上比客国际",
@@ -71744,7 +72236,13 @@
           "auto_coverage_rate": 85.49,
           "auto_succ_rate": 62.73,
           "profit_sum": 6140.44,
-          "avg_profit": 8.82
+          "avg_profit": 8.82,
+          "prev_total": 534,
+          "prev_A": 330,
+          "prev_B": 129,
+          "prev_C": 72,
+          "prev_D": 3,
+          "prev_date": "2026-06-16"
         },
         {
           "platform": "同程国际",
@@ -71756,7 +72254,13 @@
           "auto_coverage_rate": 88.69,
           "auto_succ_rate": 78.5,
           "profit_sum": -7793.31,
-          "avg_profit": -19.34
+          "avg_profit": -19.34,
+          "prev_total": 355,
+          "prev_A": 262,
+          "prev_B": 62,
+          "prev_C": 0,
+          "prev_D": 31,
+          "prev_date": "2026-06-16"
         },
         {
           "platform": "淘宝国际",
@@ -71768,7 +72272,13 @@
           "auto_coverage_rate": 95.96,
           "auto_succ_rate": 50.53,
           "profit_sum": -1126.88,
-          "avg_profit": -5.69
+          "avg_profit": -5.69,
+          "prev_total": 200,
+          "prev_A": 48,
+          "prev_B": 148,
+          "prev_C": 0,
+          "prev_D": 4,
+          "prev_date": "2026-06-16"
         }
       ],
       "channel": [
@@ -75518,7 +76028,13 @@
           "auto_coverage_rate": 98.43,
           "auto_succ_rate": 90.19,
           "profit_sum": -19536.09,
-          "avg_profit": -20.81
+          "avg_profit": -20.81,
+          "prev_total": 871,
+          "prev_A": 783,
+          "prev_B": 65,
+          "prev_C": 3,
+          "prev_D": 20,
+          "prev_date": "2026-06-17"
         },
         {
           "platform": "去哪儿国际",
@@ -75530,7 +76046,13 @@
           "auto_coverage_rate": 95.13,
           "auto_succ_rate": 78.98,
           "profit_sum": -3661.81,
-          "avg_profit": -4.88
+          "avg_profit": -4.88,
+          "prev_total": 773,
+          "prev_A": 597,
+          "prev_B": 150,
+          "prev_C": 11,
+          "prev_D": 15,
+          "prev_date": "2026-06-17"
         },
         {
           "platform": "同程国际",
@@ -75542,7 +76064,13 @@
           "auto_coverage_rate": 91.88,
           "auto_succ_rate": 82.11,
           "profit_sum": -1407.72,
-          "avg_profit": -2.96
+          "avg_profit": -2.96,
+          "prev_total": 451,
+          "prev_A": 314,
+          "prev_B": 86,
+          "prev_C": 0,
+          "prev_D": 51,
+          "prev_date": "2026-06-17"
         },
         {
           "platform": "向上比客国际",
@@ -75554,7 +76082,13 @@
           "auto_coverage_rate": 52.38,
           "auto_succ_rate": 64.34,
           "profit_sum": 5314.35,
-          "avg_profit": 19.61
+          "avg_profit": 19.61,
+          "prev_total": 703,
+          "prev_A": 377,
+          "prev_B": 224,
+          "prev_C": 99,
+          "prev_D": 3,
+          "prev_date": "2026-06-17"
         },
         {
           "platform": "淘宝国际",
@@ -75566,7 +76100,13 @@
           "auto_coverage_rate": 94.87,
           "auto_succ_rate": 73.87,
           "profit_sum": -1050.27,
-          "avg_profit": -9.05
+          "avg_profit": -9.05,
+          "prev_total": 198,
+          "prev_A": 96,
+          "prev_B": 94,
+          "prev_C": 7,
+          "prev_D": 1,
+          "prev_date": "2026-06-17"
         }
       ],
       "channel": [
@@ -79057,7 +79597,13 @@
           "auto_coverage_rate": 98.63,
           "auto_succ_rate": 90.96,
           "profit_sum": -18419.21,
-          "avg_profit": -21.29
+          "avg_profit": -21.29,
+          "prev_total": 953,
+          "prev_A": 846,
+          "prev_B": 92,
+          "prev_C": 0,
+          "prev_D": 15,
+          "prev_date": "2026-06-18"
         },
         {
           "platform": "去哪儿国际",
@@ -79069,7 +79615,13 @@
           "auto_coverage_rate": 97.06,
           "auto_succ_rate": 79.0,
           "profit_sum": -1137.62,
-          "avg_profit": -2.02
+          "avg_profit": -2.02,
+          "prev_total": 780,
+          "prev_A": 586,
+          "prev_B": 156,
+          "prev_C": 6,
+          "prev_D": 32,
+          "prev_date": "2026-06-18"
         },
         {
           "platform": "同程国际",
@@ -79081,7 +79633,13 @@
           "auto_coverage_rate": 94.3,
           "auto_succ_rate": 82.48,
           "profit_sum": -4009.68,
-          "avg_profit": -12.01
+          "avg_profit": -12.01,
+          "prev_total": 517,
+          "prev_A": 390,
+          "prev_B": 85,
+          "prev_C": 0,
+          "prev_D": 42,
+          "prev_date": "2026-06-18"
         },
         {
           "platform": "向上比客国际",
@@ -79093,7 +79651,13 @@
           "auto_coverage_rate": 50.82,
           "auto_succ_rate": 70.16,
           "profit_sum": 2933.33,
-          "avg_profit": 12.07
+          "avg_profit": 12.07,
+          "prev_total": 273,
+          "prev_A": 92,
+          "prev_B": 51,
+          "prev_C": 130,
+          "prev_D": 0,
+          "prev_date": "2026-06-18"
         },
         {
           "platform": "淘宝国际",
@@ -79105,7 +79669,13 @@
           "auto_coverage_rate": 87.3,
           "auto_succ_rate": 72.73,
           "profit_sum": -353.75,
-          "avg_profit": -5.71
+          "avg_profit": -5.71,
+          "prev_total": 117,
+          "prev_A": 82,
+          "prev_B": 29,
+          "prev_C": 5,
+          "prev_D": 1,
+          "prev_date": "2026-06-18"
         }
       ],
       "channel": [
@@ -82404,7 +82974,13 @@
           "auto_coverage_rate": 96.67,
           "auto_succ_rate": 93.11,
           "profit_sum": -17917.14,
-          "avg_profit": -23.24
+          "avg_profit": -23.24,
+          "prev_total": 875,
+          "prev_A": 785,
+          "prev_B": 78,
+          "prev_C": 0,
+          "prev_D": 12,
+          "prev_date": "2026-06-19"
         },
         {
           "platform": "去哪儿国际",
@@ -82416,7 +82992,13 @@
           "auto_coverage_rate": 97.08,
           "auto_succ_rate": 80.86,
           "profit_sum": -1743.02,
-          "avg_profit": -3.67
+          "avg_profit": -3.67,
+          "prev_total": 579,
+          "prev_A": 444,
+          "prev_B": 118,
+          "prev_C": 0,
+          "prev_D": 17,
+          "prev_date": "2026-06-19"
         },
         {
           "platform": "同程国际",
@@ -82428,7 +83010,13 @@
           "auto_coverage_rate": 90.72,
           "auto_succ_rate": 82.84,
           "profit_sum": -6045.26,
-          "avg_profit": -19.95
+          "avg_profit": -19.95,
+          "prev_total": 351,
+          "prev_A": 273,
+          "prev_B": 58,
+          "prev_C": 0,
+          "prev_D": 20,
+          "prev_date": "2026-06-19"
         },
         {
           "platform": "向上比客国际",
@@ -82440,7 +83028,13 @@
           "auto_coverage_rate": 43.37,
           "auto_succ_rate": 67.06,
           "profit_sum": 4768.96,
-          "avg_profit": 24.71
+          "avg_profit": 24.71,
+          "prev_total": 244,
+          "prev_A": 87,
+          "prev_B": 37,
+          "prev_C": 118,
+          "prev_D": 2,
+          "prev_date": "2026-06-19"
         },
         {
           "platform": "淘宝国际",
@@ -82452,7 +83046,13 @@
           "auto_coverage_rate": 93.51,
           "auto_succ_rate": 84.72,
           "profit_sum": -1213.09,
-          "avg_profit": -15.96
+          "avg_profit": -15.96,
+          "prev_total": 63,
+          "prev_A": 40,
+          "prev_B": 15,
+          "prev_C": 8,
+          "prev_D": 0,
+          "prev_date": "2026-06-19"
         }
       ],
       "channel": [
@@ -85518,7 +86118,13 @@
           "auto_coverage_rate": 97.66,
           "auto_succ_rate": 92.83,
           "profit_sum": -16831.6,
-          "avg_profit": -23.48
+          "avg_profit": -23.48,
+          "prev_total": 781,
+          "prev_A": 703,
+          "prev_B": 52,
+          "prev_C": 16,
+          "prev_D": 10,
+          "prev_date": "2026-06-20"
         },
         {
           "platform": "去哪儿国际",
@@ -85530,7 +86136,13 @@
           "auto_coverage_rate": 87.78,
           "auto_succ_rate": 84.9,
           "profit_sum": -784.16,
-          "avg_profit": -1.49
+          "avg_profit": -1.49,
+          "prev_total": 479,
+          "prev_A": 376,
+          "prev_B": 89,
+          "prev_C": 8,
+          "prev_D": 6,
+          "prev_date": "2026-06-20"
         },
         {
           "platform": "向上比客国际",
@@ -85542,7 +86154,13 @@
           "auto_coverage_rate": 42.02,
           "auto_succ_rate": 72.67,
           "profit_sum": 6910.07,
-          "avg_profit": 19.74
+          "avg_profit": 19.74,
+          "prev_total": 196,
+          "prev_A": 57,
+          "prev_B": 28,
+          "prev_C": 109,
+          "prev_D": 2,
+          "prev_date": "2026-06-20"
         },
         {
           "platform": "同程国际",
@@ -85554,7 +86172,13 @@
           "auto_coverage_rate": 96.56,
           "auto_succ_rate": 83.4,
           "profit_sum": -4768.88,
-          "avg_profit": -18.85
+          "avg_profit": -18.85,
+          "prev_total": 334,
+          "prev_A": 251,
+          "prev_B": 52,
+          "prev_C": 0,
+          "prev_D": 31,
+          "prev_date": "2026-06-20"
         },
         {
           "platform": "淘宝国际",
@@ -85566,7 +86190,13 @@
           "auto_coverage_rate": 87.5,
           "auto_succ_rate": 75.32,
           "profit_sum": -385.08,
-          "avg_profit": -4.48
+          "avg_profit": -4.48,
+          "prev_total": 77,
+          "prev_A": 61,
+          "prev_B": 11,
+          "prev_C": 4,
+          "prev_D": 1,
+          "prev_date": "2026-06-20"
         }
       ],
       "channel": [
@@ -88591,7 +89221,13 @@
           "auto_coverage_rate": 75.42,
           "auto_succ_rate": 81.0,
           "profit_sum": -833.64,
-          "avg_profit": -1.12
+          "avg_profit": -1.12,
+          "prev_total": 581,
+          "prev_A": 433,
+          "prev_B": 77,
+          "prev_C": 16,
+          "prev_D": 55,
+          "prev_date": "2026-06-21"
         },
         {
           "platform": "携程国际",
@@ -88603,7 +89239,13 @@
           "auto_coverage_rate": 98.01,
           "auto_succ_rate": 88.9,
           "profit_sum": -18703.48,
-          "avg_profit": -22.08
+          "avg_profit": -22.08,
+          "prev_total": 728,
+          "prev_A": 660,
+          "prev_B": 51,
+          "prev_C": 11,
+          "prev_D": 6,
+          "prev_date": "2026-06-21"
         },
         {
           "platform": "向上比客国际",
@@ -88615,7 +89257,13 @@
           "auto_coverage_rate": 60.83,
           "auto_succ_rate": 73.97,
           "profit_sum": 8860.26,
-          "avg_profit": 14.87
+          "avg_profit": 14.87,
+          "prev_total": 357,
+          "prev_A": 109,
+          "prev_B": 41,
+          "prev_C": 206,
+          "prev_D": 1,
+          "prev_date": "2026-06-21"
         },
         {
           "platform": "同程国际",
@@ -88627,7 +89275,13 @@
           "auto_coverage_rate": 95.22,
           "auto_succ_rate": 82.22,
           "profit_sum": -6945.49,
-          "avg_profit": -14.56
+          "avg_profit": -14.56,
+          "prev_total": 262,
+          "prev_A": 211,
+          "prev_B": 42,
+          "prev_C": 0,
+          "prev_D": 9,
+          "prev_date": "2026-06-21"
         },
         {
           "platform": "淘宝国际",
@@ -88639,7 +89293,13 @@
           "auto_coverage_rate": 84.5,
           "auto_succ_rate": 60.95,
           "profit_sum": 1376.3,
-          "avg_profit": 6.95
+          "avg_profit": 6.95,
+          "prev_total": 88,
+          "prev_A": 58,
+          "prev_B": 19,
+          "prev_C": 9,
+          "prev_D": 2,
+          "prev_date": "2026-06-21"
         }
       ],
       "channel": [
@@ -92335,7 +92995,13 @@
           "auto_coverage_rate": 87.83,
           "auto_succ_rate": 80.56,
           "profit_sum": -1426.88,
-          "avg_profit": -1.73
+          "avg_profit": -1.73,
+          "prev_total": 956,
+          "prev_A": 584,
+          "prev_B": 137,
+          "prev_C": 26,
+          "prev_D": 209,
+          "prev_date": "2026-06-22"
         },
         {
           "platform": "携程国际",
@@ -92347,7 +93013,13 @@
           "auto_coverage_rate": 95.21,
           "auto_succ_rate": 91.62,
           "profit_sum": -13509.01,
-          "avg_profit": -18.26
+          "avg_profit": -18.26,
+          "prev_total": 855,
+          "prev_A": 745,
+          "prev_B": 93,
+          "prev_C": 9,
+          "prev_D": 8,
+          "prev_date": "2026-06-22"
         },
         {
           "platform": "向上比客国际",
@@ -92359,7 +93031,13 @@
           "auto_coverage_rate": 67.65,
           "auto_succ_rate": 75.0,
           "profit_sum": 7294.21,
-          "avg_profit": 10.02
+          "avg_profit": 10.02,
+          "prev_total": 600,
+          "prev_A": 270,
+          "prev_B": 95,
+          "prev_C": 233,
+          "prev_D": 2,
+          "prev_date": "2026-06-22"
         },
         {
           "platform": "同程国际",
@@ -92371,7 +93049,13 @@
           "auto_coverage_rate": 94.91,
           "auto_succ_rate": 82.04,
           "profit_sum": -6038.78,
-          "avg_profit": -16.06
+          "avg_profit": -16.06,
+          "prev_total": 502,
+          "prev_A": 393,
+          "prev_B": 85,
+          "prev_C": 0,
+          "prev_D": 24,
+          "prev_date": "2026-06-22"
         },
         {
           "platform": "淘宝国际",
@@ -92383,7 +93067,13 @@
           "auto_coverage_rate": 83.69,
           "auto_succ_rate": 63.08,
           "profit_sum": -1419.47,
-          "avg_profit": -6.14
+          "avg_profit": -6.14,
+          "prev_total": 200,
+          "prev_A": 103,
+          "prev_B": 66,
+          "prev_C": 29,
+          "prev_D": 2,
+          "prev_date": "2026-06-22"
         }
       ],
       "channel": [
@@ -95954,7 +96644,13 @@
           "auto_coverage_rate": 89.79,
           "auto_succ_rate": 82.25,
           "profit_sum": -1301.36,
-          "avg_profit": -1.51
+          "avg_profit": -1.51,
+          "prev_total": 896,
+          "prev_A": 634,
+          "prev_B": 153,
+          "prev_C": 37,
+          "prev_D": 72,
+          "prev_date": "2026-06-23"
         },
         {
           "platform": "携程国际",
@@ -95966,7 +96662,13 @@
           "auto_coverage_rate": 94.85,
           "auto_succ_rate": 92.85,
           "profit_sum": -16835.75,
-          "avg_profit": -19.92
+          "avg_profit": -19.92,
+          "prev_total": 752,
+          "prev_A": 656,
+          "prev_B": 60,
+          "prev_C": 26,
+          "prev_D": 10,
+          "prev_date": "2026-06-23"
         },
         {
           "platform": "向上比客国际",
@@ -95978,7 +96680,13 @@
           "auto_coverage_rate": 58.43,
           "auto_succ_rate": 80.61,
           "profit_sum": 6373.58,
-          "avg_profit": 8.96
+          "avg_profit": 8.96,
+          "prev_total": 745,
+          "prev_A": 378,
+          "prev_B": 126,
+          "prev_C": 234,
+          "prev_D": 7,
+          "prev_date": "2026-06-23"
         },
         {
           "platform": "同程国际",
@@ -95990,7 +96698,13 @@
           "auto_coverage_rate": 88.53,
           "auto_succ_rate": 82.67,
           "profit_sum": -8713.46,
-          "avg_profit": -15.93
+          "avg_profit": -15.93,
+          "prev_total": 393,
+          "prev_A": 306,
+          "prev_B": 67,
+          "prev_C": 1,
+          "prev_D": 19,
+          "prev_date": "2026-06-23"
         },
         {
           "platform": "淘宝国际",
@@ -96002,7 +96716,13 @@
           "auto_coverage_rate": 77.93,
           "auto_succ_rate": 71.08,
           "profit_sum": -2075.42,
-          "avg_profit": -9.93
+          "avg_profit": -9.93,
+          "prev_total": 233,
+          "prev_A": 123,
+          "prev_B": 72,
+          "prev_C": 34,
+          "prev_D": 4,
+          "prev_date": "2026-06-23"
         }
       ],
       "channel": [
@@ -99347,7 +100067,13 @@
           "auto_coverage_rate": 95.35,
           "auto_succ_rate": 91.55,
           "profit_sum": -17878.29,
-          "avg_profit": -20.67
+          "avg_profit": -20.67,
+          "prev_total": 855,
+          "prev_A": 753,
+          "prev_B": 58,
+          "prev_C": 35,
+          "prev_D": 9,
+          "prev_date": "2026-06-24"
         },
         {
           "platform": "去哪儿国际",
@@ -99359,7 +100085,13 @@
           "auto_coverage_rate": 92.0,
           "auto_succ_rate": 81.79,
           "profit_sum": -3782.77,
-          "avg_profit": -4.72
+          "avg_profit": -4.72,
+          "prev_total": 891,
+          "prev_A": 658,
+          "prev_B": 142,
+          "prev_C": 59,
+          "prev_D": 32,
+          "prev_date": "2026-06-24"
         },
         {
           "platform": "向上比客国际",
@@ -99371,7 +100103,13 @@
           "auto_coverage_rate": 56.95,
           "auto_succ_rate": 76.16,
           "profit_sum": 7063.77,
-          "avg_profit": 12.01
+          "avg_profit": 12.01,
+          "prev_total": 724,
+          "prev_A": 341,
+          "prev_B": 82,
+          "prev_C": 296,
+          "prev_D": 5,
+          "prev_date": "2026-06-24"
         },
         {
           "platform": "同程国际",
@@ -99383,7 +100121,13 @@
           "auto_coverage_rate": 94.39,
           "auto_succ_rate": 77.97,
           "profit_sum": -8314.53,
-          "avg_profit": -17.92
+          "avg_profit": -17.92,
+          "prev_total": 593,
+          "prev_A": 434,
+          "prev_B": 91,
+          "prev_C": 22,
+          "prev_D": 46,
+          "prev_date": "2026-06-24"
         },
         {
           "platform": "淘宝国际",
@@ -99395,7 +100139,13 @@
           "auto_coverage_rate": 79.73,
           "auto_succ_rate": 64.97,
           "profit_sum": -3753.95,
-          "avg_profit": -17.54
+          "avg_profit": -17.54,
+          "prev_total": 213,
+          "prev_A": 118,
+          "prev_B": 48,
+          "prev_C": 44,
+          "prev_D": 3,
+          "prev_date": "2026-06-24"
         }
       ],
       "channel": [
@@ -102859,7 +103609,13 @@
           "auto_coverage_rate": 96.22,
           "auto_succ_rate": 89.46,
           "profit_sum": -20485.31,
-          "avg_profit": -20.57
+          "avg_profit": -20.57,
+          "prev_total": 881,
+          "prev_A": 769,
+          "prev_B": 71,
+          "prev_C": 29,
+          "prev_D": 12,
+          "prev_date": "2026-06-25"
         },
         {
           "platform": "去哪儿国际",
@@ -102871,7 +103627,13 @@
           "auto_coverage_rate": 95.28,
           "auto_succ_rate": 86.35,
           "profit_sum": -4272.17,
-          "avg_profit": -7.02
+          "avg_profit": -7.02,
+          "prev_total": 812,
+          "prev_A": 611,
+          "prev_B": 136,
+          "prev_C": 51,
+          "prev_D": 14,
+          "prev_date": "2026-06-25"
         },
         {
           "platform": "向上比客国际",
@@ -102883,7 +103645,13 @@
           "auto_coverage_rate": 54.33,
           "auto_succ_rate": 82.13,
           "profit_sum": 1908.44,
-          "avg_profit": 5.24
+          "avg_profit": 5.24,
+          "prev_total": 604,
+          "prev_A": 262,
+          "prev_B": 82,
+          "prev_C": 257,
+          "prev_D": 3,
+          "prev_date": "2026-06-25"
         },
         {
           "platform": "淘宝国际",
@@ -102895,7 +103663,13 @@
           "auto_coverage_rate": 77.24,
           "auto_succ_rate": 74.88,
           "profit_sum": -3476.79,
-          "avg_profit": -13.22
+          "avg_profit": -13.22,
+          "prev_total": 222,
+          "prev_A": 115,
+          "prev_B": 62,
+          "prev_C": 40,
+          "prev_D": 5,
+          "prev_date": "2026-06-25"
         },
         {
           "platform": "同程国际",
@@ -102907,7 +103681,13 @@
           "auto_coverage_rate": 98.09,
           "auto_succ_rate": 74.63,
           "profit_sum": -3295.06,
-          "avg_profit": -16.0
+          "avg_profit": -16.0,
+          "prev_total": 481,
+          "prev_A": 354,
+          "prev_B": 100,
+          "prev_C": 11,
+          "prev_D": 16,
+          "prev_date": "2026-06-25"
         }
       ],
       "channel": [
@@ -105895,7 +106675,13 @@
           "auto_coverage_rate": 94.81,
           "auto_succ_rate": 91.36,
           "profit_sum": -16524.87,
-          "avg_profit": -19.35
+          "avg_profit": -19.35,
+          "prev_total": 1006,
+          "prev_A": 866,
+          "prev_B": 102,
+          "prev_C": 30,
+          "prev_D": 8,
+          "prev_date": "2026-06-26"
         },
         {
           "platform": "去哪儿国际",
@@ -105907,7 +106693,13 @@
           "auto_coverage_rate": 89.58,
           "auto_succ_rate": 86.05,
           "profit_sum": -3174.04,
-          "avg_profit": -5.63
+          "avg_profit": -5.63,
+          "prev_total": 615,
+          "prev_A": 506,
+          "prev_B": 80,
+          "prev_C": 22,
+          "prev_D": 7,
+          "prev_date": "2026-06-26"
         },
         {
           "platform": "向上比客国际",
@@ -105919,7 +106711,13 @@
           "auto_coverage_rate": 74.61,
           "auto_succ_rate": 80.3,
           "profit_sum": 4024.71,
-          "avg_profit": 9.29
+          "avg_profit": 9.29,
+          "prev_total": 381,
+          "prev_A": 170,
+          "prev_B": 37,
+          "prev_C": 173,
+          "prev_D": 1,
+          "prev_date": "2026-06-26"
         },
         {
           "platform": "淘宝国际",
@@ -105931,7 +106729,13 @@
           "auto_coverage_rate": 83.68,
           "auto_succ_rate": 68.55,
           "profit_sum": -2215.78,
-          "avg_profit": -11.66
+          "avg_profit": -11.66,
+          "prev_total": 268,
+          "prev_A": 155,
+          "prev_B": 52,
+          "prev_C": 59,
+          "prev_D": 2,
+          "prev_date": "2026-06-26"
         },
         {
           "platform": "同程国际",
@@ -105943,7 +106747,13 @@
           "auto_coverage_rate": 96.73,
           "auto_succ_rate": 58.78,
           "profit_sum": -4947.54,
-          "avg_profit": -32.55
+          "avg_profit": -32.55,
+          "prev_total": 209,
+          "prev_A": 153,
+          "prev_B": 52,
+          "prev_C": 1,
+          "prev_D": 3,
+          "prev_date": "2026-06-26"
         }
       ],
       "channel": [
@@ -109055,7 +109865,13 @@
           "auto_coverage_rate": 96.48,
           "auto_succ_rate": 94.29,
           "profit_sum": -21443.82,
-          "avg_profit": -24.01
+          "avg_profit": -24.01,
+          "prev_total": 867,
+          "prev_A": 751,
+          "prev_B": 71,
+          "prev_C": 33,
+          "prev_D": 12,
+          "prev_date": "2026-06-27"
         },
         {
           "platform": "去哪儿国际",
@@ -109067,7 +109883,13 @@
           "auto_coverage_rate": 91.19,
           "auto_succ_rate": 80.81,
           "profit_sum": -1709.34,
-          "avg_profit": -2.33
+          "avg_profit": -2.33,
+          "prev_total": 624,
+          "prev_A": 481,
+          "prev_B": 78,
+          "prev_C": 7,
+          "prev_D": 58,
+          "prev_date": "2026-06-27"
         },
         {
           "platform": "向上比客国际",
@@ -109079,7 +109901,13 @@
           "auto_coverage_rate": 63.83,
           "auto_succ_rate": 79.86,
           "profit_sum": 6833.52,
-          "avg_profit": 15.25
+          "avg_profit": 15.25,
+          "prev_total": 449,
+          "prev_A": 269,
+          "prev_B": 66,
+          "prev_C": 110,
+          "prev_D": 4,
+          "prev_date": "2026-06-27"
         },
         {
           "platform": "淘宝国际",
@@ -109091,7 +109919,13 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 67.11,
           "profit_sum": 668.57,
-          "avg_profit": 2.98
+          "avg_profit": 2.98,
+          "prev_total": 190,
+          "prev_A": 109,
+          "prev_B": 50,
+          "prev_C": 31,
+          "prev_D": 0,
+          "prev_date": "2026-06-27"
         },
         {
           "platform": "同程国际",
@@ -109103,7 +109937,13 @@
           "auto_coverage_rate": 95.03,
           "auto_succ_rate": 54.25,
           "profit_sum": -1042.62,
-          "avg_profit": -6.68
+          "avg_profit": -6.68,
+          "prev_total": 153,
+          "prev_A": 87,
+          "prev_B": 61,
+          "prev_C": 4,
+          "prev_D": 1,
+          "prev_date": "2026-06-27"
         }
       ],
       "channel": [
@@ -112291,7 +113131,13 @@
           "auto_coverage_rate": 94.95,
           "auto_succ_rate": 92.36,
           "profit_sum": -19269.51,
-          "avg_profit": -21.9
+          "avg_profit": -21.9,
+          "prev_total": 908,
+          "prev_A": 826,
+          "prev_B": 50,
+          "prev_C": 24,
+          "prev_D": 8,
+          "prev_date": "2026-06-28"
         },
         {
           "platform": "去哪儿国际",
@@ -112303,7 +113149,13 @@
           "auto_coverage_rate": 87.08,
           "auto_succ_rate": 68.74,
           "profit_sum": -1196.34,
-          "avg_profit": -1.83
+          "avg_profit": -1.83,
+          "prev_total": 783,
+          "prev_A": 577,
+          "prev_B": 137,
+          "prev_C": 22,
+          "prev_D": 47,
+          "prev_date": "2026-06-28"
         },
         {
           "platform": "向上比客国际",
@@ -112315,7 +113167,13 @@
           "auto_coverage_rate": 58.28,
           "auto_succ_rate": 78.06,
           "profit_sum": 9497.23,
-          "avg_profit": 20.16
+          "avg_profit": 20.16,
+          "prev_total": 459,
+          "prev_A": 234,
+          "prev_B": 59,
+          "prev_C": 165,
+          "prev_D": 1,
+          "prev_date": "2026-06-28"
         },
         {
           "platform": "淘宝国际",
@@ -112327,7 +113185,13 @@
           "auto_coverage_rate": 56.92,
           "auto_succ_rate": 56.94,
           "profit_sum": 1802.21,
-          "avg_profit": 7.24
+          "avg_profit": 7.24,
+          "prev_total": 228,
+          "prev_A": 102,
+          "prev_B": 50,
+          "prev_C": 75,
+          "prev_D": 1,
+          "prev_date": "2026-06-28"
         },
         {
           "platform": "同程国际",
@@ -112339,7 +113203,13 @@
           "auto_coverage_rate": 97.16,
           "auto_succ_rate": 61.4,
           "profit_sum": -5229.11,
-          "avg_profit": -30.58
+          "avg_profit": -30.58,
+          "prev_total": 161,
+          "prev_A": 83,
+          "prev_B": 70,
+          "prev_C": 3,
+          "prev_D": 5,
+          "prev_date": "2026-06-28"
         }
       ],
       "channel": [
@@ -115634,7 +116504,13 @@
           "auto_coverage_rate": 97.36,
           "auto_succ_rate": 90.85,
           "profit_sum": -24301.98,
-          "avg_profit": -23.97
+          "avg_profit": -23.97,
+          "prev_total": 910,
+          "prev_A": 798,
+          "prev_B": 66,
+          "prev_C": 21,
+          "prev_D": 25,
+          "prev_date": "2026-06-29"
         },
         {
           "platform": "去哪儿国际",
@@ -115646,7 +116522,13 @@
           "auto_coverage_rate": 89.23,
           "auto_succ_rate": 78.13,
           "profit_sum": -229.39,
-          "avg_profit": -0.25
+          "avg_profit": -0.25,
+          "prev_total": 720,
+          "prev_A": 431,
+          "prev_B": 196,
+          "prev_C": 31,
+          "prev_D": 62,
+          "prev_date": "2026-06-29"
         },
         {
           "platform": "向上比客国际",
@@ -115658,7 +116540,13 @@
           "auto_coverage_rate": 39.58,
           "auto_succ_rate": 72.95,
           "profit_sum": 9556.84,
-          "avg_profit": 18.74
+          "avg_profit": 18.74,
+          "prev_total": 477,
+          "prev_A": 217,
+          "prev_B": 61,
+          "prev_C": 195,
+          "prev_D": 4,
+          "prev_date": "2026-06-29"
         },
         {
           "platform": "淘宝国际",
@@ -115670,7 +116558,13 @@
           "auto_coverage_rate": 75.84,
           "auto_succ_rate": 72.57,
           "profit_sum": -2192.45,
-          "avg_profit": -7.38
+          "avg_profit": -7.38,
+          "prev_total": 253,
+          "prev_A": 82,
+          "prev_B": 62,
+          "prev_C": 106,
+          "prev_D": 3,
+          "prev_date": "2026-06-29"
         },
         {
           "platform": "同程国际",
@@ -115682,7 +116576,13 @@
           "auto_coverage_rate": 95.92,
           "auto_succ_rate": 64.89,
           "profit_sum": -5236.95,
-          "avg_profit": -26.99
+          "avg_profit": -26.99,
+          "prev_total": 176,
+          "prev_A": 105,
+          "prev_B": 66,
+          "prev_C": 1,
+          "prev_D": 4,
+          "prev_date": "2026-06-29"
         }
       ],
       "channel": [
