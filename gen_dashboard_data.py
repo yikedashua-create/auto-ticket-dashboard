@@ -1106,6 +1106,32 @@ def build_month_data(df, month_label):
         "profit_pos_rate": round(profit_pos/len(profit_all)*100, 2) if len(profit_all) else 0,
     }
 
+    # 2026-07-18 新增：今日各小时分桶（取该月最后一天，dashboard 折线图用）
+    if "_file_date" in df.columns and not df.empty:
+        last_date = df["_file_date"].max()
+        last_day_df = df[df["_file_date"] == last_date].copy()
+        last_day_df["hour"] = pd.to_datetime(last_day_df["创建时间"], errors="coerce").dt.hour
+        hourly_rows = []
+        for h in range(24):
+            g = last_day_df[last_day_df["hour"] == h]
+            nh = len(g)
+            Ah = int((g["path"] == "A").sum())
+            Bh = int((g["path"] == "B").sum())
+            Ch = int((g["path"] == "C").sum())
+            Dh = int((g["path"] == "D").sum())
+            auto_h = Ah + Bh
+            hourly_rows.append({
+                "hour": h,
+                "total": nh,
+                "A": Ah, "B": Bh, "C": Ch, "D": Dh,
+                "auto_coverage_rate": round(auto_h / nh * 100, 2) if nh > 0 else 0,
+                "auto_succ_rate": round(Ah / auto_h * 100, 2) if auto_h > 0 else 0,
+            })
+        out["summary"]["hourly_today"] = {
+            "date": str(last_date),
+            "data": hourly_rows,
+        }
+
     print(f"  [{month_label} summary] {out['summary']}")
 
     # ========== 2. daily ==========

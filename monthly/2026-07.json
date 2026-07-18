@@ -18,7 +18,252 @@
     "total_profit": -249151.56,
     "avg_profit": -5.8,
     "profit_pos": 13880,
-    "profit_pos_rate": 32.34
+    "profit_pos_rate": 32.34,
+    "hourly_today": {
+      "date": "2026-07-17",
+      "data": [
+        {
+          "hour": 0,
+          "total": 147,
+          "A": 118,
+          "B": 24,
+          "C": 5,
+          "D": 0,
+          "auto_coverage_rate": 96.6,
+          "auto_succ_rate": 83.1
+        },
+        {
+          "hour": 1,
+          "total": 83,
+          "A": 62,
+          "B": 19,
+          "C": 0,
+          "D": 2,
+          "auto_coverage_rate": 97.59,
+          "auto_succ_rate": 76.54
+        },
+        {
+          "hour": 2,
+          "total": 65,
+          "A": 54,
+          "B": 9,
+          "C": 0,
+          "D": 2,
+          "auto_coverage_rate": 96.92,
+          "auto_succ_rate": 85.71
+        },
+        {
+          "hour": 3,
+          "total": 28,
+          "A": 22,
+          "B": 6,
+          "C": 0,
+          "D": 0,
+          "auto_coverage_rate": 100.0,
+          "auto_succ_rate": 78.57
+        },
+        {
+          "hour": 4,
+          "total": 20,
+          "A": 18,
+          "B": 2,
+          "C": 0,
+          "D": 0,
+          "auto_coverage_rate": 100.0,
+          "auto_succ_rate": 90.0
+        },
+        {
+          "hour": 5,
+          "total": 15,
+          "A": 11,
+          "B": 4,
+          "C": 0,
+          "D": 0,
+          "auto_coverage_rate": 100.0,
+          "auto_succ_rate": 73.33
+        },
+        {
+          "hour": 6,
+          "total": 15,
+          "A": 6,
+          "B": 9,
+          "C": 0,
+          "D": 0,
+          "auto_coverage_rate": 100.0,
+          "auto_succ_rate": 40.0
+        },
+        {
+          "hour": 7,
+          "total": 31,
+          "A": 18,
+          "B": 11,
+          "C": 0,
+          "D": 2,
+          "auto_coverage_rate": 93.55,
+          "auto_succ_rate": 62.07
+        },
+        {
+          "hour": 8,
+          "total": 65,
+          "A": 52,
+          "B": 12,
+          "C": 0,
+          "D": 1,
+          "auto_coverage_rate": 98.46,
+          "auto_succ_rate": 81.25
+        },
+        {
+          "hour": 9,
+          "total": 91,
+          "A": 62,
+          "B": 26,
+          "C": 1,
+          "D": 2,
+          "auto_coverage_rate": 96.7,
+          "auto_succ_rate": 70.45
+        },
+        {
+          "hour": 10,
+          "total": 132,
+          "A": 107,
+          "B": 18,
+          "C": 3,
+          "D": 4,
+          "auto_coverage_rate": 94.7,
+          "auto_succ_rate": 85.6
+        },
+        {
+          "hour": 11,
+          "total": 175,
+          "A": 142,
+          "B": 27,
+          "C": 4,
+          "D": 2,
+          "auto_coverage_rate": 96.57,
+          "auto_succ_rate": 84.02
+        },
+        {
+          "hour": 12,
+          "total": 139,
+          "A": 104,
+          "B": 28,
+          "C": 5,
+          "D": 2,
+          "auto_coverage_rate": 94.96,
+          "auto_succ_rate": 78.79
+        },
+        {
+          "hour": 13,
+          "total": 111,
+          "A": 79,
+          "B": 24,
+          "C": 7,
+          "D": 1,
+          "auto_coverage_rate": 92.79,
+          "auto_succ_rate": 76.7
+        },
+        {
+          "hour": 14,
+          "total": 134,
+          "A": 97,
+          "B": 34,
+          "C": 2,
+          "D": 1,
+          "auto_coverage_rate": 97.76,
+          "auto_succ_rate": 74.05
+        },
+        {
+          "hour": 15,
+          "total": 199,
+          "A": 153,
+          "B": 35,
+          "C": 7,
+          "D": 4,
+          "auto_coverage_rate": 94.47,
+          "auto_succ_rate": 81.38
+        },
+        {
+          "hour": 16,
+          "total": 154,
+          "A": 103,
+          "B": 38,
+          "C": 8,
+          "D": 5,
+          "auto_coverage_rate": 91.56,
+          "auto_succ_rate": 73.05
+        },
+        {
+          "hour": 17,
+          "total": 166,
+          "A": 107,
+          "B": 34,
+          "C": 22,
+          "D": 3,
+          "auto_coverage_rate": 84.94,
+          "auto_succ_rate": 75.89
+        },
+        {
+          "hour": 18,
+          "total": 164,
+          "A": 119,
+          "B": 28,
+          "C": 16,
+          "D": 1,
+          "auto_coverage_rate": 89.63,
+          "auto_succ_rate": 80.95
+        },
+        {
+          "hour": 19,
+          "total": 139,
+          "A": 102,
+          "B": 29,
+          "C": 8,
+          "D": 0,
+          "auto_coverage_rate": 94.24,
+          "auto_succ_rate": 77.86
+        },
+        {
+          "hour": 20,
+          "total": 184,
+          "A": 117,
+          "B": 56,
+          "C": 10,
+          "D": 1,
+          "auto_coverage_rate": 94.02,
+          "auto_succ_rate": 67.63
+        },
+        {
+          "hour": 21,
+          "total": 199,
+          "A": 141,
+          "B": 55,
+          "C": 2,
+          "D": 1,
+          "auto_coverage_rate": 98.49,
+          "auto_succ_rate": 71.94
+        },
+        {
+          "hour": 22,
+          "total": 201,
+          "A": 146,
+          "B": 48,
+          "C": 4,
+          "D": 3,
+          "auto_coverage_rate": 96.52,
+          "auto_succ_rate": 75.26
+        },
+        {
+          "hour": 23,
+          "total": 215,
+          "A": 146,
+          "B": 55,
+          "C": 14,
+          "D": 0,
+          "auto_coverage_rate": 93.49,
+          "auto_succ_rate": 72.64
+        }
+      ]
+    }
   },
   "daily": [
     {
@@ -12480,7 +12725,252 @@
         "total_profit": -31216.69,
         "avg_profit": -10.9,
         "profit_pos": 660,
-        "profit_pos_rate": 23.04
+        "profit_pos_rate": 23.04,
+        "hourly_today": {
+          "date": "2026-07-01",
+          "data": [
+            {
+              "hour": 0,
+              "total": 112,
+              "A": 76,
+              "B": 33,
+              "C": 3,
+              "D": 0,
+              "auto_coverage_rate": 97.32,
+              "auto_succ_rate": 69.72
+            },
+            {
+              "hour": 1,
+              "total": 27,
+              "A": 15,
+              "B": 11,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 96.3,
+              "auto_succ_rate": 57.69
+            },
+            {
+              "hour": 2,
+              "total": 11,
+              "A": 6,
+              "B": 4,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 90.91,
+              "auto_succ_rate": 60.0
+            },
+            {
+              "hour": 3,
+              "total": 7,
+              "A": 5,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 71.43
+            },
+            {
+              "hour": 4,
+              "total": 9,
+              "A": 7,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 77.78
+            },
+            {
+              "hour": 5,
+              "total": 10,
+              "A": 5,
+              "B": 4,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 90.0,
+              "auto_succ_rate": 55.56
+            },
+            {
+              "hour": 6,
+              "total": 5,
+              "A": 3,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 60.0
+            },
+            {
+              "hour": 7,
+              "total": 18,
+              "A": 9,
+              "B": 3,
+              "C": 6,
+              "D": 0,
+              "auto_coverage_rate": 66.67,
+              "auto_succ_rate": 75.0
+            },
+            {
+              "hour": 8,
+              "total": 39,
+              "A": 18,
+              "B": 4,
+              "C": 17,
+              "D": 0,
+              "auto_coverage_rate": 56.41,
+              "auto_succ_rate": 81.82
+            },
+            {
+              "hour": 9,
+              "total": 91,
+              "A": 32,
+              "B": 27,
+              "C": 30,
+              "D": 2,
+              "auto_coverage_rate": 64.84,
+              "auto_succ_rate": 54.24
+            },
+            {
+              "hour": 10,
+              "total": 191,
+              "A": 86,
+              "B": 52,
+              "C": 49,
+              "D": 4,
+              "auto_coverage_rate": 72.25,
+              "auto_succ_rate": 62.32
+            },
+            {
+              "hour": 11,
+              "total": 218,
+              "A": 146,
+              "B": 25,
+              "C": 46,
+              "D": 1,
+              "auto_coverage_rate": 78.44,
+              "auto_succ_rate": 85.38
+            },
+            {
+              "hour": 12,
+              "total": 183,
+              "A": 109,
+              "B": 26,
+              "C": 47,
+              "D": 1,
+              "auto_coverage_rate": 73.77,
+              "auto_succ_rate": 80.74
+            },
+            {
+              "hour": 13,
+              "total": 242,
+              "A": 146,
+              "B": 28,
+              "C": 68,
+              "D": 0,
+              "auto_coverage_rate": 71.9,
+              "auto_succ_rate": 83.91
+            },
+            {
+              "hour": 14,
+              "total": 180,
+              "A": 102,
+              "B": 31,
+              "C": 46,
+              "D": 1,
+              "auto_coverage_rate": 73.89,
+              "auto_succ_rate": 76.69
+            },
+            {
+              "hour": 15,
+              "total": 161,
+              "A": 99,
+              "B": 31,
+              "C": 31,
+              "D": 0,
+              "auto_coverage_rate": 80.75,
+              "auto_succ_rate": 76.15
+            },
+            {
+              "hour": 16,
+              "total": 172,
+              "A": 125,
+              "B": 14,
+              "C": 30,
+              "D": 3,
+              "auto_coverage_rate": 80.81,
+              "auto_succ_rate": 89.93
+            },
+            {
+              "hour": 17,
+              "total": 150,
+              "A": 100,
+              "B": 16,
+              "C": 32,
+              "D": 2,
+              "auto_coverage_rate": 77.33,
+              "auto_succ_rate": 86.21
+            },
+            {
+              "hour": 18,
+              "total": 158,
+              "A": 92,
+              "B": 46,
+              "C": 19,
+              "D": 1,
+              "auto_coverage_rate": 87.34,
+              "auto_succ_rate": 66.67
+            },
+            {
+              "hour": 19,
+              "total": 168,
+              "A": 111,
+              "B": 24,
+              "C": 28,
+              "D": 5,
+              "auto_coverage_rate": 80.36,
+              "auto_succ_rate": 82.22
+            },
+            {
+              "hour": 20,
+              "total": 198,
+              "A": 137,
+              "B": 16,
+              "C": 42,
+              "D": 3,
+              "auto_coverage_rate": 77.27,
+              "auto_succ_rate": 89.54
+            },
+            {
+              "hour": 21,
+              "total": 223,
+              "A": 171,
+              "B": 13,
+              "C": 37,
+              "D": 2,
+              "auto_coverage_rate": 82.51,
+              "auto_succ_rate": 92.93
+            },
+            {
+              "hour": 22,
+              "total": 212,
+              "A": 157,
+              "B": 12,
+              "C": 37,
+              "D": 6,
+              "auto_coverage_rate": 79.72,
+              "auto_succ_rate": 92.9
+            },
+            {
+              "hour": 23,
+              "total": 141,
+              "A": 87,
+              "B": 17,
+              "C": 36,
+              "D": 1,
+              "auto_coverage_rate": 73.76,
+              "auto_succ_rate": 83.65
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -15582,7 +16072,252 @@
         "total_profit": -37443.01,
         "avg_profit": -14.9,
         "profit_pos": 584,
-        "profit_pos_rate": 23.24
+        "profit_pos_rate": 23.24,
+        "hourly_today": {
+          "date": "2026-07-02",
+          "data": [
+            {
+              "hour": 0,
+              "total": 110,
+              "A": 90,
+              "B": 19,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.09,
+              "auto_succ_rate": 82.57
+            },
+            {
+              "hour": 1,
+              "total": 57,
+              "A": 54,
+              "B": 1,
+              "C": 2,
+              "D": 0,
+              "auto_coverage_rate": 96.49,
+              "auto_succ_rate": 98.18
+            },
+            {
+              "hour": 2,
+              "total": 38,
+              "A": 34,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 89.47
+            },
+            {
+              "hour": 3,
+              "total": 25,
+              "A": 23,
+              "B": 1,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 96.0,
+              "auto_succ_rate": 95.83
+            },
+            {
+              "hour": 4,
+              "total": 7,
+              "A": 5,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 71.43
+            },
+            {
+              "hour": 5,
+              "total": 10,
+              "A": 9,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 90.0
+            },
+            {
+              "hour": 6,
+              "total": 13,
+              "A": 11,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 84.62
+            },
+            {
+              "hour": 7,
+              "total": 17,
+              "A": 15,
+              "B": 1,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 94.12,
+              "auto_succ_rate": 93.75
+            },
+            {
+              "hour": 8,
+              "total": 33,
+              "A": 29,
+              "B": 1,
+              "C": 3,
+              "D": 0,
+              "auto_coverage_rate": 90.91,
+              "auto_succ_rate": 96.67
+            },
+            {
+              "hour": 9,
+              "total": 89,
+              "A": 61,
+              "B": 18,
+              "C": 8,
+              "D": 2,
+              "auto_coverage_rate": 88.76,
+              "auto_succ_rate": 77.22
+            },
+            {
+              "hour": 10,
+              "total": 140,
+              "A": 96,
+              "B": 16,
+              "C": 27,
+              "D": 1,
+              "auto_coverage_rate": 80.0,
+              "auto_succ_rate": 85.71
+            },
+            {
+              "hour": 11,
+              "total": 144,
+              "A": 114,
+              "B": 11,
+              "C": 17,
+              "D": 2,
+              "auto_coverage_rate": 86.81,
+              "auto_succ_rate": 91.2
+            },
+            {
+              "hour": 12,
+              "total": 138,
+              "A": 78,
+              "B": 27,
+              "C": 31,
+              "D": 2,
+              "auto_coverage_rate": 76.09,
+              "auto_succ_rate": 74.29
+            },
+            {
+              "hour": 13,
+              "total": 170,
+              "A": 97,
+              "B": 36,
+              "C": 35,
+              "D": 2,
+              "auto_coverage_rate": 78.24,
+              "auto_succ_rate": 72.93
+            },
+            {
+              "hour": 14,
+              "total": 182,
+              "A": 117,
+              "B": 24,
+              "C": 41,
+              "D": 0,
+              "auto_coverage_rate": 77.47,
+              "auto_succ_rate": 82.98
+            },
+            {
+              "hour": 15,
+              "total": 148,
+              "A": 103,
+              "B": 19,
+              "C": 25,
+              "D": 1,
+              "auto_coverage_rate": 82.43,
+              "auto_succ_rate": 84.43
+            },
+            {
+              "hour": 16,
+              "total": 136,
+              "A": 95,
+              "B": 18,
+              "C": 20,
+              "D": 3,
+              "auto_coverage_rate": 83.09,
+              "auto_succ_rate": 84.07
+            },
+            {
+              "hour": 17,
+              "total": 156,
+              "A": 112,
+              "B": 35,
+              "C": 6,
+              "D": 3,
+              "auto_coverage_rate": 94.23,
+              "auto_succ_rate": 76.19
+            },
+            {
+              "hour": 18,
+              "total": 116,
+              "A": 81,
+              "B": 22,
+              "C": 11,
+              "D": 2,
+              "auto_coverage_rate": 88.79,
+              "auto_succ_rate": 78.64
+            },
+            {
+              "hour": 19,
+              "total": 148,
+              "A": 95,
+              "B": 39,
+              "C": 9,
+              "D": 5,
+              "auto_coverage_rate": 90.54,
+              "auto_succ_rate": 70.9
+            },
+            {
+              "hour": 20,
+              "total": 164,
+              "A": 123,
+              "B": 31,
+              "C": 2,
+              "D": 8,
+              "auto_coverage_rate": 93.9,
+              "auto_succ_rate": 79.87
+            },
+            {
+              "hour": 21,
+              "total": 173,
+              "A": 125,
+              "B": 30,
+              "C": 10,
+              "D": 8,
+              "auto_coverage_rate": 89.6,
+              "auto_succ_rate": 80.65
+            },
+            {
+              "hour": 22,
+              "total": 199,
+              "A": 141,
+              "B": 40,
+              "C": 13,
+              "D": 5,
+              "auto_coverage_rate": 90.95,
+              "auto_succ_rate": 77.9
+            },
+            {
+              "hour": 23,
+              "total": 163,
+              "A": 134,
+              "B": 17,
+              "C": 6,
+              "D": 6,
+              "auto_coverage_rate": 92.64,
+              "auto_succ_rate": 88.74
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -18843,7 +19578,252 @@
         "total_profit": -27647.2,
         "avg_profit": -11.55,
         "profit_pos": 579,
-        "profit_pos_rate": 24.2
+        "profit_pos_rate": 24.2,
+        "hourly_today": {
+          "date": "2026-07-03",
+          "data": [
+            {
+              "hour": 0,
+              "total": 106,
+              "A": 87,
+              "B": 9,
+              "C": 6,
+              "D": 4,
+              "auto_coverage_rate": 90.57,
+              "auto_succ_rate": 90.62
+            },
+            {
+              "hour": 1,
+              "total": 62,
+              "A": 54,
+              "B": 6,
+              "C": 2,
+              "D": 0,
+              "auto_coverage_rate": 96.77,
+              "auto_succ_rate": 90.0
+            },
+            {
+              "hour": 2,
+              "total": 23,
+              "A": 19,
+              "B": 3,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 95.65,
+              "auto_succ_rate": 86.36
+            },
+            {
+              "hour": 3,
+              "total": 18,
+              "A": 12,
+              "B": 5,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 94.44,
+              "auto_succ_rate": 70.59
+            },
+            {
+              "hour": 4,
+              "total": 23,
+              "A": 21,
+              "B": 1,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 95.65,
+              "auto_succ_rate": 95.45
+            },
+            {
+              "hour": 5,
+              "total": 12,
+              "A": 9,
+              "B": 1,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 83.33,
+              "auto_succ_rate": 90.0
+            },
+            {
+              "hour": 6,
+              "total": 15,
+              "A": 12,
+              "B": 1,
+              "C": 2,
+              "D": 0,
+              "auto_coverage_rate": 86.67,
+              "auto_succ_rate": 92.31
+            },
+            {
+              "hour": 7,
+              "total": 21,
+              "A": 19,
+              "B": 0,
+              "C": 2,
+              "D": 0,
+              "auto_coverage_rate": 90.48,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 8,
+              "total": 46,
+              "A": 34,
+              "B": 10,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 95.65,
+              "auto_succ_rate": 77.27
+            },
+            {
+              "hour": 9,
+              "total": 89,
+              "A": 67,
+              "B": 18,
+              "C": 2,
+              "D": 2,
+              "auto_coverage_rate": 95.51,
+              "auto_succ_rate": 78.82
+            },
+            {
+              "hour": 10,
+              "total": 143,
+              "A": 89,
+              "B": 45,
+              "C": 8,
+              "D": 1,
+              "auto_coverage_rate": 93.71,
+              "auto_succ_rate": 66.42
+            },
+            {
+              "hour": 11,
+              "total": 89,
+              "A": 53,
+              "B": 30,
+              "C": 5,
+              "D": 1,
+              "auto_coverage_rate": 93.26,
+              "auto_succ_rate": 63.86
+            },
+            {
+              "hour": 12,
+              "total": 122,
+              "A": 85,
+              "B": 34,
+              "C": 3,
+              "D": 0,
+              "auto_coverage_rate": 97.54,
+              "auto_succ_rate": 71.43
+            },
+            {
+              "hour": 13,
+              "total": 139,
+              "A": 102,
+              "B": 35,
+              "C": 2,
+              "D": 0,
+              "auto_coverage_rate": 98.56,
+              "auto_succ_rate": 74.45
+            },
+            {
+              "hour": 14,
+              "total": 144,
+              "A": 115,
+              "B": 23,
+              "C": 5,
+              "D": 1,
+              "auto_coverage_rate": 95.83,
+              "auto_succ_rate": 83.33
+            },
+            {
+              "hour": 15,
+              "total": 152,
+              "A": 115,
+              "B": 26,
+              "C": 10,
+              "D": 1,
+              "auto_coverage_rate": 92.76,
+              "auto_succ_rate": 81.56
+            },
+            {
+              "hour": 16,
+              "total": 138,
+              "A": 110,
+              "B": 26,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 98.55,
+              "auto_succ_rate": 80.88
+            },
+            {
+              "hour": 17,
+              "total": 130,
+              "A": 108,
+              "B": 17,
+              "C": 5,
+              "D": 0,
+              "auto_coverage_rate": 96.15,
+              "auto_succ_rate": 86.4
+            },
+            {
+              "hour": 18,
+              "total": 171,
+              "A": 125,
+              "B": 27,
+              "C": 16,
+              "D": 3,
+              "auto_coverage_rate": 88.89,
+              "auto_succ_rate": 82.24
+            },
+            {
+              "hour": 19,
+              "total": 136,
+              "A": 95,
+              "B": 29,
+              "C": 10,
+              "D": 2,
+              "auto_coverage_rate": 91.18,
+              "auto_succ_rate": 76.61
+            },
+            {
+              "hour": 20,
+              "total": 159,
+              "A": 123,
+              "B": 25,
+              "C": 8,
+              "D": 3,
+              "auto_coverage_rate": 93.08,
+              "auto_succ_rate": 83.11
+            },
+            {
+              "hour": 21,
+              "total": 175,
+              "A": 137,
+              "B": 32,
+              "C": 2,
+              "D": 4,
+              "auto_coverage_rate": 96.57,
+              "auto_succ_rate": 81.07
+            },
+            {
+              "hour": 22,
+              "total": 165,
+              "A": 134,
+              "B": 23,
+              "C": 6,
+              "D": 2,
+              "auto_coverage_rate": 95.15,
+              "auto_succ_rate": 85.35
+            },
+            {
+              "hour": 23,
+              "total": 157,
+              "A": 128,
+              "B": 24,
+              "C": 2,
+              "D": 3,
+              "auto_coverage_rate": 96.82,
+              "auto_succ_rate": 84.21
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -22211,7 +23191,252 @@
         "total_profit": -17048.59,
         "avg_profit": -8.37,
         "profit_pos": 574,
-        "profit_pos_rate": 28.18
+        "profit_pos_rate": 28.18,
+        "hourly_today": {
+          "date": "2026-07-04",
+          "data": [
+            {
+              "hour": 0,
+              "total": 109,
+              "A": 93,
+              "B": 11,
+              "C": 1,
+              "D": 4,
+              "auto_coverage_rate": 95.41,
+              "auto_succ_rate": 89.42
+            },
+            {
+              "hour": 1,
+              "total": 55,
+              "A": 43,
+              "B": 7,
+              "C": 4,
+              "D": 1,
+              "auto_coverage_rate": 90.91,
+              "auto_succ_rate": 86.0
+            },
+            {
+              "hour": 2,
+              "total": 20,
+              "A": 17,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 85.0
+            },
+            {
+              "hour": 3,
+              "total": 17,
+              "A": 14,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 82.35
+            },
+            {
+              "hour": 4,
+              "total": 6,
+              "A": 6,
+              "B": 0,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 5,
+              "total": 8,
+              "A": 7,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 87.5
+            },
+            {
+              "hour": 6,
+              "total": 17,
+              "A": 16,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 94.12
+            },
+            {
+              "hour": 7,
+              "total": 32,
+              "A": 28,
+              "B": 3,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 96.88,
+              "auto_succ_rate": 90.32
+            },
+            {
+              "hour": 8,
+              "total": 39,
+              "A": 32,
+              "B": 5,
+              "C": 2,
+              "D": 0,
+              "auto_coverage_rate": 94.87,
+              "auto_succ_rate": 86.49
+            },
+            {
+              "hour": 9,
+              "total": 64,
+              "A": 61,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 95.31
+            },
+            {
+              "hour": 10,
+              "total": 108,
+              "A": 85,
+              "B": 18,
+              "C": 4,
+              "D": 1,
+              "auto_coverage_rate": 95.37,
+              "auto_succ_rate": 82.52
+            },
+            {
+              "hour": 11,
+              "total": 113,
+              "A": 93,
+              "B": 15,
+              "C": 1,
+              "D": 4,
+              "auto_coverage_rate": 95.58,
+              "auto_succ_rate": 86.11
+            },
+            {
+              "hour": 12,
+              "total": 116,
+              "A": 94,
+              "B": 16,
+              "C": 5,
+              "D": 1,
+              "auto_coverage_rate": 94.83,
+              "auto_succ_rate": 85.45
+            },
+            {
+              "hour": 13,
+              "total": 132,
+              "A": 114,
+              "B": 16,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 98.48,
+              "auto_succ_rate": 87.69
+            },
+            {
+              "hour": 14,
+              "total": 113,
+              "A": 80,
+              "B": 32,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.12,
+              "auto_succ_rate": 71.43
+            },
+            {
+              "hour": 15,
+              "total": 109,
+              "A": 89,
+              "B": 20,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 81.65
+            },
+            {
+              "hour": 16,
+              "total": 122,
+              "A": 90,
+              "B": 32,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 73.77
+            },
+            {
+              "hour": 17,
+              "total": 135,
+              "A": 110,
+              "B": 23,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.52,
+              "auto_succ_rate": 82.71
+            },
+            {
+              "hour": 18,
+              "total": 119,
+              "A": 97,
+              "B": 20,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.32,
+              "auto_succ_rate": 82.91
+            },
+            {
+              "hour": 19,
+              "total": 103,
+              "A": 86,
+              "B": 16,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.03,
+              "auto_succ_rate": 84.31
+            },
+            {
+              "hour": 20,
+              "total": 106,
+              "A": 89,
+              "B": 13,
+              "C": 3,
+              "D": 1,
+              "auto_coverage_rate": 96.23,
+              "auto_succ_rate": 87.25
+            },
+            {
+              "hour": 21,
+              "total": 133,
+              "A": 111,
+              "B": 22,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 83.46
+            },
+            {
+              "hour": 22,
+              "total": 171,
+              "A": 135,
+              "B": 33,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 98.25,
+              "auto_succ_rate": 80.36
+            },
+            {
+              "hour": 23,
+              "total": 120,
+              "A": 88,
+              "B": 29,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 97.5,
+              "auto_succ_rate": 75.21
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -25336,7 +26561,252 @@
         "total_profit": -13509.96,
         "avg_profit": -6.51,
         "profit_pos": 632,
-        "profit_pos_rate": 30.46
+        "profit_pos_rate": 30.46,
+        "hourly_today": {
+          "date": "2026-07-06",
+          "data": [
+            {
+              "hour": 0,
+              "total": 115,
+              "A": 83,
+              "B": 31,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.13,
+              "auto_succ_rate": 72.81
+            },
+            {
+              "hour": 1,
+              "total": 65,
+              "A": 57,
+              "B": 7,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.46,
+              "auto_succ_rate": 89.06
+            },
+            {
+              "hour": 2,
+              "total": 24,
+              "A": 22,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 91.67
+            },
+            {
+              "hour": 3,
+              "total": 14,
+              "A": 10,
+              "B": 3,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 92.86,
+              "auto_succ_rate": 76.92
+            },
+            {
+              "hour": 4,
+              "total": 10,
+              "A": 7,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 70.0
+            },
+            {
+              "hour": 5,
+              "total": 14,
+              "A": 13,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 92.86
+            },
+            {
+              "hour": 6,
+              "total": 16,
+              "A": 15,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 93.75
+            },
+            {
+              "hour": 7,
+              "total": 32,
+              "A": 26,
+              "B": 4,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 93.75,
+              "auto_succ_rate": 86.67
+            },
+            {
+              "hour": 8,
+              "total": 39,
+              "A": 25,
+              "B": 13,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 97.44,
+              "auto_succ_rate": 65.79
+            },
+            {
+              "hour": 9,
+              "total": 87,
+              "A": 67,
+              "B": 19,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.85,
+              "auto_succ_rate": 77.91
+            },
+            {
+              "hour": 10,
+              "total": 104,
+              "A": 84,
+              "B": 16,
+              "C": 1,
+              "D": 3,
+              "auto_coverage_rate": 96.15,
+              "auto_succ_rate": 84.0
+            },
+            {
+              "hour": 11,
+              "total": 80,
+              "A": 59,
+              "B": 21,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 73.75
+            },
+            {
+              "hour": 12,
+              "total": 79,
+              "A": 62,
+              "B": 15,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 97.47,
+              "auto_succ_rate": 80.52
+            },
+            {
+              "hour": 13,
+              "total": 64,
+              "A": 47,
+              "B": 15,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 96.88,
+              "auto_succ_rate": 75.81
+            },
+            {
+              "hour": 14,
+              "total": 74,
+              "A": 64,
+              "B": 10,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 86.49
+            },
+            {
+              "hour": 15,
+              "total": 65,
+              "A": 52,
+              "B": 10,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 95.38,
+              "auto_succ_rate": 83.87
+            },
+            {
+              "hour": 16,
+              "total": 103,
+              "A": 81,
+              "B": 20,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.06,
+              "auto_succ_rate": 80.2
+            },
+            {
+              "hour": 17,
+              "total": 131,
+              "A": 96,
+              "B": 27,
+              "C": 2,
+              "D": 6,
+              "auto_coverage_rate": 93.89,
+              "auto_succ_rate": 78.05
+            },
+            {
+              "hour": 18,
+              "total": 129,
+              "A": 105,
+              "B": 23,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 99.22,
+              "auto_succ_rate": 82.03
+            },
+            {
+              "hour": 19,
+              "total": 162,
+              "A": 127,
+              "B": 28,
+              "C": 1,
+              "D": 6,
+              "auto_coverage_rate": 95.68,
+              "auto_succ_rate": 81.94
+            },
+            {
+              "hour": 20,
+              "total": 163,
+              "A": 129,
+              "B": 27,
+              "C": 0,
+              "D": 7,
+              "auto_coverage_rate": 95.71,
+              "auto_succ_rate": 82.69
+            },
+            {
+              "hour": 21,
+              "total": 173,
+              "A": 129,
+              "B": 39,
+              "C": 1,
+              "D": 4,
+              "auto_coverage_rate": 97.11,
+              "auto_succ_rate": 76.79
+            },
+            {
+              "hour": 22,
+              "total": 201,
+              "A": 149,
+              "B": 48,
+              "C": 1,
+              "D": 3,
+              "auto_coverage_rate": 98.01,
+              "auto_succ_rate": 75.63
+            },
+            {
+              "hour": 23,
+              "total": 177,
+              "A": 131,
+              "B": 41,
+              "C": 0,
+              "D": 5,
+              "auto_coverage_rate": 97.18,
+              "auto_succ_rate": 76.16
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -28813,7 +30283,252 @@
         "total_profit": 8821.98,
         "avg_profit": 4.49,
         "profit_pos": 796,
-        "profit_pos_rate": 40.51
+        "profit_pos_rate": 40.51,
+        "hourly_today": {
+          "date": "2026-07-07",
+          "data": [
+            {
+              "hour": 0,
+              "total": 148,
+              "A": 116,
+              "B": 28,
+              "C": 0,
+              "D": 4,
+              "auto_coverage_rate": 97.3,
+              "auto_succ_rate": 80.56
+            },
+            {
+              "hour": 1,
+              "total": 100,
+              "A": 77,
+              "B": 17,
+              "C": 0,
+              "D": 6,
+              "auto_coverage_rate": 94.0,
+              "auto_succ_rate": 81.91
+            },
+            {
+              "hour": 2,
+              "total": 42,
+              "A": 32,
+              "B": 9,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 97.62,
+              "auto_succ_rate": 78.05
+            },
+            {
+              "hour": 3,
+              "total": 12,
+              "A": 7,
+              "B": 5,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 58.33
+            },
+            {
+              "hour": 4,
+              "total": 13,
+              "A": 10,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 76.92
+            },
+            {
+              "hour": 5,
+              "total": 13,
+              "A": 12,
+              "B": 0,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 92.31,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 6,
+              "total": 11,
+              "A": 9,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 81.82
+            },
+            {
+              "hour": 7,
+              "total": 36,
+              "A": 29,
+              "B": 7,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 80.56
+            },
+            {
+              "hour": 8,
+              "total": 51,
+              "A": 41,
+              "B": 10,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 80.39
+            },
+            {
+              "hour": 9,
+              "total": 95,
+              "A": 60,
+              "B": 33,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 97.89,
+              "auto_succ_rate": 64.52
+            },
+            {
+              "hour": 10,
+              "total": 109,
+              "A": 82,
+              "B": 22,
+              "C": 4,
+              "D": 1,
+              "auto_coverage_rate": 95.41,
+              "auto_succ_rate": 78.85
+            },
+            {
+              "hour": 11,
+              "total": 73,
+              "A": 47,
+              "B": 21,
+              "C": 1,
+              "D": 4,
+              "auto_coverage_rate": 93.15,
+              "auto_succ_rate": 69.12
+            },
+            {
+              "hour": 12,
+              "total": 106,
+              "A": 77,
+              "B": 26,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 97.17,
+              "auto_succ_rate": 74.76
+            },
+            {
+              "hour": 13,
+              "total": 88,
+              "A": 67,
+              "B": 19,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 97.73,
+              "auto_succ_rate": 77.91
+            },
+            {
+              "hour": 14,
+              "total": 99,
+              "A": 78,
+              "B": 21,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 78.79
+            },
+            {
+              "hour": 15,
+              "total": 102,
+              "A": 85,
+              "B": 16,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.02,
+              "auto_succ_rate": 84.16
+            },
+            {
+              "hour": 16,
+              "total": 97,
+              "A": 73,
+              "B": 23,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.97,
+              "auto_succ_rate": 76.04
+            },
+            {
+              "hour": 17,
+              "total": 92,
+              "A": 65,
+              "B": 25,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 97.83,
+              "auto_succ_rate": 72.22
+            },
+            {
+              "hour": 18,
+              "total": 86,
+              "A": 62,
+              "B": 21,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 96.51,
+              "auto_succ_rate": 74.7
+            },
+            {
+              "hour": 19,
+              "total": 100,
+              "A": 76,
+              "B": 22,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 98.0,
+              "auto_succ_rate": 77.55
+            },
+            {
+              "hour": 20,
+              "total": 120,
+              "A": 85,
+              "B": 35,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 70.83
+            },
+            {
+              "hour": 21,
+              "total": 124,
+              "A": 101,
+              "B": 16,
+              "C": 1,
+              "D": 6,
+              "auto_coverage_rate": 94.35,
+              "auto_succ_rate": 86.32
+            },
+            {
+              "hour": 22,
+              "total": 146,
+              "A": 115,
+              "B": 28,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 97.95,
+              "auto_succ_rate": 80.42
+            },
+            {
+              "hour": 23,
+              "total": 147,
+              "A": 123,
+              "B": 21,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 97.96,
+              "auto_succ_rate": 85.42
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -32100,7 +33815,252 @@
         "total_profit": -20574.32,
         "avg_profit": -8.38,
         "profit_pos": 593,
-        "profit_pos_rate": 24.14
+        "profit_pos_rate": 24.14,
+        "hourly_today": {
+          "date": "2026-07-08",
+          "data": [
+            {
+              "hour": 0,
+              "total": 72,
+              "A": 57,
+              "B": 15,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 79.17
+            },
+            {
+              "hour": 1,
+              "total": 32,
+              "A": 25,
+              "B": 7,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 78.12
+            },
+            {
+              "hour": 2,
+              "total": 20,
+              "A": 17,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 85.0
+            },
+            {
+              "hour": 3,
+              "total": 11,
+              "A": 9,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 81.82
+            },
+            {
+              "hour": 4,
+              "total": 2,
+              "A": 1,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 50.0
+            },
+            {
+              "hour": 5,
+              "total": 4,
+              "A": 4,
+              "B": 0,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 6,
+              "total": 11,
+              "A": 9,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 81.82
+            },
+            {
+              "hour": 7,
+              "total": 15,
+              "A": 11,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 73.33
+            },
+            {
+              "hour": 8,
+              "total": 42,
+              "A": 40,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 95.24
+            },
+            {
+              "hour": 9,
+              "total": 44,
+              "A": 35,
+              "B": 9,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 79.55
+            },
+            {
+              "hour": 10,
+              "total": 110,
+              "A": 96,
+              "B": 8,
+              "C": 3,
+              "D": 3,
+              "auto_coverage_rate": 94.55,
+              "auto_succ_rate": 92.31
+            },
+            {
+              "hour": 11,
+              "total": 154,
+              "A": 121,
+              "B": 18,
+              "C": 10,
+              "D": 5,
+              "auto_coverage_rate": 90.26,
+              "auto_succ_rate": 87.05
+            },
+            {
+              "hour": 12,
+              "total": 137,
+              "A": 114,
+              "B": 17,
+              "C": 0,
+              "D": 6,
+              "auto_coverage_rate": 95.62,
+              "auto_succ_rate": 87.02
+            },
+            {
+              "hour": 13,
+              "total": 141,
+              "A": 111,
+              "B": 27,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 97.87,
+              "auto_succ_rate": 80.43
+            },
+            {
+              "hour": 14,
+              "total": 166,
+              "A": 135,
+              "B": 24,
+              "C": 3,
+              "D": 4,
+              "auto_coverage_rate": 95.78,
+              "auto_succ_rate": 84.91
+            },
+            {
+              "hour": 15,
+              "total": 147,
+              "A": 120,
+              "B": 25,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.64,
+              "auto_succ_rate": 82.76
+            },
+            {
+              "hour": 16,
+              "total": 169,
+              "A": 129,
+              "B": 28,
+              "C": 7,
+              "D": 5,
+              "auto_coverage_rate": 92.9,
+              "auto_succ_rate": 82.17
+            },
+            {
+              "hour": 17,
+              "total": 152,
+              "A": 124,
+              "B": 24,
+              "C": 4,
+              "D": 0,
+              "auto_coverage_rate": 97.37,
+              "auto_succ_rate": 83.78
+            },
+            {
+              "hour": 18,
+              "total": 139,
+              "A": 118,
+              "B": 18,
+              "C": 2,
+              "D": 1,
+              "auto_coverage_rate": 97.84,
+              "auto_succ_rate": 86.76
+            },
+            {
+              "hour": 19,
+              "total": 167,
+              "A": 140,
+              "B": 19,
+              "C": 5,
+              "D": 3,
+              "auto_coverage_rate": 95.21,
+              "auto_succ_rate": 88.05
+            },
+            {
+              "hour": 20,
+              "total": 164,
+              "A": 142,
+              "B": 22,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 86.59
+            },
+            {
+              "hour": 21,
+              "total": 213,
+              "A": 183,
+              "B": 24,
+              "C": 5,
+              "D": 1,
+              "auto_coverage_rate": 97.18,
+              "auto_succ_rate": 88.41
+            },
+            {
+              "hour": 22,
+              "total": 211,
+              "A": 177,
+              "B": 32,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 99.05,
+              "auto_succ_rate": 84.69
+            },
+            {
+              "hour": 23,
+              "total": 172,
+              "A": 128,
+              "B": 44,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 74.42
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -35223,7 +37183,252 @@
         "total_profit": -22878.05,
         "avg_profit": -8.48,
         "profit_pos": 694,
-        "profit_pos_rate": 25.72
+        "profit_pos_rate": 25.72,
+        "hourly_today": {
+          "date": "2026-07-09",
+          "data": [
+            {
+              "hour": 0,
+              "total": 122,
+              "A": 105,
+              "B": 13,
+              "C": 0,
+              "D": 4,
+              "auto_coverage_rate": 96.72,
+              "auto_succ_rate": 88.98
+            },
+            {
+              "hour": 1,
+              "total": 44,
+              "A": 41,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 93.18
+            },
+            {
+              "hour": 2,
+              "total": 23,
+              "A": 19,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 82.61
+            },
+            {
+              "hour": 3,
+              "total": 18,
+              "A": 14,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 77.78
+            },
+            {
+              "hour": 4,
+              "total": 14,
+              "A": 11,
+              "B": 0,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 78.57,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 5,
+              "total": 8,
+              "A": 5,
+              "B": 2,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 87.5,
+              "auto_succ_rate": 71.43
+            },
+            {
+              "hour": 6,
+              "total": 14,
+              "A": 12,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 85.71
+            },
+            {
+              "hour": 7,
+              "total": 28,
+              "A": 20,
+              "B": 5,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 89.29,
+              "auto_succ_rate": 80.0
+            },
+            {
+              "hour": 8,
+              "total": 45,
+              "A": 30,
+              "B": 10,
+              "C": 3,
+              "D": 2,
+              "auto_coverage_rate": 88.89,
+              "auto_succ_rate": 75.0
+            },
+            {
+              "hour": 9,
+              "total": 99,
+              "A": 84,
+              "B": 9,
+              "C": 4,
+              "D": 2,
+              "auto_coverage_rate": 93.94,
+              "auto_succ_rate": 90.32
+            },
+            {
+              "hour": 10,
+              "total": 135,
+              "A": 117,
+              "B": 14,
+              "C": 0,
+              "D": 4,
+              "auto_coverage_rate": 97.04,
+              "auto_succ_rate": 89.31
+            },
+            {
+              "hour": 11,
+              "total": 130,
+              "A": 103,
+              "B": 20,
+              "C": 6,
+              "D": 1,
+              "auto_coverage_rate": 94.62,
+              "auto_succ_rate": 83.74
+            },
+            {
+              "hour": 12,
+              "total": 139,
+              "A": 123,
+              "B": 14,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.56,
+              "auto_succ_rate": 89.78
+            },
+            {
+              "hour": 13,
+              "total": 131,
+              "A": 102,
+              "B": 26,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 97.71,
+              "auto_succ_rate": 79.69
+            },
+            {
+              "hour": 14,
+              "total": 150,
+              "A": 121,
+              "B": 20,
+              "C": 8,
+              "D": 1,
+              "auto_coverage_rate": 94.0,
+              "auto_succ_rate": 85.82
+            },
+            {
+              "hour": 15,
+              "total": 184,
+              "A": 143,
+              "B": 27,
+              "C": 8,
+              "D": 6,
+              "auto_coverage_rate": 92.39,
+              "auto_succ_rate": 84.12
+            },
+            {
+              "hour": 16,
+              "total": 122,
+              "A": 101,
+              "B": 16,
+              "C": 3,
+              "D": 2,
+              "auto_coverage_rate": 95.9,
+              "auto_succ_rate": 86.32
+            },
+            {
+              "hour": 17,
+              "total": 146,
+              "A": 126,
+              "B": 16,
+              "C": 3,
+              "D": 1,
+              "auto_coverage_rate": 97.26,
+              "auto_succ_rate": 88.73
+            },
+            {
+              "hour": 18,
+              "total": 168,
+              "A": 135,
+              "B": 28,
+              "C": 0,
+              "D": 5,
+              "auto_coverage_rate": 97.02,
+              "auto_succ_rate": 82.82
+            },
+            {
+              "hour": 19,
+              "total": 186,
+              "A": 148,
+              "B": 30,
+              "C": 3,
+              "D": 5,
+              "auto_coverage_rate": 95.7,
+              "auto_succ_rate": 83.15
+            },
+            {
+              "hour": 20,
+              "total": 205,
+              "A": 163,
+              "B": 32,
+              "C": 6,
+              "D": 4,
+              "auto_coverage_rate": 95.12,
+              "auto_succ_rate": 83.59
+            },
+            {
+              "hour": 21,
+              "total": 213,
+              "A": 170,
+              "B": 38,
+              "C": 3,
+              "D": 2,
+              "auto_coverage_rate": 97.65,
+              "auto_succ_rate": 81.73
+            },
+            {
+              "hour": 22,
+              "total": 201,
+              "A": 172,
+              "B": 25,
+              "C": 2,
+              "D": 2,
+              "auto_coverage_rate": 98.01,
+              "auto_succ_rate": 87.31
+            },
+            {
+              "hour": 23,
+              "total": 222,
+              "A": 189,
+              "B": 32,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 99.55,
+              "auto_succ_rate": 85.52
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -38744,7 +40949,252 @@
         "total_profit": -24266.97,
         "avg_profit": -7.56,
         "profit_pos": 1123,
-        "profit_pos_rate": 34.98
+        "profit_pos_rate": 34.98,
+        "hourly_today": {
+          "date": "2026-07-10",
+          "data": [
+            {
+              "hour": 0,
+              "total": 171,
+              "A": 147,
+              "B": 23,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.42,
+              "auto_succ_rate": 86.47
+            },
+            {
+              "hour": 1,
+              "total": 71,
+              "A": 59,
+              "B": 12,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 83.1
+            },
+            {
+              "hour": 2,
+              "total": 31,
+              "A": 24,
+              "B": 7,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 77.42
+            },
+            {
+              "hour": 3,
+              "total": 14,
+              "A": 10,
+              "B": 3,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 92.86,
+              "auto_succ_rate": 76.92
+            },
+            {
+              "hour": 4,
+              "total": 22,
+              "A": 18,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 81.82
+            },
+            {
+              "hour": 5,
+              "total": 13,
+              "A": 13,
+              "B": 0,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 6,
+              "total": 22,
+              "A": 22,
+              "B": 0,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 7,
+              "total": 30,
+              "A": 23,
+              "B": 6,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 96.67,
+              "auto_succ_rate": 79.31
+            },
+            {
+              "hour": 8,
+              "total": 53,
+              "A": 44,
+              "B": 8,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 98.11,
+              "auto_succ_rate": 84.62
+            },
+            {
+              "hour": 9,
+              "total": 114,
+              "A": 79,
+              "B": 32,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 97.37,
+              "auto_succ_rate": 71.17
+            },
+            {
+              "hour": 10,
+              "total": 162,
+              "A": 100,
+              "B": 59,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 98.15,
+              "auto_succ_rate": 62.89
+            },
+            {
+              "hour": 11,
+              "total": 168,
+              "A": 131,
+              "B": 31,
+              "C": 4,
+              "D": 2,
+              "auto_coverage_rate": 96.43,
+              "auto_succ_rate": 80.86
+            },
+            {
+              "hour": 12,
+              "total": 197,
+              "A": 159,
+              "B": 23,
+              "C": 7,
+              "D": 8,
+              "auto_coverage_rate": 92.39,
+              "auto_succ_rate": 87.36
+            },
+            {
+              "hour": 13,
+              "total": 218,
+              "A": 120,
+              "B": 81,
+              "C": 12,
+              "D": 5,
+              "auto_coverage_rate": 92.2,
+              "auto_succ_rate": 59.7
+            },
+            {
+              "hour": 14,
+              "total": 244,
+              "A": 163,
+              "B": 72,
+              "C": 8,
+              "D": 1,
+              "auto_coverage_rate": 96.31,
+              "auto_succ_rate": 69.36
+            },
+            {
+              "hour": 15,
+              "total": 224,
+              "A": 125,
+              "B": 83,
+              "C": 11,
+              "D": 5,
+              "auto_coverage_rate": 92.86,
+              "auto_succ_rate": 60.1
+            },
+            {
+              "hour": 16,
+              "total": 111,
+              "A": 70,
+              "B": 28,
+              "C": 10,
+              "D": 3,
+              "auto_coverage_rate": 88.29,
+              "auto_succ_rate": 71.43
+            },
+            {
+              "hour": 17,
+              "total": 183,
+              "A": 129,
+              "B": 50,
+              "C": 2,
+              "D": 2,
+              "auto_coverage_rate": 97.81,
+              "auto_succ_rate": 72.07
+            },
+            {
+              "hour": 18,
+              "total": 196,
+              "A": 136,
+              "B": 49,
+              "C": 5,
+              "D": 6,
+              "auto_coverage_rate": 94.39,
+              "auto_succ_rate": 73.51
+            },
+            {
+              "hour": 19,
+              "total": 210,
+              "A": 142,
+              "B": 47,
+              "C": 13,
+              "D": 8,
+              "auto_coverage_rate": 90.0,
+              "auto_succ_rate": 75.13
+            },
+            {
+              "hour": 20,
+              "total": 178,
+              "A": 108,
+              "B": 49,
+              "C": 15,
+              "D": 6,
+              "auto_coverage_rate": 88.2,
+              "auto_succ_rate": 68.79
+            },
+            {
+              "hour": 21,
+              "total": 226,
+              "A": 161,
+              "B": 40,
+              "C": 14,
+              "D": 11,
+              "auto_coverage_rate": 88.94,
+              "auto_succ_rate": 80.1
+            },
+            {
+              "hour": 22,
+              "total": 214,
+              "A": 135,
+              "B": 53,
+              "C": 10,
+              "D": 16,
+              "auto_coverage_rate": 87.85,
+              "auto_succ_rate": 71.81
+            },
+            {
+              "hour": 23,
+              "total": 227,
+              "A": 171,
+              "B": 47,
+              "C": 0,
+              "D": 9,
+              "auto_coverage_rate": 96.04,
+              "auto_succ_rate": 78.44
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -42697,7 +45147,252 @@
         "total_profit": -14375.31,
         "avg_profit": -5.12,
         "profit_pos": 937,
-        "profit_pos_rate": 33.36
+        "profit_pos_rate": 33.36,
+        "hourly_today": {
+          "date": "2026-07-11",
+          "data": [
+            {
+              "hour": 0,
+              "total": 157,
+              "A": 119,
+              "B": 35,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 98.09,
+              "auto_succ_rate": 77.27
+            },
+            {
+              "hour": 1,
+              "total": 84,
+              "A": 69,
+              "B": 15,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 82.14
+            },
+            {
+              "hour": 2,
+              "total": 40,
+              "A": 34,
+              "B": 5,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 97.5,
+              "auto_succ_rate": 87.18
+            },
+            {
+              "hour": 3,
+              "total": 18,
+              "A": 17,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 94.44
+            },
+            {
+              "hour": 4,
+              "total": 17,
+              "A": 15,
+              "B": 1,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 94.12,
+              "auto_succ_rate": 93.75
+            },
+            {
+              "hour": 5,
+              "total": 18,
+              "A": 13,
+              "B": 4,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 94.44,
+              "auto_succ_rate": 76.47
+            },
+            {
+              "hour": 6,
+              "total": 21,
+              "A": 16,
+              "B": 4,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 95.24,
+              "auto_succ_rate": 80.0
+            },
+            {
+              "hour": 7,
+              "total": 38,
+              "A": 30,
+              "B": 7,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 97.37,
+              "auto_succ_rate": 81.08
+            },
+            {
+              "hour": 8,
+              "total": 56,
+              "A": 43,
+              "B": 10,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 94.64,
+              "auto_succ_rate": 81.13
+            },
+            {
+              "hour": 9,
+              "total": 83,
+              "A": 57,
+              "B": 25,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 98.8,
+              "auto_succ_rate": 69.51
+            },
+            {
+              "hour": 10,
+              "total": 124,
+              "A": 94,
+              "B": 28,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.39,
+              "auto_succ_rate": 77.05
+            },
+            {
+              "hour": 11,
+              "total": 160,
+              "A": 126,
+              "B": 34,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 78.75
+            },
+            {
+              "hour": 12,
+              "total": 159,
+              "A": 127,
+              "B": 28,
+              "C": 2,
+              "D": 2,
+              "auto_coverage_rate": 97.48,
+              "auto_succ_rate": 81.94
+            },
+            {
+              "hour": 13,
+              "total": 162,
+              "A": 122,
+              "B": 38,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.77,
+              "auto_succ_rate": 76.25
+            },
+            {
+              "hour": 14,
+              "total": 181,
+              "A": 140,
+              "B": 33,
+              "C": 6,
+              "D": 2,
+              "auto_coverage_rate": 95.58,
+              "auto_succ_rate": 80.92
+            },
+            {
+              "hour": 15,
+              "total": 177,
+              "A": 129,
+              "B": 41,
+              "C": 7,
+              "D": 0,
+              "auto_coverage_rate": 96.05,
+              "auto_succ_rate": 75.88
+            },
+            {
+              "hour": 16,
+              "total": 182,
+              "A": 153,
+              "B": 25,
+              "C": 3,
+              "D": 1,
+              "auto_coverage_rate": 97.8,
+              "auto_succ_rate": 85.96
+            },
+            {
+              "hour": 17,
+              "total": 150,
+              "A": 116,
+              "B": 29,
+              "C": 2,
+              "D": 3,
+              "auto_coverage_rate": 96.67,
+              "auto_succ_rate": 80.0
+            },
+            {
+              "hour": 18,
+              "total": 140,
+              "A": 114,
+              "B": 24,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.57,
+              "auto_succ_rate": 82.61
+            },
+            {
+              "hour": 19,
+              "total": 164,
+              "A": 117,
+              "B": 39,
+              "C": 3,
+              "D": 5,
+              "auto_coverage_rate": 95.12,
+              "auto_succ_rate": 75.0
+            },
+            {
+              "hour": 20,
+              "total": 184,
+              "A": 147,
+              "B": 36,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.46,
+              "auto_succ_rate": 80.33
+            },
+            {
+              "hour": 21,
+              "total": 173,
+              "A": 128,
+              "B": 39,
+              "C": 1,
+              "D": 5,
+              "auto_coverage_rate": 96.53,
+              "auto_succ_rate": 76.65
+            },
+            {
+              "hour": 22,
+              "total": 184,
+              "A": 141,
+              "B": 38,
+              "C": 1,
+              "D": 4,
+              "auto_coverage_rate": 97.28,
+              "auto_succ_rate": 78.77
+            },
+            {
+              "hour": 23,
+              "total": 175,
+              "A": 132,
+              "B": 38,
+              "C": 3,
+              "D": 2,
+              "auto_coverage_rate": 97.14,
+              "auto_succ_rate": 77.65
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -46424,7 +49119,252 @@
         "total_profit": -8866.78,
         "avg_profit": -3.29,
         "profit_pos": 868,
-        "profit_pos_rate": 32.18
+        "profit_pos_rate": 32.18,
+        "hourly_today": {
+          "date": "2026-07-12",
+          "data": [
+            {
+              "hour": 0,
+              "total": 101,
+              "A": 82,
+              "B": 18,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.01,
+              "auto_succ_rate": 82.0
+            },
+            {
+              "hour": 1,
+              "total": 83,
+              "A": 58,
+              "B": 16,
+              "C": 0,
+              "D": 9,
+              "auto_coverage_rate": 89.16,
+              "auto_succ_rate": 78.38
+            },
+            {
+              "hour": 2,
+              "total": 48,
+              "A": 40,
+              "B": 8,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 83.33
+            },
+            {
+              "hour": 3,
+              "total": 25,
+              "A": 18,
+              "B": 4,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 88.0,
+              "auto_succ_rate": 81.82
+            },
+            {
+              "hour": 4,
+              "total": 23,
+              "A": 14,
+              "B": 9,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 60.87
+            },
+            {
+              "hour": 5,
+              "total": 19,
+              "A": 13,
+              "B": 6,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 68.42
+            },
+            {
+              "hour": 6,
+              "total": 25,
+              "A": 19,
+              "B": 4,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 92.0,
+              "auto_succ_rate": 82.61
+            },
+            {
+              "hour": 7,
+              "total": 25,
+              "A": 19,
+              "B": 5,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 96.0,
+              "auto_succ_rate": 79.17
+            },
+            {
+              "hour": 8,
+              "total": 40,
+              "A": 26,
+              "B": 13,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 97.5,
+              "auto_succ_rate": 66.67
+            },
+            {
+              "hour": 9,
+              "total": 69,
+              "A": 50,
+              "B": 18,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.55,
+              "auto_succ_rate": 73.53
+            },
+            {
+              "hour": 10,
+              "total": 112,
+              "A": 77,
+              "B": 29,
+              "C": 3,
+              "D": 3,
+              "auto_coverage_rate": 94.64,
+              "auto_succ_rate": 72.64
+            },
+            {
+              "hour": 11,
+              "total": 122,
+              "A": 98,
+              "B": 19,
+              "C": 2,
+              "D": 3,
+              "auto_coverage_rate": 95.9,
+              "auto_succ_rate": 83.76
+            },
+            {
+              "hour": 12,
+              "total": 155,
+              "A": 112,
+              "B": 43,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 72.26
+            },
+            {
+              "hour": 13,
+              "total": 167,
+              "A": 133,
+              "B": 32,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 98.8,
+              "auto_succ_rate": 80.61
+            },
+            {
+              "hour": 14,
+              "total": 197,
+              "A": 144,
+              "B": 50,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 98.48,
+              "auto_succ_rate": 74.23
+            },
+            {
+              "hour": 15,
+              "total": 177,
+              "A": 158,
+              "B": 18,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.44,
+              "auto_succ_rate": 89.77
+            },
+            {
+              "hour": 16,
+              "total": 147,
+              "A": 123,
+              "B": 23,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 99.32,
+              "auto_succ_rate": 84.25
+            },
+            {
+              "hour": 17,
+              "total": 162,
+              "A": 135,
+              "B": 26,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.38,
+              "auto_succ_rate": 83.85
+            },
+            {
+              "hour": 18,
+              "total": 142,
+              "A": 103,
+              "B": 36,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 97.89,
+              "auto_succ_rate": 74.1
+            },
+            {
+              "hour": 19,
+              "total": 160,
+              "A": 125,
+              "B": 34,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.38,
+              "auto_succ_rate": 78.62
+            },
+            {
+              "hour": 20,
+              "total": 204,
+              "A": 164,
+              "B": 39,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.51,
+              "auto_succ_rate": 80.79
+            },
+            {
+              "hour": 21,
+              "total": 195,
+              "A": 165,
+              "B": 27,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 98.46,
+              "auto_succ_rate": 85.94
+            },
+            {
+              "hour": 22,
+              "total": 188,
+              "A": 148,
+              "B": 38,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.94,
+              "auto_succ_rate": 79.57
+            },
+            {
+              "hour": 23,
+              "total": 160,
+              "A": 131,
+              "B": 26,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 98.12,
+              "auto_succ_rate": 83.44
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -49844,7 +52784,252 @@
         "total_profit": -7432.32,
         "avg_profit": -2.32,
         "profit_pos": 1164,
-        "profit_pos_rate": 36.4
+        "profit_pos_rate": 36.4,
+        "hourly_today": {
+          "date": "2026-07-13",
+          "data": [
+            {
+              "hour": 0,
+              "total": 93,
+              "A": 78,
+              "B": 14,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.92,
+              "auto_succ_rate": 84.78
+            },
+            {
+              "hour": 1,
+              "total": 56,
+              "A": 42,
+              "B": 14,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 75.0
+            },
+            {
+              "hour": 2,
+              "total": 28,
+              "A": 22,
+              "B": 6,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 78.57
+            },
+            {
+              "hour": 3,
+              "total": 22,
+              "A": 18,
+              "B": 2,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 90.91,
+              "auto_succ_rate": 90.0
+            },
+            {
+              "hour": 4,
+              "total": 14,
+              "A": 12,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 85.71
+            },
+            {
+              "hour": 5,
+              "total": 14,
+              "A": 13,
+              "B": 0,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 92.86,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 6,
+              "total": 20,
+              "A": 16,
+              "B": 3,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 95.0,
+              "auto_succ_rate": 84.21
+            },
+            {
+              "hour": 7,
+              "total": 31,
+              "A": 26,
+              "B": 5,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 83.87
+            },
+            {
+              "hour": 8,
+              "total": 59,
+              "A": 38,
+              "B": 20,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.31,
+              "auto_succ_rate": 65.52
+            },
+            {
+              "hour": 9,
+              "total": 86,
+              "A": 65,
+              "B": 16,
+              "C": 3,
+              "D": 2,
+              "auto_coverage_rate": 94.19,
+              "auto_succ_rate": 80.25
+            },
+            {
+              "hour": 10,
+              "total": 175,
+              "A": 130,
+              "B": 32,
+              "C": 10,
+              "D": 3,
+              "auto_coverage_rate": 92.57,
+              "auto_succ_rate": 80.25
+            },
+            {
+              "hour": 11,
+              "total": 226,
+              "A": 178,
+              "B": 42,
+              "C": 5,
+              "D": 1,
+              "auto_coverage_rate": 97.35,
+              "auto_succ_rate": 80.91
+            },
+            {
+              "hour": 12,
+              "total": 229,
+              "A": 175,
+              "B": 46,
+              "C": 4,
+              "D": 4,
+              "auto_coverage_rate": 96.51,
+              "auto_succ_rate": 79.19
+            },
+            {
+              "hour": 13,
+              "total": 192,
+              "A": 149,
+              "B": 36,
+              "C": 3,
+              "D": 4,
+              "auto_coverage_rate": 96.35,
+              "auto_succ_rate": 80.54
+            },
+            {
+              "hour": 14,
+              "total": 205,
+              "A": 160,
+              "B": 40,
+              "C": 0,
+              "D": 5,
+              "auto_coverage_rate": 97.56,
+              "auto_succ_rate": 80.0
+            },
+            {
+              "hour": 15,
+              "total": 221,
+              "A": 175,
+              "B": 37,
+              "C": 4,
+              "D": 5,
+              "auto_coverage_rate": 95.93,
+              "auto_succ_rate": 82.55
+            },
+            {
+              "hour": 16,
+              "total": 185,
+              "A": 126,
+              "B": 49,
+              "C": 6,
+              "D": 4,
+              "auto_coverage_rate": 94.59,
+              "auto_succ_rate": 72.0
+            },
+            {
+              "hour": 17,
+              "total": 178,
+              "A": 119,
+              "B": 54,
+              "C": 1,
+              "D": 4,
+              "auto_coverage_rate": 97.19,
+              "auto_succ_rate": 68.79
+            },
+            {
+              "hour": 18,
+              "total": 164,
+              "A": 113,
+              "B": 45,
+              "C": 5,
+              "D": 1,
+              "auto_coverage_rate": 96.34,
+              "auto_succ_rate": 71.52
+            },
+            {
+              "hour": 19,
+              "total": 183,
+              "A": 135,
+              "B": 47,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.45,
+              "auto_succ_rate": 74.18
+            },
+            {
+              "hour": 20,
+              "total": 175,
+              "A": 139,
+              "B": 34,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.86,
+              "auto_succ_rate": 80.35
+            },
+            {
+              "hour": 21,
+              "total": 207,
+              "A": 162,
+              "B": 43,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 99.03,
+              "auto_succ_rate": 79.02
+            },
+            {
+              "hour": 22,
+              "total": 269,
+              "A": 214,
+              "B": 51,
+              "C": 1,
+              "D": 3,
+              "auto_coverage_rate": 98.51,
+              "auto_succ_rate": 80.75
+            },
+            {
+              "hour": 23,
+              "total": 217,
+              "A": 181,
+              "B": 36,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 83.41
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -53691,7 +56876,252 @@
         "total_profit": -13639.62,
         "avg_profit": -4.41,
         "profit_pos": 1197,
-        "profit_pos_rate": 38.73
+        "profit_pos_rate": 38.73,
+        "hourly_today": {
+          "date": "2026-07-14",
+          "data": [
+            {
+              "hour": 0,
+              "total": 145,
+              "A": 117,
+              "B": 25,
+              "C": 0,
+              "D": 3,
+              "auto_coverage_rate": 97.93,
+              "auto_succ_rate": 82.39
+            },
+            {
+              "hour": 1,
+              "total": 72,
+              "A": 50,
+              "B": 18,
+              "C": 0,
+              "D": 4,
+              "auto_coverage_rate": 94.44,
+              "auto_succ_rate": 73.53
+            },
+            {
+              "hour": 2,
+              "total": 41,
+              "A": 32,
+              "B": 8,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 97.56,
+              "auto_succ_rate": 80.0
+            },
+            {
+              "hour": 3,
+              "total": 33,
+              "A": 24,
+              "B": 8,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 96.97,
+              "auto_succ_rate": 75.0
+            },
+            {
+              "hour": 4,
+              "total": 17,
+              "A": 13,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 76.47
+            },
+            {
+              "hour": 5,
+              "total": 21,
+              "A": 14,
+              "B": 7,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 66.67
+            },
+            {
+              "hour": 6,
+              "total": 16,
+              "A": 14,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 87.5
+            },
+            {
+              "hour": 7,
+              "total": 42,
+              "A": 32,
+              "B": 9,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 97.62,
+              "auto_succ_rate": 78.05
+            },
+            {
+              "hour": 8,
+              "total": 71,
+              "A": 58,
+              "B": 12,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.59,
+              "auto_succ_rate": 82.86
+            },
+            {
+              "hour": 9,
+              "total": 105,
+              "A": 84,
+              "B": 20,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.05,
+              "auto_succ_rate": 80.77
+            },
+            {
+              "hour": 10,
+              "total": 165,
+              "A": 134,
+              "B": 29,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 98.79,
+              "auto_succ_rate": 82.21
+            },
+            {
+              "hour": 11,
+              "total": 207,
+              "A": 147,
+              "B": 45,
+              "C": 9,
+              "D": 6,
+              "auto_coverage_rate": 92.75,
+              "auto_succ_rate": 76.56
+            },
+            {
+              "hour": 12,
+              "total": 195,
+              "A": 154,
+              "B": 36,
+              "C": 4,
+              "D": 1,
+              "auto_coverage_rate": 97.44,
+              "auto_succ_rate": 81.05
+            },
+            {
+              "hour": 13,
+              "total": 193,
+              "A": 146,
+              "B": 41,
+              "C": 4,
+              "D": 2,
+              "auto_coverage_rate": 96.89,
+              "auto_succ_rate": 78.07
+            },
+            {
+              "hour": 14,
+              "total": 208,
+              "A": 162,
+              "B": 40,
+              "C": 4,
+              "D": 2,
+              "auto_coverage_rate": 97.12,
+              "auto_succ_rate": 80.2
+            },
+            {
+              "hour": 15,
+              "total": 227,
+              "A": 146,
+              "B": 69,
+              "C": 9,
+              "D": 3,
+              "auto_coverage_rate": 94.71,
+              "auto_succ_rate": 67.91
+            },
+            {
+              "hour": 16,
+              "total": 185,
+              "A": 142,
+              "B": 30,
+              "C": 13,
+              "D": 0,
+              "auto_coverage_rate": 92.97,
+              "auto_succ_rate": 82.56
+            },
+            {
+              "hour": 17,
+              "total": 177,
+              "A": 128,
+              "B": 44,
+              "C": 4,
+              "D": 1,
+              "auto_coverage_rate": 97.18,
+              "auto_succ_rate": 74.42
+            },
+            {
+              "hour": 18,
+              "total": 149,
+              "A": 112,
+              "B": 30,
+              "C": 6,
+              "D": 1,
+              "auto_coverage_rate": 95.3,
+              "auto_succ_rate": 78.87
+            },
+            {
+              "hour": 19,
+              "total": 123,
+              "A": 90,
+              "B": 27,
+              "C": 4,
+              "D": 2,
+              "auto_coverage_rate": 95.12,
+              "auto_succ_rate": 76.92
+            },
+            {
+              "hour": 20,
+              "total": 173,
+              "A": 109,
+              "B": 57,
+              "C": 3,
+              "D": 4,
+              "auto_coverage_rate": 95.95,
+              "auto_succ_rate": 65.66
+            },
+            {
+              "hour": 21,
+              "total": 220,
+              "A": 135,
+              "B": 80,
+              "C": 3,
+              "D": 2,
+              "auto_coverage_rate": 97.73,
+              "auto_succ_rate": 62.79
+            },
+            {
+              "hour": 22,
+              "total": 186,
+              "A": 150,
+              "B": 34,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 98.92,
+              "auto_succ_rate": 81.52
+            },
+            {
+              "hour": 23,
+              "total": 175,
+              "A": 150,
+              "B": 24,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.43,
+              "auto_succ_rate": 86.21
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -57521,7 +60951,252 @@
         "total_profit": -6772.53,
         "avg_profit": -2.25,
         "profit_pos": 1146,
-        "profit_pos_rate": 38.07
+        "profit_pos_rate": 38.07,
+        "hourly_today": {
+          "date": "2026-07-15",
+          "data": [
+            {
+              "hour": 0,
+              "total": 130,
+              "A": 100,
+              "B": 26,
+              "C": 2,
+              "D": 2,
+              "auto_coverage_rate": 96.92,
+              "auto_succ_rate": 79.37
+            },
+            {
+              "hour": 1,
+              "total": 51,
+              "A": 39,
+              "B": 11,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.04,
+              "auto_succ_rate": 78.0
+            },
+            {
+              "hour": 2,
+              "total": 31,
+              "A": 27,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 87.1
+            },
+            {
+              "hour": 3,
+              "total": 10,
+              "A": 9,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 90.0
+            },
+            {
+              "hour": 4,
+              "total": 15,
+              "A": 12,
+              "B": 2,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 93.33,
+              "auto_succ_rate": 85.71
+            },
+            {
+              "hour": 5,
+              "total": 9,
+              "A": 7,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 77.78
+            },
+            {
+              "hour": 6,
+              "total": 17,
+              "A": 14,
+              "B": 3,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 82.35
+            },
+            {
+              "hour": 7,
+              "total": 32,
+              "A": 25,
+              "B": 6,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 96.88,
+              "auto_succ_rate": 80.65
+            },
+            {
+              "hour": 8,
+              "total": 54,
+              "A": 44,
+              "B": 10,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 81.48
+            },
+            {
+              "hour": 9,
+              "total": 95,
+              "A": 60,
+              "B": 31,
+              "C": 4,
+              "D": 0,
+              "auto_coverage_rate": 95.79,
+              "auto_succ_rate": 65.93
+            },
+            {
+              "hour": 10,
+              "total": 148,
+              "A": 119,
+              "B": 25,
+              "C": 2,
+              "D": 2,
+              "auto_coverage_rate": 97.3,
+              "auto_succ_rate": 82.64
+            },
+            {
+              "hour": 11,
+              "total": 211,
+              "A": 172,
+              "B": 36,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 98.58,
+              "auto_succ_rate": 82.69
+            },
+            {
+              "hour": 12,
+              "total": 203,
+              "A": 168,
+              "B": 30,
+              "C": 3,
+              "D": 2,
+              "auto_coverage_rate": 97.54,
+              "auto_succ_rate": 84.85
+            },
+            {
+              "hour": 13,
+              "total": 225,
+              "A": 185,
+              "B": 34,
+              "C": 3,
+              "D": 3,
+              "auto_coverage_rate": 97.33,
+              "auto_succ_rate": 84.47
+            },
+            {
+              "hour": 14,
+              "total": 196,
+              "A": 150,
+              "B": 38,
+              "C": 7,
+              "D": 1,
+              "auto_coverage_rate": 95.92,
+              "auto_succ_rate": 79.79
+            },
+            {
+              "hour": 15,
+              "total": 185,
+              "A": 131,
+              "B": 53,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 99.46,
+              "auto_succ_rate": 71.2
+            },
+            {
+              "hour": 16,
+              "total": 147,
+              "A": 121,
+              "B": 24,
+              "C": 2,
+              "D": 0,
+              "auto_coverage_rate": 98.64,
+              "auto_succ_rate": 83.45
+            },
+            {
+              "hour": 17,
+              "total": 155,
+              "A": 128,
+              "B": 26,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 99.35,
+              "auto_succ_rate": 83.12
+            },
+            {
+              "hour": 18,
+              "total": 133,
+              "A": 113,
+              "B": 19,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 99.25,
+              "auto_succ_rate": 85.61
+            },
+            {
+              "hour": 19,
+              "total": 176,
+              "A": 144,
+              "B": 25,
+              "C": 5,
+              "D": 2,
+              "auto_coverage_rate": 96.02,
+              "auto_succ_rate": 85.21
+            },
+            {
+              "hour": 20,
+              "total": 201,
+              "A": 167,
+              "B": 25,
+              "C": 8,
+              "D": 1,
+              "auto_coverage_rate": 95.52,
+              "auto_succ_rate": 86.98
+            },
+            {
+              "hour": 21,
+              "total": 211,
+              "A": 177,
+              "B": 29,
+              "C": 2,
+              "D": 3,
+              "auto_coverage_rate": 97.63,
+              "auto_succ_rate": 85.92
+            },
+            {
+              "hour": 22,
+              "total": 220,
+              "A": 194,
+              "B": 18,
+              "C": 2,
+              "D": 6,
+              "auto_coverage_rate": 96.36,
+              "auto_succ_rate": 91.51
+            },
+            {
+              "hour": 23,
+              "total": 184,
+              "A": 150,
+              "B": 19,
+              "C": 12,
+              "D": 3,
+              "auto_coverage_rate": 91.85,
+              "auto_succ_rate": 88.76
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -60948,7 +64623,252 @@
         "total_profit": -5633.85,
         "avg_profit": -1.83,
         "profit_pos": 1185,
-        "profit_pos_rate": 38.49
+        "profit_pos_rate": 38.49,
+        "hourly_today": {
+          "date": "2026-07-16",
+          "data": [
+            {
+              "hour": 0,
+              "total": 159,
+              "A": 135,
+              "B": 18,
+              "C": 3,
+              "D": 3,
+              "auto_coverage_rate": 96.23,
+              "auto_succ_rate": 88.24
+            },
+            {
+              "hour": 1,
+              "total": 76,
+              "A": 61,
+              "B": 14,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 98.68,
+              "auto_succ_rate": 81.33
+            },
+            {
+              "hour": 2,
+              "total": 31,
+              "A": 25,
+              "B": 5,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 96.77,
+              "auto_succ_rate": 83.33
+            },
+            {
+              "hour": 3,
+              "total": 8,
+              "A": 7,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 87.5
+            },
+            {
+              "hour": 4,
+              "total": 10,
+              "A": 9,
+              "B": 0,
+              "C": 1,
+              "D": 0,
+              "auto_coverage_rate": 90.0,
+              "auto_succ_rate": 100.0
+            },
+            {
+              "hour": 5,
+              "total": 7,
+              "A": 6,
+              "B": 1,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 85.71
+            },
+            {
+              "hour": 6,
+              "total": 18,
+              "A": 14,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 77.78
+            },
+            {
+              "hour": 7,
+              "total": 31,
+              "A": 26,
+              "B": 3,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 93.55,
+              "auto_succ_rate": 89.66
+            },
+            {
+              "hour": 8,
+              "total": 52,
+              "A": 42,
+              "B": 8,
+              "C": 1,
+              "D": 1,
+              "auto_coverage_rate": 96.15,
+              "auto_succ_rate": 84.0
+            },
+            {
+              "hour": 9,
+              "total": 107,
+              "A": 88,
+              "B": 16,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 97.2,
+              "auto_succ_rate": 84.62
+            },
+            {
+              "hour": 10,
+              "total": 114,
+              "A": 84,
+              "B": 25,
+              "C": 4,
+              "D": 1,
+              "auto_coverage_rate": 95.61,
+              "auto_succ_rate": 77.06
+            },
+            {
+              "hour": 11,
+              "total": 173,
+              "A": 133,
+              "B": 34,
+              "C": 2,
+              "D": 4,
+              "auto_coverage_rate": 96.53,
+              "auto_succ_rate": 79.64
+            },
+            {
+              "hour": 12,
+              "total": 167,
+              "A": 120,
+              "B": 41,
+              "C": 6,
+              "D": 0,
+              "auto_coverage_rate": 96.41,
+              "auto_succ_rate": 74.53
+            },
+            {
+              "hour": 13,
+              "total": 165,
+              "A": 131,
+              "B": 26,
+              "C": 6,
+              "D": 2,
+              "auto_coverage_rate": 95.15,
+              "auto_succ_rate": 83.44
+            },
+            {
+              "hour": 14,
+              "total": 157,
+              "A": 116,
+              "B": 36,
+              "C": 5,
+              "D": 0,
+              "auto_coverage_rate": 96.82,
+              "auto_succ_rate": 76.32
+            },
+            {
+              "hour": 15,
+              "total": 158,
+              "A": 114,
+              "B": 32,
+              "C": 8,
+              "D": 4,
+              "auto_coverage_rate": 92.41,
+              "auto_succ_rate": 78.08
+            },
+            {
+              "hour": 16,
+              "total": 190,
+              "A": 140,
+              "B": 33,
+              "C": 15,
+              "D": 2,
+              "auto_coverage_rate": 91.05,
+              "auto_succ_rate": 80.92
+            },
+            {
+              "hour": 17,
+              "total": 229,
+              "A": 168,
+              "B": 38,
+              "C": 21,
+              "D": 2,
+              "auto_coverage_rate": 89.96,
+              "auto_succ_rate": 81.55
+            },
+            {
+              "hour": 18,
+              "total": 182,
+              "A": 132,
+              "B": 32,
+              "C": 18,
+              "D": 0,
+              "auto_coverage_rate": 90.11,
+              "auto_succ_rate": 80.49
+            },
+            {
+              "hour": 19,
+              "total": 203,
+              "A": 140,
+              "B": 38,
+              "C": 24,
+              "D": 1,
+              "auto_coverage_rate": 87.68,
+              "auto_succ_rate": 78.65
+            },
+            {
+              "hour": 20,
+              "total": 187,
+              "A": 123,
+              "B": 49,
+              "C": 13,
+              "D": 2,
+              "auto_coverage_rate": 91.98,
+              "auto_succ_rate": 71.51
+            },
+            {
+              "hour": 21,
+              "total": 259,
+              "A": 197,
+              "B": 44,
+              "C": 17,
+              "D": 1,
+              "auto_coverage_rate": 93.05,
+              "auto_succ_rate": 81.74
+            },
+            {
+              "hour": 22,
+              "total": 227,
+              "A": 178,
+              "B": 36,
+              "C": 13,
+              "D": 0,
+              "auto_coverage_rate": 94.27,
+              "auto_succ_rate": 83.18
+            },
+            {
+              "hour": 23,
+              "total": 227,
+              "A": 169,
+              "B": 29,
+              "C": 28,
+              "D": 1,
+              "auto_coverage_rate": 87.22,
+              "auto_succ_rate": 85.35
+            }
+          ]
+        }
       },
       "daily": [
         {
@@ -64721,7 +68641,252 @@
         "total_profit": -6668.34,
         "avg_profit": -2.36,
         "profit_pos": 1148,
-        "profit_pos_rate": 40.57
+        "profit_pos_rate": 40.57,
+        "hourly_today": {
+          "date": "2026-07-17",
+          "data": [
+            {
+              "hour": 0,
+              "total": 147,
+              "A": 118,
+              "B": 24,
+              "C": 5,
+              "D": 0,
+              "auto_coverage_rate": 96.6,
+              "auto_succ_rate": 83.1
+            },
+            {
+              "hour": 1,
+              "total": 83,
+              "A": 62,
+              "B": 19,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 97.59,
+              "auto_succ_rate": 76.54
+            },
+            {
+              "hour": 2,
+              "total": 65,
+              "A": 54,
+              "B": 9,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 96.92,
+              "auto_succ_rate": 85.71
+            },
+            {
+              "hour": 3,
+              "total": 28,
+              "A": 22,
+              "B": 6,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 78.57
+            },
+            {
+              "hour": 4,
+              "total": 20,
+              "A": 18,
+              "B": 2,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 90.0
+            },
+            {
+              "hour": 5,
+              "total": 15,
+              "A": 11,
+              "B": 4,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 73.33
+            },
+            {
+              "hour": 6,
+              "total": 15,
+              "A": 6,
+              "B": 9,
+              "C": 0,
+              "D": 0,
+              "auto_coverage_rate": 100.0,
+              "auto_succ_rate": 40.0
+            },
+            {
+              "hour": 7,
+              "total": 31,
+              "A": 18,
+              "B": 11,
+              "C": 0,
+              "D": 2,
+              "auto_coverage_rate": 93.55,
+              "auto_succ_rate": 62.07
+            },
+            {
+              "hour": 8,
+              "total": 65,
+              "A": 52,
+              "B": 12,
+              "C": 0,
+              "D": 1,
+              "auto_coverage_rate": 98.46,
+              "auto_succ_rate": 81.25
+            },
+            {
+              "hour": 9,
+              "total": 91,
+              "A": 62,
+              "B": 26,
+              "C": 1,
+              "D": 2,
+              "auto_coverage_rate": 96.7,
+              "auto_succ_rate": 70.45
+            },
+            {
+              "hour": 10,
+              "total": 132,
+              "A": 107,
+              "B": 18,
+              "C": 3,
+              "D": 4,
+              "auto_coverage_rate": 94.7,
+              "auto_succ_rate": 85.6
+            },
+            {
+              "hour": 11,
+              "total": 175,
+              "A": 142,
+              "B": 27,
+              "C": 4,
+              "D": 2,
+              "auto_coverage_rate": 96.57,
+              "auto_succ_rate": 84.02
+            },
+            {
+              "hour": 12,
+              "total": 139,
+              "A": 104,
+              "B": 28,
+              "C": 5,
+              "D": 2,
+              "auto_coverage_rate": 94.96,
+              "auto_succ_rate": 78.79
+            },
+            {
+              "hour": 13,
+              "total": 111,
+              "A": 79,
+              "B": 24,
+              "C": 7,
+              "D": 1,
+              "auto_coverage_rate": 92.79,
+              "auto_succ_rate": 76.7
+            },
+            {
+              "hour": 14,
+              "total": 134,
+              "A": 97,
+              "B": 34,
+              "C": 2,
+              "D": 1,
+              "auto_coverage_rate": 97.76,
+              "auto_succ_rate": 74.05
+            },
+            {
+              "hour": 15,
+              "total": 199,
+              "A": 153,
+              "B": 35,
+              "C": 7,
+              "D": 4,
+              "auto_coverage_rate": 94.47,
+              "auto_succ_rate": 81.38
+            },
+            {
+              "hour": 16,
+              "total": 154,
+              "A": 103,
+              "B": 38,
+              "C": 8,
+              "D": 5,
+              "auto_coverage_rate": 91.56,
+              "auto_succ_rate": 73.05
+            },
+            {
+              "hour": 17,
+              "total": 166,
+              "A": 107,
+              "B": 34,
+              "C": 22,
+              "D": 3,
+              "auto_coverage_rate": 84.94,
+              "auto_succ_rate": 75.89
+            },
+            {
+              "hour": 18,
+              "total": 164,
+              "A": 119,
+              "B": 28,
+              "C": 16,
+              "D": 1,
+              "auto_coverage_rate": 89.63,
+              "auto_succ_rate": 80.95
+            },
+            {
+              "hour": 19,
+              "total": 139,
+              "A": 102,
+              "B": 29,
+              "C": 8,
+              "D": 0,
+              "auto_coverage_rate": 94.24,
+              "auto_succ_rate": 77.86
+            },
+            {
+              "hour": 20,
+              "total": 184,
+              "A": 117,
+              "B": 56,
+              "C": 10,
+              "D": 1,
+              "auto_coverage_rate": 94.02,
+              "auto_succ_rate": 67.63
+            },
+            {
+              "hour": 21,
+              "total": 199,
+              "A": 141,
+              "B": 55,
+              "C": 2,
+              "D": 1,
+              "auto_coverage_rate": 98.49,
+              "auto_succ_rate": 71.94
+            },
+            {
+              "hour": 22,
+              "total": 201,
+              "A": 146,
+              "B": 48,
+              "C": 4,
+              "D": 3,
+              "auto_coverage_rate": 96.52,
+              "auto_succ_rate": 75.26
+            },
+            {
+              "hour": 23,
+              "total": 215,
+              "A": 146,
+              "B": 55,
+              "C": 14,
+              "D": 0,
+              "auto_coverage_rate": 93.49,
+              "auto_succ_rate": 72.64
+            }
+          ]
+        }
       },
       "daily": [
         {
