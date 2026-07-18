@@ -1642,7 +1642,13 @@ def main():
             day_data.pop("weekly", None)
             day_data.pop("insights", None)
             # 精简：航司/平台/渠道/员工 只保留前 5（单日 Top5 足够看）
-            for k in ["airline", "platform", "channel", "staff"]:
+            # 2026-07-18 优化：航司 (airline) 不截断，全量展示（单日最多 ~30 个航司，体量可控）
+            # 平台/渠道/员工 仍 Top 5（这些不影响业务诊断）
+            if "airline" in day_data and isinstance(day_data["airline"], list):
+                pass  # 全量展示
+            else:
+                day_data["airline"] = day_data.get("airline", [])
+            for k in ["platform", "channel", "staff"]:
                 if k in day_data and isinstance(day_data[k], list):
                     day_data[k] = day_data[k][:5]
             # 精简：失败原因**不截断**（v10.8 修复，2026-06-23）
