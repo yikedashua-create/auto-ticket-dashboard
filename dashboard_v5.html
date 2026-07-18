@@ -272,6 +272,11 @@
   .data-overview b { color: #00e5ff; }
   .pos { color: #00ff88; }
   .neg { color: #ff4757; }
+  /* D30：各平台对比前日 表格 涨/降/不变 配色 */
+  .delta-pos { color: #00ff88; font-size: 11px; }
+  .delta-neg { color: #ff4757; font-size: 11px; }
+  .delta-zero { color: #7a8ba0; font-size: 11px; }
+  .delta-cell { line-height: 1.5; }
   .loading {
     color: #7a8ba0;
     text-align: center;
@@ -454,7 +459,7 @@ async function loadData() {
       // 2026-07-17 改：本地 / Streamlit 都走 jsDelivr CDN
       // 用最新 commit hash 作 URL 段，**绕过 jsDelivr CDN 缓存**（每次 commit 变 URL，jsDelivr 当新 URL 返回）
       // streamlit cloud 不会自动 re-deploy，必须手动 Reboot app 才能拉到这个新 HTML
-      const COMMIT = "ffdf374";  // ← 每次 git push 后手动改成最新 commit 前 7 位
+      const COMMIT = "d91eaab";  // ← 每次 git push 后手动改成最新 commit 前 7 位
       const DATA_URL = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       const resp = await fetch(DATA_URL, { cache: "no-store" });
       data = await resp.json();
@@ -704,6 +709,27 @@ const fmt = {
   money: n => (n >= 0 ? "+" : "") + n.toLocaleString("zh-CN", { maximumFractionDigits: 0 }),
   avg: n => (n >= 0 ? "+¥" : "-¥") + Math.abs(n).toFixed(2),
   date: s => s.substring(5),  // "2026-05-01" -> "05-01"
+  // D30：各平台表格 cell 涨/降/百分比 显示
+  // cur = 当前值, prev = 前一日值
+  // 返回 HTML：<b>当前值</b><br><span class="delta-pos/neg/zero">▲/▼/─ ±差值 (±%)</span>
+  cellDelta: (cur, prev) => {
+    cur = Number(cur) || 0;
+    prev = Number(prev) || 0;
+    if (cur === 0 && prev === 0) {
+      return `<div class="delta-cell"><b>0</b> <span class="delta-zero">—</span></div>`;
+    }
+    if (prev === 0) {
+      // 昨天没单（新增/新平台/昨日无数据）
+      return `<div class="delta-cell"><b>${fmt.num(cur)}</b> <span class="delta-pos">▲ +${fmt.num(cur)} (新增)</span></div>`;
+    }
+    const diff = cur - prev;
+    const pct = (diff / prev) * 100;
+    const arrow = diff > 0 ? "▲" : (diff < 0 ? "▼" : "─");
+    const sign = diff > 0 ? "+" : (diff < 0 ? "" : "");
+    const signPct = pct > 0 ? "+" : (pct < 0 ? "" : "");
+    const cls = diff > 0 ? "delta-pos" : (diff < 0 ? "delta-neg" : "delta-zero");
+    return `<div class="delta-cell"><b>${fmt.num(cur)}</b> <span class="${cls}">${arrow}${sign}${fmt.num(diff)} (${signPct}${pct.toFixed(1)}%)</span></div>`;
+  },
   // 对比徽章：返回 HTML 字符串
   // diff: 数值差（当前 - 上期）
   // base: 上期值（用于算 %）
@@ -1609,7 +1635,51 @@ function renderAirline() {
 
 /* ============== 页面：平台渠道 ============== */
 function renderPlatform() {
+  // D30（2026-07-18）：各平台 对比 前日 表格（仅在选日时显示）
+  // 表格头：# | 平台 | 今日 | 全自动成功 | 全自动失败 | 订单转人工 | 票未出完异常
+  // 每格显示：当前值 + 涨/降/百分比
+  const isDayView = CURRENT_DAY && CURRENT_DAY !== "all";
+  const platList = CURRENT_DATA.platform || [];
+  // 取前一个日期作为 prevDateLabel（第一条 platform 记录上的 prev_date）
+  const prevDateLabel = isDayView && platList.length > 0 && platList[0].prev_date
+    ? platList[0].prev_date.substring(5)  // "2026-07-16" -> "07-16"
+    : null;
+  const prevPlatformSection = (isDayView && platList.length > 0) ? `
+    <div class="section">
+      <div class="section-title">🏢 各平台 (对比 前日 ${prevDateLabel || "—"})
+        <span class="badge badge-info">5 指标涨/降百分比</span>
+      </div>
+      <div class="chart-hint">每格显示：当前值 ▲/▼ 差值 (涨/降百分比)。绿涨红降，灰不变。</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>平台</th>
+            <th>今日</th>
+            <th>全自动成功</th>
+            <th>全自动失败</th>
+            <th>订单转人工</th>
+            <th>票未出完异常</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${platList.map((p, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td><b>${p.platform}</b></td>
+              <td>${fmt.cellDelta(p.total, p.prev_total)}</td>
+              <td>${fmt.cellDelta(p.A, p.prev_A)}</td>
+              <td>${fmt.cellDelta(p.B, p.prev_B)}</td>
+              <td>${fmt.cellDelta(p.C, p.prev_C)}</td>
+              <td>${fmt.cellDelta(p.D, p.prev_D)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  ` : "";
   const html = `
+    ${prevPlatformSection}
     <div class="section">
       <div class="section-title">🏢 平台维度（${CURRENT_DATA.platform.length} 个）
         <span class="badge badge-info">点击切换</span>
