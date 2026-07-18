@@ -387,6 +387,7 @@
       <div class="nav-item active" data-page="overview">🏠 业务健康度总览</div>
       <div class="nav-item" data-page="trend">📈 31天趋势分析</div>
       <div class="nav-item" data-page="hourly">⏰ 今日时段</div>
+      <div class="nav-item" data-page="weekly">📊 周对比</div>
       <div class="nav-item" data-page="airline">✈️ 航司深度分析</div>
       <div class="nav-item" data-page="platform">🏢 平台渠道</div>
       <div class="nav-item" data-page="staff">👥 人员绩效</div>
@@ -409,6 +410,10 @@
       <div class="month-switcher" id="monthSwitcher" style="display:none">
         <label>📅 月份</label>
         <select id="monthSelect"></select>
+        <label>📊 周</label>
+        <select id="weekSelect">
+          <option value="all">全月</option>
+        </select>
         <label>📆 日</label>
         <select id="daySelect">
           <option value="all">全月</option>
@@ -433,6 +438,7 @@ let CURRENT_FAIL_REASONS_D = null;
 let CURRENT_FAIL_VIEW = "monthly";  // "monthly" or "daily"
 let CURRENT_MONTH = null; // 当前月份
 let CURRENT_DAY = "all";  // 当前日（"all"=全月，"01"~"31"=具体日）
+let CURRENT_WEEK = "all"; // 当前周（"all"=全月，"W1"~"W5"=自然周）
 let COMPARE_DATA = null;  // 对比基准数据（上一周期）
 let COMPARE_LABEL = "";   // 对比基准的标签
 const chartInstances = {};
@@ -448,7 +454,7 @@ async function loadData() {
       // 2026-07-17 改：本地 / Streamlit 都走 jsDelivr CDN
       // 用最新 commit hash 作 URL 段，**绕过 jsDelivr CDN 缓存**（每次 commit 变 URL，jsDelivr 当新 URL 返回）
       // streamlit cloud 不会自动 re-deploy，必须手动 Reboot app 才能拉到这个新 HTML
-      const COMMIT = "66dbb1b";  // ← 每次 git push 后手动改成最新 commit 前 7 位
+      const COMMIT = "ffdf374";  // ← 每次 git push 后手动改成最新 commit 前 7 位
       const DATA_URL = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       const resp = await fetch(DATA_URL, { cache: "no-store" });
       data = await resp.json();
@@ -482,20 +488,66 @@ function initMonthSwitcher() {
   }).join("");
   monthSel.value = DATA.current_month;
   monthSel.addEventListener("change", e => {
-    updateDayOptions(e.target.value);
-    switchPeriod(e.target.value, "all");
+    CURRENT_WEEK = "all";
+    updateWeekOptions(e.target.value);
+    updateDayOptions(e.target.value, "all");
+    switchPeriod(e.target.value, "all", "all");
+  });
+  document.getElementById("weekSelect").addEventListener("change", e => {
+    CURRENT_DAY = "all";
+    updateDayOptions(CURRENT_MONTH, e.target.value);
+    switchPeriod(CURRENT_MONTH, "all", e.target.value);
   });
   document.getElementById("daySelect").addEventListener("change", e => {
-    switchPeriod(CURRENT_MONTH, e.target.value);
+    CURRENT_WEEK = "all";
+    switchPeriod(CURRENT_MONTH, e.target.value, "all");
   });
-  updateDayOptions(DATA.current_month);
+  updateWeekOptions(DATA.current_month);
+  updateDayOptions(DATA.current_month, "all");
 }
 
-function updateDayOptions(month) {
+function updateWeekOptions(month) {
+  const weekSel = document.getElementById("weekSelect");
+  let weeks = [];
+  if (month === "all") {
+    Object.values(DATA.months).forEach(m => {
+      if (m.summary && m.summary.natural_weekly) {
+        m.summary.natural_weekly.forEach(w => weeks.push({ ...w, _month: m.month }));
+      }
+    });
+  } else {
+    const m = DATA.months[month];
+    if (m && m.summary && m.summary.natural_weekly) {
+      weeks = m.summary.natural_weekly;
+    }
+  }
+  // 月+周用 _month 区分
+  const opts = ['<option value="all">全月</option>'];
+  const seen = new Set();
+  weeks.forEach(w => {
+    const key = w._month ? `${w._month}-${w.week}` : `${month || "all"}-${w.week}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    const monthLabel = w._month || month || "all";
+    opts.push(`<option value="${monthLabel}|${w.week}">${monthLabel} ${w.week}（${w.date_range}）</option>`);
+  });
+  weekSel.innerHTML = opts.join("");
+  weekSel.value = "all";
+}
+
+function updateDayOptions(month, week) {
   const daySel = document.getElementById("daySelect");
   let dates = [];
-  if (month === "all") {
-    // 所有月份所有日期
+  // 2026-07-18 改造：周选中时，只列该周内日期
+  if (week && week !== "all" && month !== "all") {
+    // week = "2026-07|W1" 格式
+    const [mKey, wKey] = week.split("|");
+    const m = DATA.months[mKey];
+    if (m && m.summary && m.summary.natural_weekly) {
+      const w = m.summary.natural_weekly.find(x => x.week === wKey);
+      if (w) dates = w.days;
+    }
+  } else if (month === "all") {
     Object.values(DATA.months).forEach(m => {
       if (m.daily) m.daily.forEach(d => dates.push(d.date));
     });
@@ -504,7 +556,7 @@ function updateDayOptions(month) {
     const m = DATA.months[month];
     if (m && m.daily) dates = m.daily.map(d => d.date);
   }
-  daySel.innerHTML = `<option value="all">全月</option>` + dates.map(d => {
+  daySel.innerHTML = `<option value="all">全${week && week !== "all" ? "周" : "月"}</option>` + dates.map(d => {
     const day = d.substring(8, 10);
     return `<option value="${day}">${day} 日</option>`;
   }).join("");
@@ -581,11 +633,12 @@ function aggregateDayToMonthShape(monthData, dayRow) {
   };
 }
 
-function switchPeriod(month, day) {
+function switchPeriod(month, day, week) {
   Object.keys(chartInstances).forEach(k => destroyChart(k));
 
   CURRENT_MONTH = month;
   CURRENT_DAY = day;
+  CURRENT_WEEK = week || "all";
 
   // 算对比基准
   const comparePeriod = getComparePeriod(month, day);
@@ -1154,6 +1207,163 @@ function renderHourly() {
       ]
     });
     chartInstances["hourlyLine"] = lineChart;
+  }, 50);
+}
+
+/* ============== 页面：周对比（2026-07-18 新增）============== */
+function renderWeekly() {
+  // 取当前月 + 周（从 global CURRENT_MONTH / CURRENT_WEEK 读）
+  const month = CURRENT_MONTH;
+  const weekKey = CURRENT_WEEK;  // "all" / "2026-07|W1" 格式
+
+  const m = month && month !== "all" ? DATA.months[month] : null;
+  if (!m || !m.summary || !m.summary.natural_weekly) {
+    document.getElementById("mainArea").innerHTML = `
+      <div class="section">
+        <div class="section-title">📊 周对比（${month || "全部"}）</div>
+        <div style="padding:40px;text-align:center;color:#7a8ba0">⚠️ 当前月份无周数据</div>
+      </div>`;
+    return;
+  }
+
+  const weeks = m.summary.natural_weekly;
+  const monthLabel = m.month;
+
+  // 选周时：只显示该周详情 + 跟其它周对比
+  const selectedWeek = weekKey && weekKey !== "all"
+    ? weeks.find(w => `${monthLabel}|${w.week}` === weekKey)
+    : null;
+
+  // 1. 周列表表格（全月所有周）
+  const tableRows = weeks.map(w => {
+    const auto = w.A + w.B;
+    const succ = auto > 0 ? (w.A / auto * 100).toFixed(1) : "—";
+    const isSel = selectedWeek && selectedWeek.week === w.week;
+    return `<tr ${isSel ? 'style="background:#1e3a5f40"' : ""}>
+      <td><b>${w.week}</b></td>
+      <td style="color:#7a8ba0;font-size:12px">${w.date_range}</td>
+      <td style="text-align:right">${w.total.toLocaleString()}</td>
+      <td style="text-align:right;color:#ff4757">${w.A.toLocaleString()}</td>
+      <td style="text-align:right;color:#ff6348">${w.B.toLocaleString()}</td>
+      <td style="text-align:right;color:#ffa502">${w.C.toLocaleString()}</td>
+      <td style="text-align:right;color:#7a8ba0">${w.D.toLocaleString()}</td>
+      <td style="text-align:right">${succ}%</td>
+      <td style="text-align:right;color:#00b894">${w.profit_sum.toLocaleString()}</td>
+    </tr>`;
+  }).join("");
+
+  // 2. 周对比折线图（全月所有周）
+  const weekLabels = weeks.map(w => w.week);
+  const lineChart = echarts.init(document.createElement("div"));
+
+  const html = `
+    <div class="section">
+      <div class="section-title">📊 ${monthLabel} 周对比（自然周：每月 1-7=W1，8-14=W2，...）</div>
+
+      <div class="kpi-row cols-4">
+        <div class="kpi">
+          <div class="kpi-label">总周数</div>
+          <div class="kpi-value">${weeks.length}</div>
+          <div class="kpi-foot">${monthLabel} 有数据</div>
+        </div>
+        <div class="kpi" style="border-color:#ff4757">
+          <div class="kpi-label" style="color:#ff4757">周均 A 单数</div>
+          <div class="kpi-value" style="color:#ff4757">${Math.round(weeks.reduce((s, w) => s + w.A, 0) / weeks.length).toLocaleString()}</div>
+          <div class="kpi-foot">平均 ${(weeks.reduce((s, w) => s + w.A, 0) / weeks.length).toFixed(0)} 单/周</div>
+        </div>
+        <div class="kpi" style="border-color:#ff6348">
+          <div class="kpi-label" style="color:#ff6348">总单数</div>
+          <div class="kpi-value" style="color:#ff6348">${weeks.reduce((s, w) => s + w.total, 0).toLocaleString()}</div>
+          <div class="kpi-foot">${monthLabel} 累计</div>
+        </div>
+        <div class="kpi" style="border-color:#00b894">
+          <div class="kpi-label" style="color:#00b894">总利润</div>
+          <div class="kpi-value" style="color:#00b894">${weeks.reduce((s, w) => s + w.profit_sum, 0).toLocaleString()}</div>
+          <div class="kpi-foot">${monthLabel} 累计</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 周折线趋势（4 路径对比）</div>
+      <div id="chart-weekly-line" style="height:420px"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📋 周明细表（${selectedWeek ? `高亮：${selectedWeek.week}` : "全月"}）</div>
+      <table class="detail-table">
+        <thead><tr>
+          <th>周</th><th>日期范围</th>
+          <th style="text-align:right">总单数</th>
+          <th style="text-align:right;color:#ff4757">A 全自动成功</th>
+          <th style="text-align:right;color:#ff6348">B 全自动失败</th>
+          <th style="text-align:right;color:#ffa502">C 订单转人工</th>
+          <th style="text-align:right;color:#7a8ba0">D 订单处理中</th>
+          <th style="text-align:right">自动化成功率</th>
+          <th style="text-align:right;color:#00b894">总利润</th>
+        </tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    </div>
+
+    ${selectedWeek ? `
+    <div class="section">
+      <div class="section-title">📅 ${selectedWeek.week} 详情（${selectedWeek.date_range}）</div>
+      <div class="kpi-row cols-4">
+        <div class="kpi">
+          <div class="kpi-label">总单数</div>
+          <div class="kpi-value">${selectedWeek.total.toLocaleString()}</div>
+        </div>
+        <div class="kpi" style="border-color:#ff4757">
+          <div class="kpi-label" style="color:#ff4757">A 全自动成功</div>
+          <div class="kpi-value" style="color:#ff4757">${selectedWeek.A.toLocaleString()}</div>
+        </div>
+        <div class="kpi" style="border-color:#ff6348">
+          <div class="kpi-label" style="color:#ff6348">B 全自动失败</div>
+          <div class="kpi-value" style="color:#ff6348">${selectedWeek.B.toLocaleString()}</div>
+        </div>
+        <div class="kpi" style="border-color:#ffa502">
+          <div class="kpi-label" style="color:#ffa502">C 订单转人工</div>
+          <div class="kpi-value" style="color:#ffa502">${selectedWeek.C.toLocaleString()}</div>
+        </div>
+      </div>
+    </div>
+    ` : ""}
+  `;
+  document.getElementById("mainArea").innerHTML = html;
+
+  // 渲染折线图
+  setTimeout(() => {
+    const chart = echarts.init(document.getElementById("chart-weekly-line"));
+    chart.setOption({
+      tooltip: { trigger: "axis", axisPointer: { type: "cross" } },
+      legend: { top: 0, textStyle: { color: "#aab5c5" } },
+      grid: { top: 50, left: 60, right: 30, bottom: 60 },
+      toolbox: { feature: { saveAsImage: {} } },
+      xAxis: {
+        type: "category",
+        data: weekLabels,
+        axisLabel: { color: "#aab5c5" },
+        axisLine: { lineStyle: { color: "#1e3a5f" } }
+      },
+      yAxis: {
+        type: "value",
+        name: "单数",
+        axisLabel: { color: "#aab5c5" },
+        splitLine: { lineStyle: { color: "#1e3a5f40" } }
+      },
+      series: [
+        { name: "A 全自动成功", type: "bar", stack: "auto", itemStyle: { color: "#ff4757" },
+          data: weeks.map(w => w.A) },
+        { name: "B 全自动失败", type: "bar", stack: "auto", itemStyle: { color: "#ff6348" },
+          data: weeks.map(w => w.B) },
+        { name: "C 订单转人工", type: "bar", stack: "auto", itemStyle: { color: "#ffa502" },
+          data: weeks.map(w => w.C) },
+        { name: "D 订单处理中", type: "bar", stack: "auto", itemStyle: { color: "#7a8ba0" },
+          data: weeks.map(w => w.D) }
+      ]
+    });
+    chartInstances["weeklyBar"] = chart;
   }, 50);
 }
 
@@ -2678,6 +2888,7 @@ function renderAll() {
     case "overview": renderOverview(); break;
     case "trend": renderTrend(); break;
     case "hourly": renderHourly(); break;
+    case "weekly": renderWeekly(); break;
     case "airline": renderAirline(); break;
     case "platform": renderPlatform(); break;
     case "staff": renderStaff(); break;
