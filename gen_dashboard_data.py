@@ -60,8 +60,8 @@ AIRLINE_NAME = {
 # ============================================================
 # 第一次失败原因 - 数据清洗规则（v1，2026-06-17）
 # ============================================================
-# 1. A 路径订单（自动出票成功）不参与失败根因分析
-# 2. B/D 路径订单：优先用 第一次失败原因，fallback 到 失败原因
+# 1. A 全自动成功订单（自动出票成功）不参与失败根因分析
+# 2. B/D 订单处理中订单：优先用 第一次失败原因，fallback 到 失败原因
 # 3. 文本清洗：去邮箱/时间戳/订单号/null/技术字段/末尾 -xxx-xxx 模式
 # 4. 归一化：第N次取票失败 → 取票失败；反采同程ITravel → 反采同程
 # 5. 族聚合：按业务族归并（询价/亏损/取票/支付/平台状态/辅营/证件）
@@ -331,7 +331,7 @@ REASON_FAMILY_RULES = [
     # 重复订单（两个变体："重复订单" / "订单存在重复"，归同一族）
     (r"重复订单", "人工环节-重复订单"),
     (r"订单存在重复", "人工环节-重复订单"),
-    # 订单取消（D 路径大头）
+    # 订单取消（D 订单处理中大头）
     (r"订单取消", "人工环节-订单取消"),
     # 补抓单/锁单失败/处理器异常转人工
     (r"补抓单|锁单失败|处理器执行异常转人工", "人工环节-补抓单转人工"),
@@ -397,7 +397,7 @@ REASON_FAMILY_RULES = [
 def family_reason(reason: str) -> str:
     """v11：把单条清洗后的 reason 归到「环节 - 子分类」。
     如果没有任何规则匹配，返回 '其他失败-兜底'。
-    空 reason 在 D 路径很常见（票已出但无失败原因记录），归'其他失败-空原因'。"""
+    空 reason 在 D 订单处理中很常见（票已出但无失败原因记录），归'其他失败-空原因'。"""
     if not reason or reason == "(无)":
         return "其他失败-空原因"
     for pattern, family in REASON_FAMILY_RULES:
@@ -924,7 +924,7 @@ def classify(df):
               AND  最后锁定人 ≠ 空
       D = 兜底（以上 A/B/C 都不满足的全部进 D，含留单订单）
 
-    v9 vs v8 关键差异：C 路径不再被 A/B 抢走。
+    v9 vs v8 关键差异：C 订单转人工不再被 A/B 抢走。
     v8 里"手工政策但被救回来"的订单会被算成 B，v9 全部强制归 C。
     """
     plat = df["平台状态"].fillna("").astype(str).str.strip()
@@ -1254,7 +1254,7 @@ def build_month_data(df, month_label):
         b = int((g["path"] == "B").sum())
         c = int((g["path"] == "C").sum())
         d = int((g["path"] == "D").sum())
-        succ = b  # B 路径 = 救场成功的
+        succ = b  # B 全自动失败 = 救场成功的
         p = safe_num(g["利润"])
         psum = float(p.sum()) if len(p) else 0
         pavg = float(p.mean()) if len(p) else 0
@@ -1273,8 +1273,8 @@ def build_month_data(df, month_label):
 
     # ========== 8. 失败原因（路径B + 路径D 合并） ==========
     # v6 更新（2026-06-17）：
-    #   1) A 路径订单不参与失败根因分析（它们没失败）
-    #   2) B/D 路径：先 第一次失败原因，fallback 到 失败原因
+    #   1) A 全自动成功订单不参与失败根因分析（它们没失败）
+    #   2) B/D 订单处理中：先 第一次失败原因，fallback 到 失败原因
     #   3) 应用文本清洗规则（去邮箱/时间戳/订单号/null/技术字段）
     #   4) 族聚合：把相似根因归到业务族（"取票失败"/"询价失败"/"亏损"等）
     # v10.4 修复（2026-06-22）：用 (cleaned_after, fam) 复合 key 累加，
@@ -1519,7 +1519,7 @@ def build_month_data(df, month_label):
     out["daily_subcategory"] = daily_sub_list
     out["total_fail_orders"] = total_fail
 
-    # ========== 9. 平台状态分布（D 路径细节） ==========
+    # ========== 9. 平台状态分布（D 订单处理中细节） ==========
     plat_status_dist = Counter()
     for _, r in df.iterrows():
         if r["path"] == "D":
@@ -1567,7 +1567,7 @@ def build_month_data(df, month_label):
             "text": f"第一周 {cov_first:.1f}% → 最后一周 {cov_last:.1f}%（{cov_last-cov_first:+.1f}%），自动流程覆盖在恶化。",
         })
         insights.append({
-            "title": "📈 B 路径占比飙升",
+            "title": "📈 B 全自动失败占比飙升",
             "level": "warning",
             "text": f"第一周 {b_first:.1f}% → 最后一周 {b_last:.1f}%（{b_last-b_first:+.1f}%），更多订单需要人工救场。",
         })
@@ -1582,7 +1582,7 @@ def build_month_data(df, month_label):
         insights.append({
             "title": "🚨 9C 航司异常集中",
             "level": "danger",
-            "text": f"9C 单量 {nine_c['total']:,}（占 {nine_c['total']/out['summary']['total_orders']*100:.1f}%），D 路径 {nine_c['D']} 单，D 占比 {nine_c['D_ratio']:.1f}%。",
+            "text": f"9C 单量 {nine_c['total']:,}（占 {nine_c['total']/out['summary']['total_orders']*100:.1f}%），D 订单处理中 {nine_c['D']} 单，D 占比 {nine_c['D_ratio']:.1f}%。",
         })
     out["insights"] = insights
 
@@ -1632,7 +1632,7 @@ def main():
         # 单日数据精简版：只保留前 5 维度 + 失败原因 + 平台状态 + 阶段分布
         daily_detail = {}
         prev_day_reasons_b = {}  # v10.14.6: 前一天 fail_reasons_B reason->count
-        prev_day_reasons_d = {}  # 同上 D 路径
+        prev_day_reasons_d = {}  # 同上 D 订单处理中
         for date in sorted(df_m["_file_date"].unique()):
             df_day = df_m[df_m["_file_date"] == date].copy()
             if len(df_day) == 0:

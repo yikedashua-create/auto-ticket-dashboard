@@ -201,7 +201,7 @@ def format_success_message(kpi, commit_msg):
         f"同步 parquet: 新转 {kpi['sync_count']} 个 / 跳过 {kpi['skip_count']} 个",
         f"新增天数: {kpi['new_days']}",
         f"5+6月总单数: {kpi['total_orders']:,}",
-        f"6月 B 路径失败: {kpi['b_fail']:,}",
+        f"6月 B 全自动失败: {kpi['b_fail']:,}",
         f"",
         f"git commit: {commit_msg or '(无变更)'}",
         f"git push: 成功 → Streamlit Cloud 自动重新部署",
@@ -250,7 +250,7 @@ def main():
 
     if "无变更" in msg:
         show_result("已是最新",
-                    f"没有新数据或变更。\n\n总单数: {kpi['total_orders']:,}\n6月 B 路径失败: {kpi['b_fail']:,}")
+                    f"没有新数据或变更。\n\n总单数: {kpi['total_orders']:,}\n6月 B 全自动失败: {kpi['b_fail']:,}")
         return 0
 
     show_result("更新成功", format_success_message(kpi, commit_msg), is_error=False)
