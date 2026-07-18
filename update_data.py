@@ -193,6 +193,52 @@ def git_commit_and_push():
     return True, "推送成功", msg
 
 
+def sync_html_commit():
+    """2026-07-18 优化：自动把 dashboard_v5.html 里的 COMMIT 常量同步到最新 commit
+    解决问题：每次数据更新后 HTML 里的 COMMIT 写死，jsDelivr 拉不到最新数据
+    改完后 jsDelivr 拿到正确 URL，streamlit cloud re-deploy 后看到新数据
+    """
+    # 拿最新 commit SHA 前 7 位
+    rc, sha_out, _ = run_cmd("git rev-parse HEAD", cwd=SCRIPT_DIR)
+    if rc != 0 or not sha_out.strip():
+        return False, "拿不到最新 commit SHA"
+    sha_short = sha_out.strip()[:7]
+
+    # 改 dashboard_v5.html
+    import re
+    html_path = os.path.join(SCRIPT_DIR, "dashboard_v5.html")
+    if not os.path.exists(html_path):
+        return True, "dashboard_v5.html 不存在，跳过"
+
+    with open(html_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    new_content, n = re.subn(
+        r'(const COMMIT = ")[0-9a-f]{7}(")',
+        rf'\g<1>{sha_short}\g<2>',
+        content
+    )
+    if n == 0:
+        return True, "HTML 无 COMMIT 常量，跳过"
+    if new_content == content:
+        return True, f"HTML COMMIT 已是 {sha_short}，无变化"
+
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(new_content)
+
+    # git add + commit + push
+    rc, _, err = run_cmd("git add dashboard_v5.html", cwd=SCRIPT_DIR)
+    if rc != 0:
+        return False, f"git add HTML 失败: {err}"
+    rc, _, err = run_cmd(f'git commit -m "chore: 同步 HTML COMMIT 常量到 {sha_short}"', cwd=SCRIPT_DIR)
+    if rc != 0:
+        return False, f"git commit HTML 失败: {err}"
+    rc, out, err = run_cmd(f"git push {GIT_REMOTE} {GIT_BRANCH}", cwd=SCRIPT_DIR, timeout=300)
+    if rc != 0:
+        return False, f"git push HTML 失败（已 commit）: {err[:200]}"
+    return True, f"HTML COMMIT 已同步到 {sha_short}"
+
+
 def format_success_message(kpi, commit_msg):
     """格式化成功消息"""
     lines = [
@@ -252,6 +298,14 @@ def main():
         show_result("已是最新",
                     f"没有新数据或变更。\n\n总单数: {kpi['total_orders']:,}\n6月 B 全自动失败: {kpi['b_fail']:,}")
         return 0
+
+    # 3.5 自动同步 HTML COMMIT 常量（让 streamlit cloud 拉到最新数据）
+    print("[3.5/3] 同步 HTML COMMIT 常量 ...")
+    sync_ok, sync_msg = sync_html_commit()
+    print(f"  {sync_msg}")
+    if not sync_ok:
+        # HTML 同步失败不阻断主流程（数据已推）
+        print(f"  [警告] HTML 同步失败，但数据已推送：{sync_msg}")
 
     show_result("更新成功", format_success_message(kpi, commit_msg), is_error=False)
     return 0
