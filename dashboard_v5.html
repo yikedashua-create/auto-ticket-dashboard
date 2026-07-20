@@ -390,7 +390,7 @@
     <div class="sidebar">
       <div class="logo">🚀 出票看板 v5</div>
       <div class="nav-item active" data-page="overview">🤖 自动化数据KPI</div>
-      <div class="nav-item" data-page="hourly">⏰ 今日时段</div>
+      <div class="nav-item" data-page="hourly">🕐 时段分析</div>
       <div class="nav-item" data-page="airline">✈️ 航司分析</div>
       <div class="nav-item" data-page="platform">🏢 平台分析</div>
       <div class="nav-item" data-page="channel">🛒 渠道分析</div>
@@ -1122,51 +1122,102 @@ function renderPathComparisonTables() {
 
 /* ============== 页面：今日时段（2026-07-18 新增）============== */
 function renderHourly() {
-  // 取 hourly_today（优先看 monthly summary，回退到顶层 DATA）
-  let hourly = null;
+  // 2026-07-20 重构：按 period 选 hourly 数据源
+  //   选 day：daily_detail[date].summary.hourly_today
+  //   选 week：聚合 W 内 daily 的 hourly
+  //   选 month：month.summary.hourly_today（该月最后一天）
+  //   选 all month：聚合所有月最后一天 hourly
+  //   25 个 hour bucket (0-24)，24:00 = hour 0 的数据（端点）
+
+  // 计算 period label + hourly 数据源
+  let hourlyArr = null;  // 24 hour × 聚合 source
   let dateLabel = "";
-  if (CURRENT_DATA && CURRENT_DATA.summary && CURRENT_DATA.summary.hourly_today) {
-    hourly = CURRENT_DATA.summary.hourly_today.data;
-    dateLabel = CURRENT_DATA.summary.hourly_today.date;
-  } else if (DATA && DATA.summary && DATA.summary.hourly_today) {
-    hourly = DATA.summary.hourly_today.data;
-    dateLabel = DATA.summary.hourly_today.date;
+  const m = (CURRENT_MONTH && CURRENT_MONTH !== "all") ? DATA.months[CURRENT_MONTH] : null;
+
+  if (CURRENT_DAY && CURRENT_DAY !== "all" && m) {
+    // 选某日：取该日 hourly_today
+    const dateKey = `${m.month}-${String(CURRENT_DAY).padStart(2, "0")}`;
+    const day = m.daily_detail && m.daily_detail[dateKey];
+    if (day && day.summary && day.summary.hourly_today) {
+      hourlyArr = [day.summary.hourly_today.data];
+      dateLabel = dateKey;
+    }
+  } else if (CURRENT_WEEK && CURRENT_WEEK !== "all" && m) {
+    // 选周：聚合 W 内所有日 hourly
+    const [mKey, wKey] = CURRENT_WEEK.split("|");
+    const mData = DATA.months[mKey];
+    const weekInfo = mData && mData.summary && mData.summary.natural_weekly
+      ? mData.summary.natural_weekly.find(w => w.week === wKey)
+      : null;
+    if (weekInfo && mData.daily_detail) {
+      hourlyArr = weekInfo.days
+        .map(d => mData.daily_detail[d] && mData.daily_detail[d].summary && mData.daily_detail[d].summary.hourly_today
+          ? mData.daily_detail[d].summary.hourly_today.data
+          : null)
+        .filter(x => x);
+      dateLabel = `${mKey} ${wKey}（${weekInfo.date_range}）`;
+    }
+  } else if (CURRENT_MONTH && CURRENT_MONTH !== "all" && m) {
+    // 选某月：该月 hourly_today（最后一天）
+    if (m.summary && m.summary.hourly_today) {
+      hourlyArr = [m.summary.hourly_today.data];
+      dateLabel = m.summary.hourly_today.date;
+    }
+  } else {
+    // 选 all month：聚合所有月最后一天 hourly
+    const all = Object.values(DATA.months || {})
+      .map(mm => mm.summary && mm.summary.hourly_today)
+      .filter(x => x);
+    if (all.length) {
+      hourlyArr = all.map(x => x.data);
+      dateLabel = "全部月份（聚合）";
+    }
   }
 
-  if (!hourly) {
+  if (!hourlyArr || !hourlyArr.length) {
     document.getElementById("mainArea").innerHTML = `
       <div class="section">
-        <div class="section-title">⏰ 今日时段（0-24 点 · 1 小时单位）</div>
+        <div class="section-title">🕐 时段分析（0-24 点 · 1 小时单位）</div>
         <div style="padding:40px;text-align:center;color:#7a8ba0">
-          ⚠️ 暂无数据。请确认 dashboard_data.json 已重新生成（含 hourly_today 字段）。
+          ⚠️ 暂无 hourly 数据
         </div>
       </div>`;
     return;
   }
 
-  // 24 小时数据（没数据补 0）
-  const fullData = Array.from({ length: 24 }, (_, h) => {
-    const row = hourly.find(r => r.hour === h);
-    return row || { hour: h, total: 0, A: 0, B: 0, C: 0, D: 0, auto_coverage_rate: 0, auto_succ_rate: 0 };
+  // 聚合多源（如 week 聚合 N 天）：按 hour 加和
+  const aggregated = Array.from({ length: 24 }, (_, h) => {
+    let total = 0, A = 0, B = 0, C = 0, D = 0;
+    for (const arr of hourlyArr) {
+      const row = arr.find(r => r.hour === h);
+      if (row) {
+        total += row.total; A += row.A; B += row.B; C += row.C; D += row.D;
+      }
+    }
+    const auto = A + B;
+    return {
+      hour: h, total, A, B, C, D,
+      auto_coverage_rate: total ? (auto / total * 100) : 0,
+      auto_succ_rate: auto ? (A / auto * 100) : 0,
+    };
   });
+
+  // 25 hour bucket：hour 24 = hour 0 的数据（24:00 = 次日 0:00 端点）
+  const fullData = [...aggregated, { ...aggregated[0], hour: 24 }];
 
   const total = fullData.reduce((s, r) => s + r.total, 0);
   const totalA = fullData.reduce((s, r) => s + r.A, 0);
   const totalB = fullData.reduce((s, r) => s + r.B, 0);
   const totalC = fullData.reduce((s, r) => s + r.C, 0);
   const totalD = fullData.reduce((s, r) => s + r.D, 0);
-  const peakHour = fullData.reduce((max, r) => r.total > max.total ? r : max, fullData[0]);
-  const validHours = fullData.filter(r => (r.A + r.B) > 0);
-  const bestAutoHour = validHours.length > 0
-    ? validHours.reduce((max, r) => (r.A / (r.A + r.B)) > (max.A / (max.A + max.B)) ? r : max, validHours[0])
-    : null;
 
-  // 表格行
+  // 表格行（25 行，0-24）
   const tableRows = fullData.map(r => {
     const auto = r.A + r.B;
     const succ = auto > 0 ? (r.A / auto * 100).toFixed(1) : "—";
+    const label = r.hour === 24 ? "24:00" : `${String(r.hour).padStart(2, "0")}:00`;
     return `<tr>
-      <td><b>${String(r.hour).padStart(2, "0")}:00</b></td>
+      <td><b>${label}</b></td>
       <td style="text-align:right">${r.total.toLocaleString()}</td>
       <td style="text-align:right;color:#ff4757">${r.A.toLocaleString()}</td>
       <td style="text-align:right;color:#ff6348">${r.B.toLocaleString()}</td>
@@ -1178,7 +1229,9 @@ function renderHourly() {
 
   const html = `
     <div class="section">
-      <div class="section-title">⏰ 今日时段（${dateLabel} · 0-24 点 · 1 小时单位）</div>
+      <div class="section-title">🕐 时段分析（${dateLabel} · 0-24 点 · 1 小时单位）
+        <span class="badge badge-info">${dateLabel}</span>
+      </div>
 
       <div class="kpi-row cols-4">
         <div class="kpi">
@@ -1193,7 +1246,7 @@ function renderHourly() {
         </div>
         <div class="kpi" style="border-color:#ff6348">
           <div class="kpi-label" style="color:#ff6348">B 全自动失败</div>
-          <div class="kpi-value" style="color:#ff6348">${totalB.toLocaleString()}</div>
+          <div class="kpi-value" style="color:#ff4757">${totalB.toLocaleString()}</div>
           <div class="kpi-foot">${total ? (totalB / total * 100).toFixed(1) : 0}% 占总单数</div>
         </div>
         <div class="kpi" style="border-color:#ffa502">
@@ -1205,8 +1258,8 @@ function renderHourly() {
     </div>
 
     <div class="section">
-      <div class="section-title">📈 折线趋势图（A 全自动成功 / B 全自动失败 / C 订单转人工）</div>
-      <div class="chart-hint">折线越高 = 该小时单数越多。可对比不同时段的 4 路径分布。</div>
+      <div class="section-title">📈 折线趋势图（A 全自动成功 / B 全自动失败 / C 订单转人工 / D 订单处理中）</div>
+      <div class="chart-hint">折线越高 = 该小时单数越多。可对比不同时段的 4 路径分布。24:00 = 次日 0:00 端点。</div>
       <div id="chart-hourly-line" style="height:420px"></div>
     </div>
 
@@ -1223,23 +1276,12 @@ function renderHourly() {
         <tbody>${tableRows}</tbody>
       </table>
     </div>
-
-    ${peakHour.total > 0 ? `
-    <div class="section">
-      <div class="section-title">💡 关键洞察</div>
-      <ul style="line-height:1.8;color:#aab5c5">
-        <li>🔥 <b>业务高峰</b>：<b style="color:#ff4757">${String(peakHour.hour).padStart(2, "0")}:00</b> = ${peakHour.total} 单，建议保证客服/采购员全员在岗</li>
-        ${bestAutoHour ? `<li>✅ <b>自动化最优时段</b>：<b style="color:#00e5ff">${String(bestAutoHour.hour).padStart(2, "0")}:00</b> 成功率 ${(bestAutoHour.A / (bestAutoHour.A + bestAutoHour.B) * 100).toFixed(1)}%（${bestAutoHour.A} 单）</li>` : ""}
-        <li>📦 D 订单处理中 总计：<b>${totalD}</b> 单（${total ? (totalD / total * 100).toFixed(1) : 0}%）</li>
-      </ul>
-    </div>
-    ` : ""}
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // 渲染 ECharts 折线图
+  // 渲染 ECharts 折线图（25 个 xAxis 标签全部显示）
   setTimeout(() => {
-    const hours = fullData.map(r => String(r.hour).padStart(2, "0") + ":00");
+    const hours = fullData.map(r => r.hour === 24 ? "24:00" : `${String(r.hour).padStart(2, "0")}:00`);
     const lineChart = echarts.init(document.getElementById("chart-hourly-line"));
     lineChart.setOption({
       tooltip: {
@@ -1253,7 +1295,7 @@ function renderHourly() {
         type: "category",
         boundaryGap: false,
         data: hours,
-        axisLabel: { color: "#aab5c5", rotate: 0 },
+        axisLabel: { color: "#aab5c5", rotate: 45, fontSize: 10, interval: 0 },
         axisLine: { lineStyle: { color: "#1e3a5f" } }
       },
       yAxis: {
