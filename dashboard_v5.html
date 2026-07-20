@@ -1202,11 +1202,8 @@ function renderHourly() {
     };
   });
 
-  // 25 hour bucket：0-24（hour 24 = 24:00 端点 = 0 单，不复制 hour 0）
-  const fullData = [
-    ...aggregated,
-    { hour: 24, total: 0, A: 0, B: 0, C: 0, D: 0, auto_coverage_rate: 0, auto_succ_rate: 0 }
-  ];
+  // 25 hour bucket：0-24（hour 24 = 24:00 端点 = hour 23 数据，代表"23:00-24:00 整 1 小时"）
+  const fullData = [...aggregated, { ...aggregated[23], hour: 24 }];
 
   const total = fullData.reduce((s, r) => s + r.total, 0);
   const totalA = fullData.reduce((s, r) => s + r.A, 0);
@@ -1262,7 +1259,7 @@ function renderHourly() {
 
     <div class="section">
       <div class="section-title">📈 折线趋势图（4 路径每小时比率 · 0-24 点）</div>
-      <div class="chart-hint">A 自动出票成功率 = A/(A+B)，B 失败率 = B/(A+B)，C 人工率 = C/总，D 异常率 = D/总。pin 标记每条线的最高/最低点。</div>
+      <div class="chart-hint">A 自动出票成功率 = A/(A+B)，B 失败率 = B/(A+B)，C 人工率 = C/总，D 异常率 = D/总。pin 标记每条线的最高/最低点。25 个 hour bucket（0-24）：hour 24 = 24:00 = "23:00-24:00 整 1 小时"（= hour 23 数据）。</div>
       <div id="chart-hourly-line" style="height:420px"></div>
     </div>
 
