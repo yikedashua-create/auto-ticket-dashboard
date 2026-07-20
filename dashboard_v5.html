@@ -569,7 +569,7 @@ function updateDayOptions(month, week) {
 }
 
 /* 计算"上一周期"：用于对比 */
-function getComparePeriod(month, day) {
+function getComparePeriod(month, day, week) {
   if (day !== "all") {
     // 选某日：对比前一日（跨月就跨月）
     const dt = new Date(month + "-" + day);
@@ -577,6 +577,30 @@ function getComparePeriod(month, day) {
     const prev = dt.toISOString().substring(0, 10);
     const prevMonth = prev.substring(0, 7);
     return { type: "day", month: prevMonth, day: prev.substring(8, 10), label: prev };
+  } else if (week && week !== "all") {
+    // 选周：对比上一周（同月 W(N-1)，或上月最后一周）
+    // week = "2026-07|W1" 格式
+    const [mKey, wKey] = week.split("|");
+    const wNum = parseInt(wKey.substring(1));
+    const m = DATA.months[mKey];
+    if (!m || !m.summary || !m.summary.natural_weekly) return null;
+    if (wNum > 1) {
+      // 同月上一周
+      const prev = m.summary.natural_weekly.find(x => x.week === `W${wNum - 1}`);
+      if (prev) return { type: "week", week: `${mKey}|${prev.week}`, label: `${mKey} ${prev.week}（${prev.date_range}）` };
+      return null;
+    } else {
+      // W1 → 上月最后一周
+      const months = DATA.available_months.filter(x => x !== "all").sort();
+      const idx = months.indexOf(mKey);
+      if (idx <= 0) return null;
+      const prevMonth = months[idx - 1];
+      const pm = DATA.months[prevMonth];
+      if (!pm || !pm.summary || !pm.summary.natural_weekly) return null;
+      const weeks = pm.summary.natural_weekly;
+      const last = weeks[weeks.length - 1];
+      return { type: "week", week: `${prevMonth}|${last.week}`, label: `${prevMonth} ${last.week}（${last.date_range}）` };
+    }
   } else {
     // 选全月：对比上月（找 available_months 里前一月）
     if (month === "all") {
@@ -609,6 +633,61 @@ function getDayData(month, day) {
   const d = m.daily.find(x => x.date === target);
   if (!d) return null;
   return aggregateDayToMonthShape(m, d);
+}
+
+/* 计算某月某周的数据（按日聚合 + 合并 daily_detail）
+   weekKey 格式: "2026-07|W1" */
+function getWeekData(weekKey) {
+  const [mKey, wKey] = weekKey.split("|");
+  const m = DATA.months[mKey];
+  if (!m || !m.summary || !m.summary.natural_weekly) return null;
+  const weekInfo = m.summary.natural_weekly.find(w => w.week === wKey);
+  if (!weekInfo) return null;
+  const days = weekInfo.days;
+  const dailyRows = (m.daily || []).filter(d => days.includes(d.date));
+  if (dailyRows.length === 0) return null;
+
+  // 聚合 summary
+  const total = dailyRows.reduce((s, r) => s + r.total, 0);
+  const A = dailyRows.reduce((s, r) => s + r.A, 0);
+  const B = dailyRows.reduce((s, r) => s + r.B, 0);
+  const C = dailyRows.reduce((s, r) => s + r.C, 0);
+  const D = dailyRows.reduce((s, r) => s + r.D, 0);
+  const profit_sum = dailyRows.reduce((s, r) => s + r.profit_sum, 0);
+  const profit_pos = dailyRows.reduce((s, r) => s + r.profit_pos, 0);
+  const auto = A + B;
+
+  // 合并 daily_detail（用于下钻）
+  const daily_detail = {};
+  days.forEach(d => {
+    if (m.daily_detail && m.daily_detail[d]) daily_detail[d] = m.daily_detail[d];
+  });
+
+  return {
+    ...m,
+    summary: {
+      month: `${mKey} ${wKey}`,
+      total_days: days.length,
+      total_orders: total,
+      A, B, C, D,
+      A_ratio: total ? A / total * 100 : 0,
+      B_ratio: total ? B / total * 100 : 0,
+      C_ratio: total ? C / total * 100 : 0,
+      D_ratio: total ? D / total * 100 : 0,
+      auto_coverage_rate: total ? auto / total * 100 : 0,
+      auto_succ_rate: auto ? A / auto * 100 : 0,
+      B_to_manual_rate: total ? B / total * 100 : 0,
+      total_profit: profit_sum,
+      avg_profit: total ? profit_sum / total : 0,
+      profit_pos,
+      profit_pos_rate: total ? profit_pos / total * 100 : 0,
+      natural_weekly: [weekInfo],  // 保留周数据供 renderWeekly 用
+    },
+    daily: dailyRows,
+    daily_detail,
+    _period_type: "week",
+    _period_date: weekInfo.date_range,
+  };
 }
 
 /* 把 daily 单行包装成 month-data 同等结构（降级方案） */
@@ -646,10 +725,12 @@ function switchPeriod(month, day, week) {
   CURRENT_WEEK = week || "all";
 
   // 算对比基准
-  const comparePeriod = getComparePeriod(month, day);
+  const comparePeriod = getComparePeriod(month, day, week);
   if (comparePeriod) {
     if (comparePeriod.type === "day") {
       COMPARE_DATA = getDayData(comparePeriod.month, comparePeriod.day);
+    } else if (comparePeriod.type === "week") {
+      COMPARE_DATA = getWeekData(comparePeriod.week);
     } else {
       COMPARE_DATA = DATA.months[comparePeriod.month] || null;
     }
@@ -662,6 +743,9 @@ function switchPeriod(month, day, week) {
   // 算当前数据
   if (day !== "all") {
     CURRENT_DATA = getDayData(month, day);
+  } else if (week && week !== "all") {
+    // 选周：week 格式 "2026-07|W1"
+    CURRENT_DATA = getWeekData(week);
   } else {
     CURRENT_DATA = DATA.months[month];
   }
@@ -669,7 +753,7 @@ function switchPeriod(month, day, week) {
   if (!CURRENT_DATA) {
     document.getElementById("mainArea").innerHTML = `
       <div class="empty-state">
-        <h2>📭 ${month} ${day !== "all" ? day + " 日" : ""} 没有数据</h2>
+        <h2>📭 ${month} ${day !== "all" ? day + " 日" : (week && week !== "all" ? week : "")} 没有数据</h2>
         <p>把对应日期的 xlsx 放到桌面「出票总订单数据」目录，然后跑：</p>
         <code>python gen_dashboard_data.py</code>
         <p style="margin-top: 20px; color:#5a6b80">可用月份：${DATA.available_months.join("、") || "无"}</p>
@@ -679,7 +763,9 @@ function switchPeriod(month, day, week) {
   }
 
   const s = CURRENT_DATA.summary;
-  const periodLabel = day !== "all" ? `${month} ${day} 日` : (month === "all" ? "全部月份" : month);
+  const periodLabel = day !== "all" ? `${month} ${day} 日`
+    : (week && week !== "all" ? `${month} ${week.split("|")[1]}（${CURRENT_DATA._period_date}）`
+    : (month === "all" ? "全部月份" : month));
   document.getElementById("monthInfo").innerHTML =
     `<b>${s.total_orders.toLocaleString()}</b> 单 · <b>${s.total_days}</b> 天 · ` +
     `利润 <b style="color:${s.total_profit >= 0 ? '#00ff88' : '#ff4757'}">${s.total_profit >= 0 ? '+' : ''}¥${s.total_profit.toLocaleString()}</b>` +
@@ -689,7 +775,7 @@ function switchPeriod(month, day, week) {
     `v5 · ${periodLabel} · ${s.total_days} 天 · ${(s.total_orders/10000).toFixed(1)} 万单 · 数据驱动 ECharts 实时渲染`;
 
   // 侧边栏概览
-  if (CURRENT_DATA.daily.length > 0) {
+  if (CURRENT_DATA.daily && CURRENT_DATA.daily.length > 0) {
     const d0 = CURRENT_DATA.daily[0].date;
     const d1 = CURRENT_DATA.daily[CURRENT_DATA.daily.length - 1].date;
     const fmt = d => d.substring(5, 7) + "月" + d.substring(8, 10) + "日";
@@ -792,7 +878,9 @@ const baseEchartsOpt = {
 /* ============== 页面：总览 ============== */
 function renderOverview() {
   const s = CURRENT_DATA.summary;
-  const monthLabel = CURRENT_MONTH === "all" ? "全月" : (CURRENT_DAY !== "all" ? `${CURRENT_MONTH} ${CURRENT_DAY} 日` : CURRENT_MONTH);
+  const monthLabel = CURRENT_MONTH === "all" ? "全月"
+    : (CURRENT_WEEK !== "all" ? `${CURRENT_MONTH} ${CURRENT_WEEK.split("|")[1] || CURRENT_WEEK}`
+    : (CURRENT_DAY !== "all" ? `${CURRENT_MONTH} ${CURRENT_DAY} 日` : CURRENT_MONTH));
   const cs = COMPARE_DATA ? COMPARE_DATA.summary : null;  // 对比基准 summary
   const cmpBadge = (cur, base, mode, isPct) => cs ? fmt.cmp(cur - base, base, mode, isPct) : `<span class="cmp-no">无对比基准</span>`;
 
