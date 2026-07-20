@@ -21,7 +21,7 @@ import os, re, json, glob, argparse
 from datetime import datetime
 from collections import defaultdict, Counter
 
-DATA_DIR = r"C:\Users\admin\Desktop\出票总订单数据"
+DATA_DIR = r"E:\Work\Data\订单\出票总订单数据"
 # v10（2026-06-22）：输出到脚本所在目录，Streamlit Cloud / 本地都能直接读到
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 # v10.13（2026-06-29）：分层存储架构
