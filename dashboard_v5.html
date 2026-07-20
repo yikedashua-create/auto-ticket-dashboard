@@ -464,7 +464,7 @@ async function loadData() {
       // - CDN 缓存 bust 靠 COMMIT 变 URL（commit 变 → URL 变 → 浏览器/CDN 都当新 URL 拉）
       // - 浏览器缓存: 同一 URL 二次访问秒开（不再每次都拉 1.3MB）
       // - 实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-      const COMMIT = "58e6f2a";  // ← 每次 git push 后手动改成最新 commit 前 7 位
+      const COMMIT = "e729de9";  // ← 每次 git push 后手动改成最新 commit 前 7 位
       const DATA_URL = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       const resp = await fetch(DATA_URL);  // 走默认缓存策略 (浏览器自动用缓存)
       data = await resp.json();
