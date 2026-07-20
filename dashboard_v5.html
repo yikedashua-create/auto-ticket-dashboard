@@ -139,6 +139,8 @@
   }
   .kpi-row.cols-4 { grid-template-columns: repeat(4, 1fr); }
   .kpi-row.cols-5 { grid-template-columns: repeat(5, 1fr); }
+  .kpi-row.cols-6 { grid-template-columns: repeat(6, 1fr); }
+  .kpi-row.cols-7 { grid-template-columns: repeat(7, 1fr); }
   .kpi {
     background: #131c30;
     border: 1px solid #1e3a5f;
@@ -389,7 +391,7 @@
   <div class="layout">
     <div class="sidebar">
       <div class="logo">🚀 出票看板 v5</div>
-      <div class="nav-item active" data-page="overview">🤖 自动化数据KPI</div>
+      <div class="nav-item active" data-page="overview">数据总览</div>
       <div class="nav-item" data-page="hourly">🕐 时段分析</div>
       <div class="nav-item" data-page="airline">✈️ 航司分析</div>
       <div class="nav-item" data-page="platform">🏢 平台分析</div>
@@ -903,36 +905,48 @@ function renderOverview() {
         <span class="badge badge-info">${s.total_days} 天 · ${fmt.num(s.total_orders)} 单</span>
         ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
       </div>
-      <div class="kpi-row cols-5">
+      <div class="kpi-row cols-7">
+        <div class="kpi">
+          <div class="kpi-label">📦 订单总数</div>
+          <div class="kpi-value">${fmt.num(s.total_orders)}</div>
+          <div class="kpi-sub">${s.total_days} 天总单</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_orders, cs.total_orders, "amount", false) : ""}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">✈️ 航段总数</div>
+          <div class="kpi-value">${fmt.num(s.total_segments)}</div>
+          <div class="kpi-sub">一票 = 1 段 · 往返 = 2 段</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_segments, cs.total_segments, "amount", false) : ""}</div>
+        </div>
         <div class="kpi success">
-          <div class="kpi-label">📦 自动化覆盖率</div>
+          <div class="kpi-label">✅ 全自动成功</div>
+          <div class="kpi-value green">${fmt.num(s.A)}</div>
+          <div class="kpi-sub">A 路径 · 占比 ${fmt.pct(s.A / s.total_orders * 100)}</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.A, cs.A, "amount", false) : ""}</div>
+        </div>
+        <div class="kpi danger">
+          <div class="kpi-label">❌ 全自动失败</div>
+          <div class="kpi-value red">${fmt.num(s.B)}</div>
+          <div class="kpi-sub">B 路径 · 占比 ${fmt.pct(s.B / s.total_orders * 100)}</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.B, cs.B, "amount", false) : ""}</div>
+        </div>
+        <div class="kpi warning">
+          <div class="kpi-label">🛒 订单转人工</div>
+          <div class="kpi-value yellow">${fmt.num(s.C)}</div>
+          <div class="kpi-sub">C 路径 · 占比 ${fmt.pct(s.C / s.total_orders * 100)}</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.C, cs.C, "amount", false) : ""}</div>
+        </div>
+        <div class="kpi success">
+          <div class="kpi-label">📈 全自动覆盖率</div>
           <div class="kpi-value green">${fmt.pct(s.auto_coverage_rate)}</div>
           <div class="kpi-sub">A+B 占比 · ${fmt.num(s.A+s.B)} 单</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_coverage_rate, cs.auto_coverage_rate, "rate", true) : ""}</div>
         </div>
-        <div class="kpi warning">
-          <div class="kpi-label">⚠️ 自动转人工占比</div>
-          <div class="kpi-value yellow">${fmt.pct(s.B_ratio)}</div>
-          <div class="kpi-sub">${fmt.num(s.B)} 单需人工救场</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.B_ratio, cs.B_ratio, "amount", true) : ""}</div>
-        </div>
         <div class="kpi">
-          <div class="kpi-label">🤖 全自动成功率</div>
+          <div class="kpi-label">🎯 全自动成功率</div>
           <div class="kpi-value">${fmt.pct(s.auto_succ_rate)}</div>
           <div class="kpi-sub">A / (A+B)</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_succ_rate, cs.auto_succ_rate, "rate", true) : ""}</div>
-        </div>
-        <div class="kpi danger">
-          <div class="kpi-label">💰 期间总利润</div>
-          <div class="kpi-value ${s.total_profit >= 0 ? 'green' : 'red'}">¥${fmt.money(s.total_profit)}</div>
-          <div class="kpi-sub">单均 ${fmt.avg(s.avg_profit)}</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_profit, cs.total_profit, "rate", false, true) : ""}</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">📊 盈利订单占比</div>
-          <div class="kpi-value">${fmt.pct(s.profit_pos_rate)}</div>
-          <div class="kpi-sub">${fmt.num(s.profit_pos)} / ${fmt.num(s.total_orders)}</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.profit_pos_rate, cs.profit_pos_rate, "rate", true) : ""}</div>
         </div>
       </div>
     </div>
@@ -941,17 +955,10 @@ function renderOverview() {
       <div class="section-title">🔍 路径分布 · 4 路径
         <span class="badge badge-info">${fmt.num(s.total_orders)} 单全量</span>
       </div>
-      <div class="grid-2x2">
-        <div class="chart-box">
-          <div class="chart-title">📊 4 路径订单分布</div>
-          <div id="chart-pathPie" class="chart-area" style="height:280px"></div>
-          <div id="table-pathOrders"></div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">💰 4 路径利润对比（核心财务）</div>
-          <div id="chart-pathProfit" class="chart-area" style="height:280px"></div>
-          <div id="table-pathProfit"></div>
-        </div>
+      <div class="chart-box">
+        <div class="chart-title">📊 4 路径订单分布</div>
+        <div id="chart-pathPie" class="chart-area" style="height:320px"></div>
+        <div id="table-pathOrders"></div>
       </div>
     </div>
 
@@ -985,74 +992,10 @@ function renderOverview() {
       data: pieData,
     }],
   });
-
-  // 4 路径利润柱状图
-  const A_profit = CURRENT_DATA.daily.reduce((sum, d) => {
-    const aAir = CURRENT_DATA.airline.find(a => a.airline === "9C");
-    return sum;
-  }, 0);
-  // 实际从 daily 不够，需要每路径全月利润
-  // 简化：用总利润 + 各路径盈利占比（这里用近似：从 profit_sum 推算）
-  // 更准：直接从路径维度算
-  const totalP = s.total_profit;
-  // 拆分近似：A 占 74%、B 占 19.5%、C 占 3.7%、D 占 0（按订单量权重）
-  // 实际从原始数据看：A=路径A_sum, B=路径B_sum... 这里用 4 路径单均利润 × 单量
-  const A_avg = CURRENT_DATA.airline.filter(a => a.total > 100).length;
-  // 直接用真实数据 - 我们从 4 路径算过
-  // 简单做法：算全月 A B C D 总利润
-  const profByPath = computePathProfit();
-  createChart("chart-pathProfit", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    legend: { ...baseEchartsOpt.legend, data: ["总利润", "单均利润"] },
-    xAxis: { type: "category", data: ["A 全自动成功", "B 全自动失败", "C 订单转人工", "D 订单处理中"],
-              axisLabel: { color: "#7a8ba0" } },
-    yAxis: [
-      { type: "value", name: "总利润(元)", axisLabel: { color: "#7a8ba0" },
-        splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-      { type: "value", name: "单均(元)", axisLabel: { color: "#7a8ba0" },
-        splitLine: { show: false } },
-    ],
-    series: [
-      { name: "总利润", type: "bar", data: profByPath.map(p => ({
-        value: p.sum, itemStyle: { color: p.sum >= 0 ? color.A : color.D }
-      })), label: { show: true, position: "top",
-        formatter: p => (p.value >= 0 ? "+" : "") + Math.round(p.value).toLocaleString(),
-        color: "#e0e6f0" } },
-      { name: "单均利润", type: "line", yAxisIndex: 1, data: profByPath.map(p => p.avg),
-        itemStyle: { color: color.cyan }, lineStyle: { color: color.cyan, width: 2 },
-        symbolSize: 8 },
-    ],
-  });
 }
 
-// 从原始数据无法直接拿到 4 路径利润（dashboard_data.json 没有），需要重新算
-// 但这里数据已经按路径算过；用代理方法：单均利润近似（订单占比 × 总利润）
-// 实际上从 4 路径单均 × 单量 估算
-function computePathProfit() {
-  const s = CURRENT_DATA.summary;
-  // 从原始数据趋势反推：A 单均约 -5 ~ -10，B 单均约 0 ~ -5，C 单均约 -10 ~ -20
-  // 不用估值，直接用每月变化平均 - 用反推
-  // 简化：从 trend_daily 的 ratio 分布 + 总利润做估算
-  // 更稳：让数据 JSON 直接包含 4 路径月利润
-  // 这里临时用估算：实际值已知：月 -550K
-  // A 占 74% × 单均 -6.5 ≈ -419K；B 占 19.5% × 单均 -6.5 ≈ -131K；C × D ≈ 0
-  // 实际更准：直接读取
-  if (CURRENT_DATA.path_profit) return CURRENT_DATA.path_profit;
-  // 后备估算（误差 ±20%）
-  const avgP = s.avg_profit;
-  return [
-    { name: "A", sum: s.A * avgP * 1.0, avg: avgP * 1.0 },
-    { name: "B", sum: s.B * avgP * 1.1, avg: avgP * 1.1 },
-    { name: "C", sum: s.C * avgP * 1.4, avg: avgP * 1.4 },
-    { name: "D", sum: 0, avg: 0 },
-  ];
-}
-
-/* v10.9 新增（2026-06-23）：渲染 4 路径订单/利润对比明细表
- * 用户报问题截图："总览是不是缺了四个路径对应的订单总数，以及对比情况"
- * - 之前 donut chart label 只显示 {b} {d}%（路径名+百分比），订单数 + vs 对比仅在 hover tooltip 里能看到
- * - 修复：在两个图表下方各加一个紧凑对比表（4 行 × 5 列），让用户能直接看到订单数/利润/对比
+/* v10.9 新增（2026-06-23）：渲染 4 路径订单对比明细表
+ * 2026-07-20 简化：只保留订单对比表，利润表已删（用户要"4 路径利润对比"从总览删除）
  */
 function renderPathComparisonTables() {
   const s = CURRENT_DATA.summary;
@@ -1094,34 +1037,7 @@ function renderPathComparisonTables() {
   </table>`;
   const el1 = document.getElementById("table-pathOrders");
   if (el1) el1.innerHTML = ordersHtml;
-  // 2) 利润对比表
-  const profByPath = computePathProfit();
-  const prevProf = COMPARE_DATA ? (COMPARE_DATA.path_profit || []) : null;
-  const prevMap = prevProf ? Object.fromEntries(prevProf.map(p => [p.name, p])) : null;
-  const profitHtml = `<table class="path-compare-table">
-    <thead>
-      <tr><th>路径</th><th>总利润</th><th>单均</th><th>${prevMap ? "对比基准" : ""}</th><th>${prevMap ? "变化" : ""}</th></tr>
-    </thead>
-    <tbody>
-      ${profByPath.map(p => {
-        const prev = prevMap ? prevMap[p.name] : null;
-        const diff = prev ? p.sum - prev.sum : null;
-        const sumStr = (p.sum >= 0 ? "+" : "") + Math.round(p.sum).toLocaleString();
-        const sumColor = p.sum >= 0 ? "#00d4aa" : "#ff4757";
-        const avgStr = (p.avg >= 0 ? "+" : "") + p.avg.toFixed(2);
-        const pathColor = p.name === "A" ? color.A : p.name === "B" ? color.B : p.name === "C" ? color.C : color.D;
-        return `<tr>
-          <td><span style="display:inline-block;width:10px;height:10px;background:${pathColor};border-radius:2px;margin-right:6px;vertical-align:middle"></span>${p.name}</td>
-          <td style="color:${sumColor}">${sumStr}</td>
-          <td>${avgStr}</td>
-          <td>${prev ? Math.round(prev.sum).toLocaleString() : '<span style="color:#7a8ba0">—</span>'}</td>
-          <td>${fmtDiff(diff)}</td>
-        </tr>`;
-      }).join("")}
-    </tbody>
-  </table>`;
-  const el2 = document.getElementById("table-pathProfit");
-  if (el2) el2.innerHTML = profitHtml;
+  // 2026-07-20 删：利润对比表（用户要把"4 路径利润对比"从总览页完全删除）
 }
 
 /* ============== 页面：今日时段（2026-07-18 新增）============== */

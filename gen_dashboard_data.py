@@ -1088,10 +1088,28 @@ def build_month_data(df, month_label):
     D = (df["path"] == "D").sum()
     profit_all = safe_num(df["利润"])
     profit_pos = (profit_all > 0).sum()
+    # 2026-07-20 新增：航段总数
+    # 业务定义：航段数 = 段数 × 乘客数
+    #   段数 = 航段序列列表 逗号分隔数（如 "去程"=1，"去程, 返程"=2）
+    #   乘客数 = 乘客数量 字段
+    #   1 单 1 人 1 段 = 1 航段；1 单 2 人 1 段 = 2 航段；
+    #   1 单 1 人往返 = 2 航段；1 单 2 人往返 = 4 航段
+    if "航段序列列表" in df.columns:
+        legs_per_order = df["航段序列列表"].fillna("").astype(str).apply(
+            lambda x: len([s for s in x.split(",") if s.strip()])
+        )
+    else:
+        legs_per_order = pd.Series(1, index=df.index)  # fallback: 1 段
+    if "乘客数量" in df.columns:
+        pax_per_order = pd.to_numeric(df["乘客数量"], errors="coerce").fillna(1).astype(int)
+    else:
+        pax_per_order = pd.Series(1, index=df.index)  # fallback: 1 人
+    n_segments = int((legs_per_order * pax_per_order).sum())
     out["summary"] = {
         "month": month_label,
         "total_days": df["_file_date"].nunique(),
         "total_orders": int(n),
+        "total_segments": n_segments,  # 航段总数 = 订单中所有航段数累加
         "A": int(A), "B": int(B), "C": int(C), "D": int(D),
         "A_ratio": round(A/n*100, 2),
         "B_ratio": round(B/n*100, 2),
@@ -1146,9 +1164,22 @@ def build_month_data(df, month_label):
         psum = float(p.sum()) if len(p) else 0
         pavg = float(p.mean()) if len(p) else 0
         ppos = int((p > 0).sum()) if len(p) else 0
+        # 2026-07-20 新增：单日航段数（航段 = 段数 × 乘客数）
+        if "航段序列列表" in g.columns:
+            legs = g["航段序列列表"].fillna("").astype(str).apply(
+                lambda x: len([s for s in x.split(",") if s.strip()])
+            )
+        else:
+            legs = pd.Series(1, index=g.index)
+        if "乘客数量" in g.columns:
+            pax = pd.to_numeric(g["乘客数量"], errors="coerce").fillna(1).astype(int)
+        else:
+            pax = pd.Series(1, index=g.index)
+        seg_sum = int((legs * pax).sum())
         daily.append({
             "date": date,
             "total": int(n), "A": a, "B": b, "C": c, "D": d,
+            "total_segments": seg_sum,  # 2026-07-20 新增：单日航段总数
             "auto_coverage_rate": round((a+b)/n*100, 2) if n else 0,
             "auto_succ_rate": round(a/(a+b)*100, 2) if (a+b) else 0,
             "B_ratio": round(b/n*100, 2) if n else 0,

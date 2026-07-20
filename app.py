@@ -16,9 +16,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ============== 2. 顶部状态条（让 streamlit 立刻有输出，验证部署成功） ==============
-# 注意：标题/info 仍然保留作为部署成功的快速信号，但通过 CSS 隐藏掉，
-# 避免占据 iframe 上方的空间造成"白条"。
+# ============== 2. 顶部状态条（CSS 注入） ==============
+# 2026-07-20 优化：去掉 st.title / st.info（用户要 dashboard 直接铺满，不要任何说明）
+# 保留 CSS 注入（消除白边 + 暗色 theme 兜底 + 隐藏 streamlit 工具栏/状态条）
 st.markdown(
     """
 <style>
@@ -58,8 +58,6 @@ st.markdown(
 """,
     unsafe_allow_html=True,
 )
-st.title("📊 自动出票数据看板")
-st.info("💡 数据从 jsDelivr CDN 加载 · 首次加载约 5-10 秒（12.77MB gzipped ≈ 2-3MB）")
 
 # ============== 3. 加载 HTML 模板 ==============
 HTML_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dashboard_v5.html")
