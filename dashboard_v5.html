@@ -1261,8 +1261,8 @@ function renderHourly() {
     </div>
 
     <div class="section">
-      <div class="section-title">📈 折线趋势图（A 全自动成功 / B 全自动失败 / C 订单转人工 / D 订单处理中 · 0-24 点）</div>
-      <div class="chart-hint">4 路径每小时单数。pin 标记每条线的最高/最低点。25 个 hour bucket（0-24），24:00 = 当天结束端点 = 0 单（不重复 00:00）。</div>
+      <div class="section-title">📈 折线趋势图（4 路径每小时比率 · 0-24 点）</div>
+      <div class="chart-hint">A 自动出票成功率 = A/(A+B)，B 失败率 = B/(A+B)，C 人工率 = C/总，D 异常率 = D/总。pin 标记每条线的最高/最低点。</div>
       <div id="chart-hourly-line" style="height:420px"></div>
     </div>
 
@@ -1303,13 +1303,13 @@ function renderHourly() {
       },
       yAxis: {
         type: "value",
-        name: "自动成功率(%)",
+        name: "路径比率(%)",
         min: 0, max: 100,
         axisLabel: { color: "#aab5c5", formatter: "{value}%" },
         splitLine: { lineStyle: { color: "#1e3a5f40" } }
       },
       series: [
-        { name: "A 全自动成功", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
+        { name: "A 路径 · 自动出票成功率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ff4757", width: 3 },
           itemStyle: { color: "#ff4757" },
           markPoint: {
@@ -1320,8 +1320,8 @@ function renderHourly() {
             ],
             label: { color: "#fff", fontSize: 10 }
           },
-          data: fullData.map(r => r.A) },
-        { name: "B 全自动失败", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
+          data: fullData.map(r => (r.A + r.B) ? +(r.A / (r.A + r.B) * 100).toFixed(2) : 0) },
+        { name: "B 路径 · 自动出票失败率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ff6348", width: 3 },
           itemStyle: { color: "#ff6348" },
           markPoint: {
@@ -1332,8 +1332,8 @@ function renderHourly() {
             ],
             label: { color: "#fff", fontSize: 10 }
           },
-          data: fullData.map(r => r.B) },
-        { name: "C 订单转人工", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
+          data: fullData.map(r => (r.A + r.B) ? +(r.B / (r.A + r.B) * 100).toFixed(2) : 0) },
+        { name: "C 路径 · 人工介入率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ffa502", width: 3 },
           itemStyle: { color: "#ffa502" },
           markPoint: {
@@ -1344,8 +1344,8 @@ function renderHourly() {
             ],
             label: { color: "#fff", fontSize: 10 }
           },
-          data: fullData.map(r => r.C) },
-        { name: "D 订单处理中", type: "line", smooth: true, symbol: "circle", symbolSize: 6,
+          data: fullData.map(r => r.total ? +(r.C / r.total * 100).toFixed(2) : 0) },
+        { name: "D 路径 · 异常率", type: "line", smooth: true, symbol: "circle", symbolSize: 6,
           lineStyle: { color: "#7a8ba0", width: 2, type: "dashed" },
           itemStyle: { color: "#7a8ba0" },
           markPoint: {
@@ -1356,7 +1356,7 @@ function renderHourly() {
             ],
             label: { color: "#fff", fontSize: 10 }
           },
-          data: fullData.map(r => r.D) }
+          data: fullData.map(r => r.total ? +(r.D / r.total * 100).toFixed(2) : 0) }
       ]
     });
     chartInstances["hourlyLine"] = lineChart;
