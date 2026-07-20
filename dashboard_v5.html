@@ -1329,7 +1329,7 @@ function renderAirline() {
                 <td>${fmt.pct(a.B_ratio)}</td>
                 <td class="${a.D_ratio > 3 ? 'neg' : ''}">${fmt.pct(a.D_ratio)}</td>
                 <td class="${a.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(a.avg_profit)}</td>
-                <td class="${a.profit_sum >= 0 ? 'pos' : 'neg'}">¥${fmt.money(a.profit_sum)}</td>
+                <td class="${(a.profit_sum >= 0) ? 'pos' : 'neg'}">¥${fmt.money(a.profit_sum)}</td>
               </tr>
             `).join("")}
           </tbody>
@@ -1482,22 +1482,24 @@ function renderPlatform() {
                 <td>${fmt.num(p.A)}</td>
                 <td>${fmt.num(p.B)}</td>
                 <td>${fmt.num(p.C)}</td>
-                <td class="${p.D > 100 ? 'neg' : ''}">${fmt.num(p.D)}</td>
+                <td class="${(p.D > 100) ? 'neg' : ''}">${fmt.num(p.D)}</td>
                 <td>${fmt.pct(p.auto_coverage_rate)}</td>
                 <td class="${p.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(p.avg_profit)}</td>
-                <td class="${p.profit_sum >= 0 ? 'pos' : 'neg'}">¥${fmt.money(p.profit_sum)}</td>
+                <td class="${(p.profit_sum >= 0) ? 'pos' : 'neg'}">¥${fmt.money(p.profit_sum)}</td>
               </tr>
             `).join("")}
           </tbody>
         </table>
       </div>
     </div>
+  `;
+  document.getElementById("mainArea").innerHTML = html;
 
   // 平台 - 散点：x=订单量 y=总利润 size=D单量
   createChart("chart-platform", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
-      formatter: p => `<b>${p.data.platform}</b><br>订单: ${fmt.num(p.data.total)}<br>总利润: ¥${fmt.money(p.data.profit_sum)}<br>单均: ${fmt.avg(p.data.avg_profit)}` },
+      formatter: p => '<b>' + p.data.platform + '</b><br>订单: ' + fmt.num(p.data.total) + '<br>总利润: ¥' + fmt.money(p.data.profit_sum) + '<br>单均: ' + fmt.avg(p.data.avg_profit) },
     xAxis: { type: "value", name: "订单量", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
     yAxis: { type: "value", name: "总利润(元)", axisLabel: { color: "#7a8ba0" },
@@ -1586,11 +1588,11 @@ function renderChannel() {
                 <td>${fmt.num(c.A)}</td>
                 <td>${fmt.num(c.B)}</td>
                 <td>${fmt.num(c.C)}</td>
-                <td class="${c.D > 100 ? 'neg' : ''}">${fmt.num(c.D)}</td>
+                <td class="${(c.D > 100) ? 'neg' : ''}">${fmt.num(c.D)}</td>
                 <td>${fmt.pct(c.auto_coverage_rate)}</td>
                 <td>${fmt.pct(c.auto_succ_rate)}</td>
                 <td class="${c.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(c.avg_profit)}</td>
-                <td class="${c.profit_sum >= 0 ? 'pos' : 'neg'}">¥${fmt.money(c.profit_sum)}</td>
+                <td class="${(c.profit_sum >= 0) ? 'pos' : 'neg'}">¥${fmt.money(c.profit_sum)}</td>
               </tr>
             `).join("")}
           </tbody>
@@ -1733,7 +1735,7 @@ function renderStaff() {
                   <td>${fmt.pct(s.succ_rate)}</td>
                   <td class="${s.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(s.avg_profit)}</td>
                   <td>${fmt.pct(s.profit_pos_rate)}</td>
-                  <td class="${s.profit_sum >= 0 ? 'pos' : 'neg'}">¥${fmt.money(s.profit_sum)}</td>
+                  <td class="${(s.profit_sum >= 0) ? 'pos' : 'neg'}">¥${fmt.money(s.profit_sum)}</td>
                 </tr>
               `).join("")}
             </tbody>
