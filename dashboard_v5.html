@@ -1202,8 +1202,11 @@ function renderHourly() {
     };
   });
 
-  // 25 hour bucket：hour 24 = hour 0 的数据（24:00 = 次日 0:00 端点）
-  const fullData = [...aggregated, { ...aggregated[0], hour: 24 }];
+  // 25 hour bucket：0-24（hour 24 = 24:00 端点 = 0 单，不复制 hour 0）
+  const fullData = [
+    ...aggregated,
+    { hour: 24, total: 0, A: 0, B: 0, C: 0, D: 0, auto_coverage_rate: 0, auto_succ_rate: 0 }
+  ];
 
   const total = fullData.reduce((s, r) => s + r.total, 0);
   const totalA = fullData.reduce((s, r) => s + r.A, 0);
@@ -1211,11 +1214,11 @@ function renderHourly() {
   const totalC = fullData.reduce((s, r) => s + r.C, 0);
   const totalD = fullData.reduce((s, r) => s + r.D, 0);
 
-  // 表格行（25 行，0-24）
+  // 表格行（25 行，0-24；hour 24 = 0 单端点）
   const tableRows = fullData.map(r => {
     const auto = r.A + r.B;
     const succ = auto > 0 ? (r.A / auto * 100).toFixed(1) : "—";
-    const label = r.hour === 24 ? "24:00" : `${String(r.hour).padStart(2, "0")}:00`;
+    const label = `${String(r.hour).padStart(2, "0")}:00`;
     return `<tr>
       <td><b>${label}</b></td>
       <td style="text-align:right">${r.total.toLocaleString()}</td>
@@ -1258,13 +1261,13 @@ function renderHourly() {
     </div>
 
     <div class="section">
-      <div class="section-title">📈 折线趋势图（A 全自动成功 / B 全自动失败 / C 订单转人工 / D 订单处理中）</div>
-      <div class="chart-hint">折线越高 = 该小时单数越多。可对比不同时段的 4 路径分布。24:00 = 次日 0:00 端点。</div>
+      <div class="section-title">📈 折线趋势图（A 全自动成功 / B 全自动失败 / C 订单转人工 / D 订单处理中 · 0-24 点）</div>
+      <div class="chart-hint">4 路径每小时单数。pin 标记每条线的最高/最低点。25 个 hour bucket（0-24），24:00 = 当天结束端点 = 0 单（不重复 00:00）。</div>
       <div id="chart-hourly-line" style="height:420px"></div>
     </div>
 
     <div class="section">
-      <div class="section-title">📊 24 小时分桶明细</div>
+      <div class="section-title">📊 24 小时分桶明细（0-23 点 · 凌晨到深夜）</div>
       <table class="detail-table">
         <thead><tr><th>时段</th><th style="text-align:right">总单数</th>
           <th style="text-align:right;color:#ff4757">A 全自动成功</th>
@@ -1279,7 +1282,7 @@ function renderHourly() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // 渲染 ECharts 折线图（25 个 xAxis 标签全部显示）
+  // 渲染 ECharts 折线图（25 hour · 4 路径 + max/min 标记）
   setTimeout(() => {
     const hours = fullData.map(r => r.hour === 24 ? "24:00" : `${String(r.hour).padStart(2, "0")}:00`);
     const lineChart = echarts.init(document.getElementById("chart-hourly-line"));
@@ -1300,26 +1303,59 @@ function renderHourly() {
       },
       yAxis: {
         type: "value",
-        name: "单数",
-        axisLabel: { color: "#aab5c5" },
+        name: "自动成功率(%)",
+        min: 0, max: 100,
+        axisLabel: { color: "#aab5c5", formatter: "{value}%" },
         splitLine: { lineStyle: { color: "#1e3a5f40" } }
       },
       series: [
         { name: "A 全自动成功", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ff4757", width: 3 },
           itemStyle: { color: "#ff4757" },
+          markPoint: {
+            symbol: "pin", symbolSize: 50,
+            data: [
+              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
+              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
+            ],
+            label: { color: "#fff", fontSize: 10 }
+          },
           data: fullData.map(r => r.A) },
         { name: "B 全自动失败", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ff6348", width: 3 },
           itemStyle: { color: "#ff6348" },
+          markPoint: {
+            symbol: "pin", symbolSize: 50,
+            data: [
+              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
+              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
+            ],
+            label: { color: "#fff", fontSize: 10 }
+          },
           data: fullData.map(r => r.B) },
         { name: "C 订单转人工", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ffa502", width: 3 },
           itemStyle: { color: "#ffa502" },
+          markPoint: {
+            symbol: "pin", symbolSize: 50,
+            data: [
+              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
+              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
+            ],
+            label: { color: "#fff", fontSize: 10 }
+          },
           data: fullData.map(r => r.C) },
         { name: "D 订单处理中", type: "line", smooth: true, symbol: "circle", symbolSize: 6,
           lineStyle: { color: "#7a8ba0", width: 2, type: "dashed" },
           itemStyle: { color: "#7a8ba0" },
+          markPoint: {
+            symbol: "pin", symbolSize: 50,
+            data: [
+              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
+              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
+            ],
+            label: { color: "#fff", fontSize: 10 }
+          },
           data: fullData.map(r => r.D) }
       ]
     });
