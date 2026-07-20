@@ -263,7 +263,76 @@
           "auto_succ_rate": 72.64
         }
       ]
-    }
+    },
+    "natural_weekly": [
+      {
+        "week": "W1",
+        "date_range": "2026-07-01~2026-07-07",
+        "days": [
+          "2026-07-01",
+          "2026-07-02",
+          "2026-07-03",
+          "2026-07-04",
+          "2026-07-06",
+          "2026-07-07"
+        ],
+        "total": 14135,
+        "A": 10386,
+        "B": 2504,
+        "C": 1014,
+        "D": 231,
+        "auto_coverage_rate": 91.19,
+        "auto_succ_rate": 80.57,
+        "A_ratio": 73.48,
+        "B_ratio": 17.71,
+        "profit_sum": -118043.47,
+        "avg_profit": -8.35
+      },
+      {
+        "week": "W2",
+        "date_range": "2026-07-08~2026-07-14",
+        "days": [
+          "2026-07-08",
+          "2026-07-09",
+          "2026-07-10",
+          "2026-07-11",
+          "2026-07-12",
+          "2026-07-13",
+          "2026-07-14"
+        ],
+        "total": 20529,
+        "A": 15772,
+        "B": 4063,
+        "C": 353,
+        "D": 341,
+        "auto_coverage_rate": 96.62,
+        "auto_succ_rate": 79.52,
+        "A_ratio": 76.83,
+        "B_ratio": 19.79,
+        "profit_sum": -112033.37,
+        "avg_profit": -5.46
+      },
+      {
+        "week": "W3",
+        "date_range": "2026-07-15~2026-07-17",
+        "days": [
+          "2026-07-15",
+          "2026-07-16",
+          "2026-07-17"
+        ],
+        "total": 9048,
+        "A": 6900,
+        "B": 1691,
+        "C": 362,
+        "D": 95,
+        "auto_coverage_rate": 94.95,
+        "auto_succ_rate": 80.32,
+        "A_ratio": 76.26,
+        "B_ratio": 18.69,
+        "profit_sum": -19074.72,
+        "avg_profit": -2.11
+      }
+    ]
   },
   "daily": [
     {
@@ -12970,7 +13039,27 @@
               "auto_succ_rate": 83.65
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W1",
+            "date_range": "2026-07-01~2026-07-01",
+            "days": [
+              "2026-07-01"
+            ],
+            "total": 2926,
+            "A": 1844,
+            "B": 443,
+            "C": 605,
+            "D": 34,
+            "auto_coverage_rate": 78.16,
+            "auto_succ_rate": 80.63,
+            "A_ratio": 63.02,
+            "B_ratio": 15.14,
+            "profit_sum": -31216.69,
+            "avg_profit": -10.67
+          }
+        ]
       },
       "daily": [
         {
@@ -16347,7 +16436,27 @@
               "auto_succ_rate": 88.74
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W1",
+            "date_range": "2026-07-02~2026-07-02",
+            "days": [
+              "2026-07-02"
+            ],
+            "total": 2576,
+            "A": 1842,
+            "B": 415,
+            "C": 267,
+            "D": 52,
+            "auto_coverage_rate": 87.62,
+            "auto_succ_rate": 81.61,
+            "A_ratio": 71.51,
+            "B_ratio": 16.11,
+            "profit_sum": -37443.01,
+            "avg_profit": -14.54
+          }
+        ]
       },
       "daily": [
         {
@@ -19883,7 +19992,27 @@
               "auto_succ_rate": 84.21
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W1",
+            "date_range": "2026-07-03~2026-07-03",
+            "days": [
+              "2026-07-03"
+            ],
+            "total": 2435,
+            "A": 1853,
+            "B": 450,
+            "C": 100,
+            "D": 32,
+            "auto_coverage_rate": 94.58,
+            "auto_succ_rate": 80.46,
+            "A_ratio": 76.1,
+            "B_ratio": 18.48,
+            "profit_sum": -27647.2,
+            "avg_profit": -11.35
+          }
+        ]
       },
       "daily": [
         {
@@ -23526,7 +23655,27 @@
               "auto_succ_rate": 75.21
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W1",
+            "date_range": "2026-07-04~2026-07-04",
+            "days": [
+              "2026-07-04"
+            ],
+            "total": 2067,
+            "A": 1678,
+            "B": 342,
+            "C": 23,
+            "D": 24,
+            "auto_coverage_rate": 97.73,
+            "auto_succ_rate": 83.07,
+            "A_ratio": 81.18,
+            "B_ratio": 16.55,
+            "profit_sum": -17048.59,
+            "avg_profit": -8.25
+          }
+        ]
       },
       "daily": [
         {
@@ -26926,7 +27075,27 @@
               "auto_succ_rate": 76.16
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W1",
+            "date_range": "2026-07-06~2026-07-06",
+            "days": [
+              "2026-07-06"
+            ],
+            "total": 2121,
+            "A": 1640,
+            "B": 424,
+            "C": 7,
+            "D": 50,
+            "auto_coverage_rate": 97.31,
+            "auto_succ_rate": 79.46,
+            "A_ratio": 77.32,
+            "B_ratio": 19.99,
+            "profit_sum": -13509.96,
+            "avg_profit": -6.37
+          }
+        ]
       },
       "daily": [
         {
@@ -30678,7 +30847,27 @@
               "auto_succ_rate": 85.42
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W1",
+            "date_range": "2026-07-07~2026-07-07",
+            "days": [
+              "2026-07-07"
+            ],
+            "total": 2010,
+            "A": 1529,
+            "B": 430,
+            "C": 12,
+            "D": 39,
+            "auto_coverage_rate": 97.46,
+            "auto_succ_rate": 78.05,
+            "A_ratio": 76.07,
+            "B_ratio": 21.39,
+            "profit_sum": 8821.98,
+            "avg_profit": 4.39
+          }
+        ]
       },
       "daily": [
         {
@@ -34240,7 +34429,27 @@
               "auto_succ_rate": 74.42
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W2",
+            "date_range": "2026-07-08~2026-07-08",
+            "days": [
+              "2026-07-08"
+            ],
+            "total": 2495,
+            "A": 2046,
+            "B": 375,
+            "C": 41,
+            "D": 33,
+            "auto_coverage_rate": 97.03,
+            "auto_succ_rate": 84.51,
+            "A_ratio": 82.0,
+            "B_ratio": 15.03,
+            "profit_sum": -20574.32,
+            "avg_profit": -8.25
+          }
+        ]
       },
       "daily": [
         {
@@ -37638,7 +37847,27 @@
               "auto_succ_rate": 85.52
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W2",
+            "date_range": "2026-07-09~2026-07-09",
+            "days": [
+              "2026-07-09"
+            ],
+            "total": 2747,
+            "A": 2254,
+            "B": 390,
+            "C": 51,
+            "D": 52,
+            "auto_coverage_rate": 96.25,
+            "auto_succ_rate": 85.25,
+            "A_ratio": 82.05,
+            "B_ratio": 14.2,
+            "profit_sum": -22878.05,
+            "avg_profit": -8.33
+          }
+        ]
       },
       "daily": [
         {
@@ -41434,7 +41663,27 @@
               "auto_succ_rate": 78.44
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W2",
+            "date_range": "2026-07-10~2026-07-10",
+            "days": [
+              "2026-07-10"
+            ],
+            "total": 3299,
+            "A": 2289,
+            "B": 807,
+            "C": 113,
+            "D": 90,
+            "auto_coverage_rate": 93.85,
+            "auto_succ_rate": 73.93,
+            "A_ratio": 69.38,
+            "B_ratio": 24.46,
+            "profit_sum": -24266.97,
+            "avg_profit": -7.36
+          }
+        ]
       },
       "daily": [
         {
@@ -45662,7 +45911,27 @@
               "auto_succ_rate": 77.65
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W2",
+            "date_range": "2026-07-11~2026-07-11",
+            "days": [
+              "2026-07-11"
+            ],
+            "total": 2847,
+            "A": 2199,
+            "B": 577,
+            "C": 29,
+            "D": 42,
+            "auto_coverage_rate": 97.51,
+            "auto_succ_rate": 79.21,
+            "A_ratio": 77.24,
+            "B_ratio": 20.27,
+            "profit_sum": -14375.31,
+            "avg_profit": -5.05
+          }
+        ]
       },
       "daily": [
         {
@@ -49664,7 +49933,27 @@
               "auto_succ_rate": 83.44
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W2",
+            "date_range": "2026-07-12~2026-07-12",
+            "days": [
+              "2026-07-12"
+            ],
+            "total": 2746,
+            "A": 2155,
+            "B": 541,
+            "C": 11,
+            "D": 39,
+            "auto_coverage_rate": 98.18,
+            "auto_succ_rate": 79.93,
+            "A_ratio": 78.48,
+            "B_ratio": 19.7,
+            "profit_sum": -8866.78,
+            "avg_profit": -3.23
+          }
+        ]
       },
       "daily": [
         {
@@ -53359,7 +53648,27 @@
               "auto_succ_rate": 83.41
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W2",
+            "date_range": "2026-07-13~2026-07-13",
+            "days": [
+              "2026-07-13"
+            ],
+            "total": 3249,
+            "A": 2486,
+            "B": 674,
+            "C": 44,
+            "D": 45,
+            "auto_coverage_rate": 97.26,
+            "auto_succ_rate": 78.67,
+            "A_ratio": 76.52,
+            "B_ratio": 20.74,
+            "profit_sum": -7432.32,
+            "avg_profit": -2.29
+          }
+        ]
       },
       "daily": [
         {
@@ -57481,7 +57790,27 @@
               "auto_succ_rate": 86.21
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W2",
+            "date_range": "2026-07-14~2026-07-14",
+            "days": [
+              "2026-07-14"
+            ],
+            "total": 3146,
+            "A": 2343,
+            "B": 699,
+            "C": 64,
+            "D": 40,
+            "auto_coverage_rate": 96.69,
+            "auto_succ_rate": 77.02,
+            "A_ratio": 74.48,
+            "B_ratio": 22.22,
+            "profit_sum": -13639.62,
+            "avg_profit": -4.34
+          }
+        ]
       },
       "daily": [
         {
@@ -61586,7 +61915,27 @@
               "auto_succ_rate": 88.76
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W3",
+            "date_range": "2026-07-15~2026-07-15",
+            "days": [
+              "2026-07-15"
+            ],
+            "total": 3039,
+            "A": 2456,
+            "B": 497,
+            "C": 56,
+            "D": 30,
+            "auto_coverage_rate": 97.17,
+            "auto_succ_rate": 83.17,
+            "A_ratio": 80.82,
+            "B_ratio": 16.35,
+            "profit_sum": -6772.53,
+            "avg_profit": -2.23
+          }
+        ]
       },
       "daily": [
         {
@@ -65288,7 +65637,27 @@
               "auto_succ_rate": 85.35
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W3",
+            "date_range": "2026-07-16~2026-07-16",
+            "days": [
+              "2026-07-16"
+            ],
+            "total": 3137,
+            "A": 2358,
+            "B": 563,
+            "C": 188,
+            "D": 28,
+            "auto_coverage_rate": 93.11,
+            "auto_succ_rate": 80.73,
+            "A_ratio": 75.17,
+            "B_ratio": 17.95,
+            "profit_sum": -5633.85,
+            "avg_profit": -1.8
+          }
+        ]
       },
       "daily": [
         {
@@ -69336,7 +69705,27 @@
               "auto_succ_rate": 72.64
             }
           ]
-        }
+        },
+        "natural_weekly": [
+          {
+            "week": "W3",
+            "date_range": "2026-07-17~2026-07-17",
+            "days": [
+              "2026-07-17"
+            ],
+            "total": 2872,
+            "A": 2086,
+            "B": 631,
+            "C": 118,
+            "D": 37,
+            "auto_coverage_rate": 94.6,
+            "auto_succ_rate": 76.78,
+            "A_ratio": 72.63,
+            "B_ratio": 21.97,
+            "profit_sum": -6668.34,
+            "avg_profit": -2.32
+          }
+        ]
       },
       "daily": [
         {
