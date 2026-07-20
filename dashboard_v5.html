@@ -390,11 +390,10 @@
     <div class="sidebar">
       <div class="logo">🚀 出票看板 v5</div>
       <div class="nav-item active" data-page="overview">🤖 自动化数据KPI</div>
-      <div class="nav-item" data-page="trend">📈 31天趋势分析</div>
       <div class="nav-item" data-page="hourly">⏰ 今日时段</div>
-      <div class="nav-item" data-page="weekly">📊 周对比</div>
       <div class="nav-item" data-page="airline">✈️ 航司分析</div>
-      <div class="nav-item" data-page="platform">🏢 平台渠道</div>
+      <div class="nav-item" data-page="platform">🏢 平台分析</div>
+      <div class="nav-item" data-page="channel">🛒 渠道分析</div>
       <div class="nav-item" data-page="staff">👥 人员绩效</div>
       <div class="nav-item" data-page="failAnalysis">🔍 失败分析</div>
       <div class="nav-section">
@@ -1286,280 +1285,6 @@ function renderHourly() {
   }, 50);
 }
 
-/* ============== 页面：周对比（2026-07-18 新增）============== */
-function renderWeekly() {
-  // 取当前月 + 周（从 global CURRENT_MONTH / CURRENT_WEEK 读）
-  const month = CURRENT_MONTH;
-  const weekKey = CURRENT_WEEK;  // "all" / "2026-07|W1" 格式
-
-  const m = month && month !== "all" ? DATA.months[month] : null;
-  if (!m || !m.summary || !m.summary.natural_weekly) {
-    document.getElementById("mainArea").innerHTML = `
-      <div class="section">
-        <div class="section-title">📊 周对比（${month || "全部"}）</div>
-        <div style="padding:40px;text-align:center;color:#7a8ba0">⚠️ 当前月份无周数据</div>
-      </div>`;
-    return;
-  }
-
-  const weeks = m.summary.natural_weekly;
-  const monthLabel = m.month;
-
-  // 选周时：只显示该周详情 + 跟其它周对比
-  const selectedWeek = weekKey && weekKey !== "all"
-    ? weeks.find(w => `${monthLabel}|${w.week}` === weekKey)
-    : null;
-
-  // 1. 周列表表格（全月所有周）
-  const tableRows = weeks.map(w => {
-    const auto = w.A + w.B;
-    const succ = auto > 0 ? (w.A / auto * 100).toFixed(1) : "—";
-    const isSel = selectedWeek && selectedWeek.week === w.week;
-    return `<tr ${isSel ? 'style="background:#1e3a5f40"' : ""}>
-      <td><b>${w.week}</b></td>
-      <td style="color:#7a8ba0;font-size:12px">${w.date_range}</td>
-      <td style="text-align:right">${w.total.toLocaleString()}</td>
-      <td style="text-align:right;color:#ff4757">${w.A.toLocaleString()}</td>
-      <td style="text-align:right;color:#ff6348">${w.B.toLocaleString()}</td>
-      <td style="text-align:right;color:#ffa502">${w.C.toLocaleString()}</td>
-      <td style="text-align:right;color:#7a8ba0">${w.D.toLocaleString()}</td>
-      <td style="text-align:right">${succ}%</td>
-      <td style="text-align:right;color:#00b894">${w.profit_sum.toLocaleString()}</td>
-    </tr>`;
-  }).join("");
-
-  // 2. 周对比折线图（全月所有周）
-  const weekLabels = weeks.map(w => w.week);
-  const lineChart = echarts.init(document.createElement("div"));
-
-  const html = `
-    <div class="section">
-      <div class="section-title">📊 ${monthLabel} 周对比（自然周：每月 1-7=W1，8-14=W2，...）</div>
-
-      <div class="kpi-row cols-4">
-        <div class="kpi">
-          <div class="kpi-label">总周数</div>
-          <div class="kpi-value">${weeks.length}</div>
-          <div class="kpi-foot">${monthLabel} 有数据</div>
-        </div>
-        <div class="kpi" style="border-color:#ff4757">
-          <div class="kpi-label" style="color:#ff4757">周均 A 单数</div>
-          <div class="kpi-value" style="color:#ff4757">${Math.round(weeks.reduce((s, w) => s + w.A, 0) / weeks.length).toLocaleString()}</div>
-          <div class="kpi-foot">平均 ${(weeks.reduce((s, w) => s + w.A, 0) / weeks.length).toFixed(0)} 单/周</div>
-        </div>
-        <div class="kpi" style="border-color:#ff6348">
-          <div class="kpi-label" style="color:#ff6348">总单数</div>
-          <div class="kpi-value" style="color:#ff6348">${weeks.reduce((s, w) => s + w.total, 0).toLocaleString()}</div>
-          <div class="kpi-foot">${monthLabel} 累计</div>
-        </div>
-        <div class="kpi" style="border-color:#00b894">
-          <div class="kpi-label" style="color:#00b894">总利润</div>
-          <div class="kpi-value" style="color:#00b894">${weeks.reduce((s, w) => s + w.profit_sum, 0).toLocaleString()}</div>
-          <div class="kpi-foot">${monthLabel} 累计</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">📈 周折线趋势（4 路径对比）</div>
-      <div id="chart-weekly-line" style="height:420px"></div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">📋 周明细表（${selectedWeek ? `高亮：${selectedWeek.week}` : "全月"}）</div>
-      <table class="detail-table">
-        <thead><tr>
-          <th>周</th><th>日期范围</th>
-          <th style="text-align:right">总单数</th>
-          <th style="text-align:right;color:#ff4757">A 全自动成功</th>
-          <th style="text-align:right;color:#ff6348">B 全自动失败</th>
-          <th style="text-align:right;color:#ffa502">C 订单转人工</th>
-          <th style="text-align:right;color:#7a8ba0">D 订单处理中</th>
-          <th style="text-align:right">自动化成功率</th>
-          <th style="text-align:right;color:#00b894">总利润</th>
-        </tr></thead>
-        <tbody>${tableRows}</tbody>
-      </table>
-    </div>
-
-    ${selectedWeek ? `
-    <div class="section">
-      <div class="section-title">📅 ${selectedWeek.week} 详情（${selectedWeek.date_range}）</div>
-      <div class="kpi-row cols-4">
-        <div class="kpi">
-          <div class="kpi-label">总单数</div>
-          <div class="kpi-value">${selectedWeek.total.toLocaleString()}</div>
-        </div>
-        <div class="kpi" style="border-color:#ff4757">
-          <div class="kpi-label" style="color:#ff4757">A 全自动成功</div>
-          <div class="kpi-value" style="color:#ff4757">${selectedWeek.A.toLocaleString()}</div>
-        </div>
-        <div class="kpi" style="border-color:#ff6348">
-          <div class="kpi-label" style="color:#ff6348">B 全自动失败</div>
-          <div class="kpi-value" style="color:#ff6348">${selectedWeek.B.toLocaleString()}</div>
-        </div>
-        <div class="kpi" style="border-color:#ffa502">
-          <div class="kpi-label" style="color:#ffa502">C 订单转人工</div>
-          <div class="kpi-value" style="color:#ffa502">${selectedWeek.C.toLocaleString()}</div>
-        </div>
-      </div>
-    </div>
-    ` : ""}
-  `;
-  document.getElementById("mainArea").innerHTML = html;
-
-  // 渲染折线图
-  setTimeout(() => {
-    const chart = echarts.init(document.getElementById("chart-weekly-line"));
-    chart.setOption({
-      tooltip: { trigger: "axis", axisPointer: { type: "cross" } },
-      legend: { top: 0, textStyle: { color: "#aab5c5" } },
-      grid: { top: 50, left: 60, right: 30, bottom: 60 },
-      toolbox: { feature: { saveAsImage: {} } },
-      xAxis: {
-        type: "category",
-        data: weekLabels,
-        axisLabel: { color: "#aab5c5" },
-        axisLine: { lineStyle: { color: "#1e3a5f" } }
-      },
-      yAxis: {
-        type: "value",
-        name: "单数",
-        axisLabel: { color: "#aab5c5" },
-        splitLine: { lineStyle: { color: "#1e3a5f40" } }
-      },
-      series: [
-        { name: "A 全自动成功", type: "bar", stack: "auto", itemStyle: { color: "#ff4757" },
-          data: weeks.map(w => w.A) },
-        { name: "B 全自动失败", type: "bar", stack: "auto", itemStyle: { color: "#ff6348" },
-          data: weeks.map(w => w.B) },
-        { name: "C 订单转人工", type: "bar", stack: "auto", itemStyle: { color: "#ffa502" },
-          data: weeks.map(w => w.C) },
-        { name: "D 订单处理中", type: "bar", stack: "auto", itemStyle: { color: "#7a8ba0" },
-          data: weeks.map(w => w.D) }
-      ]
-    });
-    chartInstances["weeklyBar"] = chart;
-  }, 50);
-}
-
-/* ============== 页面：31天趋势 ============== */
-function renderTrend() {
-  const html = `
-    <div class="section">
-      <div class="section-title">📈 4 路径订单量堆叠趋势
-        <span class="badge badge-info">31 天</span>
-      </div>
-      <div id="chart-stackedArea" class="chart-area" style="height:340px"></div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">💰 利润与盈亏平衡</div>
-      <div class="grid-2x2">
-        <div class="chart-box">
-          <div class="chart-title">📊 每日总利润（柱）+ 单均利润（线）</div>
-          <div id="chart-profit" class="chart-area" style="height:280px"></div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">📊 盈利订单占比走势</div>
-          <div id="chart-posRate" class="chart-area" style="height:280px"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">📅 周度对比</div>
-      <table class="data-table">
-        <thead>
-          <tr><th>周</th><th>日期范围</th><th>总单</th><th>A%</th><th>B%</th><th>覆盖率</th><th>成功率</th><th>总利润</th><th>单均</th></tr>
-        </thead>
-        <tbody>
-          ${CURRENT_DATA.weekly.map(w => `
-            <tr>
-              <td>${w.week}</td>
-              <td>${w.date_range}</td>
-              <td>${fmt.num(w.total)}</td>
-              <td>${fmt.pct(w.A_ratio)}</td>
-              <td>${fmt.pct(w.B_ratio)}</td>
-              <td>${fmt.pct(w.auto_coverage_rate)}</td>
-              <td>${fmt.pct(w.auto_succ_rate)}</td>
-              <td class="${w.profit_sum >= 0 ? 'pos' : 'neg'}">¥${fmt.money(w.profit_sum)}</td>
-              <td class="${w.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(w.avg_profit)}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    </div>
-  `;
-  document.getElementById("mainArea").innerHTML = html;
-
-  // 堆叠面积
-  createChart("chart-stackedArea", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    legend: { ...baseEchartsOpt.legend, data: ["A", "B", "C", "D"] },
-    xAxis: { type: "category", data: CURRENT_DATA.daily.map(d => fmt.date(d.date)),
-              axisLabel: { color: "#7a8ba0", rotate: 30 } },
-    yAxis: { type: "value", name: "订单数", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [
-      { name: "A", type: "line", stack: "total", areaStyle: { opacity: 0.6 },
-        data: CURRENT_DATA.daily.map(d => d.A), itemStyle: { color: color.A } },
-      { name: "B", type: "line", stack: "total", areaStyle: { opacity: 0.6 },
-        data: CURRENT_DATA.daily.map(d => d.B), itemStyle: { color: color.B } },
-      { name: "C", type: "line", stack: "total", areaStyle: { opacity: 0.6 },
-        data: CURRENT_DATA.daily.map(d => d.C), itemStyle: { color: color.C } },
-      { name: "D", type: "line", stack: "total", areaStyle: { opacity: 0.6 },
-        data: CURRENT_DATA.daily.map(d => d.D), itemStyle: { color: color.D } },
-    ],
-  });
-
-  // 利润柱+线
-  createChart("chart-profit", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    legend: { ...baseEchartsOpt.legend, data: ["总利润", "单均利润"] },
-    xAxis: { type: "category", data: CURRENT_DATA.daily.map(d => fmt.date(d.date)),
-              axisLabel: { color: "#7a8ba0", rotate: 30 } },
-    yAxis: [
-      { type: "value", name: "总利润(元)", axisLabel: { color: "#7a8ba0" },
-        splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-      { type: "value", name: "单均(元)", axisLabel: { color: "#7a8ba0" },
-        splitLine: { show: false } },
-    ],
-    series: [
-      { name: "总利润", type: "bar",
-        data: CURRENT_DATA.daily.map(d => ({
-          value: d.profit_sum,
-          itemStyle: { color: d.profit_sum >= 0 ? color.A : color.D }
-        })) },
-      { name: "单均利润", type: "line", yAxisIndex: 1,
-        data: CURRENT_DATA.daily.map(d => d.avg_profit),
-        itemStyle: { color: color.cyan }, smooth: true },
-    ],
-  });
-
-  // 盈利占比
-  createChart("chart-posRate", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    xAxis: { type: "category", data: CURRENT_DATA.daily.map(d => fmt.date(d.date)),
-              axisLabel: { color: "#7a8ba0", rotate: 30 } },
-    yAxis: { type: "value", name: "盈利订单占比(%)", max: 60, min: 0,
-              axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{
-      name: "盈利占比", type: "line", smooth: true,
-      data: CURRENT_DATA.daily.map(d => d.profit_pos_rate),
-      itemStyle: { color: color.A },
-      areaStyle: { color: { type: "linear", x: 0, y: 0, x2: 0, y2: 1,
-        colorStops: [{ offset: 0, color: "rgba(0,255,136,0.4)" },
-                     { offset: 1, color: "rgba(0,255,136,0.05)" }] } },
-    }],
-  });
-}
-
-/* ============== 页面：航司深度 ============== */
 function renderAirline() {
   // 2026-07-20 优化：航司分析全量展示，去掉航司中文名（只保留二字代码），表格自适应
   const top = CURRENT_DATA.airline;
@@ -1768,22 +1493,6 @@ function renderPlatform() {
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">🛒 采购渠道（${CURRENT_DATA.channel.length} 个 · Top 15）</div>
-      <div class="grid-2x2">
-        <div class="chart-box">
-          <div class="chart-title">📊 渠道订单量 Top 15</div>
-          <div id="chart-channelBar" class="chart-area" style="height:380px"></div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">💸 渠道利润 Top 15</div>
-          <div id="chart-channelProfit" class="chart-area" style="height:380px"></div>
-        </div>
-      </div>
-    </div>
-  `;
-  document.getElementById("mainArea").innerHTML = html;
-
   // 平台 - 散点：x=订单量 y=总利润 size=D单量
   createChart("chart-platform", {
     ...baseEchartsOpt,
@@ -1824,37 +1533,149 @@ function renderPlatform() {
         color: "#e0e6f0", formatter: p => fmt.avg(p.value) },
     }],
   });
+}
 
-  const topChannel = CURRENT_DATA.channel.slice(0, 15);
-  // 渠道订单量
+/* ============== 页面：渠道分析（2026-07-20 新增）============== */
+function renderChannel() {
+  const chList = CURRENT_DATA.channel || [];
+  const html = `
+    <div class="section">
+      <div class="section-title">🛒 渠道维度（${chList.length} 个 · 全量）
+        <span class="badge badge-info">按订单量排序</span>
+      </div>
+      <div class="grid-2x2">
+        <div class="chart-box">
+          <div class="chart-title">📊 渠道订单量（全量）</div>
+          <div id="chart-channelBar" class="chart-area" style="height:${Math.max(380, chList.length * 20 + 40)}px"></div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">💸 渠道总利润（全量）</div>
+          <div id="chart-channelProfit" class="chart-area" style="height:${Math.max(380, chList.length * 20 + 40)}px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🎯 渠道自动化效率分析
+        <span class="badge badge-warn">识别"高单量但低自动化"渠道</span>
+      </div>
+      <div class="grid-2x2">
+        <div class="chart-box">
+          <div class="chart-title">📈 渠道覆盖率 vs 单均利润（散点）</div>
+          <div id="chart-channelCoverage" class="chart-area" style="height:380px"></div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">💰 渠道单均利润排名（全量）</div>
+          <div id="chart-channelAvgProfit" class="chart-area" style="height:${Math.max(380, chList.length * 20 + 40)}px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📋 渠道明细表</div>
+      <div style="max-height: 600px; overflow-y: auto;">
+        <table class="data-table">
+          <thead>
+            <tr><th>渠道</th><th>订单</th><th>A</th><th>B</th><th>C</th><th>D</th><th>覆盖率</th><th>成功率</th><th>单均</th><th>总利润</th></tr>
+          </thead>
+          <tbody>
+            ${chList.map(c => `
+              <tr>
+                <td><b>${c.channel}</b></td>
+                <td>${fmt.num(c.total)}</td>
+                <td>${fmt.num(c.A)}</td>
+                <td>${fmt.num(c.B)}</td>
+                <td>${fmt.num(c.C)}</td>
+                <td class="${c.D > 100 ? 'neg' : ''}">${fmt.num(c.D)}</td>
+                <td>${fmt.pct(c.auto_coverage_rate)}</td>
+                <td>${fmt.pct(c.auto_succ_rate)}</td>
+                <td class="${c.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(c.avg_profit)}</td>
+                <td class="${c.profit_sum >= 0 ? 'pos' : 'neg'}">¥${fmt.money(c.profit_sum)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+  document.getElementById("mainArea").innerHTML = html;
+
+  // 1. 渠道订单量（垂直柱图 / 全量）
   createChart("chart-channelBar", {
     ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 60, right: 30, top: 20, bottom: 80 },
-    xAxis: { type: "category", data: topChannel.map(c => c.channel).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10 } },
+    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
+      formatter: p => `${p[0].name}<br>${fmt.num(p[0].value)} 单` },
+    grid: { left: 60, right: 30, top: 20, bottom: 120 },
+    xAxis: { type: "category", data: chList.map(c => c.channel).reverse(),
+              axisLabel: { color: "#7a8ba0", rotate: 60, fontSize: 9,
+                          interval: Math.max(0, Math.floor(chList.length / 30) - 1) } },
     yAxis: { type: "value", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{ type: "bar", data: topChannel.map(c => c.total).reverse(),
-      itemStyle: { color: color.cyan } }],
+    series: [{
+      type: "bar", data: chList.map(c => c.total).reverse(),
+      itemStyle: { color: color.cyan },
+      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 9,
+              formatter: p => fmt.num(p.value) },
+    }],
   });
 
-  // 渠道利润
+  // 2. 渠道总利润（横向柱图 / 全量）
   createChart("chart-channelProfit", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 70, right: 30, top: 20, bottom: 80 },
+    grid: { left: 100, right: 30, top: 20, bottom: 20 },
     xAxis: { type: "value", name: "总利润(元)", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "category", data: topChannel.map(c => c.channel).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10 } },
+    yAxis: { type: "category", data: chList.map(c => c.channel).reverse(),
+              axisLabel: { color: "#7a8ba0", fontSize: 9,
+                          interval: Math.max(0, Math.floor(chList.length / 30) - 1) } },
     series: [{
-      type: "bar", data: topChannel.map(c => ({
-        value: c.profit_sum,
-        itemStyle: { color: c.profit_sum >= 0 ? color.A : color.D }
-      })).reverse(),
+      type: "bar", data: chList.map(c => c.profit_sum).reverse(),
+      itemStyle: { color: p => p.data >= 0 ? color.A : color.D },
       label: { show: true, position: "right", color: "#e0e6f0",
-        formatter: p => (p.value >= 0 ? "+" : "") + Math.round(p.value).toLocaleString() },
+              formatter: p => (p.value >= 0 ? "+" : "") + Math.round(p.value).toLocaleString() },
+    }],
+  });
+
+  // 3. 渠道散点：x=覆盖率 y=单均利润 size=订单量
+  createChart("chart-channelCoverage", {
+    ...baseEchartsOpt,
+    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
+      formatter: p => `<b>${p.data.channel}</b><br>订单: ${fmt.num(p.data.total)}<br>覆盖率: ${p.value[0].toFixed(1)}%<br>成功率: ${p.data.auto_succ_rate.toFixed(1)}%<br>单均: ${fmt.avg(p.value[1])}<br>总利润: ¥${fmt.money(p.data.profit_sum)}` },
+    xAxis: { type: "value", name: "自动化覆盖率(%)", min: 50, max: 100,
+              axisLabel: { color: "#7a8ba0" },
+              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    yAxis: { type: "value", name: "单均利润(元)",
+              axisLabel: { color: "#7a8ba0" },
+              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    series: [{
+      type: "scatter",
+      data: chList.map(c => ({
+        channel: c.channel, value: [c.auto_coverage_rate, c.avg_profit],
+        total: c.total, profit_sum: c.profit_sum, auto_succ_rate: c.auto_succ_rate,
+      })),
+      symbolSize: d => Math.max(10, Math.min(60, Math.sqrt(d.total) / 5)),
+      itemStyle: { color: p => p.data.profit_sum >= 0 ? color.A : color.D, opacity: 0.75 },
+      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
+              formatter: p => p.data.channel },
+    }],
+  });
+
+  // 4. 渠道单均利润排名（横向柱图 / 全量）
+  createChart("chart-channelAvgProfit", {
+    ...baseEchartsOpt,
+    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
+    grid: { left: 100, right: 30, top: 20, bottom: 20 },
+    xAxis: { type: "value", name: "单均利润(元)", axisLabel: { color: "#7a8ba0" },
+              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    yAxis: { type: "category", data: chList.map(c => c.channel).reverse(),
+              axisLabel: { color: "#7a8ba0", fontSize: 9,
+                          interval: Math.max(0, Math.floor(chList.length / 30) - 1) } },
+    series: [{
+      type: "bar", data: chList.map(c => c.avg_profit).reverse(),
+      itemStyle: { color: p => p.data >= 0 ? color.A : color.D },
+      label: { show: true, position: "right", color: "#e0e6f0",
+              formatter: p => fmt.avg(p.value) },
     }],
   });
 }
@@ -3005,11 +2826,10 @@ function renderAll() {
   });
   switch (page) {
     case "overview": renderOverview(); break;
-    case "trend": renderTrend(); break;
     case "hourly": renderHourly(); break;
-    case "weekly": renderWeekly(); break;
     case "airline": renderAirline(); break;
     case "platform": renderPlatform(); break;
+    case "channel": renderChannel(); break;
     case "staff": renderStaff(); break;
     case "failAnalysis": renderFailureAnalysis(); break;
     // 兼容旧 hash（如果用户收藏了 /stage 或 /fail）
