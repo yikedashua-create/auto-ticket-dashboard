@@ -31,7 +31,7 @@ except Exception:
 # ============== 配置 ==============
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 GEN_SCRIPT = os.path.join(SCRIPT_DIR, "gen_dashboard_data.py")
-DATA_DIR = r"C:\Users\admin\Desktop\出票总订单数据"
+DATA_DIR = r"E:\Work\Data\订单\出票总订单数据"
 GIT_REMOTE = "origin"
 GIT_BRANCH = "main"
 BJ_TZ = timezone(timedelta(hours=8))

@@ -389,11 +389,11 @@
   <div class="layout">
     <div class="sidebar">
       <div class="logo">🚀 出票看板 v5</div>
-      <div class="nav-item active" data-page="overview">🏠 业务健康度总览</div>
+      <div class="nav-item active" data-page="overview">🤖 自动化数据KPI</div>
       <div class="nav-item" data-page="trend">📈 31天趋势分析</div>
       <div class="nav-item" data-page="hourly">⏰ 今日时段</div>
       <div class="nav-item" data-page="weekly">📊 周对比</div>
-      <div class="nav-item" data-page="airline">✈️ 航司深度分析</div>
+      <div class="nav-item" data-page="airline">✈️ 航司分析</div>
       <div class="nav-item" data-page="platform">🏢 平台渠道</div>
       <div class="nav-item" data-page="staff">👥 人员绩效</div>
       <div class="nav-item" data-page="failAnalysis">🔍 失败分析</div>
@@ -854,24 +854,6 @@ function renderOverview() {
       </div>
     </div>
 
-    <div class="section">
-      <div class="section-title" id="insightsTitle">🚨 关键洞察（${monthLabel}）
-        <span class="badge badge-danger">${(CURRENT_DATA.insights || []).length} 条</span>
-      </div>
-      ${(CURRENT_DATA.insights || []).map(i => `
-        <div class="insight-box ${i.level}">
-          <div class="insight-title">${i.title}</div>
-          ${i.text}
-        </div>
-      `).join("")}
-    </div>
-
-    <div class="section">
-      <div class="section-title">📈 31 天关键指标走势
-        <span class="badge badge-info">点击图例可隐藏/显示</span>
-      </div>
-      <div id="chart-dailyTrend" class="chart-area" style="height:340px"></div>
-    </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
 
@@ -939,36 +921,6 @@ function renderOverview() {
       { name: "单均利润", type: "line", yAxisIndex: 1, data: profByPath.map(p => p.avg),
         itemStyle: { color: color.cyan }, lineStyle: { color: color.cyan, width: 2 },
         symbolSize: 8 },
-    ],
-  });
-
-  // 31 天多指标趋势
-  createChart("chart-dailyTrend", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    legend: { ...baseEchartsOpt.legend, data: ["订单量", "自动化覆盖率%", "B路径占比%", "单均利润"] },
-    xAxis: { type: "category", data: CURRENT_DATA.daily.map(d => fmt.date(d.date)),
-              axisLabel: { color: "#7a8ba0", rotate: 30 } },
-    yAxis: [
-      { type: "value", name: "订单量", axisLabel: { color: "#7a8ba0" },
-        splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-      { type: "value", name: "比率(%)/利润(元)", axisLabel: { color: "#7a8ba0" },
-        splitLine: { show: false } },
-    ],
-    series: [
-      { name: "订单量", type: "bar", yAxisIndex: 0,
-        data: CURRENT_DATA.daily.map(d => d.total),
-        itemStyle: { color: color.cyan, opacity: 0.6 } },
-      { name: "自动化覆盖率%", type: "line", yAxisIndex: 1,
-        data: CURRENT_DATA.daily.map(d => d.auto_coverage_rate),
-        itemStyle: { color: color.A }, smooth: true },
-      { name: "B路径占比%", type: "line", yAxisIndex: 1,
-        data: CURRENT_DATA.daily.map(d => d.B_ratio),
-        itemStyle: { color: color.B }, smooth: true },
-      { name: "单均利润", type: "line", yAxisIndex: 1,
-        data: CURRENT_DATA.daily.map(d => d.avg_profit),
-        itemStyle: { color: "#ff6348" }, smooth: true,
-        lineStyle: { type: "dashed" } },
     ],
   });
 }
@@ -1511,11 +1463,11 @@ function renderTrend() {
 
 /* ============== 页面：航司深度 ============== */
 function renderAirline() {
-  // 2026-07-18 优化：航司深度分析全量展示（不是 Top 15）
+  // 2026-07-20 优化：航司分析全量展示，去掉航司中文名（只保留二字代码），表格自适应
   const top = CURRENT_DATA.airline;
   const html = `
     <div class="section">
-      <div class="section-title">✈️ 航司排名（全量 · 按订单量）
+      <div class="section-title">✈️ 航司排名（全量 · 按订单量 · 仅二字代码）
         <span class="badge badge-info">${CURRENT_DATA.airline.length} 个航司</span>
       </div>
       <div class="grid-2x2">
@@ -1525,7 +1477,7 @@ function renderAirline() {
         </div>
         <div class="chart-box">
           <div class="chart-title">💸 航司利润率（按总利润）</div>
-          <div id="chart-airlineProfit" class="chart-area" style="height:380px"></div>
+          <div id="chart-airlineProfit" class="chart-area" style="height:${Math.max(380, top.length * 20 + 40)}px"></div>
         </div>
       </div>
     </div>
@@ -1538,17 +1490,16 @@ function renderAirline() {
     </div>
 
     <div class="section">
-      <div class="section-title">📋 航司明细表</div>
-      <div style="max-height: 500px; overflow-y: auto;">
+      <div class="section-title">📋 航司明细表（仅二字代码）</div>
+      <div style="max-height: 600px; overflow-y: auto;">
         <table class="data-table">
           <thead>
-            <tr><th>航司</th><th>中文名</th><th>订单</th><th>覆盖率</th><th>成功率</th><th>B%</th><th>D%</th><th>单均利润</th><th>总利润</th></tr>
+            <tr><th>航司</th><th>订单</th><th>覆盖率</th><th>成功率</th><th>B%</th><th>D%</th><th>单均利润</th><th>总利润</th></tr>
           </thead>
           <tbody>
             ${CURRENT_DATA.airline.map(a => `
               <tr>
                 <td><b>${a.airline}</b></td>
-                <td>${a.name}</td>
                 <td>${fmt.num(a.total)}</td>
                 <td>${fmt.pct(a.auto_coverage_rate)}</td>
                 <td>${fmt.pct(a.auto_succ_rate)}</td>
@@ -1571,7 +1522,7 @@ function renderAirline() {
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
       formatter: p => `${p[0].name}<br>${fmt.num(p[0].value)} 单` },
     grid: { left: 50, right: 30, top: 20, bottom: 120 },
-    xAxis: { type: "category", data: top.map(a => a.airline + " " + a.name),
+    xAxis: { type: "category", data: top.map(a => a.airline),
               axisLabel: { color: "#7a8ba0", rotate: 60, fontSize: 9, interval: Math.max(0, Math.floor(top.length / 30) - 1) } },
     yAxis: { type: "value", name: "订单量", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
@@ -1590,7 +1541,7 @@ function renderAirline() {
     grid: { left: 90, right: 30, top: 20, bottom: 20 },
     xAxis: { type: "value", name: "利润(元)", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "category", data: top.map(a => a.airline + " " + a.name).reverse(),
+    yAxis: { type: "category", data: top.map(a => a.airline).reverse(),
               axisLabel: { color: "#7a8ba0", fontSize: 9, interval: Math.max(0, Math.floor(top.length / 30) - 1) } },
     series: [{
       type: "bar", data: top.map(a => a.profit_sum).reverse(),
@@ -1605,7 +1556,7 @@ function renderAirline() {
 
   // 气泡图
   const bubbleData = CURRENT_DATA.airline.map(a => ({
-    name: a.airline + " " + a.name,
+    name: a.airline,
     value: [a.auto_coverage_rate, a.avg_profit, a.total],
     total: a.total,
     profit: a.profit_sum,
