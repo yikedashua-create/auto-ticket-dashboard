@@ -153,6 +153,21 @@
   .kpi.warning { border-color: #ffa50280; }
   .kpi.danger { border-color: #ff475780; }
   .kpi.success { border-color: #00ff8880; }
+  /* 2026-07-20 新增: KPI 卡片颜色按对比变化动态切换
+   * 正向指标 (good): 涨=绿(up-good) 跌=红(down-good) 不变=黄(flat)
+   * 负向指标 (bad) : 涨=红(up-bad)  跌=绿(down-bad)  不变=黄(flat)
+   * 用法: <div class="kpi up-good"> 或 <div class="kpi down-bad"> ...
+   */
+  .kpi.up-good { border-color: #00ff8880; }
+  .kpi.up-good .kpi-value { color: #00ff88; }
+  .kpi.up-bad { border-color: #ff475780; }
+  .kpi.up-bad .kpi-value { color: #ff4757; }
+  .kpi.down-good { border-color: #ff475780; }
+  .kpi.down-good .kpi-value { color: #ff4757; }
+  .kpi.down-bad { border-color: #00ff8880; }
+  .kpi.down-bad .kpi-value { color: #00ff88; }
+  .kpi.flat { border-color: #ffa50280; }
+  .kpi.flat .kpi-value { color: #ffa502; }
   .kpi-label {
     color: #7a8ba0;
     font-size: 12px;
@@ -898,6 +913,21 @@ function renderOverview() {
     : (CURRENT_DAY !== "all" ? `${CURRENT_MONTH} ${CURRENT_DAY} 日` : CURRENT_MONTH));
   const cs = COMPARE_DATA ? COMPARE_DATA.summary : null;  // 对比基准 summary
   const cmpBadge = (cur, base, mode, isPct, isMoney = false) => cs ? fmt.cmp(cur, base, mode, isPct, isMoney) : `<span class="cmp-no">无对比基准</span>`;
+  // 2026-07-20 新增: KPI 卡片颜色按对比变化动态切换
+  //   正向指标 (good): 涨=绿 跌=红 不变=黄  (订单/航段/A/覆盖率/成功率)
+  //   负向指标 (bad) : 涨=红 跌=绿 不变=黄  (B 失败/C 转人工)
+  //   返回: "up-good" / "down-good" / "up-bad" / "down-bad" / "flat" / ""
+  const trendCls = (cur, base) => {
+    if (!cs) return "";
+    if (cur == null || base == null) return "";
+    if (cur > base) return "up";
+    if (cur < base) return "down";
+    return "flat";
+  };
+  const kpiCls = (cur, base, type) => {
+    const t = trendCls(cur, base);
+    return t ? `${t}-${type}` : "";
+  };
 
   const html = `
     <div class="section">
@@ -906,43 +936,43 @@ function renderOverview() {
         ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
       </div>
       <div class="kpi-row cols-7">
-        <div class="kpi">
+        <div class="kpi ${kpiCls(s.total_orders, cs && cs.total_orders, 'good')}">
           <div class="kpi-label">📦 订单总数</div>
           <div class="kpi-value">${fmt.num(s.total_orders)}</div>
           <div class="kpi-sub">${s.total_days} 天总单</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.total_orders, cs.total_orders, "amount", false) : ""}</div>
         </div>
-        <div class="kpi">
+        <div class="kpi ${kpiCls(s.total_segments, cs && cs.total_segments, 'good')}">
           <div class="kpi-label">✈️ 航段总数</div>
           <div class="kpi-value">${fmt.num(s.total_segments)}</div>
           <div class="kpi-sub">一票 = 1 段 · 往返 = 2 段</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.total_segments, cs.total_segments, "amount", false) : ""}</div>
         </div>
-        <div class="kpi success">
+        <div class="kpi ${kpiCls(s.A, cs && cs.A, 'good')}">
           <div class="kpi-label">✅ 全自动成功</div>
-          <div class="kpi-value green">${fmt.num(s.A)}</div>
+          <div class="kpi-value">${fmt.num(s.A)}</div>
           <div class="kpi-sub">A 路径 · 占比 ${fmt.pct(s.A / s.total_orders * 100)}</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.A, cs.A, "amount", false) : ""}</div>
         </div>
-        <div class="kpi danger">
+        <div class="kpi ${kpiCls(s.B, cs && cs.B, 'bad')}">
           <div class="kpi-label">❌ 全自动失败</div>
-          <div class="kpi-value red">${fmt.num(s.B)}</div>
+          <div class="kpi-value">${fmt.num(s.B)}</div>
           <div class="kpi-sub">B 路径 · 占比 ${fmt.pct(s.B / s.total_orders * 100)}</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.B, cs.B, "amount", false) : ""}</div>
         </div>
-        <div class="kpi warning">
+        <div class="kpi ${kpiCls(s.C, cs && cs.C, 'bad')}">
           <div class="kpi-label">🛒 订单转人工</div>
-          <div class="kpi-value yellow">${fmt.num(s.C)}</div>
+          <div class="kpi-value">${fmt.num(s.C)}</div>
           <div class="kpi-sub">C 路径 · 占比 ${fmt.pct(s.C / s.total_orders * 100)}</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.C, cs.C, "amount", false) : ""}</div>
         </div>
-        <div class="kpi success">
+        <div class="kpi ${kpiCls(s.auto_coverage_rate, cs && cs.auto_coverage_rate, 'good')}">
           <div class="kpi-label">📈 全自动覆盖率</div>
-          <div class="kpi-value green">${fmt.pct(s.auto_coverage_rate)}</div>
+          <div class="kpi-value">${fmt.pct(s.auto_coverage_rate)}</div>
           <div class="kpi-sub">A+B 占比 · ${fmt.num(s.A+s.B)} 单</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_coverage_rate, cs.auto_coverage_rate, "rate", true) : ""}</div>
         </div>
-        <div class="kpi">
+        <div class="kpi ${kpiCls(s.auto_succ_rate, cs && cs.auto_succ_rate, 'good')}">
           <div class="kpi-label">🎯 全自动成功率</div>
           <div class="kpi-value">${fmt.pct(s.auto_succ_rate)}</div>
           <div class="kpi-sub">A / (A+B)</div>
