@@ -1261,8 +1261,17 @@ def build_month_data(df, month_label):
     # ========== 4. 航司 维度 ==========
     airline = []
     if "航空公司列表" in df.columns:
-        df["_airline"] = df["航空公司列表"].fillna("").astype(str).str.strip()
-        for air, g in df.groupby("_airline"):
+        # 2026-07-21 修复: 拆分多航司合并订单 (如 "AQ, 9C" → 拆成 2 行)
+        # 之前没 explode 导致 1 单被算成独立"航司"，X 轴出现 9C 第二次
+        air_raw = df["航空公司列表"].fillna("").astype(str).str.strip()
+        valid_mask = air_raw != ""
+        air_split = air_raw[valid_mask].str.split(r"[,,;；\s]+", regex=True)
+        air_exploded = air_split.explode()
+        air_exploded = air_exploded[air_exploded.str.strip() != ""]
+        # 用 air_exploded 的 index 去 df 拿对应行（保持对齐）
+        df_air = df.loc[air_exploded.index].copy()
+        df_air["_airline"] = air_exploded.values
+        for air, g in df_air.groupby("_airline"):
             if not air:
                 continue
             n = len(g)
@@ -1273,6 +1282,9 @@ def build_month_data(df, month_label):
             p = safe_num(g["利润"])
             psum = float(p.sum()) if len(p) else 0
             pavg = float(p.mean()) if len(p) else 0
+            # 2026-07-21: 加 tier 分层（用于前端按段着色）
+            # core: ≥1000 单（主力）, mid: 100-999（中等）, tail: 1-99（长尾）
+            tier = "core" if n >= 1000 else ("mid" if n >= 100 else "tail")
             airline.append({
                 "airline": air,
                 "name": AIRLINE_NAME.get(air, air),
@@ -1283,8 +1295,36 @@ def build_month_data(df, month_label):
                 "D_ratio": round(d/n*100, 2) if n else 0,
                 "profit_sum": round(psum, 2),
                 "avg_profit": round(pavg, 2),
+                "tier": tier,
             })
         airline.sort(key=lambda x: -x["total"])
+        # 2026-07-21: 长尾过滤（total < 5 归"其他"），避免 1 单 2 单的航司占位
+        THRESHOLD = 5
+        main_airlines = [a for a in airline if a["total"] >= THRESHOLD]
+        others = [a for a in airline if a["total"] < THRESHOLD]
+        if others:
+            o_total = sum(a["total"] for a in others)
+            o_A = sum(a["A"] for a in others)
+            o_B = sum(a["B"] for a in others)
+            o_C = sum(a["C"] for a in others)
+            o_D = sum(a["D"] for a in others)
+            o_profit = sum(a["profit_sum"] for a in others)
+            main_airlines.append({
+                "airline": f"其他（{len(others)}个长尾）",
+                "name": "其他",
+                "total": o_total,
+                "A": o_A, "B": o_B, "C": o_C, "D": o_D,
+                "auto_coverage_rate": round((o_A+o_B)/o_total*100, 2) if o_total else 0,
+                "auto_succ_rate": round(o_A/(o_A+o_B)*100, 2) if (o_A+o_B) else 0,
+                "B_ratio": round(o_B/o_total*100, 2) if o_total else 0,
+                "D_ratio": round(o_D/o_total*100, 2) if o_total else 0,
+                "profit_sum": round(o_profit, 2),
+                "avg_profit": round(o_profit/o_total, 2) if o_total else 0,
+                "tier": "tail",
+                "is_other": True,  # 2026-07-21 标记: 方便前端判断
+            })
+        main_airlines.sort(key=lambda x: (-x["total"], x["airline"]))
+        airline = main_airlines
     out["airline"] = airline
 
     # ========== 5. 平台 维度 ==========

@@ -1016,7 +1016,8 @@
       "B_ratio": 13.18,
       "D_ratio": 3.75,
       "profit_sum": -518162.37,
-      "avg_profit": -12.15
+      "avg_profit": -12.15,
+      "tier": "core"
     },
     {
       "airline": "AQ",
@@ -1031,7 +1032,8 @@
       "B_ratio": 8.64,
       "D_ratio": 1.79,
       "profit_sum": -77828.98,
-      "avg_profit": -10.29
+      "avg_profit": -10.29,
+      "tier": "core"
     },
     {
       "airline": "MM",
@@ -1046,7 +1048,8 @@
       "B_ratio": 30.64,
       "D_ratio": 0.84,
       "profit_sum": -7362.52,
-      "avg_profit": -1.16
+      "avg_profit": -1.16,
+      "tier": "core"
     },
     {
       "airline": "VJ",
@@ -1061,7 +1064,8 @@
       "B_ratio": 26.23,
       "D_ratio": 1.64,
       "profit_sum": 14875.69,
-      "avg_profit": 3.47
+      "avg_profit": 3.47,
+      "tier": "core"
     },
     {
       "airline": "MF",
@@ -1076,7 +1080,8 @@
       "B_ratio": 70.44,
       "D_ratio": 2.06,
       "profit_sum": -71788.95,
-      "avg_profit": -35.68
+      "avg_profit": -35.68,
+      "tier": "core"
     },
     {
       "airline": "SL",
@@ -1091,7 +1096,8 @@
       "B_ratio": 36.04,
       "D_ratio": 0.9,
       "profit_sum": 9984.15,
-      "avg_profit": 5.03
+      "avg_profit": 5.03,
+      "tier": "core"
     },
     {
       "airline": "HX",
@@ -1106,7 +1112,8 @@
       "B_ratio": 34.78,
       "D_ratio": 0.51,
       "profit_sum": -50560.67,
-      "avg_profit": -25.76
+      "avg_profit": -25.76,
+      "tier": "core"
     },
     {
       "airline": "TR",
@@ -1121,7 +1128,8 @@
       "B_ratio": 6.7,
       "D_ratio": 0.0,
       "profit_sum": 67648.7,
-      "avg_profit": 36.16
+      "avg_profit": 36.16,
+      "tier": "core"
     },
     {
       "airline": "IJ",
@@ -1136,7 +1144,8 @@
       "B_ratio": 31.18,
       "D_ratio": 2.23,
       "profit_sum": 8581.5,
-      "avg_profit": 9.37
+      "avg_profit": 9.37,
+      "tier": "mid"
     },
     {
       "airline": "DD",
@@ -1151,7 +1160,8 @@
       "B_ratio": 7.51,
       "D_ratio": 0.54,
       "profit_sum": 12415.01,
-      "avg_profit": 17.44
+      "avg_profit": 17.44,
+      "tier": "mid"
     },
     {
       "airline": "FD",
@@ -1166,7 +1176,8 @@
       "B_ratio": 25.71,
       "D_ratio": 0.14,
       "profit_sum": 10123.88,
-      "avg_profit": 13.83
+      "avg_profit": 13.83,
+      "tier": "mid"
     },
     {
       "airline": "HO",
@@ -1181,7 +1192,8 @@
       "B_ratio": 30.13,
       "D_ratio": 1.89,
       "profit_sum": -19164.25,
-      "avg_profit": -28.39
+      "avg_profit": -28.39,
+      "tier": "mid"
     },
     {
       "airline": "PC",
@@ -1196,7 +1208,8 @@
       "B_ratio": 1.14,
       "D_ratio": 0.0,
       "profit_sum": 5260.92,
-      "avg_profit": 23.7
+      "avg_profit": 23.7,
+      "tier": "mid"
     },
     {
       "airline": "LJ",
@@ -1211,7 +1224,8 @@
       "B_ratio": 63.47,
       "D_ratio": 4.11,
       "profit_sum": -3158.57,
-      "avg_profit": -14.83
+      "avg_profit": -14.83,
+      "tier": "mid"
     },
     {
       "airline": "VZ",
@@ -1226,7 +1240,8 @@
       "B_ratio": 40.93,
       "D_ratio": 0.0,
       "profit_sum": -417.89,
-      "avg_profit": -1.94
+      "avg_profit": -1.94,
+      "tier": "mid"
     },
     {
       "airline": "BC",
@@ -1241,7 +1256,8 @@
       "B_ratio": 95.9,
       "D_ratio": 0.0,
       "profit_sum": -150.89,
-      "avg_profit": -0.77
+      "avg_profit": -0.77,
+      "tier": "mid"
     },
     {
       "airline": "FR",
@@ -1256,7 +1272,8 @@
       "B_ratio": 47.78,
       "D_ratio": 7.22,
       "profit_sum": -2658.03,
-      "avg_profit": -16.21
+      "avg_profit": -16.21,
+      "tier": "mid"
     },
     {
       "airline": "TO",
@@ -1271,7 +1288,8 @@
       "B_ratio": 29.17,
       "D_ratio": 0.0,
       "profit_sum": 260.44,
-      "avg_profit": 2.99
+      "avg_profit": 2.99,
+      "tier": "tail"
     },
     {
       "airline": "Z2",
@@ -1286,7 +1304,8 @@
       "B_ratio": 75.27,
       "D_ratio": 1.08,
       "profit_sum": -1591.54,
-      "avg_profit": -17.3
+      "avg_profit": -17.3,
+      "tier": "tail"
     },
     {
       "airline": "KR",
@@ -1301,7 +1320,8 @@
       "B_ratio": 53.01,
       "D_ratio": 0.0,
       "profit_sum": -3296.97,
-      "avg_profit": -40.21
+      "avg_profit": -40.21,
+      "tier": "tail"
     },
     {
       "airline": "VF",
@@ -1316,7 +1336,8 @@
       "B_ratio": 0.0,
       "D_ratio": 1.3,
       "profit_sum": -209.98,
-      "avg_profit": -3.18
+      "avg_profit": -3.18,
+      "tier": "tail"
     },
     {
       "airline": "FY",
@@ -1331,7 +1352,8 @@
       "B_ratio": 89.19,
       "D_ratio": 4.05,
       "profit_sum": -1703.24,
-      "avg_profit": -23.99
+      "avg_profit": -23.99,
+      "tier": "tail"
     },
     {
       "airline": "5J",
@@ -1346,7 +1368,8 @@
       "B_ratio": 87.88,
       "D_ratio": 4.55,
       "profit_sum": -1621.36,
-      "avg_profit": -25.74
+      "avg_profit": -25.74,
+      "tier": "tail"
     },
     {
       "airline": "EW",
@@ -1361,7 +1384,8 @@
       "B_ratio": 1.54,
       "D_ratio": 6.15,
       "profit_sum": 866.26,
-      "avg_profit": 14.94
+      "avg_profit": 14.94,
+      "tier": "tail"
     },
     {
       "airline": "GQ",
@@ -1376,7 +1400,25 @@
       "B_ratio": 0.0,
       "D_ratio": 0.0,
       "profit_sum": -539.53,
-      "avg_profit": -19.27
+      "avg_profit": -19.27,
+      "tier": "tail"
+    },
+    {
+      "airline": "其他（9个长尾）",
+      "name": "其他",
+      "total": 25,
+      "A": 1,
+      "B": 11,
+      "C": 11,
+      "D": 2,
+      "auto_coverage_rate": 48.0,
+      "auto_succ_rate": 8.33,
+      "B_ratio": 44.0,
+      "D_ratio": 8.0,
+      "profit_sum": -786.58,
+      "avg_profit": -31.46,
+      "tier": "tail",
+      "is_other": true
     },
     {
       "airline": "F9",
@@ -1391,7 +1433,8 @@
       "B_ratio": 0.0,
       "D_ratio": 0.0,
       "profit_sum": 1129.94,
-      "avg_profit": 49.13
+      "avg_profit": 49.13,
+      "tier": "tail"
     },
     {
       "airline": "J9",
@@ -1406,7 +1449,8 @@
       "B_ratio": 4.35,
       "D_ratio": 0.0,
       "profit_sum": -629.29,
-      "avg_profit": -27.36
+      "avg_profit": -27.36,
+      "tier": "tail"
     },
     {
       "airline": "OD",
@@ -1421,7 +1465,8 @@
       "B_ratio": 100.0,
       "D_ratio": 0.0,
       "profit_sum": 8.69,
-      "avg_profit": 0.4
+      "avg_profit": 0.4,
+      "tier": "tail"
     },
     {
       "airline": "VY",
@@ -1436,7 +1481,8 @@
       "B_ratio": 0.0,
       "D_ratio": 0.0,
       "profit_sum": -247.93,
-      "avg_profit": -13.77
+      "avg_profit": -13.77,
+      "tier": "tail"
     },
     {
       "airline": "F3",
@@ -1451,7 +1497,8 @@
       "B_ratio": 70.59,
       "D_ratio": 0.0,
       "profit_sum": -488.81,
-      "avg_profit": -34.92
+      "avg_profit": -34.92,
+      "tier": "tail"
     },
     {
       "airline": "F8",
@@ -1466,7 +1513,8 @@
       "B_ratio": 23.53,
       "D_ratio": 5.88,
       "profit_sum": -929.01,
-      "avg_profit": -61.93
+      "avg_profit": -61.93,
+      "tier": "tail"
     },
     {
       "airline": "IT",
@@ -1481,142 +1529,8 @@
       "B_ratio": 11.11,
       "D_ratio": 0.0,
       "profit_sum": 383.82,
-      "avg_profit": 42.65
-    },
-    {
-      "airline": "HB",
-      "name": "HB",
-      "total": 4,
-      "A": 0,
-      "B": 4,
-      "C": 0,
-      "D": 0,
-      "auto_coverage_rate": 100.0,
-      "auto_succ_rate": 0.0,
-      "B_ratio": 100.0,
-      "D_ratio": 0.0,
-      "profit_sum": 84.71,
-      "avg_profit": 21.18
-    },
-    {
-      "airline": "QG",
-      "name": "QG",
-      "total": 4,
-      "A": 0,
-      "B": 0,
-      "C": 4,
-      "D": 0,
-      "auto_coverage_rate": 0.0,
-      "auto_succ_rate": 0,
-      "B_ratio": 0.0,
-      "D_ratio": 0.0,
-      "profit_sum": -38.97,
-      "avg_profit": -9.74
-    },
-    {
-      "airline": "UO",
-      "name": "UO",
-      "total": 4,
-      "A": 0,
-      "B": 4,
-      "C": 0,
-      "D": 0,
-      "auto_coverage_rate": 100.0,
-      "auto_succ_rate": 0.0,
-      "B_ratio": 100.0,
-      "D_ratio": 0.0,
-      "profit_sum": -76.58,
-      "avg_profit": -19.14
-    },
-    {
-      "airline": "AD",
-      "name": "AD",
-      "total": 3,
-      "A": 0,
-      "B": 1,
-      "C": 0,
-      "D": 2,
-      "auto_coverage_rate": 33.33,
-      "auto_succ_rate": 0.0,
-      "B_ratio": 33.33,
-      "D_ratio": 66.67,
-      "profit_sum": -404.56,
-      "avg_profit": -404.56
-    },
-    {
-      "airline": "D7",
-      "name": "亚航X",
-      "total": 3,
-      "A": 0,
-      "B": 0,
-      "C": 3,
-      "D": 0,
-      "auto_coverage_rate": 0.0,
-      "auto_succ_rate": 0,
-      "B_ratio": 0.0,
-      "D_ratio": 0.0,
-      "profit_sum": -134.78,
-      "avg_profit": -44.93
-    },
-    {
-      "airline": "6E",
-      "name": "6E",
-      "total": 2,
-      "A": 0,
-      "B": 2,
-      "C": 0,
-      "D": 0,
-      "auto_coverage_rate": 100.0,
-      "auto_succ_rate": 0.0,
-      "B_ratio": 100.0,
-      "D_ratio": 0.0,
-      "profit_sum": -10.23,
-      "avg_profit": -5.12
-    },
-    {
-      "airline": "IU",
-      "name": "IU",
-      "total": 2,
-      "A": 0,
-      "B": 0,
-      "C": 2,
-      "D": 0,
-      "auto_coverage_rate": 0.0,
-      "auto_succ_rate": 0,
-      "B_ratio": 0.0,
-      "D_ratio": 0.0,
-      "profit_sum": -19.31,
-      "avg_profit": -9.66
-    },
-    {
-      "airline": "JT",
-      "name": "狮航印尼",
-      "total": 2,
-      "A": 0,
-      "B": 0,
-      "C": 2,
-      "D": 0,
-      "auto_coverage_rate": 0.0,
-      "auto_succ_rate": 0,
-      "B_ratio": 0.0,
-      "D_ratio": 0.0,
-      "profit_sum": 59.14,
-      "avg_profit": 29.57
-    },
-    {
-      "airline": "SC",
-      "name": "SC",
-      "total": 1,
-      "A": 1,
-      "B": 0,
-      "C": 0,
-      "D": 0,
-      "auto_coverage_rate": 100.0,
-      "auto_succ_rate": 100.0,
-      "B_ratio": 0.0,
-      "D_ratio": 0.0,
-      "profit_sum": -246.0,
-      "avg_profit": -246.0
+      "avg_profit": 42.65,
+      "tier": "tail"
     }
   ],
   "platform": [
@@ -15663,7 +15577,8 @@
           "B_ratio": 18.48,
           "D_ratio": 1.02,
           "profit_sum": -16553.95,
-          "avg_profit": -11.3
+          "avg_profit": -11.3,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -15678,7 +15593,8 @@
           "B_ratio": 33.47,
           "D_ratio": 0.4,
           "profit_sum": -898.88,
-          "avg_profit": -3.7
+          "avg_profit": -3.7,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -15693,7 +15609,8 @@
           "B_ratio": 4.05,
           "D_ratio": 1.21,
           "profit_sum": -4006.4,
-          "avg_profit": -16.42
+          "avg_profit": -16.42,
+          "tier": "mid"
         },
         {
           "airline": "SL",
@@ -15708,7 +15625,8 @@
           "B_ratio": 53.28,
           "D_ratio": 0.44,
           "profit_sum": 2203.89,
-          "avg_profit": 9.62
+          "avg_profit": 9.62,
+          "tier": "mid"
         },
         {
           "airline": "HO",
@@ -15723,7 +15641,8 @@
           "B_ratio": 40.22,
           "D_ratio": 1.12,
           "profit_sum": -4906.18,
-          "avg_profit": -27.56
+          "avg_profit": -27.56,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -15738,7 +15657,8 @@
           "B_ratio": 25.0,
           "D_ratio": 0.0,
           "profit_sum": 461.05,
-          "avg_profit": 4.61
+          "avg_profit": 4.61,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -15753,7 +15673,8 @@
           "B_ratio": 69.51,
           "D_ratio": 1.22,
           "profit_sum": -1930.43,
-          "avg_profit": -23.83
+          "avg_profit": -23.83,
+          "tier": "tail"
         },
         {
           "airline": "BC",
@@ -15768,7 +15689,8 @@
           "B_ratio": 88.89,
           "D_ratio": 0.0,
           "profit_sum": -52.52,
-          "avg_profit": -0.83
+          "avg_profit": -0.83,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -15783,7 +15705,8 @@
           "B_ratio": 59.68,
           "D_ratio": 0.0,
           "profit_sum": 265.92,
-          "avg_profit": 4.29
+          "avg_profit": 4.29,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -15798,7 +15721,8 @@
           "B_ratio": 15.38,
           "D_ratio": 0.0,
           "profit_sum": -1350.89,
-          "avg_profit": -34.64
+          "avg_profit": -34.64,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -15813,7 +15737,8 @@
           "B_ratio": 78.95,
           "D_ratio": 2.63,
           "profit_sum": 439.71,
-          "avg_profit": 11.88
+          "avg_profit": 11.88,
+          "tier": "tail"
         },
         {
           "airline": "TO",
@@ -15828,7 +15753,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -656.47,
-          "avg_profit": -31.26
+          "avg_profit": -31.26,
+          "tier": "tail"
         },
         {
           "airline": "Z2",
@@ -15843,7 +15769,8 @@
           "B_ratio": 31.58,
           "D_ratio": 0.0,
           "profit_sum": 76.15,
-          "avg_profit": 4.01
+          "avg_profit": 4.01,
+          "tier": "tail"
         },
         {
           "airline": "5J",
@@ -15858,7 +15785,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": 3.41,
-          "avg_profit": 0.23
+          "avg_profit": 0.23,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -15873,97 +15801,25 @@
           "B_ratio": 7.14,
           "D_ratio": 0.0,
           "profit_sum": 376.7,
-          "avg_profit": 26.91
+          "avg_profit": 26.91,
+          "tier": "tail"
         },
         {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 4,
+          "airline": "其他（6个长尾）",
+          "name": "其他",
+          "total": 12,
           "A": 0,
-          "B": 0,
-          "C": 4,
+          "B": 4,
+          "C": 8,
           "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -642.18,
-          "avg_profit": -160.55
-        },
-        {
-          "airline": "F9",
-          "name": "F9",
-          "total": 3,
-          "A": 0,
-          "B": 0,
-          "C": 3,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 83.85,
-          "avg_profit": 27.95
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 2,
-          "A": 0,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
+          "auto_coverage_rate": 33.33,
           "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
+          "B_ratio": 33.33,
           "D_ratio": 0.0,
-          "profit_sum": 0.86,
-          "avg_profit": 0.43
-        },
-        {
-          "airline": "FY",
-          "name": "FY",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -48.0,
-          "avg_profit": -48.0
-        },
-        {
-          "airline": "PC",
-          "name": "PC",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -6.73,
-          "avg_profit": -6.73
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -9.52,
-          "avg_profit": -9.52
+          "profit_sum": -621.72,
+          "avg_profit": -51.81,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -20000,7 +19856,8 @@
           "B_ratio": 13.87,
           "D_ratio": 0.83,
           "profit_sum": -16382.36,
-          "avg_profit": -9.08
+          "avg_profit": -9.08,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -20015,7 +19872,8 @@
           "B_ratio": 19.44,
           "D_ratio": 0.35,
           "profit_sum": -5396.48,
-          "avg_profit": -18.8
+          "avg_profit": -18.8,
+          "tier": "mid"
         },
         {
           "airline": "SL",
@@ -20030,7 +19888,8 @@
           "B_ratio": 40.15,
           "D_ratio": 0.39,
           "profit_sum": 2353.71,
-          "avg_profit": 9.09
+          "avg_profit": 9.09,
+          "tier": "mid"
         },
         {
           "airline": "HO",
@@ -20045,7 +19904,8 @@
           "B_ratio": 30.27,
           "D_ratio": 2.16,
           "profit_sum": -4686.46,
-          "avg_profit": -25.89
+          "avg_profit": -25.89,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -20060,7 +19920,8 @@
           "B_ratio": 16.56,
           "D_ratio": 0.0,
           "profit_sum": -3967.62,
-          "avg_profit": -25.27
+          "avg_profit": -25.27,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -20075,7 +19936,8 @@
           "B_ratio": 24.14,
           "D_ratio": 0.0,
           "profit_sum": 853.4,
-          "avg_profit": 6.05
+          "avg_profit": 6.05,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -20090,7 +19952,8 @@
           "B_ratio": 35.29,
           "D_ratio": 0.0,
           "profit_sum": -2084.46,
-          "avg_profit": -15.44
+          "avg_profit": -15.44,
+          "tier": "mid"
         },
         {
           "airline": "IJ",
@@ -20105,7 +19968,8 @@
           "B_ratio": 86.44,
           "D_ratio": 5.08,
           "profit_sum": -223.05,
-          "avg_profit": -3.85
+          "avg_profit": -3.85,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -20120,7 +19984,8 @@
           "B_ratio": 69.49,
           "D_ratio": 5.08,
           "profit_sum": -2018.35,
-          "avg_profit": -35.41
+          "avg_profit": -35.41,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -20135,7 +20000,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 307.78,
-          "avg_profit": 7.33
+          "avg_profit": 7.33,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -20150,7 +20016,8 @@
           "B_ratio": 50.0,
           "D_ratio": 0.0,
           "profit_sum": -386.66,
-          "avg_profit": -10.45
+          "avg_profit": -10.45,
+          "tier": "tail"
         },
         {
           "airline": "5J",
@@ -20165,7 +20032,8 @@
           "B_ratio": 86.49,
           "D_ratio": 8.11,
           "profit_sum": -421.12,
-          "avg_profit": -12.39
+          "avg_profit": -12.39,
+          "tier": "tail"
         },
         {
           "airline": "BC",
@@ -20180,7 +20048,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -455.59,
-          "avg_profit": -16.87
+          "avg_profit": -16.87,
+          "tier": "tail"
         },
         {
           "airline": "Z2",
@@ -20195,97 +20064,25 @@
           "B_ratio": 64.71,
           "D_ratio": 0.0,
           "profit_sum": -460.27,
-          "avg_profit": -27.07
+          "avg_profit": -27.07,
+          "tier": "tail"
         },
         {
-          "airline": "FY",
-          "name": "FY",
-          "total": 4,
+          "airline": "其他（6个长尾）",
+          "name": "其他",
+          "total": 15,
           "A": 2,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 50.0,
-          "B_ratio": 50.0,
-          "D_ratio": 0.0,
-          "profit_sum": -240.66,
-          "avg_profit": -60.16
-        },
-        {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 25.96,
-          "avg_profit": 6.49
-        },
-        {
-          "airline": "AD",
-          "name": "AD",
-          "total": 3,
-          "A": 0,
-          "B": 1,
-          "C": 0,
+          "B": 4,
+          "C": 7,
           "D": 2,
-          "auto_coverage_rate": 33.33,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 33.33,
-          "D_ratio": 66.67,
-          "profit_sum": -404.56,
-          "avg_profit": -404.56
-        },
-        {
-          "airline": "KR",
-          "name": "KR",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 66.86,
-          "avg_profit": 33.43
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -2.27,
-          "avg_profit": -2.27
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -0.69,
-          "avg_profit": -0.69
+          "auto_coverage_rate": 40.0,
+          "auto_succ_rate": 33.33,
+          "B_ratio": 26.67,
+          "D_ratio": 13.33,
+          "profit_sum": -555.36,
+          "avg_profit": -37.02,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -24633,7 +24430,8 @@
           "B_ratio": 13.28,
           "D_ratio": 1.04,
           "profit_sum": -18611.54,
-          "avg_profit": -10.79
+          "avg_profit": -10.79,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -24648,7 +24446,8 @@
           "B_ratio": 47.43,
           "D_ratio": 1.71,
           "profit_sum": -887.58,
-          "avg_profit": -5.13
+          "avg_profit": -5.13,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -24663,7 +24462,8 @@
           "B_ratio": 18.83,
           "D_ratio": 0.0,
           "profit_sum": -4278.88,
-          "avg_profit": -27.78
+          "avg_profit": -27.78,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -24678,7 +24478,8 @@
           "B_ratio": 6.21,
           "D_ratio": 1.38,
           "profit_sum": -764.62,
-          "avg_profit": -5.31
+          "avg_profit": -5.31,
+          "tier": "mid"
         },
         {
           "airline": "SL",
@@ -24693,7 +24494,8 @@
           "B_ratio": 66.2,
           "D_ratio": 0.0,
           "profit_sum": 837.47,
-          "avg_profit": 5.9
+          "avg_profit": 5.9,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -24708,7 +24510,8 @@
           "B_ratio": 30.86,
           "D_ratio": 0.0,
           "profit_sum": 194.47,
-          "avg_profit": 2.43
+          "avg_profit": 2.43,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -24723,7 +24526,8 @@
           "B_ratio": 81.43,
           "D_ratio": 0.0,
           "profit_sum": -817.45,
-          "avg_profit": -11.68
+          "avg_profit": -11.68,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -24738,7 +24542,8 @@
           "B_ratio": 65.71,
           "D_ratio": 0.0,
           "profit_sum": -1545.81,
-          "avg_profit": -22.08
+          "avg_profit": -22.08,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -24753,7 +24558,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 740.43,
-          "avg_profit": 17.22
+          "avg_profit": 17.22,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -24768,7 +24574,8 @@
           "B_ratio": 21.95,
           "D_ratio": 0.0,
           "profit_sum": -1412.68,
-          "avg_profit": -34.46
+          "avg_profit": -34.46,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -24783,7 +24590,8 @@
           "B_ratio": 84.21,
           "D_ratio": 15.79,
           "profit_sum": 407.47,
-          "avg_profit": 11.98
+          "avg_profit": 11.98,
+          "tier": "tail"
         },
         {
           "airline": "BC",
@@ -24798,7 +24606,25 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -225.22,
-          "avg_profit": -10.72
+          "avg_profit": -10.72,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（5个长尾）",
+          "name": "其他",
+          "total": 13,
+          "A": 0,
+          "B": 5,
+          "C": 7,
+          "D": 1,
+          "auto_coverage_rate": 38.46,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 38.46,
+          "D_ratio": 7.69,
+          "profit_sum": 77.83,
+          "avg_profit": 5.99,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "Z2",
@@ -24813,7 +24639,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -82.73,
-          "avg_profit": -6.89
+          "avg_profit": -6.89,
+          "tier": "tail"
         },
         {
           "airline": "5J",
@@ -24828,7 +24655,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -205.47,
-          "avg_profit": -18.68
+          "avg_profit": -18.68,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -24843,82 +24671,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -171.55,
-          "avg_profit": -17.16
-        },
-        {
-          "airline": "VF",
-          "name": "VF",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 3,
-          "D": 1,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 25.0,
-          "profit_sum": 85.6,
-          "avg_profit": 21.4
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 3,
-          "A": 0,
-          "B": 3,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 11.39,
-          "avg_profit": 3.8
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 3,
-          "A": 0,
-          "B": 0,
-          "C": 3,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -41.62,
-          "avg_profit": -13.87
-        },
-        {
-          "airline": "FY",
-          "name": "FY",
-          "total": 2,
-          "A": 0,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -73.59,
-          "avg_profit": -36.8
-        },
-        {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 96.05,
-          "avg_profit": 96.05
+          "avg_profit": -17.16,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -28839,7 +28593,8 @@
           "B_ratio": 20.57,
           "D_ratio": 1.03,
           "profit_sum": -9171.18,
-          "avg_profit": -7.33
+          "avg_profit": -7.33,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -28854,7 +28609,8 @@
           "B_ratio": 12.41,
           "D_ratio": 2.26,
           "profit_sum": -2706.33,
-          "avg_profit": -10.41
+          "avg_profit": -10.41,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -28869,7 +28625,8 @@
           "B_ratio": 59.12,
           "D_ratio": 0.0,
           "profit_sum": 2954.79,
-          "avg_profit": 18.58
+          "avg_profit": 18.58,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -28884,7 +28641,8 @@
           "B_ratio": 28.1,
           "D_ratio": 0.65,
           "profit_sum": -3775.72,
-          "avg_profit": -25.17
+          "avg_profit": -25.17,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -28899,7 +28657,8 @@
           "B_ratio": 18.67,
           "D_ratio": 0.0,
           "profit_sum": 431.63,
-          "avg_profit": 5.76
+          "avg_profit": 5.76,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -28914,7 +28673,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 2204.14,
-          "avg_profit": 38.67
+          "avg_profit": 38.67,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -28929,7 +28689,8 @@
           "B_ratio": 69.81,
           "D_ratio": 1.89,
           "profit_sum": -1720.86,
-          "avg_profit": -33.09
+          "avg_profit": -33.09,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -28944,7 +28705,8 @@
           "B_ratio": 38.0,
           "D_ratio": 2.0,
           "profit_sum": 1062.26,
-          "avg_profit": 22.13
+          "avg_profit": 22.13,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -28959,7 +28721,8 @@
           "B_ratio": 97.22,
           "D_ratio": 2.78,
           "profit_sum": -478.6,
-          "avg_profit": -13.67
+          "avg_profit": -13.67,
+          "tier": "tail"
         },
         {
           "airline": "EW",
@@ -28974,7 +28737,8 @@
           "B_ratio": 0.0,
           "D_ratio": 19.05,
           "profit_sum": 296.68,
-          "avg_profit": 18.54
+          "avg_profit": 18.54,
+          "tier": "tail"
         },
         {
           "airline": "Z2",
@@ -28989,7 +28753,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -184.5,
-          "avg_profit": -9.22
+          "avg_profit": -9.22,
+          "tier": "tail"
         },
         {
           "airline": "TO",
@@ -29004,7 +28769,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -41.21,
-          "avg_profit": -2.94
+          "avg_profit": -2.94,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -29019,7 +28785,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -652.9,
-          "avg_profit": -50.22
+          "avg_profit": -50.22,
+          "tier": "tail"
         },
         {
           "airline": "FY",
@@ -29034,82 +28801,25 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -93.78,
-          "avg_profit": -11.72
+          "avg_profit": -11.72,
+          "tier": "tail"
         },
         {
-          "airline": "6E",
-          "name": "6E",
-          "total": 2,
+          "airline": "其他（5个长尾）",
+          "name": "其他",
+          "total": 8,
           "A": 0,
-          "B": 2,
-          "C": 0,
+          "B": 4,
+          "C": 4,
           "D": 0,
-          "auto_coverage_rate": 100.0,
+          "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
+          "B_ratio": 50.0,
           "D_ratio": 0.0,
-          "profit_sum": -10.23,
-          "avg_profit": -5.12
-        },
-        {
-          "airline": "F9",
-          "name": "F9",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 159.41,
-          "avg_profit": 79.7
-        },
-        {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -25.68,
-          "avg_profit": -12.84
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -51.45,
-          "avg_profit": -51.45
-        },
-        {
-          "airline": "HB",
-          "name": "HB",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 3.46,
-          "avg_profit": 3.46
+          "profit_sum": 75.51,
+          "avg_profit": 9.44,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -32647,7 +32357,8 @@
           "B_ratio": 21.32,
           "D_ratio": 1.68,
           "profit_sum": -8797.05,
-          "avg_profit": -10.7
+          "avg_profit": -10.7,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -32662,7 +32373,8 @@
           "B_ratio": 8.1,
           "D_ratio": 0.48,
           "profit_sum": -2843.63,
-          "avg_profit": -13.61
+          "avg_profit": -13.61,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -32677,7 +32389,8 @@
           "B_ratio": 25.15,
           "D_ratio": 0.61,
           "profit_sum": -146.42,
-          "avg_profit": -0.91
+          "avg_profit": -0.91,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -32692,7 +32405,8 @@
           "B_ratio": 17.74,
           "D_ratio": 0.0,
           "profit_sum": -3767.41,
-          "avg_profit": -30.38
+          "avg_profit": -30.38,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -32707,7 +32421,8 @@
           "B_ratio": 15.32,
           "D_ratio": 2.7,
           "profit_sum": 187.35,
-          "avg_profit": 1.72
+          "avg_profit": 1.72,
+          "tier": "mid"
         },
         {
           "airline": "IJ",
@@ -32722,7 +32437,8 @@
           "B_ratio": 4.29,
           "D_ratio": 0.0,
           "profit_sum": 2963.57,
-          "avg_profit": 42.34
+          "avg_profit": 42.34,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -32737,7 +32453,8 @@
           "B_ratio": 78.38,
           "D_ratio": 13.51,
           "profit_sum": -5793.21,
-          "avg_profit": -160.92
+          "avg_profit": -160.92,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -32752,7 +32469,8 @@
           "B_ratio": 5.71,
           "D_ratio": 0.0,
           "profit_sum": 552.82,
-          "avg_profit": 15.79
+          "avg_profit": 15.79,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -32767,7 +32485,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": 186.16,
-          "avg_profit": 7.45
+          "avg_profit": 7.45,
+          "tier": "tail"
         },
         {
           "airline": "Z2",
@@ -32782,7 +32501,25 @@
           "B_ratio": 73.33,
           "D_ratio": 6.67,
           "profit_sum": -177.36,
-          "avg_profit": -11.82
+          "avg_profit": -11.82,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（5个长尾）",
+          "name": "其他",
+          "total": 11,
+          "A": 0,
+          "B": 3,
+          "C": 8,
+          "D": 0,
+          "auto_coverage_rate": 27.27,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 27.27,
+          "D_ratio": 0.0,
+          "profit_sum": -358.53,
+          "avg_profit": -32.59,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "EW",
@@ -32797,7 +32534,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 164.67,
-          "avg_profit": 23.52
+          "avg_profit": 23.52,
+          "tier": "tail"
         },
         {
           "airline": "F9",
@@ -32812,7 +32550,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 554.21,
-          "avg_profit": 92.37
+          "avg_profit": 92.37,
+          "tier": "tail"
         },
         {
           "airline": "FY",
@@ -32827,82 +32566,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -26.96,
-          "avg_profit": -5.39
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 3,
-          "A": 0,
-          "B": 3,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 10.31,
-          "avg_profit": 3.44
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 3,
-          "A": 0,
-          "B": 0,
-          "C": 3,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 132.22,
-          "avg_profit": 44.07
-        },
-        {
-          "airline": "F8",
-          "name": "F8",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -146.29,
-          "avg_profit": -146.29
-        },
-        {
-          "airline": "HO",
-          "name": "吉祥",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -336.94,
-          "avg_profit": -168.47
-        },
-        {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -17.83,
-          "avg_profit": -17.83
+          "avg_profit": -5.39,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -36423,7 +36088,8 @@
           "B_ratio": 18.57,
           "D_ratio": 4.32,
           "profit_sum": -5968.54,
-          "avg_profit": -6.32
+          "avg_profit": -6.32,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -36438,7 +36104,8 @@
           "B_ratio": 8.49,
           "D_ratio": 0.94,
           "profit_sum": -3422.31,
-          "avg_profit": -16.3
+          "avg_profit": -16.3,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -36453,7 +36120,8 @@
           "B_ratio": 18.56,
           "D_ratio": 0.52,
           "profit_sum": 1509.83,
-          "avg_profit": 7.95
+          "avg_profit": 7.95,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -36468,7 +36136,8 @@
           "B_ratio": 24.79,
           "D_ratio": 0.0,
           "profit_sum": -3962.81,
-          "avg_profit": -33.87
+          "avg_profit": -33.87,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -36483,7 +36152,8 @@
           "B_ratio": 12.62,
           "D_ratio": 1.94,
           "profit_sum": 655.7,
-          "avg_profit": 6.43
+          "avg_profit": 6.43,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -36498,7 +36168,8 @@
           "B_ratio": 70.89,
           "D_ratio": 7.59,
           "profit_sum": -2273.3,
-          "avg_profit": -31.14
+          "avg_profit": -31.14,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -36513,7 +36184,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 2643.43,
-          "avg_profit": 35.25
+          "avg_profit": 35.25,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -36528,7 +36200,8 @@
           "B_ratio": 32.43,
           "D_ratio": 1.35,
           "profit_sum": -3095.71,
-          "avg_profit": -42.41
+          "avg_profit": -42.41,
+          "tier": "tail"
         },
         {
           "airline": "EW",
@@ -36543,7 +36216,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 412.33,
-          "avg_profit": 12.89
+          "avg_profit": 12.89,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -36558,7 +36232,25 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 1187.12,
-          "avg_profit": 38.29
+          "avg_profit": 38.29,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（4个长尾）",
+          "name": "其他",
+          "total": 11,
+          "A": 0,
+          "B": 10,
+          "C": 1,
+          "D": 0,
+          "auto_coverage_rate": 90.91,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 90.91,
+          "D_ratio": 0.0,
+          "profit_sum": -430.07,
+          "avg_profit": -39.1,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "F9",
@@ -36573,67 +36265,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 204.26,
-          "avg_profit": 34.04
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 4,
-          "A": 0,
-          "B": 4,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -43.04,
-          "avg_profit": -10.76
-        },
-        {
-          "airline": "FR",
-          "name": "瑞安",
-          "total": 3,
-          "A": 0,
-          "B": 3,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -266.46,
-          "avg_profit": -88.82
-        },
-        {
-          "airline": "KR",
-          "name": "KR",
-          "total": 3,
-          "A": 0,
-          "B": 3,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -93.0,
-          "avg_profit": -31.0
-        },
-        {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -27.57,
-          "avg_profit": -27.57
+          "avg_profit": 34.04,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -40033,7 +39666,8 @@
           "B_ratio": 20.73,
           "D_ratio": 2.56,
           "profit_sum": -6563.24,
-          "avg_profit": -7.16
+          "avg_profit": -7.16,
+          "tier": "mid"
         },
         {
           "airline": "SL",
@@ -40048,7 +39682,8 @@
           "B_ratio": 31.51,
           "D_ratio": 0.0,
           "profit_sum": 870.89,
-          "avg_profit": 2.8
+          "avg_profit": 2.8,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -40063,7 +39698,8 @@
           "B_ratio": 30.77,
           "D_ratio": 2.56,
           "profit_sum": -222.41,
-          "avg_profit": -1.18
+          "avg_profit": -1.18,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -40078,7 +39714,8 @@
           "B_ratio": 12.73,
           "D_ratio": 1.82,
           "profit_sum": -1588.18,
-          "avg_profit": -9.8
+          "avg_profit": -9.8,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -40093,7 +39730,8 @@
           "B_ratio": 18.81,
           "D_ratio": 0.99,
           "profit_sum": -311.79,
-          "avg_profit": -3.12
+          "avg_profit": -3.12,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -40108,7 +39746,8 @@
           "B_ratio": 16.87,
           "D_ratio": 2.41,
           "profit_sum": -2156.25,
-          "avg_profit": -26.3
+          "avg_profit": -26.3,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -40123,7 +39762,8 @@
           "B_ratio": 81.16,
           "D_ratio": 0.0,
           "profit_sum": -2446.91,
-          "avg_profit": -35.46
+          "avg_profit": -35.46,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -40138,7 +39778,8 @@
           "B_ratio": 28.57,
           "D_ratio": 3.57,
           "profit_sum": 212.91,
-          "avg_profit": 4.26
+          "avg_profit": 4.26,
+          "tier": "tail"
         },
         {
           "airline": "BC",
@@ -40153,7 +39794,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": 645.48,
-          "avg_profit": 12.18
+          "avg_profit": 12.18,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -40168,7 +39810,8 @@
           "B_ratio": 27.91,
           "D_ratio": 4.65,
           "profit_sum": -2128.41,
-          "avg_profit": -49.5
+          "avg_profit": -49.5,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -40183,7 +39826,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 567.44,
-          "avg_profit": 21.02
+          "avg_profit": 21.02,
+          "tier": "tail"
         },
         {
           "airline": "F9",
@@ -40198,11 +39842,12 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 128.21,
-          "avg_profit": 21.37
+          "avg_profit": 21.37,
+          "tier": "tail"
         },
         {
-          "airline": "GQ",
-          "name": "GQ",
+          "airline": "其他（1个长尾）",
+          "name": "其他",
           "total": 4,
           "A": 0,
           "B": 0,
@@ -40213,7 +39858,9 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -125.93,
-          "avg_profit": -31.48
+          "avg_profit": -31.48,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -43814,7 +43461,8 @@
           "B_ratio": 20.33,
           "D_ratio": 1.72,
           "profit_sum": -23393.35,
-          "avg_profit": -15.68
+          "avg_profit": -15.68,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -43829,7 +43477,8 @@
           "B_ratio": 11.15,
           "D_ratio": 3.24,
           "profit_sum": -3763.78,
-          "avg_profit": -13.94
+          "avg_profit": -13.94,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -43844,7 +43493,8 @@
           "B_ratio": 31.22,
           "D_ratio": 6.34,
           "profit_sum": -177.11,
-          "avg_profit": -0.93
+          "avg_profit": -0.93,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -43859,7 +43509,8 @@
           "B_ratio": 22.16,
           "D_ratio": 1.08,
           "profit_sum": 474.29,
-          "avg_profit": 2.59
+          "avg_profit": 2.59,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -43874,7 +43525,8 @@
           "B_ratio": 15.15,
           "D_ratio": 0.0,
           "profit_sum": -2607.28,
-          "avg_profit": -26.34
+          "avg_profit": -26.34,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -43889,7 +43541,8 @@
           "B_ratio": 80.65,
           "D_ratio": 1.61,
           "profit_sum": -2034.47,
-          "avg_profit": -32.81
+          "avg_profit": -32.81,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -43904,7 +43557,8 @@
           "B_ratio": 3.64,
           "D_ratio": 0.0,
           "profit_sum": -276.39,
-          "avg_profit": -5.03
+          "avg_profit": -5.03,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -43919,7 +43573,8 @@
           "B_ratio": 22.22,
           "D_ratio": 0.0,
           "profit_sum": -297.14,
-          "avg_profit": -8.25
+          "avg_profit": -8.25,
+          "tier": "tail"
         },
         {
           "airline": "KR",
@@ -43934,7 +43589,25 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -252.83,
-          "avg_profit": -19.45
+          "avg_profit": -19.45,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（6个长尾）",
+          "name": "其他",
+          "total": 13,
+          "A": 1,
+          "B": 5,
+          "C": 7,
+          "D": 0,
+          "auto_coverage_rate": 46.15,
+          "auto_succ_rate": 16.67,
+          "B_ratio": 38.46,
+          "D_ratio": 0.0,
+          "profit_sum": -73.28,
+          "avg_profit": -5.64,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "HO",
@@ -43949,7 +43622,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -1043.02,
-          "avg_profit": -86.92
+          "avg_profit": -86.92,
+          "tier": "tail"
         },
         {
           "airline": "Z2",
@@ -43964,7 +43638,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -762.83,
-          "avg_profit": -84.76
+          "avg_profit": -84.76,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -43979,7 +43654,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": 44.67,
-          "avg_profit": 7.45
+          "avg_profit": 7.45,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -43994,97 +43670,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -88.81,
-          "avg_profit": -17.76
-        },
-        {
-          "airline": "IJ",
-          "name": "IJ",
-          "total": 4,
-          "A": 0,
-          "B": 1,
-          "C": 3,
-          "D": 0,
-          "auto_coverage_rate": 25.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 25.0,
-          "D_ratio": 0.0,
-          "profit_sum": -25.7,
-          "avg_profit": -6.42
-        },
-        {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 3,
-          "A": 0,
-          "B": 0,
-          "C": 3,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -16.46,
-          "avg_profit": -5.49
-        },
-        {
-          "airline": "HB",
-          "name": "HB",
-          "total": 2,
-          "A": 0,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 52.97,
-          "avg_profit": 26.48
-        },
-        {
-          "airline": "UO",
-          "name": "UO",
-          "total": 2,
-          "A": 0,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 10.64,
-          "avg_profit": 5.32
-        },
-        {
-          "airline": "5J",
-          "name": "宿务",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -113.99,
-          "avg_profit": -113.99
-        },
-        {
-          "airline": "FY",
-          "name": "FY",
-          "total": 1,
-          "A": 1,
-          "B": 0,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 100.0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 19.26,
-          "avg_profit": 19.26
+          "avg_profit": -17.76,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -47845,7 +47432,8 @@
           "B_ratio": 19.61,
           "D_ratio": 4.32,
           "profit_sum": -8457.18,
-          "avg_profit": -8.27
+          "avg_profit": -8.27,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -47860,7 +47448,8 @@
           "B_ratio": 29.27,
           "D_ratio": 0.0,
           "profit_sum": -2492.89,
-          "avg_profit": -7.6
+          "avg_profit": -7.6,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -47875,7 +47464,8 @@
           "B_ratio": 5.78,
           "D_ratio": 1.36,
           "profit_sum": -5598.82,
-          "avg_profit": -19.31
+          "avg_profit": -19.31,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -47890,7 +47480,8 @@
           "B_ratio": 30.8,
           "D_ratio": 0.0,
           "profit_sum": 439.75,
-          "avg_profit": 1.6
+          "avg_profit": 1.6,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -47905,7 +47496,8 @@
           "B_ratio": 74.32,
           "D_ratio": 0.0,
           "profit_sum": -3323.74,
-          "avg_profit": -44.92
+          "avg_profit": -44.92,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -47920,7 +47512,8 @@
           "B_ratio": 20.97,
           "D_ratio": 1.61,
           "profit_sum": -1425.8,
-          "avg_profit": -23.37
+          "avg_profit": -23.37,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -47935,7 +47528,8 @@
           "B_ratio": 2.13,
           "D_ratio": 0.0,
           "profit_sum": 13.75,
-          "avg_profit": 0.29
+          "avg_profit": 0.29,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -47950,7 +47544,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 31.08,
-          "avg_profit": 0.78
+          "avg_profit": 0.78,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -47965,7 +47560,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -301.39,
-          "avg_profit": -25.12
+          "avg_profit": -25.12,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -47980,7 +47576,8 @@
           "B_ratio": 30.0,
           "D_ratio": 10.0,
           "profit_sum": -101.23,
-          "avg_profit": -12.65
+          "avg_profit": -12.65,
+          "tier": "tail"
         },
         {
           "airline": "FY",
@@ -47995,7 +47592,25 @@
           "B_ratio": 77.78,
           "D_ratio": 0.0,
           "profit_sum": -108.28,
-          "avg_profit": -12.03
+          "avg_profit": -12.03,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（4个长尾）",
+          "name": "其他",
+          "total": 9,
+          "A": 0,
+          "B": 7,
+          "C": 2,
+          "D": 0,
+          "auto_coverage_rate": 77.78,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 77.78,
+          "D_ratio": 0.0,
+          "profit_sum": -1023.51,
+          "avg_profit": -113.72,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "GQ",
@@ -48010,67 +47625,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -28.3,
-          "avg_profit": -4.04
-        },
-        {
-          "airline": "KR",
-          "name": "KR",
-          "total": 4,
-          "A": 0,
-          "B": 4,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -103.41,
-          "avg_profit": -25.85
-        },
-        {
-          "airline": "5J",
-          "name": "宿务",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -884.19,
-          "avg_profit": -442.09
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 2,
-          "A": 0,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -39.45,
-          "avg_profit": -19.73
-        },
-        {
-          "airline": "J9",
-          "name": "J9",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 3.54,
-          "avg_profit": 3.54
+          "avg_profit": -4.04,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -51720,7 +51276,8 @@
           "B_ratio": 14.36,
           "D_ratio": 2.5,
           "profit_sum": -23506.56,
-          "avg_profit": -13.65
+          "avg_profit": -13.65,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -51735,7 +51292,8 @@
           "B_ratio": 31.82,
           "D_ratio": 1.4,
           "profit_sum": -420.83,
-          "avg_profit": -1.48
+          "avg_profit": -1.48,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -51750,7 +51308,8 @@
           "B_ratio": 13.25,
           "D_ratio": 0.0,
           "profit_sum": -4304.06,
-          "avg_profit": -18.39
+          "avg_profit": -18.39,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -51765,7 +51324,8 @@
           "B_ratio": 19.73,
           "D_ratio": 2.24,
           "profit_sum": 67.72,
-          "avg_profit": 0.31
+          "avg_profit": 0.31,
+          "tier": "mid"
         },
         {
           "airline": "SL",
@@ -51780,7 +51340,8 @@
           "B_ratio": 44.44,
           "D_ratio": 3.03,
           "profit_sum": 216.91,
-          "avg_profit": 2.21
+          "avg_profit": 2.21,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -51795,7 +51356,8 @@
           "B_ratio": 81.94,
           "D_ratio": 0.0,
           "profit_sum": -2321.49,
-          "avg_profit": -32.24
+          "avg_profit": -32.24,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -51810,7 +51372,8 @@
           "B_ratio": 61.9,
           "D_ratio": 0.0,
           "profit_sum": 1553.96,
-          "avg_profit": 37.0
+          "avg_profit": 37.0,
+          "tier": "tail"
         },
         {
           "airline": "BC",
@@ -51825,7 +51388,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": 44.16,
-          "avg_profit": 1.77
+          "avg_profit": 1.77,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -51840,7 +51404,8 @@
           "B_ratio": 10.53,
           "D_ratio": 0.0,
           "profit_sum": 163.02,
-          "avg_profit": 8.58
+          "avg_profit": 8.58,
+          "tier": "tail"
         },
         {
           "airline": "FY",
@@ -51855,7 +51420,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -146.55,
-          "avg_profit": -8.62
+          "avg_profit": -8.62,
+          "tier": "tail"
         },
         {
           "airline": "KR",
@@ -51870,7 +51436,25 @@
           "B_ratio": 57.14,
           "D_ratio": 0.0,
           "profit_sum": -136.0,
-          "avg_profit": -19.43
+          "avg_profit": -19.43,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（4个长尾）",
+          "name": "其他",
+          "total": 7,
+          "A": 1,
+          "B": 3,
+          "C": 3,
+          "D": 0,
+          "auto_coverage_rate": 57.14,
+          "auto_succ_rate": 25.0,
+          "B_ratio": 42.86,
+          "D_ratio": 0.0,
+          "profit_sum": -327.36,
+          "avg_profit": -46.77,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "DD",
@@ -51885,67 +51469,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -20.08,
-          "avg_profit": -3.35
-        },
-        {
-          "airline": "LJ",
-          "name": "LJ",
-          "total": 3,
-          "A": 1,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 33.33,
-          "B_ratio": 66.67,
-          "D_ratio": 0.0,
-          "profit_sum": -53.72,
-          "avg_profit": -17.91
-        },
-        {
-          "airline": "EW",
-          "name": "EW",
-          "total": 2,
-          "A": 0,
-          "B": 1,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 50.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 50.0,
-          "D_ratio": 0.0,
-          "profit_sum": -22.33,
-          "avg_profit": -11.16
-        },
-        {
-          "airline": "J9",
-          "name": "J9",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -15.31,
-          "avg_profit": -15.31
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -236.0,
-          "avg_profit": -236.0
+          "avg_profit": -3.35,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -55616,7 +55141,8 @@
           "B_ratio": 13.63,
           "D_ratio": 3.42,
           "profit_sum": -20899.34,
-          "avg_profit": -13.41
+          "avg_profit": -13.41,
+          "tier": "core"
         },
         {
           "airline": "VJ",
@@ -55631,7 +55157,8 @@
           "B_ratio": 25.0,
           "D_ratio": 0.51,
           "profit_sum": 435.56,
-          "avg_profit": 2.23
+          "avg_profit": 2.23,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -55646,7 +55173,8 @@
           "B_ratio": 37.17,
           "D_ratio": 0.0,
           "profit_sum": -313.92,
-          "avg_profit": -1.64
+          "avg_profit": -1.64,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -55661,7 +55189,8 @@
           "B_ratio": 10.26,
           "D_ratio": 0.0,
           "profit_sum": -773.62,
-          "avg_profit": -9.92
+          "avg_profit": -9.92,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -55676,7 +55205,8 @@
           "B_ratio": 10.91,
           "D_ratio": 0.0,
           "profit_sum": 1813.79,
-          "avg_profit": 32.98
+          "avg_profit": 32.98,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -55691,7 +55221,8 @@
           "B_ratio": 84.31,
           "D_ratio": 3.92,
           "profit_sum": -2121.37,
-          "avg_profit": -43.29
+          "avg_profit": -43.29,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -55706,7 +55237,8 @@
           "B_ratio": 39.58,
           "D_ratio": 2.08,
           "profit_sum": 258.6,
-          "avg_profit": 5.5
+          "avg_profit": 5.5,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -55721,7 +55253,8 @@
           "B_ratio": 21.28,
           "D_ratio": 0.0,
           "profit_sum": 37.71,
-          "avg_profit": 0.8
+          "avg_profit": 0.8,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -55736,7 +55269,8 @@
           "B_ratio": 46.15,
           "D_ratio": 0.0,
           "profit_sum": 84.48,
-          "avg_profit": 6.5
+          "avg_profit": 6.5,
+          "tier": "tail"
         },
         {
           "airline": "J9",
@@ -55751,7 +55285,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -503.71,
-          "avg_profit": -38.75
+          "avg_profit": -38.75,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -55766,7 +55301,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": 391.01,
-          "avg_profit": 43.45
+          "avg_profit": 43.45,
+          "tier": "tail"
         },
         {
           "airline": "BC",
@@ -55781,52 +55317,25 @@
           "B_ratio": 83.33,
           "D_ratio": 0.0,
           "profit_sum": -107.2,
-          "avg_profit": -17.87
+          "avg_profit": -17.87,
+          "tier": "tail"
         },
         {
-          "airline": "DD",
-          "name": "DD",
-          "total": 2,
-          "A": 0,
-          "B": 2,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -2.3,
-          "avg_profit": -1.15
-        },
-        {
-          "airline": "LJ",
-          "name": "LJ",
-          "total": 2,
+          "airline": "其他（3个长尾）",
+          "name": "其他",
+          "total": 5,
           "A": 1,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 50.0,
-          "B_ratio": 50.0,
-          "D_ratio": 0.0,
-          "profit_sum": -8.3,
-          "avg_profit": -4.15
-        },
-        {
-          "airline": "EW",
-          "name": "EW",
-          "total": 1,
-          "A": 0,
-          "B": 0,
+          "B": 3,
           "C": 1,
           "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
+          "auto_coverage_rate": 80.0,
+          "auto_succ_rate": 25.0,
+          "B_ratio": 60.0,
           "D_ratio": 0.0,
-          "profit_sum": 14.91,
-          "avg_profit": 14.91
+          "profit_sum": 4.31,
+          "avg_profit": 0.86,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -59450,7 +58959,8 @@
           "B_ratio": 10.93,
           "D_ratio": 2.53,
           "profit_sum": -16448.71,
-          "avg_profit": -12.19
+          "avg_profit": -12.19,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -59465,7 +58975,8 @@
           "B_ratio": 43.43,
           "D_ratio": 0.4,
           "profit_sum": -752.99,
-          "avg_profit": -3.01
+          "avg_profit": -3.01,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -59480,7 +58991,8 @@
           "B_ratio": 6.49,
           "D_ratio": 0.87,
           "profit_sum": -1929.45,
-          "avg_profit": -8.43
+          "avg_profit": -8.43,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -59495,7 +59007,8 @@
           "B_ratio": 20.0,
           "D_ratio": 2.93,
           "profit_sum": 290.56,
-          "avg_profit": 1.46
+          "avg_profit": 1.46,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -59510,7 +59023,8 @@
           "B_ratio": 78.46,
           "D_ratio": 0.0,
           "profit_sum": -2514.43,
-          "avg_profit": -38.68
+          "avg_profit": -38.68,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -59525,7 +59039,8 @@
           "B_ratio": 93.62,
           "D_ratio": 2.13,
           "profit_sum": -85.61,
-          "avg_profit": -1.86
+          "avg_profit": -1.86,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -59540,7 +59055,8 @@
           "B_ratio": 42.86,
           "D_ratio": 0.0,
           "profit_sum": -1578.87,
-          "avg_profit": -37.59
+          "avg_profit": -37.59,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -59555,7 +59071,8 @@
           "B_ratio": 11.9,
           "D_ratio": 0.0,
           "profit_sum": 965.24,
-          "avg_profit": 22.98
+          "avg_profit": 22.98,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -59570,7 +59087,8 @@
           "B_ratio": 20.0,
           "D_ratio": 0.0,
           "profit_sum": -369.99,
-          "avg_profit": -12.33
+          "avg_profit": -12.33,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -59585,37 +59103,25 @@
           "B_ratio": 62.5,
           "D_ratio": 0.0,
           "profit_sum": -132.96,
-          "avg_profit": -16.62
+          "avg_profit": -16.62,
+          "tier": "tail"
         },
         {
-          "airline": "KR",
-          "name": "KR",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 6.95,
-          "avg_profit": 1.74
-        },
-        {
-          "airline": "UO",
-          "name": "UO",
-          "total": 1,
+          "airline": "其他（2个长尾）",
+          "name": "其他",
+          "total": 5,
           "A": 0,
           "B": 1,
-          "C": 0,
+          "C": 4,
           "D": 0,
-          "auto_coverage_rate": 100.0,
+          "auto_coverage_rate": 20.0,
           "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
+          "B_ratio": 20.0,
           "D_ratio": 0.0,
-          "profit_sum": -28.33,
-          "avg_profit": -28.33
+          "profit_sum": -21.38,
+          "avg_profit": -4.28,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -63174,7 +62680,8 @@
           "B_ratio": 14.78,
           "D_ratio": 7.26,
           "profit_sum": -14883.12,
-          "avg_profit": -13.48
+          "avg_profit": -13.48,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -63189,7 +62696,8 @@
           "B_ratio": 33.64,
           "D_ratio": 0.0,
           "profit_sum": -108.97,
-          "avg_profit": -0.5
+          "avg_profit": -0.5,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -63204,7 +62712,8 @@
           "B_ratio": 31.75,
           "D_ratio": 0.47,
           "profit_sum": 462.55,
-          "avg_profit": 2.22
+          "avg_profit": 2.22,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -63219,7 +62728,8 @@
           "B_ratio": 18.29,
           "D_ratio": 3.43,
           "profit_sum": -1748.54,
-          "avg_profit": -10.29
+          "avg_profit": -10.29,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -63234,7 +62744,8 @@
           "B_ratio": 75.56,
           "D_ratio": 2.22,
           "profit_sum": -1140.34,
-          "avg_profit": -25.92
+          "avg_profit": -25.92,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -63249,7 +62760,8 @@
           "B_ratio": 75.0,
           "D_ratio": 0.0,
           "profit_sum": -343.57,
-          "avg_profit": -7.81
+          "avg_profit": -7.81,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -63264,7 +62776,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 1252.37,
-          "avg_profit": 36.83
+          "avg_profit": 36.83,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -63279,7 +62792,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -27.7,
-          "avg_profit": -1.46
+          "avg_profit": -1.46,
+          "tier": "tail"
         },
         {
           "airline": "J9",
@@ -63294,7 +62808,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -79.38,
-          "avg_profit": -11.34
+          "avg_profit": -11.34,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -63309,37 +62824,25 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 82.12,
-          "avg_profit": 16.42
+          "avg_profit": 16.42,
+          "tier": "tail"
         },
         {
-          "airline": "FR",
-          "name": "瑞安",
-          "total": 3,
+          "airline": "其他（2个长尾）",
+          "name": "其他",
+          "total": 4,
           "A": 0,
           "B": 2,
-          "C": 0,
-          "D": 1,
-          "auto_coverage_rate": 66.67,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 66.67,
-          "D_ratio": 33.33,
-          "profit_sum": -223.26,
-          "avg_profit": -111.63
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 1,
-          "A": 0,
-          "B": 0,
           "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 10.0,
-          "avg_profit": 10.0
+          "D": 1,
+          "auto_coverage_rate": 50.0,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 50.0,
+          "D_ratio": 25.0,
+          "profit_sum": -213.26,
+          "avg_profit": -53.31,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -66924,7 +66427,8 @@
           "B_ratio": 9.64,
           "D_ratio": 2.41,
           "profit_sum": -13213.12,
-          "avg_profit": -13.61
+          "avg_profit": -13.61,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -66939,7 +66443,8 @@
           "B_ratio": 24.88,
           "D_ratio": 0.0,
           "profit_sum": 278.23,
-          "avg_profit": 1.31
+          "avg_profit": 1.31,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -66954,7 +66459,8 @@
           "B_ratio": 12.37,
           "D_ratio": 1.08,
           "profit_sum": 2113.12,
-          "avg_profit": 11.42
+          "avg_profit": 11.42,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -66969,7 +66475,8 @@
           "B_ratio": 24.82,
           "D_ratio": 0.71,
           "profit_sum": 1467.03,
-          "avg_profit": 10.71
+          "avg_profit": 10.71,
+          "tier": "mid"
         },
         {
           "airline": "VZ",
@@ -66984,7 +66491,8 @@
           "B_ratio": 64.21,
           "D_ratio": 0.0,
           "profit_sum": -288.75,
-          "avg_profit": -3.04
+          "avg_profit": -3.04,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -66999,7 +66507,8 @@
           "B_ratio": 76.56,
           "D_ratio": 0.0,
           "profit_sum": -2437.74,
-          "avg_profit": -38.09
+          "avg_profit": -38.09,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -67014,7 +66523,8 @@
           "B_ratio": 60.71,
           "D_ratio": 0.0,
           "profit_sum": 199.3,
-          "avg_profit": 7.12
+          "avg_profit": 7.12,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -67029,7 +66539,25 @@
           "B_ratio": 14.29,
           "D_ratio": 0.0,
           "profit_sum": 122.99,
-          "avg_profit": 4.39
+          "avg_profit": 4.39,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（7个长尾）",
+          "name": "其他",
+          "total": 19,
+          "A": 3,
+          "B": 10,
+          "C": 6,
+          "D": 0,
+          "auto_coverage_rate": 68.42,
+          "auto_succ_rate": 23.08,
+          "B_ratio": 52.63,
+          "D_ratio": 0.0,
+          "profit_sum": -214.9,
+          "avg_profit": -11.31,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "SL",
@@ -67044,112 +66572,8 @@
           "B_ratio": 73.33,
           "D_ratio": 0.0,
           "profit_sum": 28.35,
-          "avg_profit": 1.89
-        },
-        {
-          "airline": "FR",
-          "name": "瑞安",
-          "total": 4,
-          "A": 0,
-          "B": 4,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 144.88,
-          "avg_profit": 36.22
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -77.48,
-          "avg_profit": -19.37
-        },
-        {
-          "airline": "DD",
-          "name": "DD",
-          "total": 3,
-          "A": 0,
-          "B": 3,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -0.04,
-          "avg_profit": -0.01
-        },
-        {
-          "airline": "LJ",
-          "name": "LJ",
-          "total": 3,
-          "A": 0,
-          "B": 3,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -34.14,
-          "avg_profit": -11.38
-        },
-        {
-          "airline": "HX",
-          "name": "港航",
-          "total": 2,
-          "A": 2,
-          "B": 0,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 100.0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 3.59,
-          "avg_profit": 1.8
-        },
-        {
-          "airline": "TO",
-          "name": "TO",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -5.71,
-          "avg_profit": -2.85
-        },
-        {
-          "airline": "SC",
-          "name": "SC",
-          "total": 1,
-          "A": 1,
-          "B": 0,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 100.0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -246.0,
-          "avg_profit": -246.0
+          "avg_profit": 1.89,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -70390,7 +69814,8 @@
           "B_ratio": 14.9,
           "D_ratio": 6.09,
           "profit_sum": -19165.23,
-          "avg_profit": -12.89
+          "avg_profit": -12.89,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -70405,7 +69830,8 @@
           "B_ratio": 27.16,
           "D_ratio": 0.32,
           "profit_sum": 241.07,
-          "avg_profit": 0.78
+          "avg_profit": 0.78,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -70420,7 +69846,8 @@
           "B_ratio": 8.7,
           "D_ratio": 0.87,
           "profit_sum": -2303.59,
-          "avg_profit": -10.1
+          "avg_profit": -10.1,
+          "tier": "mid"
         },
         {
           "airline": "SL",
@@ -70435,7 +69862,8 @@
           "B_ratio": 18.5,
           "D_ratio": 2.2,
           "profit_sum": 1475.9,
-          "avg_profit": 6.56
+          "avg_profit": 6.56,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -70450,7 +69878,8 @@
           "B_ratio": 30.06,
           "D_ratio": 1.73,
           "profit_sum": 2385.49,
-          "avg_profit": 14.46
+          "avg_profit": 14.46,
+          "tier": "mid"
         },
         {
           "airline": "VZ",
@@ -70465,7 +69894,8 @@
           "B_ratio": 22.69,
           "D_ratio": 0.0,
           "profit_sum": -118.99,
-          "avg_profit": -1.0
+          "avg_profit": -1.0,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -70480,7 +69910,8 @@
           "B_ratio": 38.78,
           "D_ratio": 1.02,
           "profit_sum": -4136.26,
-          "avg_profit": -42.64
+          "avg_profit": -42.64,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -70495,7 +69926,8 @@
           "B_ratio": 63.16,
           "D_ratio": 3.51,
           "profit_sum": -1933.78,
-          "avg_profit": -34.53
+          "avg_profit": -34.53,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -70510,7 +69942,8 @@
           "B_ratio": 7.41,
           "D_ratio": 0.0,
           "profit_sum": 1689.35,
-          "avg_profit": 31.28
+          "avg_profit": 31.28,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -70525,7 +69958,8 @@
           "B_ratio": 25.0,
           "D_ratio": 0.0,
           "profit_sum": 62.39,
-          "avg_profit": 2.23
+          "avg_profit": 2.23,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -70540,7 +69974,8 @@
           "B_ratio": 60.0,
           "D_ratio": 0.0,
           "profit_sum": 33.17,
-          "avg_profit": 1.66
+          "avg_profit": 1.66,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -70555,7 +69990,8 @@
           "B_ratio": 57.89,
           "D_ratio": 10.53,
           "profit_sum": 74.37,
-          "avg_profit": 4.13
+          "avg_profit": 4.13,
+          "tier": "tail"
         },
         {
           "airline": "KR",
@@ -70570,7 +70006,8 @@
           "B_ratio": 54.55,
           "D_ratio": 0.0,
           "profit_sum": 50.81,
-          "avg_profit": 4.62
+          "avg_profit": 4.62,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -70585,7 +70022,25 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -102.15,
-          "avg_profit": -10.21
+          "avg_profit": -10.21,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（4个长尾）",
+          "name": "其他",
+          "total": 7,
+          "A": 0,
+          "B": 0,
+          "C": 7,
+          "D": 0,
+          "auto_coverage_rate": 0.0,
+          "auto_succ_rate": 0,
+          "B_ratio": 0.0,
+          "D_ratio": 0.0,
+          "profit_sum": 121.6,
+          "avg_profit": 17.37,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "FR",
@@ -70600,67 +70055,8 @@
           "B_ratio": 83.33,
           "D_ratio": 16.67,
           "profit_sum": 56.94,
-          "avg_profit": 11.39
-        },
-        {
-          "airline": "TO",
-          "name": "TO",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -27.65,
-          "avg_profit": -6.91
-        },
-        {
-          "airline": "D7",
-          "name": "亚航X",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 175.07,
-          "avg_profit": 175.07
-        },
-        {
-          "airline": "HO",
-          "name": "吉祥",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -21.68,
-          "avg_profit": -21.68
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -4.14,
-          "avg_profit": -4.14
+          "avg_profit": 11.39,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -74614,7 +74010,8 @@
           "B_ratio": 12.34,
           "D_ratio": 7.97,
           "profit_sum": -16598.15,
-          "avg_profit": -10.49
+          "avg_profit": -10.49,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -74629,7 +74026,8 @@
           "B_ratio": 32.04,
           "D_ratio": 0.9,
           "profit_sum": -541.48,
-          "avg_profit": -1.63
+          "avg_profit": -1.63,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -74644,7 +74042,8 @@
           "B_ratio": 6.88,
           "D_ratio": 2.29,
           "profit_sum": -1930.53,
-          "avg_profit": -9.06
+          "avg_profit": -9.06,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -74659,7 +74058,8 @@
           "B_ratio": 34.17,
           "D_ratio": 0.0,
           "profit_sum": 1261.82,
-          "avg_profit": 10.52
+          "avg_profit": 10.52,
+          "tier": "mid"
         },
         {
           "airline": "HX",
@@ -74674,7 +74074,8 @@
           "B_ratio": 97.03,
           "D_ratio": 2.97,
           "profit_sum": -3502.33,
-          "avg_profit": -35.74
+          "avg_profit": -35.74,
+          "tier": "mid"
         },
         {
           "airline": "SL",
@@ -74689,7 +74090,8 @@
           "B_ratio": 45.92,
           "D_ratio": 0.0,
           "profit_sum": 740.33,
-          "avg_profit": 7.55
+          "avg_profit": 7.55,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -74704,7 +74106,8 @@
           "B_ratio": 7.27,
           "D_ratio": 0.0,
           "profit_sum": 2500.96,
-          "avg_profit": 45.47
+          "avg_profit": 45.47,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -74719,7 +74122,8 @@
           "B_ratio": 58.82,
           "D_ratio": 0.0,
           "profit_sum": -832.87,
-          "avg_profit": -24.5
+          "avg_profit": -24.5,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -74734,7 +74138,25 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -9.42,
-          "avg_profit": -0.86
+          "avg_profit": -0.86,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（5个长尾）",
+          "name": "其他",
+          "total": 11,
+          "A": 1,
+          "B": 1,
+          "C": 9,
+          "D": 0,
+          "auto_coverage_rate": 18.18,
+          "auto_succ_rate": 50.0,
+          "B_ratio": 9.09,
+          "D_ratio": 0.0,
+          "profit_sum": -541.82,
+          "avg_profit": -49.26,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "F3",
@@ -74749,7 +74171,8 @@
           "B_ratio": 50.0,
           "D_ratio": 0.0,
           "profit_sum": -352.39,
-          "avg_profit": -39.15
+          "avg_profit": -39.15,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -74764,7 +74187,8 @@
           "B_ratio": 37.5,
           "D_ratio": 62.5,
           "profit_sum": 48.64,
-          "avg_profit": 16.21
+          "avg_profit": 16.21,
+          "tier": "tail"
         },
         {
           "airline": "KR",
@@ -74779,82 +74203,8 @@
           "B_ratio": 16.67,
           "D_ratio": 0.0,
           "profit_sum": -3.42,
-          "avg_profit": -0.57
-        },
-        {
-          "airline": "VF",
-          "name": "VF",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -34.55,
-          "avg_profit": -8.64
-        },
-        {
-          "airline": "D7",
-          "name": "亚航X",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -309.85,
-          "avg_profit": -154.93
-        },
-        {
-          "airline": "F8",
-          "name": "F8",
-          "total": 2,
-          "A": 0,
-          "B": 1,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 50.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 50.0,
-          "D_ratio": 0.0,
-          "profit_sum": -139.01,
-          "avg_profit": -69.5
-        },
-        {
-          "airline": "HO",
-          "name": "吉祥",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -54.92,
-          "avg_profit": -27.46
-        },
-        {
-          "airline": "IJ",
-          "name": "IJ",
-          "total": 1,
-          "A": 1,
-          "B": 0,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 100.0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -3.49,
-          "avg_profit": -3.49
+          "avg_profit": -0.57,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -78624,7 +77974,8 @@
           "B_ratio": 10.15,
           "D_ratio": 3.59,
           "profit_sum": -18811.39,
-          "avg_profit": -11.08
+          "avg_profit": -11.08,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -78639,7 +77990,8 @@
           "B_ratio": 40.1,
           "D_ratio": 2.23,
           "profit_sum": -2961.41,
-          "avg_profit": -7.57
+          "avg_profit": -7.57,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -78654,7 +78006,8 @@
           "B_ratio": 29.71,
           "D_ratio": 2.17,
           "profit_sum": 957.71,
-          "avg_profit": 3.51
+          "avg_profit": 3.51,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -78669,7 +78022,8 @@
           "B_ratio": 6.8,
           "D_ratio": 1.94,
           "profit_sum": -1860.09,
-          "avg_profit": -9.21
+          "avg_profit": -9.21,
+          "tier": "mid"
         },
         {
           "airline": "TR",
@@ -78684,7 +78038,8 @@
           "B_ratio": 10.98,
           "D_ratio": 0.0,
           "profit_sum": 4277.66,
-          "avg_profit": 52.17
+          "avg_profit": 52.17,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -78699,7 +78054,8 @@
           "B_ratio": 73.42,
           "D_ratio": 5.06,
           "profit_sum": -190.35,
-          "avg_profit": -2.44
+          "avg_profit": -2.44,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -78714,7 +78070,8 @@
           "B_ratio": 68.06,
           "D_ratio": 1.39,
           "profit_sum": -3362.9,
-          "avg_profit": -47.36
+          "avg_profit": -47.36,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -78729,7 +78086,8 @@
           "B_ratio": 50.79,
           "D_ratio": 0.0,
           "profit_sum": -1261.64,
-          "avg_profit": -20.03
+          "avg_profit": -20.03,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -78744,7 +78102,8 @@
           "B_ratio": 40.48,
           "D_ratio": 2.38,
           "profit_sum": -48.59,
-          "avg_profit": -1.16
+          "avg_profit": -1.16,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -78759,7 +78118,8 @@
           "B_ratio": 72.73,
           "D_ratio": 0.0,
           "profit_sum": -203.63,
-          "avg_profit": -9.26
+          "avg_profit": -9.26,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -78774,7 +78134,25 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 91.62,
-          "avg_profit": 10.18
+          "avg_profit": 10.18,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（3个长尾）",
+          "name": "其他",
+          "total": 9,
+          "A": 3,
+          "B": 1,
+          "C": 5,
+          "D": 0,
+          "auto_coverage_rate": 44.44,
+          "auto_succ_rate": 75.0,
+          "B_ratio": 11.11,
+          "D_ratio": 0.0,
+          "profit_sum": -128.92,
+          "avg_profit": -14.32,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "FR",
@@ -78789,52 +78167,8 @@
           "B_ratio": 60.0,
           "D_ratio": 40.0,
           "profit_sum": -25.46,
-          "avg_profit": -8.49
-        },
-        {
-          "airline": "HO",
-          "name": "吉祥",
-          "total": 4,
-          "A": 3,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 75.0,
-          "auto_succ_rate": 100.0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -59.74,
-          "avg_profit": -14.94
-        },
-        {
-          "airline": "VY",
-          "name": "VY",
-          "total": 3,
-          "A": 0,
-          "B": 0,
-          "C": 3,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -20.7,
-          "avg_profit": -6.9
-        },
-        {
-          "airline": "KR",
-          "name": "KR",
-          "total": 2,
-          "A": 0,
-          "B": 1,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 50.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 50.0,
-          "D_ratio": 0.0,
-          "profit_sum": -48.48,
-          "avg_profit": -24.24
+          "avg_profit": -8.49,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -82864,7 +82198,8 @@
           "B_ratio": 11.72,
           "D_ratio": 3.98,
           "profit_sum": -15314.26,
-          "avg_profit": -8.23
+          "avg_profit": -8.23,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -82879,7 +82214,8 @@
           "B_ratio": 11.16,
           "D_ratio": 2.15,
           "profit_sum": -2528.16,
-          "avg_profit": -11.09
+          "avg_profit": -11.09,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -82894,7 +82230,8 @@
           "B_ratio": 28.78,
           "D_ratio": 1.44,
           "profit_sum": 1092.91,
-          "avg_profit": 8.16
+          "avg_profit": 8.16,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -82909,7 +82246,8 @@
           "B_ratio": 66.67,
           "D_ratio": 4.17,
           "profit_sum": -2339.86,
-          "avg_profit": -32.96
+          "avg_profit": -32.96,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -82924,7 +82262,8 @@
           "B_ratio": 39.06,
           "D_ratio": 0.0,
           "profit_sum": -691.94,
-          "avg_profit": -10.81
+          "avg_profit": -10.81,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -82939,7 +82278,8 @@
           "B_ratio": 1.75,
           "D_ratio": 0.0,
           "profit_sum": 1260.48,
-          "avg_profit": 22.11
+          "avg_profit": 22.11,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -82954,7 +82294,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 2712.03,
-          "avg_profit": 49.31
+          "avg_profit": 49.31,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -82969,7 +82310,8 @@
           "B_ratio": 33.33,
           "D_ratio": 2.38,
           "profit_sum": -44.95,
-          "avg_profit": -1.1
+          "avg_profit": -1.1,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -82984,7 +82326,8 @@
           "B_ratio": 94.44,
           "D_ratio": 5.56,
           "profit_sum": -260.04,
-          "avg_profit": -14.45
+          "avg_profit": -14.45,
+          "tier": "tail"
         },
         {
           "airline": "MM",
@@ -82999,7 +82342,8 @@
           "B_ratio": 47.06,
           "D_ratio": 5.88,
           "profit_sum": -1414.51,
-          "avg_profit": -88.41
+          "avg_profit": -88.41,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -83014,7 +82358,8 @@
           "B_ratio": 50.0,
           "D_ratio": 0.0,
           "profit_sum": 23.13,
-          "avg_profit": 1.45
+          "avg_profit": 1.45,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -83029,52 +82374,25 @@
           "B_ratio": 7.14,
           "D_ratio": 0.0,
           "profit_sum": -60.47,
-          "avg_profit": -4.32
+          "avg_profit": -4.32,
+          "tier": "tail"
         },
         {
-          "airline": "KR",
-          "name": "KR",
-          "total": 3,
+          "airline": "其他（3个长尾）",
+          "name": "其他",
+          "total": 6,
           "A": 0,
           "B": 3,
-          "C": 0,
+          "C": 3,
           "D": 0,
-          "auto_coverage_rate": 100.0,
+          "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
+          "B_ratio": 50.0,
           "D_ratio": 0.0,
-          "profit_sum": -2826.14,
-          "avg_profit": -942.05
-        },
-        {
-          "airline": "F8",
-          "name": "F8",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -109.27,
-          "avg_profit": -54.63
-        },
-        {
-          "airline": "J9",
-          "name": "J9",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -34.43,
-          "avg_profit": -34.43
+          "profit_sum": -2969.84,
+          "avg_profit": -494.97,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -86782,7 +86100,8 @@
           "B_ratio": 10.87,
           "D_ratio": 2.58,
           "profit_sum": -22123.59,
-          "avg_profit": -13.91
+          "avg_profit": -13.91,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -86797,7 +86116,8 @@
           "B_ratio": 14.37,
           "D_ratio": 0.6,
           "profit_sum": -349.72,
-          "avg_profit": -2.11
+          "avg_profit": -2.11,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -86812,7 +86132,8 @@
           "B_ratio": 24.55,
           "D_ratio": 1.82,
           "profit_sum": 495.14,
-          "avg_profit": 4.54
+          "avg_profit": 4.54,
+          "tier": "mid"
         },
         {
           "airline": "TR",
@@ -86827,7 +86148,8 @@
           "B_ratio": 2.74,
           "D_ratio": 0.0,
           "profit_sum": 3222.29,
-          "avg_profit": 44.14
+          "avg_profit": 44.14,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -86842,7 +86164,8 @@
           "B_ratio": 66.67,
           "D_ratio": 1.67,
           "profit_sum": -1899.63,
-          "avg_profit": -32.2
+          "avg_profit": -32.2,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -86857,7 +86180,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -149.47,
-          "avg_profit": -3.83
+          "avg_profit": -3.83,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -86872,7 +86196,8 @@
           "B_ratio": 33.33,
           "D_ratio": 0.0,
           "profit_sum": 224.78,
-          "avg_profit": 7.02
+          "avg_profit": 7.02,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -86887,7 +86212,8 @@
           "B_ratio": 60.87,
           "D_ratio": 0.0,
           "profit_sum": -608.73,
-          "avg_profit": -26.47
+          "avg_profit": -26.47,
+          "tier": "tail"
         },
         {
           "airline": "FY",
@@ -86902,7 +86228,8 @@
           "B_ratio": 85.71,
           "D_ratio": 14.29,
           "profit_sum": -32.7,
-          "avg_profit": -5.45
+          "avg_profit": -5.45,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -86917,7 +86244,8 @@
           "B_ratio": 71.43,
           "D_ratio": 28.57,
           "profit_sum": 725.0,
-          "avg_profit": 120.83
+          "avg_profit": 120.83,
+          "tier": "tail"
         },
         {
           "airline": "F8",
@@ -86932,52 +86260,25 @@
           "B_ratio": 16.67,
           "D_ratio": 0.0,
           "profit_sum": -248.11,
-          "avg_profit": -41.35
+          "avg_profit": -41.35,
+          "tier": "tail"
         },
         {
-          "airline": "SL",
-          "name": "狮航",
-          "total": 3,
-          "A": 0,
-          "B": 1,
+          "airline": "其他（3个长尾）",
+          "name": "其他",
+          "total": 6,
+          "A": 1,
+          "B": 3,
           "C": 0,
           "D": 2,
-          "auto_coverage_rate": 33.33,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 33.33,
-          "D_ratio": 66.67,
-          "profit_sum": -45.0,
-          "avg_profit": -22.5
-        },
-        {
-          "airline": "HO",
-          "name": "吉祥",
-          "total": 2,
-          "A": 1,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 50.0,
+          "auto_coverage_rate": 66.67,
+          "auto_succ_rate": 25.0,
           "B_ratio": 50.0,
-          "D_ratio": 0.0,
-          "profit_sum": -26.35,
-          "avg_profit": -13.18
-        },
-        {
-          "airline": "KR",
-          "name": "KR",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -27.57,
-          "avg_profit": -27.57
+          "D_ratio": 33.33,
+          "profit_sum": -98.92,
+          "avg_profit": -16.49,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -90478,7 +89779,8 @@
           "B_ratio": 8.92,
           "D_ratio": 2.8,
           "profit_sum": -21050.83,
-          "avg_profit": -15.95
+          "avg_profit": -15.95,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -90493,7 +89795,8 @@
           "B_ratio": 7.39,
           "D_ratio": 2.27,
           "profit_sum": -2013.15,
-          "avg_profit": -11.7
+          "avg_profit": -11.7,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -90508,7 +89811,8 @@
           "B_ratio": 22.58,
           "D_ratio": 3.23,
           "profit_sum": 335.08,
-          "avg_profit": 3.72
+          "avg_profit": 3.72,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -90523,7 +89827,8 @@
           "B_ratio": 67.8,
           "D_ratio": 0.0,
           "profit_sum": -2388.39,
-          "avg_profit": -40.48
+          "avg_profit": -40.48,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -90538,7 +89843,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 2891.75,
-          "avg_profit": 50.73
+          "avg_profit": 50.73,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -90553,7 +89859,8 @@
           "B_ratio": 4.76,
           "D_ratio": 0.0,
           "profit_sum": 721.81,
-          "avg_profit": 17.19
+          "avg_profit": 17.19,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -90568,7 +89875,8 @@
           "B_ratio": 23.68,
           "D_ratio": 0.0,
           "profit_sum": -1390.26,
-          "avg_profit": -36.59
+          "avg_profit": -36.59,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -90583,7 +89891,8 @@
           "B_ratio": 80.95,
           "D_ratio": 9.52,
           "profit_sum": -178.93,
-          "avg_profit": -9.42
+          "avg_profit": -9.42,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -90598,7 +89907,8 @@
           "B_ratio": 6.67,
           "D_ratio": 0.0,
           "profit_sum": 556.96,
-          "avg_profit": 37.13
+          "avg_profit": 37.13,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -90613,7 +89923,8 @@
           "B_ratio": 7.14,
           "D_ratio": 0.0,
           "profit_sum": 117.8,
-          "avg_profit": 8.41
+          "avg_profit": 8.41,
+          "tier": "tail"
         },
         {
           "airline": "KR",
@@ -90628,7 +89939,8 @@
           "B_ratio": 85.71,
           "D_ratio": 0.0,
           "profit_sum": -88.75,
-          "avg_profit": -12.68
+          "avg_profit": -12.68,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -90643,52 +89955,25 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -10.0,
-          "avg_profit": -1.67
+          "avg_profit": -1.67,
+          "tier": "tail"
         },
         {
-          "airline": "FR",
-          "name": "瑞安",
-          "total": 2,
+          "airline": "其他（3个长尾）",
+          "name": "其他",
+          "total": 5,
           "A": 0,
-          "B": 0,
+          "B": 2,
           "C": 0,
-          "D": 2,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 100.0,
-          "profit_sum": 0,
-          "avg_profit": 0
-        },
-        {
-          "airline": "IJ",
-          "name": "IJ",
-          "total": 2,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 1,
-          "auto_coverage_rate": 50.0,
+          "D": 3,
+          "auto_coverage_rate": 40.0,
           "auto_succ_rate": 0.0,
-          "B_ratio": 50.0,
-          "D_ratio": 50.0,
-          "profit_sum": 145.0,
-          "avg_profit": 145.0
-        },
-        {
-          "airline": "FY",
-          "name": "FY",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -11.22,
-          "avg_profit": -11.22
+          "B_ratio": 40.0,
+          "D_ratio": 60.0,
+          "profit_sum": 133.78,
+          "avg_profit": 26.76,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -93914,7 +93199,8 @@
           "B_ratio": 8.52,
           "D_ratio": 4.99,
           "profit_sum": -18518.98,
-          "avg_profit": -14.31
+          "avg_profit": -14.31,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -93929,7 +93215,8 @@
           "B_ratio": 9.46,
           "D_ratio": 1.35,
           "profit_sum": -1481.15,
-          "avg_profit": -10.14
+          "avg_profit": -10.14,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -93944,7 +93231,8 @@
           "B_ratio": 29.67,
           "D_ratio": 0.0,
           "profit_sum": -119.71,
-          "avg_profit": -1.32
+          "avg_profit": -1.32,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -93959,7 +93247,8 @@
           "B_ratio": 4.82,
           "D_ratio": 0.0,
           "profit_sum": 3769.38,
-          "avg_profit": 45.41
+          "avg_profit": 45.41,
+          "tier": "tail"
         },
         {
           "airline": "VJ",
@@ -93974,7 +93263,8 @@
           "B_ratio": 7.81,
           "D_ratio": 1.56,
           "profit_sum": 337.71,
-          "avg_profit": 5.82
+          "avg_profit": 5.82,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -93989,7 +93279,8 @@
           "B_ratio": 65.38,
           "D_ratio": 3.85,
           "profit_sum": -2171.28,
-          "avg_profit": -42.57
+          "avg_profit": -42.57,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -94004,7 +93295,8 @@
           "B_ratio": 3.92,
           "D_ratio": 0.0,
           "profit_sum": 1218.33,
-          "avg_profit": 24.37
+          "avg_profit": 24.37,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -94019,7 +93311,8 @@
           "B_ratio": 4.0,
           "D_ratio": 0.0,
           "profit_sum": 629.06,
-          "avg_profit": 13.68
+          "avg_profit": 13.68,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -94034,7 +93327,8 @@
           "B_ratio": 12.24,
           "D_ratio": 0.0,
           "profit_sum": -967.97,
-          "avg_profit": -19.75
+          "avg_profit": -19.75,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -94049,7 +93343,8 @@
           "B_ratio": 0.0,
           "D_ratio": 8.33,
           "profit_sum": 378.43,
-          "avg_profit": 17.2
+          "avg_profit": 17.2,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -94064,7 +93359,8 @@
           "B_ratio": 13.33,
           "D_ratio": 0.0,
           "profit_sum": 1062.6,
-          "avg_profit": 70.84
+          "avg_profit": 70.84,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -94079,7 +93375,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -74.55,
-          "avg_profit": -5.33
+          "avg_profit": -5.33,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -94094,7 +93391,8 @@
           "B_ratio": 46.15,
           "D_ratio": 0.0,
           "profit_sum": 59.59,
-          "avg_profit": 4.58
+          "avg_profit": 4.58,
+          "tier": "tail"
         },
         {
           "airline": "FY",
@@ -94109,82 +93407,25 @@
           "B_ratio": 90.91,
           "D_ratio": 9.09,
           "profit_sum": -23.49,
-          "avg_profit": -2.61
+          "avg_profit": -2.61,
+          "tier": "tail"
         },
         {
-          "airline": "KR",
-          "name": "KR",
-          "total": 4,
+          "airline": "其他（5个长尾）",
+          "name": "其他",
+          "total": 9,
           "A": 2,
-          "B": 2,
-          "C": 0,
+          "B": 3,
+          "C": 4,
           "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 50.0,
-          "B_ratio": 50.0,
+          "auto_coverage_rate": 55.56,
+          "auto_succ_rate": 40.0,
+          "B_ratio": 33.33,
           "D_ratio": 0.0,
-          "profit_sum": -49.24,
-          "avg_profit": -12.31
-        },
-        {
-          "airline": "TO",
-          "name": "TO",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 54.65,
-          "avg_profit": 27.33
-        },
-        {
-          "airline": "GQ",
-          "name": "GQ",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 222.41,
-          "avg_profit": 222.41
-        },
-        {
-          "airline": "IJ",
-          "name": "IJ",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -111.0,
-          "avg_profit": -111.0
-        },
-        {
-          "airline": "VZ",
-          "name": "VZ",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -10.15,
-          "avg_profit": -10.15
+          "profit_sum": 106.67,
+          "avg_profit": 11.85,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -97432,7 +96673,8 @@
           "B_ratio": 11.12,
           "D_ratio": 11.63,
           "profit_sum": -19427.49,
-          "avg_profit": -11.15
+          "avg_profit": -11.15,
+          "tier": "core"
         },
         {
           "airline": "MM",
@@ -97447,7 +96689,8 @@
           "B_ratio": 24.2,
           "D_ratio": 0.0,
           "profit_sum": 307.82,
-          "avg_profit": 0.9
+          "avg_profit": 0.9,
+          "tier": "mid"
         },
         {
           "airline": "AQ",
@@ -97462,7 +96705,8 @@
           "B_ratio": 6.03,
           "D_ratio": 1.42,
           "profit_sum": -3730.79,
-          "avg_profit": -13.42
+          "avg_profit": -13.42,
+          "tier": "mid"
         },
         {
           "airline": "TR",
@@ -97477,7 +96721,8 @@
           "B_ratio": 1.48,
           "D_ratio": 0.0,
           "profit_sum": 5871.06,
-          "avg_profit": 43.49
+          "avg_profit": 43.49,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -97492,7 +96737,8 @@
           "B_ratio": 71.03,
           "D_ratio": 4.67,
           "profit_sum": 1992.36,
-          "avg_profit": 19.92
+          "avg_profit": 19.92,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -97507,7 +96753,8 @@
           "B_ratio": 68.13,
           "D_ratio": 2.2,
           "profit_sum": -1833.61,
-          "avg_profit": -20.37
+          "avg_profit": -20.37,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -97522,7 +96769,8 @@
           "B_ratio": 3.28,
           "D_ratio": 0.0,
           "profit_sum": 1454.82,
-          "avg_profit": 23.85
+          "avg_profit": 23.85,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -97537,7 +96785,8 @@
           "B_ratio": 2.38,
           "D_ratio": 0.0,
           "profit_sum": 364.24,
-          "avg_profit": 8.67
+          "avg_profit": 8.67,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -97552,7 +96801,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 752.07,
-          "avg_profit": 24.26
+          "avg_profit": 24.26,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -97567,7 +96817,8 @@
           "B_ratio": 19.23,
           "D_ratio": 0.0,
           "profit_sum": -984.18,
-          "avg_profit": -37.85
+          "avg_profit": -37.85,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -97582,7 +96833,8 @@
           "B_ratio": 13.04,
           "D_ratio": 0.0,
           "profit_sum": 168.11,
-          "avg_profit": 7.31
+          "avg_profit": 7.31,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -97597,7 +96849,8 @@
           "B_ratio": 46.15,
           "D_ratio": 7.69,
           "profit_sum": -124.06,
-          "avg_profit": -10.34
+          "avg_profit": -10.34,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -97612,7 +96865,8 @@
           "B_ratio": 10.0,
           "D_ratio": 10.0,
           "profit_sum": -6.73,
-          "avg_profit": -0.75
+          "avg_profit": -0.75,
+          "tier": "tail"
         },
         {
           "airline": "FY",
@@ -97627,37 +96881,25 @@
           "B_ratio": 80.0,
           "D_ratio": 20.0,
           "profit_sum": -891.71,
-          "avg_profit": -178.34
+          "avg_profit": -178.34,
+          "tier": "tail"
         },
         {
-          "airline": "FR",
-          "name": "瑞安",
-          "total": 3,
+          "airline": "其他（2个长尾）",
+          "name": "其他",
+          "total": 4,
           "A": 0,
           "B": 1,
-          "C": 0,
-          "D": 2,
-          "auto_coverage_rate": 33.33,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 33.33,
-          "D_ratio": 66.67,
-          "profit_sum": 72.89,
-          "avg_profit": 72.89
-        },
-        {
-          "airline": "F8",
-          "name": "F8",
-          "total": 1,
-          "A": 0,
-          "B": 0,
           "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -75.67,
-          "avg_profit": -75.67
+          "D": 2,
+          "auto_coverage_rate": 25.0,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 25.0,
+          "D_ratio": 50.0,
+          "profit_sum": -2.78,
+          "avg_profit": -0.7,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -101555,7 +100797,8 @@
           "B_ratio": 10.87,
           "D_ratio": 5.43,
           "profit_sum": -17615.73,
-          "avg_profit": -11.11
+          "avg_profit": -11.11,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -101570,7 +100813,8 @@
           "B_ratio": 8.55,
           "D_ratio": 1.99,
           "profit_sum": -2284.89,
-          "avg_profit": -6.64
+          "avg_profit": -6.64,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -101585,7 +100829,8 @@
           "B_ratio": 30.77,
           "D_ratio": 1.28,
           "profit_sum": 1433.68,
-          "avg_profit": 4.61
+          "avg_profit": 4.61,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -101600,7 +100845,8 @@
           "B_ratio": 25.0,
           "D_ratio": 2.38,
           "profit_sum": -232.96,
-          "avg_profit": -0.97
+          "avg_profit": -0.97,
+          "tier": "mid"
         },
         {
           "airline": "TR",
@@ -101615,7 +100861,8 @@
           "B_ratio": 5.05,
           "D_ratio": 0.0,
           "profit_sum": 4414.27,
-          "avg_profit": 44.59
+          "avg_profit": 44.59,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -101630,7 +100877,8 @@
           "B_ratio": 64.84,
           "D_ratio": 0.0,
           "profit_sum": -3266.24,
-          "avg_profit": -35.89
+          "avg_profit": -35.89,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -101645,7 +100893,8 @@
           "B_ratio": 1.92,
           "D_ratio": 0.0,
           "profit_sum": 1117.41,
-          "avg_profit": 21.49
+          "avg_profit": 21.49,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -101660,7 +100909,8 @@
           "B_ratio": 4.35,
           "D_ratio": 0.0,
           "profit_sum": 401.32,
-          "avg_profit": 9.12
+          "avg_profit": 9.12,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -101675,7 +100925,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -162.48,
-          "avg_profit": -4.28
+          "avg_profit": -4.28,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -101690,7 +100941,8 @@
           "B_ratio": 58.06,
           "D_ratio": 3.23,
           "profit_sum": -317.83,
-          "avg_profit": -10.59
+          "avg_profit": -10.59,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -101705,7 +100957,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 995.17,
-          "avg_profit": 38.28
+          "avg_profit": 38.28,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -101720,7 +100973,8 @@
           "B_ratio": 64.0,
           "D_ratio": 12.0,
           "profit_sum": -540.4,
-          "avg_profit": -22.52
+          "avg_profit": -22.52,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -101735,7 +100989,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 604.76,
-          "avg_profit": 24.19
+          "avg_profit": 24.19,
+          "tier": "tail"
         },
         {
           "airline": "TO",
@@ -101750,7 +101005,25 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 744.37,
-          "avg_profit": 74.44
+          "avg_profit": 74.44,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（3个长尾）",
+          "name": "其他",
+          "total": 9,
+          "A": 0,
+          "B": 5,
+          "C": 4,
+          "D": 0,
+          "auto_coverage_rate": 55.56,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 55.56,
+          "D_ratio": 0.0,
+          "profit_sum": -379.09,
+          "avg_profit": -42.12,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "F3",
@@ -101765,7 +101038,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -136.42,
-          "avg_profit": -27.28
+          "avg_profit": -27.28,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -101780,52 +101054,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -20.66,
-          "avg_profit": -2.95
-        },
-        {
-          "airline": "FR",
-          "name": "瑞安",
-          "total": 4,
-          "A": 0,
-          "B": 4,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -443.0,
-          "avg_profit": -110.75
-        },
-        {
-          "airline": "VF",
-          "name": "VF",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 12.25,
-          "avg_profit": 3.06
-        },
-        {
-          "airline": "IT",
-          "name": "IT",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 51.66,
-          "avg_profit": 51.66
+          "avg_profit": -2.95,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -105553,7 +104783,8 @@
           "B_ratio": 9.62,
           "D_ratio": 4.39,
           "profit_sum": -19251.86,
-          "avg_profit": -10.63
+          "avg_profit": -10.63,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -105568,7 +104799,8 @@
           "B_ratio": 3.92,
           "D_ratio": 0.78,
           "profit_sum": -4563.91,
-          "avg_profit": -12.01
+          "avg_profit": -12.01,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -105583,7 +104815,8 @@
           "B_ratio": 26.64,
           "D_ratio": 0.69,
           "profit_sum": -1918.01,
-          "avg_profit": -6.66
+          "avg_profit": -6.66,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -105598,7 +104831,8 @@
           "B_ratio": 21.22,
           "D_ratio": 2.45,
           "profit_sum": -102.17,
-          "avg_profit": -0.43
+          "avg_profit": -0.43,
+          "tier": "mid"
         },
         {
           "airline": "TR",
@@ -105613,7 +104847,8 @@
           "B_ratio": 0.97,
           "D_ratio": 0.0,
           "profit_sum": 4410.53,
-          "avg_profit": 42.82
+          "avg_profit": 42.82,
+          "tier": "mid"
         },
         {
           "airline": "DD",
@@ -105628,7 +104863,8 @@
           "B_ratio": 0.0,
           "D_ratio": 1.11,
           "profit_sum": 920.01,
-          "avg_profit": 10.45
+          "avg_profit": 10.45,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -105643,7 +104879,8 @@
           "B_ratio": 85.07,
           "D_ratio": 0.0,
           "profit_sum": -2966.18,
-          "avg_profit": -44.27
+          "avg_profit": -44.27,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -105658,7 +104895,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 943.87,
-          "avg_profit": 17.81
+          "avg_profit": 17.81,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -105673,7 +104911,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -170.48,
-          "avg_profit": -3.63
+          "avg_profit": -3.63,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -105688,7 +104927,8 @@
           "B_ratio": 59.09,
           "D_ratio": 0.0,
           "profit_sum": -216.57,
-          "avg_profit": -4.92
+          "avg_profit": -4.92,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -105703,7 +104943,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 520.75,
-          "avg_profit": 16.27
+          "avg_profit": 16.27,
+          "tier": "tail"
         },
         {
           "airline": "VF",
@@ -105718,7 +104959,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 401.33,
-          "avg_profit": 25.08
+          "avg_profit": 25.08,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -105733,7 +104975,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -309.34,
-          "avg_profit": -20.62
+          "avg_profit": -20.62,
+          "tier": "tail"
         },
         {
           "airline": "TO",
@@ -105748,7 +104991,25 @@
           "B_ratio": 21.43,
           "D_ratio": 0.0,
           "profit_sum": 353.85,
-          "avg_profit": 32.17
+          "avg_profit": 32.17,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（5个长尾）",
+          "name": "其他",
+          "total": 10,
+          "A": 0,
+          "B": 5,
+          "C": 5,
+          "D": 0,
+          "auto_coverage_rate": 50.0,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 50.0,
+          "D_ratio": 0.0,
+          "profit_sum": 42.06,
+          "avg_profit": 4.21,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "LJ",
@@ -105763,82 +105024,8 @@
           "B_ratio": 75.0,
           "D_ratio": 0.0,
           "profit_sum": -190.57,
-          "avg_profit": -23.82
-        },
-        {
-          "airline": "KR",
-          "name": "KR",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 72.32,
-          "avg_profit": 18.08
-        },
-        {
-          "airline": "FY",
-          "name": "FY",
-          "total": 3,
-          "A": 0,
-          "B": 3,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -25.56,
-          "avg_profit": -8.52
-        },
-        {
-          "airline": "F8",
-          "name": "F8",
-          "total": 1,
-          "A": 0,
-          "B": 0,
-          "C": 1,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -6.57,
-          "avg_profit": -6.57
-        },
-        {
-          "airline": "FR",
-          "name": "瑞安",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 1.06,
-          "avg_profit": 1.06
-        },
-        {
-          "airline": "HO",
-          "name": "吉祥",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 0.81,
-          "avg_profit": 0.81
+          "avg_profit": -23.82,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -109355,7 +108542,8 @@
           "B_ratio": 9.97,
           "D_ratio": 1.98,
           "profit_sum": -22684.44,
-          "avg_profit": -13.49
+          "avg_profit": -13.49,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -109370,7 +108558,8 @@
           "B_ratio": 6.08,
           "D_ratio": 2.49,
           "profit_sum": -4195.11,
-          "avg_profit": -11.88
+          "avg_profit": -11.88,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -109385,7 +108574,8 @@
           "B_ratio": 28.02,
           "D_ratio": 0.78,
           "profit_sum": -1505.32,
-          "avg_profit": -5.9
+          "avg_profit": -5.9,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -109400,7 +108590,8 @@
           "B_ratio": 24.83,
           "D_ratio": 2.07,
           "profit_sum": -84.23,
-          "avg_profit": -0.59
+          "avg_profit": -0.59,
+          "tier": "mid"
         },
         {
           "airline": "TR",
@@ -109415,7 +108606,8 @@
           "B_ratio": 12.59,
           "D_ratio": 0.0,
           "profit_sum": 6145.87,
-          "avg_profit": 44.21
+          "avg_profit": 44.21,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -109430,7 +108622,8 @@
           "B_ratio": 62.64,
           "D_ratio": 1.1,
           "profit_sum": -2975.03,
-          "avg_profit": -33.06
+          "avg_profit": -33.06,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -109445,7 +108638,8 @@
           "B_ratio": 1.56,
           "D_ratio": 0.0,
           "profit_sum": 39.74,
-          "avg_profit": 0.66
+          "avg_profit": 0.66,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -109460,7 +108654,8 @@
           "B_ratio": 3.45,
           "D_ratio": 0.0,
           "profit_sum": 56.72,
-          "avg_profit": 1.0
+          "avg_profit": 1.0,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -109475,7 +108670,8 @@
           "B_ratio": 64.91,
           "D_ratio": 0.0,
           "profit_sum": -2498.24,
-          "avg_profit": -43.83
+          "avg_profit": -43.83,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -109490,7 +108686,8 @@
           "B_ratio": 4.88,
           "D_ratio": 0.0,
           "profit_sum": 769.74,
-          "avg_profit": 18.77
+          "avg_profit": 18.77,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -109505,7 +108702,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 1081.03,
-          "avg_profit": 33.78
+          "avg_profit": 33.78,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -109520,7 +108718,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -298.76,
-          "avg_profit": -19.92
+          "avg_profit": -19.92,
+          "tier": "tail"
         },
         {
           "airline": "VF",
@@ -109535,7 +108734,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -443.52,
-          "avg_profit": -49.28
+          "avg_profit": -49.28,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -109550,7 +108750,8 @@
           "B_ratio": 70.0,
           "D_ratio": 10.0,
           "profit_sum": 4.37,
-          "avg_profit": 0.49
+          "avg_profit": 0.49,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -109565,7 +108766,25 @@
           "B_ratio": 90.0,
           "D_ratio": 0.0,
           "profit_sum": -340.97,
-          "avg_profit": -34.1
+          "avg_profit": -34.1,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（3个长尾）",
+          "name": "其他",
+          "total": 6,
+          "A": 0,
+          "B": 2,
+          "C": 4,
+          "D": 0,
+          "auto_coverage_rate": 33.33,
+          "auto_succ_rate": 0.0,
+          "B_ratio": 33.33,
+          "D_ratio": 0.0,
+          "profit_sum": -63.92,
+          "avg_profit": -10.65,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "IT",
@@ -109580,52 +108799,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 284.76,
-          "avg_profit": 56.95
-        },
-        {
-          "airline": "TO",
-          "name": "TO",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 9.62,
-          "avg_profit": 3.21
-        },
-        {
-          "airline": "F8",
-          "name": "F8",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": -101.82,
-          "avg_profit": -101.82
-        },
-        {
-          "airline": "HB",
-          "name": "HB",
-          "total": 1,
-          "A": 0,
-          "B": 1,
-          "C": 0,
-          "D": 0,
-          "auto_coverage_rate": 100.0,
-          "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
-          "D_ratio": 0.0,
-          "profit_sum": 28.28,
-          "avg_profit": 28.28
+          "avg_profit": 56.95,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -113276,7 +112451,8 @@
           "B_ratio": 10.32,
           "D_ratio": 0.74,
           "profit_sum": -23420.71,
-          "avg_profit": -17.36
+          "avg_profit": -17.36,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -113291,7 +112467,8 @@
           "B_ratio": 6.5,
           "D_ratio": 1.68,
           "profit_sum": -1898.97,
-          "avg_profit": -4.05
+          "avg_profit": -4.05,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -113306,7 +112483,8 @@
           "B_ratio": 22.01,
           "D_ratio": 0.63,
           "profit_sum": -680.93,
-          "avg_profit": -4.31
+          "avg_profit": -4.31,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -113321,7 +112499,8 @@
           "B_ratio": 30.59,
           "D_ratio": 0.0,
           "profit_sum": 73.08,
-          "avg_profit": 0.86
+          "avg_profit": 0.86,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -113336,7 +112515,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 2679.64,
-          "avg_profit": 35.26
+          "avg_profit": 35.26,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -113351,7 +112531,8 @@
           "B_ratio": 0.0,
           "D_ratio": 1.64,
           "profit_sum": -237.57,
-          "avg_profit": -4.24
+          "avg_profit": -4.24,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -113366,7 +112547,8 @@
           "B_ratio": 66.67,
           "D_ratio": 0.0,
           "profit_sum": -2096.73,
-          "avg_profit": -34.95
+          "avg_profit": -34.95,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -113381,7 +112563,8 @@
           "B_ratio": 57.89,
           "D_ratio": 1.75,
           "profit_sum": -1568.56,
-          "avg_profit": -28.01
+          "avg_profit": -28.01,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -113396,7 +112579,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 296.88,
-          "avg_profit": 8.73
+          "avg_profit": 8.73,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -113411,7 +112595,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -117.57,
-          "avg_profit": -3.56
+          "avg_profit": -3.56,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -113426,7 +112611,8 @@
           "B_ratio": 60.87,
           "D_ratio": 0.0,
           "profit_sum": -1129.09,
-          "avg_profit": -51.32
+          "avg_profit": -51.32,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -113441,7 +112627,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -14.95,
-          "avg_profit": -0.75
+          "avg_profit": -0.75,
+          "tier": "tail"
         },
         {
           "airline": "VF",
@@ -113456,7 +112643,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -722.12,
-          "avg_profit": -55.55
+          "avg_profit": -55.55,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -113471,7 +112659,8 @@
           "B_ratio": 41.67,
           "D_ratio": 0.0,
           "profit_sum": -428.06,
-          "avg_profit": -35.67
+          "avg_profit": -35.67,
+          "tier": "tail"
         },
         {
           "airline": "TO",
@@ -113486,7 +112675,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -185.59,
-          "avg_profit": -20.62
+          "avg_profit": -20.62,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -113501,7 +112691,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -4.34,
-          "avg_profit": -0.62
+          "avg_profit": -0.62,
+          "tier": "tail"
         },
         {
           "airline": "KR",
@@ -113516,11 +112707,12 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 19.08,
-          "avg_profit": 3.82
+          "avg_profit": 3.82,
+          "tier": "tail"
         },
         {
-          "airline": "IT",
-          "name": "IT",
+          "airline": "其他（1个长尾）",
+          "name": "其他",
           "total": 3,
           "A": 0,
           "B": 0,
@@ -113531,7 +112723,9 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 47.4,
-          "avg_profit": 15.8
+          "avg_profit": 15.8,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -116682,7 +115876,8 @@
           "B_ratio": 8.93,
           "D_ratio": 4.82,
           "profit_sum": -18121.19,
-          "avg_profit": -15.04
+          "avg_profit": -15.04,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -116697,7 +115892,8 @@
           "B_ratio": 6.43,
           "D_ratio": 2.25,
           "profit_sum": -2749.56,
-          "avg_profit": -9.01
+          "avg_profit": -9.01,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -116712,7 +115908,8 @@
           "B_ratio": 20.53,
           "D_ratio": 0.38,
           "profit_sum": 436.23,
-          "avg_profit": 1.66
+          "avg_profit": 1.66,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -116727,7 +115924,8 @@
           "B_ratio": 30.25,
           "D_ratio": 2.52,
           "profit_sum": 510.75,
-          "avg_profit": 4.52
+          "avg_profit": 4.52,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -116742,7 +115940,8 @@
           "B_ratio": 60.24,
           "D_ratio": 3.61,
           "profit_sum": -2978.44,
-          "avg_profit": -37.23
+          "avg_profit": -37.23,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -116757,7 +115956,8 @@
           "B_ratio": 18.03,
           "D_ratio": 0.0,
           "profit_sum": 2250.74,
-          "avg_profit": 38.15
+          "avg_profit": 38.15,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -116772,7 +115972,8 @@
           "B_ratio": 59.26,
           "D_ratio": 0.0,
           "profit_sum": -1922.04,
-          "avg_profit": -35.59
+          "avg_profit": -35.59,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -116787,7 +115988,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 121.91,
-          "avg_profit": 2.77
+          "avg_profit": 2.77,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -116802,7 +116004,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 33.78,
-          "avg_profit": 1.09
+          "avg_profit": 1.09,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -116817,7 +116020,8 @@
           "B_ratio": 7.14,
           "D_ratio": 0.0,
           "profit_sum": -316.38,
-          "avg_profit": -11.3
+          "avg_profit": -11.3,
+          "tier": "tail"
         },
         {
           "airline": "VF",
@@ -116832,7 +116036,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -15.29,
-          "avg_profit": -1.39
+          "avg_profit": -1.39,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -116847,7 +116052,8 @@
           "B_ratio": 25.0,
           "D_ratio": 0.0,
           "profit_sum": 12.9,
-          "avg_profit": 1.61
+          "avg_profit": 1.61,
+          "tier": "tail"
         },
         {
           "airline": "TO",
@@ -116862,7 +116068,8 @@
           "B_ratio": 57.14,
           "D_ratio": 0.0,
           "profit_sum": -140.11,
-          "avg_profit": -23.35
+          "avg_profit": -23.35,
+          "tier": "tail"
         },
         {
           "airline": "DD",
@@ -116877,37 +116084,25 @@
           "B_ratio": 16.67,
           "D_ratio": 0.0,
           "profit_sum": 60.66,
-          "avg_profit": 10.11
+          "avg_profit": 10.11,
+          "tier": "tail"
         },
         {
-          "airline": "KR",
-          "name": "KR",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -38.59,
-          "avg_profit": -38.59
-        },
-        {
-          "airline": "UO",
-          "name": "UO",
-          "total": 1,
+          "airline": "其他（2个长尾）",
+          "name": "其他",
+          "total": 3,
           "A": 0,
           "B": 1,
-          "C": 0,
+          "C": 2,
           "D": 0,
-          "auto_coverage_rate": 100.0,
+          "auto_coverage_rate": 33.33,
           "auto_succ_rate": 0.0,
-          "B_ratio": 100.0,
+          "B_ratio": 33.33,
           "D_ratio": 0.0,
-          "profit_sum": -58.89,
-          "avg_profit": -58.89
+          "profit_sum": -97.48,
+          "avg_profit": -32.49,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -120194,7 +119389,8 @@
           "B_ratio": 10.03,
           "D_ratio": 3.2,
           "profit_sum": -22104.54,
-          "avg_profit": -15.96
+          "avg_profit": -15.96,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -120209,7 +119405,8 @@
           "B_ratio": 6.08,
           "D_ratio": 2.74,
           "profit_sum": -1618.94,
-          "avg_profit": -5.06
+          "avg_profit": -5.06,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -120224,7 +119421,8 @@
           "B_ratio": 19.44,
           "D_ratio": 0.0,
           "profit_sum": 116.71,
-          "avg_profit": 0.54
+          "avg_profit": 0.54,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -120239,7 +119437,8 @@
           "B_ratio": 26.67,
           "D_ratio": 2.5,
           "profit_sum": 133.02,
-          "avg_profit": 1.14
+          "avg_profit": 1.14,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -120254,7 +119453,8 @@
           "B_ratio": 68.63,
           "D_ratio": 2.94,
           "profit_sum": -955.93,
-          "avg_profit": -9.75
+          "avg_profit": -9.75,
+          "tier": "mid"
         },
         {
           "airline": "DD",
@@ -120269,7 +119469,8 @@
           "B_ratio": 2.2,
           "D_ratio": 0.0,
           "profit_sum": 2787.09,
-          "avg_profit": 31.67
+          "avg_profit": 31.67,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -120284,7 +119485,8 @@
           "B_ratio": 20.51,
           "D_ratio": 0.0,
           "profit_sum": 1832.22,
-          "avg_profit": 24.11
+          "avg_profit": 24.11,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -120299,7 +119501,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 2367.15,
-          "avg_profit": 46.41
+          "avg_profit": 46.41,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -120314,7 +119517,8 @@
           "B_ratio": 70.59,
           "D_ratio": 0.0,
           "profit_sum": -284.4,
-          "avg_profit": -8.36
+          "avg_profit": -8.36,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -120329,7 +119533,8 @@
           "B_ratio": 10.0,
           "D_ratio": 0.0,
           "profit_sum": -157.16,
-          "avg_profit": -5.24
+          "avg_profit": -5.24,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -120344,7 +119549,8 @@
           "B_ratio": 54.17,
           "D_ratio": 8.33,
           "profit_sum": 165.45,
-          "avg_profit": 7.52
+          "avg_profit": 7.52,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -120359,7 +119565,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 122.42,
-          "avg_profit": 9.42
+          "avg_profit": 9.42,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -120374,7 +119581,8 @@
           "B_ratio": 8.33,
           "D_ratio": 0.0,
           "profit_sum": -113.43,
-          "avg_profit": -9.45
+          "avg_profit": -9.45,
+          "tier": "tail"
         },
         {
           "airline": "VF",
@@ -120389,7 +119597,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 506.32,
-          "avg_profit": 101.26
+          "avg_profit": 101.26,
+          "tier": "tail"
         },
         {
           "airline": "TO",
@@ -120404,11 +119613,12 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 154.69,
-          "avg_profit": 30.94
+          "avg_profit": 30.94,
+          "tier": "tail"
         },
         {
-          "airline": "KR",
-          "name": "KR",
+          "airline": "其他（1个长尾）",
+          "name": "其他",
           "total": 2,
           "A": 0,
           "B": 0,
@@ -120419,7 +119629,9 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 122.3,
-          "avg_profit": 61.15
+          "avg_profit": 61.15,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
@@ -123764,7 +122976,8 @@
           "B_ratio": 15.41,
           "D_ratio": 5.38,
           "profit_sum": -19084.64,
-          "avg_profit": -14.67
+          "avg_profit": -14.67,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -123779,7 +122992,8 @@
           "B_ratio": 8.14,
           "D_ratio": 4.65,
           "profit_sum": -2435.72,
-          "avg_profit": -7.49
+          "avg_profit": -7.49,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -123794,7 +123008,8 @@
           "B_ratio": 29.18,
           "D_ratio": 0.0,
           "profit_sum": 2368.91,
-          "avg_profit": 10.26
+          "avg_profit": 10.26,
+          "tier": "mid"
         },
         {
           "airline": "DD",
@@ -123809,7 +123024,8 @@
           "B_ratio": 1.5,
           "D_ratio": 0.0,
           "profit_sum": 5456.34,
-          "avg_profit": 42.96
+          "avg_profit": 42.96,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -123824,7 +123040,8 @@
           "B_ratio": 26.17,
           "D_ratio": 5.61,
           "profit_sum": 98.37,
-          "avg_profit": 0.96
+          "avg_profit": 0.96,
+          "tier": "mid"
         },
         {
           "airline": "MF",
@@ -123839,7 +123056,8 @@
           "B_ratio": 65.52,
           "D_ratio": 3.45,
           "profit_sum": -3216.18,
-          "avg_profit": -38.29
+          "avg_profit": -38.29,
+          "tier": "tail"
         },
         {
           "airline": "TR",
@@ -123854,7 +123072,8 @@
           "B_ratio": 3.17,
           "D_ratio": 0.0,
           "profit_sum": 2446.9,
-          "avg_profit": 38.84
+          "avg_profit": 38.84,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -123869,7 +123088,8 @@
           "B_ratio": 55.17,
           "D_ratio": 0.0,
           "profit_sum": -1294.04,
-          "avg_profit": -22.31
+          "avg_profit": -22.31,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -123884,7 +123104,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 1097.15,
-          "avg_profit": 21.51
+          "avg_profit": 21.51,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -123899,7 +123120,8 @@
           "B_ratio": 3.12,
           "D_ratio": 0.0,
           "profit_sum": 868.55,
-          "avg_profit": 27.14
+          "avg_profit": 27.14,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -123914,7 +123136,8 @@
           "B_ratio": 31.82,
           "D_ratio": 0.0,
           "profit_sum": -246.19,
-          "avg_profit": -12.31
+          "avg_profit": -12.31,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -123929,7 +123152,25 @@
           "B_ratio": 4.55,
           "D_ratio": 4.55,
           "profit_sum": -398.98,
-          "avg_profit": -18.14
+          "avg_profit": -18.14,
+          "tier": "tail"
+        },
+        {
+          "airline": "其他（5个长尾）",
+          "name": "其他",
+          "total": 13,
+          "A": 0,
+          "B": 0,
+          "C": 13,
+          "D": 0,
+          "auto_coverage_rate": 0.0,
+          "auto_succ_rate": 0,
+          "B_ratio": 0.0,
+          "D_ratio": 0.0,
+          "profit_sum": 52.01,
+          "avg_profit": 4.0,
+          "tier": "tail",
+          "is_other": true
         },
         {
           "airline": "HO",
@@ -123944,7 +123185,8 @@
           "B_ratio": 22.22,
           "D_ratio": 0.0,
           "profit_sum": 73.34,
-          "avg_profit": 10.48
+          "avg_profit": 10.48,
+          "tier": "tail"
         },
         {
           "airline": "OD",
@@ -123959,7 +123201,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": 58.45,
-          "avg_profit": 7.31
+          "avg_profit": 7.31,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -123974,82 +123217,8 @@
           "B_ratio": 83.33,
           "D_ratio": 0.0,
           "profit_sum": -297.39,
-          "avg_profit": -49.56
-        },
-        {
-          "airline": "QG",
-          "name": "QG",
-          "total": 4,
-          "A": 0,
-          "B": 0,
-          "C": 4,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -38.97,
-          "avg_profit": -9.74
-        },
-        {
-          "airline": "KR",
-          "name": "KR",
-          "total": 3,
-          "A": 0,
-          "B": 0,
-          "C": 3,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 32.14,
-          "avg_profit": 10.71
-        },
-        {
-          "airline": "IU",
-          "name": "IU",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": -19.31,
-          "avg_profit": -9.66
-        },
-        {
-          "airline": "JT",
-          "name": "狮航印尼",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 59.14,
-          "avg_profit": 29.57
-        },
-        {
-          "airline": "PC",
-          "name": "PC",
-          "total": 2,
-          "A": 0,
-          "B": 0,
-          "C": 2,
-          "D": 0,
-          "auto_coverage_rate": 0.0,
-          "auto_succ_rate": 0,
-          "B_ratio": 0.0,
-          "D_ratio": 0.0,
-          "profit_sum": 19.01,
-          "avg_profit": 9.5
+          "avg_profit": -49.56,
+          "tier": "tail"
         }
       ],
       "platform": [
@@ -127570,7 +126739,8 @@
           "B_ratio": 13.3,
           "D_ratio": 3.18,
           "profit_sum": -22020.1,
-          "avg_profit": -13.61
+          "avg_profit": -13.61,
+          "tier": "core"
         },
         {
           "airline": "AQ",
@@ -127585,7 +126755,8 @@
           "B_ratio": 7.42,
           "D_ratio": 2.33,
           "profit_sum": -5151.6,
-          "avg_profit": -11.1
+          "avg_profit": -11.1,
+          "tier": "mid"
         },
         {
           "airline": "MM",
@@ -127600,7 +126771,8 @@
           "B_ratio": 21.49,
           "D_ratio": 0.44,
           "profit_sum": 638.04,
-          "avg_profit": 2.82
+          "avg_profit": 2.82,
+          "tier": "mid"
         },
         {
           "airline": "DD",
@@ -127615,7 +126787,8 @@
           "B_ratio": 0.86,
           "D_ratio": 0.0,
           "profit_sum": 3056.86,
-          "avg_profit": 29.39
+          "avg_profit": 29.39,
+          "tier": "mid"
         },
         {
           "airline": "TR",
@@ -127630,7 +126803,8 @@
           "B_ratio": 0.91,
           "D_ratio": 0.0,
           "profit_sum": 5151.91,
-          "avg_profit": 46.84
+          "avg_profit": 46.84,
+          "tier": "mid"
         },
         {
           "airline": "VJ",
@@ -127645,7 +126819,8 @@
           "B_ratio": 29.76,
           "D_ratio": 1.19,
           "profit_sum": -487.66,
-          "avg_profit": -5.88
+          "avg_profit": -5.88,
+          "tier": "tail"
         },
         {
           "airline": "MF",
@@ -127660,7 +126835,8 @@
           "B_ratio": 68.67,
           "D_ratio": 1.2,
           "profit_sum": -2949.45,
-          "avg_profit": -35.54
+          "avg_profit": -35.54,
+          "tier": "tail"
         },
         {
           "airline": "HX",
@@ -127675,7 +126851,8 @@
           "B_ratio": 59.74,
           "D_ratio": 0.0,
           "profit_sum": -2372.98,
-          "avg_profit": -30.82
+          "avg_profit": -30.82,
+          "tier": "tail"
         },
         {
           "airline": "FD",
@@ -127690,7 +126867,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 902.0,
-          "avg_profit": 19.61
+          "avg_profit": 19.61,
+          "tier": "tail"
         },
         {
           "airline": "SL",
@@ -127705,7 +126883,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -240.83,
-          "avg_profit": -5.87
+          "avg_profit": -5.87,
+          "tier": "tail"
         },
         {
           "airline": "PC",
@@ -127720,7 +126899,8 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": 1980.12,
-          "avg_profit": 66.0
+          "avg_profit": 66.0,
+          "tier": "tail"
         },
         {
           "airline": "FR",
@@ -127735,7 +126915,8 @@
           "B_ratio": 9.09,
           "D_ratio": 0.0,
           "profit_sum": -139.87,
-          "avg_profit": -6.36
+          "avg_profit": -6.36,
+          "tier": "tail"
         },
         {
           "airline": "HO",
@@ -127750,7 +126931,8 @@
           "B_ratio": 33.33,
           "D_ratio": 0.0,
           "profit_sum": -578.46,
-          "avg_profit": -27.55
+          "avg_profit": -27.55,
+          "tier": "tail"
         },
         {
           "airline": "LJ",
@@ -127765,7 +126947,8 @@
           "B_ratio": 60.0,
           "D_ratio": 6.67,
           "profit_sum": -173.8,
-          "avg_profit": -12.41
+          "avg_profit": -12.41,
+          "tier": "tail"
         },
         {
           "airline": "OD",
@@ -127780,7 +126963,8 @@
           "B_ratio": 100.0,
           "D_ratio": 0.0,
           "profit_sum": -49.76,
-          "avg_profit": -3.55
+          "avg_profit": -3.55,
+          "tier": "tail"
         },
         {
           "airline": "IJ",
@@ -127795,11 +126979,12 @@
           "B_ratio": 0.0,
           "D_ratio": 0.0,
           "profit_sum": -92.4,
-          "avg_profit": -8.4
+          "avg_profit": -8.4,
+          "tier": "tail"
         },
         {
-          "airline": "F8",
-          "name": "F8",
+          "airline": "其他（1个长尾）",
+          "name": "其他",
           "total": 2,
           "A": 0,
           "B": 1,
@@ -127810,7 +126995,9 @@
           "B_ratio": 50.0,
           "D_ratio": 50.0,
           "profit_sum": -102.27,
-          "avg_profit": -102.27
+          "avg_profit": -51.13,
+          "tier": "tail",
+          "is_other": true
         }
       ],
       "platform": [
