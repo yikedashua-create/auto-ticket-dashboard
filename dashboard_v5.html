@@ -534,7 +534,7 @@ async function loadData() {
       //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
       //   浏览器缓存: 同一 URL 二次访问秒开
       //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-      const COMMIT = "71d2fa4";
+      const COMMIT = "e3cffdc";
       const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       let dataLoaded = false;
       // 路径 1: 相对路径
