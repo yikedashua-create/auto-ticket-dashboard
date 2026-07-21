@@ -205,6 +205,34 @@
     justify-content: space-between;
   }
   .chart-area { width: 100%; }
+  /* 2026-07-21: 员工页 3 张全量排行榜表（接单/全自动失败/订单转人工） */
+  .kpi.rank-card { padding: 12px 14px; }
+  .kpi.rank-card .rank-list {
+    display: flex; flex-direction: column; gap: 5px; margin-top: 8px;
+  }
+  .kpi.rank-card .rank-row {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 8px 5px 6px; border-radius: 4px;
+    background: #0d1424; font-size: 13px;
+  }
+  .kpi.rank-card .rank-row.gold {
+    background: linear-gradient(90deg, #2a2410 0%, #131c30 100%);
+    border-left: 3px solid #ffd700;
+  }
+  .kpi.rank-card .rank-row.silver {
+    background: linear-gradient(90deg, #1a2030 0%, #131c30 100%);
+    border-left: 3px solid #c0c0c0;
+  }
+  .kpi.rank-card .rank-row.bronze {
+    background: linear-gradient(90deg, #1f1a14 0%, #131c30 100%);
+    border-left: 3px solid #cd7f32;
+  }
+  .kpi.rank-card .rank-medal { font-size: 14px; min-width: 18px; text-align: center; }
+  .kpi.rank-card .rank-name { flex: 1; color: #e0e6f0; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .kpi.rank-card .rank-value { color: #00e5ff; font-weight: 700; font-size: 13px; }
+  .kpi.rank-card .rank-value.green { color: #00ff88; }
+  .kpi.rank-card .rank-empty { color: #7a8ba0; font-size: 12px; text-align: center; padding: 14px 0; }
+  .kpi.rank-card .rank-sub { color: #7a8ba0; font-size: 10px; margin-top: 8px; line-height: 1.5; }
   .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -224,6 +252,16 @@
   .drill-chart-title { color: #00e5ff; font-size: 12px; font-weight: 600; margin-bottom: 8px; padding-left: 4px; border-left: 2px solid #00e5ff; }
   .family-subtable { margin-top: 8px; }
   .family-subtable .data-table { font-size: 11px; }
+  /* 2026-07-21: 员工页 3 张全量排行榜表（紧凑版） */
+  .data-table.compact { font-size: 11px; }
+  .data-table.compact th { padding: 5px 6px; }
+  .data-table.compact td { padding: 4px 6px; }
+  .data-table.compact .rank-num { color: #7a8ba0; width: 28px; text-align: center; }
+  .data-table.compact .rank-num.top1 { color: #ffd700; font-weight: 700; }
+  .data-table.compact .rank-num.top2 { color: #c0c0c0; font-weight: 700; }
+  .data-table.compact .rank-num.top3 { color: #cd7f32; font-weight: 700; }
+  .data-table.compact .rank-val { text-align: right; font-weight: 600; }
+  .data-table.compact tr:hover td { background: #0d1424; }
   /* 4 路径对比表（紧凑版） */
   .path-compare-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; }
   .path-compare-table th { padding: 5px 8px; color: #7a8ba0; font-weight: 500; border-bottom: 1px solid #1e3a5f; background: #0a0e1a; text-align: right; }
@@ -478,7 +516,7 @@ async function loadData() {
       //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
       //   浏览器缓存: 同一 URL 二次访问秒开
       //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-      const COMMIT = "1db25d9";
+      const COMMIT = "2e01185";
       const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       let dataLoaded = false;
       // 路径 1: 相对路径
@@ -1358,9 +1396,61 @@ function renderHourly() {
 }
 
 function renderAirline() {
-  // 2026-07-20 优化：航司分析全量展示，去掉航司中文名（只保留二字代码），表格自适应
+  // 2026-07-21 优化: 航司分层（core/mid/tail）+ 长尾归"其他" + 盈亏分组 + 摘要卡
   const top = CURRENT_DATA.airline;
+  // 摘要计算
+  const totalOrders = top.reduce((s, a) => s + a.total, 0);
+  const totalProfit = top.reduce((s, a) => s + a.profit_sum, 0);
+  const coreAir = top.filter(a => a.tier === 'core');
+  const midAir = top.filter(a => a.tier === 'mid');
+  const tailAir = top.filter(a => a.tier === 'tail' && !a.is_other);
+  const otherAir = top.filter(a => a.is_other);
+  const coreCount = coreAir.length, midCount = midAir.length, tailCount = tailAir.length, otherCount = otherAir.length;
+  const coreTotal = coreAir.reduce((s, a) => s + a.total, 0);
+  const midTotal = midAir.reduce((s, a) => s + a.total, 0);
+  const tailTotal = tailAir.reduce((s, a) => s + a.total, 0);
+  const otherTotal = otherAir.reduce((s, a) => s + a.total, 0);
+  const coreProfit = coreAir.reduce((s, a) => s + a.profit_sum, 0);
+  const midProfit = midAir.reduce((s, a) => s + a.profit_sum, 0);
+  const tailProfit = tailAir.reduce((s, a) => s + a.profit_sum, 0);
+  const otherProfit = otherAir.reduce((s, a) => s + a.profit_sum, 0);
+  const pct = (n) => totalOrders > 0 ? (n / totalOrders * 100).toFixed(1) : '0';
+  // 盈亏分组（按金额排序）
+  const profitAir = top.filter(a => a.profit_sum > 0).sort((a, b) => b.profit_sum - a.profit_sum);
+  const lossAir = top.filter(a => a.profit_sum < 0).sort((a, b) => a.profit_sum - b.profit_sum);
+  const totalProfitAir = profitAir.reduce((s, a) => s + a.profit_sum, 0);
+  const totalLossAir = lossAir.reduce((s, a) => s + a.profit_sum, 0);
+  // tier 颜色
+  const tierColor = (t) => t === 'core' ? '#00ff88' : t === 'mid' ? '#00e5ff' : '#7a8ba0';
+  const tierLabel = (t) => t === 'core' ? '主力' : t === 'mid' ? '中等' : t === 'tail' ? '长尾' : t;
   const html = `
+    <div class="section">
+      <div class="section-title">🛡️ 航司分层摘要（主力 / 中等 / 长尾）
+        <span class="badge badge-info">${top.length - otherCount} 个有效航司 · 长尾归"其他"</span>
+      </div>
+      <div class="kpi-row cols-4" style="margin-bottom:14px">
+        <div class="kpi">
+          <div class="kpi-label">🟢 主力航司（≥1000单）</div>
+          <div class="kpi-value">${coreCount} 个</div>
+          <div class="kpi-sub" style="color:#7a8ba0">${fmt.num(coreTotal)} 单 / 占 ${pct(coreTotal)}% · 利润 <span style="color:${coreProfit>=0?'#00ff88':'#ff4757'}">${coreProfit>=0?'+':''}¥${fmt.money(coreProfit)}</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">🔵 中等航司（100-999单）</div>
+          <div class="kpi-value">${midCount} 个</div>
+          <div class="kpi-sub" style="color:#7a8ba0">${fmt.num(midTotal)} 单 / 占 ${pct(midTotal)}% · 利润 <span style="color:${midProfit>=0?'#00ff88':'#ff4757'}">${midProfit>=0?'+':''}¥${fmt.money(midProfit)}</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">⚪ 长尾航司（1-99单）</div>
+          <div class="kpi-value">${tailCount} 个</div>
+          <div class="kpi-sub" style="color:#7a8ba0">${fmt.num(tailTotal)} 单 / 占 ${pct(tailTotal)}% · 利润 <span style="color:${tailProfit>=0?'#00ff88':'#ff4757'}">${tailProfit>=0?'+':''}¥${fmt.money(tailProfit)}</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">📊 全期对比</div>
+          <div class="kpi-value">${totalOrders.toLocaleString()}</div>
+          <div class="kpi-sub" style="color:#7a8ba0">总单 · 总利 <span style="color:${totalProfit>=0?'#00ff88':'#ff4757'}">${totalProfit>=0?'+':''}¥${fmt.money(totalProfit)}</span></div>
+        </div>
+      </div>
+    </div>
     <div class="section">
       <div class="section-title">✈️ 航司排名（全量 · 按订单量 · 仅二字代码）
         <span class="badge badge-info">${CURRENT_DATA.airline.length} 个航司</span>
@@ -1385,16 +1475,17 @@ function renderAirline() {
     </div>
 
     <div class="section">
-      <div class="section-title">📋 航司明细表（仅二字代码）</div>
+      <div class="section-title">📋 航司明细表（含分层标识）</div>
       <div style="max-height: 600px; overflow-y: auto;">
         <table class="data-table">
           <thead>
-            <tr><th>航司</th><th>订单</th><th>覆盖率</th><th>成功率</th><th>B%</th><th>D%</th><th>单均利润</th><th>总利润</th></tr>
+            <tr><th>航司</th><th>分层</th><th>订单</th><th>覆盖率</th><th>成功率</th><th>B%</th><th>D%</th><th>单均利润</th><th>总利润</th></tr>
           </thead>
           <tbody>
             ${CURRENT_DATA.airline.map(a => `
               <tr>
                 <td><b>${a.airline}</b></td>
+                <td><span style="color:${tierColor(a.tier)};font-size:11px">${tierLabel(a.tier)}</span></td>
                 <td>${fmt.num(a.total)}</td>
                 <td>${fmt.pct(a.auto_coverage_rate)}</td>
                 <td>${fmt.pct(a.auto_succ_rate)}</td>
@@ -1411,11 +1502,14 @@ function renderAirline() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // 全量航司订单量
+  // 全量航司订单量（按 tier 着色：core 绿 / mid 青 / tail 灰 / other 深灰）
   createChart("chart-airlineBar", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
-      formatter: p => `${p[0].name}<br>${fmt.num(p[0].value)} 单` },
+      formatter: ps => {
+        const a = top[ps[0].dataIndex];
+        return `<b>${a.airline}</b> <span style="color:#7a8ba0">(${tierLabel(a.tier)})</span><br>${fmt.num(a.total)} 单<br>利润: <span style="color:${a.profit_sum>=0?'#00ff88':'#ff4757'}">${a.profit_sum>=0?'+':''}¥${fmt.money(a.profit_sum)}</span>`;
+      } },
     grid: { left: 50, right: 30, top: 20, bottom: 120 },
     xAxis: { type: "category", data: top.map(a => a.airline),
               axisLabel: { color: "#7a8ba0", rotate: 60, fontSize: 9, interval: Math.max(0, Math.floor(top.length / 30) - 1) } },
@@ -1423,29 +1517,52 @@ function renderAirline() {
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
     series: [{
       type: "bar", data: top.map(a => a.total),
-      itemStyle: { color: color.cyan },
-      label: { show: true, position: "top", color: "#e0e6f0",
+      itemStyle: {
+        color: params => {
+          const a = top[params.dataIndex];
+          if (a.is_other) return "#3a4860";  // 其他桶：深灰
+          if (a.tier === 'core') return "#00ff88";  // 主力：绿
+          if (a.tier === 'mid') return "#00e5ff";  // 中等：青
+          return "#7a8ba0";  // 长尾：灰
+        }
+      },
+      label: { show: true, position: "top", color: "#e0e6f0", fontSize: 9,
         formatter: p => fmt.num(p.value) },
     }],
   });
 
-  // 航司利润率（全量）
+  // 航司利润率（盈亏分组：亏损在上 / 盈利在下，分组按金额排序）
+  // 2026-07-21: 不再用 44 航司全量（长尾视觉塌缩），改盈亏分组后视觉密度更高
+  const sortedLoss = [...lossAir];   // 亏损组，已按金额升序（亏最多在前）
+  const sortedProfit = [...profitAir]; // 盈利组，已按金额降序（赚最多在前）
+  // 合并顺序：亏损 → 盈利（让 ECharts category y 轴从下往上读）
+  const profitChartData = [...sortedProfit, ...sortedLoss];
+  const profitLabels = profitChartData.map(a => a.airline);
+  const profitValues = profitChartData.map(a => a.profit_sum);
+  // 用 markLine 划一条 0 轴 + 视觉上把"亏损"和"盈利"两块分开（数据顺序已经分开）
   createChart("chart-airlineProfit", {
     ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 90, right: 30, top: 20, bottom: 20 },
+    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
+      formatter: ps => {
+        const lines = ps.map(p => {
+          const a = profitChartData[p.dataIndex];
+          return `<b>${a.airline}</b> <span style="color:#7a8ba0">(${tierLabel(a.tier)})</span><br>利润: <b style="color:${a.profit_sum>=0?'#00ff88':'#ff4757'}">${a.profit_sum>=0?'+':''}¥${fmt.money(a.profit_sum)}</b><br>订单: ${fmt.num(a.total)}`;
+        });
+        return lines.join('<br>─────────<br>');
+      } },
+    grid: { left: 90, right: 60, top: 30, bottom: 20 },
     xAxis: { type: "value", name: "利润(元)", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "category", data: top.map(a => a.airline).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 9, interval: Math.max(0, Math.floor(top.length / 30) - 1) } },
+    yAxis: { type: "category", data: profitLabels,
+              axisLabel: { color: "#7a8ba0", fontSize: 9 } },
     series: [{
-      type: "bar", data: top.map(a => a.profit_sum).reverse(),
-      itemStyle: {
-        color: p => p.data >= 0 ? color.A : color.D,
-        color: params => params.data >= 0 ? color.A : color.D
-      },
-      label: { show: true, position: "right", color: "#e0e6f0",
+      type: "bar", data: profitValues,
+      itemStyle: { color: params => params.data >= 0 ? color.A : color.D },
+      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
         formatter: p => (p.value >= 0 ? "+" : "") + Math.round(p.value).toLocaleString() },
+      markLine: { silent: true, symbol: 'none',
+        data: [{ xAxis: 0, lineStyle: { color: "#7a8ba0", width: 1, type: 'dashed' } }],
+        label: { show: false } },
     }],
   });
 
@@ -1756,60 +1873,193 @@ function renderChannel() {
 
 /* ============== 页面：人员绩效 ============== */
 function renderStaff() {
+  // 2026-07-21：日/周/月对比（COMPARE_DATA 由 switchPeriod 算好）
+  const cs = COMPARE_DATA;
+  const cmpLabel = COMPARE_LABEL;
+  // 短格式对比标签："2026-07-19"→"07-19"；"W2"；"06月"
+  const cmpShort = (label) => {
+    if (!label) return "";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(label)) return label.substring(5);
+    const wm = label.match(/W\d+/);
+    if (wm) return wm[0];
+    const mm = label.match(/^(\d{4})-(\d{2})/);
+    if (mm) return mm[2] + "月";
+    return label;
+  };
+  const cmpShortLabel = cmpShort(cmpLabel);
+  // 上一期员工 map（name → staff dict）
+  const cmpStaffMap = {};
+  if (cs && cs.staff) cs.staff.forEach(s => { cmpStaffMap[s.name] = s; });
+  // 当前/上期 总单 B C D
+  const curTotal = CURRENT_DATA.staff.reduce((s, x) => s + x.total, 0);
+  const curB = CURRENT_DATA.staff.reduce((s, x) => s + x.B, 0);
+  const curC = CURRENT_DATA.staff.reduce((s, x) => s + x.C, 0);
+  const curD = CURRENT_DATA.staff.reduce((s, x) => s + x.D, 0);
+  const cmpTotal = cs ? cs.staff.reduce((s, x) => s + x.total, 0) : 0;
+  const cmpB = cs ? cs.staff.reduce((s, x) => s + x.B, 0) : 0;
+  const cmpC = cs ? cs.staff.reduce((s, x) => s + x.C, 0) : 0;
+  const cmpD = cs ? cs.staff.reduce((s, x) => s + x.D, 0) : 0;
+  // 颜色 class helpers（与总览页一致）
+  const trendCls = (cur, base) => {
+    if (!cs) return "";
+    if (cur == null || base == null) return "";
+    if (cur > base) return "up";
+    if (cur < base) return "down";
+    return "flat";
+  };
+  const kpiCls = (cur, base, type) => {
+    const t = trendCls(cur, base);
+    return t ? `${t}-${type}` : "";
+  };
+  // 排名/明细表单元格用：变化箭头 + diff + %
+  const cmpCell = (cur, base, mode) => {
+    if (!cs) return '<span style="color:#7a8ba0">—</span>';
+    if (cur == null) cur = 0;
+    if (base == null) base = 0;
+    if (cur === 0 && base === 0) return '<span style="color:#7a8ba0">—</span>';
+    if (base === 0) return `<span style="color:#00ff88;font-size:11px">新 ${cur}</span>`;
+    const diff = cur - base;
+    const pct = (diff / Math.abs(base)) * 100;
+    const arrow = diff > 0 ? "▲" : (diff < 0 ? "▼" : "·");
+    let color = "#7a8ba0";
+    if (diff !== 0) {
+      if (mode === "rate") color = diff > 0 ? "#00ff88" : "#ff4757";
+      else if (mode === "amount") color = diff < 0 ? "#00ff88" : "#ff4757";
+    }
+    return `<span style="color:${color};font-size:11px">${arrow} ${diff > 0 ? "+" : ""}${diff} (${pct > 0 ? "+" : ""}${pct.toFixed(1)}%)</span>`;
+  };
+  // KPI sub 文字（员工页特殊：4 个维度统一 amount 模式，涨红降绿不变黄）
+  // 业务逻辑：员工页所有"涨"都"需要关注"（红），"降"都"工作减轻"（绿）
+  // 格式：▲ 上期值 (+X.X%)  ——  跟总览页 fmt.cmp 输出一致，只是去掉"vs XX:" 前缀
+  const kpiSub = (cur, base) => {
+    if (!cs) return "";
+    if (cur == null || base == null) return "无对比基准";
+    const diff = cur - base;
+    if (diff === 0) return `<span style="color:#ffa502">持平</span>`;
+    const pct = (diff / Math.abs(base)) * 100;
+    const arrow = diff > 0 ? "▲" : "▼";
+    const color = diff > 0 ? "#ff4757" : "#00ff88";  // amount：涨红降绿
+    const baseStr = fmt.num(Math.round(base));
+    const signPct = pct > 0 ? "+" : "";
+    return `<span style="color:${color}">${arrow} ${baseStr} (${signPct}${pct.toFixed(1)}%)</span>`;
+  };
+
+  // 2026-07-21 调整：3 个全量排名表（总单 / 全自动失败 / 订单转人工）
+  // 占比 = 该员工该指标 / 当期该指标总和
+  const rankings = [
+    { icon: '🏆', title: '总单排行', key: 'total', label: '总单', totalSum: curTotal, color: '#00ff88', mode: 'rate' },
+    { icon: '⚠️', title: '全自动失败排行', key: 'B', label: 'B', totalSum: curB, color: '#ff4757', mode: 'amount' },
+    { icon: '🔁', title: '订单转人工排行', key: 'C', label: 'C', totalSum: curC, color: '#ffa502', mode: 'amount' },
+  ];
+  const rankingHtml = `
+    <div class="section">
+      <div class="section-title">🏅 各项排名（全量 · ${CURRENT_DATA.staff.length} 人）
+        ${cs ? `<span class="badge badge-info">对比 ${cmpShortLabel}</span>` : ''}
+      </div>
+      <div class="grid-1x3">
+        ${rankings.map(r => {
+          const sorted = [...CURRENT_DATA.staff].sort((a, b) => b[r.key] - a[r.key]);
+          // 上一期同一指标下的排名 map（name → rank，1-based）
+          const cmpNameRank = {};
+          if (cs && cs.staff) {
+            [...cs.staff].sort((a, b) => b[r.key] - a[r.key])
+              .forEach((s, i) => { cmpNameRank[s.name] = i + 1; });
+          }
+          return `
+            <div class="chart-box">
+              <div class="chart-title">${r.icon} ${r.title}</div>
+              <div style="max-height: 520px; overflow-y: auto;">
+                <table class="data-table compact">
+                  <thead>
+                    <tr><th class="rank-num">#</th><th>员工</th><th style="text-align:right">${r.label}</th><th style="text-align:right">占比</th><th style="text-align:right">排名变化</th></tr>
+                  </thead>
+                  <tbody>
+                    ${sorted.map((s, i) => {
+                      const curRank = i + 1;
+                      const prevRank = cmpNameRank[s.name];
+                      let rankCell;
+                      if (!cs) {
+                        rankCell = '<span style="color:#7a8ba0;font-size:11px">—</span>';
+                      } else if (prevRank == null) {
+                        rankCell = '<span style="color:#00ff88;font-size:11px">新</span>';
+                      } else {
+                        const delta = prevRank - curRank;  // 正=升
+                        if (delta > 0) rankCell = `<span style="color:#00ff88;font-size:11px">↑ ${delta}</span>`;
+                        else if (delta < 0) rankCell = `<span style="color:#ff4757;font-size:11px">↓ ${Math.abs(delta)}</span>`;
+                        else rankCell = '<span style="color:#7a8ba0;font-size:11px">—</span>';
+                      }
+                      const pct = r.totalSum > 0 ? (s[r.key] / r.totalSum * 100).toFixed(1) + '%' : '—';
+                      return `
+                        <tr>
+                          <td class="rank-num ${i < 3 ? 'top' + (i+1) : ''}">${curRank}</td>
+                          <td><b title="${s.name}">${s.name}</b></td>
+                          <td class="rank-val" style="color:${r.color}">${fmt.num(s[r.key])}</td>
+                          <td style="text-align:right;color:#b0c4de">${pct}</td>
+                          <td style="text-align:right">${rankCell}</td>
+                        </tr>
+                      `;
+                    }).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
   const html = `
     <div class="section">
       <div class="section-title">👥 员工绩效（${CURRENT_DATA.staff.length} 人）
-        <span class="badge badge-info">按接单量排序</span>
+        ${cs ? `<span class="badge badge-info">对比 ${cmpShortLabel}</span>` : ''}
       </div>
       <div class="kpi-row cols-4" style="margin-bottom:14px">
-        <div class="kpi">
+        <div class="kpi ${kpiCls(curTotal, cmpTotal, 'amount')}">
           <div class="kpi-label">总人工处理单</div>
-          <div class="kpi-value">${fmt.num(CURRENT_DATA.staff.reduce((s, x) => s + x.total, 0))}</div>
+          <div class="kpi-value">${fmt.num(curTotal)}</div>
+          <div class="kpi-sub">${kpiSub(curTotal, cmpTotal)}</div>
         </div>
-        <div class="kpi success">
-          <div class="kpi-label">救场成功（B路径）</div>
-          <div class="kpi-value green">${fmt.num(CURRENT_DATA.staff.reduce((s, x) => s + x.B, 0))}</div>
+        <div class="kpi ${kpiCls(curB, cmpB, 'amount')}">
+          <div class="kpi-label">全自动失败</div>
+          <div class="kpi-value">${fmt.num(curB)}</div>
+          <div class="kpi-sub">${kpiSub(curB, cmpB)}</div>
         </div>
-        <div class="kpi warning">
-          <div class="kpi-label">订单转人工（C路径）</div>
-          <div class="kpi-value yellow">${fmt.num(CURRENT_DATA.staff.reduce((s, x) => s + x.C, 0))}</div>
+        <div class="kpi ${kpiCls(curC, cmpC, 'amount')}">
+          <div class="kpi-label">订单转人工</div>
+          <div class="kpi-value">${fmt.num(curC)}</div>
+          <div class="kpi-sub">${kpiSub(curC, cmpC)}</div>
         </div>
-        <div class="kpi danger">
-          <div class="kpi-label">订单处理中（D路径）</div>
-          <div class="kpi-value red">${fmt.num(CURRENT_DATA.staff.reduce((s, x) => s + x.D, 0))}</div>
-        </div>
-      </div>
-      <div class="grid-2x2">
-        <div class="chart-box">
-          <div class="chart-title">📊 员工接单量 Top 15</div>
-          <div id="chart-staffBar" class="chart-area" style="height:380px"></div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">💰 员工单均利润 + 盈利占比</div>
-          <div id="chart-staffScatter" class="chart-area" style="height:380px"></div>
+        <div class="kpi ${kpiCls(curD, cmpD, 'amount')}">
+          <div class="kpi-label">订单处理中</div>
+          <div class="kpi-value">${fmt.num(curD)}</div>
+          <div class="kpi-sub">${kpiSub(curD, cmpD)}</div>
         </div>
       </div>
+      ${rankingHtml}
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">📋 员工明细</div>
         <div style="max-height: 500px; overflow-y: auto;">
           <table class="data-table">
             <thead>
-              <tr><th>员工</th><th>接单</th><th>B全自动失败</th><th>C订单转人工</th><th>D订单处理中</th><th>救场率</th><th>单均</th><th>盈利%</th><th>总利润</th></tr>
+              <tr><th>员工</th><th>接单</th><th>B全自动失败</th><th>C订单转人工</th><th>D订单处理中</th><th>救场率</th><th>对比</th></tr>
             </thead>
             <tbody>
-              ${CURRENT_DATA.staff.map(s => `
-                <tr>
-                  <td><b>${s.name}</b></td>
-                  <td>${fmt.num(s.total)}</td>
-                  <td>${fmt.num(s.B)}</td>
-                  <td>${fmt.num(s.C)}</td>
-                  <td>${fmt.num(s.D)}</td>
-                  <td>${fmt.pct(s.succ_rate)}</td>
-                  <td class="${s.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(s.avg_profit)}</td>
-                  <td>${fmt.pct(s.profit_pos_rate)}</td>
-                  <td class="${(s.profit_sum >= 0) ? 'pos' : 'neg'}">¥${fmt.money(s.profit_sum)}</td>
-                </tr>
-              `).join("")}
+              ${CURRENT_DATA.staff.map(s => {
+                const prev = cmpStaffMap[s.name];
+                const prevTotal = prev ? prev.total : 0;
+                return `
+                  <tr>
+                    <td><b>${s.name}</b></td>
+                    <td>${fmt.num(s.total)}</td>
+                    <td>${fmt.num(s.B)}</td>
+                    <td>${fmt.num(s.C)}</td>
+                    <td>${fmt.num(s.D)}</td>
+                    <td>${fmt.pct(s.succ_rate)}</td>
+                    <td>${cmpCell(s.total, prevTotal, 'rate')}</td>
+                  </tr>
+                `;
+              }).join("")}
             </tbody>
           </table>
         </div>
@@ -1818,45 +2068,8 @@ function renderStaff() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  const top = CURRENT_DATA.staff;  // 2026-07-21: 员工全量展示（之前 .slice(0,15) 漏改）
-  // 员工接单
-  createChart("chart-staffBar", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 60, right: 30, top: 20, bottom: 80 },
-    xAxis: { type: "category", data: top.map(s => s.name).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10, rotate: 30, interval: 0 } },
-    yAxis: { type: "value", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{
-      type: "bar", data: top.map(s => ({
-        value: s.total,
-        itemStyle: { color: color.cyan }
-      })).reverse(),
-      label: { show: true, position: "right", color: "#e0e6f0",
-        formatter: p => fmt.num(p.value) },
-    }],
-  });
-
-  // 散点：x=接单量 y=单均利润 size=盈利%
-  createChart("chart-staffScatter", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
-      formatter: p => `<b>${p.data.name}</b><br>接单: ${fmt.num(p.data.total)}<br>单均: ${fmt.avg(p.data.avg_profit)}<br>盈利%: ${p.data.profit_pos_rate.toFixed(1)}%<br>总利润: ¥${fmt.money(p.data.profit_sum)}` },
-    xAxis: { type: "value", name: "接单量", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "value", name: "单均利润(元)", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{
-      type: "scatter", data: CURRENT_DATA.staff.map(s => ({
-        name: s.name, value: [s.total, s.avg_profit], ...s
-      })),
-      symbolSize: d => Math.max(10, Math.min(50, d[0] / 30)),
-      itemStyle: { color: p => p.data.profit_sum >= 0 ? color.A : color.D, opacity: 0.7 },
-      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
-        formatter: p => p.data.name },
-    }],
-  });
+  // 2026-07-21: 删除"员工接单量"全宽柱状图（排行榜已全量展示，柱状图冗余）
+  // 2026-07-21: 删除"员工单均利润 + 盈利占比"散点图（用户要求）
 }
 
 
