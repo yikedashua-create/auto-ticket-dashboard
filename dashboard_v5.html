@@ -472,17 +472,30 @@ async function loadData() {
     if (typeof window.__DASHBOARD_DATA__ !== "undefined" && window.__DASHBOARD_DATA__) {
       data = window.__DASHBOARD_DATA__;
     } else {
-      // 2026-07-17 改：本地 / Streamlit 都走 jsDelivr CDN
-      // 用最新 commit hash 作 URL 段，**绕过 jsDelivr CDN 缓存**（每次 commit 变 URL，jsDelivr 当新 URL 返回）
-      // streamlit cloud 不会自动 re-deploy，必须手动 Reboot app 才能拉到这个新 HTML
-      // 2026-07-20 优化: 去掉 { cache: "no-store" }，让浏览器缓存同 URL 的数据
-      // - CDN 缓存 bust 靠 COMMIT 变 URL（commit 变 → URL 变 → 浏览器/CDN 都当新 URL 拉）
-      // - 浏览器缓存: 同一 URL 二次访问秒开（不再每次都拉 1.3MB）
-      // - 实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-      const COMMIT = "e729de9";  // ← 每次 git push 后手动改成最新 commit 前 7 位
-      const DATA_URL = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
-      const resp = await fetch(DATA_URL);  // 走默认缓存策略 (浏览器自动用缓存)
-      data = await resp.json();
+      // 2026-07-20 新增三路径 fallback (开发模式 + 生产模式兼容):
+      //   1) 相对路径 ./dashboard_data.json (本地 python -m http.server 8000 跑同目录可测, streamlit cloud 部署目录有这文件也能拉)
+      //   2) jsDelivr CDN (兜底, 万一 1) 404 或部署目录没文件)
+      //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
+      //   浏览器缓存: 同一 URL 二次访问秒开
+      //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
+      const COMMIT = "1db25d9";
+      const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
+      let dataLoaded = false;
+      // 路径 1: 相对路径
+      try {
+        const r = await fetch("./dashboard_data.json");
+        if (r.ok) {
+          data = await r.json();
+          dataLoaded = true;
+          console.log("[loadData] 本地相对路径 OK");
+        }
+      } catch (e) { /* ignore, fallback */ }
+      // 路径 2: jsDelivr CDN
+      if (!dataLoaded) {
+        console.log("[loadData] fallback 到 jsDelivr");
+        const resp = await fetch(DATA_URL_JS);
+        data = await resp.json();
+      }
     }
     DATA = data;
 
@@ -940,19 +953,19 @@ function renderOverview() {
           <div class="kpi-label">📦 订单总数</div>
           <div class="kpi-value">${fmt.num(s.total_orders)}</div>
           <div class="kpi-sub">${s.total_days} 天总单</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_orders, cs.total_orders, "amount", false) : ""}</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_orders, cs.total_orders, "rate", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.total_segments, cs && cs.total_segments, 'good')}">
           <div class="kpi-label">✈️ 航段总数</div>
           <div class="kpi-value">${fmt.num(s.total_segments)}</div>
           <div class="kpi-sub">一票 = 1 段 · 往返 = 2 段</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_segments, cs.total_segments, "amount", false) : ""}</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_segments, cs.total_segments, "rate", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.A, cs && cs.A, 'good')}">
           <div class="kpi-label">✅ 全自动成功</div>
           <div class="kpi-value">${fmt.num(s.A)}</div>
           <div class="kpi-sub">A 路径 · 占比 ${fmt.pct(s.A / s.total_orders * 100)}</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.A, cs.A, "amount", false) : ""}</div>
+          <div class="kpi-sub-row">${cs ? cmpBadge(s.A, cs.A, "rate", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.B, cs && cs.B, 'bad')}">
           <div class="kpi-label">❌ 全自动失败</div>
@@ -1152,8 +1165,31 @@ function renderHourly() {
     };
   });
 
-  // 25 hour bucket：0-24（hour 24 = 24:00 端点 = hour 23 数据，代表"23:00-24:00 整 1 小时"）
-  const fullData = [...aggregated, { ...aggregated[23], hour: 24 }];
+  // 2026-07-20 改法 A: 区间"右端点"命名
+  //   X 标签 = "区间 [X-1, X]" 的右端点 X
+  //   0:00 = 跨天 hour 23 (前 23:00-00:00, dashboard 切"今天"看不到 = 0)
+  //   1:00 = hour 0 (00:00-01:00)
+  //   2:00 = hour 1 (01:00-02:00)
+  //   ...
+  //   24:00 = hour 23 (23:00-24:00)
+  //   优点: 23 和 24 数据不同 (hour 22 vs hour 23), 折线"自然"上升
+  //   缺点: 0:00 跨天是"特殊点" (dashboard 切今天时 = 0)
+  const fullData = [];
+  for (let x = 0; x <= 24; x++) {
+    let r;
+    if (x === 0) {
+      // 跨天 hour 23: 当前实现拿不到前一天数据, 用 0 占位
+      r = { total: 0, A: 0, B: 0, C: 0, D: 0,
+            auto_coverage_rate: 0, auto_succ_rate: 0 };
+    } else {
+      r = aggregated[x - 1];
+    }
+    fullData.push({
+      hour: x, total: r.total, A: r.A, B: r.B, C: r.C, D: r.D,
+      auto_coverage_rate: r.auto_coverage_rate,
+      auto_succ_rate: r.auto_succ_rate,
+    });
+  }
 
   const total = fullData.reduce((s, r) => s + r.total, 0);
   const totalA = fullData.reduce((s, r) => s + r.A, 0);
@@ -1161,11 +1197,18 @@ function renderHourly() {
   const totalC = fullData.reduce((s, r) => s + r.C, 0);
   const totalD = fullData.reduce((s, r) => s + r.D, 0);
 
-  // 表格行（25 行，0-24；hour 24 = 0 单端点）
+  // 表格行（25 行，0-24；改法 A: 0:00 = 跨天 hour 23 显示成 "00:00(跨天)"，24:00 显示成 "24:00"）
   const tableRows = fullData.map(r => {
     const auto = r.A + r.B;
     const succ = auto > 0 ? (r.A / auto * 100).toFixed(1) : "—";
-    const label = `${String(r.hour).padStart(2, "0")}:00`;
+    let label;
+    if (r.hour === 0) {
+      label = "00:00<br><span style='font-size:10px;color:#7a8ba0'>(跨天)</span>";
+    } else if (r.hour === 24) {
+      label = "24:00";
+    } else {
+      label = `${String(r.hour).padStart(2, "0")}:00`;
+    }
     return `<tr>
       <td><b>${label}</b></td>
       <td style="text-align:right">${r.total.toLocaleString()}</td>
@@ -1209,7 +1252,7 @@ function renderHourly() {
 
     <div class="section">
       <div class="section-title">📈 折线趋势图（4 路径每小时比率 · 0-24 点）</div>
-      <div class="chart-hint">A 自动出票成功率 = A/(A+B)，B 失败率 = B/(A+B)，C 人工率 = C/总，D 异常率 = D/总。pin 标记每条线的最高/最低点。25 个 hour bucket（0-24）：hour 24 = 24:00 = "23:00-24:00 整 1 小时"（= hour 23 数据）。</div>
+      <div class="chart-hint">A 自动出票成功率 = A/(A+B)，B 失败率 = B/(A+B)，C 人工率 = C/总，D 异常率 = D/总。pin 标记每条线的最高/最低点。<b>改法 A 区间右端点命名</b>: 横轴 0-24 共 25 点, X 标签 = "区间 [X-1, X]" 右端点。0:00 = 跨天 hour 23 (前 23:00-00:00, 切"今天"时无数据=0), 1:00 = hour 0 (00:00-01:00), ..., 24:00 = hour 23 (23:00-24:00)。</div>
       <div id="chart-hourly-line" style="height:420px"></div>
     </div>
 
@@ -1231,7 +1274,39 @@ function renderHourly() {
 
   // 渲染 ECharts 折线图（25 hour · 4 路径 + max/min 标记）
   setTimeout(() => {
-    const hours = fullData.map(r => r.hour === 24 ? "24:00" : `${String(r.hour).padStart(2, "0")}:00`);
+    // 改法 A: 0:00 标签 = "00:00(跨天)" 让用户知道这是跨天起点
+    const hours = fullData.map(r => {
+      if (r.hour === 0) return "00:00(跨天)";
+      if (r.hour === 24) return "24:00";
+      return `${String(r.hour).padStart(2, "0")}:00`;
+    });
+    // 2026-07-20 优化: max/min 排除 0:00 跨天点 (永远是 0, 会被误标为"最低")
+    // 手算 1-24 范围的极值, 用 coord 显式指定 markPoint 位置
+    const findExtreme = (arr, mode) => {
+      let bestI = 1, bestV = arr[1];
+      for (let i = 2; i < arr.length; i++) {
+        if (mode === 'max' ? arr[i] > bestV : arr[i] < bestV) {
+          bestV = arr[i]; bestI = i;
+        }
+      }
+      return { i: bestI, v: +bestV.toFixed(2) };
+    };
+    const A_arr = fullData.map(r => (r.A + r.B) ? r.A / (r.A + r.B) * 100 : 0);
+    const B_arr = fullData.map(r => (r.A + r.B) ? r.B / (r.A + r.B) * 100 : 0);
+    const C_arr = fullData.map(r => r.total ? r.C / r.total * 100 : 0);
+    const D_arr = fullData.map(r => r.total ? r.D / r.total * 100 : 0);
+    const A_max = findExtreme(A_arr, 'max'), A_min = findExtreme(A_arr, 'min');
+    const B_max = findExtreme(B_arr, 'max'), B_min = findExtreme(B_arr, 'min');
+    const C_max = findExtreme(C_arr, 'max'), C_min = findExtreme(C_arr, 'min');
+    const D_max = findExtreme(D_arr, 'max'), D_min = findExtreme(D_arr, 'min');
+    const mkPt = (mx, mn) => ({
+      symbol: "pin", symbolSize: 50,
+      data: [
+        { name: "最高", coord: [mx.i, mx.v], value: mx.v, itemStyle: { color: "#00ff88" } },
+        { name: "最低", coord: [mn.i, mn.v], value: mn.v, itemStyle: { color: "#ff4757" } }
+      ],
+      label: { color: "#fff", fontSize: 10 }
+    });
     const lineChart = echarts.init(document.getElementById("chart-hourly-line"));
     lineChart.setOption({
       tooltip: {
@@ -1259,51 +1334,23 @@ function renderHourly() {
         { name: "A 路径 · 自动出票成功率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ff4757", width: 3 },
           itemStyle: { color: "#ff4757" },
-          markPoint: {
-            symbol: "pin", symbolSize: 50,
-            data: [
-              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
-              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
-            ],
-            label: { color: "#fff", fontSize: 10 }
-          },
-          data: fullData.map(r => (r.A + r.B) ? +(r.A / (r.A + r.B) * 100).toFixed(2) : 0) },
+          markPoint: mkPt(A_max, A_min),
+          data: A_arr.map(v => +v.toFixed(2)) },
         { name: "B 路径 · 自动出票失败率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ff6348", width: 3 },
           itemStyle: { color: "#ff6348" },
-          markPoint: {
-            symbol: "pin", symbolSize: 50,
-            data: [
-              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
-              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
-            ],
-            label: { color: "#fff", fontSize: 10 }
-          },
-          data: fullData.map(r => (r.A + r.B) ? +(r.B / (r.A + r.B) * 100).toFixed(2) : 0) },
+          markPoint: mkPt(B_max, B_min),
+          data: B_arr.map(v => +v.toFixed(2)) },
         { name: "C 路径 · 人工介入率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ffa502", width: 3 },
           itemStyle: { color: "#ffa502" },
-          markPoint: {
-            symbol: "pin", symbolSize: 50,
-            data: [
-              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
-              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
-            ],
-            label: { color: "#fff", fontSize: 10 }
-          },
-          data: fullData.map(r => r.total ? +(r.C / r.total * 100).toFixed(2) : 0) },
+          markPoint: mkPt(C_max, C_min),
+          data: C_arr.map(v => +v.toFixed(2)) },
         { name: "D 路径 · 异常率", type: "line", smooth: true, symbol: "circle", symbolSize: 6,
           lineStyle: { color: "#7a8ba0", width: 2, type: "dashed" },
           itemStyle: { color: "#7a8ba0" },
-          markPoint: {
-            symbol: "pin", symbolSize: 50,
-            data: [
-              { type: "max", name: "最高", itemStyle: { color: "#00ff88" } },
-              { type: "min", name: "最低", itemStyle: { color: "#ff4757" } }
-            ],
-            label: { color: "#fff", fontSize: 10 }
-          },
-          data: fullData.map(r => r.total ? +(r.D / r.total * 100).toFixed(2) : 0) }
+          markPoint: mkPt(D_max, D_min),
+          data: D_arr.map(v => +v.toFixed(2)) }
       ]
     });
     chartInstances["hourlyLine"] = lineChart;
@@ -1771,14 +1818,14 @@ function renderStaff() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  const top = CURRENT_DATA.staff.slice(0, 15);
+  const top = CURRENT_DATA.staff;  // 2026-07-21: 员工全量展示（之前 .slice(0,15) 漏改）
   // 员工接单
   createChart("chart-staffBar", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
     grid: { left: 60, right: 30, top: 20, bottom: 80 },
     xAxis: { type: "category", data: top.map(s => s.name).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10 } },
+              axisLabel: { color: "#7a8ba0", fontSize: 10, rotate: 30, interval: 0 } },
     yAxis: { type: "value", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
     series: [{
