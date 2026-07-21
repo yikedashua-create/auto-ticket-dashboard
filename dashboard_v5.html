@@ -1308,7 +1308,6 @@ function renderHourly() {
 
     <div class="section">
       <div class="section-title">📈 折线趋势图（4 路径每小时比率 · 0-24 点）</div>
-      <div class="chart-hint">A 自动出票成功率 = A/(A+B)，B 失败率 = B/(A+B)，C 人工率 = C/总，D 异常率 = D/总。pin 标记每条线的最高/最低点。<b>改法 A 区间右端点命名</b>: 横轴 0-24 共 25 点, X 标签 = "区间 [X-1, X]" 右端点。0:00 = 跨天 hour 23 (前 23:00-00:00, 切"今天"时无数据=0), 1:00 = hour 0 (00:00-01:00), ..., 24:00 = hour 23 (23:00-24:00)。</div>
       <div id="chart-hourly-line" style="height:420px"></div>
     </div>
 
