@@ -1743,17 +1743,14 @@ def main():
             # D30：先抓当天的完整 platform list（截断前），用于明天 prev 基准
             today_platform_full = {p['platform']: {k: p[k] for k in ('total', 'A', 'B', 'C', 'D')}
                                     for p in day_data.get('platform', [])}
-            # 精简：航司/平台/渠道/员工 只保留前 5（单日 Top5 足够看）
-            # 2026-07-18 优化：航司 (airline) 不截断，全量展示（单日最多 ~30 个航司，体量可控）
-            # 平台/渠道/员工 仍 Top 5（这些不影响业务诊断）
+            # 2026-07-20: airline / platform / channel / staff 全部全量展示
+            # 之前航司/平台/渠道/员工 Top 5 截断 → 用户要求"和 airline 一样全量展示"
+            # 单日最多 ~20-30 个, 体量可控, 不再截断
             if "airline" in day_data and isinstance(day_data["airline"], list):
                 pass  # 全量展示
             else:
                 day_data["airline"] = day_data.get("airline", [])
-            for k in ["platform", "channel", "staff"]:
-                if k in day_data and isinstance(day_data[k], list):
-                    day_data[k] = day_data[k][:5]
-            # D30：给截断后的 platform 数组加 prev_total/prev_A/prev_B/prev_C/prev_D
+            # D30：给 platform 数组加 prev_total/prev_A/prev_B/prev_C/prev_D
             # 缺失平台 = 0（昨天没单）。跨月场景：7-1 的 prev = 6-30（prev_day_platform 跨月持久化）
             for p in day_data.get('platform', []):
                 prev_p = prev_day_platform.get(p['platform'], {})
