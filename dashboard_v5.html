@@ -465,6 +465,7 @@
       <div class="nav-item" data-page="channel">🛒 渠道分析</div>
       <div class="nav-item" data-page="staff">👥 人员绩效</div>
       <div class="nav-item" data-page="failAnalysis">🔍 失败分析</div>
+      <div class="nav-item" data-page="orderAnalysis">📋 订单分析</div>
       <div class="nav-section">
         <div class="nav-section-title">📊 数据</div>
         <div class="nav-mini" id="navDateRange">—</div>
@@ -3122,6 +3123,226 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 }
 
+/* ============== 页面：订单分析（2026-07-22 新增）==============
+ * 业务规则:
+ *   - 拆分订单: 订单拆分 = 1
+ *   - 重复订单: 是否重复 = "重复" (含 7 种子类)
+ *   - 往返订单: 航段=2 且 PVG-CJU/CJU-PVG (去-回)
+ *   - 中转订单: 航段=2 且 PVG-CJU/CJU-NRT (中转 CJU)
+ *   - 多人订单: 乘客数量 >= 2
+ *   - 儿童订单: 暂不分析
+ */
+function renderOrderAnalysis() {
+  const oa = CURRENT_DATA.summary && CURRENT_DATA.summary.order_analysis;
+  if (!oa) {
+    document.getElementById("mainArea").innerHTML = `
+      <div class="section">
+        <div class="section-title">📋 订单分析</div>
+        <div class="empty-state"><h2>📭 无订单分析数据</h2></div>
+      </div>`;
+    return;
+  }
+
+  const total = oa.total || 0;
+  const split = oa.split || {};
+  const repeat = oa.repeat || {};
+  const rt = oa.round_trip || {};
+  const tr = oa.transfer || {};
+  const mp = oa.multi_pax || {};
+
+  // 5 个 KPI
+  const kpiColor = (n) => n === 0 ? "var(--dim, #7a8ba0)" : "#00e5ff";
+  const html = `
+    <div class="section">
+      <div class="section-title">📋 订单分析（拆分/重复/往返/中转/多人）
+        <span class="badge badge-info">${fmt.num(total)} 总单</span>
+      </div>
+      <div class="kpi-row cols-5" style="margin-bottom:14px">
+        <div class="kpi">
+          <div class="kpi-label">🪓 拆分订单</div>
+          <div class="kpi-value">${fmt.num(split.count || 0)}</div>
+          <div class="kpi-sub">占比 ${split.ratio || 0}%</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">🔁 重复订单</div>
+          <div class="kpi-value">${fmt.num(repeat.count || 0)}</div>
+          <div class="kpi-sub">占比 ${repeat.ratio || 0}% · 7 种子类</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">✈️ 往返订单</div>
+          <div class="kpi-value">${fmt.num(rt.count || 0)}</div>
+          <div class="kpi-sub">占比 ${rt.ratio || 0}% · 去-回</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">🔀 中转订单</div>
+          <div class="kpi-value">${fmt.num(tr.count || 0)}</div>
+          <div class="kpi-sub">占比 ${tr.ratio || 0}% · 转机</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">👨‍👩‍👧 多人订单</div>
+          <div class="kpi-value">${fmt.num(mp.count || 0)}</div>
+          <div class="kpi-sub">占比 ${mp.ratio || 0}% · ≥2 人</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ① 拆分订单分析 -->
+    <div class="section">
+      <div class="section-title">🪓 拆分订单明细
+        <span class="badge badge-info">${fmt.num(split.count || 0)} 单 / 占比 ${split.ratio || 0}%</span>
+      </div>
+      <div class="grid-1x2">
+        <div class="chart-box">
+          <div class="chart-title">平台分布</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead><tr><th>平台</th><th style="text-align:right">单数</th></tr></thead>
+              <tbody>
+                ${Object.entries(split.by_platform || {}).map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">航司分布</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead><tr><th>航司</th><th style="text-align:right">单数</th></tr></thead>
+              <tbody>
+                ${Object.entries(split.by_airline || {}).map(([k, v]) => `<tr><td><b>${escapeHtml(k)}</b></td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 重复订单分析（7 种子类全展示）-->
+    <div class="section">
+      <div class="section-title">🔁 重复订单明细（7 种子类全展示）
+        <span class="badge badge-info">${fmt.num(repeat.count || 0)} 单 / 占比 ${repeat.ratio || 0}%</span>
+      </div>
+      <div class="grid-1x2">
+        <div class="chart-box">
+          <div class="chart-title">📊 重复订单分类（7 种子类）</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead>
+                <tr><th>重复类型</th><th style="text-align:right">单数</th><th style="text-align:right">占重复%</th></tr>
+              </thead>
+              <tbody>
+                ${Object.entries(repeat.by_category || {}).map(([k, v]) => {
+                  const pct = repeat.count > 0 ? (v / repeat.count * 100).toFixed(1) : 0;
+                  return `<tr><td>${escapeHtml(k)}</td><td style="text-align:right">${fmt.num(v)}</td><td style="text-align:right">${pct}%</td></tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">🌐 重复订单 平台分布</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead><tr><th>平台</th><th style="text-align:right">重复单数</th><th style="text-align:right">占重复%</th></tr></thead>
+              <tbody>
+                ${Object.entries(repeat.by_platform || {}).map(([k, v]) => {
+                  const pct = repeat.count > 0 ? (v / repeat.count * 100).toFixed(1) : 0;
+                  return `<tr><td>${escapeHtml(k)}</td><td style="text-align:right">${fmt.num(v)}</td><td style="text-align:right">${pct}%</td></tr>`;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 往返订单分析 -->
+    <div class="section">
+      <div class="section-title">✈️ 往返订单明细
+        <span class="badge badge-info">${fmt.num(rt.count || 0)} 单 / 占比 ${rt.ratio || 0}%</span>
+      </div>
+      <div class="grid-1x2">
+        <div class="chart-box">
+          <div class="chart-title">往返航线（前 50）</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead><tr><th>#</th><th>航线（去程 / 回程）</th></tr></thead>
+              <tbody>
+                ${(rt.samples || []).map((s, i) => `<tr><td>${i + 1}</td><td>${escapeHtml(s)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#7a8ba0">无数据</td></tr>'}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">航司分布</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead><tr><th>航司</th><th style="text-align:right">单数</th></tr></thead>
+              <tbody>
+                ${Object.entries(rt.by_airline || {}).map(([k, v]) => `<tr><td><b>${escapeHtml(k)}</b></td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#7a8ba0">无数据</td></tr>'}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 中转订单分析 -->
+    <div class="section">
+      <div class="section-title">🔀 中转订单明细
+        <span class="badge badge-info">${fmt.num(tr.count || 0)} 单 / 占比 ${tr.ratio || 0}%</span>
+      </div>
+      <div class="grid-1x2">
+        <div class="chart-box">
+          <div class="chart-title">中转航线（前 50）</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead><tr><th>#</th><th>航线（去程 / 中转后）</th></tr></thead>
+              <tbody>
+                ${(tr.samples || []).map((s, i) => `<tr><td>${i + 1}</td><td>${escapeHtml(s)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#7a8ba0">无数据</td></tr>'}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">航司分布</div>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="data-table compact">
+              <thead><tr><th>航司</th><th style="text-align:right">单数</th></tr></thead>
+              <tbody>
+                ${Object.entries(tr.by_airline || {}).map(([k, v]) => `<tr><td><b>${escapeHtml(k)}</b></td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#7a8ba0">无数据</td></tr>'}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ 多人订单分析 -->
+    <div class="section">
+      <div class="section-title">👨‍👩‍👧 多人订单明细（按乘客数分桶）
+        <span class="badge badge-info">${fmt.num(mp.count || 0)} 单 / 占比 ${mp.ratio || 0}%</span>
+      </div>
+      <div class="chart-box">
+        <div style="max-height: 400px; overflow-y: auto;">
+          <table class="data-table">
+            <thead>
+              <tr><th>乘客数</th><th style="text-align:right">单数</th><th style="text-align:right">占多人单%</th></tr>
+            </thead>
+            <tbody>
+              ${Object.entries(mp.by_pax_count || {}).map(([k, v]) => {
+                const pct = mp.count > 0 ? (v / mp.count * 100).toFixed(1) : 0;
+                return `<tr><td><b>${k} 人</b></td><td style="text-align:right">${fmt.num(v)}</td><td style="text-align:right">${pct}%</td></tr>`;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById("mainArea").innerHTML = html;
+}
+
 /* ============== 路由 ============== */
 function renderAll() {
   const page = window.location.hash.slice(1) || "overview";
@@ -3136,6 +3357,7 @@ function renderAll() {
     case "channel": renderChannel(); break;
     case "staff": renderStaff(); break;
     case "failAnalysis": renderFailureAnalysis(); break;
+    case "orderAnalysis": renderOrderAnalysis(); break;
     // 兼容旧 hash（如果用户收藏了 /stage 或 /fail）
     case "stage": renderFailureAnalysis(); break;
     case "fail": renderFailureAnalysis(); break;

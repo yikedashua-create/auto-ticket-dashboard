@@ -965,6 +965,97 @@ def safe_num(series):
     return pd.to_numeric(series, errors="coerce").dropna()
 
 
+# 2026-07-22 新增: 订单分析（拆分/重复/往返/中转/多人）
+# 业务规则:
+#   - 拆分订单: 订单拆分 = 1
+#   - 重复订单: 是否重复 = "重复" (非"正常")
+#   - 往返订单: 航段=2 且 seg1.from == seg2.to AND seg1.to == seg2.from
+#               例: PVG-CJU / CJU-PVG
+#   - 中转订单: 航段=2 且 seg1.to == seg2.from AND seg1.from != seg2.to
+#               例: PVG-CJU / CJU-NRT (中转点 = CJU)
+#   - 多人订单: 乘客数量 >= 2
+#   - 儿童订单: 暂不分析
+def compute_order_analysis(df):
+    out = {"total": len(df)}
+    n = len(df)
+    if n == 0:
+        return out
+
+    # 1. 拆分订单
+    split = df[df["订单拆分"] == 1]
+    split_airline = split["航空公司列表"].fillna("").astype(str).str.strip().replace("", "未知").value_counts()
+    out["split"] = {
+        "count": int(len(split)),
+        "ratio": round(len(split) / n * 100, 2),
+        "by_platform": {str(k): int(v) for k, v in split["平台"].value_counts().items()},
+        "by_airline": {str(k): int(v) for k, v in split_airline.head(15).items()},
+    }
+
+    # 2. 重复订单（7 种子类全部展示）
+    repeat = df[df["是否重复"] == "重复"]
+    repeat_by_cat = repeat["重复订单分类"].fillna("未知").value_counts()
+    out["repeat"] = {
+        "count": int(len(repeat)),
+        "ratio": round(len(repeat) / n * 100, 2),
+        "by_category": {str(k): int(v) for k, v in repeat_by_cat.items()},  # 7 种子类全展示
+        "by_platform": {str(k): int(v) for k, v in repeat["平台"].value_counts().items()},
+    }
+
+    # 3/4. 往返 + 中转（航段=2）
+    def parse_list(s):
+        s = str(s or "").strip()
+        if not s: return []
+        return [x for x in __import__("re").split(r"[,,;；\s]+", s) if x]
+
+    df2 = df.copy()
+    df2["_from_list"] = df2["出发机场列表"].fillna("").apply(parse_list)
+    df2["_to_list"] = df2["到达机场列表"].fillna("").apply(parse_list)
+
+    def classify_route(r):
+        f = r["_from_list"]
+        t = r["_to_list"]
+        if len(f) != 2 or len(t) != 2:
+            return None
+        if f[0] == t[1] and f[1] == t[0]:
+            return "round_trip"  # 往返
+        if f[1] == t[0] and f[0] != t[1]:
+            return "transfer"   # 中转
+        return None
+
+    df2["_route_type"] = df2.apply(classify_route, axis=1)
+    rt = df2[df2["_route_type"] == "round_trip"]
+    tr = df2[df2["_route_type"] == "transfer"]
+
+    def route_str(r):
+        return f"{r['_from_list'][0]}-{r['_from_list'][1]} / {r['_to_list'][0]}-{r['_to_list'][1]}"
+
+    out["round_trip"] = {
+        "count": int(len(rt)),
+        "ratio": round(len(rt) / n * 100, 2),
+        "samples": [route_str(r) for _, r in rt.head(50).iterrows()],
+        "by_airline": {str(k): int(v) for k, v in
+                       rt["航空公司列表"].fillna("").astype(str).str.strip().replace("", "未知").value_counts().head(10).items()},
+    }
+    out["transfer"] = {
+        "count": int(len(tr)),
+        "ratio": round(len(tr) / n * 100, 2),
+        "samples": [route_str(r) for _, r in tr.head(50).iterrows()],
+        "by_airline": {str(k): int(v) for k, v in
+                       tr["航空公司列表"].fillna("").astype(str).str.strip().replace("", "未知").value_counts().head(10).items()},
+    }
+
+    # 5. 多人订单（按乘客数分桶）
+    pax = df["乘客数量"].fillna(0).astype(int)
+    pax_dist = pax.value_counts().sort_index()
+    out["multi_pax"] = {
+        "count": int((pax >= 2).sum()),
+        "ratio": round((pax >= 2).sum() / n * 100, 2),
+        "by_pax_count": {int(k): int(v) for k, v in pax_dist.items() if k >= 2},
+    }
+
+    return out
+
+
 def atomic_write_json(path, data):
     """原子写入 JSON 文件（写 tmp + fsync + os.replace 原子重命名）。
 
@@ -1123,6 +1214,9 @@ def build_month_data(df, month_label):
         "profit_pos": int(profit_pos),
         "profit_pos_rate": round(profit_pos/len(profit_all)*100, 2) if len(profit_all) else 0,
     }
+
+    # 2026-07-22 新增: 订单分析（拆分/重复/往返/中转/多人）— 顶层 summary 暴露给 dashboard
+    out["summary"]["order_analysis"] = compute_order_analysis(df)
 
     # 2026-07-18 新增：今日各小时分桶（取该月最后一天，dashboard 折线图用）
     if "_file_date" in df.columns and not df.empty:

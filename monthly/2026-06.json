@@ -20,6 +20,200 @@
     "avg_profit": -8.6,
     "profit_pos": 20092,
     "profit_pos_rate": 27.36,
+    "order_analysis": {
+      "total": 75625,
+      "split": {
+        "count": 229,
+        "ratio": 0.3,
+        "by_platform": {
+          "向上比客国际": 134,
+          "淘宝国际": 34,
+          "去哪儿国际": 28,
+          "携程国际": 15,
+          "同程国际": 12,
+          "国际小象合单": 6
+        },
+        "by_airline": {
+          "VJ": 63,
+          "DD": 39,
+          "PC": 35,
+          "9C": 22,
+          "MM": 21,
+          "VF": 11,
+          "TR": 9,
+          "TO": 8,
+          "AQ": 5,
+          "EW": 3,
+          "F3": 3,
+          "Z2": 2,
+          "LJ": 2,
+          "IJ": 2,
+          "FD": 1
+        }
+      },
+      "repeat": {
+        "count": 2556,
+        "ratio": 3.38,
+        "by_category": {
+          "重复反采回来人工单": 674,
+          "重复反采出去人工单": 663,
+          "重复反采回来自动单": 395,
+          "重复反采出去自动单": 393,
+          "重复无效单": 223,
+          "重复单": 140,
+          "重复利润核实单": 67,
+          "重复利润单": 1
+        },
+        "by_platform": {
+          "去哪儿国际": 1381,
+          "同程国际": 669,
+          "携程国际": 202,
+          "向上比客国际": 197,
+          "淘宝国际": 77,
+          "智行国际": 30
+        }
+      },
+      "round_trip": {
+        "count": 760,
+        "ratio": 1.0,
+        "samples": [
+          "PVG-HKG / HKG-PVG",
+          "KTI-PVG / PVG-KTI",
+          "PVG-FUK / FUK-PVG",
+          "PVG-HKG / HKG-PVG",
+          "PVG-FUK / FUK-PVG",
+          "PVG-CNX / CNX-PVG",
+          "NNG-BKK / BKK-NNG",
+          "NKG-CJU / CJU-NKG",
+          "WUX-CJU / CJU-WUX",
+          "PUS-PVG / PVG-PUS",
+          "NGB-BKK / BKK-NGB",
+          "NGB-BKK / BKK-NGB",
+          "PVG-BKK / BKK-PVG",
+          "XIY-BKK / BKK-XIY",
+          "PVG-BKK / BKK-PVG",
+          "PVG-BKK / BKK-PVG",
+          "CAN-BKK / BKK-CAN",
+          "SHE-CJU / CJU-SHE",
+          "PVG-CNX / CNX-PVG",
+          "PKX-CJU / CJU-PKX",
+          "HGH-CJU / CJU-HGH",
+          "CAN-KUL / KUL-CAN",
+          "SHE-CJU / CJU-SHE",
+          "ICN-YTY / YTY-ICN",
+          "PVG-CJU / CJU-PVG",
+          "CAN-SGN / SGN-CAN",
+          "SIN-DAD / DAD-SIN",
+          "PVG-HKT / HKT-PVG",
+          "KHN-BKK / BKK-KHN",
+          "TFU-BKK / BKK-TFU",
+          "PVG-KUL / KUL-PVG",
+          "KTI-XIY / XIY-KTI",
+          "PVG-BKK / BKK-PVG",
+          "PVG-BKK / BKK-PVG",
+          "CAN-SGN / SGN-CAN",
+          "PVG-CJU / CJU-PVG",
+          "PVG-BKK / BKK-PVG",
+          "PVG-KIX / KIX-PVG",
+          "TFU-BKK / BKK-TFU",
+          "NNG-BKK / BKK-NNG",
+          "PVG-BKK / BKK-PVG",
+          "PVG-KTI / KTI-PVG",
+          "SHE-CJU / CJU-SHE",
+          "CAN-BKK / BKK-CAN",
+          "PKX-CJU / CJU-PKX",
+          "NGB-BKK / BKK-NGB",
+          "BKK-PVG / PVG-BKK",
+          "PVG-CJU / CJU-PVG",
+          "TFU-KTI / KTI-TFU",
+          "BKK-XIY / XIY-BKK"
+        ],
+        "by_airline": {
+          "9C": 673,
+          "VJ": 35,
+          "AQ": 21,
+          "TR": 14,
+          "HO": 5,
+          "MM": 4,
+          "PC": 4,
+          "DD": 3,
+          "FD": 1
+        }
+      },
+      "transfer": {
+        "count": 151,
+        "ratio": 0.2,
+        "samples": [
+          "KIX-PVG / PVG-XIY",
+          "PVG-CGO / CGO-MXP",
+          "TAO-PVG / PVG-BKK",
+          "CAN-PVG / PVG-SYD",
+          "CJU-NKG / NKG-CKG",
+          "TFU-PVG / PVG-CJU",
+          "CSX-PVG / PVG-CJU",
+          "CJU-PVG / PVG-CSX",
+          "CSX-PVG / PVG-KIX",
+          "PKX-PVG / PVG-SIN",
+          "PVG-CGO / CGO-MXP",
+          "CJU-NKG / NKG-CKG",
+          "CJU-NKG / NKG-CKG",
+          "PKX-FOC / FOC-KUL",
+          "PVG-CGO / CGO-MXP",
+          "KIX-PVG / PVG-XIY",
+          "DPS-XMN / XMN-NKG",
+          "DPS-XMN / XMN-NKG",
+          "DLC-PVG / PVG-TPE",
+          "SHE-PVG / PVG-SIN",
+          "CSX-PVG / PVG-CJU",
+          "XMN-PVG / PVG-KIX",
+          "NNG-NKG / NKG-CJU",
+          "NNG-NKG / NKG-CJU",
+          "PKX-PVG / PVG-KIX",
+          "CKG-WUX / WUX-CJU",
+          "CKG-XMN / XMN-DPS",
+          "BKK-XMN / XMN-CSX",
+          "PKX-PVG / PVG-KIX",
+          "PKX-PVG / PVG-KIX",
+          "PKX-PVG / PVG-KIX",
+          "SHE-PVG / PVG-SIN",
+          "PKX-PVG / PVG-MEL",
+          "KIX-NKG / NKG-TFU",
+          "TNA-XMN / XMN-SIN",
+          "TAO-PVG / PVG-BKK",
+          "TAO-PVG / PVG-BKK",
+          "PKX-PVG / PVG-SYD",
+          "KIX-PVG / PVG-PKX",
+          "KIX-PVG / PVG-PKX",
+          "KIX-PVG / PVG-TFU",
+          "KIX-NKG / NKG-XIY",
+          "TNA-XMN / XMN-SIN",
+          "TSN-XMN / XMN-BKK",
+          "PKX-PVG / PVG-KIX",
+          "TPE-PVG / PVG-XIY",
+          "TPE-PVG / PVG-XIY",
+          "TPE-PVG / PVG-XIY",
+          "HGH-XMN / XMN-DPS",
+          "HGH-XMN / XMN-DPS"
+        ],
+        "by_airline": {
+          "HO": 78,
+          "MF": 69,
+          "9C": 4
+        }
+      },
+      "multi_pax": {
+        "count": 17018,
+        "ratio": 22.5,
+        "by_pax_count": {
+          "2": 13845,
+          "3": 2851,
+          "4": 277,
+          "5": 40,
+          "6": 3,
+          "8": 2
+        }
+      }
+    },
     "hourly_today": {
       "date": "2026-06-30",
       "data": [
@@ -15277,6 +15471,117 @@
         "avg_profit": -9.62,
         "profit_pos": 1028,
         "profit_pos_rate": 36.43,
+        "order_analysis": {
+          "total": 2849,
+          "split": {
+            "count": 6,
+            "ratio": 0.21,
+            "by_platform": {
+              "向上比客国际": 4,
+              "去哪儿国际": 2
+            },
+            "by_airline": {
+              "VJ": 4,
+              "MM": 1,
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 44,
+            "ratio": 1.54,
+            "by_category": {
+              "重复无效单": 12,
+              "重复反采回来自动单": 9,
+              "重复反采出去自动单": 9,
+              "重复单": 6,
+              "重复利润核实单": 4,
+              "重复反采回来人工单": 2,
+              "重复反采出去人工单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 19,
+              "携程国际": 8,
+              "同程国际": 8,
+              "向上比客国际": 6,
+              "淘宝国际": 3
+            }
+          },
+          "round_trip": {
+            "count": 28,
+            "ratio": 0.98,
+            "samples": [
+              "PVG-HKG / HKG-PVG",
+              "KTI-PVG / PVG-KTI",
+              "PVG-FUK / FUK-PVG",
+              "PVG-HKG / HKG-PVG",
+              "PVG-FUK / FUK-PVG",
+              "PVG-CNX / CNX-PVG",
+              "NNG-BKK / BKK-NNG",
+              "NKG-CJU / CJU-NKG",
+              "WUX-CJU / CJU-WUX",
+              "PUS-PVG / PVG-PUS",
+              "NGB-BKK / BKK-NGB",
+              "NGB-BKK / BKK-NGB",
+              "PVG-BKK / BKK-PVG",
+              "XIY-BKK / BKK-XIY",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-BKK / BKK-CAN",
+              "SHE-CJU / CJU-SHE",
+              "PVG-CNX / CNX-PVG",
+              "PKX-CJU / CJU-PKX",
+              "HGH-CJU / CJU-HGH",
+              "CAN-KUL / KUL-CAN",
+              "SHE-CJU / CJU-SHE",
+              "ICN-YTY / YTY-ICN",
+              "PVG-CJU / CJU-PVG",
+              "CAN-SGN / SGN-CAN",
+              "SIN-DAD / DAD-SIN",
+              "PVG-HKT / HKT-PVG"
+            ],
+            "by_airline": {
+              "9C": 23,
+              "HO": 3,
+              "AQ": 1,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 15,
+            "ratio": 0.53,
+            "samples": [
+              "KIX-PVG / PVG-XIY",
+              "PVG-CGO / CGO-MXP",
+              "TAO-PVG / PVG-BKK",
+              "CAN-PVG / PVG-SYD",
+              "CJU-NKG / NKG-CKG",
+              "TFU-PVG / PVG-CJU",
+              "CSX-PVG / PVG-CJU",
+              "CJU-PVG / PVG-CSX",
+              "CSX-PVG / PVG-KIX",
+              "PKX-PVG / PVG-SIN",
+              "PVG-CGO / CGO-MXP",
+              "CJU-NKG / NKG-CKG",
+              "CJU-NKG / NKG-CKG",
+              "PKX-FOC / FOC-KUL",
+              "PVG-CGO / CGO-MXP"
+            ],
+            "by_airline": {
+              "HO": 14,
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 594,
+            "ratio": 20.85,
+            "by_pax_count": {
+              "2": 507,
+              "3": 79,
+              "4": 6,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-01",
           "data": [
@@ -19556,6 +19861,125 @@
         "avg_profit": -10.31,
         "profit_pos": 1130,
         "profit_pos_rate": 34.77,
+        "order_analysis": {
+          "total": 3281,
+          "split": {
+            "count": 6,
+            "ratio": 0.18,
+            "by_platform": {
+              "向上比客国际": 5,
+              "去哪儿国际": 1
+            },
+            "by_airline": {
+              "VJ": 4,
+              "FD": 1,
+              "5J": 1
+            }
+          },
+          "repeat": {
+            "count": 39,
+            "ratio": 1.19,
+            "by_category": {
+              "重复无效单": 10,
+              "重复反采回来自动单": 10,
+              "重复反采出去自动单": 10,
+              "重复单": 3,
+              "重复利润核实单": 2,
+              "重复反采回来人工单": 2,
+              "重复反采出去人工单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 19,
+              "携程国际": 11,
+              "同程国际": 5,
+              "智行国际": 2,
+              "向上比客国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 33,
+            "ratio": 1.01,
+            "samples": [
+              "KHN-BKK / BKK-KHN",
+              "TFU-BKK / BKK-TFU",
+              "PVG-KUL / KUL-PVG",
+              "KTI-XIY / XIY-KTI",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-SGN / SGN-CAN",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-KIX / KIX-PVG",
+              "TFU-BKK / BKK-TFU",
+              "NNG-BKK / BKK-NNG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-KTI / KTI-PVG",
+              "SHE-CJU / CJU-SHE",
+              "CAN-BKK / BKK-CAN",
+              "PKX-CJU / CJU-PKX",
+              "NGB-BKK / BKK-NGB",
+              "BKK-PVG / PVG-BKK",
+              "PVG-CJU / CJU-PVG",
+              "TFU-KTI / KTI-TFU",
+              "BKK-XIY / XIY-BKK",
+              "BKK-PVG / PVG-BKK",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-HKG / HKG-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-KTI / KTI-CAN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "NGB-BKK / BKK-NGB"
+            ],
+            "by_airline": {
+              "9C": 32,
+              "HO": 1
+            }
+          },
+          "transfer": {
+            "count": 19,
+            "ratio": 0.58,
+            "samples": [
+              "KIX-PVG / PVG-XIY",
+              "DPS-XMN / XMN-NKG",
+              "DPS-XMN / XMN-NKG",
+              "DLC-PVG / PVG-TPE",
+              "SHE-PVG / PVG-SIN",
+              "CSX-PVG / PVG-CJU",
+              "XMN-PVG / PVG-KIX",
+              "NNG-NKG / NKG-CJU",
+              "NNG-NKG / NKG-CJU",
+              "PKX-PVG / PVG-KIX",
+              "CKG-WUX / WUX-CJU",
+              "CKG-XMN / XMN-DPS",
+              "BKK-XMN / XMN-CSX",
+              "PKX-PVG / PVG-KIX",
+              "PKX-PVG / PVG-KIX",
+              "PKX-PVG / PVG-KIX",
+              "SHE-PVG / PVG-SIN",
+              "PKX-PVG / PVG-MEL",
+              "KIX-NKG / NKG-TFU"
+            ],
+            "by_airline": {
+              "HO": 14,
+              "MF": 4,
+              "9C": 1
+            }
+          },
+          "multi_pax": {
+            "count": 688,
+            "ratio": 20.97,
+            "by_pax_count": {
+              "2": 573,
+              "3": 98,
+              "4": 15,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-02",
           "data": [
@@ -24130,6 +24554,123 @@
         "avg_profit": -9.75,
         "profit_pos": 822,
         "profit_pos_rate": 29.97,
+        "order_analysis": {
+          "total": 2765,
+          "split": {
+            "count": 3,
+            "ratio": 0.11,
+            "by_platform": {
+              "向上比客国际": 3
+            },
+            "by_airline": {
+              "VJ": 2,
+              "Z2": 1
+            }
+          },
+          "repeat": {
+            "count": 36,
+            "ratio": 1.3,
+            "by_category": {
+              "重复单": 11,
+              "重复反采回来人工单": 5,
+              "重复反采出去人工单": 5,
+              "重复反采回来自动单": 4,
+              "重复反采出去自动单": 4,
+              "重复无效单": 4,
+              "重复利润核实单": 3
+            },
+            "by_platform": {
+              "携程国际": 13,
+              "去哪儿国际": 11,
+              "同程国际": 7,
+              "淘宝国际": 3,
+              "向上比客国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 49,
+            "ratio": 1.77,
+            "samples": [
+              "CAN-KTI / KTI-CAN",
+              "BKK-PVG / PVG-BKK",
+              "PVG-KIX / KIX-PVG",
+              "XIY-BKK / BKK-XIY",
+              "HGH-CJU / CJU-HGH",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "PVG-KUL / KUL-PVG",
+              "PVG-BKK / BKK-PVG",
+              "DLC-KIX / KIX-DLC",
+              "PVG-CJU / CJU-PVG",
+              "NGB-CJU / CJU-NGB",
+              "NGB-CJU / CJU-NGB",
+              "PVG-CJU / CJU-PVG",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "NKG-CJU / CJU-NKG",
+              "BKK-TFU / TFU-BKK",
+              "BKK-TFU / TFU-BKK",
+              "FUK-PVG / PVG-FUK",
+              "FUK-PVG / PVG-FUK",
+              "PVG-BKK / BKK-PVG",
+              "KTI-PVG / PVG-KTI",
+              "HGH-CJU / CJU-HGH",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "KTI-CAN / CAN-KTI",
+              "SWA-BKK / BKK-SWA",
+              "PVG-MFM / MFM-PVG",
+              "WUX-CJU / CJU-WUX",
+              "PVG-BKK / BKK-PVG",
+              "TFU-BKK / BKK-TFU",
+              "PVG-MFM / MFM-PVG",
+              "BKK-FOC / FOC-BKK",
+              "HGH-CJU / CJU-HGH",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "SHE-CJU / CJU-SHE",
+              "NKG-CJU / CJU-NKG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-FUK / FUK-PVG",
+              "PVG-CTS / CTS-PVG",
+              "KHN-BKK / BKK-KHN",
+              "SGN-BKK / BKK-SGN",
+              "PVG-BKK / BKK-PVG"
+            ],
+            "by_airline": {
+              "9C": 47,
+              "HO": 1,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 3,
+            "ratio": 0.11,
+            "samples": [
+              "TNA-XMN / XMN-SIN",
+              "TAO-PVG / PVG-BKK",
+              "TAO-PVG / PVG-BKK"
+            ],
+            "by_airline": {
+              "HO": 2,
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 600,
+            "ratio": 21.7,
+            "by_pax_count": {
+              "2": 502,
+              "3": 94,
+              "4": 2,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-03",
           "data": [
@@ -28293,6 +28834,130 @@
         "avg_profit": -5.45,
         "profit_pos": 632,
         "profit_pos_rate": 29.18,
+        "order_analysis": {
+          "total": 2198,
+          "split": {
+            "count": 2,
+            "ratio": 0.09,
+            "by_platform": {
+              "向上比客国际": 2
+            },
+            "by_airline": {
+              "EW": 1,
+              "Z2": 1
+            }
+          },
+          "repeat": {
+            "count": 23,
+            "ratio": 1.05,
+            "by_category": {
+              "重复反采回来人工单": 7,
+              "重复反采出去人工单": 7,
+              "重复反采回来自动单": 3,
+              "重复反采出去自动单": 3,
+              "重复利润核实单": 2,
+              "重复单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 11,
+              "向上比客国际": 6,
+              "同程国际": 3,
+              "携程国际": 2,
+              "淘宝国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 56,
+            "ratio": 2.55,
+            "samples": [
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "NGB-BKK / BKK-NGB",
+              "KWE-BKK / BKK-KWE",
+              "PVG-BKK / BKK-PVG",
+              "PVG-KTI / KTI-PVG",
+              "CAN-BKK / BKK-CAN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "NGB-CJU / CJU-NGB",
+              "CAN-CJU / CJU-CAN",
+              "PVG-CJU / CJU-PVG",
+              "NGB-BKK / BKK-NGB",
+              "XIY-BKK / BKK-XIY",
+              "YTY-BKK / BKK-YTY",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "SHE-CJU / CJU-SHE",
+              "CAN-KTI / KTI-CAN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "KTI-PVG / PVG-KTI",
+              "NGB-CJU / CJU-NGB",
+              "KTI-CAN / CAN-KTI",
+              "TFU-BKK / BKK-TFU",
+              "PVG-HKT / HKT-PVG",
+              "SHE-CJU / CJU-SHE",
+              "PVG-SIN / SIN-PVG",
+              "NGB-CJU / CJU-NGB",
+              "PVG-CJU / CJU-PVG",
+              "NNG-BKK / BKK-NNG",
+              "PVG-CJU / CJU-PVG",
+              "SHE-CJU / CJU-SHE",
+              "NGB-BKK / BKK-NGB",
+              "NGB-BKK / BKK-NGB",
+              "BKK-PVG / PVG-BKK",
+              "PVG-KIX / KIX-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "TFU-BKK / BKK-TFU",
+              "SHE-CJU / CJU-SHE",
+              "PVG-CJU / CJU-PVG",
+              "HGH-CJU / CJU-HGH",
+              "SGN-SIN / SIN-SGN",
+              "PKX-CJU / CJU-PKX",
+              "NGB-BKK / BKK-NGB",
+              "PKX-CJU / CJU-PKX"
+            ],
+            "by_airline": {
+              "9C": 54,
+              "AQ": 1,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 11,
+            "ratio": 0.5,
+            "samples": [
+              "PKX-PVG / PVG-SYD",
+              "KIX-PVG / PVG-PKX",
+              "KIX-PVG / PVG-PKX",
+              "KIX-PVG / PVG-TFU",
+              "KIX-NKG / NKG-XIY",
+              "TNA-XMN / XMN-SIN",
+              "TSN-XMN / XMN-BKK",
+              "PKX-PVG / PVG-KIX",
+              "TPE-PVG / PVG-XIY",
+              "TPE-PVG / PVG-XIY",
+              "TPE-PVG / PVG-XIY"
+            ],
+            "by_airline": {
+              "HO": 9,
+              "MF": 2
+            }
+          },
+          "multi_pax": {
+            "count": 468,
+            "ratio": 21.29,
+            "by_pax_count": {
+              "2": 378,
+              "3": 79,
+              "4": 11
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-04",
           "data": [
@@ -32057,6 +32722,105 @@
         "avg_profit": -10.59,
         "profit_pos": 514,
         "profit_pos_rate": 31.46,
+        "order_analysis": {
+          "total": 1656,
+          "split": {
+            "count": 3,
+            "ratio": 0.18,
+            "by_platform": {
+              "向上比客国际": 2,
+              "携程国际": 1
+            },
+            "by_airline": {
+              "EW": 2,
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 47,
+            "ratio": 2.84,
+            "by_category": {
+              "重复反采回来自动单": 12,
+              "重复反采出去自动单": 12,
+              "重复无效单": 9,
+              "重复反采出去人工单": 7,
+              "重复反采回来人工单": 6,
+              "重复利润核实单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 17,
+              "同程国际": 10,
+              "携程国际": 8,
+              "向上比客国际": 7,
+              "淘宝国际": 5
+            }
+          },
+          "round_trip": {
+            "count": 29,
+            "ratio": 1.75,
+            "samples": [
+              "SWA-BKK / BKK-SWA",
+              "PVG-CTS / CTS-PVG",
+              "PVG-CTS / CTS-PVG",
+              "CAN-BKK / BKK-CAN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "CAN-KTI / KTI-CAN",
+              "CAN-CNX / CNX-CAN",
+              "PVG-BKK / BKK-PVG",
+              "NNG-BKK / BKK-NNG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "TFU-HKT / HKT-TFU",
+              "HGH-CJU / CJU-HGH",
+              "KWE-BKK / BKK-KWE",
+              "NGB-BKK / BKK-NGB",
+              "KWE-BKK / BKK-KWE",
+              "PVG-CJJ / CJJ-PVG",
+              "TFU-BKK / BKK-TFU",
+              "NKG-CJU / CJU-NKG",
+              "KWE-BKK / BKK-KWE",
+              "KWE-BKK / BKK-KWE",
+              "NNG-BKK / BKK-NNG",
+              "HGH-CJU / CJU-HGH"
+            ],
+            "by_airline": {
+              "9C": 25,
+              "AQ": 4
+            }
+          },
+          "transfer": {
+            "count": 7,
+            "ratio": 0.42,
+            "samples": [
+              "HGH-XMN / XMN-DPS",
+              "HGH-XMN / XMN-DPS",
+              "SYD-PVG / PVG-DLC",
+              "DPS-XMN / XMN-NKG",
+              "DPS-XMN / XMN-NKG",
+              "DPS-XMN / XMN-NKG",
+              "DPS-XMN / XMN-NKG"
+            ],
+            "by_airline": {
+              "MF": 6,
+              "HO": 1
+            }
+          },
+          "multi_pax": {
+            "count": 323,
+            "ratio": 19.5,
+            "by_pax_count": {
+              "2": 267,
+              "3": 49,
+              "4": 7
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-05",
           "data": [
@@ -35788,6 +36552,126 @@
         "avg_profit": -6.73,
         "profit_pos": 541,
         "profit_pos_rate": 29.02,
+        "order_analysis": {
+          "total": 1931,
+          "split": {
+            "count": 8,
+            "ratio": 0.41,
+            "by_platform": {
+              "国际小象合单": 6,
+              "同程国际": 1,
+              "去哪儿国际": 1
+            },
+            "by_airline": {
+              "9C": 7,
+              "MM": 1
+            }
+          },
+          "repeat": {
+            "count": 66,
+            "ratio": 3.42,
+            "by_category": {
+              "重复反采回来自动单": 15,
+              "重复反采出去自动单": 15,
+              "重复反采出去人工单": 14,
+              "重复反采回来人工单": 14,
+              "重复无效单": 6,
+              "重复单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 28,
+              "同程国际": 22,
+              "向上比客国际": 7,
+              "淘宝国际": 5,
+              "智行国际": 4
+            }
+          },
+          "round_trip": {
+            "count": 41,
+            "ratio": 2.12,
+            "samples": [
+              "TFU-KTI / KTI-TFU",
+              "PVG-BKK / BKK-PVG",
+              "CAN-BKK / BKK-CAN",
+              "TFU-BKK / BKK-TFU",
+              "TFU-BKK / BKK-TFU",
+              "TFU-BKK / BKK-TFU",
+              "HGH-CJU / CJU-HGH",
+              "NKG-CJU / CJU-NKG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-SGN / SGN-CAN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "NNG-BKK / BKK-NNG",
+              "TFU-BKK / BKK-TFU",
+              "SHE-CJU / CJU-SHE",
+              "PVG-BKK / BKK-PVG",
+              "SHE-CJU / CJU-SHE",
+              "SIN-DAD / DAD-SIN",
+              "BKK-XIY / XIY-BKK",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "TFU-HKT / HKT-TFU",
+              "PVG-BKK / BKK-PVG",
+              "PVG-SIN / SIN-PVG",
+              "NNG-BKK / BKK-NNG",
+              "TFU-HKT / HKT-TFU",
+              "PVG-BKK / BKK-PVG",
+              "NNG-BKK / BKK-NNG",
+              "NNG-BKK / BKK-NNG",
+              "NNG-BKK / BKK-NNG",
+              "PVG-CNX / CNX-PVG",
+              "NNG-BKK / BKK-NNG",
+              "NNG-BKK / BKK-NNG",
+              "NNG-BKK / BKK-NNG",
+              "PVG-BKK / BKK-PVG",
+              "NGB-CJU / CJU-NGB",
+              "PVG-MFM / MFM-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "NNG-BKK / BKK-NNG"
+            ],
+            "by_airline": {
+              "9C": 39,
+              "AQ": 1,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 13,
+            "ratio": 0.67,
+            "samples": [
+              "KIX-PVG / PVG-XIY",
+              "PKX-PVG / PVG-KIX",
+              "PKX-PVG / PVG-KIX",
+              "BKK-XMN / XMN-SHA",
+              "TFU-PVG / PVG-KIX",
+              "PKX-PVG / PVG-KIX",
+              "PKX-PVG / PVG-KIX",
+              "PKX-PVG / PVG-KIX",
+              "KIX-PVG / PVG-XIY",
+              "PKX-PVG / PVG-KIX",
+              "KIX-PVG / PVG-XIY",
+              "KIX-PVG / PVG-PKX",
+              "KIX-PVG / PVG-PKX"
+            ],
+            "by_airline": {
+              "HO": 12,
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 408,
+            "ratio": 21.13,
+            "by_pax_count": {
+              "2": 348,
+              "3": 55,
+              "4": 3,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-06",
           "data": [
@@ -39366,6 +40250,105 @@
         "avg_profit": -6.52,
         "profit_pos": 700,
         "profit_pos_rate": 34.77,
+        "order_analysis": {
+          "total": 2049,
+          "split": {
+            "count": 1,
+            "ratio": 0.05,
+            "by_platform": {
+              "向上比客国际": 1
+            },
+            "by_airline": {
+              "BC": 1
+            }
+          },
+          "repeat": {
+            "count": 75,
+            "ratio": 3.66,
+            "by_category": {
+              "重复反采回来自动单": 21,
+              "重复反采出去自动单": 21,
+              "重复无效单": 16,
+              "重复反采回来人工单": 7,
+              "重复反采出去人工单": 6,
+              "重复单": 2,
+              "重复利润核实单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 30,
+              "同程国际": 25,
+              "淘宝国际": 8,
+              "携程国际": 5,
+              "向上比客国际": 5,
+              "智行国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 28,
+            "ratio": 1.37,
+            "samples": [
+              "PVG-BKK / BKK-PVG",
+              "BKK-NNG / NNG-BKK",
+              "PVG-BKK / BKK-PVG",
+              "NKG-CJU / CJU-NKG",
+              "NGB-BKK / BKK-NGB",
+              "KTI-TFU / TFU-KTI",
+              "SWA-BKK / BKK-SWA",
+              "XIY-BKK / BKK-XIY",
+              "KTI-CAN / CAN-KTI",
+              "HGH-CJU / CJU-HGH",
+              "PVG-BKK / BKK-PVG",
+              "KIX-PVG / PVG-KIX",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "SHE-CJU / CJU-SHE",
+              "SGN-CAN / CAN-SGN",
+              "KWE-BKK / BKK-KWE",
+              "KTI-PVG / PVG-KTI",
+              "NGB-BKK / BKK-NGB",
+              "PVG-CNX / CNX-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "FOC-BKK / BKK-FOC",
+              "PVG-CJU / CJU-PVG",
+              "TFU-BKK / BKK-TFU",
+              "CAN-HKT / HKT-CAN",
+              "YTY-BKK / BKK-YTY",
+              "NNG-BKK / BKK-NNG"
+            ],
+            "by_airline": {
+              "9C": 27,
+              "AQ": 1
+            }
+          },
+          "transfer": {
+            "count": 8,
+            "ratio": 0.39,
+            "samples": [
+              "TAO-XMN / XMN-BKK",
+              "KIX-PVG / PVG-PKX",
+              "DPS-XMN / XMN-NKG",
+              "KIX-PVG / PVG-PKX",
+              "KIX-NKG / NKG-TFU",
+              "KIX-PVG / PVG-PKX",
+              "TFU-PVG / PVG-SYD",
+              "KIX-PVG / PVG-PKX"
+            ],
+            "by_airline": {
+              "HO": 6,
+              "MF": 2
+            }
+          },
+          "multi_pax": {
+            "count": 426,
+            "ratio": 20.79,
+            "by_pax_count": {
+              "2": 365,
+              "3": 52,
+              "4": 9
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-07",
           "data": [
@@ -43161,6 +44144,126 @@
         "avg_profit": -14.0,
         "profit_pos": 474,
         "profit_pos_rate": 19.38,
+        "order_analysis": {
+          "total": 2493,
+          "split": {
+            "count": 5,
+            "ratio": 0.2,
+            "by_platform": {
+              "去哪儿国际": 3,
+              "向上比客国际": 1,
+              "同程国际": 1
+            },
+            "by_airline": {
+              "VJ": 2,
+              "AQ": 2,
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 45,
+            "ratio": 1.81,
+            "by_category": {
+              "重复无效单": 16,
+              "重复反采回来自动单": 12,
+              "重复反采出去自动单": 12,
+              "重复反采回来人工单": 2,
+              "重复反采出去人工单": 2,
+              "重复利润核实单": 1
+            },
+            "by_platform": {
+              "同程国际": 13,
+              "向上比客国际": 12,
+              "淘宝国际": 9,
+              "去哪儿国际": 6,
+              "携程国际": 5
+            }
+          },
+          "round_trip": {
+            "count": 54,
+            "ratio": 2.17,
+            "samples": [
+              "PVG-FUK / FUK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "YTY-ICN / ICN-YTY",
+              "SHE-CJU / CJU-SHE",
+              "YTY-ICN / ICN-YTY",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "SHE-CJU / CJU-SHE",
+              "PVG-BKK / BKK-PVG",
+              "SHE-CJU / CJU-SHE",
+              "XIY-CNX / CNX-XIY",
+              "XIY-BKK / BKK-XIY",
+              "PVG-BKK / BKK-PVG",
+              "SHE-CJU / CJU-SHE",
+              "CAN-SIN / SIN-CAN",
+              "KTI-PVG / PVG-KTI",
+              "CAN-BKK / BKK-CAN",
+              "NKG-CJU / CJU-NKG",
+              "KIX-PVG / PVG-KIX",
+              "PVG-HKT / HKT-PVG",
+              "PVG-HKT / HKT-PVG",
+              "PVG-HKT / HKT-PVG",
+              "NGB-BKK / BKK-NGB",
+              "PVG-CJU / CJU-PVG",
+              "CJU-SHE / SHE-CJU",
+              "PVG-BKK / BKK-PVG",
+              "CAN-SGN / SGN-CAN",
+              "PVG-CJU / CJU-PVG",
+              "PKX-CJU / CJU-PKX",
+              "PVG-CJU / CJU-PVG",
+              "PVG-CJU / CJU-PVG",
+              "PVG-CTS / CTS-PVG",
+              "PVG-BKK / BKK-PVG",
+              "NGB-CJU / CJU-NGB",
+              "HGH-CJU / CJU-HGH",
+              "PVG-BKK / BKK-PVG",
+              "PKX-CJU / CJU-PKX",
+              "PVG-MFM / MFM-PVG",
+              "XIY-CNX / CNX-XIY",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-HAN / HAN-CAN",
+              "SJW-ICN / ICN-SJW",
+              "CAN-BKK / BKK-CAN",
+              "CAN-BKK / BKK-CAN",
+              "PVG-BKK / BKK-PVG",
+              "BKK-XIY / XIY-BKK",
+              "PVG-CJU / CJU-PVG",
+              "SIN-DAD / DAD-SIN"
+            ],
+            "by_airline": {
+              "9C": 52,
+              "VJ": 2
+            }
+          },
+          "transfer": {
+            "count": 4,
+            "ratio": 0.16,
+            "samples": [
+              "KIX-PVG / PVG-XIY",
+              "CJU-PVG / PVG-CKG",
+              "CJU-PVG / PVG-TFU",
+              "SHA-XMN / XMN-DPS"
+            ],
+            "by_airline": {
+              "HO": 3,
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 578,
+            "ratio": 23.18,
+            "by_pax_count": {
+              "2": 477,
+              "3": 85,
+              "4": 12,
+              "5": 4
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-08",
           "data": [
@@ -47132,6 +48235,116 @@
         "avg_profit": -10.26,
         "profit_pos": 646,
         "profit_pos_rate": 29.61,
+        "order_analysis": {
+          "total": 2234,
+          "split": {
+            "count": 4,
+            "ratio": 0.18,
+            "by_platform": {
+              "淘宝国际": 2,
+              "向上比客国际": 2
+            },
+            "by_airline": {
+              "MM": 2,
+              "VJ": 2
+            }
+          },
+          "repeat": {
+            "count": 90,
+            "ratio": 4.03,
+            "by_category": {
+              "重复反采回来人工单": 33,
+              "重复反采出去人工单": 30,
+              "重复反采回来自动单": 8,
+              "重复反采出去自动单": 8,
+              "重复无效单": 6,
+              "重复单": 4,
+              "重复利润核实单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 43,
+              "同程国际": 33,
+              "向上比客国际": 7,
+              "淘宝国际": 4,
+              "携程国际": 2,
+              "智行国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 34,
+            "ratio": 1.52,
+            "samples": [
+              "FUK-HAN / HAN-FUK",
+              "PVG-FUK / FUK-PVG",
+              "PVG-FUK / FUK-PVG",
+              "NGB-CJU / CJU-NGB",
+              "NGB-CJU / CJU-NGB",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "SHE-CJU / CJU-SHE",
+              "PVG-BKK / BKK-PVG",
+              "TPE-PQC / PQC-TPE",
+              "CAN-CNX / CNX-CAN",
+              "PVG-BKK / BKK-PVG",
+              "KTI-XIY / XIY-KTI",
+              "SHE-CJU / CJU-SHE",
+              "PVG-BKK / BKK-PVG",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "CAN-KTI / KTI-CAN",
+              "CAN-BKK / BKK-CAN",
+              "HGH-CJU / CJU-HGH",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "NGB-CJU / CJU-NGB",
+              "PVG-CJU / CJU-PVG",
+              "PVG-CJU / CJU-PVG",
+              "TFU-KTI / KTI-TFU",
+              "PVG-FUK / FUK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "TFU-KTI / KTI-TFU",
+              "SWA-BKK / BKK-SWA",
+              "SWA-BKK / BKK-SWA",
+              "PVG-BKK / BKK-PVG",
+              "SIN-DAD / DAD-SIN",
+              "KUL-CAN / CAN-KUL"
+            ],
+            "by_airline": {
+              "9C": 31,
+              "VJ": 3
+            }
+          },
+          "transfer": {
+            "count": 10,
+            "ratio": 0.45,
+            "samples": [
+              "PKX-FOC / FOC-SIN",
+              "PKX-FOC / FOC-SIN",
+              "SHA-JJN / JJN-SIN",
+              "KIX-PVG / PVG-PKX",
+              "CGQ-PVG / PVG-NRT",
+              "CGO-XMN / XMN-SIN",
+              "BKK-XMN / XMN-PKX",
+              "KIX-PVG / PVG-PKX",
+              "KIX-PVG / PVG-PKX",
+              "ICN-FOC / FOC-NNG"
+            ],
+            "by_airline": {
+              "MF": 6,
+              "HO": 4
+            }
+          },
+          "multi_pax": {
+            "count": 476,
+            "ratio": 21.31,
+            "by_pax_count": {
+              "2": 378,
+              "3": 89,
+              "4": 7,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-09",
           "data": [
@@ -50976,6 +52189,131 @@
         "avg_profit": -10.59,
         "profit_pos": 601,
         "profit_pos_rate": 21.85,
+        "order_analysis": {
+          "total": 2799,
+          "split": {
+            "count": 1,
+            "ratio": 0.04,
+            "by_platform": {
+              "同程国际": 1
+            },
+            "by_airline": {
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 83,
+            "ratio": 2.97,
+            "by_category": {
+              "重复反采回来人工单": 31,
+              "重复反采出去人工单": 31,
+              "重复无效单": 8,
+              "重复反采回来自动单": 6,
+              "重复反采出去自动单": 6,
+              "重复利润核实单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 38,
+              "同程国际": 37,
+              "向上比客国际": 6,
+              "智行国际": 1,
+              "淘宝国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 49,
+            "ratio": 1.75,
+            "samples": [
+              "PVG-KTI / KTI-PVG",
+              "PVG-KTI / KTI-PVG",
+              "NNG-BKK / BKK-NNG",
+              "SGN-CAN / CAN-SGN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "BKK-CAN / CAN-BKK",
+              "PVG-BKK / BKK-PVG",
+              "BKK-CAN / CAN-BKK",
+              "PVG-PUS / PUS-PVG",
+              "YTY-BKK / BKK-YTY",
+              "PVG-BKK / BKK-PVG",
+              "SGN-BKK / BKK-SGN",
+              "PVG-CJU / CJU-PVG",
+              "HGH-CJU / CJU-HGH",
+              "KWE-BKK / BKK-KWE",
+              "CAN-BKK / BKK-CAN",
+              "KWE-BKK / BKK-KWE",
+              "HGH-CJU / CJU-HGH",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CTS / CTS-PVG",
+              "PVG-CTS / CTS-PVG",
+              "PVG-CTS / CTS-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "NGB-BKK / BKK-NGB",
+              "PVG-KIX / KIX-PVG",
+              "BKK-CAN / CAN-BKK",
+              "PVG-KTI / KTI-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-FUK / FUK-PVG",
+              "XIY-BKK / BKK-XIY",
+              "HGH-CJU / CJU-HGH",
+              "PVG-BKK / BKK-PVG",
+              "KTI-XIY / XIY-KTI",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-SGN / SGN-CAN",
+              "YTY-BKK / BKK-YTY",
+              "PVG-BKK / BKK-PVG",
+              "CAN-BKK / BKK-CAN",
+              "KTI-XIY / XIY-KTI",
+              "SWA-BKK / BKK-SWA",
+              "PVG-BKK / BKK-PVG"
+            ],
+            "by_airline": {
+              "9C": 45,
+              "AQ": 3,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 13,
+            "ratio": 0.46,
+            "samples": [
+              "BKK-XMN / XMN-TSN",
+              "BKK-XMN / XMN-TSN",
+              "SHA-XMN / XMN-MNL",
+              "BKK-XMN / XMN-TNA",
+              "BKK-XMN / XMN-TSN",
+              "URC-XIY / XIY-BKK",
+              "BKK-XMN / XMN-NKG",
+              "SHE-PVG / PVG-KHH",
+              "PKX-XMN / XMN-SIN",
+              "PKX-XMN / XMN-SIN",
+              "SHA-XMN / XMN-BKK",
+              "BKK-XMN / XMN-CGO",
+              "BKK-XMN / XMN-TSN"
+            ],
+            "by_airline": {
+              "MF": 11,
+              "9C": 2
+            }
+          },
+          "multi_pax": {
+            "count": 668,
+            "ratio": 23.87,
+            "by_pax_count": {
+              "2": 548,
+              "3": 108,
+              "4": 9,
+              "5": 3
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-10",
           "data": [
@@ -54841,6 +56179,97 @@
         "avg_profit": -9.57,
         "profit_pos": 620,
         "profit_pos_rate": 27.36,
+        "order_analysis": {
+          "total": 2319,
+          "split": {
+            "count": 1,
+            "ratio": 0.04,
+            "by_platform": {
+              "向上比客国际": 1
+            },
+            "by_airline": {
+              "VJ": 1
+            }
+          },
+          "repeat": {
+            "count": 99,
+            "ratio": 4.27,
+            "by_category": {
+              "重复反采回来人工单": 42,
+              "重复反采出去人工单": 42,
+              "重复反采回来自动单": 6,
+              "重复反采出去自动单": 6,
+              "重复无效单": 2,
+              "重复利润核实单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 50,
+              "同程国际": 45,
+              "向上比客国际": 2,
+              "携程国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 30,
+            "ratio": 1.29,
+            "samples": [
+              "HGH-CJU / CJU-HGH",
+              "CAN-KTI / KTI-CAN",
+              "PVG-BKK / BKK-PVG",
+              "NGB-BKK / BKK-NGB",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-BKK / BKK-CAN",
+              "TFU-BKK / BKK-TFU",
+              "KTI-CAN / CAN-KTI",
+              "CAN-BKK / BKK-CAN",
+              "PVG-CJU / CJU-PVG",
+              "PVG-CJU / CJU-PVG",
+              "CAN-KUL / KUL-CAN",
+              "PVG-BKK / BKK-PVG",
+              "NGB-BKK / BKK-NGB",
+              "NKG-CJU / CJU-NKG",
+              "PVG-SIN / SIN-PVG",
+              "PVG-FUK / FUK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PUS-PVG / PVG-PUS",
+              "CAN-KTI / KTI-CAN",
+              "CAN-SGN / SGN-CAN",
+              "CAN-SGN / SGN-CAN",
+              "NGB-CJU / CJU-NGB",
+              "PVG-BKK / BKK-PVG",
+              "BKK-NGB / NGB-BKK",
+              "PVG-BKK / BKK-PVG",
+              "CAN-SGN / SGN-CAN"
+            ],
+            "by_airline": {
+              "9C": 30
+            }
+          },
+          "transfer": {
+            "count": 2,
+            "ratio": 0.09,
+            "samples": [
+              "BKK-XMN / XMN-SHA",
+              "SIN-XMN / XMN-TFU"
+            ],
+            "by_airline": {
+              "MF": 2
+            }
+          },
+          "multi_pax": {
+            "count": 512,
+            "ratio": 22.08,
+            "by_pax_count": {
+              "2": 419,
+              "3": 86,
+              "4": 6,
+              "5": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-11",
           "data": [
@@ -58659,6 +60088,105 @@
         "avg_profit": -9.97,
         "profit_pos": 640,
         "profit_pos_rate": 28.26,
+        "order_analysis": {
+          "total": 2308,
+          "split": {
+            "count": 5,
+            "ratio": 0.22,
+            "by_platform": {
+              "向上比客国际": 3,
+              "同程国际": 1,
+              "淘宝国际": 1
+            },
+            "by_airline": {
+              "MM": 2,
+              "VJ": 2,
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 40,
+            "ratio": 1.73,
+            "by_category": {
+              "重复无效单": 8,
+              "重复反采回来自动单": 7,
+              "重复反采出去自动单": 7,
+              "重复反采回来人工单": 6,
+              "重复反采出去人工单": 6,
+              "重复利润核实单": 4,
+              "重复单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 15,
+              "同程国际": 9,
+              "向上比客国际": 8,
+              "携程国际": 8
+            }
+          },
+          "round_trip": {
+            "count": 31,
+            "ratio": 1.34,
+            "samples": [
+              "CAN-BKK / BKK-CAN",
+              "PVG-FUK / FUK-PVG",
+              "FUK-PVG / PVG-FUK",
+              "CAN-HAN / HAN-CAN",
+              "KTI-PVG / PVG-KTI",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CJU / CJU-PVG",
+              "PVG-FUK / FUK-PVG",
+              "SHE-CJU / CJU-SHE",
+              "PVG-KIX / KIX-PVG",
+              "KWE-BKK / BKK-KWE",
+              "SWA-BKK / BKK-SWA",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "SJW-ICN / ICN-SJW",
+              "PVG-HKT / HKT-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-KIX / KIX-PVG",
+              "PVG-SIN / SIN-PVG",
+              "PVG-CNX / CNX-PVG",
+              "PVG-CNX / CNX-PVG",
+              "PVG-CNX / CNX-PVG",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "NGB-BKK / BKK-NGB",
+              "PVG-BKK / BKK-PVG",
+              "NGB-BKK / BKK-NGB",
+              "PVG-CJU / CJU-PVG",
+              "CAN-SGN / SGN-CAN",
+              "CAN-SGN / SGN-CAN",
+              "BKK-SWA / SWA-BKK"
+            ],
+            "by_airline": {
+              "9C": 29,
+              "VJ": 1,
+              "AQ": 1
+            }
+          },
+          "transfer": {
+            "count": 1,
+            "ratio": 0.04,
+            "samples": [
+              "BKK-XMN / XMN-PKX"
+            ],
+            "by_airline": {
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 536,
+            "ratio": 23.22,
+            "by_pax_count": {
+              "2": 437,
+              "3": 88,
+              "4": 9,
+              "5": 1,
+              "6": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-12",
           "data": [
@@ -62380,6 +63908,84 @@
         "avg_profit": -9.03,
         "profit_pos": 508,
         "profit_pos_rate": 27.39,
+        "order_analysis": {
+          "total": 1945,
+          "split": {
+            "count": 2,
+            "ratio": 0.1,
+            "by_platform": {
+              "淘宝国际": 1,
+              "向上比客国际": 1
+            },
+            "by_airline": {
+              "VJ": 2
+            }
+          },
+          "repeat": {
+            "count": 59,
+            "ratio": 3.03,
+            "by_category": {
+              "重复反采回来人工单": 21,
+              "重复反采出去人工单": 21,
+              "重复无效单": 7,
+              "重复单": 4,
+              "重复反采回来自动单": 3,
+              "重复反采出去自动单": 3
+            },
+            "by_platform": {
+              "去哪儿国际": 26,
+              "同程国际": 20,
+              "携程国际": 5,
+              "淘宝国际": 4,
+              "智行国际": 2,
+              "向上比客国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 18,
+            "ratio": 0.93,
+            "samples": [
+              "SZX-KTI / KTI-SZX",
+              "PVG-CJU / CJU-PVG",
+              "BKK-SGN / SGN-BKK",
+              "ICN-SJW / SJW-ICN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-KIX / KIX-PVG",
+              "NRT-FUK / FUK-NRT",
+              "NRT-FUK / FUK-NRT",
+              "SIN-DAD / DAD-SIN",
+              "NNG-BKK / BKK-NNG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "KTI-PVG / PVG-KTI",
+              "PVG-KIX / KIX-PVG",
+              "XIY-BKK / BKK-XIY",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "TFU-KTI / KTI-TFU"
+            ],
+            "by_airline": {
+              "9C": 14,
+              "VJ": 2,
+              "MM": 2
+            }
+          },
+          "transfer": {
+            "count": 0,
+            "ratio": 0.0,
+            "samples": [],
+            "by_airline": {}
+          },
+          "multi_pax": {
+            "count": 414,
+            "ratio": 21.29,
+            "by_pax_count": {
+              "2": 330,
+              "3": 78,
+              "4": 6
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-13",
           "data": [
@@ -66127,6 +67733,86 @@
         "avg_profit": -6.81,
         "profit_pos": 510,
         "profit_pos_rate": 29.06,
+        "order_analysis": {
+          "total": 1785,
+          "split": {
+            "count": 5,
+            "ratio": 0.28,
+            "by_platform": {
+              "向上比客国际": 3,
+              "去哪儿国际": 1,
+              "淘宝国际": 1
+            },
+            "by_airline": {
+              "VJ": 3,
+              "9C": 1,
+              "MM": 1
+            }
+          },
+          "repeat": {
+            "count": 20,
+            "ratio": 1.12,
+            "by_category": {
+              "重复无效单": 5,
+              "重复单": 3,
+              "重复利润核实单": 3,
+              "重复反采回来人工单": 2,
+              "重复反采出去人工单": 2,
+              "重复反采回来自动单": 2,
+              "重复反采出去自动单": 2,
+              "重复利润单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 7,
+              "携程国际": 6,
+              "同程国际": 3,
+              "向上比客国际": 2,
+              "淘宝国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 12,
+            "ratio": 0.67,
+            "samples": [
+              "SHE-CJU / CJU-SHE",
+              "CAN-KUL / KUL-CAN",
+              "XIY-BKK / BKK-XIY",
+              "PVG-SIN / SIN-PVG",
+              "CAN-HKT / HKT-CAN",
+              "PVG-HKT / HKT-PVG",
+              "PVG-BKK / BKK-PVG",
+              "KWE-BKK / BKK-KWE",
+              "KWE-BKK / BKK-KWE",
+              "PVG-BKK / BKK-PVG",
+              "FUK-CTS / CTS-FUK",
+              "OKA-KIX / KIX-OKA"
+            ],
+            "by_airline": {
+              "9C": 8,
+              "AQ": 2,
+              "MM": 2
+            }
+          },
+          "transfer": {
+            "count": 1,
+            "ratio": 0.06,
+            "samples": [
+              "PKX-JJN / JJN-KUL"
+            ],
+            "by_airline": {
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 389,
+            "ratio": 21.79,
+            "by_pax_count": {
+              "2": 316,
+              "3": 68,
+              "4": 5
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-14",
           "data": [
@@ -69514,6 +71200,92 @@
         "avg_profit": -7.59,
         "profit_pos": 917,
         "profit_pos_rate": 32.28,
+        "order_analysis": {
+          "total": 2949,
+          "split": {
+            "count": 8,
+            "ratio": 0.27,
+            "by_platform": {
+              "向上比客国际": 4,
+              "淘宝国际": 2,
+              "同程国际": 2
+            },
+            "by_airline": {
+              "VJ": 5,
+              "9C": 2,
+              "MM": 1
+            }
+          },
+          "repeat": {
+            "count": 122,
+            "ratio": 4.14,
+            "by_category": {
+              "重复反采出去人工单": 48,
+              "重复反采回来人工单": 46,
+              "重复反采回来自动单": 9,
+              "重复反采出去自动单": 9,
+              "重复无效单": 5,
+              "重复利润核实单": 4,
+              "重复单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 71,
+              "同程国际": 36,
+              "向上比客国际": 9,
+              "携程国际": 6
+            }
+          },
+          "round_trip": {
+            "count": 24,
+            "ratio": 0.81,
+            "samples": [
+              "CAN-HAN / HAN-CAN",
+              "CAN-KUL / KUL-CAN",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "XIY-BKK / BKK-XIY",
+              "CAN-SGN / SGN-CAN",
+              "SHE-CJU / CJU-SHE",
+              "PVG-BKK / BKK-PVG",
+              "CAN-SGN / SGN-CAN",
+              "PVG-BKK / BKK-PVG",
+              "BKK-PVG / PVG-BKK",
+              "TFU-KTI / KTI-TFU",
+              "TFU-KTI / KTI-TFU",
+              "TFU-KTI / KTI-TFU",
+              "PVG-BKK / BKK-PVG",
+              "CAN-BKK / BKK-CAN",
+              "TFU-KTI / KTI-TFU",
+              "PVG-KIX / KIX-PVG",
+              "PVG-CJJ / CJJ-PVG",
+              "PVG-KIX / KIX-PVG",
+              "KTI-XIY / XIY-KTI",
+              "KTI-PVG / PVG-KTI",
+              "PVG-BKK / BKK-PVG",
+              "CAN-BKK / BKK-CAN"
+            ],
+            "by_airline": {
+              "9C": 23,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 0,
+            "ratio": 0.0,
+            "samples": [],
+            "by_airline": {}
+          },
+          "multi_pax": {
+            "count": 648,
+            "ratio": 21.97,
+            "by_pax_count": {
+              "2": 547,
+              "3": 89,
+              "4": 8,
+              "5": 4
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-15",
           "data": [
@@ -73710,6 +75482,84 @@
         "avg_profit": -7.68,
         "profit_pos": 772,
         "profit_pos_rate": 30.0,
+        "order_analysis": {
+          "total": 2749,
+          "split": {
+            "count": 2,
+            "ratio": 0.07,
+            "by_platform": {
+              "向上比客国际": 2
+            },
+            "by_airline": {
+              "VJ": 1,
+              "F3": 1
+            }
+          },
+          "repeat": {
+            "count": 148,
+            "ratio": 5.38,
+            "by_category": {
+              "重复反采回来人工单": 55,
+              "重复反采出去人工单": 53,
+              "重复反采回来自动单": 17,
+              "重复反采出去自动单": 17,
+              "重复单": 4,
+              "重复无效单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 91,
+              "同程国际": 47,
+              "智行国际": 6,
+              "向上比客国际": 2,
+              "淘宝国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 16,
+            "ratio": 0.58,
+            "samples": [
+              "CAN-KTI / KTI-CAN",
+              "CAN-KTI / KTI-CAN",
+              "FUK-PVG / PVG-FUK",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CAN-CNX / CNX-CAN",
+              "CAN-KUL / KUL-CAN",
+              "PVG-OKA / OKA-PVG",
+              "CAN-KTI / KTI-CAN",
+              "PVG-FUK / FUK-PVG",
+              "PVG-FUK / FUK-PVG",
+              "PVG-FUK / FUK-PVG",
+              "PVG-BKK / BKK-PVG"
+            ],
+            "by_airline": {
+              "9C": 16
+            }
+          },
+          "transfer": {
+            "count": 2,
+            "ratio": 0.07,
+            "samples": [
+              "PKX-PVG / PVG-DPS",
+              "CJU-PVG / PVG-TFU"
+            ],
+            "by_airline": {
+              "HO": 2
+            }
+          },
+          "multi_pax": {
+            "count": 605,
+            "ratio": 22.01,
+            "by_pax_count": {
+              "2": 494,
+              "3": 96,
+              "4": 15
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-16",
           "data": [
@@ -77674,6 +79524,105 @@
         "avg_profit": -7.99,
         "profit_pos": 896,
         "profit_pos_rate": 30.45,
+        "order_analysis": {
+          "total": 3023,
+          "split": {
+            "count": 6,
+            "ratio": 0.2,
+            "by_platform": {
+              "向上比客国际": 6
+            },
+            "by_airline": {
+              "VJ": 4,
+              "MM": 2
+            }
+          },
+          "repeat": {
+            "count": 142,
+            "ratio": 4.7,
+            "by_category": {
+              "重复反采出去人工单": 49,
+              "重复反采回来人工单": 47,
+              "重复单": 15,
+              "重复无效单": 13,
+              "重复反采回来自动单": 9,
+              "重复反采出去自动单": 7,
+              "重复利润核实单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 61,
+              "同程国际": 54,
+              "携程国际": 13,
+              "向上比客国际": 9,
+              "淘宝国际": 3,
+              "智行国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 32,
+            "ratio": 1.06,
+            "samples": [
+              "SIN-PQC / PQC-SIN",
+              "SHE-CJU / CJU-SHE",
+              "SIN-HAN / HAN-SIN",
+              "SIN-HAN / HAN-SIN",
+              "KTI-PVG / PVG-KTI",
+              "SJW-ICN / ICN-SJW",
+              "PVG-SIN / SIN-PVG",
+              "PVG-BKK / BKK-PVG",
+              "TFU-BKK / BKK-TFU",
+              "CAN-BKK / BKK-CAN",
+              "CAN-BKK / BKK-CAN",
+              "HGH-CJU / CJU-HGH",
+              "HAN-SAI / SAI-HAN",
+              "PVG-BKK / BKK-PVG",
+              "NGB-BKK / BKK-NGB",
+              "NGB-BKK / BKK-NGB",
+              "KHH-HAN / HAN-KHH",
+              "CAN-SGN / SGN-CAN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CNX / CNX-PVG",
+              "XIY-CNX / CNX-XIY",
+              "CAN-SGN / SGN-CAN",
+              "PVG-KTI / KTI-PVG",
+              "SIN-PVG / PVG-SIN",
+              "TFU-BKK / BKK-TFU",
+              "SHE-CJU / CJU-SHE",
+              "CAN-SIN / SIN-CAN",
+              "SHE-CJU / CJU-SHE",
+              "HGH-CJU / CJU-HGH",
+              "PVG-BKK / BKK-PVG",
+              "KIX-PVG / PVG-KIX",
+              "PVG-KIX / KIX-PVG"
+            ],
+            "by_airline": {
+              "9C": 26,
+              "VJ": 5,
+              "AQ": 1
+            }
+          },
+          "transfer": {
+            "count": 1,
+            "ratio": 0.03,
+            "samples": [
+              "CJU-PVG / PVG-TFU"
+            ],
+            "by_airline": {
+              "HO": 1
+            }
+          },
+          "multi_pax": {
+            "count": 723,
+            "ratio": 23.92,
+            "by_pax_count": {
+              "2": 566,
+              "3": 138,
+              "4": 17,
+              "5": 1,
+              "8": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-17",
           "data": [
@@ -81898,6 +83847,92 @@
         "avg_profit": -7.96,
         "profit_pos": 545,
         "profit_pos_rate": 21.12,
+        "order_analysis": {
+          "total": 2670,
+          "split": {
+            "count": 6,
+            "ratio": 0.22,
+            "by_platform": {
+              "向上比客国际": 4,
+              "同程国际": 2
+            },
+            "by_airline": {
+              "VJ": 4,
+              "9C": 2
+            }
+          },
+          "repeat": {
+            "count": 145,
+            "ratio": 5.43,
+            "by_category": {
+              "重复反采回来人工单": 54,
+              "重复反采出去人工单": 54,
+              "重复无效单": 15,
+              "重复反采回来自动单": 7,
+              "重复反采出去自动单": 7,
+              "重复利润核实单": 4,
+              "重复单": 4
+            },
+            "by_platform": {
+              "去哪儿国际": 71,
+              "同程国际": 51,
+              "携程国际": 14,
+              "向上比客国际": 7,
+              "智行国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 24,
+            "ratio": 0.9,
+            "samples": [
+              "CAN-BKK / BKK-CAN",
+              "TFU-BKK / BKK-TFU",
+              "PVG-BKK / BKK-PVG",
+              "FOC-BKK / BKK-FOC",
+              "XIY-BKK / BKK-XIY",
+              "XIY-BKK / BKK-XIY",
+              "CAN-KUL / KUL-CAN",
+              "NNG-BKK / BKK-NNG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-KTI / KTI-PVG",
+              "PVG-BKK / BKK-PVG",
+              "XIY-BKK / BKK-XIY",
+              "PVG-CNX / CNX-PVG",
+              "XIY-BKK / BKK-XIY",
+              "PVG-CJU / CJU-PVG",
+              "PVG-CJU / CJU-PVG",
+              "SHE-CJU / CJU-SHE",
+              "PVG-KIX / KIX-PVG",
+              "PVG-SIN / SIN-PVG",
+              "PVG-SIN / SIN-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-KHH / KHH-PVG",
+              "HAN-SIN / SIN-HAN",
+              "HAN-SIN / SIN-HAN"
+            ],
+            "by_airline": {
+              "9C": 22,
+              "VJ": 2
+            }
+          },
+          "transfer": {
+            "count": 0,
+            "ratio": 0.0,
+            "samples": [],
+            "by_airline": {}
+          },
+          "multi_pax": {
+            "count": 638,
+            "ratio": 23.9,
+            "by_pax_count": {
+              "2": 509,
+              "3": 120,
+              "4": 4,
+              "5": 3,
+              "6": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-18",
           "data": [
@@ -85800,6 +87835,79 @@
         "avg_profit": -9.86,
         "profit_pos": 444,
         "profit_pos_rate": 20.99,
+        "order_analysis": {
+          "total": 2160,
+          "split": {
+            "count": 1,
+            "ratio": 0.05,
+            "by_platform": {
+              "向上比客国际": 1
+            },
+            "by_airline": {
+              "VJ": 1
+            }
+          },
+          "repeat": {
+            "count": 96,
+            "ratio": 4.44,
+            "by_category": {
+              "重复反采回来人工单": 28,
+              "重复反采出去人工单": 28,
+              "重复单": 12,
+              "重复反采回来自动单": 10,
+              "重复反采出去自动单": 10,
+              "重复无效单": 8
+            },
+            "by_platform": {
+              "去哪儿国际": 51,
+              "同程国际": 24,
+              "携程国际": 13,
+              "向上比客国际": 7,
+              "智行国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 15,
+            "ratio": 0.69,
+            "samples": [
+              "TFU-BKK / BKK-TFU",
+              "CAN-BKK / BKK-CAN",
+              "KTI-XIY / XIY-KTI",
+              "NNG-BKK / BKK-NNG",
+              "XIY-CNX / CNX-XIY",
+              "CAN-SGN / SGN-CAN",
+              "HAN-CXR / CXR-HAN",
+              "PVG-SIN / SIN-PVG",
+              "PVG-BKK / BKK-PVG",
+              "TFU-KTI / KTI-TFU",
+              "PVG-ICN / ICN-PVG",
+              "SGN-CAN / CAN-SGN",
+              "PVG-BKK / BKK-PVG",
+              "FOC-BKK / BKK-FOC",
+              "CAN-SIN / SIN-CAN"
+            ],
+            "by_airline": {
+              "9C": 14,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 0,
+            "ratio": 0.0,
+            "samples": [],
+            "by_airline": {}
+          },
+          "multi_pax": {
+            "count": 525,
+            "ratio": 24.31,
+            "by_pax_count": {
+              "2": 410,
+              "3": 111,
+              "4": 3,
+              "5": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-19",
           "data": [
@@ -89479,6 +91587,86 @@
         "avg_profit": -12.15,
         "profit_pos": 373,
         "profit_pos_rate": 20.26,
+        "order_analysis": {
+          "total": 1890,
+          "split": {
+            "count": 4,
+            "ratio": 0.21,
+            "by_platform": {
+              "向上比客国际": 3,
+              "淘宝国际": 1
+            },
+            "by_airline": {
+              "LJ": 2,
+              "AQ": 1,
+              "VJ": 1
+            }
+          },
+          "repeat": {
+            "count": 94,
+            "ratio": 4.97,
+            "by_category": {
+              "重复反采回来人工单": 37,
+              "重复反采出去人工单": 37,
+              "重复反采回来自动单": 8,
+              "重复反采出去自动单": 8,
+              "重复无效单": 4
+            },
+            "by_platform": {
+              "去哪儿国际": 46,
+              "同程国际": 37,
+              "携程国际": 7,
+              "淘宝国际": 2,
+              "向上比客国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 16,
+            "ratio": 0.85,
+            "samples": [
+              "BKK-TFU / TFU-BKK",
+              "TFU-KTI / KTI-TFU",
+              "PVG-SIN / SIN-PVG",
+              "CXR-DAD / DAD-CXR",
+              "PVG-BKK / BKK-PVG",
+              "CAN-BKK / BKK-CAN",
+              "SGN-CAN / CAN-SGN",
+              "TFU-BKK / BKK-TFU",
+              "TFU-BKK / BKK-TFU",
+              "YTY-BKK / BKK-YTY",
+              "CAN-KTI / KTI-CAN",
+              "PVG-BKK / BKK-PVG",
+              "KTI-CAN / CAN-KTI",
+              "PVG-HKT / HKT-PVG",
+              "PVG-BKK / BKK-PVG",
+              "HAN-SGN / SGN-HAN"
+            ],
+            "by_airline": {
+              "9C": 14,
+              "VJ": 2
+            }
+          },
+          "transfer": {
+            "count": 2,
+            "ratio": 0.11,
+            "samples": [
+              "TPE-PVG / PVG-SHE",
+              "CJU-WUX / WUX-TFU"
+            ],
+            "by_airline": {
+              "HO": 2
+            }
+          },
+          "multi_pax": {
+            "count": 447,
+            "ratio": 23.65,
+            "by_pax_count": {
+              "2": 355,
+              "3": 88,
+              "4": 4
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-20",
           "data": [
@@ -92899,6 +95087,91 @@
         "avg_profit": -8.1,
         "profit_pos": 520,
         "profit_pos_rate": 26.67,
+        "order_analysis": {
+          "total": 2036,
+          "split": {
+            "count": 3,
+            "ratio": 0.15,
+            "by_platform": {
+              "同程国际": 1,
+              "去哪儿国际": 1,
+              "向上比客国际": 1
+            },
+            "by_airline": {
+              "VJ": 2,
+              "MF": 1
+            }
+          },
+          "repeat": {
+            "count": 44,
+            "ratio": 2.16,
+            "by_category": {
+              "重复反采回来人工单": 11,
+              "重复反采出去人工单": 11,
+              "重复单": 8,
+              "重复无效单": 6,
+              "重复反采回来自动单": 4,
+              "重复反采出去自动单": 4
+            },
+            "by_platform": {
+              "去哪儿国际": 20,
+              "同程国际": 10,
+              "携程国际": 8,
+              "向上比客国际": 4,
+              "淘宝国际": 1,
+              "智行国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 17,
+            "ratio": 0.83,
+            "samples": [
+              "SZX-HKT / HKT-SZX",
+              "CAN-KUL / KUL-CAN",
+              "PVG-HKT / HKT-PVG",
+              "PVG-HKT / HKT-PVG",
+              "KIX-DLC / DLC-KIX",
+              "CAN-SGN / SGN-CAN",
+              "PVG-KIX / KIX-PVG",
+              "FUK-PVG / PVG-FUK",
+              "PVG-KIX / KIX-PVG",
+              "PVG-KIX / KIX-PVG",
+              "FUK-PVG / PVG-FUK",
+              "NGB-BKK / BKK-NGB",
+              "PVG-KUL / KUL-PVG",
+              "CAN-SGN / SGN-CAN",
+              "HAN-SGN / SGN-HAN",
+              "HAN-DAD / DAD-HAN",
+              "HAN-DAD / DAD-HAN"
+            ],
+            "by_airline": {
+              "9C": 14,
+              "VJ": 3
+            }
+          },
+          "transfer": {
+            "count": 3,
+            "ratio": 0.15,
+            "samples": [
+              "KUL-PVG / PVG-PKX",
+              "PKX-PVG / PVG-KUL",
+              "SIN-XMN / XMN-XIY"
+            ],
+            "by_airline": {
+              "HO": 2,
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 483,
+            "ratio": 23.72,
+            "by_pax_count": {
+              "2": 388,
+              "3": 88,
+              "4": 7
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-21",
           "data": [
@@ -96373,6 +98646,108 @@
         "avg_profit": -5.55,
         "profit_pos": 901,
         "profit_pos_rate": 31.08,
+        "order_analysis": {
+          "total": 3151,
+          "split": {
+            "count": 6,
+            "ratio": 0.19,
+            "by_platform": {
+              "向上比客国际": 3,
+              "同程国际": 2,
+              "淘宝国际": 1
+            },
+            "by_airline": {
+              "VJ": 4,
+              "AQ": 1,
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 95,
+            "ratio": 3.01,
+            "by_category": {
+              "重复反采回来人工单": 30,
+              "重复反采出去人工单": 29,
+              "重复反采回来自动单": 11,
+              "重复反采出去自动单": 11,
+              "重复无效单": 7,
+              "重复单": 6,
+              "重复利润核实单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 49,
+              "同程国际": 29,
+              "向上比客国际": 8,
+              "携程国际": 8,
+              "智行国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 31,
+            "ratio": 0.98,
+            "samples": [
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "CXR-DAD / DAD-CXR",
+              "SHE-CJU / CJU-SHE",
+              "CAN-SGN / SGN-CAN",
+              "CXR-DAD / DAD-CXR",
+              "SHE-CJU / CJU-SHE",
+              "PVG-PUS / PUS-PVG",
+              "XIY-CNX / CNX-XIY",
+              "XIY-CNX / CNX-XIY",
+              "PVG-BKK / BKK-PVG",
+              "PVG-CNX / CNX-PVG",
+              "TFU-BKK / BKK-TFU",
+              "CAN-SIN / SIN-CAN",
+              "DMK-CXR / CXR-DMK",
+              "DMK-CNX / CNX-DMK",
+              "CNX-DMK / DMK-CNX",
+              "KTI-TFU / TFU-KTI",
+              "XIY-BKK / BKK-XIY",
+              "XIY-BKK / BKK-XIY",
+              "XIY-BKK / BKK-XIY",
+              "PVG-BKK / BKK-PVG",
+              "CAN-SGN / SGN-CAN",
+              "PVG-BKK / BKK-PVG",
+              "XIY-BKK / BKK-XIY",
+              "XIY-BKK / BKK-XIY",
+              "KTI-PVG / PVG-KTI",
+              "KTI-TFU / TFU-KTI",
+              "NGB-CJU / CJU-NGB",
+              "PVG-BKK / BKK-PVG"
+            ],
+            "by_airline": {
+              "9C": 26,
+              "VJ": 2,
+              "DD": 2,
+              "FD": 1
+            }
+          },
+          "transfer": {
+            "count": 3,
+            "ratio": 0.1,
+            "samples": [
+              "CGO-XMN / XMN-SIN",
+              "SHA-XMN / XMN-DPS",
+              "BKK-XMN / XMN-TSN"
+            ],
+            "by_airline": {
+              "MF": 3
+            }
+          },
+          "multi_pax": {
+            "count": 670,
+            "ratio": 21.26,
+            "by_pax_count": {
+              "2": 565,
+              "3": 91,
+              "4": 13,
+              "5": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-22",
           "data": [
@@ -100497,6 +102872,104 @@
         "avg_profit": -5.19,
         "profit_pos": 801,
         "profit_pos_rate": 27.24,
+        "order_analysis": {
+          "total": 3060,
+          "split": {
+            "count": 13,
+            "ratio": 0.42,
+            "by_platform": {
+              "向上比客国际": 11,
+              "淘宝国际": 1,
+              "去哪儿国际": 1
+            },
+            "by_airline": {
+              "VJ": 7,
+              "F3": 2,
+              "TO": 1,
+              "PC": 1,
+              "MM": 1,
+              "AQ": 1
+            }
+          },
+          "repeat": {
+            "count": 122,
+            "ratio": 3.99,
+            "by_category": {
+              "重复反采回来人工单": 39,
+              "重复反采出去人工单": 35,
+              "重复反采回来自动单": 20,
+              "重复反采出去自动单": 20,
+              "重复利润核实单": 3,
+              "重复无效单": 3,
+              "重复单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 68,
+              "同程国际": 30,
+              "向上比客国际": 13,
+              "淘宝国际": 6,
+              "智行国际": 3,
+              "携程国际": 2
+            }
+          },
+          "round_trip": {
+            "count": 19,
+            "ratio": 0.62,
+            "samples": [
+              "XIY-BKK / BKK-XIY",
+              "HAN-TBB / TBB-HAN",
+              "XIY-BKK / BKK-XIY",
+              "CAN-BKK / BKK-CAN",
+              "SIN-BKK / BKK-SIN",
+              "BKK-PVG / PVG-BKK",
+              "CAN-BKK / BKK-CAN",
+              "CAN-BKK / BKK-CAN",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-SIN / SIN-PVG",
+              "PVG-KTI / KTI-PVG",
+              "BKK-SIN / SIN-BKK",
+              "KTI-PVG / PVG-KTI",
+              "PVG-CJJ / CJJ-PVG",
+              "PVG-BKK / BKK-PVG"
+            ],
+            "by_airline": {
+              "9C": 14,
+              "AQ": 2,
+              "TR": 2,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 7,
+            "ratio": 0.23,
+            "samples": [
+              "KUL-FOC / FOC-PKX",
+              "SHA-XMN / XMN-DPS",
+              "WUH-XMN / XMN-DPS",
+              "BKK-XMN / XMN-TNA",
+              "BKK-XMN / XMN-CKG",
+              "BKK-XMN / XMN-TNA",
+              "HGH-XMN / XMN-BKK"
+            ],
+            "by_airline": {
+              "MF": 7
+            }
+          },
+          "multi_pax": {
+            "count": 695,
+            "ratio": 22.71,
+            "by_pax_count": {
+              "2": 565,
+              "3": 113,
+              "4": 16,
+              "5": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-23",
           "data": [
@@ -104483,6 +106956,109 @@
         "avg_profit": -6.88,
         "profit_pos": 788,
         "profit_pos_rate": 24.55,
+        "order_analysis": {
+          "total": 3312,
+          "split": {
+            "count": 14,
+            "ratio": 0.42,
+            "by_platform": {
+              "向上比客国际": 10,
+              "淘宝国际": 2,
+              "携程国际": 1,
+              "同程国际": 1
+            },
+            "by_airline": {
+              "VJ": 4,
+              "VF": 3,
+              "TO": 3,
+              "MM": 2,
+              "PC": 1,
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 189,
+            "ratio": 5.71,
+            "by_category": {
+              "重复反采回来人工单": 59,
+              "重复反采出去人工单": 56,
+              "重复反采出去自动单": 31,
+              "重复反采回来自动单": 30,
+              "重复单": 8,
+              "重复无效单": 3,
+              "重复利润核实单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 96,
+              "同程国际": 64,
+              "向上比客国际": 21,
+              "携程国际": 7,
+              "智行国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 28,
+            "ratio": 0.85,
+            "samples": [
+              "PVG-CJU / CJU-PVG",
+              "PVG-KTI / KTI-PVG",
+              "PVG-FUK / FUK-PVG",
+              "HGH-CJU / CJU-HGH",
+              "SIN-BKK / BKK-SIN",
+              "HGH-CJU / CJU-HGH",
+              "PVG-CJU / CJU-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "FOC-BKK / BKK-FOC",
+              "HAN-SGN / SGN-HAN",
+              "PVG-BKK / BKK-PVG",
+              "KIX-DLC / DLC-KIX",
+              "PVG-BKK / BKK-PVG",
+              "PVG-BKK / BKK-PVG",
+              "PUS-PVG / PVG-PUS",
+              "PVG-BKK / BKK-PVG",
+              "NGO-PVG / PVG-NGO",
+              "PVG-KUL / KUL-PVG",
+              "TFU-BKK / BKK-TFU",
+              "PVG-HKT / HKT-PVG",
+              "PVG-HKT / HKT-PVG",
+              "PVG-HKT / HKT-PVG",
+              "PVG-CNX / CNX-PVG",
+              "PVG-CNX / CNX-PVG",
+              "PVG-CNX / CNX-PVG"
+            ],
+            "by_airline": {
+              "9C": 26,
+              "TR": 1,
+              "VJ": 1
+            }
+          },
+          "transfer": {
+            "count": 4,
+            "ratio": 0.12,
+            "samples": [
+              "BKK-XMN / XMN-SHA",
+              "BKK-XMN / XMN-NKG",
+              "BKK-XMN / XMN-CGO",
+              "SIN-XMN / XMN-DLC"
+            ],
+            "by_airline": {
+              "MF": 4
+            }
+          },
+          "multi_pax": {
+            "count": 678,
+            "ratio": 20.47,
+            "by_pax_count": {
+              "2": 551,
+              "3": 118,
+              "4": 7,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-24",
           "data": [
@@ -108242,6 +110818,108 @@
         "avg_profit": -9.02,
         "profit_pos": 740,
         "profit_pos_rate": 25.0,
+        "order_analysis": {
+          "total": 3028,
+          "split": {
+            "count": 24,
+            "ratio": 0.79,
+            "by_platform": {
+              "向上比客国际": 16,
+              "携程国际": 5,
+              "淘宝国际": 2,
+              "去哪儿国际": 1
+            },
+            "by_airline": {
+              "PC": 10,
+              "TR": 5,
+              "VF": 2,
+              "DD": 2,
+              "VJ": 2,
+              "IJ": 1,
+              "TO": 1,
+              "MM": 1
+            }
+          },
+          "repeat": {
+            "count": 112,
+            "ratio": 3.7,
+            "by_category": {
+              "重复反采回来自动单": 31,
+              "重复反采出去自动单": 31,
+              "重复反采回来人工单": 17,
+              "重复反采出去人工单": 16,
+              "重复无效单": 13,
+              "重复单": 3,
+              "重复利润核实单": 1
+            },
+            "by_platform": {
+              "去哪儿国际": 60,
+              "同程国际": 31,
+              "携程国际": 8,
+              "向上比客国际": 7,
+              "淘宝国际": 6
+            }
+          },
+          "round_trip": {
+            "count": 22,
+            "ratio": 0.73,
+            "samples": [
+              "PVG-KIX / KIX-PVG",
+              "BKK-PVG / PVG-BKK",
+              "PVG-KIX / KIX-PVG",
+              "BKK-KWE / KWE-BKK",
+              "UIH-HAN / HAN-UIH",
+              "XIY-KTI / KTI-XIY",
+              "SHE-CJU / CJU-SHE",
+              "SHE-CJU / CJU-SHE",
+              "TFU-BKK / BKK-TFU",
+              "SZX-KTI / KTI-SZX",
+              "PVG-KIX / KIX-PVG",
+              "HAN-DAD / DAD-HAN",
+              "SIN-BKK / BKK-SIN",
+              "SIN-BKK / BKK-SIN",
+              "PVG-KIX / KIX-PVG",
+              "SIN-MNL / MNL-SIN",
+              "SIN-BKK / BKK-SIN",
+              "CAN-CNX / CNX-CAN",
+              "SIN-KBV / KBV-SIN",
+              "SIN-MNL / MNL-SIN",
+              "SIN-KCH / KCH-SIN",
+              "KIX-DLC / DLC-KIX"
+            ],
+            "by_airline": {
+              "9C": 12,
+              "TR": 7,
+              "VJ": 2,
+              "AQ": 1
+            }
+          },
+          "transfer": {
+            "count": 5,
+            "ratio": 0.17,
+            "samples": [
+              "TPE-PVG / PVG-SHE",
+              "CGO-XMN / XMN-SIN",
+              "BKK-XMN / XMN-CGO",
+              "BKK-XMN / XMN-PKX",
+              "PVG-CGO / CGO-MXP"
+            ],
+            "by_airline": {
+              "MF": 3,
+              "HO": 2
+            }
+          },
+          "multi_pax": {
+            "count": 727,
+            "ratio": 24.01,
+            "by_pax_count": {
+              "2": 592,
+              "3": 118,
+              "4": 15,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-25",
           "data": [
@@ -112151,6 +114829,78 @@
         "avg_profit": -11.91,
         "profit_pos": 442,
         "profit_pos_rate": 17.92,
+        "order_analysis": {
+          "total": 2508,
+          "split": {
+            "count": 19,
+            "ratio": 0.76,
+            "by_platform": {
+              "向上比客国际": 12,
+              "去哪儿国际": 3,
+              "携程国际": 2,
+              "淘宝国际": 2
+            },
+            "by_airline": {
+              "PC": 8,
+              "DD": 6,
+              "TO": 2,
+              "VF": 2,
+              "MM": 1
+            }
+          },
+          "repeat": {
+            "count": 34,
+            "ratio": 1.36,
+            "by_category": {
+              "重复反采出去自动单": 12,
+              "重复反采回来自动单": 10,
+              "重复单": 5,
+              "重复无效单": 5,
+              "重复利润核实单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 16,
+              "向上比客国际": 6,
+              "携程国际": 5,
+              "同程国际": 4,
+              "淘宝国际": 3
+            }
+          },
+          "round_trip": {
+            "count": 4,
+            "ratio": 0.16,
+            "samples": [
+              "PVG-FUK / FUK-PVG",
+              "PVG-CJJ / CJJ-PVG",
+              "NKG-CJU / CJU-NKG",
+              "XIY-CNX / CNX-XIY"
+            ],
+            "by_airline": {
+              "9C": 4
+            }
+          },
+          "transfer": {
+            "count": 2,
+            "ratio": 0.08,
+            "samples": [
+              "BKK-XMN / XMN-CSX",
+              "TPE-PVG / PVG-SHE"
+            ],
+            "by_airline": {
+              "MF": 1,
+              "HO": 1
+            }
+          },
+          "multi_pax": {
+            "count": 602,
+            "ratio": 24.0,
+            "by_pax_count": {
+              "2": 471,
+              "3": 121,
+              "4": 10
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-26",
           "data": [
@@ -115576,6 +118326,88 @@
         "avg_profit": -10.34,
         "profit_pos": 517,
         "profit_pos_rate": 23.34,
+        "order_analysis": {
+          "total": 2305,
+          "split": {
+            "count": 20,
+            "ratio": 0.87,
+            "by_platform": {
+              "向上比客国际": 15,
+              "携程国际": 3,
+              "去哪儿国际": 2
+            },
+            "by_airline": {
+              "PC": 8,
+              "VJ": 4,
+              "TR": 2,
+              "VF": 2,
+              "MM": 1,
+              "IJ": 1,
+              "TO": 1,
+              "9C": 1
+            }
+          },
+          "repeat": {
+            "count": 99,
+            "ratio": 4.3,
+            "by_category": {
+              "重复反采出去自动单": 24,
+              "重复反采回来自动单": 24,
+              "重复反采回来人工单": 20,
+              "重复反采出去人工单": 20,
+              "重复单": 7,
+              "重复无效单": 2,
+              "重复利润核实单": 2
+            },
+            "by_platform": {
+              "去哪儿国际": 82,
+              "向上比客国际": 8,
+              "携程国际": 8,
+              "淘宝国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 4,
+            "ratio": 0.17,
+            "samples": [
+              "SIN-HKT / HKT-SIN",
+              "DUS-SAW / SAW-DUS",
+              "DMK-HKT / HKT-DMK",
+              "SIN-BKK / BKK-SIN"
+            ],
+            "by_airline": {
+              "TR": 2,
+              "PC": 1,
+              "DD": 1
+            }
+          },
+          "transfer": {
+            "count": 5,
+            "ratio": 0.22,
+            "samples": [
+              "BKK-XMN / XMN-SHA",
+              "CGO-XMN / XMN-SIN",
+              "NRT-PVG / PVG-HND",
+              "TSN-XMN / XMN-BKK",
+              "SIN-XMN / XMN-CGO"
+            ],
+            "by_airline": {
+              "MF": 4,
+              "9C": 1
+            }
+          },
+          "multi_pax": {
+            "count": 596,
+            "ratio": 25.86,
+            "by_pax_count": {
+              "2": 477,
+              "3": 105,
+              "4": 10,
+              "5": 3,
+              "8": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-27",
           "data": [
@@ -119089,6 +121921,85 @@
         "avg_profit": -6.84,
         "profit_pos": 690,
         "profit_pos_rate": 27.89,
+        "order_analysis": {
+          "total": 2560,
+          "split": {
+            "count": 12,
+            "ratio": 0.47,
+            "by_platform": {
+              "向上比客国际": 7,
+              "淘宝国际": 3,
+              "携程国际": 2
+            },
+            "by_airline": {
+              "PC": 4,
+              "DD": 2,
+              "MM": 2,
+              "TR": 2,
+              "VF": 2
+            }
+          },
+          "repeat": {
+            "count": 130,
+            "ratio": 5.08,
+            "by_category": {
+              "重复反采回来自动单": 38,
+              "重复反采出去自动单": 35,
+              "重复反采回来人工单": 17,
+              "重复反采出去人工单": 17,
+              "重复单": 9,
+              "重复无效单": 9,
+              "重复利润核实单": 5
+            },
+            "by_platform": {
+              "去哪儿国际": 109,
+              "同程国际": 10,
+              "携程国际": 6,
+              "向上比客国际": 4,
+              "淘宝国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 8,
+            "ratio": 0.31,
+            "samples": [
+              "TBS-SAW / SAW-TBS",
+              "TBS-SAW / SAW-TBS",
+              "TBS-SAW / SAW-TBS",
+              "NGB-BKK / BKK-NGB",
+              "SIN-CGK / CGK-SIN",
+              "CAN-HKT / HKT-CAN",
+              "PVG-BKK / BKK-PVG",
+              "SIN-BKK / BKK-SIN"
+            ],
+            "by_airline": {
+              "PC": 3,
+              "9C": 3,
+              "TR": 2
+            }
+          },
+          "transfer": {
+            "count": 2,
+            "ratio": 0.08,
+            "samples": [
+              "CJU-WUX / WUX-CSX",
+              "SHA-XMN / XMN-SGN"
+            ],
+            "by_airline": {
+              "HO": 1,
+              "MF": 1
+            }
+          },
+          "multi_pax": {
+            "count": 582,
+            "ratio": 22.73,
+            "by_pax_count": {
+              "2": 477,
+              "3": 92,
+              "4": 13
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-28",
           "data": [
@@ -122676,6 +125587,83 @@
         "avg_profit": -5.9,
         "profit_pos": 633,
         "profit_pos_rate": 25.83,
+        "order_analysis": {
+          "total": 2564,
+          "split": {
+            "count": 18,
+            "ratio": 0.7,
+            "by_platform": {
+              "淘宝国际": 10,
+              "向上比客国际": 5,
+              "去哪儿国际": 2,
+              "携程国际": 1
+            },
+            "by_airline": {
+              "DD": 15,
+              "MM": 2,
+              "VJ": 1
+            }
+          },
+          "repeat": {
+            "count": 61,
+            "ratio": 2.38,
+            "by_category": {
+              "重复反采回来自动单": 11,
+              "重复反采出去自动单": 11,
+              "重复反采回来人工单": 10,
+              "重复反采出去人工单": 9,
+              "重复无效单": 8,
+              "重复单": 8,
+              "重复利润核实单": 4
+            },
+            "by_platform": {
+              "去哪儿国际": 39,
+              "携程国际": 14,
+              "向上比客国际": 7,
+              "淘宝国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 5,
+            "ratio": 0.2,
+            "samples": [
+              "CAN-SIN / SIN-CAN",
+              "KWE-BKK / BKK-KWE",
+              "PVG-PUS / PUS-PVG",
+              "HAN-UIH / UIH-HAN",
+              "CXR-HPH / HPH-CXR"
+            ],
+            "by_airline": {
+              "AQ": 2,
+              "VJ": 2,
+              "9C": 1
+            }
+          },
+          "transfer": {
+            "count": 4,
+            "ratio": 0.16,
+            "samples": [
+              "KUL-FOC / FOC-PKX",
+              "HKG-PVG / PVG-MAN",
+              "HKG-PVG / PVG-MAN",
+              "KUL-JJN / JJN-HGH"
+            ],
+            "by_airline": {
+              "MF": 2,
+              "HO": 2
+            }
+          },
+          "multi_pax": {
+            "count": 595,
+            "ratio": 23.21,
+            "by_pax_count": {
+              "2": 463,
+              "3": 119,
+              "4": 12,
+              "5": 1
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-29",
           "data": [
@@ -126439,6 +129427,82 @@
         "avg_profit": -7.63,
         "profit_pos": 747,
         "profit_pos_rate": 25.19,
+        "order_analysis": {
+          "total": 3048,
+          "split": {
+            "count": 21,
+            "ratio": 0.69,
+            "by_platform": {
+              "去哪儿国际": 10,
+              "向上比客国际": 6,
+              "淘宝国际": 5
+            },
+            "by_airline": {
+              "DD": 14,
+              "PC": 3,
+              "9C": 2,
+              "MM": 1,
+              "VJ": 1
+            }
+          },
+          "repeat": {
+            "count": 157,
+            "ratio": 5.15,
+            "by_category": {
+              "重复反采回来自动单": 38,
+              "重复反采出去自动单": 38,
+              "重复反采回来人工单": 24,
+              "重复反采出去人工单": 24,
+              "重复利润核实单": 12,
+              "重复无效单": 11,
+              "重复单": 10
+            },
+            "by_platform": {
+              "去哪儿国际": 131,
+              "向上比客国际": 9,
+              "携程国际": 8,
+              "淘宝国际": 6,
+              "同程国际": 2,
+              "智行国际": 1
+            }
+          },
+          "round_trip": {
+            "count": 3,
+            "ratio": 0.1,
+            "samples": [
+              "CAN-BKK / BKK-CAN",
+              "NNG-BKK / BKK-NNG",
+              "FOC-BKK / BKK-FOC"
+            ],
+            "by_airline": {
+              "9C": 2,
+              "AQ": 1
+            }
+          },
+          "transfer": {
+            "count": 4,
+            "ratio": 0.13,
+            "samples": [
+              "CGO-XMN / XMN-KUL",
+              "KUL-XMN / XMN-CGO",
+              "SHA-XMN / XMN-MEL",
+              "NKG-XMN / XMN-BKK"
+            ],
+            "by_airline": {
+              "MF": 4
+            }
+          },
+          "multi_pax": {
+            "count": 724,
+            "ratio": 23.75,
+            "by_pax_count": {
+              "2": 570,
+              "3": 136,
+              "4": 16,
+              "5": 2
+            }
+          }
+        },
         "hourly_today": {
           "date": "2026-06-30",
           "data": [
