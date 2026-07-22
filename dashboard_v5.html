@@ -3385,49 +3385,6 @@ function renderOrderAnalysis() {
       ],
     };
     createChart("chart-heatmap-split", splitHeatOpt);
-
-    // 航司行汇总小条
-    const splitRowTbody = splitCross.airlines.map((a, i) => {
-      const total = splitRowSum[i];
-      const top1PlatIdx = splitCross.matrix[i].indexOf(Math.max(...splitCross.matrix[i]));
-      const top1Plat = splitCross.platforms[top1PlatIdx];
-      const top1Val = splitCross.matrix[i][top1PlatIdx];
-      return `<tr>
-        <td><b>${escapeHtml(a)}</b></td>
-        <td style="text-align:right">${fmt.num(total)}</td>
-        <td>${escapeHtml(top1Plat)} · ${fmt.num(top1Val)}</td>
-      </tr>`;
-    }).join("");
-    const splitColTbody = splitCross.platforms.map((p, j) => {
-      const total = splitColSum[j];
-      const top1AirIdx = splitCross.matrix.map(r => r[j]).indexOf(Math.max(...splitCross.matrix.map(r => r[j])));
-      const top1Air = splitCross.airlines[top1AirIdx];
-      const top1Val = splitCross.matrix[top1AirIdx][j];
-      return `<tr>
-        <td>${escapeHtml(p)}</td>
-        <td style="text-align:right">${fmt.num(total)}</td>
-        <td>${escapeHtml(top1Air)} · ${fmt.num(top1Val)}</td>
-      </tr>`;
-    }).join("");
-    const splitSummary = `
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-        <div>
-          <div class="chart-title" style="font-size:12px">📊 航司拆分 Top 平台（行汇总）</div>
-          <table class="data-table compact">
-            <thead><tr><th>航司</th><th style="text-align:right">拆分</th><th>主拆平台</th></tr></thead>
-            <tbody>${splitRowTbody}</tbody>
-          </table>
-        </div>
-        <div>
-          <div class="chart-title" style="font-size:12px">📊 平台拆分 Top 航司（列汇总）</div>
-          <table class="data-table compact">
-            <thead><tr><th>平台</th><th style="text-align:right">拆分</th><th>主拆航司</th></tr></thead>
-            <tbody>${splitColTbody}</tbody>
-          </table>
-        </div>
-      </div>`;
-    const splitBox = document.querySelector("#chart-heatmap-split").parentElement;
-    if (splitBox) splitBox.insertAdjacentHTML("beforeend", splitSummary);
   }
 
   // ========== ② 重复明细 重复分类 × 平台 热力图 ==========
@@ -3521,48 +3478,6 @@ function renderOrderAnalysis() {
       ],
     };
     createChart("chart-heatmap-repeat", repeatHeatOpt);
-
-    // 行/列汇总小表
-    const repeatRowTbody = repeatCross.categories.map((c, i) => {
-      const total = repeatRowSum[i];
-      const top1 = Math.max(...repeatCross.matrix[i]);
-      const top1Plat = repeatCross.platforms[repeatCross.matrix[i].indexOf(top1)];
-      return `<tr>
-        <td>${escapeHtml(c)}</td>
-        <td style="text-align:right">${fmt.num(total)}</td>
-        <td>${escapeHtml(top1Plat)} · ${fmt.num(top1)}</td>
-      </tr>`;
-    }).join("");
-    const repeatColTbody = repeatCross.platforms.map((p, j) => {
-      const total = repeatColSum[j];
-      const colVals = repeatCross.matrix.map(r => r[j]);
-      const top1 = Math.max(...colVals);
-      const top1Cat = repeatCross.categories[colVals.indexOf(top1)];
-      return `<tr>
-        <td>${escapeHtml(p)}</td>
-        <td style="text-align:right">${fmt.num(total)}</td>
-        <td>${escapeHtml(top1Cat)} · ${fmt.num(top1)}</td>
-      </tr>`;
-    }).join("");
-    const repeatSummary = `
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-        <div>
-          <div class="chart-title" style="font-size:12px">📊 重复类型 Top 平台（行汇总）</div>
-          <table class="data-table compact">
-            <thead><tr><th>重复类型</th><th style="text-align:right">重复</th><th>主复平台</th></tr></thead>
-            <tbody>${repeatRowTbody}</tbody>
-          </table>
-        </div>
-        <div>
-          <div class="chart-title" style="font-size:12px">📊 平台重复 Top 类型（列汇总）</div>
-          <table class="data-table compact">
-            <thead><tr><th>平台</th><th style="text-align:right">重复</th><th>主复类型</th></tr></thead>
-            <tbody>${repeatColTbody}</tbody>
-          </table>
-        </div>
-      </div>`;
-    const repeatBox = document.querySelector("#chart-heatmap-repeat").parentElement;
-    if (repeatBox) repeatBox.insertAdjacentHTML("beforeend", repeatSummary);
   }
 }
 
