@@ -535,7 +535,7 @@ async function loadData() {
       //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
       //   浏览器缓存: 同一 URL 二次访问秒开
       //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-      const COMMIT = "f6f58b1";
+      const COMMIT = "98dce69";
       const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       let dataLoaded = false;
       // 路径 1: 相对路径
@@ -3186,73 +3186,25 @@ function renderOrderAnalysis() {
       </div>
     </div>
 
-    <!-- ① 拆分订单分析 -->
+    <!-- ① 拆分订单分析：航司 × 平台 热力图 -->
     <div class="section">
-      <div class="section-title">🪓 拆分订单明细
+      <div class="section-title">🪓 拆分订单明细（航司 × 平台 热力图）
         <span class="badge badge-info">${fmt.num(split.count || 0)} 单 / 占比 ${split.ratio || 0}%</span>
       </div>
-      <div class="grid-1x2">
-        <div class="chart-box">
-          <div class="chart-title">平台分布</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead><tr><th>平台</th><th style="text-align:right">单数</th></tr></thead>
-              <tbody>
-                ${Object.entries(split.by_platform || {}).map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("")}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">航司分布</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead><tr><th>航司</th><th style="text-align:right">单数</th></tr></thead>
-              <tbody>
-                ${Object.entries(split.by_airline || {}).map(([k, v]) => `<tr><td><b>${escapeHtml(k)}</b></td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("")}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="chart-box">
+        <div class="chart-hint">行=航司 / 列=平台 / 颜色=拆分单数（深→浅：少→多，深青色系贴合页面 UI）</div>
+        <div id="chart-heatmap-split" style="height: 520px;"></div>
       </div>
     </div>
 
-    <!-- ② 重复订单分析（7 种子类全展示）-->
+    <!-- ② 重复订单分析：重复分类 × 平台 热力图 -->
     <div class="section">
-      <div class="section-title">🔁 重复订单明细（7 种子类全展示）
-        <span class="badge badge-info">${fmt.num(repeat.count || 0)} 单 / 占比 ${repeat.ratio || 0}%</span>
+      <div class="section-title">🔁 重复订单明细（重复分类 × 平台 热力图）
+        <span class="badge badge-info">${fmt.num(repeat.count || 0)} 单 / 占比 ${repeat.ratio || 0}% · 7 种子类</span>
       </div>
-      <div class="grid-1x2">
-        <div class="chart-box">
-          <div class="chart-title">📊 重复订单分类（7 种子类）</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead>
-                <tr><th>重复类型</th><th style="text-align:right">单数</th><th style="text-align:right">占重复%</th></tr>
-              </thead>
-              <tbody>
-                ${Object.entries(repeat.by_category || {}).map(([k, v]) => {
-                  const pct = repeat.count > 0 ? (v / repeat.count * 100).toFixed(1) : 0;
-                  return `<tr><td>${escapeHtml(k)}</td><td style="text-align:right">${fmt.num(v)}</td><td style="text-align:right">${pct}%</td></tr>`;
-                }).join("")}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">🌐 重复订单 平台分布</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead><tr><th>平台</th><th style="text-align:right">重复单数</th><th style="text-align:right">占重复%</th></tr></thead>
-              <tbody>
-                ${Object.entries(repeat.by_platform || {}).map(([k, v]) => {
-                  const pct = repeat.count > 0 ? (v / repeat.count * 100).toFixed(1) : 0;
-                  return `<tr><td>${escapeHtml(k)}</td><td style="text-align:right">${fmt.num(v)}</td><td style="text-align:right">${pct}%</td></tr>`;
-                }).join("")}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="chart-box">
+        <div class="chart-hint">行=重复类型（7 种子类全展示）/ 列=平台 / 颜色=重复单数（深→浅：少→多，深青色系）</div>
+        <div id="chart-heatmap-repeat" style="height: 460px;"></div>
       </div>
     </div>
 
@@ -3341,6 +3293,277 @@ function renderOrderAnalysis() {
     </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
+
+  // ========== ① 拆分明细 航司 × 平台 热力图 ==========
+  const splitCross = (split.cross_airline_platform) || { airlines: [], platforms: [], matrix: [] };
+  if (splitCross.matrix && splitCross.matrix.length > 0) {
+    const splitHeatData = [];
+    let splitMaxV = 0;
+    for (let i = 0; i < splitCross.airlines.length; i++) {
+      for (let j = 0; j < splitCross.platforms.length; j++) {
+        const v = splitCross.matrix[i][j] || 0;
+        if (v > splitMaxV) splitMaxV = v;
+        splitHeatData.push([j, i, v]);
+      }
+    }
+    const splitColSum = splitCross.platforms.map((_, j) =>
+      splitCross.matrix.reduce((s, row) => s + (row[j] || 0), 0)
+    );
+    const splitRowSum = splitCross.matrix.map((row) =>
+      row.reduce((s, v) => s + (v || 0), 0)
+    );
+    const splitGrandTotal = splitRowSum.reduce((a, b) => a + b, 0);
+
+    const splitHeatOpt = {
+      backgroundColor: "transparent",
+      textStyle: { color: "#b0c4de", fontFamily: 'PingFang SC, "Microsoft YaHei", sans-serif' },
+      tooltip: {
+        position: "top",
+        backgroundColor: "#0a0e1a",
+        borderColor: "#1e3a5f",
+        textStyle: { color: "#e0e6f0" },
+        formatter: (p) => {
+          const airline = splitCross.airlines[p.value[1]];
+          const plat = splitCross.platforms[p.value[0]];
+          const v = p.value[2];
+          const pctCol = splitColSum[p.value[0]] > 0 ? (v / splitColSum[p.value[0]] * 100).toFixed(1) : 0;
+          const pctRow = splitRowSum[p.value[1]] > 0 ? (v / splitRowSum[p.value[1]] * 100).toFixed(1) : 0;
+          const pctAll = splitGrandTotal > 0 ? (v / splitGrandTotal * 100).toFixed(2) : 0;
+          return `<b>${airline}</b> × <b>${plat}</b><br/>` +
+                 `拆分单数：<b style="color:#00ffff">${v}</b><br/>` +
+                 `占该平台：${pctCol}% · 占该航司：${pctRow}%<br/>` +
+                 `占拆分总量：${pctAll}%`;
+        },
+      },
+      grid: { left: 80, right: 120, top: 30, bottom: 90 },
+      xAxis: {
+        type: "category",
+        data: splitCross.platforms,
+        splitArea: { show: true },
+        axisLabel: { color: "#b0c4de", rotate: 30, fontSize: 12 },
+        axisLine: { lineStyle: { color: "#1e3a5f" } },
+        name: "平台",
+        nameLocation: "end",
+        nameTextStyle: { color: "#7a8ba0", padding: [10, 0, 0, 0] },
+      },
+      yAxis: {
+        type: "category",
+        data: splitCross.airlines,
+        splitArea: { show: true },
+        axisLabel: { color: "#b0c4de", fontSize: 12, fontWeight: "bold" },
+        axisLine: { lineStyle: { color: "#1e3a5f" } },
+        name: "航司",
+        nameLocation: "end",
+        nameTextStyle: { color: "#7a8ba0" },
+      },
+      visualMap: {
+        min: 0,
+        max: splitMaxV || 1,
+        calculable: true,
+        orient: "vertical",
+        right: 10,
+        top: "center",
+        textStyle: { color: "#b0c4de" },
+        inRange: { color: ["#0a1929", "#0e3a52", "#0a7d8c", "#00d4e6", "#00ffff"] },
+      },
+      series: [
+        {
+          name: "拆分单数",
+          type: "heatmap",
+          data: splitHeatData,
+          label: {
+            show: true,
+            color: "#fff",
+            fontSize: 11,
+            formatter: (p) => p.value[2] > 0 ? p.value[2] : "",
+          },
+          emphasis: {
+            itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,255,255,0.5)" },
+            label: { color: "#fff", fontSize: 13, fontWeight: "bold" },
+          },
+        },
+      ],
+    };
+    createChart("chart-heatmap-split", splitHeatOpt);
+
+    // 航司行汇总小条
+    const splitRowTbody = splitCross.airlines.map((a, i) => {
+      const total = splitRowSum[i];
+      const top1PlatIdx = splitCross.matrix[i].indexOf(Math.max(...splitCross.matrix[i]));
+      const top1Plat = splitCross.platforms[top1PlatIdx];
+      const top1Val = splitCross.matrix[i][top1PlatIdx];
+      return `<tr>
+        <td><b>${escapeHtml(a)}</b></td>
+        <td style="text-align:right">${fmt.num(total)}</td>
+        <td>${escapeHtml(top1Plat)} · ${fmt.num(top1Val)}</td>
+      </tr>`;
+    }).join("");
+    const splitColTbody = splitCross.platforms.map((p, j) => {
+      const total = splitColSum[j];
+      const top1AirIdx = splitCross.matrix.map(r => r[j]).indexOf(Math.max(...splitCross.matrix.map(r => r[j])));
+      const top1Air = splitCross.airlines[top1AirIdx];
+      const top1Val = splitCross.matrix[top1AirIdx][j];
+      return `<tr>
+        <td>${escapeHtml(p)}</td>
+        <td style="text-align:right">${fmt.num(total)}</td>
+        <td>${escapeHtml(top1Air)} · ${fmt.num(top1Val)}</td>
+      </tr>`;
+    }).join("");
+    const splitSummary = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+        <div>
+          <div class="chart-title" style="font-size:12px">📊 航司拆分 Top 平台（行汇总）</div>
+          <table class="data-table compact">
+            <thead><tr><th>航司</th><th style="text-align:right">拆分</th><th>主拆平台</th></tr></thead>
+            <tbody>${splitRowTbody}</tbody>
+          </table>
+        </div>
+        <div>
+          <div class="chart-title" style="font-size:12px">📊 平台拆分 Top 航司（列汇总）</div>
+          <table class="data-table compact">
+            <thead><tr><th>平台</th><th style="text-align:right">拆分</th><th>主拆航司</th></tr></thead>
+            <tbody>${splitColTbody}</tbody>
+          </table>
+        </div>
+      </div>`;
+    const splitBox = document.querySelector("#chart-heatmap-split").parentElement;
+    if (splitBox) splitBox.insertAdjacentHTML("beforeend", splitSummary);
+  }
+
+  // ========== ② 重复明细 重复分类 × 平台 热力图 ==========
+  const repeatCross = (repeat.cross_category_platform) || { categories: [], platforms: [], matrix: [] };
+  if (repeatCross.matrix && repeatCross.matrix.length > 0) {
+    const repeatHeatData = [];
+    let repeatMaxV = 0;
+    for (let i = 0; i < repeatCross.categories.length; i++) {
+      for (let j = 0; j < repeatCross.platforms.length; j++) {
+        const v = repeatCross.matrix[i][j] || 0;
+        if (v > repeatMaxV) repeatMaxV = v;
+        repeatHeatData.push([j, i, v]);
+      }
+    }
+    const repeatColSum = repeatCross.platforms.map((_, j) =>
+      repeatCross.matrix.reduce((s, row) => s + (row[j] || 0), 0)
+    );
+    const repeatRowSum = repeatCross.matrix.map((row) =>
+      row.reduce((s, v) => s + (v || 0), 0)
+    );
+    const repeatGrandTotal = repeatRowSum.reduce((a, b) => a + b, 0);
+
+    const repeatHeatOpt = {
+      backgroundColor: "transparent",
+      textStyle: { color: "#b0c4de", fontFamily: 'PingFang SC, "Microsoft YaHei", sans-serif' },
+      tooltip: {
+        position: "top",
+        backgroundColor: "#0a0e1a",
+        borderColor: "#1e3a5f",
+        textStyle: { color: "#e0e6f0" },
+        formatter: (p) => {
+          const cat = repeatCross.categories[p.value[1]];
+          const plat = repeatCross.platforms[p.value[0]];
+          const v = p.value[2];
+          const pctCol = repeatColSum[p.value[0]] > 0 ? (v / repeatColSum[p.value[0]] * 100).toFixed(1) : 0;
+          const pctRow = repeatRowSum[p.value[1]] > 0 ? (v / repeatRowSum[p.value[1]] * 100).toFixed(1) : 0;
+          const pctAll = repeatGrandTotal > 0 ? (v / repeatGrandTotal * 100).toFixed(2) : 0;
+          return `<b>${cat}</b> × <b>${plat}</b><br/>` +
+                 `重复单数：<b style="color:#00ffff">${v}</b><br/>` +
+                 `占该平台：${pctCol}% · 占该分类：${pctRow}%<br/>` +
+                 `占重复总量：${pctAll}%`;
+        },
+      },
+      grid: { left: 170, right: 120, top: 30, bottom: 90 },
+      xAxis: {
+        type: "category",
+        data: repeatCross.platforms,
+        splitArea: { show: true },
+        axisLabel: { color: "#b0c4de", rotate: 30, fontSize: 12 },
+        axisLine: { lineStyle: { color: "#1e3a5f" } },
+        name: "平台",
+        nameLocation: "end",
+        nameTextStyle: { color: "#7a8ba0", padding: [10, 0, 0, 0] },
+      },
+      yAxis: {
+        type: "category",
+        data: repeatCross.categories,
+        splitArea: { show: true },
+        axisLabel: { color: "#b0c4de", fontSize: 11 },
+        axisLine: { lineStyle: { color: "#1e3a5f" } },
+        name: "重复类型",
+        nameLocation: "end",
+        nameTextStyle: { color: "#7a8ba0" },
+      },
+      visualMap: {
+        min: 0,
+        max: repeatMaxV || 1,
+        calculable: true,
+        orient: "vertical",
+        right: 10,
+        top: "center",
+        textStyle: { color: "#b0c4de" },
+        inRange: { color: ["#0a1929", "#0e3a52", "#0a7d8c", "#00d4e6", "#00ffff"] },
+      },
+      series: [
+        {
+          name: "重复单数",
+          type: "heatmap",
+          data: repeatHeatData,
+          label: {
+            show: true,
+            color: "#fff",
+            fontSize: 11,
+            formatter: (p) => p.value[2] > 0 ? p.value[2] : "",
+          },
+          emphasis: {
+            itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,255,255,0.5)" },
+            label: { color: "#fff", fontSize: 13, fontWeight: "bold" },
+          },
+        },
+      ],
+    };
+    createChart("chart-heatmap-repeat", repeatHeatOpt);
+
+    // 行/列汇总小表
+    const repeatRowTbody = repeatCross.categories.map((c, i) => {
+      const total = repeatRowSum[i];
+      const top1 = Math.max(...repeatCross.matrix[i]);
+      const top1Plat = repeatCross.platforms[repeatCross.matrix[i].indexOf(top1)];
+      return `<tr>
+        <td>${escapeHtml(c)}</td>
+        <td style="text-align:right">${fmt.num(total)}</td>
+        <td>${escapeHtml(top1Plat)} · ${fmt.num(top1)}</td>
+      </tr>`;
+    }).join("");
+    const repeatColTbody = repeatCross.platforms.map((p, j) => {
+      const total = repeatColSum[j];
+      const colVals = repeatCross.matrix.map(r => r[j]);
+      const top1 = Math.max(...colVals);
+      const top1Cat = repeatCross.categories[colVals.indexOf(top1)];
+      return `<tr>
+        <td>${escapeHtml(p)}</td>
+        <td style="text-align:right">${fmt.num(total)}</td>
+        <td>${escapeHtml(top1Cat)} · ${fmt.num(top1)}</td>
+      </tr>`;
+    }).join("");
+    const repeatSummary = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+        <div>
+          <div class="chart-title" style="font-size:12px">📊 重复类型 Top 平台（行汇总）</div>
+          <table class="data-table compact">
+            <thead><tr><th>重复类型</th><th style="text-align:right">重复</th><th>主复平台</th></tr></thead>
+            <tbody>${repeatRowTbody}</tbody>
+          </table>
+        </div>
+        <div>
+          <div class="chart-title" style="font-size:12px">📊 平台重复 Top 类型（列汇总）</div>
+          <table class="data-table compact">
+            <thead><tr><th>平台</th><th style="text-align:right">重复</th><th>主复类型</th></tr></thead>
+            <tbody>${repeatColTbody}</tbody>
+          </table>
+        </div>
+      </div>`;
+    const repeatBox = document.querySelector("#chart-heatmap-repeat").parentElement;
+    if (repeatBox) repeatBox.insertAdjacentHTML("beforeend", repeatSummary);
+  }
 }
 
 /* ============== 路由 ============== */
