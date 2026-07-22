@@ -984,21 +984,51 @@ def compute_order_analysis(df):
     # 1. 拆分订单
     split = df[df["订单拆分"] == 1]
     split_airline = split["航空公司列表"].fillna("").astype(str).str.strip().replace("", "未知").value_counts()
+    # 航司 × 平台 交叉矩阵（用于热力图）
+    split_airline_clean = split["航空公司列表"].fillna("").astype(str).str.strip().replace("", "未知")
+    split_cross = (
+        split.assign(_airline=split_airline_clean)
+            .groupby(["_airline", "平台"])
+            .size()
+            .unstack(fill_value=0)
+    )
+    # 截断：航司 top 15 × 全量平台（按航司总数倒序）
+    top_split_airlines = split_airline.head(15).index.tolist()
+    split_cross_top = split_cross.loc[split_cross.index.isin(top_split_airlines)]
+    cross_ap = {
+        "airlines": [str(x) for x in split_cross_top.index.tolist()],
+        "platforms": [str(x) for x in split_cross_top.columns.tolist()],
+        "matrix": split_cross_top.values.astype(int).tolist(),
+    }
     out["split"] = {
         "count": int(len(split)),
         "ratio": round(len(split) / n * 100, 2),
         "by_platform": {str(k): int(v) for k, v in split["平台"].value_counts().items()},
         "by_airline": {str(k): int(v) for k, v in split_airline.head(15).items()},
+        "cross_airline_platform": cross_ap,
     }
 
     # 2. 重复订单（7 种子类全部展示）
     repeat = df[df["是否重复"] == "重复"]
     repeat_by_cat = repeat["重复订单分类"].fillna("未知").value_counts()
+    # 重复分类 × 平台 交叉矩阵（用于热力图）
+    repeat_cross = (
+        repeat.assign(_cat=repeat["重复订单分类"].fillna("未知"))
+            .groupby(["_cat", "平台"])
+            .size()
+            .unstack(fill_value=0)
+    )
+    cross_cp = {
+        "categories": [str(x) for x in repeat_cross.index.tolist()],
+        "platforms": [str(x) for x in repeat_cross.columns.tolist()],
+        "matrix": repeat_cross.values.astype(int).tolist(),
+    }
     out["repeat"] = {
         "count": int(len(repeat)),
         "ratio": round(len(repeat) / n * 100, 2),
         "by_category": {str(k): int(v) for k, v in repeat_by_cat.items()},  # 7 种子类全展示
         "by_platform": {str(k): int(v) for k, v in repeat["平台"].value_counts().items()},
+        "cross_category_platform": cross_cp,
     }
 
     # 3/4. 往返 + 中转（航段=2）
