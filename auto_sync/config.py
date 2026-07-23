@@ -13,7 +13,9 @@ class AutoSyncConfig:
     """
 
     # ===== 监控目录 =====
-    watch_dir: str = r"C:\Users\admin\Desktop\出票总订单数据"
+    # 2026-07-23 修正：项目从 C 盘迁到 E 盘后，桌面快捷方式已失效，
+    # 直接监控 E 盘真实数据目录（同时桌面仍保留一个快捷方式方便双击打开）。
+    watch_dir: str = r"E:\Work\Data\订单\出票总订单数据"
     """要监控的 xlsx 所在目录"""
 
     # ===== 文件过滤 =====
