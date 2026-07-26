@@ -420,6 +420,23 @@ REASON_FAMILY_RULES = [
     #   ⚠️ 必须在所有具体环节关键词之后 (预定失败/支付失败/取票失败 等), 否则会先吃掉
     #      "预定失败 原因:内部错误" 这种组合, 把本该归"预定环节"的 reason 错归到"系统环节-代码错误"
     (r"代码报错|代码错误|代码异常|内部错误|内部异常|程序异常|程序错误", "系统环节-代码错误"),
+    # v10.x (2026-07-26): 扩展代码错误族, 覆盖 Java 异常/Jackson/数字转换/Dubbo/网络异常
+    #   用户反馈: "其他环节中, 这些报错原因是代码的需要定义成系统环节"
+    #   覆盖 ~200+ 单系统性错误 (Cannot invoke / Number Array Object / For input string /
+    #   Failed to invoke the method / No provider available / Remote host terminated /
+    #   Connection refused / Read timed out / Unexpected end of file / apiqae.qunar.com 等)
+    #   ⚠️ 同样必须在所有具体族关键词之后, 防止"X 失败 原因:Cannot invoke"误归
+    (r"Cannot invoke", "系统环节-代码错误"),
+    (r"Number\s*Array\s*Object", "系统环节-代码错误"),
+    (r"For input string", "系统环节-代码错误"),
+    (r"Failed to invoke the method", "系统环节-代码错误"),
+    (r"No provider available from registry", "系统环节-代码错误"),
+    (r"argument\s*[\"'].+?[\"']\s*is", "系统环节-代码错误"),
+    (r"Remote host terminated", "系统环节-代码错误"),
+    (r"Connection\s*(refused|reset)", "系统环节-代码错误"),
+    (r"Unexpected end of (file|input|stream)", "系统环节-代码错误"),
+    (r"Read\s*timed\s*out", "系统环节-代码错误"),
+    (r"apiqae\.qunar\.com", "系统环节-代码错误"),
 ]
 
 

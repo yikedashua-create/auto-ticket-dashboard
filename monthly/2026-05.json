@@ -3014,7 +3014,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
       "count": 150,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -3542,7 +3542,7 @@
       "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
       "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
       "count": 32,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -3654,7 +3654,7 @@
       "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
       "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
       "count": 27,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4126,7 +4126,7 @@
       "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
       "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
       "count": 12,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4622,7 +4622,7 @@
       "reason": "No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] :...",
       "full": "No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] : 0[]) for service com.upward.interfaces.retry.service. on consumer use dubbo version 3.2.10 please check status of providers(disabled not registered or in blacklist)",
       "count": 6,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4670,7 +4670,7 @@
       "reason": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.s...",
       "full": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.service.. No provider available for the service com.upward.interfaces.policy.service. from registry (registry: )-Directory(invokers: 1[] : 0[] : 1[]) on the consumer using the dubbo version 3.2.10. Please check if the providers have been started and registered",
       "count": 5,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4814,7 +4814,7 @@
       "reason": "同步数据异常 No provider available from registry (registry: )-Directory(invokers: 0[] ...",
       "full": "同步数据异常 No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] : 0[]) for service com.upward.interfaces.policy.service. on consumer use dubbo version 3.2.10 please check status of providers(disabled not registered or in blacklist)",
       "count": 4,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4878,7 +4878,7 @@
       "reason": "apiqae.qunar.com",
       "full": "apiqae.qunar.com",
       "count": 4,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4958,7 +4958,7 @@
       "reason": "Cannot invoke \"com.upward.internation.ticket.entity..()\" because \"rules\" is",
       "full": "Cannot invoke \"com.upward.internation.ticket.entity..()\" because \"rules\" is",
       "count": 4,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4974,7 +4974,7 @@
       "reason": "Cannot invoke \"com.upward.internation.ticket.entity..getOtherInfo()\" because \"ac...",
       "full": "Cannot invoke \"com.upward.internation.ticket.entity..getOtherInfo()\" because \"account\" is",
       "count": 4,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -5062,7 +5062,7 @@
       "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error re...",
       "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error request response status: 500\" line: 1 column: 6]",
       "count": 3,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -5414,7 +5414,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .137 end time: .179 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 2,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -5686,7 +5686,7 @@
       "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a ...",
       "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a p\"[truncated 59 chars] line: 1 column: 2]",
       "count": 2,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -6894,7 +6894,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .400 end time: .448 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7142,7 +7142,7 @@
       "reason": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: No provider available from registry ...",
       "full": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] : 0[]) for service com.upward.interfaces.global.service. on consumer use dubbo version 3.2.10 please check status of providers(disabled not registered or in blacklist). at org.apache.dubbo.registry.integration..doList(.java:204) at org.apache.dubbo.rpc.cluster.directory..list(.java:227) at org.apache.dubbo.rpc.cluster.support..list(.java:452) at org.apache.dubbo.rpc.cluster.support..invoke(.java:355) at org.apache.dubbo.rpc.cluster.router..invoke(.java:46) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.monitor.support..invoke(.java:108) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:57) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter.invoke(FutureFilter.java:52) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:62) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.spring.security.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.metrics.filter..invoke(.java:86) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:38) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:123) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.cluster.support.wrapper.$.invoke(.java:101) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:171) at org.apache.dubbo.registry.client.migration..invoke(.java:294) at org.apache.dubbo.rpc.proxy..invoke(.java:64) at org.apache.dubbo.rpc.proxy..invoke(.java:81) at com.upward.interfaces.global.service..(.java) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at org.apache.dubbo.config.spring.util..invoke(.java:54) at com.upward.interfaces.global.service..(.java) at com.upward.internation.ticket.handle..reserve(.java:860) at com.upward.internation.ticket.handle..flowService(.java:324) at com.upward.internation.ticket.handle..lambda$consume$0(.java:184) at org..transaction.support..execute(.java:140) at com.upward.internation.ticket.handle..consume(.java:183) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at com.upward.rocketmq.starter..lambda$listening$0(.java:237) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:64) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:36) at org.apache.rocketmq.shaded.com.google.common.util.concurrent.$.(.java:131) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:74) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:82) at java.base/java.util.concurrent..runWorker(.java:1136) at java.base/java.util.concurrent.$Worker.run(.java:635) at java.base/java.lang.Thread.run(Thread.java:833) 订单号",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7150,7 +7150,7 @@
       "reason": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the s...",
       "full": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the service com.upward.interfaces.global.service.. Tried 3 times of the providers [ ] (2/2) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:126) at org.apache.dubbo.rpc.cluster.support..invoke(.java:366) at org.apache.dubbo.rpc.cluster.router..invoke(.java:46) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.monitor.support..invoke(.java:108) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:57) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter.invoke(FutureFilter.java:52) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:62) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.spring.security.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.metrics.filter..invoke(.java:86) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:38) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:123) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.cluster.support.wrapper.$.invoke(.java:101) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:171) at org.apache.dubbo.registry.client.migration..invoke(.java:294) at org.apache.dubbo.rpc.proxy..invoke(.java:64) at org.apache.dubbo.rpc.proxy..invoke(.java:81) at com.upward.interfaces.global.service..(.java) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at org.apache.dubbo.config.spring.util..invoke(.java:54) at com.upward.interfaces.global.service..(.java) at com.upward.internation.ticket.handle..reserve(.java:860) at com.upward.internation.ticket.handle..flowService(.java:324) at com.upward.internation.ticket.handle..lambda$consume$0(.java:184) at org..transaction.support..execute(.java:140) at com.upward.internation.ticket.handle..consume(.java:183) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at com.upward.rocketmq.starter..lambda$listening$0(.java:237) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:64) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:36) at org.apache.rocketmq.shaded.com.google.common.util.concurrent.$.(.java:131) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:74) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:82) at java.base/java.util.concurrent..runWorker(.java:1136) at java.base/java.util.concurrent.$Worker.run(.java:635) at java.base/java.lang.Thread.run(Thread.java:833) Caused by: java.util.concurrent.: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc..get(.java:222) at org.apache.dubbo.rpc.protocol..(.java:292) at org.apache.dubbo.rpc.protocol..invoke(.java:194) at org.apache.dubbo.rpc.listener..invoke(.java:71) at org.apache.dubbo.rpc.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at com.upward.web.starter.dubbo..invoke(.java:16) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.protocol..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support..(.java:412) at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:82) ... 48 more 订单号",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7190,7 +7190,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .499 end time: .543 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7342,7 +7342,7 @@
       "reason": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.s...",
       "full": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.service.. No provider available for the service com.upward.interfaces.policy.service. from registry (registry: subscribed key: )-Directory(invokers: 1[] : 0[] : 1[]) on the consumer using the dubbo version 3.2.10. Please check if the providers have been started and registered",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8254,7 +8254,7 @@
       "reason": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the s...",
       "full": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the service com.upward.interfaces.global.service.. Tried 3 times of the providers [ ] (2/2) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:126) at org.apache.dubbo.rpc.cluster.support..invoke(.java:366) at org.apache.dubbo.rpc.cluster.router..invoke(.java:46) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.monitor.support..invoke(.java:108) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:57) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter.invoke(FutureFilter.java:52) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:62) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.spring.security.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.metrics.filter..invoke(.java:86) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:38) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:123) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.cluster.support.wrapper.$.invoke(.java:101) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:171) at org.apache.dubbo.registry.client.migration..invoke(.java:294) at org.apache.dubbo.rpc.proxy..invoke(.java:64) at org.apache.dubbo.rpc.proxy..invoke(.java:81) at com.upward.interfaces.global.service..(.java) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at org.apache.dubbo.config.spring.util..invoke(.java:54) at com.upward.interfaces.global.service..(.java) at com.upward.internation.ticket.handle..reserve(.java:861) at com.upward.internation.ticket.handle..flowService(.java:324) at com.upward.internation.ticket.handle..lambda$consume$0(.java:184) at org..transaction.support..execute(.java:140) at com.upward.internation.ticket.handle..consume(.java:183) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at com.upward.rocketmq.starter..lambda$listening$0(.java:237) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:64) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:36) at org.apache.rocketmq.shaded.com.google.common.util.concurrent.$.(.java:131) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:74) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:82) at java.base/java.util.concurrent..runWorker(.java:1136) at java.base/java.util.concurrent.$Worker.run(.java:635) at java.base/java.lang.Thread.run(Thread.java:833) Caused by: java.util.concurrent.: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc..get(.java:222) at org.apache.dubbo.rpc.protocol..(.java:292) at org.apache.dubbo.rpc.protocol..invoke(.java:194) at org.apache.dubbo.rpc.listener..invoke(.java:71) at org.apache.dubbo.rpc.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at com.upward.web.starter.dubbo..invoke(.java:16) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.protocol..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support..(.java:412) at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:82) ... 48 more 订单号",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8710,7 +8710,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .258 end time: .289 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8718,7 +8718,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .834 end time: .859 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8726,7 +8726,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .832 end time: .956 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8734,7 +8734,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .243 end time: .293 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8758,7 +8758,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .389 end time: .660 client elapsed: 308 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8782,7 +8782,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .490 end time: .964 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -9014,7 +9014,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .366 end time: .395 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -9038,7 +9038,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .512 end time: .550 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -9110,7 +9110,7 @@
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .958 end time: .985 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "系统环节-代码错误",
       "prev_count": 0,
       "prev_month": null
     },
@@ -10547,16 +10547,16 @@
       "count": 789
     },
     {
-      "family": "其他环节",
-      "count": 695
+      "family": "系统环节",
+      "count": 638
     },
     {
       "family": "验真环节",
       "count": 575
     },
     {
-      "family": "系统环节",
-      "count": 368
+      "family": "其他环节",
+      "count": 425
     },
     {
       "family": "回填环节",
@@ -18567,7 +18567,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-01"
         },
@@ -18783,7 +18783,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-01"
         },
@@ -19007,7 +19007,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-01"
         },
@@ -19392,11 +19392,11 @@
           "count": 27
         },
         {
-          "family": "其他环节",
-          "count": 13
+          "family": "平台环节",
+          "count": 11
         },
         {
-          "family": "平台环节",
+          "family": "系统环节",
           "count": 11
         },
         {
@@ -19404,8 +19404,8 @@
           "count": 9
         },
         {
-          "family": "系统环节",
-          "count": 3
+          "family": "其他环节",
+          "count": 5
         },
         {
           "family": "回填环节",
@@ -23171,7 +23171,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 5,
           "prev_month": "2026-05-02"
         },
@@ -23365,7 +23365,7 @@
         },
         {
           "family": "系统环节",
-          "count": 13
+          "count": 14
         },
         {
           "family": "平台环节",
@@ -23377,7 +23377,7 @@
         },
         {
           "family": "其他环节",
-          "count": 5
+          "count": 4
         },
         {
           "family": "验真环节",
@@ -26805,7 +26805,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-03"
         },
@@ -27101,7 +27101,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-03"
         },
@@ -27214,16 +27214,16 @@
           "count": 18
         },
         {
-          "family": "其他环节",
-          "count": 15
-        },
-        {
           "family": "系统环节",
-          "count": 15
+          "count": 17
         },
         {
           "family": "平台环节",
           "count": 15
+        },
+        {
+          "family": "其他环节",
+          "count": 13
         },
         {
           "family": "验真环节",
@@ -30765,7 +30765,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-04"
         },
@@ -30965,7 +30965,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-04"
         },
@@ -31195,11 +31195,11 @@
         },
         {
           "family": "其他环节",
-          "count": 17
+          "count": 15
         },
         {
           "family": "系统环节",
-          "count": 5
+          "count": 7
         },
         {
           "family": "验真环节",
@@ -34582,7 +34582,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-05"
         },
@@ -34646,7 +34646,7 @@
           "reason": "同步数据异常 No provider available from registry (registry: )-Directory(invokers: 0[] ...",
           "full": "同步数据异常 No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] : 0[]) for service com.upward.interfaces.policy.service. on consumer use dubbo version 3.2.10 please check status of providers(disabled not registered or in blacklist)",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-05"
         },
@@ -34870,7 +34870,7 @@
           "reason": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.s...",
           "full": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.service.. No provider available for the service com.upward.interfaces.policy.service. from registry (registry: )-Directory(invokers: 1[] : 0[] : 1[]) on the consumer using the dubbo version 3.2.10. Please check if the providers have been started and registered",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-05"
         },
@@ -35270,7 +35270,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-05"
         },
@@ -35615,10 +35615,6 @@
           "count": 207
         },
         {
-          "family": "其他环节",
-          "count": 42
-        },
-        {
           "family": "支付环节",
           "count": 41
         },
@@ -35631,12 +35627,16 @@
           "count": 34
         },
         {
-          "family": "验真环节",
-          "count": 12
+          "family": "其他环节",
+          "count": 30
         },
         {
           "family": "系统环节",
-          "count": 11
+          "count": 23
+        },
+        {
+          "family": "验真环节",
+          "count": 12
         },
         {
           "family": "回填环节",
@@ -39021,7 +39021,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 8,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-06"
         },
@@ -39165,7 +39165,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-06"
         },
@@ -39261,7 +39261,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-06"
         },
@@ -39453,7 +39453,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 5,
           "prev_month": "2026-05-06"
         },
@@ -39837,7 +39837,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error re...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error request response status: 500\" line: 1 column: 6]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-06"
         },
@@ -40167,7 +40167,7 @@
         },
         {
           "family": "其他环节",
-          "count": 50
+          "count": 32
         },
         {
           "family": "平台环节",
@@ -40175,7 +40175,7 @@
         },
         {
           "family": "系统环节",
-          "count": 6
+          "count": 24
         },
         {
           "family": "回填环节",
@@ -43825,7 +43825,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 9,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 3,
           "prev_month": "2026-05-07"
         },
@@ -44113,7 +44113,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 8,
           "prev_month": "2026-05-07"
         },
@@ -44353,7 +44353,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .137 end time: .179 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 3,
           "prev_month": "2026-05-07"
         },
@@ -44873,7 +44873,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 2,
           "prev_month": "2026-05-07"
         },
@@ -44905,7 +44905,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 4,
           "prev_month": "2026-05-07"
         }
@@ -45174,16 +45174,20 @@
           "count": 98
         },
         {
-          "family": "其他环节",
-          "count": 62
-        },
-        {
           "family": "支付环节",
           "count": 57
         },
         {
+          "family": "其他环节",
+          "count": 47
+        },
+        {
           "family": "平台环节",
           "count": 35
+        },
+        {
+          "family": "系统环节",
+          "count": 22
         },
         {
           "family": "验真环节",
@@ -45191,10 +45195,6 @@
         },
         {
           "family": "回填环节",
-          "count": 7
-        },
-        {
-          "family": "系统环节",
           "count": 7
         }
       ],
@@ -48841,7 +48841,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-08"
         },
@@ -49121,7 +49121,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 3,
           "prev_month": "2026-05-08"
         },
@@ -49185,7 +49185,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .137 end time: .179 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-08"
         },
@@ -49698,8 +49698,12 @@
           "count": 28
         },
         {
+          "family": "系统环节",
+          "count": 16
+        },
+        {
           "family": "其他环节",
-          "count": 23
+          "count": 13
         },
         {
           "family": "验真环节",
@@ -49707,10 +49711,6 @@
         },
         {
           "family": "平台环节",
-          "count": 6
-        },
-        {
-          "family": "系统环节",
           "count": 6
         },
         {
@@ -52942,7 +52942,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 20,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-09"
         },
@@ -53206,7 +53206,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 2,
           "prev_month": "2026-05-09"
         },
@@ -53566,7 +53566,7 @@
           "reason": "apiqae.qunar.com",
           "full": "apiqae.qunar.com",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-09"
         },
@@ -53614,7 +53614,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .400 end time: .448 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-09"
         },
@@ -53726,7 +53726,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-09"
         },
@@ -53963,12 +53963,12 @@
           "count": 150
         },
         {
-          "family": "其他环节",
-          "count": 40
-        },
-        {
           "family": "支付环节",
           "count": 34
+        },
+        {
+          "family": "系统环节",
+          "count": 31
         },
         {
           "family": "验真环节",
@@ -53979,8 +53979,8 @@
           "count": 29
         },
         {
-          "family": "系统环节",
-          "count": 5
+          "family": "其他环节",
+          "count": 14
         },
         {
           "family": "回填环节",
@@ -61857,7 +61857,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-11"
         },
@@ -62351,14 +62351,14 @@
         },
         {
           "family": "其他环节",
-          "count": 16
-        },
-        {
-          "family": "平台环节",
-          "count": 11
+          "count": 15
         },
         {
           "family": "系统环节",
+          "count": 12
+        },
+        {
+          "family": "平台环节",
           "count": 11
         },
         {
@@ -65756,7 +65756,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 20,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -66276,7 +66276,7 @@
           "reason": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: No provider available from registry ...",
           "full": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] : 0[]) for service com.upward.interfaces.global.service. on consumer use dubbo version 3.2.10 please check status of providers(disabled not registered or in blacklist). at org.apache.dubbo.registry.integration..doList(.java:204) at org.apache.dubbo.rpc.cluster.directory..list(.java:227) at org.apache.dubbo.rpc.cluster.support..list(.java:452) at org.apache.dubbo.rpc.cluster.support..invoke(.java:355) at org.apache.dubbo.rpc.cluster.router..invoke(.java:46) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.monitor.support..invoke(.java:108) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:57) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter.invoke(FutureFilter.java:52) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:62) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.spring.security.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.metrics.filter..invoke(.java:86) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:38) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:123) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.cluster.support.wrapper.$.invoke(.java:101) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:171) at org.apache.dubbo.registry.client.migration..invoke(.java:294) at org.apache.dubbo.rpc.proxy..invoke(.java:64) at org.apache.dubbo.rpc.proxy..invoke(.java:81) at com.upward.interfaces.global.service..(.java) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at org.apache.dubbo.config.spring.util..invoke(.java:54) at com.upward.interfaces.global.service..(.java) at com.upward.internation.ticket.handle..reserve(.java:860) at com.upward.internation.ticket.handle..flowService(.java:324) at com.upward.internation.ticket.handle..lambda$consume$0(.java:184) at org..transaction.support..execute(.java:140) at com.upward.internation.ticket.handle..consume(.java:183) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at com.upward.rocketmq.starter..lambda$listening$0(.java:237) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:64) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:36) at org.apache.rocketmq.shaded.com.google.common.util.concurrent.$.(.java:131) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:74) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:82) at java.base/java.util.concurrent..runWorker(.java:1136) at java.base/java.util.concurrent.$Worker.run(.java:635) at java.base/java.lang.Thread.run(Thread.java:833) 订单号",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -66284,7 +66284,7 @@
           "reason": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the s...",
           "full": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the service com.upward.interfaces.global.service.. Tried 3 times of the providers [ ] (2/2) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:126) at org.apache.dubbo.rpc.cluster.support..invoke(.java:366) at org.apache.dubbo.rpc.cluster.router..invoke(.java:46) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.monitor.support..invoke(.java:108) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:57) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter.invoke(FutureFilter.java:52) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:62) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.spring.security.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.metrics.filter..invoke(.java:86) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:38) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:123) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.cluster.support.wrapper.$.invoke(.java:101) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:171) at org.apache.dubbo.registry.client.migration..invoke(.java:294) at org.apache.dubbo.rpc.proxy..invoke(.java:64) at org.apache.dubbo.rpc.proxy..invoke(.java:81) at com.upward.interfaces.global.service..(.java) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at org.apache.dubbo.config.spring.util..invoke(.java:54) at com.upward.interfaces.global.service..(.java) at com.upward.internation.ticket.handle..reserve(.java:860) at com.upward.internation.ticket.handle..flowService(.java:324) at com.upward.internation.ticket.handle..lambda$consume$0(.java:184) at org..transaction.support..execute(.java:140) at com.upward.internation.ticket.handle..consume(.java:183) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at com.upward.rocketmq.starter..lambda$listening$0(.java:237) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:64) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:36) at org.apache.rocketmq.shaded.com.google.common.util.concurrent.$.(.java:131) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:74) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:82) at java.base/java.util.concurrent..runWorker(.java:1136) at java.base/java.util.concurrent.$Worker.run(.java:635) at java.base/java.lang.Thread.run(Thread.java:833) Caused by: java.util.concurrent.: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc..get(.java:222) at org.apache.dubbo.rpc.protocol..(.java:292) at org.apache.dubbo.rpc.protocol..invoke(.java:194) at org.apache.dubbo.rpc.listener..invoke(.java:71) at org.apache.dubbo.rpc.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at com.upward.web.starter.dubbo..invoke(.java:16) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.protocol..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support..(.java:412) at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:82) ... 48 more 订单号",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -66412,7 +66412,7 @@
           "reason": "apiqae.qunar.com",
           "full": "apiqae.qunar.com",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -66420,7 +66420,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .499 end time: .543 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -66788,7 +66788,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-12"
         }
@@ -66965,16 +66965,16 @@
           "count": 57
         },
         {
-          "family": "其他环节",
-          "count": 37
+          "family": "系统环节",
+          "count": 53
         },
         {
           "family": "支付环节",
           "count": 37
         },
         {
-          "family": "系统环节",
-          "count": 28
+          "family": "其他环节",
+          "count": 12
         },
         {
           "family": "平台环节",
@@ -70690,7 +70690,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-13"
         },
@@ -70778,7 +70778,7 @@
           "reason": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.s...",
           "full": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.service.. No provider available for the service com.upward.interfaces.policy.service. from registry (registry: )-Directory(invokers: 1[] : 0[] : 1[]) on the consumer using the dubbo version 3.2.10. Please check if the providers have been started and registered",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-13"
         },
@@ -71042,7 +71042,7 @@
           "reason": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.s...",
           "full": "同步数据异常 Failed to invoke the method in the service com.upward.interfaces.policy.service.. No provider available for the service com.upward.interfaces.policy.service. from registry (registry: subscribed key: )-Directory(invokers: 1[] : 0[] : 1[]) on the consumer using the dubbo version 3.2.10. Please check if the providers have been started and registered",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-13"
         },
@@ -71436,11 +71436,11 @@
         },
         {
           "family": "系统环节",
-          "count": 18
+          "count": 26
         },
         {
           "family": "其他环节",
-          "count": 14
+          "count": 6
         },
         {
           "family": "平台环节",
@@ -75088,7 +75088,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 4,
           "prev_month": "2026-05-14"
         },
@@ -75400,7 +75400,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-14"
         },
@@ -75834,7 +75834,7 @@
         },
         {
           "family": "其他环节",
-          "count": 18
+          "count": 14
         },
         {
           "family": "验真环节",
@@ -75842,7 +75842,7 @@
         },
         {
           "family": "系统环节",
-          "count": 6
+          "count": 10
         },
         {
           "family": "平台环节",
@@ -79474,7 +79474,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-15"
         },
@@ -79570,7 +79570,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-15"
         },
@@ -79746,7 +79746,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-15"
         },
@@ -80335,16 +80335,16 @@
           "count": 22
         },
         {
-          "family": "其他环节",
-          "count": 18
-        },
-        {
           "family": "验真环节",
           "count": 18
         },
         {
           "family": "系统环节",
-          "count": 8
+          "count": 15
+        },
+        {
+          "family": "其他环节",
+          "count": 11
         },
         {
           "family": "回填环节",
@@ -83814,7 +83814,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 9,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-16"
         },
@@ -84070,7 +84070,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return v...",
           "full": "Cannot invoke \"com.upward.internation.ticket.enums..name()\" because the return value of \"com.upward.internation.ticket.entity..()\" is",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-16"
         },
@@ -84358,7 +84358,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 4,
           "prev_month": "2026-05-16"
         },
@@ -84623,12 +84623,16 @@
           "count": 41
         },
         {
-          "family": "其他环节",
-          "count": 27
-        },
-        {
           "family": "验真环节",
           "count": 18
+        },
+        {
+          "family": "其他环节",
+          "count": 15
+        },
+        {
+          "family": "系统环节",
+          "count": 13
         },
         {
           "family": "平台环节",
@@ -84637,10 +84641,6 @@
         {
           "family": "回填环节",
           "count": 3
-        },
-        {
-          "family": "系统环节",
-          "count": 1
         }
       ],
       "fail_families_D": [
@@ -88412,7 +88412,7 @@
           "reason": "apiqae.qunar.com",
           "full": "apiqae.qunar.com",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-17"
         },
@@ -88436,7 +88436,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 9,
           "prev_month": "2026-05-17"
         },
@@ -88564,7 +88564,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-17"
         },
@@ -88754,7 +88754,7 @@
         },
         {
           "family": "其他环节",
-          "count": 13
+          "count": 10
         },
         {
           "family": "平台环节",
@@ -88762,7 +88762,7 @@
         },
         {
           "family": "系统环节",
-          "count": 6
+          "count": 9
         },
         {
           "family": "回填环节",
@@ -92285,7 +92285,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-18"
         },
@@ -92717,7 +92717,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a p\"[truncated 59 chars] line: 1 column: 2]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-18"
         },
@@ -93014,12 +93014,12 @@
           "count": 15
         },
         {
-          "family": "其他环节",
-          "count": 11
+          "family": "系统环节",
+          "count": 8
         },
         {
-          "family": "系统环节",
-          "count": 4
+          "family": "其他环节",
+          "count": 7
         }
       ],
       "fail_families_D": [
@@ -96857,7 +96857,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-19"
         },
@@ -97185,7 +97185,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-19"
         },
@@ -97459,7 +97459,7 @@
         },
         {
           "family": "系统环节",
-          "count": 23
+          "count": 26
         },
         {
           "family": "平台环节",
@@ -97471,7 +97471,7 @@
         },
         {
           "family": "其他环节",
-          "count": 10
+          "count": 7
         },
         {
           "family": "回填环节",
@@ -101348,7 +101348,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-20"
         },
@@ -101878,11 +101878,11 @@
         },
         {
           "family": "其他环节",
-          "count": 13
+          "count": 11
         },
         {
           "family": "系统环节",
-          "count": 6
+          "count": 8
         },
         {
           "family": "回填环节",
@@ -106093,7 +106093,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a p\"[truncated 59 chars] line: 1 column: 2]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-21"
         },
@@ -106387,7 +106387,7 @@
         },
         {
           "family": "系统环节",
-          "count": 131
+          "count": 132
         },
         {
           "family": "人工环节",
@@ -106411,7 +106411,7 @@
         },
         {
           "family": "其他环节",
-          "count": 5
+          "count": 4
         },
         {
           "family": "回填环节",
@@ -114308,7 +114308,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-23"
         },
@@ -114981,7 +114981,7 @@
           "count": 12
         },
         {
-          "family": "其他环节",
+          "family": "系统环节",
           "count": 4
         },
         {
@@ -114989,7 +114989,7 @@
           "count": 3
         },
         {
-          "family": "系统环节",
+          "family": "其他环节",
           "count": 2
         }
       ],
@@ -118659,7 +118659,7 @@
           "reason": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the s...",
           "full": "国籍中文获取异常:org.apache.dubbo.rpc.RpcException: Failed to invoke the method in the service com.upward.interfaces.global.service.. Tried 3 times of the providers [ ] (2/2) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:126) at org.apache.dubbo.rpc.cluster.support..invoke(.java:366) at org.apache.dubbo.rpc.cluster.router..invoke(.java:46) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.monitor.support..invoke(.java:108) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:57) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter.invoke(FutureFilter.java:52) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:62) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.spring.security.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.metrics.filter..invoke(.java:86) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:38) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.support..invoke(.java:123) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.cluster.support.wrapper.$.invoke(.java:101) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support.wrapper..invoke(.java:171) at org.apache.dubbo.registry.client.migration..invoke(.java:294) at org.apache.dubbo.rpc.proxy..invoke(.java:64) at org.apache.dubbo.rpc.proxy..invoke(.java:81) at com.upward.interfaces.global.service..(.java) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at org.apache.dubbo.config.spring.util..invoke(.java:54) at com.upward.interfaces.global.service..(.java) at com.upward.internation.ticket.handle..reserve(.java:861) at com.upward.internation.ticket.handle..flowService(.java:324) at com.upward.internation.ticket.handle..lambda$consume$0(.java:184) at org..transaction.support..execute(.java:140) at com.upward.internation.ticket.handle..consume(.java:183) at java.base/jdk.internal.reflect..invoke(.java:104) at java.base/java.lang.reflect.Method.invoke(Method.java:577) at com.upward.rocketmq.starter..lambda$listening$0(.java:237) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:64) at org.apache.rocketmq.client.java.impl.consumer.ConsumeTask.call(ConsumeTask.java:36) at org.apache.rocketmq.shaded.com.google.common.util.concurrent.$.(.java:131) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:74) at org.apache.rocketmq.shaded.com.google.common.util.concurrent..run(.java:82) at java.base/java.util.concurrent..runWorker(.java:1136) at java.base/java.util.concurrent.$Worker.run(.java:635) at java.base/java.lang.Thread.run(Thread.java:833) Caused by: java.util.concurrent.: Timeout after 3000ms waiting for result. at org.apache.dubbo.rpc..get(.java:222) at org.apache.dubbo.rpc.protocol..(.java:292) at org.apache.dubbo.rpc.protocol..invoke(.java:194) at org.apache.dubbo.rpc.listener..invoke(.java:71) at org.apache.dubbo.rpc.filter..invoke(.java:40) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at com.upward.web.starter.dubbo..invoke(.java:16) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:349) at org.apache.dubbo.rpc.cluster.filter.$.invoke(.java:197) at org.apache.dubbo.rpc.protocol..invoke(.java:106) at org.apache.dubbo.rpc.cluster.support..(.java:412) at org.apache.dubbo.rpc.cluster.support..doInvoke(.java:82) ... 48 more 订单号",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-24"
         },
@@ -119189,11 +119189,11 @@
         },
         {
           "family": "系统环节",
-          "count": 7
+          "count": 8
         },
         {
           "family": "其他环节",
-          "count": 5
+          "count": 4
         },
         {
           "family": "回填环节",
@@ -122858,7 +122858,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-25"
         },
@@ -122914,7 +122914,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.entity..()\" because \"rules\" is",
           "full": "Cannot invoke \"com.upward.internation.ticket.entity..()\" because \"rules\" is",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-25"
         },
@@ -123026,7 +123026,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-25"
         },
@@ -123266,7 +123266,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-25"
         },
@@ -123911,20 +123911,20 @@
           "count": 32
         },
         {
+          "family": "系统环节",
+          "count": 23
+        },
+        {
           "family": "验真环节",
           "count": 17
         },
         {
-          "family": "其他环节",
-          "count": 13
-        },
-        {
-          "family": "系统环节",
-          "count": 11
-        },
-        {
           "family": "回填环节",
           "count": 2
+        },
+        {
+          "family": "其他环节",
+          "count": 1
         }
       ],
       "fail_families_D": [
@@ -127921,7 +127921,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 5,
           "prev_month": "2026-05-26"
         },
@@ -128073,7 +128073,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 2,
           "prev_month": "2026-05-26"
         },
@@ -128438,12 +128438,12 @@
           "count": 490
         },
         {
-          "family": "其他环节",
-          "count": 44
-        },
-        {
           "family": "人工环节",
           "count": 43
+        },
+        {
+          "family": "其他环节",
+          "count": 42
         },
         {
           "family": "支付环节",
@@ -128462,12 +128462,12 @@
           "count": 6
         },
         {
-          "family": "回填环节",
-          "count": 2
+          "family": "系统环节",
+          "count": 3
         },
         {
-          "family": "系统环节",
-          "count": 1
+          "family": "回填环节",
+          "count": 2
         }
       ],
       "fail_families_D": [
@@ -131909,7 +131909,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 25,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-27"
         },
@@ -132045,7 +132045,7 @@
           "reason": "No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] :...",
           "full": "No provider available from registry (registry: )-Directory(invokers: 0[] : 0[] : 0[]) for service com.upward.interfaces.retry.service. on consumer use dubbo version 3.2.10 please check status of providers(disabled not registered or in blacklist)",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-27"
         },
@@ -132173,7 +132173,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.entity..getOtherInfo()\" because \"ac...",
           "full": "Cannot invoke \"com.upward.internation.ticket.entity..getOtherInfo()\" because \"account\" is",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-27"
         },
@@ -132445,7 +132445,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-27"
         },
@@ -132453,7 +132453,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .258 end time: .289 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-27"
         },
@@ -132461,7 +132461,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .834 end time: .859 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-27"
         },
@@ -132469,7 +132469,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .832 end time: .956 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-27"
         },
@@ -132485,7 +132485,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .243 end time: .293 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-27"
         },
@@ -132509,7 +132509,7 @@
           "reason": "apiqae.qunar.com",
           "full": "apiqae.qunar.com",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-27"
         },
@@ -132565,7 +132565,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .389 end time: .660 client elapsed: 308 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-27"
         },
@@ -132629,7 +132629,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .490 end time: .964 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-27"
         },
@@ -133034,12 +133034,16 @@
           "count": 342
         },
         {
-          "family": "其他环节",
-          "count": 115
-        },
-        {
           "family": "取票环节",
           "count": 74
+        },
+        {
+          "family": "其他环节",
+          "count": 73
+        },
+        {
+          "family": "系统环节",
+          "count": 48
         },
         {
           "family": "支付环节",
@@ -133056,10 +133060,6 @@
         {
           "family": "人工环节",
           "count": 18
-        },
-        {
-          "family": "系统环节",
-          "count": 6
         },
         {
           "family": "回填环节",
@@ -136443,7 +136443,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-28"
         },
@@ -136723,7 +136723,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-28"
         },
@@ -136771,7 +136771,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error re...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error request response status: 500\" line: 1 column: 6]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-28"
         },
@@ -137115,7 +137115,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-28"
         },
@@ -137344,12 +137344,16 @@
           "count": 17
         },
         {
-          "family": "其他环节",
-          "count": 12
+          "family": "系统环节",
+          "count": 9
         },
         {
           "family": "验真环节",
           "count": 8
+        },
+        {
+          "family": "其他环节",
+          "count": 3
         },
         {
           "family": "回填环节",
@@ -140684,7 +140688,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 18,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 6,
           "prev_month": "2026-05-29"
         },
@@ -140852,7 +140856,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 ...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-29"
         },
@@ -141116,7 +141120,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-29"
         },
@@ -141348,7 +141352,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .366 end time: .395 client elapsed: 1 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 6,
           "prev_month": "2026-05-29"
         },
@@ -141412,7 +141416,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .512 end time: .550 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id=- version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 6,
           "prev_month": "2026-05-29"
         },
@@ -141420,7 +141424,7 @@
           "reason": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error re...",
           "full": "Number Array Object or token '' 'true' or 'false') at [Source: (String)\"Error request response status: 500\" line: 1 column: 6]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-29"
         },
@@ -141669,8 +141673,8 @@
           "count": 39
         },
         {
-          "family": "其他环节",
-          "count": 31
+          "family": "系统环节",
+          "count": 30
         },
         {
           "family": "平台环节",
@@ -141681,8 +141685,8 @@
           "count": 9
         },
         {
-          "family": "系统环节",
-          "count": 1
+          "family": "其他环节",
+          "count": 2
         }
       ],
       "fail_families_D": [
@@ -145261,7 +145265,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 1,
           "prev_month": "2026-05-30"
         },
@@ -145637,7 +145641,7 @@
           "reason": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "full": "Cannot invoke \"()\" because the return value of \"(String)\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 2,
           "prev_month": "2026-05-30"
         },
@@ -145934,7 +145938,7 @@
           "count": 11
         },
         {
-          "family": "其他环节",
+          "family": "系统环节",
           "count": 6
         },
         {
@@ -145942,7 +145946,7 @@
           "count": 2
         },
         {
-          "family": "系统环节",
+          "family": "其他环节",
           "count": 1
         }
       ],
@@ -149432,7 +149436,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: Timeout after 3000ms waiting for result",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 4,
           "prev_month": "2026-05-31"
         },
@@ -149448,7 +149452,7 @@
           "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
           "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .958 end time: .985 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 4,
           "prev_month": "2026-05-31"
         },
@@ -149696,7 +149700,7 @@
           "reason": "Cannot invoke \"com.upward.internation.ticket.entity..getOtherInfo()\" because \"ac...",
           "full": "Cannot invoke \"com.upward.internation.ticket.entity..getOtherInfo()\" because \"account\" is",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "系统环节-代码错误",
           "prev_count": 0,
           "prev_month": "2026-05-31"
         }
@@ -149821,12 +149825,8 @@
           "count": 20
         },
         {
-          "family": "其他环节",
-          "count": 7
-        },
-        {
           "family": "系统环节",
-          "count": 7
+          "count": 11
         },
         {
           "family": "回填环节",
@@ -149835,6 +149835,10 @@
         {
           "family": "验真环节",
           "count": 4
+        },
+        {
+          "family": "其他环节",
+          "count": 3
         }
       ],
       "fail_families_D": [
