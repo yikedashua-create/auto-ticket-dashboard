@@ -2939,9 +2939,9 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-      "count": 219,
+      "reason": "验真异常 报错: 抱歉 未找到机票信息",
+      "full": "验真异常 报错: 抱歉 未找到机票信息",
+      "count": 220,
       "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
@@ -3119,6 +3119,22 @@
       "full": "预定失败 原因为:没有符合设置的价格 反采同程APP",
       "count": 88,
       "family": "预定环节",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
+      "reason": "验真异常 报错: 提交行程异常:OK",
+      "full": "验真异常 报错: 提交行程异常:OK",
+      "count": 87,
+      "family": "验真环节-验真异常",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
+      "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+      "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+      "count": 86,
+      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -3371,22 +3387,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 51,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 51,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:非常抱歉 您预订的价格已售完 请重新查询 或致电专属客服 反采同程",
       "full": "预定失败 原因为:非常抱歉 您预订的价格已售完 请重新查询 或致电专属客服 反采同程",
       "count": 51,
@@ -3515,8 +3515,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+      "reason": "验真异常 报错: : Connection refused",
+      "full": "验真异常 报错: : Connection refused",
       "count": 33,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -3599,6 +3599,14 @@
       "full": "预定失败 原因为:ERR_ 春秋官网",
       "count": 29,
       "family": "预定环节",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
+      "reason": "验真异常 报错:",
+      "full": "验真异常 报错:",
+      "count": 29,
+      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -3811,8 +3819,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+      "reason": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+      "full": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
       "count": 20,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -3867,6 +3875,14 @@
       "prev_month": null
     },
     {
+      "reason": "验真异常 报错: Read timed out",
+      "full": "验真异常 报错: Read timed out",
+      "count": 19,
+      "family": "验真环节-验真异常",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
       "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
       "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String)\"405a body div h2 html pa.container.header.header .message{height:36px padding-left:120px background:url( no-repeat 0 -128px line-height:36p\"[truncated chars] line: 1 column: 2]",
       "count": 19,
@@ -3891,8 +3907,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-      "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+      "reason": "验真异常 报错: 未知错误",
+      "full": "验真异常 报错: 未知错误",
       "count": 18,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -4003,14 +4019,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-      "count": 15,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:组合产品信息已变化 请刷新后重新下单 春秋官网",
       "full": "预定失败 原因为:组合产品信息已变化 请刷新后重新下单 春秋官网",
       "count": 15,
@@ -4027,8 +4035,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-      "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+      "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+      "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
       "count": 14,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -4047,14 +4055,6 @@
       "full": "[回调消息]未知错误 请重试",
       "count": 14,
       "family": "其他环节-兜底",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -:VJ 客票验真 乘客: 报错",
-      "count": 14,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -4315,8 +4315,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
+      "reason": "验真异常 报错: 9C行李额查询失败",
+      "full": "验真异常 报错: 9C行李额查询失败",
       "count": 9,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -4651,6 +4651,14 @@
       "prev_month": null
     },
     {
+      "reason": "验真异常 报错: 获取nsk_token失败 请重试",
+      "full": "验真异常 报错: 获取nsk_token失败 请重试",
+      "count": 5,
+      "family": "验真环节-验真异常",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
       "reason": "预定失败 原因为:生单失败:The passenger's information is duplicated with the existing passen...",
       "full": "预定失败 原因为:生单失败:The passenger's information is duplicated with the existing passenger's on this flight 反采飞猪接口",
       "count": 5,
@@ -4835,8 +4843,16 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
-      "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
+      "reason": "验真异常",
+      "full": "验真异常",
+      "count": 4,
+      "family": "验真环节-验真异常",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
+      "reason": "验真异常 报错: 提交行程异常:Member bookings not allowed",
+      "full": "验真异常 报错: 提交行程异常:Member bookings not allowed",
       "count": 4,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -4939,14 +4955,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -731-:MF 客票验真 乘客: 报错: Read timed out",
-      "full": "验真异常 -731-:MF 客票验真 乘客: 报错: Read timed out",
-      "count": 4,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "Cannot invoke \"com.upward.internation.ticket.entity..()\" because \"rules\" is",
       "full": "Cannot invoke \"com.upward.internation.ticket.entity..()\" because \"rules\" is",
       "count": 4,
@@ -5027,14 +5035,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-      "full": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-      "count": 3,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:登录失败:金鹏俱乐部登录失败：资料验证不通过 请检查会员账户是否有效再尝试",
       "full": "取票环节 原因为:登录失败:金鹏俱乐部登录失败：资料验证不通过 请检查会员账户是否有效再尝试",
       "count": 3,
@@ -5083,8 +5083,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
-      "full": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
+      "reason": "验真异常 报错: 提交行程异常",
+      "full": "验真异常 报错: 提交行程异常",
       "count": 3,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -5111,6 +5111,14 @@
       "full": "[回调消息]获取货币汇率失败",
       "count": 3,
       "family": "其他环节-兜底",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
+      "reason": "验真异常 报错: 604 Proxy Request Failed",
+      "full": "验真异常 报错: 604 Proxy Request Failed",
+      "count": 3,
+      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -5195,8 +5203,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-      "full": "验真异常 -​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+      "reason": "验真异常 ​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+      "full": "验真异常 ​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
       "count": 3,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -5315,6 +5323,14 @@
       "prev_month": null
     },
     {
+      "reason": "验真异常 报错: Server disconnected without sending a response",
+      "full": "验真异常 报错: Server disconnected without sending a response",
+      "count": 2,
+      "family": "验真环节-验真异常",
+      "prev_count": 0,
+      "prev_month": null
+    },
+    {
       "reason": "支付失败 原因为:: Remote host terminated the handshake 请人工核实",
       "full": "支付失败 原因为:: Remote host terminated the handshake 请人工核实",
       "count": 2,
@@ -5403,14 +5419,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -4ZTWER:证件号不符",
-      "full": "验真异常 -4ZTWER:证件号不符",
-      "count": 2,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Bangkok'}] 'passengers': [...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Bangkok'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': 'pj/==' 'source': 433 'fromElong': False 'merchantId': '176' 'shareId': 'pj/++7iTY3c=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-18168'}",
       "count": 2,
@@ -5483,8 +5491,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -/:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-      "full": "验真异常 -/:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+      "reason": "验真异常 /:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+      "full": "验真异常 /:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
       "count": 2,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -5519,14 +5527,6 @@
       "full": "支付失败 原因为:打开支付宝App失败 请人工核实支付宝6110",
       "count": 2,
       "family": "支付环节-支付异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
-      "full": "验真异常 -:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
-      "count": 2,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -5819,8 +5819,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:航班号不符",
-      "full": "验真异常 -:航班号不符",
+      "reason": "验真异常 航班号不符",
+      "full": "验真异常 航班号不符",
       "count": 2,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -5931,8 +5931,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
+      "reason": "验真异常 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
+      "full": "验真异常 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -6219,14 +6219,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -518BAL:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-      "full": "验真异常 -518BAL:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': []...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': 'pj/==' 'source': 433 'fromElong': False 'merchantId': '277' 'shareId': 'pj/+Uv4oOM0pqJit/5gekZezDvI=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-62983'}",
       "count": 1,
@@ -6251,8 +6243,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: Connection refused",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: Connection refused",
+      "reason": "验真异常 报错: Connection refused",
+      "full": "验真异常 报错: Connection refused",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -6419,8 +6411,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
-      "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
+      "reason": "验真异常 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
+      "full": "验真异常 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -6507,14 +6499,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -Q58LJV:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-      "full": "验真异常 -Q58LJV:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:当前手机号码存在安全风险 请修改 春秋官网",
       "full": "预定失败 原因为:当前手机号码存在安全风险 请修改 春秋官网",
       "count": 1,
@@ -6551,14 +6535,6 @@
       "full": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 航班号或者航班时间不符 请核实后重新查询 渠道航班信息 9C8892-- 反采同程APP",
       "count": 1,
       "family": "预定环节",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -595JPN:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
-      "full": "验真异常 -595JPN:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -6691,8 +6667,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:行李额不符0KG",
-      "full": "验真异常 -:行李额不符0KG",
+      "reason": "验真异常 行李额不符0KG",
+      "full": "验真异常 行李额不符0KG",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -6835,14 +6811,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -4G95MG:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -4G95MG:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 价格详情查询失败3 Expecting value: line 1 column (c...",
       "full": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 价格详情查询失败3 Expecting value: line 1 column (char 142303) 反采同程APP",
       "count": 1,
@@ -6855,14 +6823,6 @@
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Singapore' '': 'Shanghai'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': 'FGz6E9t+==' '': '==' 'source': 433 'fromElong': False 'merchantId': '277' 'shareId': '=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-24001'}",
       "count": 1,
       "family": "取票环节-取票异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -S5ZZYY:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-      "full": "验真异常 -S5ZZYY:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -6891,14 +6851,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -K8JLRC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -K8JLRC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "支付失败 原因为:检测到需要刷脸 请人工核实支付宝6110",
       "full": "支付失败 原因为:检测到需要刷脸 请人工核实支付宝6110",
       "count": 1,
@@ -6915,74 +6867,10 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -R8ZGQF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -R8ZGQF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -M9CMYP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -M9CMYP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -R881FS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -R881FS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -T4FFJB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -T4FFJB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -H85KJC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -H85KJC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -99YE24:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -99YE24:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -8M4K52:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -8M4K52:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'U-Tapao' '': 'Chiang Mai'}] 'passengers...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'U-Tapao' '': 'Chiang Mai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': 'FGz6E9t+==' '': '==' 'source': 433 'fromElong': False 'merchantId': '602' 'shareId': '+W/rK0rubxo=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': ['_'] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['发生改签/退票会影响返现吗' '退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-53082'}",
       "count": 1,
       "family": "取票环节-取票异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -J98Z5M:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -J98Z5M:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -6999,14 +6887,6 @@
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chongqing' '': 'Kuala Lumpur'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': 'pfw3sc/jUtzx+YQ4j9yJEw==' '': '/hv8Rjqew==' 'source': 433 'fromElong': False 'merchantId': '176' 'shareId': '+c=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['发生改签/退票会影响返现吗' '退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-61052'}",
       "count": 1,
       "family": "取票环节-取票异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -A82UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -A82UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7075,14 +6955,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -6GEZRV:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -6GEZRV:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:航班匹配失败 春秋官网",
       "full": "预定失败 原因为:航班匹配失败 春秋官网",
       "count": 1,
@@ -7131,14 +7003,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -45PNFS:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -45PNFS:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:询价失败:未获取到价格反采飞猪接口 反采淘宝国际价格细则异常:code: 503 The request has failed due to ...",
       "full": "预定失败 原因为:询价失败:未获取到价格反采飞猪接口 反采淘宝国际价格细则异常:code: 503 The request has failed due to a temporary failure of the server. request id: 64503A92-EA95-5D6B-8D06- 反采飞猪接口",
       "count": 1,
@@ -7163,14 +7027,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -L4N34L:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -L4N34L:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "支付失败 原因为:打开网页失败 报错原因Message: An unknown server-side error occurred while process...",
       "full": "支付失败 原因为:打开网页失败 报错原因Message: An unknown server-side error occurred while processing the command. Original error: Error attempting to start URI. Original error: Error: Error executing adbExec. Original error: 'Command ''C:\\\\Program Files (x86)\\\\Android\\\\android-sdk\\\\platform-tools\\\\adb.exe' -P -s shell am start -W -a android.intent.action. -d https\\://mclient.alipay.com/cashier/mobilepay.htm\\?alipay_exterface_invoke_assign_target\\=invoke_\\\\\\&alipay_exterface_invoke_assign_sign\\=f_l_m_s6_wg_f_e_v_z0z_s_ycoy6m6z_wv_d_u0_j_km_or_v_lah_m_c_n_y_p_s_pj3end1_i_s_o_ig%3D%3D com.android.chrome' timed out after 20000ms'. Try to increase the 20000ms adb execution timeout represented by '' capability 请人工核实支付宝",
       "count": 1,
@@ -7179,26 +7035,10 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -Q8FLPS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -Q8FLPS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "支付失败 原因为:code: 503 The request has failed due to a temporary failure of the serv...",
       "full": "支付失败 原因为:code: 503 The request has failed due to a temporary failure of the server. request id: E54D6F04--5A65-AFC0-A51287328F48 请人工核实",
       "count": 1,
       "family": "支付环节-支付异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -E6YL5F:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -E6YL5F:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7227,24 +7067,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -B6CJNV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -B6CJNV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -:TR 客票验真 乘客: 报错: ip异常 请重试",
-      "full": "验真异常 -:TR 客票验真 乘客: 报错: ip异常 请重试",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -K97KVP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -K97KVP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+      "reason": "验真异常 报错: ip异常 请重试",
+      "full": "验真异常 报错: ip异常 请重试",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -7287,14 +7111,6 @@
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chișinău' '': 'Antalya'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '==' 'source': 433 'fromElong': False 'merchantId': '652' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-60112'}",
       "count": 1,
       "family": "取票环节-取票异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -N7C9TV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -N7C9TV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7363,14 +7179,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -Y93CTS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -Y93CTS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "获取token失败: Number Array Object or token '' 'true' or 'false') at [Source: (Strin...",
       "full": "获取token失败: Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a p\"[truncated 59 chars] line: 1 column: 2]",
       "count": 1,
@@ -7379,50 +7187,10 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -W74Q6V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -W74Q6V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "Failed to invoke the method in the service com.upward.interfaces.retry.service.....",
       "full": "Failed to invoke the method in the service com.upward.interfaces.retry.service.. Tried 3 times of the providers [] (1/1) from the registry on the consumer using the dubbo version 3.2.10. Last error is: Invoke remote method timeout. method: provider: service cause: org.apache.dubbo.remoting.: Waiting server-side response timeout by scan timer. start time: .499 end time: .543 client elapsed: 0 ms server elapsed: ms timeout: ms request: Request [id= version=2.0.2 twoWay=true event=false broken=false mPayload=0 data=] channel: / -> /",
       "count": 1,
       "family": "其他环节-兜底",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -T6M4RY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -T6M4RY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -Y52IPB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -Y52IPB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -M999QP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -M999QP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -K73KPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -K73KPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7443,26 +7211,10 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -B8H6SP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -B8H6SP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 618. agoda",
       "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 618. agoda",
       "count": 1,
       "family": "预定环节",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -P8513C:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -P8513C:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7507,14 +7259,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -A5NB7V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -A5NB7V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 1588. agoda",
       "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 1588. agoda",
       "count": 1,
@@ -7523,74 +7267,10 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -G6K9XI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -G6K9XI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Hat Yai' '': 'Bangkok'}] 'passengers': ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Hat Yai' '': 'Bangkok'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '==' 'source': 433 'fromElong': False 'merchantId': '602' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': ['_'] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-84026'}",
       "count": 1,
       "family": "取票环节-取票异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -Q96UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -Q96UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -P5MT6Y:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -P5MT6Y:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -P2CUJN:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -P2CUJN:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -B32X4A:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -B32X4A:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -B6QHKF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -B6QHKF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -5PGTMB:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -5PGTMB:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -L6NDSI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -L6NDSI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -7835,14 +7515,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
-      "full": "验真异常 -:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "支付失败 原因为:打开网页失败 报错原因Message: An unknown server-side error occurred while process...",
       "full": "支付失败 原因为:打开网页失败 报错原因Message: An unknown server-side error occurred while processing the command. Original error: Error attempting to start URI. Original error: Error: Error executing adbExec. Original error: 'Command ''C:\\\\Program Files (x86)\\\\Android\\\\android-sdk\\\\platform-tools\\\\adb.exe' -P -s shell am start -W -a android.intent.action. -d https\\://mclient.alipay.com/cashier/mobilepay.htm\\?alipay_exterface_invoke_assign_target\\=invoke_\\\\\\&alipay_exterface_invoke_assign_sign\\=elhdbqr8_xnu_b_zbh_dl_ii8_ls_hj_ew_fm_o_qiusn_a4_qh_q_o_o_r_j4dj17_fq_g9s_q%3D%3D com.android.chrome' timed out after 20000ms'. Try to increase the 20000ms adb execution timeout represented by '' capability 请人工核实支付宝",
       "count": 1,
@@ -8051,22 +7723,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -H64MH7:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -H64MH7:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -Y47YHR:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -Y47YHR:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Osaka' '': 'Okinawa'}] 'passengers': []...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Osaka' '': 'Okinawa'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': 'pj/==' 'source': 433 'fromElong': False 'merchantId': '277' 'shareId': 'pj/+OFKBLKw=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': ['_'] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-81718'}",
       "count": 1,
@@ -8147,16 +7803,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:AK 客票验真 乘客: 报错: 401",
-      "full": "验真异常 -:AK 客票验真 乘客: 报错: 401",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -28QU45:证件号不符",
-      "full": "验真异常 -28QU45:证件号不符",
+      "reason": "验真异常 报错: 401",
+      "full": "验真异常 报错: 401",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -8219,8 +7867,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Invalid Request",
-      "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Invalid Request",
+      "reason": "验真异常 报错: 提交行程异常:Invalid Request",
+      "full": "验真异常 报错: 提交行程异常:Invalid Request",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -8331,58 +7979,10 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -2ZDAEY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -2ZDAEY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 701. agoda",
       "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 701. agoda",
       "count": 1,
       "family": "预定环节",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -4AQ2NB:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -4AQ2NB:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -8GFHSG:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -8GFHSG:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -M4MEYF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -M4MEYF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -7F9929:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -7F9929:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -H95EWP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -H95EWP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8419,8 +8019,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:证件号不符",
-      "full": "验真异常 -:证件号不符",
+      "reason": "验真异常 证件号不符",
+      "full": "验真异常 证件号不符",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -8451,8 +8051,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:nsk:Booking",
-      "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:nsk:Booking",
+      "reason": "验真异常 报错: 提交行程异常:nsk:Booking",
+      "full": "验真异常 报错: 提交行程异常:nsk:Booking",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -8531,14 +8131,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -3AX74U:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -3AX74U:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 1658. agoda",
       "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 1658. agoda",
       "count": 1,
@@ -8563,30 +8155,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -Y4QTGB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -Y4QTGB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -2YVR3S:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -2YVR3S:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -U78X9F:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -U78X9F:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Jakarta'}] 'passengers': [...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Jakarta'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '==' 'source': 433 'fromElong': False 'merchantId': '530' 'shareId': '/NBsb5NbOQ/U=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-8923'}",
       "count": 1,
@@ -8595,266 +8163,10 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -G25CZ4:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -G25CZ4:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 1475. agoda",
       "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 1475. agoda",
       "count": 1,
       "family": "预定环节",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -H9TGJP:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -H9TGJP:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -7K5VF3:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -7K5VF3:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -77Q5JF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -77Q5JF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -Z4C6UE:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -Z4C6UE:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -R3NVGY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -R3NVGY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -U2HTJF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -U2HTJF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -K3S6KH:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -K3S6KH:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -Z2WBRU:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -Z2WBRU:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -Z9JATJ:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
-      "full": "验真异常 -Z9JATJ:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -7D3PZ8:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -7D3PZ8:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -N72DD2:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -N72DD2:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -N7XG2D:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -N7XG2D:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -4A2W2N:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -4A2W2N:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -3M5DDM:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -3M5DDM:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -98SAAN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -98SAAN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -4NYVTF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -4NYVTF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -8J4Q7P:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -8J4Q7P:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -U4ZYTT:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -U4ZYTT:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -7HMASN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -7HMASN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -G92CWV:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -G92CWV:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -R65B98:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -R65B98:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -8RY9Q8:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -8RY9Q8:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -6F73BC:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -6F73BC:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -8QD6EJ:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -8QD6EJ:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -Y6P6K9:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -Y6P6K9:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -M2A5SS:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -M2A5SS:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -744Q66:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -744Q66:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -9ETRP5:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -9ETRP5:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -2AG64C:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -2AG64C:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -E6QS6A:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -E6QS6A:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -3VUUUE:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "full": "验真异常 -3VUUUE:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -8907,14 +8219,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -W947US:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -W947US:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "支付失败 原因为:自动扫码关联程序异常 请人工核实支付宝fccp",
       "full": "支付失败 原因为:自动扫码关联程序异常 请人工核实支付宝fccp",
       "count": 1,
@@ -8963,8 +8267,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Failed Attempt Exceeded",
-      "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Failed Attempt Exceeded",
+      "reason": "验真异常 报错: 提交行程异常:Failed Attempt Exceeded",
+      "full": "验真异常 报错: 提交行程异常:Failed Attempt Exceeded",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -9003,14 +8307,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -B5NWWY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -B5NWWY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers':...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': 'aaX6QDySI+VGlHEzGdBEpw==' 'source': 433 'fromElong': False 'merchantId': '277' 'shareId': 'aaX6QDySI+Xvkq0K65+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-42273'}",
       "count": 1,
@@ -9031,30 +8327,6 @@
       "full": "预定失败 原因为:An unknown error occurred. MF官网",
       "count": 1,
       "family": "预定环节",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -E8QAQS:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -E8QAQS:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -5S6KZ3:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -5S6KZ3:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -G8UZ9G:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -G8UZ9G:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -9299,8 +8571,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -4FZP64:VJ 客票验真 乘客: 报错: 未解析的错误",
-      "full": "验真异常 -4FZP64:VJ 客票验真 乘客: 报错: 未解析的错误",
+      "reason": "验真异常 报错: 未解析的错误",
+      "full": "验真异常 报错: 未解析的错误",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -9319,14 +8591,6 @@
       "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 1444.007016126 agoda",
       "count": 1,
       "family": "预定环节",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -O7YBPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "full": "验真异常 -O7YBPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -9611,8 +8875,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -851-:航班信息或乘客姓名不符",
-      "full": "验真异常 -851-:航班信息或乘客姓名不符",
+      "reason": "验真异常 航班信息或乘客姓名不符",
+      "full": "验真异常 航班信息或乘客姓名不符",
       "count": 1,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -9739,14 +9003,6 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -Z6K826:VJ 客票验真 乘客: 报错",
-      "full": "验真异常 -Z6K826:VJ 客票验真 乘客: 报错",
-      "count": 1,
-      "family": "验真环节-验真异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
       "reason": "预定失败 原因为:[回调消息][娟婷中行4811]预定返回失败:ip异常 请重试 TRwx",
       "full": "预定失败 原因为:[回调消息][娟婷中行4811]预定返回失败:ip异常 请重试 TRwx",
       "count": 1,
@@ -9815,14 +9071,6 @@
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Ta Khmau' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': 'S0/==' '': '==' 'source': 852 'fromElong': False 'merchantId': '277' 'shareId': '//Hexk=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-9504'}",
       "count": 1,
       "family": "取票环节-取票异常",
-      "prev_count": 0,
-      "prev_month": null
-    },
-    {
-      "reason": "验真异常 -2937FP:证件号不符",
-      "full": "验真异常 -2937FP:证件号不符",
-      "count": 1,
-      "family": "验真环节-验真异常",
       "prev_count": 0,
       "prev_month": null
     },
@@ -10205,8 +9453,8 @@
       "prev_month": null
     },
     {
-      "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-      "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+      "reason": "验真异常 报错: 抱歉 未找到机票信息",
+      "full": "验真异常 报错: 抱歉 未找到机票信息",
       "count": 4,
       "family": "验真环节-验真异常",
       "prev_count": 0,
@@ -19364,8 +18612,8 @@
           "prev_month": "2026-05-01"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -19396,8 +18644,8 @@
           "prev_month": "2026-05-01"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -19572,8 +18820,8 @@
           "prev_month": "2026-05-01"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -19604,8 +18852,8 @@
           "prev_month": "2026-05-01"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
+          "reason": "验真异常 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
+          "full": "验真异常 报错: 尊敬的用户 相同证件号每日查询次数已达上限 请明日再来",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -23408,8 +22656,8 @@
           "prev_month": "2026-05-02"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 4,
           "family": "验真环节-验真异常",
           "prev_count": 3,
@@ -27386,6 +26634,14 @@
           "prev_month": "2026-05-03"
         },
         {
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
+          "count": 2,
+          "family": "验真环节-验真异常",
+          "prev_count": 4,
+          "prev_month": "2026-05-03"
+        },
+        {
           "reason": "预定失败 原因为:询价失败:未获取到价格航班管家接口 询价失败 暂只支持单程:航班管家接口 航班管家接口",
           "full": "预定失败 原因为:询价失败:未获取到价格航班管家接口 询价失败 暂只支持单程:航班管家接口 航班管家接口",
           "count": 2,
@@ -27586,8 +26842,8 @@
           "prev_month": "2026-05-03"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -27706,14 +26962,6 @@
           "prev_month": "2026-05-03"
         },
         {
-          "reason": "验真异常 -518BAL:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -518BAL:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-03"
-        },
-        {
           "reason": "支付失败 原因为:Read timed out 请人工核实",
           "full": "支付失败 原因为:Read timed out 请人工核实",
           "count": 1,
@@ -27738,8 +26986,8 @@
           "prev_month": "2026-05-03"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -27794,16 +27042,8 @@
           "prev_month": "2026-05-03"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 4,
-          "prev_month": "2026-05-03"
-        },
-        {
-          "reason": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-          "full": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
+          "reason": "验真异常 报错: 获取nsk_token失败 请重试",
+          "full": "验真异常 报错: 获取nsk_token失败 请重试",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -27874,8 +27114,8 @@
           "prev_month": "2026-05-03"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Connection refused",
+          "reason": "验真异常 报错: Connection refused",
+          "full": "验真异常 报错: Connection refused",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -31258,11 +30498,11 @@
           "prev_month": "2026-05-04"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 2,
           "family": "验真环节-验真异常",
-          "prev_count": 1,
+          "prev_count": 2,
           "prev_month": "2026-05-04"
         },
         {
@@ -31738,8 +30978,8 @@
           "prev_month": "2026-05-04"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
+          "reason": "验真异常 报错: 9C行李额查询失败",
+          "full": "验真异常 报错: 9C行李额查询失败",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -31754,8 +30994,8 @@
           "prev_month": "2026-05-04"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
+          "reason": "验真异常 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
+          "full": "验真异常 报错: 未能找到符合网上值机服务的行程 请确认输入的信息是否正确。如需协助 请前往机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -35419,8 +34659,8 @@
           "prev_month": "2026-05-05"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 4,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -35539,8 +34779,8 @@
           "prev_month": "2026-05-05"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 2,
@@ -35667,8 +34907,8 @@
           "prev_month": "2026-05-05"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -35915,8 +35155,8 @@
           "prev_month": "2026-05-05"
         },
         {
-          "reason": "验真异常 -Q58LJV:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-          "full": "验真异常 -Q58LJV:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
+          "reason": "验真异常 报错: 获取nsk_token失败 请重试",
+          "full": "验真异常 报错: 获取nsk_token失败 请重试",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -36099,8 +35339,8 @@
           "prev_month": "2026-05-05"
         },
         {
-          "reason": "验真异常 -595JPN:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
-          "full": "验真异常 -595JPN:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
+          "reason": "验真异常 报错: Server disconnected without sending a response",
+          "full": "验真异常 报错: Server disconnected without sending a response",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -36139,8 +35379,8 @@
           "prev_month": "2026-05-05"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
+          "reason": "验真异常 报错: 9C行李额查询失败",
+          "full": "验真异常 报错: 9C行李额查询失败",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -36195,8 +35435,8 @@
           "prev_month": "2026-05-05"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -40146,8 +39386,8 @@
           "prev_month": "2026-05-06"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -40578,8 +39818,8 @@
           "prev_month": "2026-05-06"
         },
         {
-          "reason": "验真异常 -:行李额不符0KG",
-          "full": "验真异常 -:行李额不符0KG",
+          "reason": "验真异常 行李额不符0KG",
+          "full": "验真异常 行李额不符0KG",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -44742,8 +43982,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "reason": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "full": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
           "count": 5,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -44774,8 +44014,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 4,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45150,8 +44390,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -4ZTWER:证件号不符",
-          "full": "验真异常 -4ZTWER:证件号不符",
+          "reason": "验真异常",
+          "full": "验真异常",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45166,8 +44406,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
+          "reason": "验真异常 报错: 提交行程异常",
+          "full": "验真异常 报错: 提交行程异常",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45238,8 +44478,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45302,8 +44542,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
+          "reason": "验真异常 报错: 9C行李额查询失败",
+          "full": "验真异常 报错: 9C行李额查询失败",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45390,8 +44630,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
-          "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
+          "reason": "验真异常 报错: 提交行程异常:Member bookings not allowed",
+          "full": "验真异常 报错: 提交行程异常:Member bookings not allowed",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45558,16 +44798,16 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -4G95MG:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -4G95MG:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45614,8 +44854,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -S5ZZYY:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-          "full": "验真异常 -S5ZZYY:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
+          "reason": "验真异常 报错: 获取nsk_token失败 请重试",
+          "full": "验真异常 报错: 获取nsk_token失败 请重试",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -45776,8 +45016,8 @@
           "prev_month": "2026-05-07"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -49662,8 +48902,8 @@
           "prev_month": "2026-05-08"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 4,
           "family": "验真环节-验真异常",
           "prev_count": 4,
@@ -50014,8 +49254,8 @@
           "prev_month": "2026-05-08"
         },
         {
-          "reason": "验真异常 -4ZTWER:证件号不符",
-          "full": "验真异常 -4ZTWER:证件号不符",
+          "reason": "验真异常",
+          "full": "验真异常",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -50030,8 +49270,8 @@
           "prev_month": "2026-05-08"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
+          "reason": "验真异常 报错: 提交行程异常",
+          "full": "验真异常 报错: 提交行程异常",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -50158,8 +49398,8 @@
           "prev_month": "2026-05-08"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -50270,8 +49510,8 @@
           "prev_month": "2026-05-08"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
+          "reason": "验真异常 报错: 9C行李额查询失败",
+          "full": "验真异常 报错: 9C行李额查询失败",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -50360,8 +49600,8 @@
           "prev_month": "2026-05-08"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -53715,6 +52955,14 @@
           "prev_month": "2026-05-09"
         },
         {
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "count": 15,
+          "family": "验真环节-验真异常",
+          "prev_count": 0,
+          "prev_month": "2026-05-09"
+        },
+        {
           "reason": "预定失败 原因为:非常抱歉 您本次机票预订失败 请重新查询 或致电专属客服 反采同程APP",
           "full": "预定失败 原因为:非常抱歉 您本次机票预订失败 请重新查询 或致电专属客服 反采同程APP",
           "count": 14,
@@ -53755,8 +53003,8 @@
           "prev_month": "2026-05-09"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 9,
           "family": "验真环节-验真异常",
           "prev_count": 4,
@@ -53816,14 +53064,6 @@
           "count": 7,
           "family": "取票环节-取票异常",
           "prev_count": 2,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 7,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-09"
         },
         {
@@ -53896,6 +53136,14 @@
           "count": 4,
           "family": "支付环节-支付异常",
           "prev_count": 1,
+          "prev_month": "2026-05-09"
+        },
+        {
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
+          "count": 4,
+          "family": "验真环节-验真异常",
+          "prev_count": 0,
           "prev_month": "2026-05-09"
         },
         {
@@ -54019,8 +53267,8 @@
           "prev_month": "2026-05-09"
         },
         {
-          "reason": "验真异常 -/:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -/:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 /:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 /:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -54155,14 +53403,6 @@
           "prev_month": "2026-05-09"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
           "reason": "预定失败 原因为:询价失败:未获取到价格瑞安官网 [FR官网]Read timed out 瑞安官网",
           "full": "预定失败 原因为:询价失败:未获取到价格瑞安官网 [FR官网]Read timed out 瑞安官网",
           "count": 1,
@@ -54215,14 +53455,6 @@
           "full": "预定失败 原因为:用户令牌错误或用户登录已过期 MF官网",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -K8JLRC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -K8JLRC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-09"
         },
@@ -54283,35 +53515,11 @@
           "prev_month": "2026-05-09"
         },
         {
-          "reason": "验真异常 -R8ZGQF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -R8ZGQF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -M9CMYP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -M9CMYP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
           "reason": "预定失败 原因为:下单成功 金额获取失败 春秋官网",
           "full": "预定失败 原因为:下单成功 金额获取失败 春秋官网",
           "count": 1,
           "family": "预定环节",
           "prev_count": 1,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -R881FS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -R881FS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-09"
         },
         {
@@ -54331,26 +53539,10 @@
           "prev_month": "2026-05-09"
         },
         {
-          "reason": "验真异常 -T4FFJB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -T4FFJB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
           "reason": "取票环节 原因为:无合法票号 请核实",
           "full": "取票环节 原因为:无合法票号 请核实",
           "count": 1,
           "family": "取票环节-取票异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -H85KJC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -H85KJC:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-09"
         },
@@ -54367,22 +53559,6 @@
           "full": "[回调消息]Timeout 30000ms exceeded. =========================== logs =========================== waiting for frame_locator(\"iframe[title=\\\"Credit Card form\\\"]\").get_by_label(\"银行名称\") ============================================================",
           "count": 1,
           "family": "其他环节-兜底",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -99YE24:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -99YE24:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -8M4K52:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -8M4K52:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-09"
         },
@@ -54411,14 +53587,6 @@
           "prev_month": "2026-05-09"
         },
         {
-          "reason": "验真异常 -J98Z5M:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -J98Z5M:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
           "reason": "取票环节 原因为:待支付",
           "full": "取票环节 原因为:待支付",
           "count": 1,
@@ -54439,14 +53607,6 @@
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chongqing' '': 'Kuala Lumpur'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': 'pfw3sc/jUtzx+YQ4j9yJEw==' '': '/hv8Rjqew==' 'source': 433 'fromElong': False 'merchantId': '176' 'shareId': '+c=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['发生改签/退票会影响返现吗' '退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-61052'}",
           "count": 1,
           "family": "取票环节-取票异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -A82UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -A82UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-09"
         },
@@ -54535,14 +53695,6 @@
           "full": "预定失败 原因为:生单失败:Price changed please search again 反采飞猪接口",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-09"
-        },
-        {
-          "reason": "验真异常 -6GEZRV:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -6GEZRV:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-09"
         },
@@ -58110,8 +57262,8 @@
           "prev_month": "2026-05-10"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 18,
           "family": "验真环节-验真异常",
           "prev_count": 9,
@@ -58446,8 +57598,8 @@
           "prev_month": "2026-05-10"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
+          "reason": "验真异常 报错: 604 Proxy Request Failed",
+          "full": "验真异常 报错: 604 Proxy Request Failed",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -58680,8 +57832,8 @@
           "prev_month": "2026-05-10"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -62078,6 +61230,14 @@
           "prev_month": "2026-05-11"
         },
         {
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "count": 12,
+          "family": "验真环节-验真异常",
+          "prev_count": 0,
+          "prev_month": "2026-05-11"
+        },
+        {
           "reason": "预定失败 原因为:订单校验失败 不允许支付 反采同程APP",
           "full": "预定失败 原因为:订单校验失败 不允许支付 反采同程APP",
           "count": 11,
@@ -62094,8 +61254,8 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 10,
           "family": "验真环节-验真异常",
           "prev_count": 18,
@@ -62171,14 +61331,6 @@
           "count": 6,
           "family": "预定环节",
           "prev_count": 5,
-          "prev_month": "2026-05-11"
-        },
-        {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 6,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-11"
         },
         {
@@ -62566,8 +61718,8 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -45PNFS:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -45PNFS:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -62694,8 +61846,8 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -62742,14 +61894,6 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -L4N34L:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -L4N34L:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-11"
-        },
-        {
           "reason": "预定失败 原因为:@图形验证码错误 春秋官网",
           "full": "预定失败 原因为:@图形验证码错误 春秋官网",
           "count": 1,
@@ -62790,14 +61934,6 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -Q8FLPS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -Q8FLPS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-11"
-        },
-        {
           "reason": "预定失败 原因为:询价失败:未获取到价格反采同程 航班筛选异常Cannot invoke \"java.util.List.iterator()\" because...",
           "full": "预定失败 原因为:询价失败:未获取到价格反采同程 航班筛选异常Cannot invoke \"java.util.List.iterator()\" because the return value of \"com.upward.internation.ticket.entity.travel.response..getRoutings()\" is 反采同程",
           "count": 1,
@@ -62818,14 +61954,6 @@
           "full": "支付失败 原因为:code: 503 The request has failed due to a temporary failure of the server. request id: E54D6F04--5A65-AFC0-A51287328F48 请人工核实",
           "count": 1,
           "family": "支付环节-支付异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-11"
-        },
-        {
-          "reason": "验真异常 -E6YL5F:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -E6YL5F:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-11"
         },
@@ -62902,16 +62030,8 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -B6CJNV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -B6CJNV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-11"
-        },
-        {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
+          "reason": "验真异常 报错: 604 Proxy Request Failed",
+          "full": "验真异常 报错: 604 Proxy Request Failed",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -62926,8 +62046,8 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: ip异常 请重试",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: ip异常 请重试",
+          "reason": "验真异常 报错: ip异常 请重试",
+          "full": "验真异常 报错: ip异常 请重试",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -62946,14 +62066,6 @@
           "full": "预定失败 原因为:起飞到达时间不符 春秋官网",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-11"
-        },
-        {
-          "reason": "验真异常 -K97KVP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -K97KVP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-11"
         },
@@ -63046,16 +62158,8 @@
           "prev_month": "2026-05-11"
         },
         {
-          "reason": "验真异常 -N7C9TV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -N7C9TV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-11"
-        },
-        {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -66617,6 +65721,14 @@
           "prev_month": "2026-05-12"
         },
         {
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "count": 39,
+          "family": "验真环节-验真异常",
+          "prev_count": 12,
+          "prev_month": "2026-05-12"
+        },
+        {
           "reason": "预定失败 原因为:[回调消息]预订失败 人工核实: 此预订似乎是重复预订。 agoda",
           "full": "预定失败 原因为:[回调消息]预订失败 人工核实: 此预订似乎是重复预订。 agoda",
           "count": 27,
@@ -66630,14 +65742,6 @@
           "count": 26,
           "family": "系统环节-订单处理超时",
           "prev_count": 11,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 25,
-          "family": "验真环节-验真异常",
-          "prev_count": 6,
           "prev_month": "2026-05-12"
         },
         {
@@ -66681,8 +65785,8 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 14,
           "family": "验真环节-验真异常",
           "prev_count": 10,
@@ -66817,6 +65921,14 @@
           "prev_month": "2026-05-12"
         },
         {
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
+          "count": 5,
+          "family": "验真环节-验真异常",
+          "prev_count": 1,
+          "prev_month": "2026-05-12"
+        },
+        {
           "reason": "预定失败 原因为:Unexpected end of file from server 春秋官网",
           "full": "预定失败 原因为:Unexpected end of file from server 春秋官网",
           "count": 4,
@@ -66897,8 +66009,8 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -67113,14 +66225,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "count": 2,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "取票环节 原因为:For input string",
           "full": "取票环节 原因为:For input string",
           "count": 2,
@@ -67257,14 +66361,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -Y93CTS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -Y93CTS:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "apiproxy.ctrip.com",
           "full": "apiproxy.ctrip.com",
           "count": 1,
@@ -67313,14 +66409,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -W74Q6V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -W74Q6V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "apiqae.qunar.com",
           "full": "apiqae.qunar.com",
           "count": 1,
@@ -67337,26 +66425,10 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -T6M4RY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -T6M4RY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "issue card error request timeout",
           "full": "issue card error request timeout",
           "count": 1,
           "family": "支付环节-虚拟卡失败",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -Y52IPB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -Y52IPB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -67369,26 +66441,10 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -M999QP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -M999QP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 航班号或者航班时间不符 请核实后重新查询 渠道航班信息 -- 反采同程APP",
           "full": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 航班号或者航班时间不符 请核实后重新查询 渠道航班信息 -- 反采同程APP",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -K73KPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -K73KPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -67433,14 +66489,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -B8H6SP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -B8H6SP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "预定失败 原因为:[回调消息]Timeout 30000ms exceeded. =========================== logs ======...",
           "full": "预定失败 原因为:[回调消息]Timeout 30000ms exceeded. =========================== logs =========================== waiting for frame_locator(\"iframe[title=\\\"Credit Card form\\\"]\").get_by_label(\"银行名称\") ============================================================ agoda",
           "count": 1,
@@ -67453,14 +66501,6 @@
           "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 618. agoda",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -P8513C:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -P8513C:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -67625,14 +66665,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -A5NB7V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -A5NB7V:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "预定失败 原因为:用户令牌错误或用户登录已过期 MF官网",
           "full": "预定失败 原因为:用户令牌错误或用户登录已过期 MF官网",
           "count": 1,
@@ -67665,14 +66697,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -G6K9XI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -G6K9XI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Hat Yai' '': 'Bangkok'}] 'passengers': ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Hat Yai' '': 'Bangkok'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '==' 'source': 433 'fromElong': False 'merchantId': '602' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': ['_'] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-84026'}",
           "count": 1,
@@ -67689,14 +66713,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -Q96UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -Q96UFP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "预定失败 原因为:[回调消息]Timeout 50000ms exceeded. =========================== logs ======...",
           "full": "预定失败 原因为:[回调消息]Timeout 50000ms exceeded. =========================== logs =========================== waiting for locator(\"xpath=//div[text()=\\\"合计\\\"]\") to be visible ============================================================ agoda",
           "count": 1,
@@ -67705,34 +66721,10 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -P5MT6Y:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -P5MT6Y:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "支付失败 原因为:支付前校验失败/payment validation failed 请人工核实ITrave余额支付",
           "full": "支付失败 原因为:支付前校验失败/payment validation failed 请人工核实ITrave余额支付",
           "count": 1,
           "family": "支付环节-支付异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -P2CUJN:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -P2CUJN:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -B32X4A:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -B32X4A:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-12"
         },
@@ -67753,22 +66745,6 @@
           "prev_month": "2026-05-12"
         },
         {
-          "reason": "验真异常 -B6QHKF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -B6QHKF:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -5PGTMB:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -5PGTMB:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-12"
-        },
-        {
           "reason": "预定失败 原因为:您好 您在此页面停留过长 请刷新后获取最新页面。 春秋官网",
           "full": "预定失败 原因为:您好 您在此页面停留过长 请刷新后获取最新页面。 春秋官网",
           "count": 1,
@@ -67782,14 +66758,6 @@
           "count": 1,
           "family": "预定环节",
           "prev_count": 5,
-          "prev_month": "2026-05-12"
-        },
-        {
-          "reason": "验真异常 -L6NDSI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -L6NDSI:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-12"
         },
         {
@@ -71863,8 +70831,8 @@
           "prev_month": "2026-05-13"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 14,
@@ -72183,8 +71151,8 @@
           "prev_month": "2026-05-13"
         },
         {
-          "reason": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-          "full": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
+          "reason": "验真异常 报错: 获取nsk_token失败 请重试",
+          "full": "验真异常 报错: 获取nsk_token失败 请重试",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -72263,8 +71231,8 @@
           "prev_month": "2026-05-13"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 3,
@@ -75989,8 +74957,8 @@
           "prev_month": "2026-05-14"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 6,
           "family": "验真环节-验真异常",
           "prev_count": 2,
@@ -76101,8 +75069,8 @@
           "prev_month": "2026-05-14"
         },
         {
-          "reason": "验真异常 -​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 ​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 ​:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -76301,8 +75269,8 @@
           "prev_month": "2026-05-14"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -76637,8 +75605,8 @@
           "prev_month": "2026-05-14"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常",
+          "reason": "验真异常 报错: 提交行程异常",
+          "full": "验真异常 报错: 提交行程异常",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -80367,8 +79335,8 @@
           "prev_month": "2026-05-15"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 9,
           "family": "验真环节-验真异常",
           "prev_count": 6,
@@ -80447,8 +79415,8 @@
           "prev_month": "2026-05-15"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "reason": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "full": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
           "count": 6,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -80671,8 +79639,8 @@
           "prev_month": "2026-05-15"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -80831,8 +79799,8 @@
           "prev_month": "2026-05-15"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: Server disconnected without sending a response",
+          "reason": "验真异常 报错: Server disconnected without sending a response",
+          "full": "验真异常 报错: Server disconnected without sending a response",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -84803,8 +83771,8 @@
           "prev_month": "2026-05-16"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 14,
           "family": "验真环节-验真异常",
           "prev_count": 9,
@@ -85083,16 +84051,16 @@
           "prev_month": "2026-05-16"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-16"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -89017,8 +87985,8 @@
           "prev_month": "2026-05-17"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 11,
           "family": "验真环节-验真异常",
           "prev_count": 14,
@@ -89337,16 +88305,16 @@
           "prev_month": "2026-05-17"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 2,
           "prev_month": "2026-05-17"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -89577,8 +88545,8 @@
           "prev_month": "2026-05-17"
         },
         {
-          "reason": "验真异常 -H64MH7:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -H64MH7:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -93146,8 +92114,8 @@
           "prev_month": "2026-05-18"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 8,
           "family": "验真环节-验真异常",
           "prev_count": 11,
@@ -93210,8 +92178,8 @@
           "prev_month": "2026-05-18"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 5,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -93474,8 +92442,8 @@
           "prev_month": "2026-05-18"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -93490,8 +92458,8 @@
           "prev_month": "2026-05-18"
         },
         {
-          "reason": "验真异常 -Y47YHR:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -Y47YHR:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -97518,8 +96486,8 @@
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 8,
           "family": "验真环节-验真异常",
           "prev_count": 8,
@@ -97846,11 +96814,11 @@
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
           "count": 2,
           "family": "验真环节-验真异常",
-          "prev_count": 0,
+          "prev_count": 1,
           "prev_month": "2026-05-19"
         },
         {
@@ -97934,8 +96902,8 @@
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
-          "full": "验真异常 -:UO 客票验真 乘客: 报错: 获取nsk_token失败 请重试",
+          "reason": "验真异常 报错: 获取nsk_token失败 请重试",
+          "full": "验真异常 报错: 获取nsk_token失败 请重试",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -98118,8 +97086,8 @@
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -:AK 客票验真 乘客: 报错: 401",
-          "full": "验真异常 -:AK 客票验真 乘客: 报错: 401",
+          "reason": "验真异常 报错: 401",
+          "full": "验真异常 报错: 401",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -98158,16 +97126,16 @@
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -28QU45:证件号不符",
-          "full": "验真异常 -28QU45:证件号不符",
+          "reason": "验真异常",
+          "full": "验真异常",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -98190,8 +97158,8 @@
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 5,
@@ -98326,8 +97294,8 @@
           "prev_month": "2026-05-19"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -102001,8 +100969,8 @@
           "prev_month": "2026-05-20"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 13,
           "family": "验真环节-验真异常",
           "prev_count": 8,
@@ -102457,8 +101425,8 @@
           "prev_month": "2026-05-20"
         },
         {
-          "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Invalid Request",
-          "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Invalid Request",
+          "reason": "验真异常 报错: 提交行程异常:Invalid Request",
+          "full": "验真异常 报错: 提交行程异常:Invalid Request",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -102481,8 +101449,8 @@
           "prev_month": "2026-05-20"
         },
         {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 2,
@@ -102505,8 +101473,8 @@
           "prev_month": "2026-05-20"
         },
         {
-          "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
-          "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
+          "reason": "验真异常 报错: 提交行程异常:Member bookings not allowed",
+          "full": "验真异常 报错: 提交行程异常:Member bookings not allowed",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -102609,8 +101577,8 @@
           "prev_month": "2026-05-20"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -106394,6 +105362,14 @@
           "prev_month": "2026-05-21"
         },
         {
+          "reason": "验真异常 报错: 提交行程异常:OK",
+          "full": "验真异常 报错: 提交行程异常:OK",
+          "count": 18,
+          "family": "验真环节-验真异常",
+          "prev_count": 0,
+          "prev_month": "2026-05-21"
+        },
+        {
           "reason": "春秋官网 亏损大于:XXX",
           "full": "春秋官网 亏损大于:XXX",
           "count": 18,
@@ -106426,19 +105402,11 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 13,
           "family": "验真环节-验真异常",
           "prev_count": 13,
-          "prev_month": "2026-05-21"
-        },
-        {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 13,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-21"
         },
         {
@@ -106538,8 +105506,8 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 4,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -106626,8 +105594,16 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
+          "count": 2,
+          "family": "验真环节-验真异常",
+          "prev_count": 1,
+          "prev_month": "2026-05-21"
+        },
+        {
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -106674,8 +105650,8 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -106790,14 +105766,6 @@
           "full": "预定失败 原因为:没有符合设置的价格 反采同程APP",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 1,
-          "prev_month": "2026-05-21"
-        },
-        {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 1,
           "prev_month": "2026-05-21"
         },
@@ -106922,26 +105890,10 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -2ZDAEY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -2ZDAEY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-21"
-        },
-        {
           "reason": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 701. agoda",
           "full": "预定失败 原因为:[回调消息]亏损拦截！拦截金额: 701. agoda",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-21"
-        },
-        {
-          "reason": "验真异常 -4AQ2NB:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -4AQ2NB:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-21"
         },
@@ -106954,42 +105906,10 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -8GFHSG:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -8GFHSG:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-21"
-        },
-        {
-          "reason": "验真异常 -M4MEYF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -M4MEYF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-21"
-        },
-        {
-          "reason": "验真异常 -7F9929:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -7F9929:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-21"
-        },
-        {
           "reason": "预定失败 原因为:产品预订受限 航班管家接口",
           "full": "预定失败 原因为:产品预订受限 航班管家接口",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-21"
-        },
-        {
-          "reason": "验真异常 -H95EWP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -H95EWP:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-21"
         },
@@ -107114,8 +106034,8 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -:证件号不符",
-          "full": "验真异常 -:证件号不符",
+          "reason": "验真异常 证件号不符",
+          "full": "验真异常 证件号不符",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -107202,8 +106122,8 @@
           "prev_month": "2026-05-21"
         },
         {
-          "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
-          "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
+          "reason": "验真异常 报错: 提交行程异常:Member bookings not allowed",
+          "full": "验真异常 报错: 提交行程异常:Member bookings not allowed",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -110940,6 +109860,14 @@
           "prev_month": "2026-05-22"
         },
         {
+          "reason": "验真异常 报错: 提交行程异常:OK",
+          "full": "验真异常 报错: 提交行程异常:OK",
+          "count": 69,
+          "family": "验真环节-验真异常",
+          "prev_count": 18,
+          "prev_month": "2026-05-22"
+        },
+        {
           "reason": "预定失败 原因为:订单校验失败 不允许支付 反采同程APP",
           "full": "预定失败 原因为:订单校验失败 不允许支付 反采同程APP",
           "count": 59,
@@ -110961,14 +109889,6 @@
           "count": 38,
           "family": "预定环节",
           "prev_count": 16,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 38,
-          "family": "验真环节-验真异常",
-          "prev_count": 13,
           "prev_month": "2026-05-22"
         },
         {
@@ -111012,8 +109932,8 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 13,
           "family": "验真环节-验真异常",
           "prev_count": 13,
@@ -111180,6 +110100,14 @@
           "prev_month": "2026-05-22"
         },
         {
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "count": 3,
+          "family": "验真环节-验真异常",
+          "prev_count": 2,
+          "prev_month": "2026-05-22"
+        },
+        {
           "reason": "预定失败 原因为:[回调消息]Timeout 30000ms exceeded. =========================== logs ======...",
           "full": "预定失败 原因为:[回调消息]Timeout 30000ms exceeded. =========================== logs =========================== waiting for navigation until \"load\" navigated to \" ============================================================ agoda",
           "count": 3,
@@ -111268,6 +110196,14 @@
           "prev_month": "2026-05-22"
         },
         {
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
+          "count": 2,
+          "family": "验真环节-验真异常",
+          "prev_count": 2,
+          "prev_month": "2026-05-22"
+        },
+        {
           "reason": "取票环节 原因为:待出票",
           "full": "取票环节 原因为:待出票",
           "count": 2,
@@ -111324,8 +110260,8 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:nsk:Booking",
-          "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:nsk:Booking",
+          "reason": "验真异常 报错: 提交行程异常:nsk:Booking",
+          "full": "验真异常 报错: 提交行程异常:nsk:Booking",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -111492,14 +110428,6 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 1,
-          "prev_month": "2026-05-22"
-        },
-        {
           "reason": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 航班号或者航班时间不符 请核实后重新查询 渠道航班信息 9C8534-- 反采同程AP...",
           "full": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 航班号或者航班时间不符 请核实后重新查询 渠道航班信息 9C8534-- 反采同程APP",
           "count": 1,
@@ -111536,14 +110464,6 @@
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Phuket' '': 'Bangkok'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '==' 'source': 433 'fromElong': False 'merchantId': '839' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': ['_'] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-16624'}",
           "count": 1,
           "family": "取票环节-取票异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -3AX74U:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -3AX74U:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-22"
         },
@@ -111588,35 +110508,11 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -Y4QTGB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -Y4QTGB:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
           "reason": "预定失败 原因为:扣款请求交易加锁失败 同一笔交易不能同时并发执行 反采同程APP",
           "full": "预定失败 原因为:扣款请求交易加锁失败 同一笔交易不能同时并发执行 反采同程APP",
           "count": 1,
           "family": "预定环节",
           "prev_count": 4,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -2YVR3S:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -2YVR3S:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -U78X9F:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -U78X9F:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-22"
         },
         {
@@ -111660,14 +110556,6 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -G25CZ4:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -G25CZ4:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
           "reason": "预定失败 原因为:乘客被国家机关列入失信人名单 暂时无法预订机票 若已解除失信人限制 请联系客服 反采同程APP",
           "full": "预定失败 原因为:乘客被国家机关列入失信人名单 暂时无法预订机票 若已解除失信人限制 请联系客服 反采同程APP",
           "count": 1,
@@ -111700,22 +110588,6 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -H9TGJP:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -H9TGJP:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -7K5VF3:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -7K5VF3:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
           "reason": "预定失败 原因为:[回调消息]Timeout 30000ms exceeded. =========================== logs ======...",
           "full": "预定失败 原因为:[回调消息]Timeout 30000ms exceeded. =========================== logs =========================== waiting for frame_locator(\"iframe[title=\\\"Credit Card form\\\"]\").get_by_label(\"银行名称\") ============================================================ agoda",
           "count": 1,
@@ -111724,56 +110596,8 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -77Q5JF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -77Q5JF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -Z4C6UE:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -Z4C6UE:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -R3NVGY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -R3NVGY:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -U2HTJF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -U2HTJF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -K3S6KH:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -K3S6KH:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -Z2WBRU:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -Z2WBRU:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -Z9JATJ:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
-          "full": "验真异常 -Z9JATJ:VJ 客票验真 乘客: 报错: 604 Proxy Request Failed",
+          "reason": "验真异常 报错: 604 Proxy Request Failed",
+          "full": "验真异常 报错: 604 Proxy Request Failed",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -111788,42 +110612,10 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -7D3PZ8:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -7D3PZ8:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -N72DD2:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -N72DD2:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
           "reason": "预定失败 原因为:请填写正确的护照号码 春秋官网",
           "full": "预定失败 原因为:请填写正确的护照号码 春秋官网",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -N7XG2D:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -N7XG2D:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -4A2W2N:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -4A2W2N:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-22"
         },
@@ -111836,42 +110628,10 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -3M5DDM:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -3M5DDM:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
           "reason": "预定失败 原因为:业务异常 - 验证已超时 请重新点击验证 九元官网",
           "full": "预定失败 原因为:业务异常 - 验证已超时 请重新点击验证 九元官网",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -98SAAN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -98SAAN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -4NYVTF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -4NYVTF:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -8J4Q7P:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -8J4Q7P:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-22"
         },
@@ -111892,35 +110652,11 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
-          "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Member bookings not allowed",
+          "reason": "验真异常 报错: 提交行程异常:Member bookings not allowed",
+          "full": "验真异常 报错: 提交行程异常:Member bookings not allowed",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -U4ZYTT:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -U4ZYTT:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -7HMASN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -7HMASN:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -G92CWV:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -G92CWV:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-22"
         },
         {
@@ -111932,99 +110668,11 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -R65B98:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -R65B98:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -8RY9Q8:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -8RY9Q8:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -6F73BC:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -6F73BC:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -8QD6EJ:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -8QD6EJ:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -Y6P6K9:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -Y6P6K9:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -M2A5SS:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -M2A5SS:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
           "reason": "预定失败 原因为:[回调消息]支付失败 考虑银行卡问题 人工核实: 支付未完成 agoda",
           "full": "预定失败 原因为:[回调消息]支付失败 考虑银行卡问题 人工核实: 支付未完成 agoda",
           "count": 1,
           "family": "预定环节",
           "prev_count": 1,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -744Q66:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -744Q66:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -9ETRP5:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -9ETRP5:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -2AG64C:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -2AG64C:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -E6QS6A:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -E6QS6A:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-22"
-        },
-        {
-          "reason": "验真异常 -3VUUUE:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "full": "验真异常 -3VUUUE:VJ 客票验真 乘客: 报错: 提交行程异常:OK",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-22"
         },
         {
@@ -112068,8 +110716,8 @@
           "prev_month": "2026-05-22"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 4,
@@ -115521,8 +114169,8 @@
           "prev_month": "2026-05-23"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 6,
           "family": "验真环节-验真异常",
           "prev_count": 13,
@@ -115569,8 +114217,8 @@
           "prev_month": "2026-05-23"
         },
         {
-          "reason": "验真异常 -731-:MF 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -731-:MF 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 4,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -115945,11 +114593,11 @@
           "prev_month": "2026-05-23"
         },
         {
-          "reason": "验真异常 -W947US:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -W947US:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
           "count": 1,
           "family": "验真环节-验真异常",
-          "prev_count": 0,
+          "prev_count": 3,
           "prev_month": "2026-05-23"
         },
         {
@@ -116081,8 +114729,8 @@
           "prev_month": "2026-05-23"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -119640,8 +118288,8 @@
           "prev_month": "2026-05-24"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 7,
           "family": "验真环节-验真异常",
           "prev_count": 6,
@@ -119776,11 +118424,27 @@
           "prev_month": "2026-05-24"
         },
         {
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "count": 3,
+          "family": "验真环节-验真异常",
+          "prev_count": 1,
+          "prev_month": "2026-05-24"
+        },
+        {
           "reason": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 该渠道暂不支持此证件类型 反采同程APP",
           "full": "预定失败 原因为:询价失败:未获取到价格反采同程APP 反采同程询价异常 该渠道暂不支持此证件类型 反采同程APP",
           "count": 3,
           "family": "预定环节",
           "prev_count": 1,
+          "prev_month": "2026-05-24"
+        },
+        {
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
+          "count": 3,
+          "family": "验真环节-验真异常",
+          "prev_count": 0,
           "prev_month": "2026-05-24"
         },
         {
@@ -119877,14 +118541,6 @@
           "count": 2,
           "family": "人工环节-重复订单",
           "prev_count": 5,
-          "prev_month": "2026-05-24"
-        },
-        {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 2,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
           "prev_month": "2026-05-24"
         },
         {
@@ -120016,8 +118672,8 @@
           "prev_month": "2026-05-24"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -120056,11 +118712,11 @@
           "prev_month": "2026-05-24"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 1,
           "family": "验真环节-验真异常",
-          "prev_count": 0,
+          "prev_count": 4,
           "prev_month": "2026-05-24"
         },
         {
@@ -120136,8 +118792,8 @@
           "prev_month": "2026-05-24"
         },
         {
-          "reason": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Failed Attempt Exceeded",
-          "full": "验真异常 -:RA 客票验真 乘客: 报错: 提交行程异常:Failed Attempt Exceeded",
+          "reason": "验真异常 报错: 提交行程异常:Failed Attempt Exceeded",
+          "full": "验真异常 报错: 提交行程异常:Failed Attempt Exceeded",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -120232,14 +118888,6 @@
           "prev_month": "2026-05-24"
         },
         {
-          "reason": "验真异常 -B5NWWY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -B5NWWY:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-24"
-        },
-        {
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers':...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': 'aaX6QDySI+VGlHEzGdBEpw==' 'source': 433 'fromElong': False 'merchantId': '277' 'shareId': 'aaX6QDySI+Xvkq0K65+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': '机票需按序使用 可能存在无法单程退改 具体规则以航司审核为准' '': ['退款金额有问题怎么办' '退款什么时候到账' '退票后机票可以恢复吗'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': True 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-42273'}",
           "count": 1,
@@ -120328,22 +118976,6 @@
           "prev_month": "2026-05-24"
         },
         {
-          "reason": "验真异常 -E8QAQS:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -E8QAQS:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-24"
-        },
-        {
-          "reason": "验真异常 -5S6KZ3:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -5S6KZ3:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 0,
-          "prev_month": "2026-05-24"
-        },
-        {
           "reason": "支付失败 原因为:自动扫码未成功 请人工核实支付宝0906",
           "full": "支付失败 原因为:自动扫码未成功 请人工核实支付宝0906",
           "count": 1,
@@ -120356,14 +118988,6 @@
           "full": "预定失败 原因为:扣款请求交易加锁失败 同一笔交易不能同时并发执行 反采同程APP",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-24"
-        },
-        {
-          "reason": "验真异常 -G8UZ9G:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -G8UZ9G:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-24"
         },
@@ -124127,8 +122751,8 @@
           "prev_month": "2026-05-25"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 11,
           "family": "验真环节-验真异常",
           "prev_count": 7,
@@ -124383,8 +123007,8 @@
           "prev_month": "2026-05-25"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -124591,11 +123215,11 @@
           "prev_month": "2026-05-25"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 1,
           "family": "验真环节-验真异常",
-          "prev_count": 0,
+          "prev_count": 3,
           "prev_month": "2026-05-25"
         },
         {
@@ -124823,8 +123447,8 @@
           "prev_month": "2026-05-25"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -125023,8 +123647,8 @@
           "prev_month": "2026-05-25"
         },
         {
-          "reason": "验真异常 -4FZP64:VJ 客票验真 乘客: 报错: 未解析的错误",
-          "full": "验真异常 -4FZP64:VJ 客票验真 乘客: 报错: 未解析的错误",
+          "reason": "验真异常 报错: 未解析的错误",
+          "full": "验真异常 报错: 未解析的错误",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -125071,11 +123695,11 @@
           "prev_month": "2026-05-25"
         },
         {
-          "reason": "验真异常 -O7YBPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -O7YBPV:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
           "count": 1,
           "family": "验真环节-验真异常",
-          "prev_count": 0,
+          "prev_count": 3,
           "prev_month": "2026-05-25"
         },
         {
@@ -128798,8 +127422,8 @@
           "prev_month": "2026-05-26"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 15,
           "family": "验真环节-验真异常",
           "prev_count": 11,
@@ -128910,8 +127534,8 @@
           "prev_month": "2026-05-26"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "reason": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "full": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
           "count": 5,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -129086,8 +127710,8 @@
           "prev_month": "2026-05-26"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -129150,8 +127774,8 @@
           "prev_month": "2026-05-26"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -129566,8 +128190,8 @@
           "prev_month": "2026-05-26"
         },
         {
-          "reason": "验真异常 -:航班号不符",
-          "full": "验真异常 -:航班号不符",
+          "reason": "验真异常 航班号不符",
+          "full": "验真异常 航班号不符",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -129614,16 +128238,16 @@
           "prev_month": "2026-05-26"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜...",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "reason": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
+          "full": "验真异常 报错: 提醒：儿童必须与至少一位成人一同办理值机。如果您已为您的孩子申请未成年旅客（ Minor）服务 请在机场柜台办理登机手续",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
           "prev_month": "2026-05-26"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
+          "reason": "验真异常 报错: 9C行李额查询失败",
+          "full": "验真异常 报错: 9C行李额查询失败",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -133322,8 +131946,8 @@
           "prev_month": "2026-05-27"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 11,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -133394,8 +132018,8 @@
           "prev_month": "2026-05-27"
         },
         {
-          "reason": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
-          "full": "验真异常 -:TR 客票验真 乘客: 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "reason": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
+          "full": "验真异常 报错: 查询行程异常:该订单不存在或请输入正确的预订编码及电子邮箱",
           "count": 6,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -133610,8 +132234,8 @@
           "prev_month": "2026-05-27"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 2,
           "family": "验真环节-验真异常",
           "prev_count": 15,
@@ -133810,8 +132434,8 @@
           "prev_month": "2026-05-27"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 3,
@@ -134218,8 +132842,8 @@
           "prev_month": "2026-05-27"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 2,
@@ -134258,8 +132882,8 @@
           "prev_month": "2026-05-27"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "reason": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "full": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 5,
@@ -137832,8 +136456,8 @@
           "prev_month": "2026-05-28"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 6,
           "family": "验真环节-验真异常",
           "prev_count": 2,
@@ -138184,8 +136808,8 @@
           "prev_month": "2026-05-28"
         },
         {
-          "reason": "验真异常 -851-:航班信息或乘客姓名不符",
-          "full": "验真异常 -851-:航班信息或乘客姓名不符",
+          "reason": "验真异常 航班信息或乘客姓名不符",
+          "full": "验真异常 航班信息或乘客姓名不符",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -138384,8 +137008,8 @@
           "prev_month": "2026-05-28"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -142321,8 +140945,8 @@
           "prev_month": "2026-05-29"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -142353,8 +140977,8 @@
           "prev_month": "2026-05-29"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "reason": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
+          "full": "验真异常 报错: 系统维护中 感谢耐心等待 给您造成的不便敬请谅解",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -142366,6 +140990,14 @@
           "count": 2,
           "family": "预定环节",
           "prev_count": 3,
+          "prev_month": "2026-05-29"
+        },
+        {
+          "reason": "验真异常 报错:",
+          "full": "验真异常 报错:",
+          "count": 2,
+          "family": "验真环节-验真异常",
+          "prev_count": 1,
           "prev_month": "2026-05-29"
         },
         {
@@ -142553,14 +141185,6 @@
           "prev_month": "2026-05-29"
         },
         {
-          "reason": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
-          "prev_count": 1,
-          "prev_month": "2026-05-29"
-        },
-        {
           "reason": "支付失败 原因为:自动扫码未成功 请人工核实支付宝4617",
           "full": "支付失败 原因为:自动扫码未成功 请人工核实支付宝4617",
           "count": 1,
@@ -142661,14 +141285,6 @@
           "full": "预定失败 原因为:生单失败:External supply error please try again later 反采飞猪接口",
           "count": 1,
           "family": "预定环节",
-          "prev_count": 0,
-          "prev_month": "2026-05-29"
-        },
-        {
-          "reason": "验真异常 -Z6K826:VJ 客票验真 乘客: 报错",
-          "full": "验真异常 -Z6K826:VJ 客票验真 乘客: 报错",
-          "count": 1,
-          "family": "验真环节-验真异常",
           "prev_count": 0,
           "prev_month": "2026-05-29"
         },
@@ -142825,8 +141441,8 @@
           "prev_month": "2026-05-29"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 6,
@@ -146658,8 +145274,8 @@
           "prev_month": "2026-05-30"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 9C行李额查询失败",
+          "reason": "验真异常 报错: 9C行李额查询失败",
+          "full": "验真异常 报错: 9C行李额查询失败",
           "count": 4,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -146682,8 +145298,8 @@
           "prev_month": "2026-05-30"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: 抱歉 未找到机票信息",
+          "reason": "验真异常 报错: 抱歉 未找到机票信息",
+          "full": "验真异常 报错: 抱歉 未找到机票信息",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -146978,8 +145594,8 @@
           "prev_month": "2026-05-30"
         },
         {
-          "reason": "验真异常 -2937FP:证件号不符",
-          "full": "验真异常 -2937FP:证件号不符",
+          "reason": "验真异常",
+          "full": "验真异常",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -147034,8 +145650,8 @@
           "prev_month": "2026-05-30"
         },
         {
-          "reason": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
-          "full": "验真异常 -851-:HX 客票验真 乘客: 报错: 未知错误",
+          "reason": "验真异常 报错: 未知错误",
+          "full": "验真异常 报错: 未知错误",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -147058,8 +145674,8 @@
           "prev_month": "2026-05-30"
         },
         {
-          "reason": "验真异常 -:航班号不符",
-          "full": "验真异常 -:航班号不符",
+          "reason": "验真异常 航班号不符",
+          "full": "验真异常 航班号不符",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
@@ -147138,8 +145754,8 @@
           "prev_month": "2026-05-30"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 3,
@@ -150701,8 +149317,8 @@
           "prev_month": "2026-05-31"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: : Connection refused",
+          "reason": "验真异常 报错: : Connection refused",
+          "full": "验真异常 报错: : Connection refused",
           "count": 3,
           "family": "验真环节-验真异常",
           "prev_count": 1,
@@ -150933,8 +149549,8 @@
           "prev_month": "2026-05-31"
         },
         {
-          "reason": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
-          "full": "验真异常 -:9C 客票验真 乘客: 报错: Read timed out",
+          "reason": "验真异常 报错: Read timed out",
+          "full": "验真异常 报错: Read timed out",
           "count": 1,
           "family": "验真环节-验真异常",
           "prev_count": 0,
