@@ -1987,7 +1987,7 @@ function renderChannel() {
         value: [c.tt.p50, c.tt.p90],
         tt: c.tt, A: c.A, total: c.total,
       })),
-      symbolSize: d => Math.max(20, Math.min(80, Math.sqrt(d.tt.n) / 4)),
+      symbolSize: (val, params) => Math.max(20, Math.min(80, Math.sqrt(params.data.tt.n) / 4)),
       itemStyle: { opacity: 0.75 },
       label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
               formatter: p => p.data.channel },
