@@ -3942,7 +3942,7 @@
       "reason": "同程ITravel解析乘客信息异常证件有效期解析异常",
       "full": "同程ITravel解析乘客信息异常证件有效期解析异常",
       "count": 17,
-      "family": "其他环节-兜底",
+      "family": "预定环节",
       "prev_count": 0,
       "prev_month": null
     },
@@ -11280,7 +11280,7 @@
   "fail_families_B": [
     {
       "family": "预定环节",
-      "count": 9221
+      "count": 9238
     },
     {
       "family": "取票环节",
@@ -11300,7 +11300,7 @@
     },
     {
       "family": "其他环节",
-      "count": 712
+      "count": 695
     },
     {
       "family": "验真环节",
@@ -129073,7 +129073,7 @@
           "reason": "同程ITravel解析乘客信息异常证件有效期解析异常",
           "full": "同程ITravel解析乘客信息异常证件有效期解析异常",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "预定环节",
           "prev_count": 0,
           "prev_month": "2026-05-26"
         },
@@ -129811,11 +129811,11 @@
       "fail_families_B": [
         {
           "family": "预定环节",
-          "count": 487
+          "count": 490
         },
         {
           "family": "其他环节",
-          "count": 47
+          "count": 44
         },
         {
           "family": "人工环节",
@@ -146509,7 +146509,7 @@
           "reason": "同程ITravel解析乘客信息异常证件有效期解析异常",
           "full": "同程ITravel解析乘客信息异常证件有效期解析异常",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "预定环节",
           "prev_count": 0,
           "prev_month": "2026-05-30"
         },
@@ -147295,7 +147295,7 @@
       "fail_families_B": [
         {
           "family": "预定环节",
-          "count": 340
+          "count": 346
         },
         {
           "family": "取票环节",
@@ -147314,12 +147314,12 @@
           "count": 24
         },
         {
-          "family": "其他环节",
-          "count": 12
-        },
-        {
           "family": "验真环节",
           "count": 11
+        },
+        {
+          "family": "其他环节",
+          "count": 6
         },
         {
           "family": "回填环节",
@@ -150536,7 +150536,7 @@
           "reason": "同程ITravel解析乘客信息异常证件有效期解析异常",
           "full": "同程ITravel解析乘客信息异常证件有效期解析异常",
           "count": 8,
-          "family": "其他环节-兜底",
+          "family": "预定环节",
           "prev_count": 6,
           "prev_month": "2026-05-31"
         },
@@ -151186,7 +151186,7 @@
       "fail_families_B": [
         {
           "family": "预定环节",
-          "count": 322
+          "count": 330
         },
         {
           "family": "取票环节",
@@ -151206,7 +151206,7 @@
         },
         {
           "family": "其他环节",
-          "count": 15
+          "count": 7
         },
         {
           "family": "系统环节",
