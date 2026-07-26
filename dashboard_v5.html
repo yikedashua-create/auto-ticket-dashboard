@@ -2679,6 +2679,49 @@ function renderFailureAnalysis() {
     return `<div style="display:flex;flex-wrap:wrap;margin-bottom:12px">${cells}</div>`;
   };
 
+  // 3.5 失败子分类明细（2026-07-26 新增）
+  //   - 8 大环节汇总 + 9 大环节族级表都只显示"环节"维度，看不到"亏损过大/利润过大/未匹配规则"等子分类
+  //   - 这里是子分类层级：按 r.family 聚合（"预定环节-亏损过大-反采同程"等）→ 按 8 大环节分组展示
+  //   - 数据源：fail_reasons_B/D（每个 reason 自带完整 family 字段）
+  const subFamByStage = (reasons) => {
+    const map = {};
+    reasons.forEach(r => {
+      const full = r.family || "其他环节";
+      const stage = full.split("-")[0];
+      if (!map[stage]) map[stage] = {};
+      map[stage][full] = (map[stage][full] || 0) + r.count;
+    });
+    return Object.entries(map).map(([stage, fams]) => {
+      const arr = Object.entries(fams)
+        .map(([family, count]) => ({family, count}))
+        .sort((a, b) => b.count - a.count);
+      return {stage, total: arr.reduce((s, x) => s + x.count, 0), families: arr};
+    }).sort((a, b) => b.total - a.total);
+  };
+  const subFamB = subFamByStage(curFailReasonsB || []);
+  const subFamD = subFamByStage(curFailReasonsD || []);
+  const subFamHtml = (subFamData, total) => {
+    if (!subFamData.length) return "";
+    return subFamData.map(({stage, total: stageTotal, families}) => {
+      const color = getStageColor(stage);
+      return `<div style="background:#0a1929;border-left:3px solid ${color};padding:8px 10px;margin-bottom:6px;border-radius:3px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <strong style="color:${color}">${escapeHtml(stage)}</strong>
+          <span style="color:#7a8ba0;font-size:11px">${fmt.num(stageTotal)} 单 / 占总 ${fmt.pct(stageTotal / total * 100)}</span>
+        </div>
+        <table style="width:100%;font-size:12px;border-collapse:collapse">
+          ${families.map(f => `
+            <tr style="border-bottom:1px solid #1e3a5f">
+              <td style="padding:3px 0;color:#cfd8e3">${escapeHtml(f.family)}</td>
+              <td style="padding:3px 0;text-align:right;color:#00e5ff;width:80px">${fmt.num(f.count)}</td>
+              <td style="padding:3px 0;text-align:right;color:#7a8ba0;width:60px;font-size:11px">${fmt.pct(f.count / total * 100)}</td>
+            </tr>
+          `).join('')}
+        </table>
+      </div>`;
+    }).join('');
+  };
+
   const cmpBHdr = cs
     ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：B ${fmt.num(cs.summary.B)} 单</span>`
     : "";
@@ -2710,6 +2753,10 @@ function renderFailureAnalysis() {
           <tbody id="bFamilyTbody">${bFamilies.map(bFamilyRow).join("")}</tbody>
         </table>
       </div>
+      <div class="chart-box" style="margin-top:14px">
+        <div class="chart-title">📑 B 路径 失败子分类明细（按 8 大环节分组 · 含亏损/利润/未匹配规则等子分类）</div>
+        ${subFamHtml(subFamB, curSummaryB)}
+      </div>
     </div>
 
     <div class="section">
@@ -2730,6 +2777,10 @@ function renderFailureAnalysis() {
           </thead>
           <tbody id="dFamilyTbody">${dFamilies.map(dFamilyRow).join("")}</tbody>
         </table>
+      </div>
+      <div class="chart-box" style="margin-top:14px">
+        <div class="chart-title">📑 D 路径 失败子分类明细（按 8 大环节分组）</div>
+        ${subFamHtml(subFamD, curSummaryD)}
       </div>
     </div>
   `;
@@ -2801,7 +2852,8 @@ function toggleExpandFamily() {
   const families = path === "B" ? (CURRENT_FAIL_FAMILIES_B || []) : (CURRENT_FAIL_FAMILIES_D || []);
   const allReasons = path === "B" ? (CURRENT_FAIL_REASONS_B || []) : (CURRENT_FAIL_REASONS_D || []);
   const fam = families[famIdx];
-  const reasons = allReasons.filter(r => r.family === fam.family);
+  // 2026-07-26 修复：按环节前缀匹配 (r.family.split("-")[0] === fam.family)
+  const reasons = allReasons.filter(r => (r.family || "").split("-")[0] === fam.family);
   panel.innerHTML = renderFamilyReasonRows(reasons, allReasons, path, fam, currentFamilyExpanded);
 }
 
@@ -2821,8 +2873,11 @@ function toggleFamilyDrill(path, famIdx, rowEl) {
   currentFamilyKey = key;
   currentFamilyExpanded = false; // 默认折叠状态
 
-  // v12 优化：直接读 r.family（后端预计算好的），不再每次调 getFamily
-  const reasons = allReasons.filter(r => r.family === fam.family);
+  // 2026-07-26 修复：fam.family 是 get_stage_only 输出（8 大环节，不带子分类），
+  //   r.family 是完整族名（带 "-子分类"），直接 r.family === fam.family 永远 False
+  //   要按"环节前缀"匹配：r.family.split("-")[0] === fam.family
+  //   例：点"预定环节"族行 → 找 r.family.startsWith("预定环节-") 的所有 reason
+  const reasons = allReasons.filter(r => (r.family || "").split("-")[0] === fam.family);
 
   // 在族行下方插入二级面板
   const colspan = 5;
