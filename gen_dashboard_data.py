@@ -1592,6 +1592,14 @@ def build_month_data(df, month_label):
     channel = []
     if "采购渠道" in df.columns:
         df["_channel"] = df["采购渠道"].fillna("").astype(str).str.strip()
+        # 2026-07-26: 出票时长预计算 (A 路径 + 同时有支付时间/票号时间 + diff > 0)
+        # 口径: 上一次获取票号时间 - 支付时间 (分钟)
+        if "支付时间" in df.columns and "上一次获取票号时间" in df.columns:
+            _pay = pd.to_datetime(df["支付时间"], errors="coerce")
+            _ticket = pd.to_datetime(df["上一次获取票号时间"], errors="coerce")
+            df["_ticket_min"] = (_ticket - _pay).dt.total_seconds() / 60
+        else:
+            df["_ticket_min"] = float("nan")
         for ch, g in df.groupby("_channel"):
             if not ch:
                 continue
@@ -1603,6 +1611,20 @@ def build_month_data(df, month_label):
             p = safe_num(g["利润"])
             psum = float(p.sum()) if len(p) else 0
             pavg = float(p.mean()) if len(p) else 0
+            # 出票时长 (A 路径 only, 排除负值/缺失)
+            gA = g[g["path"] == "A"]
+            t = gA["_ticket_min"].dropna()
+            t = t[(t >= 0) & (t < 10000)]  # 排除负值/超大异常 (>7天算数据错误)
+            tt = {}
+            if len(t) >= 5:  # 样本太少不展示
+                tt = {
+                    "n": int(len(t)),
+                    "p50": round(float(t.quantile(0.5)), 2),
+                    "p90": round(float(t.quantile(0.9)), 2),
+                    "p99": round(float(t.quantile(0.99)), 2),
+                    "avg": round(float(t.mean()), 2),
+                    "abnormal_rate": round(float((t > 30).sum()) / len(t) * 100, 2),
+                }
             channel.append({
                 "channel": ch, "total": n,
                 "A": a, "B": b, "C": c, "D": d,
@@ -1610,6 +1632,7 @@ def build_month_data(df, month_label):
                 "auto_succ_rate": round(a/(a+b)*100, 2) if (a+b) else 0,
                 "profit_sum": round(psum, 2),
                 "avg_profit": round(pavg, 2),
+                "ticket_time": tt,
             })
         channel.sort(key=lambda x: -x["total"])
     out["channel"] = channel

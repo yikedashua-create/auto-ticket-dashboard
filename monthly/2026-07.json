@@ -2079,7 +2079,8 @@
       "auto_coverage_rate": 98.64,
       "auto_succ_rate": 83.3,
       "profit_sum": -294962.51,
-      "avg_profit": -18.48
+      "avg_profit": -18.48,
+      "ticket_time": {}
     },
     {
       "channel": "反采同程",
@@ -2091,7 +2092,15 @@
       "auto_coverage_rate": 99.03,
       "auto_succ_rate": 92.85,
       "profit_sum": -28932.56,
-      "avg_profit": -2.18
+      "avg_profit": -2.18,
+      "ticket_time": {
+        "n": 12068,
+        "p50": 0.25,
+        "p90": 10.92,
+        "p99": 102.77,
+        "avg": 8.43,
+        "abnormal_rate": 4.81
+      }
     },
     {
       "channel": "反采同程ITravel",
@@ -2103,7 +2112,15 @@
       "auto_coverage_rate": 94.04,
       "auto_succ_rate": 72.46,
       "profit_sum": -1574.23,
-      "avg_profit": -0.14
+      "avg_profit": -0.14,
+      "ticket_time": {
+        "n": 7868,
+        "p50": 0.03,
+        "p90": 25.05,
+        "p99": 567.15,
+        "avg": 21.8,
+        "abnormal_rate": 8.55
+      }
     },
     {
       "channel": "反采飞猪接口",
@@ -2115,7 +2132,15 @@
       "auto_coverage_rate": 97.51,
       "auto_succ_rate": 88.26,
       "profit_sum": -28689.79,
-      "avg_profit": -3.69
+      "avg_profit": -3.69,
+      "ticket_time": {
+        "n": 6759,
+        "p50": 0.2,
+        "p90": 25.42,
+        "p99": 378.59,
+        "avg": 12.07,
+        "abnormal_rate": 5.34
+      }
     },
     {
       "channel": "booking",
@@ -2127,7 +2152,15 @@
       "auto_coverage_rate": 86.14,
       "auto_succ_rate": 67.94,
       "profit_sum": 159373.89,
-      "avg_profit": 27.78
+      "avg_profit": 27.78,
+      "ticket_time": {
+        "n": 1250,
+        "p50": 0.23,
+        "p90": 0.57,
+        "p99": 40.83,
+        "avg": 2.98,
+        "abnormal_rate": 2.32
+      }
     },
     {
       "channel": "航班管家接口",
@@ -2139,7 +2172,15 @@
       "auto_coverage_rate": 96.34,
       "auto_succ_rate": 72.38,
       "profit_sum": -107623.89,
-      "avg_profit": -21.43
+      "avg_profit": -21.43,
+      "ticket_time": {
+        "n": 3523,
+        "p50": 0.98,
+        "p90": 1.38,
+        "p99": 1.48,
+        "avg": 0.94,
+        "abnormal_rate": 0.0
+      }
     },
     {
       "channel": "bookingKayak",
@@ -2151,7 +2192,15 @@
       "auto_coverage_rate": 86.6,
       "auto_succ_rate": 58.86,
       "profit_sum": 53096.18,
-      "avg_profit": 13.94
+      "avg_profit": 13.94,
+      "ticket_time": {
+        "n": 1380,
+        "p50": 0.23,
+        "p90": 0.55,
+        "p99": 24.93,
+        "avg": 2.66,
+        "abnormal_rate": 1.01
+      }
     },
     {
       "channel": "MF官网",
@@ -2163,7 +2212,15 @@
       "auto_coverage_rate": 95.41,
       "auto_succ_rate": 1.92,
       "profit_sum": -45115.36,
-      "avg_profit": -52.4
+      "avg_profit": -52.4,
+      "ticket_time": {
+        "n": 6,
+        "p50": 13.73,
+        "p90": 46.88,
+        "p99": 50.98,
+        "avg": 20.34,
+        "abnormal_rate": 33.33
+      }
     },
     {
       "channel": "香港港版APP",
@@ -2175,7 +2232,15 @@
       "auto_coverage_rate": 98.94,
       "auto_succ_rate": 62.37,
       "profit_sum": -12489.58,
-      "avg_profit": -33.31
+      "avg_profit": -33.31,
+      "ticket_time": {
+        "n": 5,
+        "p50": 0.75,
+        "p90": 0.82,
+        "p99": 0.83,
+        "avg": 0.73,
+        "abnormal_rate": 0.0
+      }
     },
     {
       "channel": "MM乐桃官网",
@@ -2187,7 +2252,8 @@
       "auto_coverage_rate": 79.95,
       "auto_succ_rate": 0.0,
       "profit_sum": 9509.4,
-      "avg_profit": 26.12
+      "avg_profit": 26.12,
+      "ticket_time": {}
     },
     {
       "channel": "反采携程海外",
@@ -2199,7 +2265,8 @@
       "auto_coverage_rate": 6.69,
       "auto_succ_rate": 0.0,
       "profit_sum": 17309.35,
-      "avg_profit": 55.48
+      "avg_profit": 55.48,
+      "ticket_time": {}
     },
     {
       "channel": "瑞安官网",
@@ -2211,7 +2278,8 @@
       "auto_coverage_rate": 30.6,
       "auto_succ_rate": 4.88,
       "profit_sum": -4168.41,
-      "avg_profit": -31.82
+      "avg_profit": -31.82,
+      "ticket_time": {}
     },
     {
       "channel": "TRwx",
@@ -2223,7 +2291,8 @@
       "auto_coverage_rate": 91.47,
       "auto_succ_rate": 0.0,
       "profit_sum": 100.94,
-      "avg_profit": 0.79
+      "avg_profit": 0.79,
+      "ticket_time": {}
     },
     {
       "channel": "OD官网",
@@ -2235,7 +2304,8 @@
       "auto_coverage_rate": 71.25,
       "auto_succ_rate": 3.51,
       "profit_sum": -7546.1,
-      "avg_profit": -94.33
+      "avg_profit": -94.33,
+      "ticket_time": {}
     },
     {
       "channel": "九元官网",
@@ -2247,7 +2317,8 @@
       "auto_coverage_rate": 81.01,
       "auto_succ_rate": 6.25,
       "profit_sum": -963.01,
-      "avg_profit": -13.19
+      "avg_profit": -13.19,
+      "ticket_time": {}
     },
     {
       "channel": "OD峇迪B2B",
@@ -2259,7 +2330,8 @@
       "auto_coverage_rate": 48.57,
       "auto_succ_rate": 11.76,
       "profit_sum": -7338.68,
-      "avg_profit": -106.36
+      "avg_profit": -106.36,
+      "ticket_time": {}
     },
     {
       "channel": "反采携程",
@@ -2271,7 +2343,8 @@
       "auto_coverage_rate": 77.94,
       "auto_succ_rate": 0.0,
       "profit_sum": -5179.4,
-      "avg_profit": -76.17
+      "avg_profit": -76.17,
+      "ticket_time": {}
     },
     {
       "channel": "bookcabin官网",
@@ -2283,7 +2356,8 @@
       "auto_coverage_rate": 85.37,
       "auto_succ_rate": 5.71,
       "profit_sum": -5799.15,
-      "avg_profit": -141.44
+      "avg_profit": -141.44,
+      "ticket_time": {}
     },
     {
       "channel": "BX釜山航空",
@@ -2295,7 +2369,8 @@
       "auto_coverage_rate": 12.82,
       "auto_succ_rate": 20.0,
       "profit_sum": -1097.06,
-      "avg_profit": -28.13
+      "avg_profit": -28.13,
+      "ticket_time": {}
     },
     {
       "channel": "MM乐桃B2B",
@@ -2307,7 +2382,8 @@
       "auto_coverage_rate": 14.81,
       "auto_succ_rate": 0.0,
       "profit_sum": -779.08,
-      "avg_profit": -28.85
+      "avg_profit": -28.85,
+      "ticket_time": {}
     },
     {
       "channel": "Atlas",
@@ -2319,7 +2395,8 @@
       "auto_coverage_rate": 62.5,
       "auto_succ_rate": 0.0,
       "profit_sum": -852.33,
-      "avg_profit": -142.05
+      "avg_profit": -142.05,
+      "ticket_time": {}
     },
     {
       "channel": "KR柬埔寨B2B",
@@ -2331,7 +2408,8 @@
       "auto_coverage_rate": 0.0,
       "auto_succ_rate": 0,
       "profit_sum": -216.7,
-      "avg_profit": -15.48
+      "avg_profit": -15.48,
+      "ticket_time": {}
     },
     {
       "channel": "VF捷特航空官网",
@@ -2343,7 +2421,8 @@
       "auto_coverage_rate": 14.29,
       "auto_succ_rate": 0.0,
       "profit_sum": 1687.64,
-      "avg_profit": 120.55
+      "avg_profit": 120.55,
+      "ticket_time": {}
     },
     {
       "channel": "F9边疆官网",
@@ -2355,7 +2434,8 @@
       "auto_coverage_rate": 0.0,
       "auto_succ_rate": 0,
       "profit_sum": 100.44,
-      "avg_profit": 10.04
+      "avg_profit": 10.04,
+      "ticket_time": {}
     },
     {
       "channel": "FYAPP",
@@ -2367,7 +2447,8 @@
       "auto_coverage_rate": 0.0,
       "auto_succ_rate": 0,
       "profit_sum": -785.64,
-      "avg_profit": -196.41
+      "avg_profit": -196.41,
+      "ticket_time": {}
     },
     {
       "channel": "反采去哪儿官网",
@@ -2379,7 +2460,8 @@
       "auto_coverage_rate": 75.0,
       "auto_succ_rate": 0.0,
       "profit_sum": -291.0,
-      "avg_profit": -72.75
+      "avg_profit": -72.75,
+      "ticket_time": {}
     },
     {
       "channel": "MF厦门航空B2B",
@@ -2391,7 +2473,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": -172.56,
-      "avg_profit": -57.52
+      "avg_profit": -57.52,
+      "ticket_time": {}
     },
     {
       "channel": "反采同程APP",
@@ -2403,7 +2486,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": 334.0,
-      "avg_profit": 111.33
+      "avg_profit": 111.33,
+      "ticket_time": {}
     },
     {
       "channel": "吉祥官网",
@@ -2415,7 +2499,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": -769.97,
-      "avg_profit": -256.66
+      "avg_profit": -256.66,
+      "ticket_time": {}
     },
     {
       "channel": "酷航APP",
@@ -2427,7 +2512,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": 2.47,
-      "avg_profit": 0.82
+      "avg_profit": 0.82,
+      "ticket_time": {}
     },
     {
       "channel": "寰宇纵横",
@@ -2439,7 +2525,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": -97.0,
-      "avg_profit": -48.5
+      "avg_profit": -48.5,
+      "ticket_time": {}
     },
     {
       "channel": "Airpaz官网",
@@ -2451,7 +2538,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": -12.0,
-      "avg_profit": -12.0
+      "avg_profit": -12.0,
+      "ticket_time": {}
     },
     {
       "channel": "DD黄雀航空官网",
@@ -2463,7 +2551,8 @@
       "auto_coverage_rate": 0.0,
       "auto_succ_rate": 0,
       "profit_sum": -46.17,
-      "avg_profit": -46.17
+      "avg_profit": -46.17,
+      "ticket_time": {}
     },
     {
       "channel": "wego",
@@ -2475,7 +2564,8 @@
       "auto_coverage_rate": 0.0,
       "auto_succ_rate": 0,
       "profit_sum": 0.0,
-      "avg_profit": 0.0
+      "avg_profit": 0.0,
+      "ticket_time": {}
     },
     {
       "channel": "反采同程易旅行",
@@ -2487,7 +2577,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": 9.0,
-      "avg_profit": 9.0
+      "avg_profit": 9.0,
+      "ticket_time": {}
     },
     {
       "channel": "反采飞猪",
@@ -2499,7 +2590,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": 0.0,
-      "avg_profit": 0.0
+      "avg_profit": 0.0,
+      "ticket_time": {}
     },
     {
       "channel": "狮航官网",
@@ -2511,7 +2603,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": -53.05,
-      "avg_profit": -53.05
+      "avg_profit": -53.05,
+      "ticket_time": {}
     },
     {
       "channel": "香港APP",
@@ -2523,7 +2616,8 @@
       "auto_coverage_rate": 100.0,
       "auto_succ_rate": 0.0,
       "profit_sum": -37.0,
-      "avg_profit": -37.0
+      "avg_profit": -37.0,
+      "ticket_time": {}
     }
   ],
   "staff": [
@@ -16961,7 +17055,8 @@
           "auto_coverage_rate": 98.22,
           "auto_succ_rate": 87.51,
           "profit_sum": -21186.51,
-          "avg_profit": -22.28
+          "avg_profit": -22.28,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -16973,7 +17068,15 @@
           "auto_coverage_rate": 99.15,
           "auto_succ_rate": 93.39,
           "profit_sum": -2532.48,
-          "avg_profit": -5.39
+          "avg_profit": -5.39,
+          "ticket_time": {
+            "n": 412,
+            "p50": 0.23,
+            "p90": 0.83,
+            "p99": 51.95,
+            "avg": 13.11,
+            "abnormal_rate": 2.67
+          }
         },
         {
           "channel": "booking",
@@ -16985,7 +17088,8 @@
           "auto_coverage_rate": 2.73,
           "auto_succ_rate": 0.0,
           "profit_sum": 10750.54,
-          "avg_profit": 34.57
+          "avg_profit": 34.57,
+          "ticket_time": {}
         },
         {
           "channel": "反采飞猪接口",
@@ -16997,7 +17101,15 @@
           "auto_coverage_rate": 89.75,
           "auto_succ_rate": 87.54,
           "profit_sum": -2460.24,
-          "avg_profit": -7.99
+          "avg_profit": -7.99,
+          "ticket_time": {
+            "n": 253,
+            "p50": 0.2,
+            "p90": 75.85,
+            "p99": 126.33,
+            "avg": 17.55,
+            "abnormal_rate": 16.6
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -17009,7 +17121,15 @@
           "auto_coverage_rate": 70.45,
           "auto_succ_rate": 58.05,
           "profit_sum": -1289.3,
-          "avg_profit": -4.59
+          "avg_profit": -4.59,
+          "ticket_time": {
+            "n": 119,
+            "p50": 0.03,
+            "p90": 281.05,
+            "p99": 1143.85,
+            "avg": 98.6,
+            "abnormal_rate": 31.09
+          }
         },
         {
           "channel": "航班管家接口",
@@ -17021,7 +17141,15 @@
           "auto_coverage_rate": 88.58,
           "auto_succ_rate": 69.33,
           "profit_sum": -7226.67,
-          "avg_profit": -29.38
+          "avg_profit": -29.38,
+          "ticket_time": {
+            "n": 149,
+            "p50": 0.97,
+            "p90": 1.38,
+            "p99": 1.45,
+            "avg": 0.91,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "香港港版APP",
@@ -17033,7 +17161,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 61.05,
           "profit_sum": -4072.56,
-          "avg_profit": -42.87
+          "avg_profit": -42.87,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -17045,7 +17174,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 864.06,
-          "avg_profit": 9.39
+          "avg_profit": 9.39,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -17057,7 +17187,8 @@
           "auto_coverage_rate": 32.79,
           "auto_succ_rate": 0.0,
           "profit_sum": -1372.17,
-          "avg_profit": -22.49
+          "avg_profit": -22.49,
+          "ticket_time": {}
         },
         {
           "channel": "MF官网",
@@ -17069,7 +17200,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -962.61,
-          "avg_profit": -33.19
+          "avg_profit": -33.19,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -17081,7 +17213,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -745.72,
-          "avg_profit": -124.29
+          "avg_profit": -124.29,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -17093,7 +17226,8 @@
           "auto_coverage_rate": 16.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -104.43,
-          "avg_profit": -34.81
+          "avg_profit": -34.81,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -17105,7 +17239,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 7.21,
-          "avg_profit": 1.8
+          "avg_profit": 1.8,
+          "ticket_time": {}
         },
         {
           "channel": "吉祥官网",
@@ -17117,7 +17252,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -769.97,
-          "avg_profit": -256.66
+          "avg_profit": -256.66,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -17129,7 +17265,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -130.0,
-          "avg_profit": -65.0
+          "avg_profit": -65.0,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -17141,7 +17278,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 14.16,
-          "avg_profit": 14.16
+          "avg_profit": 14.16,
+          "ticket_time": {}
         },
         {
           "channel": "wego",
@@ -17153,7 +17291,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 0.0,
-          "avg_profit": 0.0
+          "avg_profit": 0.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -20799,7 +20938,8 @@
           "auto_coverage_rate": 99.03,
           "auto_succ_rate": 91.56,
           "profit_sum": -19626.67,
-          "avg_profit": -23.96
+          "avg_profit": -23.96,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -20811,7 +20951,15 @@
           "auto_coverage_rate": 97.99,
           "auto_succ_rate": 90.5,
           "profit_sum": -3412.42,
-          "avg_profit": -6.34
+          "avg_profit": -6.34,
+          "ticket_time": {
+            "n": 465,
+            "p50": 0.23,
+            "p90": 0.8,
+            "p99": 45.1,
+            "avg": 3.01,
+            "abnormal_rate": 2.58
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -20823,7 +20971,15 @@
           "auto_coverage_rate": 88.71,
           "auto_succ_rate": 73.5,
           "profit_sum": -4766.56,
-          "avg_profit": -15.28
+          "avg_profit": -15.28,
+          "ticket_time": {
+            "n": 208,
+            "p50": 0.02,
+            "p90": 107.8,
+            "p99": 954.74,
+            "avg": 46.16,
+            "abnormal_rate": 22.12
+          }
         },
         {
           "channel": "booking",
@@ -20835,7 +20991,8 @@
           "auto_coverage_rate": 27.63,
           "auto_succ_rate": 0.0,
           "profit_sum": 5815.75,
-          "avg_profit": 23.55
+          "avg_profit": 23.55,
+          "ticket_time": {}
         },
         {
           "channel": "反采飞猪接口",
@@ -20847,7 +21004,15 @@
           "auto_coverage_rate": 93.36,
           "auto_succ_rate": 87.2,
           "profit_sum": -1530.46,
-          "avg_profit": -7.09
+          "avg_profit": -7.09,
+          "ticket_time": {
+            "n": 184,
+            "p50": 0.2,
+            "p90": 25.45,
+            "p99": 105.35,
+            "avg": 9.8,
+            "abnormal_rate": 8.15
+          }
         },
         {
           "channel": "航班管家接口",
@@ -20859,7 +21024,15 @@
           "auto_coverage_rate": 92.51,
           "auto_succ_rate": 77.46,
           "profit_sum": -6070.57,
-          "avg_profit": -33.91
+          "avg_profit": -33.91,
+          "ticket_time": {
+            "n": 130,
+            "p50": 0.95,
+            "p90": 1.04,
+            "p99": 1.45,
+            "avg": 0.9,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "香港港版APP",
@@ -20871,7 +21044,8 @@
           "auto_coverage_rate": 96.69,
           "auto_succ_rate": 68.38,
           "profit_sum": -4183.02,
-          "avg_profit": -34.86
+          "avg_profit": -34.86,
+          "ticket_time": {}
         },
         {
           "channel": "MF官网",
@@ -20883,7 +21057,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 2.56,
           "profit_sum": -1928.07,
-          "avg_profit": -49.44
+          "avg_profit": -49.44,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -20895,7 +21070,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -61.05,
-          "avg_profit": -2.54
+          "avg_profit": -2.54,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -20907,7 +21083,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -1092.37,
-          "avg_profit": -182.06
+          "avg_profit": -182.06,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -20919,7 +21096,8 @@
           "auto_coverage_rate": 20.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -122.79,
-          "avg_profit": -24.56
+          "avg_profit": -24.56,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -20931,7 +21109,8 @@
           "auto_coverage_rate": 20.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -319.81,
-          "avg_profit": -79.95
+          "avg_profit": -79.95,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -20943,7 +21122,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -98.36,
-          "avg_profit": -49.18
+          "avg_profit": -49.18,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -20955,7 +21135,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -9.61,
-          "avg_profit": -9.61
+          "avg_profit": -9.61,
+          "ticket_time": {}
         },
         {
           "channel": "香港APP",
@@ -20967,7 +21148,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -37.0,
-          "avg_profit": -37.0
+          "avg_profit": -37.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -24863,7 +25045,8 @@
           "auto_coverage_rate": 99.14,
           "auto_succ_rate": 86.48,
           "profit_sum": -12445.04,
-          "avg_profit": -18.06
+          "avg_profit": -18.06,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -24875,7 +25058,15 @@
           "auto_coverage_rate": 99.36,
           "auto_succ_rate": 92.46,
           "profit_sum": -2621.0,
-          "avg_profit": -5.65
+          "avg_profit": -5.65,
+          "ticket_time": {
+            "n": 411,
+            "p50": 0.23,
+            "p90": 0.53,
+            "p99": 59.36,
+            "avg": 8.97,
+            "abnormal_rate": 1.7
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -24887,7 +25078,15 @@
           "auto_coverage_rate": 97.42,
           "auto_succ_rate": 82.82,
           "profit_sum": -1154.29,
-          "avg_profit": -2.51
+          "avg_profit": -2.51,
+          "ticket_time": {
+            "n": 374,
+            "p50": 0.02,
+            "p90": 0.08,
+            "p99": 264.17,
+            "avg": 14.03,
+            "abnormal_rate": 8.02
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -24899,7 +25098,15 @@
           "auto_coverage_rate": 94.94,
           "auto_succ_rate": 83.56,
           "profit_sum": -2505.61,
-          "avg_profit": -10.66
+          "avg_profit": -10.66,
+          "ticket_time": {
+            "n": 188,
+            "p50": 0.2,
+            "p90": 0.23,
+            "p99": 457.76,
+            "avg": 13.37,
+            "abnormal_rate": 3.72
+          }
         },
         {
           "channel": "booking",
@@ -24911,7 +25118,15 @@
           "auto_coverage_rate": 77.97,
           "auto_succ_rate": 44.02,
           "profit_sum": 2809.94,
-          "avg_profit": 12.6
+          "avg_profit": 12.6,
+          "ticket_time": {
+            "n": 33,
+            "p50": 0.23,
+            "p90": 0.28,
+            "p99": 109.55,
+            "avg": 6.36,
+            "abnormal_rate": 6.06
+          }
         },
         {
           "channel": "航班管家接口",
@@ -24923,7 +25138,15 @@
           "auto_coverage_rate": 90.59,
           "auto_succ_rate": 81.17,
           "profit_sum": -6988.65,
-          "avg_profit": -42.36
+          "avg_profit": -42.36,
+          "ticket_time": {
+            "n": 125,
+            "p50": 0.95,
+            "p90": 1.34,
+            "p99": 1.41,
+            "avg": 0.94,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "香港港版APP",
@@ -24935,7 +25158,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 75.0,
           "profit_sum": -2247.35,
-          "avg_profit": -35.11
+          "avg_profit": -35.11,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -24947,7 +25171,15 @@
           "auto_coverage_rate": 95.24,
           "auto_succ_rate": 22.5,
           "profit_sum": 288.85,
-          "avg_profit": 7.6
+          "avg_profit": 7.6,
+          "ticket_time": {
+            "n": 9,
+            "p50": 0.23,
+            "p90": 0.23,
+            "p99": 0.23,
+            "avg": 0.23,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -24959,7 +25191,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 13.33,
           "profit_sum": -878.49,
-          "avg_profit": -58.57
+          "avg_profit": -58.57,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -24971,7 +25204,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -242.88,
-          "avg_profit": -20.24
+          "avg_profit": -20.24,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -24983,7 +25217,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -152.14,
-          "avg_profit": -19.02
+          "avg_profit": -19.02,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -24995,7 +25230,8 @@
           "auto_coverage_rate": 71.43,
           "auto_succ_rate": 0.0,
           "profit_sum": -43.0,
-          "avg_profit": -6.14
+          "avg_profit": -6.14,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -25007,7 +25243,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -1054.86,
-          "avg_profit": -175.81
+          "avg_profit": -175.81,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -25019,7 +25256,8 @@
           "auto_coverage_rate": 75.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 100.01,
-          "avg_profit": 25.0
+          "avg_profit": 25.0,
+          "ticket_time": {}
         },
         {
           "channel": "VF捷特航空官网",
@@ -25031,7 +25269,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -606.57,
-          "avg_profit": -303.29
+          "avg_profit": -303.29,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -25043,7 +25282,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 93.88,
-          "avg_profit": 93.88
+          "avg_profit": 93.88,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -28925,7 +29165,8 @@
           "auto_coverage_rate": 99.09,
           "auto_succ_rate": 92.8,
           "profit_sum": -11144.77,
-          "avg_profit": -20.49
+          "avg_profit": -20.49,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程ITravel",
@@ -28937,7 +29178,15 @@
           "auto_coverage_rate": 96.72,
           "auto_succ_rate": 80.59,
           "profit_sum": -1359.24,
-          "avg_profit": -3.01
+          "avg_profit": -3.01,
+          "ticket_time": {
+            "n": 357,
+            "p50": 0.03,
+            "p90": 25.09,
+            "p99": 768.05,
+            "avg": 23.02,
+            "abnormal_rate": 9.52
+          }
         },
         {
           "channel": "反采同程",
@@ -28949,7 +29198,15 @@
           "auto_coverage_rate": 99.47,
           "auto_succ_rate": 91.98,
           "profit_sum": -2363.37,
-          "avg_profit": -6.32
+          "avg_profit": -6.32,
+          "ticket_time": {
+            "n": 319,
+            "p50": 0.23,
+            "p90": 0.75,
+            "p99": 51.58,
+            "avg": 6.19,
+            "abnormal_rate": 2.51
+          }
         },
         {
           "channel": "booking",
@@ -28961,7 +29218,15 @@
           "auto_coverage_rate": 95.88,
           "auto_succ_rate": 64.81,
           "profit_sum": 3480.28,
-          "avg_profit": 14.62
+          "avg_profit": 14.62,
+          "ticket_time": {
+            "n": 96,
+            "p50": 0.23,
+            "p90": 0.28,
+            "p99": 22.51,
+            "avg": 1.29,
+            "abnormal_rate": 1.04
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -28973,7 +29238,15 @@
           "auto_coverage_rate": 99.07,
           "auto_succ_rate": 90.65,
           "profit_sum": -1135.93,
-          "avg_profit": -5.28
+          "avg_profit": -5.28,
+          "ticket_time": {
+            "n": 194,
+            "p50": 0.2,
+            "p90": 0.23,
+            "p99": 169.29,
+            "avg": 8.14,
+            "abnormal_rate": 3.09
+          }
         },
         {
           "channel": "航班管家接口",
@@ -28985,7 +29258,15 @@
           "auto_coverage_rate": 94.59,
           "auto_succ_rate": 75.71,
           "profit_sum": -2684.87,
-          "avg_profit": -18.64
+          "avg_profit": -18.64,
+          "ticket_time": {
+            "n": 104,
+            "p50": 0.97,
+            "p90": 1.36,
+            "p99": 1.42,
+            "avg": 1.02,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "香港港版APP",
@@ -28997,7 +29278,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 95.24,
           "profit_sum": -466.66,
-          "avg_profit": -22.22
+          "avg_profit": -22.22,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -29009,7 +29291,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 16.67,
           "profit_sum": -97.3,
-          "avg_profit": -7.48
+          "avg_profit": -7.48,
+          "ticket_time": {}
         },
         {
           "channel": "MF官网",
@@ -29021,7 +29304,8 @@
           "auto_coverage_rate": 94.12,
           "auto_succ_rate": 0.0,
           "profit_sum": -870.37,
-          "avg_profit": -54.4
+          "avg_profit": -54.4,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -29033,7 +29317,8 @@
           "auto_coverage_rate": 71.43,
           "auto_succ_rate": 0.0,
           "profit_sum": 169.0,
-          "avg_profit": 28.17
+          "avg_profit": 28.17,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -29045,7 +29330,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -463.39,
-          "avg_profit": -92.68
+          "avg_profit": -92.68,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -29057,7 +29343,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -12.96,
-          "avg_profit": -3.24
+          "avg_profit": -3.24,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -29069,7 +29356,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 10.99,
-          "avg_profit": 3.66
+          "avg_profit": 3.66,
+          "ticket_time": {}
         },
         {
           "channel": "Atlas",
@@ -29081,7 +29369,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -110.0,
-          "avg_profit": -110.0
+          "avg_profit": -110.0,
+          "ticket_time": {}
         },
         {
           "channel": "反采飞猪",
@@ -29093,7 +29382,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 0.0,
-          "avg_profit": 0.0
+          "avg_profit": 0.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -32764,7 +33054,8 @@
           "auto_coverage_rate": 99.07,
           "auto_succ_rate": 85.6,
           "profit_sum": -11702.76,
-          "avg_profit": -18.26
+          "avg_profit": -18.26,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程ITravel",
@@ -32776,7 +33067,15 @@
           "auto_coverage_rate": 97.22,
           "auto_succ_rate": 77.09,
           "profit_sum": 646.9,
-          "avg_profit": 1.41
+          "avg_profit": 1.41,
+          "ticket_time": {
+            "n": 349,
+            "p50": 0.03,
+            "p90": 100.39,
+            "p99": 1303.4,
+            "avg": 61.21,
+            "abnormal_rate": 14.04
+          }
         },
         {
           "channel": "反采同程",
@@ -32788,7 +33087,15 @@
           "auto_coverage_rate": 99.71,
           "auto_succ_rate": 91.72,
           "profit_sum": -1649.09,
-          "avg_profit": -4.86
+          "avg_profit": -4.86,
+          "ticket_time": {
+            "n": 292,
+            "p50": 0.23,
+            "p90": 10.57,
+            "p99": 314.66,
+            "avg": 17.24,
+            "abnormal_rate": 5.82
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -32800,7 +33107,15 @@
           "auto_coverage_rate": 95.88,
           "auto_succ_rate": 84.12,
           "profit_sum": -1348.74,
-          "avg_profit": -5.79
+          "avg_profit": -5.79,
+          "ticket_time": {
+            "n": 196,
+            "p50": 0.2,
+            "p90": 25.43,
+            "p99": 378.74,
+            "avg": 12.95,
+            "abnormal_rate": 3.57
+          }
         },
         {
           "channel": "booking",
@@ -32812,7 +33127,15 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 69.4,
           "profit_sum": 3872.36,
-          "avg_profit": 16.76
+          "avg_profit": 16.76,
+          "ticket_time": {
+            "n": 99,
+            "p50": 0.23,
+            "p90": 20.46,
+            "p99": 41.25,
+            "avg": 4.53,
+            "abnormal_rate": 8.08
+          }
         },
         {
           "channel": "航班管家接口",
@@ -32824,7 +33147,15 @@
           "auto_coverage_rate": 96.06,
           "auto_succ_rate": 61.48,
           "profit_sum": -1928.39,
-          "avg_profit": -15.68
+          "avg_profit": -15.68,
+          "ticket_time": {
+            "n": 75,
+            "p50": 0.97,
+            "p90": 1.38,
+            "p99": 1.47,
+            "avg": 0.92,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -32836,7 +33167,8 @@
           "auto_coverage_rate": 96.3,
           "auto_succ_rate": 3.85,
           "profit_sum": -1190.37,
-          "avg_profit": -45.78
+          "avg_profit": -45.78,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -32848,7 +33180,8 @@
           "auto_coverage_rate": 78.57,
           "auto_succ_rate": 0.0,
           "profit_sum": -239.53,
-          "avg_profit": -17.11
+          "avg_profit": -17.11,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -32860,7 +33193,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 129.88,
-          "avg_profit": 43.29
+          "avg_profit": 43.29,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -32872,7 +33206,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -3.55,
-          "avg_profit": -1.77
+          "avg_profit": -1.77,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -32884,7 +33219,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 11.0,
-          "avg_profit": 5.5
+          "avg_profit": 5.5,
+          "ticket_time": {}
         },
         {
           "channel": "MF厦门航空B2B",
@@ -32896,7 +33232,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -48.09,
-          "avg_profit": -48.09
+          "avg_profit": -48.09,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -32908,7 +33245,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -59.58,
-          "avg_profit": -59.58
+          "avg_profit": -59.58,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -36973,7 +37311,15 @@
           "auto_coverage_rate": 98.25,
           "auto_succ_rate": 71.33,
           "profit_sum": 4034.21,
-          "avg_profit": 9.03
+          "avg_profit": 9.03,
+          "ticket_time": {
+            "n": 321,
+            "p50": 0.02,
+            "p90": 75.17,
+            "p99": 1327.19,
+            "avg": 55.19,
+            "abnormal_rate": 11.53
+          }
         },
         {
           "channel": "反采同程",
@@ -36985,7 +37331,15 @@
           "auto_coverage_rate": 98.93,
           "auto_succ_rate": 96.48,
           "profit_sum": -978.0,
-          "avg_profit": -2.64
+          "avg_profit": -2.64,
+          "ticket_time": {
+            "n": 334,
+            "p50": 0.23,
+            "p90": 10.67,
+            "p99": 127.16,
+            "avg": 5.07,
+            "abnormal_rate": 4.19
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -36997,7 +37351,15 @@
           "auto_coverage_rate": 99.38,
           "auto_succ_rate": 89.1,
           "profit_sum": -1368.8,
-          "avg_profit": -4.25
+          "avg_profit": -4.25,
+          "ticket_time": {
+            "n": 286,
+            "p50": 0.2,
+            "p90": 0.7,
+            "p99": 79.68,
+            "avg": 4.88,
+            "abnormal_rate": 2.1
+          }
         },
         {
           "channel": "春秋官网",
@@ -37009,7 +37371,8 @@
           "auto_coverage_rate": 98.45,
           "auto_succ_rate": 80.82,
           "profit_sum": 44.74,
-          "avg_profit": 0.14
+          "avg_profit": 0.14,
+          "ticket_time": {}
         },
         {
           "channel": "booking",
@@ -37021,7 +37384,15 @@
           "auto_coverage_rate": 98.71,
           "auto_succ_rate": 70.92,
           "profit_sum": 9409.86,
-          "avg_profit": 30.45
+          "avg_profit": 30.45,
+          "ticket_time": {
+            "n": 103,
+            "p50": 0.22,
+            "p90": 0.27,
+            "p99": 40.73,
+            "avg": 2.39,
+            "abnormal_rate": 4.85
+          }
         },
         {
           "channel": "航班管家接口",
@@ -37033,7 +37404,15 @@
           "auto_coverage_rate": 96.75,
           "auto_succ_rate": 70.59,
           "profit_sum": 1411.85,
-          "avg_profit": 11.86
+          "avg_profit": 11.86,
+          "ticket_time": {
+            "n": 84,
+            "p50": 0.93,
+            "p90": 1.37,
+            "p99": 4.42,
+            "avg": 1.03,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -37045,7 +37424,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 10.81,
           "profit_sum": -2355.13,
-          "avg_profit": -63.65
+          "avg_profit": -63.65,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -37057,7 +37437,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -35.75,
-          "avg_profit": -2.75
+          "avg_profit": -2.75,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -37069,7 +37450,8 @@
           "auto_coverage_rate": 91.67,
           "auto_succ_rate": 18.18,
           "profit_sum": -477.0,
-          "avg_profit": -39.75
+          "avg_profit": -39.75,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -37081,7 +37463,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -173.36,
-          "avg_profit": -17.34
+          "avg_profit": -17.34,
+          "ticket_time": {}
         },
         {
           "channel": "Atlas",
@@ -37093,7 +37476,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -460.0,
-          "avg_profit": -460.0
+          "avg_profit": -460.0,
+          "ticket_time": {}
         },
         {
           "channel": "FYAPP",
@@ -37105,7 +37489,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -32.58,
-          "avg_profit": -32.58
+          "avg_profit": -32.58,
+          "ticket_time": {}
         },
         {
           "channel": "MF厦门航空B2B",
@@ -37117,7 +37502,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -87.58,
-          "avg_profit": -87.58
+          "avg_profit": -87.58,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -37129,7 +37515,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -110.48,
-          "avg_profit": -110.48
+          "avg_profit": -110.48,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -40936,7 +41323,8 @@
           "auto_coverage_rate": 99.24,
           "auto_succ_rate": 88.75,
           "profit_sum": -15495.9,
-          "avg_profit": -19.74
+          "avg_profit": -19.74,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程ITravel",
@@ -40948,7 +41336,15 @@
           "auto_coverage_rate": 97.47,
           "auto_succ_rate": 79.87,
           "profit_sum": -781.56,
-          "avg_profit": -1.66
+          "avg_profit": -1.66,
+          "ticket_time": {
+            "n": 369,
+            "p50": 0.02,
+            "p90": 0.05,
+            "p99": 1303.65,
+            "avg": 34.12,
+            "abnormal_rate": 7.05
+          }
         },
         {
           "channel": "反采同程",
@@ -40960,7 +41356,15 @@
           "auto_coverage_rate": 98.37,
           "auto_succ_rate": 93.6,
           "profit_sum": -2484.96,
-          "avg_profit": -5.85
+          "avg_profit": -5.85,
+          "ticket_time": {
+            "n": 380,
+            "p50": 0.23,
+            "p90": 0.86,
+            "p99": 102.87,
+            "avg": 7.12,
+            "abnormal_rate": 4.21
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -40972,7 +41376,15 @@
           "auto_coverage_rate": 96.81,
           "auto_succ_rate": 95.33,
           "profit_sum": -2315.0,
-          "avg_profit": -6.24
+          "avg_profit": -6.24,
+          "ticket_time": {
+            "n": 347,
+            "p50": 0.2,
+            "p90": 25.44,
+            "p99": 428.94,
+            "avg": 17.14,
+            "abnormal_rate": 8.36
+          }
         },
         {
           "channel": "booking",
@@ -40984,7 +41396,15 @@
           "auto_coverage_rate": 88.39,
           "auto_succ_rate": 70.2,
           "profit_sum": 7397.2,
-          "avg_profit": 34.73
+          "avg_profit": 34.73,
+          "ticket_time": {
+            "n": 51,
+            "p50": 0.23,
+            "p90": 40.77,
+            "p99": 141.95,
+            "avg": 12.93,
+            "abnormal_rate": 13.73
+          }
         },
         {
           "channel": "航班管家接口",
@@ -40996,7 +41416,15 @@
           "auto_coverage_rate": 99.22,
           "auto_succ_rate": 80.31,
           "profit_sum": -3139.77,
-          "avg_profit": -24.72
+          "avg_profit": -24.72,
+          "ticket_time": {
+            "n": 100,
+            "p50": 0.62,
+            "p90": 1.35,
+            "p99": 1.42,
+            "avg": 0.82,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -41008,7 +41436,8 @@
           "auto_coverage_rate": 95.92,
           "auto_succ_rate": 0.0,
           "profit_sum": -2300.78,
-          "avg_profit": -48.95
+          "avg_profit": -48.95,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -41020,7 +41449,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 170.95,
-          "avg_profit": 28.49
+          "avg_profit": 28.49,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -41032,7 +41462,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -1404.0,
-          "avg_profit": -351.0
+          "avg_profit": -351.0,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -41044,7 +41475,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -95.91,
-          "avg_profit": -23.98
+          "avg_profit": -23.98,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -41056,7 +41488,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -104.13,
-          "avg_profit": -52.06
+          "avg_profit": -52.06,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -41068,7 +41501,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -20.46,
-          "avg_profit": -20.46
+          "avg_profit": -20.46,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -44825,7 +45259,8 @@
           "auto_coverage_rate": 98.78,
           "auto_succ_rate": 90.22,
           "profit_sum": -18489.16,
-          "avg_profit": -22.71
+          "avg_profit": -22.71,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -44837,7 +45272,15 @@
           "auto_coverage_rate": 97.36,
           "auto_succ_rate": 94.97,
           "profit_sum": -1724.72,
-          "avg_profit": -3.27
+          "avg_profit": -3.27,
+          "ticket_time": {
+            "n": 485,
+            "p50": 0.23,
+            "p90": 20.73,
+            "p99": 51.93,
+            "avg": 5.42,
+            "abnormal_rate": 4.12
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -44849,7 +45292,15 @@
           "auto_coverage_rate": 93.93,
           "auto_succ_rate": 81.04,
           "profit_sum": -835.95,
-          "avg_profit": -1.68
+          "avg_profit": -1.68,
+          "ticket_time": {
+            "n": 385,
+            "p50": 0.03,
+            "p90": 25.1,
+            "p99": 247.79,
+            "avg": 20.14,
+            "abnormal_rate": 9.35
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -44861,7 +45312,15 @@
           "auto_coverage_rate": 98.03,
           "auto_succ_rate": 94.18,
           "profit_sum": -637.17,
-          "avg_profit": -1.43
+          "avg_profit": -1.43,
+          "ticket_time": {
+            "n": 421,
+            "p50": 0.2,
+            "p90": 0.23,
+            "p99": 75.88,
+            "avg": 6.44,
+            "abnormal_rate": 3.09
+          }
         },
         {
           "channel": "booking",
@@ -44873,7 +45332,15 @@
           "auto_coverage_rate": 87.85,
           "auto_succ_rate": 67.3,
           "profit_sum": 2990.65,
-          "avg_profit": 17.39
+          "avg_profit": 17.39,
+          "ticket_time": {
+            "n": 64,
+            "p50": 0.23,
+            "p90": 14.42,
+            "p99": 28.0,
+            "avg": 2.76,
+            "abnormal_rate": 1.56
+          }
         },
         {
           "channel": "航班管家接口",
@@ -44885,7 +45352,15 @@
           "auto_coverage_rate": 91.6,
           "auto_succ_rate": 76.15,
           "profit_sum": -1788.21,
-          "avg_profit": -15.97
+          "avg_profit": -15.97,
+          "ticket_time": {
+            "n": 83,
+            "p50": 0.98,
+            "p90": 1.35,
+            "p99": 1.41,
+            "avg": 0.92,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -44897,7 +45372,15 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 47.83,
           "profit_sum": 1465.7,
-          "avg_profit": 21.24
+          "avg_profit": 21.24,
+          "ticket_time": {
+            "n": 33,
+            "p50": 0.23,
+            "p90": 0.25,
+            "p99": 0.28,
+            "avg": 0.23,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -44909,7 +45392,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 2.63,
           "profit_sum": -2795.56,
-          "avg_profit": -73.57
+          "avg_profit": -73.57,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -44921,7 +45405,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -243.82,
-          "avg_profit": -40.64
+          "avg_profit": -40.64,
+          "ticket_time": {}
         },
         {
           "channel": "Atlas",
@@ -44933,7 +45418,8 @@
           "auto_coverage_rate": 33.33,
           "auto_succ_rate": 0.0,
           "profit_sum": -113.0,
-          "avg_profit": -113.0
+          "avg_profit": -113.0,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -44945,7 +45431,8 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -117.0,
-          "avg_profit": -39.0
+          "avg_profit": -39.0,
+          "ticket_time": {}
         },
         {
           "channel": "反采去哪儿官网",
@@ -44957,7 +45444,8 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -253.0,
-          "avg_profit": -84.33
+          "avg_profit": -84.33,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -44969,7 +45457,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -213.32,
-          "avg_profit": -71.11
+          "avg_profit": -71.11,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -44981,7 +45470,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -98.6,
-          "avg_profit": -49.3
+          "avg_profit": -49.3,
+          "ticket_time": {}
         },
         {
           "channel": "FYAPP",
@@ -44993,7 +45483,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -7.15,
-          "avg_profit": -7.15
+          "avg_profit": -7.15,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -45005,7 +45496,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -4.98,
-          "avg_profit": -4.98
+          "avg_profit": -4.98,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -45017,7 +45509,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -12.76,
-          "avg_profit": -12.76
+          "avg_profit": -12.76,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -49113,7 +49606,8 @@
           "auto_coverage_rate": 96.74,
           "auto_succ_rate": 71.2,
           "profit_sum": -21983.88,
-          "avg_profit": -23.51
+          "avg_profit": -23.51,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -49125,7 +49619,15 @@
           "auto_coverage_rate": 99.52,
           "auto_succ_rate": 93.93,
           "profit_sum": -1431.0,
-          "avg_profit": -2.28
+          "avg_profit": -2.28,
+          "ticket_time": {
+            "n": 578,
+            "p50": 0.25,
+            "p90": 20.77,
+            "p99": 136.49,
+            "avg": 9.74,
+            "abnormal_rate": 6.06
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -49137,7 +49639,15 @@
           "auto_coverage_rate": 91.86,
           "auto_succ_rate": 71.26,
           "profit_sum": -540.99,
-          "avg_profit": -1.0
+          "avg_profit": -1.0,
+          "ticket_time": {
+            "n": 350,
+            "p50": 0.03,
+            "p90": 50.15,
+            "p99": 226.13,
+            "avg": 14.93,
+            "abnormal_rate": 10.57
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -49149,7 +49659,15 @@
           "auto_coverage_rate": 96.05,
           "auto_succ_rate": 88.82,
           "profit_sum": -1690.57,
-          "avg_profit": -4.86
+          "avg_profit": -4.86,
+          "ticket_time": {
+            "n": 302,
+            "p50": 0.2,
+            "p90": 25.4,
+            "p99": 151.28,
+            "avg": 10.99,
+            "abnormal_rate": 5.96
+          }
         },
         {
           "channel": "bookingKayak",
@@ -49161,7 +49679,15 @@
           "auto_coverage_rate": 96.32,
           "auto_succ_rate": 61.83,
           "profit_sum": 4909.17,
-          "avg_profit": 18.18
+          "avg_profit": 18.18,
+          "ticket_time": {
+            "n": 154,
+            "p50": 0.23,
+            "p90": 0.28,
+            "p99": 0.43,
+            "avg": 0.24,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "booking",
@@ -49173,7 +49699,15 @@
           "auto_coverage_rate": 86.15,
           "auto_succ_rate": 63.39,
           "profit_sum": 6265.81,
-          "avg_profit": 24.38
+          "avg_profit": 24.38,
+          "ticket_time": {
+            "n": 60,
+            "p50": 0.23,
+            "p90": 0.38,
+            "p99": 81.25,
+            "avg": 4.29,
+            "abnormal_rate": 5.0
+          }
         },
         {
           "channel": "航班管家接口",
@@ -49185,7 +49719,15 @@
           "auto_coverage_rate": 96.27,
           "auto_succ_rate": 49.03,
           "profit_sum": -6286.77,
-          "avg_profit": -40.04
+          "avg_profit": -40.04,
+          "ticket_time": {
+            "n": 73,
+            "p50": 0.97,
+            "p90": 1.37,
+            "p99": 1.44,
+            "avg": 0.89,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -49197,7 +49739,8 @@
           "auto_coverage_rate": 78.79,
           "auto_succ_rate": 0.0,
           "profit_sum": -1251.16,
-          "avg_profit": -37.91
+          "avg_profit": -37.91,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -49209,7 +49752,8 @@
           "auto_coverage_rate": 41.18,
           "auto_succ_rate": 0.0,
           "profit_sum": -2172.86,
-          "avg_profit": -127.82
+          "avg_profit": -127.82,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -49221,7 +49765,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -156.57,
-          "avg_profit": -10.44
+          "avg_profit": -10.44,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -49233,7 +49778,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 26.27,
-          "avg_profit": 5.25
+          "avg_profit": 5.25,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -49245,7 +49791,8 @@
           "auto_coverage_rate": 80.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -93.0,
-          "avg_profit": -23.25
+          "avg_profit": -23.25,
+          "ticket_time": {}
         },
         {
           "channel": "F9边疆官网",
@@ -49257,7 +49804,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 199.26,
-          "avg_profit": 199.26
+          "avg_profit": 199.26,
+          "ticket_time": {}
         },
         {
           "channel": "反采去哪儿官网",
@@ -49269,7 +49817,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -38.0,
-          "avg_profit": -38.0
+          "avg_profit": -38.0,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -49281,7 +49830,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -22.68,
-          "avg_profit": -22.68
+          "avg_profit": -22.68,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -53783,7 +54333,15 @@
           "auto_coverage_rate": 98.73,
           "auto_succ_rate": 87.73,
           "profit_sum": -13481.26,
-          "avg_profit": -19.2
+          "avg_profit": -19.2,
+          "ticket_time": {
+            "n": 615,
+            "p50": 0.98,
+            "p90": 1.4,
+            "p99": 1.48,
+            "avg": 0.93,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "反采同程",
@@ -53795,7 +54353,15 @@
           "auto_coverage_rate": 99.64,
           "auto_succ_rate": 93.12,
           "profit_sum": -1683.77,
-          "avg_profit": -3.04
+          "avg_profit": -3.04,
+          "ticket_time": {
+            "n": 508,
+            "p50": 0.25,
+            "p90": 20.91,
+            "p99": 142.98,
+            "avg": 12.11,
+            "abnormal_rate": 7.48
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -53807,7 +54373,15 @@
           "auto_coverage_rate": 96.68,
           "auto_succ_rate": 80.04,
           "profit_sum": 34.14,
-          "avg_profit": 0.07
+          "avg_profit": 0.07,
+          "ticket_time": {
+            "n": 367,
+            "p50": 0.03,
+            "p90": 0.1,
+            "p99": 176.11,
+            "avg": 9.81,
+            "abnormal_rate": 5.45
+          }
         },
         {
           "channel": "春秋官网",
@@ -53819,7 +54393,8 @@
           "auto_coverage_rate": 97.98,
           "auto_succ_rate": 68.73,
           "profit_sum": -6141.0,
-          "avg_profit": -18.01
+          "avg_profit": -18.01,
+          "ticket_time": {}
         },
         {
           "channel": "反采飞猪接口",
@@ -53831,7 +54406,15 @@
           "auto_coverage_rate": 95.28,
           "auto_succ_rate": 84.82,
           "profit_sum": 1399.43,
-          "avg_profit": 4.49
+          "avg_profit": 4.49,
+          "ticket_time": {
+            "n": 257,
+            "p50": 0.2,
+            "p90": 25.41,
+            "p99": 390.05,
+            "avg": 13.47,
+            "abnormal_rate": 6.61
+          }
         },
         {
           "channel": "bookingKayak",
@@ -53843,7 +54426,15 @@
           "auto_coverage_rate": 94.5,
           "auto_succ_rate": 56.08,
           "profit_sum": 4465.73,
-          "avg_profit": 23.26
+          "avg_profit": 23.26,
+          "ticket_time": {
+            "n": 78,
+            "p50": 0.25,
+            "p90": 0.52,
+            "p99": 41.2,
+            "avg": 1.86,
+            "abnormal_rate": 2.56
+          }
         },
         {
           "channel": "booking",
@@ -53855,7 +54446,15 @@
           "auto_coverage_rate": 96.53,
           "auto_succ_rate": 72.66,
           "profit_sum": 3996.0,
-          "avg_profit": 27.94
+          "avg_profit": 27.94,
+          "ticket_time": {
+            "n": 38,
+            "p50": 0.27,
+            "p90": 20.87,
+            "p99": 33.71,
+            "avg": 3.59,
+            "abnormal_rate": 2.63
+          }
         },
         {
           "channel": "MF官网",
@@ -53867,7 +54466,8 @@
           "auto_coverage_rate": 98.31,
           "auto_succ_rate": 0.0,
           "profit_sum": -2905.98,
-          "avg_profit": -50.1
+          "avg_profit": -50.1,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -53879,7 +54479,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -940.84,
-          "avg_profit": -72.37
+          "avg_profit": -72.37,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -53891,7 +54492,8 @@
           "auto_coverage_rate": 83.33,
           "auto_succ_rate": 0.0,
           "profit_sum": 1169.12,
-          "avg_profit": 194.85
+          "avg_profit": 194.85,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -53903,7 +54505,8 @@
           "auto_coverage_rate": 80.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -359.79,
-          "avg_profit": -71.96
+          "avg_profit": -71.96,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -53915,7 +54518,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -11.09,
-          "avg_profit": -2.77
+          "avg_profit": -2.77,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -53927,7 +54531,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 84.0,
-          "avg_profit": 28.0
+          "avg_profit": 28.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -58141,7 +58746,15 @@
           "auto_coverage_rate": 99.45,
           "auto_succ_rate": 91.39,
           "profit_sum": -16293.75,
-          "avg_profit": -22.6
+          "avg_profit": -22.6,
+          "ticket_time": {
+            "n": 658,
+            "p50": 0.98,
+            "p90": 1.4,
+            "p99": 1.47,
+            "avg": 0.91,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -58153,7 +58766,15 @@
           "auto_coverage_rate": 97.21,
           "auto_succ_rate": 79.89,
           "profit_sum": -522.96,
-          "avg_profit": -1.01
+          "avg_profit": -1.01,
+          "ticket_time": {
+            "n": 407,
+            "p50": 0.03,
+            "p90": 0.08,
+            "p99": 123.77,
+            "avg": 5.09,
+            "abnormal_rate": 5.16
+          }
         },
         {
           "channel": "反采同程",
@@ -58165,7 +58786,15 @@
           "auto_coverage_rate": 99.33,
           "auto_succ_rate": 93.29,
           "profit_sum": -1443.0,
-          "avg_profit": -3.21
+          "avg_profit": -3.21,
+          "ticket_time": {
+            "n": 412,
+            "p50": 0.27,
+            "p90": 20.9,
+            "p99": 91.46,
+            "avg": 7.33,
+            "abnormal_rate": 4.37
+          }
         },
         {
           "channel": "春秋官网",
@@ -58177,7 +58806,8 @@
           "auto_coverage_rate": 99.04,
           "auto_succ_rate": 72.99,
           "profit_sum": -3361.0,
-          "avg_profit": -10.77
+          "avg_profit": -10.77,
+          "ticket_time": {}
         },
         {
           "channel": "反采飞猪接口",
@@ -58189,7 +58819,15 @@
           "auto_coverage_rate": 98.21,
           "auto_succ_rate": 86.13,
           "profit_sum": -1288.9,
-          "avg_profit": -4.67
+          "avg_profit": -4.67,
+          "ticket_time": {
+            "n": 236,
+            "p50": 0.2,
+            "p90": 0.25,
+            "p99": 92.33,
+            "avg": 3.95,
+            "abnormal_rate": 2.97
+          }
         },
         {
           "channel": "bookingKayak",
@@ -58201,7 +58839,15 @@
           "auto_coverage_rate": 98.48,
           "auto_succ_rate": 48.45,
           "profit_sum": 4053.05,
-          "avg_profit": 21.0
+          "avg_profit": 21.0,
+          "ticket_time": {
+            "n": 57,
+            "p50": 0.25,
+            "p90": 0.53,
+            "p99": 20.89,
+            "avg": 1.01,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "booking",
@@ -58213,7 +58859,15 @@
           "auto_coverage_rate": 99.35,
           "auto_succ_rate": 69.28,
           "profit_sum": 5982.9,
-          "avg_profit": 39.36
+          "avg_profit": 39.36,
+          "ticket_time": {
+            "n": 23,
+            "p50": 0.27,
+            "p90": 0.59,
+            "p99": 16.45,
+            "avg": 1.24,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MM乐桃官网",
@@ -58225,7 +58879,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 5601.55,
-          "avg_profit": 215.44
+          "avg_profit": 215.44,
+          "ticket_time": {}
         },
         {
           "channel": "MF官网",
@@ -58237,7 +58892,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -1070.4,
-          "avg_profit": -42.82
+          "avg_profit": -42.82,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -58249,7 +58905,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -610.31,
-          "avg_profit": -55.48
+          "avg_profit": -55.48,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -58261,7 +58918,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 262.75,
-          "avg_profit": 52.55
+          "avg_profit": 52.55,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -58273,7 +58931,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -25.16,
-          "avg_profit": -8.39
+          "avg_profit": -8.39,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -58285,7 +58944,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -41.0,
-          "avg_profit": -20.5
+          "avg_profit": -20.5,
+          "ticket_time": {}
         },
         {
           "channel": "FYAPP",
@@ -58297,7 +58957,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -55.55,
-          "avg_profit": -55.55
+          "avg_profit": -55.55,
+          "ticket_time": {}
         },
         {
           "channel": "寰宇纵横",
@@ -58309,7 +58970,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -55.0,
-          "avg_profit": -55.0
+          "avg_profit": -55.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -62336,7 +62998,8 @@
           "auto_coverage_rate": 98.71,
           "auto_succ_rate": 83.08,
           "profit_sum": -15874.8,
-          "avg_profit": -18.7
+          "avg_profit": -18.7,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -62348,7 +63011,15 @@
           "auto_coverage_rate": 99.38,
           "auto_succ_rate": 92.45,
           "profit_sum": -1434.55,
-          "avg_profit": -2.24
+          "avg_profit": -2.24,
+          "ticket_time": {
+            "n": 584,
+            "p50": 0.32,
+            "p90": 20.93,
+            "p99": 96.52,
+            "avg": 8.0,
+            "abnormal_rate": 4.97
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -62360,7 +63031,15 @@
           "auto_coverage_rate": 98.31,
           "auto_succ_rate": 75.24,
           "profit_sum": 948.7,
-          "avg_profit": 1.81
+          "avg_profit": 1.81,
+          "ticket_time": {
+            "n": 391,
+            "p50": 0.03,
+            "p90": 25.1,
+            "p99": 230.85,
+            "avg": 12.03,
+            "abnormal_rate": 8.18
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -62372,7 +63051,15 @@
           "auto_coverage_rate": 99.37,
           "auto_succ_rate": 86.12,
           "profit_sum": -1134.15,
-          "avg_profit": -3.57
+          "avg_profit": -3.57,
+          "ticket_time": {
+            "n": 273,
+            "p50": 0.22,
+            "p90": 0.25,
+            "p99": 50.69,
+            "avg": 3.17,
+            "abnormal_rate": 1.83
+          }
         },
         {
           "channel": "booking",
@@ -62384,7 +63071,15 @@
           "auto_coverage_rate": 95.64,
           "auto_succ_rate": 71.23,
           "profit_sum": 11310.46,
-          "avg_profit": 38.6
+          "avg_profit": 38.6,
+          "ticket_time": {
+            "n": 61,
+            "p50": 0.23,
+            "p90": 0.58,
+            "p99": 21.05,
+            "avg": 1.97,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "航班管家接口",
@@ -62396,7 +63091,15 @@
           "auto_coverage_rate": 97.05,
           "auto_succ_rate": 68.06,
           "profit_sum": -6373.71,
-          "avg_profit": -23.87
+          "avg_profit": -23.87,
+          "ticket_time": {
+            "n": 179,
+            "p50": 1.0,
+            "p90": 1.4,
+            "p99": 1.49,
+            "avg": 0.9,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -62408,7 +63111,15 @@
           "auto_coverage_rate": 95.0,
           "auto_succ_rate": 69.38,
           "profit_sum": 4645.04,
-          "avg_profit": 21.6
+          "avg_profit": 21.6,
+          "ticket_time": {
+            "n": 103,
+            "p50": 0.25,
+            "p90": 0.55,
+            "p99": 20.95,
+            "avg": 1.69,
+            "abnormal_rate": 0.97
+          }
         },
         {
           "channel": "MF官网",
@@ -62420,7 +63131,8 @@
           "auto_coverage_rate": 87.5,
           "auto_succ_rate": 2.86,
           "profit_sum": -1897.8,
-          "avg_profit": -49.94
+          "avg_profit": -49.94,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -62432,7 +63144,8 @@
           "auto_coverage_rate": 92.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 3016.96,
-          "avg_profit": 120.68
+          "avg_profit": 120.68,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -62444,7 +63157,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 109.47,
-          "avg_profit": 9.95
+          "avg_profit": 9.95,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -62456,7 +63170,8 @@
           "auto_coverage_rate": 40.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -668.57,
-          "avg_profit": -66.86
+          "avg_profit": -66.86,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -62468,7 +63183,8 @@
           "auto_coverage_rate": 75.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -72.49,
-          "avg_profit": -18.12
+          "avg_profit": -18.12,
+          "ticket_time": {}
         },
         {
           "channel": "酷航APP",
@@ -62480,7 +63196,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 0.33,
-          "avg_profit": 0.17
+          "avg_profit": 0.17,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -62492,7 +63209,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 23.79,
-          "avg_profit": 23.79
+          "avg_profit": 23.79,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -62504,7 +63222,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -31.0,
-          "avg_profit": -31.0
+          "avg_profit": -31.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -66993,7 +67712,8 @@
           "auto_coverage_rate": 99.35,
           "auto_succ_rate": 84.27,
           "profit_sum": -14295.75,
-          "avg_profit": -18.59
+          "avg_profit": -18.59,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -67005,7 +67725,15 @@
           "auto_coverage_rate": 99.1,
           "auto_succ_rate": 92.01,
           "profit_sum": 8.15,
-          "avg_profit": 0.01
+          "avg_profit": 0.01,
+          "ticket_time": {
+            "n": 604,
+            "p50": 0.38,
+            "p90": 20.68,
+            "p99": 93.32,
+            "avg": 9.04,
+            "abnormal_rate": 5.13
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -67017,7 +67745,15 @@
           "auto_coverage_rate": 94.9,
           "auto_succ_rate": 85.91,
           "profit_sum": -2082.17,
-          "avg_profit": -4.46
+          "avg_profit": -4.46,
+          "ticket_time": {
+            "n": 384,
+            "p50": 0.2,
+            "p90": 25.42,
+            "p99": 151.62,
+            "avg": 8.81,
+            "abnormal_rate": 5.47
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -67029,7 +67765,15 @@
           "auto_coverage_rate": 94.91,
           "auto_succ_rate": 67.07,
           "profit_sum": -1167.69,
-          "avg_profit": -2.82
+          "avg_profit": -2.82,
+          "ticket_time": {
+            "n": 269,
+            "p50": 0.03,
+            "p90": 50.18,
+            "p99": 141.34,
+            "avg": 12.57,
+            "abnormal_rate": 11.9
+          }
         },
         {
           "channel": "bookingKayak",
@@ -67041,7 +67785,15 @@
           "auto_coverage_rate": 89.07,
           "auto_succ_rate": 65.7,
           "profit_sum": 3023.4,
-          "avg_profit": 10.18
+          "avg_profit": 10.18,
+          "ticket_time": {
+            "n": 135,
+            "p50": 0.22,
+            "p90": 0.29,
+            "p99": 27.2,
+            "avg": 1.15,
+            "abnormal_rate": 1.48
+          }
         },
         {
           "channel": "booking",
@@ -67053,7 +67805,15 @@
           "auto_coverage_rate": 98.17,
           "auto_succ_rate": 67.16,
           "profit_sum": 7640.09,
-          "avg_profit": 28.19
+          "avg_profit": 28.19,
+          "ticket_time": {
+            "n": 55,
+            "p50": 0.23,
+            "p90": 0.54,
+            "p99": 20.65,
+            "avg": 1.02,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "航班管家接口",
@@ -67065,7 +67825,15 @@
           "auto_coverage_rate": 98.25,
           "auto_succ_rate": 57.14,
           "profit_sum": -2510.59,
-          "avg_profit": -22.22
+          "avg_profit": -22.22,
+          "ticket_time": {
+            "n": 60,
+            "p50": 0.99,
+            "p90": 1.38,
+            "p99": 1.44,
+            "avg": 0.92,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -67077,7 +67845,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -2077.7,
-          "avg_profit": -62.96
+          "avg_profit": -62.96,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -67089,7 +67858,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 975.84,
-          "avg_profit": 34.85
+          "avg_profit": 34.85,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -67101,7 +67871,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -112.18,
-          "avg_profit": -5.34
+          "avg_profit": -5.34,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -67113,7 +67884,8 @@
           "auto_coverage_rate": 87.5,
           "auto_succ_rate": 0.0,
           "profit_sum": -2314.37,
-          "avg_profit": -289.3
+          "avg_profit": -289.3,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -67125,7 +67897,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -111.03,
-          "avg_profit": -55.52
+          "avg_profit": -55.52,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -67137,7 +67910,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -11.0,
-          "avg_profit": -5.5
+          "avg_profit": -5.5,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -67149,7 +67923,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -606.76,
-          "avg_profit": -303.38
+          "avg_profit": -303.38,
+          "ticket_time": {}
         },
         {
           "channel": "酷航APP",
@@ -67161,7 +67936,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 2.14,
-          "avg_profit": 2.14
+          "avg_profit": 2.14,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -71487,7 +72263,8 @@
           "auto_coverage_rate": 98.53,
           "auto_succ_rate": 88.21,
           "profit_sum": -15501.73,
-          "avg_profit": -19.11
+          "avg_profit": -19.11,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -71499,7 +72276,15 @@
           "auto_coverage_rate": 99.53,
           "auto_succ_rate": 94.46,
           "profit_sum": 836.12,
-          "avg_profit": 1.32
+          "avg_profit": 1.32,
+          "ticket_time": {
+            "n": 593,
+            "p50": 0.53,
+            "p90": 20.73,
+            "p99": 115.34,
+            "avg": 14.55,
+            "abnormal_rate": 6.41
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -71511,7 +72296,15 @@
           "auto_coverage_rate": 96.81,
           "auto_succ_rate": 94.07,
           "profit_sum": -2568.15,
-          "avg_profit": -5.56
+          "avg_profit": -5.56,
+          "ticket_time": {
+            "n": 428,
+            "p50": 0.2,
+            "p90": 25.43,
+            "p99": 277.79,
+            "avg": 12.84,
+            "abnormal_rate": 5.37
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -71523,7 +72316,15 @@
           "auto_coverage_rate": 94.56,
           "auto_succ_rate": 75.78,
           "profit_sum": 864.41,
-          "avg_profit": 1.99
+          "avg_profit": 1.99,
+          "ticket_time": {
+            "n": 308,
+            "p50": 0.02,
+            "p90": 50.11,
+            "p99": 200.55,
+            "avg": 12.69,
+            "abnormal_rate": 11.04
+          }
         },
         {
           "channel": "booking",
@@ -71535,7 +72336,15 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 71.43,
           "profit_sum": 8591.91,
-          "avg_profit": 33.17
+          "avg_profit": 33.17,
+          "ticket_time": {
+            "n": 129,
+            "p50": 0.22,
+            "p90": 0.25,
+            "p99": 0.3,
+            "avg": 0.23,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -71547,7 +72356,15 @@
           "auto_coverage_rate": 96.15,
           "auto_succ_rate": 74.0,
           "profit_sum": 2578.16,
-          "avg_profit": 12.7
+          "avg_profit": 12.7,
+          "ticket_time": {
+            "n": 99,
+            "p50": 0.22,
+            "p90": 0.29,
+            "p99": 22.85,
+            "avg": 1.67,
+            "abnormal_rate": 1.01
+          }
         },
         {
           "channel": "航班管家接口",
@@ -71559,7 +72376,15 @@
           "auto_coverage_rate": 95.24,
           "auto_succ_rate": 70.0,
           "profit_sum": -2632.01,
-          "avg_profit": -25.07
+          "avg_profit": -25.07,
+          "ticket_time": {
+            "n": 68,
+            "p50": 0.97,
+            "p90": 1.11,
+            "p99": 1.47,
+            "avg": 0.83,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -71571,7 +72396,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 2.44,
           "profit_sum": -2166.84,
-          "avg_profit": -52.85
+          "avg_profit": -52.85,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -71583,7 +72409,8 @@
           "auto_coverage_rate": 93.1,
           "auto_succ_rate": 0.0,
           "profit_sum": 2212.4,
-          "avg_profit": 81.94
+          "avg_profit": 81.94,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -71595,7 +72422,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 1267.12,
-          "avg_profit": 105.59
+          "avg_profit": 105.59,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -71607,7 +72435,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -39.64,
-          "avg_profit": -5.66
+          "avg_profit": -5.66,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -71619,7 +72448,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -169.14,
-          "avg_profit": -33.83
+          "avg_profit": -33.83,
+          "ticket_time": {}
         },
         {
           "channel": "F9边疆官网",
@@ -71631,7 +72461,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 70.85,
-          "avg_profit": 23.62
+          "avg_profit": 23.62,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -71643,7 +72474,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 15.2,
-          "avg_profit": 7.6
+          "avg_profit": 7.6,
+          "ticket_time": {}
         },
         {
           "channel": "DD黄雀航空官网",
@@ -71655,7 +72487,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -46.17,
-          "avg_profit": -46.17
+          "avg_profit": -46.17,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -71667,7 +72500,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -54.02,
-          "avg_profit": -54.02
+          "avg_profit": -54.02,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -71679,7 +72513,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -31.0,
-          "avg_profit": -31.0
+          "avg_profit": -31.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -75744,7 +76579,8 @@
           "auto_coverage_rate": 99.22,
           "auto_succ_rate": 81.52,
           "profit_sum": -12851.94,
-          "avg_profit": -16.84
+          "avg_profit": -16.84,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -75756,7 +76592,15 @@
           "auto_coverage_rate": 98.6,
           "auto_succ_rate": 93.04,
           "profit_sum": -1242.52,
-          "avg_profit": -1.96
+          "avg_profit": -1.96,
+          "ticket_time": {
+            "n": 584,
+            "p50": 0.3,
+            "p90": 10.95,
+            "p99": 63.74,
+            "avg": 6.43,
+            "abnormal_rate": 5.14
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -75768,7 +76612,15 @@
           "auto_coverage_rate": 98.29,
           "auto_succ_rate": 84.62,
           "profit_sum": -1205.77,
-          "avg_profit": -2.97
+          "avg_profit": -2.97,
+          "ticket_time": {
+            "n": 341,
+            "p50": 0.2,
+            "p90": 0.35,
+            "p99": 292.91,
+            "avg": 8.49,
+            "abnormal_rate": 4.4
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -75780,7 +76632,15 @@
           "auto_coverage_rate": 96.23,
           "auto_succ_rate": 75.46,
           "profit_sum": -1655.93,
-          "avg_profit": -4.22
+          "avg_profit": -4.22,
+          "ticket_time": {
+            "n": 280,
+            "p50": 0.03,
+            "p90": 6.72,
+            "p99": 205.9,
+            "avg": 13.06,
+            "abnormal_rate": 6.07
+          }
         },
         {
           "channel": "booking",
@@ -75792,7 +76652,15 @@
           "auto_coverage_rate": 92.04,
           "auto_succ_rate": 74.36,
           "profit_sum": 11804.64,
-          "avg_profit": 35.77
+          "avg_profit": 35.77,
+          "ticket_time": {
+            "n": 70,
+            "p50": 0.25,
+            "p90": 0.55,
+            "p99": 20.84,
+            "avg": 1.45,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -75804,7 +76672,15 @@
           "auto_coverage_rate": 67.24,
           "auto_succ_rate": 84.1,
           "profit_sum": 3607.45,
-          "avg_profit": 13.12
+          "avg_profit": 13.12,
+          "ticket_time": {
+            "n": 93,
+            "p50": 0.25,
+            "p90": 0.58,
+            "p99": 20.85,
+            "avg": 2.28,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "航班管家接口",
@@ -75816,7 +76692,15 @@
           "auto_coverage_rate": 96.76,
           "auto_succ_rate": 67.04,
           "profit_sum": -3538.33,
-          "avg_profit": -19.34
+          "avg_profit": -19.34,
+          "ticket_time": {
+            "n": 118,
+            "p50": 1.0,
+            "p90": 1.4,
+            "p99": 1.48,
+            "avg": 0.98,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "反采携程海外",
@@ -75828,7 +76712,8 @@
           "auto_coverage_rate": 3.03,
           "auto_succ_rate": 0.0,
           "profit_sum": 3499.51,
-          "avg_profit": 112.89
+          "avg_profit": 112.89,
+          "ticket_time": {}
         },
         {
           "channel": "MF官网",
@@ -75840,7 +76725,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 10.53,
           "profit_sum": -1192.83,
-          "avg_profit": -62.78
+          "avg_profit": -62.78,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -75852,7 +76738,8 @@
           "auto_coverage_rate": 94.74,
           "auto_succ_rate": 0.0,
           "profit_sum": 805.69,
-          "avg_profit": 47.39
+          "avg_profit": 47.39,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -75864,7 +76751,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 25.34,
-          "avg_profit": 3.62
+          "avg_profit": 3.62,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -75876,7 +76764,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -51.16,
-          "avg_profit": -8.53
+          "avg_profit": -8.53,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -75888,7 +76777,8 @@
           "auto_coverage_rate": 40.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -158.11,
-          "avg_profit": -31.62
+          "avg_profit": -31.62,
+          "ticket_time": {}
         },
         {
           "channel": "F9边疆官网",
@@ -75900,7 +76790,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -83.68,
-          "avg_profit": -27.89
+          "avg_profit": -27.89,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -75912,7 +76803,8 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -2669.47,
-          "avg_profit": -889.82
+          "avg_profit": -889.82,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -75924,7 +76816,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -1.54,
-          "avg_profit": -1.54
+          "avg_profit": -1.54,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -75936,7 +76829,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -485.01,
-          "avg_profit": -485.01
+          "avg_profit": -485.01,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -75948,7 +76842,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -19.0,
-          "avg_profit": -19.0
+          "avg_profit": -19.0,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -75960,7 +76855,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -179.19,
-          "avg_profit": -179.19
+          "avg_profit": -179.19,
+          "ticket_time": {}
         },
         {
           "channel": "寰宇纵横",
@@ -75972,7 +76868,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -42.0,
-          "avg_profit": -42.0
+          "avg_profit": -42.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -80242,7 +81139,15 @@
           "auto_coverage_rate": 98.61,
           "auto_succ_rate": 91.08,
           "profit_sum": -732.49,
-          "avg_profit": -1.14
+          "avg_profit": -1.14,
+          "ticket_time": {
+            "n": 578,
+            "p50": 0.27,
+            "p90": 10.74,
+            "p99": 85.34,
+            "avg": 5.47,
+            "abnormal_rate": 4.67
+          }
         },
         {
           "channel": "春秋官网",
@@ -80254,7 +81159,8 @@
           "auto_coverage_rate": 99.23,
           "auto_succ_rate": 81.62,
           "profit_sum": -5837.04,
-          "avg_profit": -9.08
+          "avg_profit": -9.08,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程ITravel",
@@ -80266,7 +81172,15 @@
           "auto_coverage_rate": 93.0,
           "auto_succ_rate": 75.44,
           "profit_sum": -962.86,
-          "avg_profit": -2.01
+          "avg_profit": -2.01,
+          "ticket_time": {
+            "n": 331,
+            "p50": 0.03,
+            "p90": 12.15,
+            "p99": 426.22,
+            "avg": 15.93,
+            "abnormal_rate": 7.85
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -80278,7 +81192,15 @@
           "auto_coverage_rate": 99.66,
           "auto_succ_rate": 89.9,
           "profit_sum": -1084.19,
-          "avg_profit": -3.66
+          "avg_profit": -3.66,
+          "ticket_time": {
+            "n": 267,
+            "p50": 0.2,
+            "p90": 0.23,
+            "p99": 109.71,
+            "avg": 4.93,
+            "abnormal_rate": 4.12
+          }
         },
         {
           "channel": "booking",
@@ -80290,7 +81212,15 @@
           "auto_coverage_rate": 96.18,
           "auto_succ_rate": 67.86,
           "profit_sum": 6355.27,
-          "avg_profit": 24.44
+          "avg_profit": 24.44,
+          "ticket_time": {
+            "n": 66,
+            "p50": 0.26,
+            "p90": 0.6,
+            "p99": 20.95,
+            "avg": 1.89,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -80302,7 +81232,15 @@
           "auto_coverage_rate": 83.06,
           "auto_succ_rate": 50.49,
           "profit_sum": 3402.44,
-          "avg_profit": 14.12
+          "avg_profit": 14.12,
+          "ticket_time": {
+            "n": 57,
+            "p50": 0.27,
+            "p90": 0.56,
+            "p99": 29.86,
+            "avg": 1.75,
+            "abnormal_rate": 1.75
+          }
         },
         {
           "channel": "航班管家接口",
@@ -80314,7 +81252,15 @@
           "auto_coverage_rate": 99.37,
           "auto_succ_rate": 61.78,
           "profit_sum": -2471.85,
-          "avg_profit": -15.85
+          "avg_profit": -15.85,
+          "ticket_time": {
+            "n": 97,
+            "p50": 0.98,
+            "p90": 1.4,
+            "p99": 1.45,
+            "avg": 1.01,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -80326,7 +81272,8 @@
           "auto_coverage_rate": 82.69,
           "auto_succ_rate": 0.0,
           "profit_sum": -2378.45,
-          "avg_profit": -47.57
+          "avg_profit": -47.57,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -80338,7 +81285,8 @@
           "auto_coverage_rate": 4.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 1832.92,
-          "avg_profit": 73.32
+          "avg_profit": 73.32,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -80350,7 +81298,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -105.79,
-          "avg_profit": -17.63
+          "avg_profit": -17.63,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -80362,7 +81311,8 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -5.89,
-          "avg_profit": -0.98
+          "avg_profit": -0.98,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -80374,7 +81324,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -4255.76,
-          "avg_profit": -709.29
+          "avg_profit": -709.29,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -80386,7 +81337,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -156.31,
-          "avg_profit": -31.26
+          "avg_profit": -31.26,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -80398,7 +81350,8 @@
           "auto_coverage_rate": 60.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -44.39,
-          "avg_profit": -8.88
+          "avg_profit": -8.88,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -80410,7 +81363,8 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -20.25,
-          "avg_profit": -10.12
+          "avg_profit": -10.12,
+          "ticket_time": {}
         },
         {
           "channel": "OD峇迪B2B",
@@ -80422,7 +81376,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -271.0,
-          "avg_profit": -135.5
+          "avg_profit": -135.5,
+          "ticket_time": {}
         },
         {
           "channel": "Atlas",
@@ -80434,7 +81389,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -48.8,
-          "avg_profit": -48.8
+          "avg_profit": -48.8,
+          "ticket_time": {}
         },
         {
           "channel": "FYAPP",
@@ -80446,7 +81402,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 0,
-          "avg_profit": 0
+          "avg_profit": 0,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃B2B",
@@ -80458,7 +81415,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 201.6,
-          "avg_profit": 201.6
+          "avg_profit": 201.6,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -80470,7 +81428,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -65.5,
-          "avg_profit": -65.5
+          "avg_profit": -65.5,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -80482,7 +81441,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -20.0,
-          "avg_profit": -20.0
+          "avg_profit": -20.0,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程APP",
@@ -80494,7 +81454,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 0.0,
-          "avg_profit": 0.0
+          "avg_profit": 0.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -84668,7 +85629,15 @@
           "auto_coverage_rate": 95.37,
           "auto_succ_rate": 60.53,
           "profit_sum": -3509.03,
-          "avg_profit": -6.89
+          "avg_profit": -6.89,
+          "ticket_time": {
+            "n": 292,
+            "p50": 0.03,
+            "p90": 0.13,
+            "p99": 127.6,
+            "avg": 6.46,
+            "abnormal_rate": 4.45
+          }
         },
         {
           "channel": "反采同程",
@@ -84680,7 +85649,15 @@
           "auto_coverage_rate": 99.35,
           "auto_succ_rate": 91.99,
           "profit_sum": -243.4,
-          "avg_profit": -0.53
+          "avg_profit": -0.53,
+          "ticket_time": {
+            "n": 423,
+            "p50": 0.23,
+            "p90": 11.0,
+            "p99": 111.3,
+            "avg": 12.72,
+            "abnormal_rate": 6.62
+          }
         },
         {
           "channel": "春秋官网",
@@ -84692,7 +85669,8 @@
           "auto_coverage_rate": 97.39,
           "auto_succ_rate": 76.51,
           "profit_sum": -8154.06,
-          "avg_profit": -18.04
+          "avg_profit": -18.04,
+          "ticket_time": {}
         },
         {
           "channel": "反采飞猪接口",
@@ -84704,7 +85682,15 @@
           "auto_coverage_rate": 98.94,
           "auto_succ_rate": 90.0,
           "profit_sum": -748.79,
-          "avg_profit": -2.65
+          "avg_profit": -2.65,
+          "ticket_time": {
+            "n": 252,
+            "p50": 0.2,
+            "p90": 0.22,
+            "p99": 73.13,
+            "avg": 3.71,
+            "abnormal_rate": 4.37
+          }
         },
         {
           "channel": "booking",
@@ -84716,7 +85702,15 @@
           "auto_coverage_rate": 92.8,
           "auto_succ_rate": 69.4,
           "profit_sum": 6040.05,
-          "avg_profit": 25.27
+          "avg_profit": 25.27,
+          "ticket_time": {
+            "n": 73,
+            "p50": 0.25,
+            "p90": 20.82,
+            "p99": 21.14,
+            "avg": 3.14,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -84728,7 +85722,15 @@
           "auto_coverage_rate": 86.01,
           "auto_succ_rate": 57.42,
           "profit_sum": 3081.05,
-          "avg_profit": 13.51
+          "avg_profit": 13.51,
+          "ticket_time": {
+            "n": 57,
+            "p50": 0.23,
+            "p90": 0.55,
+            "p99": 29.9,
+            "avg": 2.08,
+            "abnormal_rate": 1.75
+          }
         },
         {
           "channel": "航班管家接口",
@@ -84740,7 +85742,15 @@
           "auto_coverage_rate": 97.08,
           "auto_succ_rate": 62.41,
           "profit_sum": -2164.01,
-          "avg_profit": -16.52
+          "avg_profit": -16.52,
+          "ticket_time": {
+            "n": 77,
+            "p50": 1.0,
+            "p90": 1.38,
+            "p99": 1.53,
+            "avg": 1.03,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -84752,7 +85762,8 @@
           "auto_coverage_rate": 79.07,
           "auto_succ_rate": 0.0,
           "profit_sum": -1908.73,
-          "avg_profit": -44.39
+          "avg_profit": -44.39,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -84764,7 +85775,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 3054.54,
-          "avg_profit": 109.09
+          "avg_profit": 109.09,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -84776,7 +85788,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -882.61,
-          "avg_profit": -88.26
+          "avg_profit": -88.26,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -84788,7 +85801,8 @@
           "auto_coverage_rate": 75.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 72.52,
-          "avg_profit": 9.07
+          "avg_profit": 9.07,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -84800,7 +85814,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -49.0,
-          "avg_profit": -24.5
+          "avg_profit": -24.5,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -84812,7 +85827,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -158.04,
-          "avg_profit": -158.04
+          "avg_profit": -158.04,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -84824,7 +85840,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -38.81,
-          "avg_profit": -38.81
+          "avg_profit": -38.81,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -84836,7 +85853,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -3.89,
-          "avg_profit": -3.89
+          "avg_profit": -3.89,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -88780,7 +89798,15 @@
           "auto_coverage_rate": 97.76,
           "auto_succ_rate": 66.74,
           "profit_sum": 6504.22,
-          "avg_profit": 13.75
+          "avg_profit": 13.75,
+          "ticket_time": {
+            "n": 191,
+            "p50": 0.25,
+            "p90": 0.57,
+            "p99": 39.03,
+            "avg": 2.47,
+            "abnormal_rate": 1.57
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -88792,7 +89818,15 @@
           "auto_coverage_rate": 96.36,
           "auto_succ_rate": 70.0,
           "profit_sum": -909.65,
-          "avg_profit": -1.96
+          "avg_profit": -1.96,
+          "ticket_time": {
+            "n": 311,
+            "p50": 0.02,
+            "p90": 0.05,
+            "p99": 78.26,
+            "avg": 3.66,
+            "abnormal_rate": 3.22
+          }
         },
         {
           "channel": "春秋官网",
@@ -88804,7 +89838,8 @@
           "auto_coverage_rate": 98.92,
           "auto_succ_rate": 78.65,
           "profit_sum": -8487.0,
-          "avg_profit": -18.49
+          "avg_profit": -18.49,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -88816,7 +89851,15 @@
           "auto_coverage_rate": 98.99,
           "auto_succ_rate": 90.33,
           "profit_sum": -1279.12,
-          "avg_profit": -3.25
+          "avg_profit": -3.25,
+          "ticket_time": {
+            "n": 352,
+            "p50": 0.25,
+            "p90": 10.8,
+            "p99": 56.82,
+            "avg": 5.95,
+            "abnormal_rate": 5.4
+          }
         },
         {
           "channel": "booking",
@@ -88828,7 +89871,15 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 70.64,
           "profit_sum": 6588.92,
-          "avg_profit": 28.16
+          "avg_profit": 28.16,
+          "ticket_time": {
+            "n": 33,
+            "p50": 0.52,
+            "p90": 0.57,
+            "p99": 21.02,
+            "avg": 1.64,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -88840,7 +89891,15 @@
           "auto_coverage_rate": 99.13,
           "auto_succ_rate": 84.72,
           "profit_sum": -603.17,
-          "avg_profit": -2.62
+          "avg_profit": -2.62,
+          "ticket_time": {
+            "n": 194,
+            "p50": 0.2,
+            "p90": 25.43,
+            "p99": 429.12,
+            "avg": 30.63,
+            "abnormal_rate": 8.76
+          }
         },
         {
           "channel": "航班管家接口",
@@ -88852,7 +89911,15 @@
           "auto_coverage_rate": 95.24,
           "auto_succ_rate": 47.5,
           "profit_sum": -598.99,
-          "avg_profit": -4.91
+          "avg_profit": -4.91,
+          "ticket_time": {
+            "n": 54,
+            "p50": 0.98,
+            "p90": 1.38,
+            "p99": 1.42,
+            "avg": 0.96,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -88864,7 +89931,8 @@
           "auto_coverage_rate": 90.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -1990.41,
-          "avg_profit": -66.35
+          "avg_profit": -66.35,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -88876,7 +89944,8 @@
           "auto_coverage_rate": 75.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 833.54,
-          "avg_profit": 69.46
+          "avg_profit": 69.46,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -88888,7 +89957,8 @@
           "auto_coverage_rate": 8.33,
           "auto_succ_rate": 0.0,
           "profit_sum": 967.43,
-          "avg_profit": 87.95
+          "avg_profit": 87.95,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -88900,7 +89970,8 @@
           "auto_coverage_rate": 12.5,
           "auto_succ_rate": 0.0,
           "profit_sum": -201.5,
-          "avg_profit": -25.19
+          "avg_profit": -25.19,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -88912,7 +89983,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -45.11,
-          "avg_profit": -11.28
+          "avg_profit": -11.28,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -88924,7 +89996,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 45.29,
-          "avg_profit": 15.1
+          "avg_profit": 15.1,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -88936,7 +90009,8 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -11.52,
-          "avg_profit": -3.84
+          "avg_profit": -3.84,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -88948,7 +90022,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -653.84,
-          "avg_profit": -326.92
+          "avg_profit": -326.92,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -88960,7 +90035,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -47.87,
-          "avg_profit": -23.93
+          "avg_profit": -23.93,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃B2B",
@@ -88972,7 +90048,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -67.95,
-          "avg_profit": -67.95
+          "avg_profit": -67.95,
+          "ticket_time": {}
         },
         {
           "channel": "狮航官网",
@@ -88984,7 +90061,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -53.05,
-          "avg_profit": -53.05
+          "avg_profit": -53.05,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -93119,7 +94197,8 @@
           "auto_coverage_rate": 98.42,
           "auto_succ_rate": 78.26,
           "profit_sum": -11105.77,
-          "avg_profit": -17.85
+          "avg_profit": -17.85,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -93131,7 +94210,15 @@
           "auto_coverage_rate": 90.1,
           "auto_succ_rate": 56.59,
           "profit_sum": 6202.5,
-          "avg_profit": 10.68
+          "avg_profit": 10.68,
+          "ticket_time": {
+            "n": 194,
+            "p50": 0.27,
+            "p90": 14.59,
+            "p99": 22.57,
+            "avg": 7.97,
+            "abnormal_rate": 1.03
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -93143,7 +94230,15 @@
           "auto_coverage_rate": 94.38,
           "auto_succ_rate": 68.83,
           "profit_sum": -1079.46,
-          "avg_profit": -1.84
+          "avg_profit": -1.84,
+          "ticket_time": {
+            "n": 389,
+            "p50": 0.02,
+            "p90": 0.09,
+            "p99": 171.71,
+            "avg": 8.26,
+            "abnormal_rate": 4.63
+          }
         },
         {
           "channel": "反采同程",
@@ -93155,7 +94250,15 @@
           "auto_coverage_rate": 99.47,
           "auto_succ_rate": 92.92,
           "profit_sum": -1584.24,
-          "avg_profit": -2.79
+          "avg_profit": -2.79,
+          "ticket_time": {
+            "n": 521,
+            "p50": 0.25,
+            "p90": 20.85,
+            "p99": 170.41,
+            "avg": 11.55,
+            "abnormal_rate": 8.06
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -93167,7 +94270,15 @@
           "auto_coverage_rate": 99.38,
           "auto_succ_rate": 86.83,
           "profit_sum": -626.7,
-          "avg_profit": -1.96
+          "avg_profit": -1.96,
+          "ticket_time": {
+            "n": 275,
+            "p50": 0.2,
+            "p90": 0.23,
+            "p99": 128.36,
+            "avg": 5.89,
+            "abnormal_rate": 1.82
+          }
         },
         {
           "channel": "booking",
@@ -93179,7 +94290,15 @@
           "auto_coverage_rate": 92.2,
           "auto_succ_rate": 68.46,
           "profit_sum": 7369.59,
-          "avg_profit": 26.99
+          "avg_profit": 26.99,
+          "ticket_time": {
+            "n": 46,
+            "p50": 0.29,
+            "p90": 10.54,
+            "p99": 288.79,
+            "avg": 13.15,
+            "abnormal_rate": 2.17
+          }
         },
         {
           "channel": "航班管家接口",
@@ -93191,7 +94310,15 @@
           "auto_coverage_rate": 94.79,
           "auto_succ_rate": 63.19,
           "profit_sum": -3438.88,
-          "avg_profit": -18.69
+          "avg_profit": -18.69,
+          "ticket_time": {
+            "n": 113,
+            "p50": 0.98,
+            "p90": 1.38,
+            "p99": 1.45,
+            "avg": 0.98,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -93203,7 +94330,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -2539.79,
-          "avg_profit": -48.84
+          "avg_profit": -48.84,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -93215,7 +94343,8 @@
           "auto_coverage_rate": 9.52,
           "auto_succ_rate": 0.0,
           "profit_sum": 2014.2,
-          "avg_profit": 106.01
+          "avg_profit": 106.01,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -93227,7 +94356,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -354.37,
-          "avg_profit": -32.22
+          "avg_profit": -32.22,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -93239,7 +94369,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -192.58,
-          "avg_profit": -27.51
+          "avg_profit": -27.51,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -93251,7 +94382,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 28.57,
           "profit_sum": 1714.26,
-          "avg_profit": 244.89
+          "avg_profit": 244.89,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -93263,7 +94395,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 33.33,
           "profit_sum": 1792.65,
-          "avg_profit": 298.78
+          "avg_profit": 298.78,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -93275,7 +94408,8 @@
           "auto_coverage_rate": 80.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 98.01,
-          "avg_profit": 19.6
+          "avg_profit": 19.6,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -93287,7 +94421,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -131.0,
-          "avg_profit": -26.2
+          "avg_profit": -26.2,
+          "ticket_time": {}
         },
         {
           "channel": "Atlas",
@@ -93299,7 +94434,8 @@
           "auto_coverage_rate": 75.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 0,
-          "avg_profit": 0
+          "avg_profit": 0,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -93311,7 +94447,8 @@
           "auto_coverage_rate": 75.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -305.84,
-          "avg_profit": -76.46
+          "avg_profit": -76.46,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -93323,7 +94460,8 @@
           "auto_coverage_rate": 66.67,
           "auto_succ_rate": 0.0,
           "profit_sum": 8.94,
-          "avg_profit": 2.98
+          "avg_profit": 2.98,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程APP",
@@ -93335,7 +94473,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 334.0,
-          "avg_profit": 167.0
+          "avg_profit": 167.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -97997,7 +99136,15 @@
           "auto_coverage_rate": 99.5,
           "auto_succ_rate": 92.49,
           "profit_sum": -458.38,
-          "avg_profit": -0.57
+          "avg_profit": -0.57,
+          "ticket_time": {
+            "n": 734,
+            "p50": 0.23,
+            "p90": 20.64,
+            "p99": 140.82,
+            "avg": 8.89,
+            "abnormal_rate": 5.99
+          }
         },
         {
           "channel": "春秋官网",
@@ -98009,7 +99156,8 @@
           "auto_coverage_rate": 98.86,
           "auto_succ_rate": 80.15,
           "profit_sum": -13721.02,
-          "avg_profit": -17.57
+          "avg_profit": -17.57,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程ITravel",
@@ -98021,7 +99169,15 @@
           "auto_coverage_rate": 91.56,
           "auto_succ_rate": 65.39,
           "profit_sum": 519.38,
-          "avg_profit": 0.85
+          "avg_profit": 0.85,
+          "ticket_time": {
+            "n": 368,
+            "p50": 0.03,
+            "p90": 18.22,
+            "p99": 552.99,
+            "avg": 25.61,
+            "abnormal_rate": 9.51
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -98033,7 +99189,15 @@
           "auto_coverage_rate": 99.4,
           "auto_succ_rate": 88.26,
           "profit_sum": -1014.77,
-          "avg_profit": -2.05
+          "avg_profit": -2.05,
+          "ticket_time": {
+            "n": 435,
+            "p50": 0.2,
+            "p90": 25.42,
+            "p99": 429.37,
+            "avg": 18.19,
+            "abnormal_rate": 5.29
+          }
         },
         {
           "channel": "booking",
@@ -98045,7 +99209,15 @@
           "auto_coverage_rate": 99.71,
           "auto_succ_rate": 75.5,
           "profit_sum": 8527.26,
-          "avg_profit": 24.79
+          "avg_profit": 24.79,
+          "ticket_time": {
+            "n": 71,
+            "p50": 0.23,
+            "p90": 0.37,
+            "p99": 20.84,
+            "avg": 1.12,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -98057,7 +99229,15 @@
           "auto_coverage_rate": 81.32,
           "auto_succ_rate": 52.7,
           "profit_sum": 2012.97,
-          "avg_profit": 7.89
+          "avg_profit": 7.89,
+          "ticket_time": {
+            "n": 102,
+            "p50": 0.23,
+            "p90": 0.53,
+            "p99": 21.11,
+            "avg": 4.65,
+            "abnormal_rate": 0.98
+          }
         },
         {
           "channel": "航班管家接口",
@@ -98069,7 +99249,15 @@
           "auto_coverage_rate": 95.69,
           "auto_succ_rate": 67.12,
           "profit_sum": -4553.47,
-          "avg_profit": -20.42
+          "avg_profit": -20.42,
+          "ticket_time": {
+            "n": 145,
+            "p50": 0.97,
+            "p90": 1.38,
+            "p99": 1.44,
+            "avg": 0.93,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -98081,7 +99269,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 2.08,
           "profit_sum": -3720.27,
-          "avg_profit": -77.51
+          "avg_profit": -77.51,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -98093,7 +99282,8 @@
           "auto_coverage_rate": 16.13,
           "auto_succ_rate": 0.0,
           "profit_sum": 1402.78,
-          "avg_profit": 53.95
+          "avg_profit": 53.95,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -98105,7 +99295,8 @@
           "auto_coverage_rate": 70.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -2211.7,
-          "avg_profit": -221.17
+          "avg_profit": -221.17,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -98117,7 +99308,8 @@
           "auto_coverage_rate": 37.5,
           "auto_succ_rate": 0.0,
           "profit_sum": -82.96,
-          "avg_profit": -10.37
+          "avg_profit": -10.37,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -98129,7 +99321,8 @@
           "auto_coverage_rate": 85.71,
           "auto_succ_rate": 33.33,
           "profit_sum": 1668.99,
-          "avg_profit": 417.25
+          "avg_profit": 417.25,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -98141,7 +99334,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 171.39,
-          "avg_profit": 34.28
+          "avg_profit": 34.28,
+          "ticket_time": {}
         },
         {
           "channel": "F9边疆官网",
@@ -98153,7 +99347,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -16.34,
-          "avg_profit": -16.34
+          "avg_profit": -16.34,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -98165,7 +99360,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -160.08,
-          "avg_profit": -53.36
+          "avg_profit": -53.36,
+          "ticket_time": {}
         },
         {
           "channel": "Atlas",
@@ -98177,7 +99373,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -120.53,
-          "avg_profit": -60.27
+          "avg_profit": -60.27,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -98189,7 +99386,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -20.46,
-          "avg_profit": -10.23
+          "avg_profit": -10.23,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -98201,7 +99399,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -106.26,
-          "avg_profit": -53.13
+          "avg_profit": -53.13,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -98213,7 +99412,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 10.18,
-          "avg_profit": 10.18
+          "avg_profit": 10.18,
+          "ticket_time": {}
         },
         {
           "channel": "OD峇迪B2B",
@@ -98225,7 +99425,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -102.0,
-          "avg_profit": -102.0
+          "avg_profit": -102.0,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程易旅行",
@@ -98237,7 +99438,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 9.0,
-          "avg_profit": 9.0
+          "avg_profit": 9.0,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -102867,7 +104069,15 @@
           "auto_coverage_rate": 98.38,
           "auto_succ_rate": 94.28,
           "profit_sum": -467.0,
-          "avg_profit": -0.59
+          "avg_profit": -0.59,
+          "ticket_time": {
+            "n": 737,
+            "p50": 0.23,
+            "p90": 10.65,
+            "p99": 51.9,
+            "avg": 4.72,
+            "abnormal_rate": 4.07
+          }
         },
         {
           "channel": "春秋官网",
@@ -102879,7 +104089,8 @@
           "auto_coverage_rate": 97.92,
           "auto_succ_rate": 85.29,
           "profit_sum": -12358.02,
-          "avg_profit": -17.43
+          "avg_profit": -17.43,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程ITravel",
@@ -102891,7 +104102,15 @@
           "auto_coverage_rate": 92.7,
           "auto_succ_rate": 69.58,
           "profit_sum": -1215.94,
-          "avg_profit": -2.57
+          "avg_profit": -2.57,
+          "ticket_time": {
+            "n": 304,
+            "p50": 0.02,
+            "p90": 10.05,
+            "p99": 357.1,
+            "avg": 17.2,
+            "abnormal_rate": 3.62
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -102903,7 +104122,15 @@
           "auto_coverage_rate": 99.15,
           "auto_succ_rate": 92.49,
           "profit_sum": -232.83,
-          "avg_profit": -0.5
+          "avg_profit": -0.5,
+          "ticket_time": {
+            "n": 431,
+            "p50": 0.2,
+            "p90": 25.45,
+            "p99": 532.37,
+            "avg": 22.83,
+            "abnormal_rate": 8.82
+          }
         },
         {
           "channel": "booking",
@@ -102915,7 +104142,15 @@
           "auto_coverage_rate": 87.98,
           "auto_succ_rate": 79.3,
           "profit_sum": 11486.23,
-          "avg_profit": 46.69
+          "avg_profit": 46.69,
+          "ticket_time": {
+            "n": 28,
+            "p50": 0.22,
+            "p90": 0.25,
+            "p99": 0.27,
+            "avg": 0.23,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "航班管家接口",
@@ -102927,7 +104162,15 @@
           "auto_coverage_rate": 96.31,
           "auto_succ_rate": 69.86,
           "profit_sum": -2960.39,
-          "avg_profit": -14.23
+          "avg_profit": -14.23,
+          "ticket_time": {
+            "n": 142,
+            "p50": 0.99,
+            "p90": 1.38,
+            "p99": 2.31,
+            "avg": 1.09,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -102939,7 +104182,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 2.78,
           "profit_sum": -1561.0,
-          "avg_profit": -43.36
+          "avg_profit": -43.36,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -102951,7 +104195,8 @@
           "auto_coverage_rate": 42.31,
           "auto_succ_rate": 0.0,
           "profit_sum": 744.48,
-          "avg_profit": 28.63
+          "avg_profit": 28.63,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -102963,7 +104208,8 @@
           "auto_coverage_rate": 22.22,
           "auto_succ_rate": 0.0,
           "profit_sum": 1030.56,
-          "avg_profit": 57.25
+          "avg_profit": 57.25,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -102975,7 +104221,8 @@
           "auto_coverage_rate": 35.71,
           "auto_succ_rate": 80.0,
           "profit_sum": 1843.13,
-          "avg_profit": 153.59
+          "avg_profit": 153.59,
+          "ticket_time": {}
         },
         {
           "channel": "OD峇迪B2B",
@@ -102987,7 +104234,8 @@
           "auto_coverage_rate": 80.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -859.0,
-          "avg_profit": -85.9
+          "avg_profit": -85.9,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃B2B",
@@ -102999,7 +104247,8 @@
           "auto_coverage_rate": 16.67,
           "auto_succ_rate": 0.0,
           "profit_sum": -222.73,
-          "avg_profit": -37.12
+          "avg_profit": -37.12,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -103011,7 +104260,8 @@
           "auto_coverage_rate": 60.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -227.5,
-          "avg_profit": -56.88
+          "avg_profit": -56.88,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -103023,7 +104273,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -92.0,
-          "avg_profit": -18.4
+          "avg_profit": -18.4,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -103035,7 +104286,8 @@
           "auto_coverage_rate": 25.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -34.57,
-          "avg_profit": -8.64
+          "avg_profit": -8.64,
+          "ticket_time": {}
         },
         {
           "channel": "F9边疆官网",
@@ -103047,7 +104299,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -69.65,
-          "avg_profit": -34.83
+          "avg_profit": -34.83,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -103059,7 +104312,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -287.47,
-          "avg_profit": -143.74
+          "avg_profit": -143.74,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -103071,7 +104325,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -73.54,
-          "avg_profit": -36.77
+          "avg_profit": -36.77,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -103083,7 +104338,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -295.0,
-          "avg_profit": -147.5
+          "avg_profit": -147.5,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -103095,7 +104351,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -32.19,
-          "avg_profit": -32.19
+          "avg_profit": -32.19,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -103107,7 +104364,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -18.7,
-          "avg_profit": -18.7
+          "avg_profit": -18.7,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -107498,7 +108756,8 @@
           "auto_coverage_rate": 98.7,
           "auto_succ_rate": 84.53,
           "profit_sum": -12440.04,
-          "avg_profit": -18.06
+          "avg_profit": -18.06,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -107510,7 +108769,15 @@
           "auto_coverage_rate": 98.4,
           "auto_succ_rate": 92.74,
           "profit_sum": -471.32,
-          "avg_profit": -0.69
+          "avg_profit": -0.69,
+          "ticket_time": {
+            "n": 621,
+            "p50": 0.25,
+            "p90": 10.67,
+            "p99": 92.66,
+            "avg": 5.8,
+            "abnormal_rate": 4.67
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -107522,7 +108789,15 @@
           "auto_coverage_rate": 91.1,
           "auto_succ_rate": 63.06,
           "profit_sum": 1905.84,
-          "avg_profit": 3.74
+          "avg_profit": 3.74,
+          "ticket_time": {
+            "n": 286,
+            "p50": 0.03,
+            "p90": 0.08,
+            "p99": 23.16,
+            "avg": 2.56,
+            "abnormal_rate": 1.05
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -107534,7 +108809,15 @@
           "auto_coverage_rate": 99.64,
           "auto_succ_rate": 85.36,
           "profit_sum": -899.61,
-          "avg_profit": -3.2
+          "avg_profit": -3.2,
+          "ticket_time": {
+            "n": 238,
+            "p50": 0.2,
+            "p90": 25.44,
+            "p99": 656.2,
+            "avg": 37.41,
+            "abnormal_rate": 8.4
+          }
         },
         {
           "channel": "航班管家接口",
@@ -107546,7 +108829,15 @@
           "auto_coverage_rate": 95.95,
           "auto_succ_rate": 56.81,
           "profit_sum": -3117.97,
-          "avg_profit": -14.44
+          "avg_profit": -14.44,
+          "ticket_time": {
+            "n": 115,
+            "p50": 0.98,
+            "p90": 1.38,
+            "p99": 1.45,
+            "avg": 0.97,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "booking",
@@ -107558,7 +108849,15 @@
           "auto_coverage_rate": 90.81,
           "auto_succ_rate": 72.62,
           "profit_sum": 3923.6,
-          "avg_profit": 21.8
+          "avg_profit": 21.8,
+          "ticket_time": {
+            "n": 13,
+            "p50": 0.23,
+            "p90": 0.23,
+            "p99": 0.23,
+            "avg": 0.22,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "bookingKayak",
@@ -107570,7 +108869,15 @@
           "auto_coverage_rate": 87.04,
           "auto_succ_rate": 13.48,
           "profit_sum": 605.33,
-          "avg_profit": 4.88
+          "avg_profit": 4.88,
+          "ticket_time": {
+            "n": 8,
+            "p50": 0.22,
+            "p90": 0.25,
+            "p99": 0.28,
+            "avg": 0.22,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "反采携程海外",
@@ -107582,7 +108889,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 1189.56,
-          "avg_profit": 26.43
+          "avg_profit": 26.43,
+          "ticket_time": {}
         },
         {
           "channel": "MF官网",
@@ -107594,7 +108902,8 @@
           "auto_coverage_rate": 95.35,
           "auto_succ_rate": 0.0,
           "profit_sum": -1796.71,
-          "avg_profit": -43.82
+          "avg_profit": -43.82,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -107606,7 +108915,8 @@
           "auto_coverage_rate": 35.71,
           "auto_succ_rate": 0.0,
           "profit_sum": 52.46,
-          "avg_profit": 1.87
+          "avg_profit": 1.87,
+          "ticket_time": {}
         },
         {
           "channel": "VF捷特航空官网",
@@ -107618,7 +108928,8 @@
           "auto_coverage_rate": 16.67,
           "auto_succ_rate": 0.0,
           "profit_sum": 2294.21,
-          "avg_profit": 191.18
+          "avg_profit": 191.18,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -107630,7 +108941,8 @@
           "auto_coverage_rate": 90.91,
           "auto_succ_rate": 0.0,
           "profit_sum": -117.45,
-          "avg_profit": -10.68
+          "avg_profit": -10.68,
+          "ticket_time": {}
         },
         {
           "channel": "OD峇迪B2B",
@@ -107642,7 +108954,8 @@
           "auto_coverage_rate": 30.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -1429.2,
-          "avg_profit": -142.92
+          "avg_profit": -142.92,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃B2B",
@@ -107654,7 +108967,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -299.31,
-          "avg_profit": -37.41
+          "avg_profit": -37.41,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -107666,7 +108980,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -217.46,
-          "avg_profit": -31.07
+          "avg_profit": -31.07,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -107678,7 +108993,8 @@
           "auto_coverage_rate": 40.0,
           "auto_succ_rate": 50.0,
           "profit_sum": -81.44,
-          "avg_profit": -16.29
+          "avg_profit": -16.29,
+          "ticket_time": {}
         },
         {
           "channel": "Atlas",
@@ -107690,7 +109006,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 0,
-          "avg_profit": 0
+          "avg_profit": 0,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -107702,7 +109019,8 @@
           "auto_coverage_rate": 33.33,
           "auto_succ_rate": 0.0,
           "profit_sum": -128.0,
-          "avg_profit": -42.67
+          "avg_profit": -42.67,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -107714,7 +109032,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -89.71,
-          "avg_profit": -29.9
+          "avg_profit": -29.9,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -107726,7 +109045,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -149.63,
-          "avg_profit": -74.81
+          "avg_profit": -74.81,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -107738,7 +109058,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -41.23,
-          "avg_profit": -20.61
+          "avg_profit": -20.61,
+          "ticket_time": {}
         },
         {
           "channel": "FYAPP",
@@ -107750,7 +109071,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -690.36,
-          "avg_profit": -690.36
+          "avg_profit": -690.36,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -107762,7 +109084,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -50.89,
-          "avg_profit": -50.89
+          "avg_profit": -50.89,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -111959,7 +113282,8 @@
           "auto_coverage_rate": 99.16,
           "auto_succ_rate": 81.92,
           "profit_sum": -13132.04,
-          "avg_profit": -18.52
+          "avg_profit": -18.52,
+          "ticket_time": {}
         },
         {
           "channel": "反采同程",
@@ -111971,7 +113295,15 @@
           "auto_coverage_rate": 99.7,
           "auto_succ_rate": 93.88,
           "profit_sum": -509.24,
-          "avg_profit": -0.78
+          "avg_profit": -0.78,
+          "ticket_time": {
+            "n": 603,
+            "p50": 0.25,
+            "p90": 10.51,
+            "p99": 285.37,
+            "avg": 10.27,
+            "abnormal_rate": 3.15
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -111983,7 +113315,15 @@
           "auto_coverage_rate": 93.43,
           "auto_succ_rate": 66.83,
           "profit_sum": 5760.54,
-          "avg_profit": 9.2
+          "avg_profit": 9.2,
+          "ticket_time": {
+            "n": 388,
+            "p50": 0.03,
+            "p90": 12.14,
+            "p99": 619.89,
+            "avg": 26.67,
+            "abnormal_rate": 8.25
+          }
         },
         {
           "channel": "反采飞猪接口",
@@ -111995,7 +113335,15 @@
           "auto_coverage_rate": 99.6,
           "auto_succ_rate": 82.54,
           "profit_sum": -954.74,
-          "avg_profit": -3.79
+          "avg_profit": -3.79,
+          "ticket_time": {
+            "n": 208,
+            "p50": 0.2,
+            "p90": 0.23,
+            "p99": 25.45,
+            "avg": 3.14,
+            "abnormal_rate": 0.96
+          }
         },
         {
           "channel": "航班管家接口",
@@ -112007,7 +113355,15 @@
           "auto_coverage_rate": 97.51,
           "auto_succ_rate": 50.51,
           "profit_sum": -5209.35,
-          "avg_profit": -26.05
+          "avg_profit": -26.05,
+          "ticket_time": {
+            "n": 93,
+            "p50": 0.98,
+            "p90": 1.4,
+            "p99": 1.44,
+            "avg": 0.95,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "booking",
@@ -112019,7 +113375,15 @@
           "auto_coverage_rate": 95.6,
           "auto_succ_rate": 73.68,
           "profit_sum": 3470.41,
-          "avg_profit": 22.1
+          "avg_profit": 22.1,
+          "ticket_time": {
+            "n": 23,
+            "p50": 0.22,
+            "p90": 0.27,
+            "p99": 16.28,
+            "avg": 1.12,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "香港港版APP",
@@ -112031,7 +113395,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 31.75,
           "profit_sum": -1227.33,
-          "avg_profit": -19.48
+          "avg_profit": -19.48,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -112043,7 +113408,8 @@
           "auto_coverage_rate": 4.76,
           "auto_succ_rate": 0.0,
           "profit_sum": 1066.44,
-          "avg_profit": 26.01
+          "avg_profit": 26.01,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -112055,7 +113421,8 @@
           "auto_coverage_rate": 78.57,
           "auto_succ_rate": 0.0,
           "profit_sum": -336.52,
-          "avg_profit": -12.02
+          "avg_profit": -12.02,
+          "ticket_time": {}
         },
         {
           "channel": "MF官网",
@@ -112067,7 +113434,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -1403.06,
-          "avg_profit": -51.97
+          "avg_profit": -51.97,
+          "ticket_time": {}
         },
         {
           "channel": "OD峇迪B2B",
@@ -112079,7 +113447,8 @@
           "auto_coverage_rate": 38.1,
           "auto_succ_rate": 25.0,
           "profit_sum": -2025.0,
-          "avg_profit": -96.43
+          "avg_profit": -96.43,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -112091,7 +113460,8 @@
           "auto_coverage_rate": 17.65,
           "auto_succ_rate": 0.0,
           "profit_sum": -1830.08,
-          "avg_profit": -107.65
+          "avg_profit": -107.65,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -112103,7 +113473,8 @@
           "auto_coverage_rate": 30.77,
           "auto_succ_rate": 50.0,
           "profit_sum": -201.03,
-          "avg_profit": -22.34
+          "avg_profit": -22.34,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃B2B",
@@ -112115,7 +113486,8 @@
           "auto_coverage_rate": 20.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -114.2,
-          "avg_profit": -22.84
+          "avg_profit": -22.84,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -112127,7 +113499,8 @@
           "auto_coverage_rate": 80.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 0.41,
-          "avg_profit": 0.08
+          "avg_profit": 0.08,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -112139,7 +113512,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -150.28,
-          "avg_profit": -50.09
+          "avg_profit": -50.09,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -112151,7 +113525,8 @@
           "auto_coverage_rate": 33.33,
           "auto_succ_rate": 0.0,
           "profit_sum": -79.0,
-          "avg_profit": -26.33
+          "avg_profit": -26.33,
+          "ticket_time": {}
         },
         {
           "channel": "Airpaz官网",
@@ -112163,7 +113538,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -12.0,
-          "avg_profit": -12.0
+          "avg_profit": -12.0,
+          "ticket_time": {}
         },
         {
           "channel": "FYAPP",
@@ -112175,7 +113551,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 0,
-          "avg_profit": 0
+          "avg_profit": 0,
+          "ticket_time": {}
         },
         {
           "channel": "KR柬埔寨B2B",
@@ -112187,7 +113564,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 1.62,
-          "avg_profit": 1.62
+          "avg_profit": 1.62,
+          "ticket_time": {}
         },
         {
           "channel": "MF厦门航空B2B",
@@ -112199,7 +113577,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -36.89,
-          "avg_profit": -36.89
+          "avg_profit": -36.89,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -112211,7 +113590,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -46.81,
-          "avg_profit": -46.81
+          "avg_profit": -46.81,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -112223,7 +113603,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -48.95,
-          "avg_profit": -48.95
+          "avg_profit": -48.95,
+          "ticket_time": {}
         }
       ],
       "staff": [
@@ -116480,7 +117861,15 @@
           "auto_coverage_rate": 99.16,
           "auto_succ_rate": 90.89,
           "profit_sum": 969.24,
-          "avg_profit": 1.63
+          "avg_profit": 1.63,
+          "ticket_time": {
+            "n": 538,
+            "p50": 0.25,
+            "p90": 10.53,
+            "p99": 62.27,
+            "avg": 6.47,
+            "abnormal_rate": 3.53
+          }
         },
         {
           "channel": "反采同程ITravel",
@@ -116492,7 +117881,15 @@
           "auto_coverage_rate": 90.49,
           "auto_succ_rate": 67.92,
           "profit_sum": 5463.06,
-          "avg_profit": 9.44
+          "avg_profit": 9.44,
+          "ticket_time": {
+            "n": 345,
+            "p50": 0.03,
+            "p90": 36.24,
+            "p99": 833.84,
+            "avg": 39.26,
+            "abnormal_rate": 10.72
+          }
         },
         {
           "channel": "春秋官网",
@@ -116504,7 +117901,8 @@
           "auto_coverage_rate": 98.21,
           "auto_succ_rate": 79.93,
           "profit_sum": -9671.35,
-          "avg_profit": -17.62
+          "avg_profit": -17.62,
+          "ticket_time": {}
         },
         {
           "channel": "反采飞猪接口",
@@ -116516,7 +117914,15 @@
           "auto_coverage_rate": 99.02,
           "auto_succ_rate": 83.25,
           "profit_sum": -652.76,
-          "avg_profit": -3.2
+          "avg_profit": -3.2,
+          "ticket_time": {
+            "n": 169,
+            "p50": 0.2,
+            "p90": 0.27,
+            "p99": 134.41,
+            "avg": 7.08,
+            "abnormal_rate": 1.78
+          }
         },
         {
           "channel": "booking",
@@ -116528,7 +117934,15 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 52.26,
           "profit_sum": 3494.17,
-          "avg_profit": 22.54
+          "avg_profit": 22.54,
+          "ticket_time": {
+            "n": 15,
+            "p50": 0.22,
+            "p90": 0.26,
+            "p99": 0.4,
+            "avg": 0.24,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "航班管家接口",
@@ -116540,7 +117954,15 @@
           "auto_coverage_rate": 93.5,
           "auto_succ_rate": 57.39,
           "profit_sum": -3577.28,
-          "avg_profit": -30.32
+          "avg_profit": -30.32,
+          "ticket_time": {
+            "n": 66,
+            "p50": 1.0,
+            "p90": 1.4,
+            "p99": 1.45,
+            "avg": 0.96,
+            "abnormal_rate": 0.0
+          }
         },
         {
           "channel": "MF官网",
@@ -116552,7 +117974,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 2.5,
           "profit_sum": -1972.85,
-          "avg_profit": -49.32
+          "avg_profit": -49.32,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃官网",
@@ -116564,7 +117987,8 @@
           "auto_coverage_rate": 41.03,
           "auto_succ_rate": 0.0,
           "profit_sum": -828.94,
-          "avg_profit": -21.25
+          "avg_profit": -21.25,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程海外",
@@ -116576,7 +118000,8 @@
           "auto_coverage_rate": 11.11,
           "auto_succ_rate": 0.0,
           "profit_sum": 454.39,
-          "avg_profit": 12.62
+          "avg_profit": 12.62,
+          "ticket_time": {}
         },
         {
           "channel": "OD峇迪B2B",
@@ -116588,7 +118013,8 @@
           "auto_coverage_rate": 46.15,
           "auto_succ_rate": 16.67,
           "profit_sum": -2652.48,
-          "avg_profit": -106.1
+          "avg_profit": -106.1,
+          "ticket_time": {}
         },
         {
           "channel": "香港港版APP",
@@ -116600,7 +118026,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 50.0,
           "profit_sum": -292.66,
-          "avg_profit": -24.39
+          "avg_profit": -24.39,
+          "ticket_time": {}
         },
         {
           "channel": "瑞安官网",
@@ -116612,7 +118039,8 @@
           "auto_coverage_rate": 36.36,
           "auto_succ_rate": 50.0,
           "profit_sum": -237.32,
-          "avg_profit": -23.73
+          "avg_profit": -23.73,
+          "ticket_time": {}
         },
         {
           "channel": "MM乐桃B2B",
@@ -116624,7 +118052,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -276.49,
-          "avg_profit": -46.08
+          "avg_profit": -46.08,
+          "ticket_time": {}
         },
         {
           "channel": "BX釜山航空",
@@ -116636,7 +118065,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": -175.17,
-          "avg_profit": -43.79
+          "avg_profit": -43.79,
+          "ticket_time": {}
         },
         {
           "channel": "bookingKayak",
@@ -116648,7 +118078,8 @@
           "auto_coverage_rate": 25.0,
           "auto_succ_rate": 100.0,
           "profit_sum": 17.34,
-          "avg_profit": 5.78
+          "avg_profit": 5.78,
+          "ticket_time": {}
         },
         {
           "channel": "OD官网",
@@ -116660,7 +118091,8 @@
           "auto_coverage_rate": 50.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -281.4,
-          "avg_profit": -140.7
+          "avg_profit": -140.7,
+          "ticket_time": {}
         },
         {
           "channel": "反采携程",
@@ -116672,7 +118104,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -364.0,
-          "avg_profit": -182.0
+          "avg_profit": -182.0,
+          "ticket_time": {}
         },
         {
           "channel": "TRwx",
@@ -116684,7 +118117,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": 75.07,
-          "avg_profit": 75.07
+          "avg_profit": 75.07,
+          "ticket_time": {}
         },
         {
           "channel": "bookcabin官网",
@@ -116696,7 +118130,8 @@
           "auto_coverage_rate": 100.0,
           "auto_succ_rate": 0.0,
           "profit_sum": -25.61,
-          "avg_profit": -25.61
+          "avg_profit": -25.61,
+          "ticket_time": {}
         },
         {
           "channel": "九元官网",
@@ -116708,7 +118143,8 @@
           "auto_coverage_rate": 0.0,
           "auto_succ_rate": 0,
           "profit_sum": 0,
-          "avg_profit": 0
+          "avg_profit": 0,
+          "ticket_time": {}
         }
       ],
       "staff": [
