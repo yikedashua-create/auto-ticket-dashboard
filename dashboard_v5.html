@@ -535,7 +535,7 @@ async function loadData() {
       //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
       //   浏览器缓存: 同一 URL 二次访问秒开
       //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-      const COMMIT = "d64c921";
+      const COMMIT = "2171501";
       const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       let dataLoaded = false;
       // 路径 1: 相对路径
@@ -2346,8 +2346,9 @@ function renderFail() {
   // - 上方：环节汇总条（一眼可辨哪一环出问题）
   // - 点击族 → 展开二级：原始 Top 5（清洗后但未族聚合的）
   // - 二级点击 → 5 维度下钻（沿用 toggleDrill）
-  const bFamilies = (CURRENT_DATA.fail_families_B || []).slice(0, 30);
-  const dFamilies = (CURRENT_DATA.fail_families_D || []).slice(0, 30);
+  // 2026-07-26 简化：去掉 Top 30 截断 + 删族-子分类，固定 9 大环节
+  const bFamilies = (CURRENT_DATA.fail_families_B || []);
+  const dFamilies = (CURRENT_DATA.fail_families_D || []);
   const bReasonsAll = CURRENT_DATA.fail_reasons_B.slice(0, 30);
   const dReasonsAll = CURRENT_DATA.fail_reasons_D.slice(0, 30);
   const cs = COMPARE_DATA;
@@ -2377,16 +2378,16 @@ function renderFail() {
     ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：D ${fmt.num(cs.summary.D)} 单</span>`
     : "";
 
-  // === 族级行（第一级，按环节色编码）===
+  // === 族级行（2026-07-26 简化：固定 9 大环节，不再展开子项）===
   const bFamilyRow = (f, i) => {
     const cmp = cmpBFamMap[f.family];
     const cmpBadge = cs
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+    return `<tr>
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / CURRENT_DATA.summary.B * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -2398,9 +2399,9 @@ function renderFail() {
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+    return `<tr>
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / CURRENT_DATA.summary.D * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -2453,8 +2454,7 @@ function renderFail() {
 
   const html = `
     <div class="section">
-      <div class="section-title">⚠️ B 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.B)} 单）
-        <span class="badge badge-warn">点击族名展开原始 Top 5</span>
+      <div class="section-title">⚠️ B 路径 全自动失败环节（9 大环节 · ${fmt.num(CURRENT_DATA.summary.B)} 单）
         ${cmpBHdr}
       </div>
       <div class="chart-box" style="margin-top:14px">
@@ -2462,7 +2462,7 @@ function renderFail() {
         ${stageSummaryHtml(bStages, "B", CURRENT_DATA.summary.B)}
       </div>
       <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📋 B 路径 失败根因 Top 30（族级，按环节色编码）</div>
+        <div class="chart-title">📋 B 路径 全自动失败环节（9 大环节 · 全量展示）</div>
         <table class="data-table">
           <thead>
             <tr><th>排名</th><th>族名</th><th>单数</th><th>占比（B 路径）</th>
@@ -2475,7 +2475,7 @@ function renderFail() {
     </div>
 
     <div class="section">
-      <div class="section-title">🚨 D 路径失败根因（按出票环节 · ${fmt.num(CURRENT_DATA.summary.D)} 单）
+      <div class="section-title">🚨 D 路径 全自动失败环节（9 大环节 · ${fmt.num(CURRENT_DATA.summary.D)} 单）
         ${cmpDHdr}
       </div>
       <div class="chart-box" style="margin-top:14px">
@@ -2483,7 +2483,7 @@ function renderFail() {
         ${stageSummaryHtml(dStages, "D", CURRENT_DATA.summary.D)}
       </div>
       <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📋 D 路径 失败根因 Top 30（族级，按环节色编码）</div>
+        <div class="chart-title">📋 D 路径 全自动失败环节（9 大环节 · 全量展示）</div>
         <table class="data-table">
           <thead>
             <tr><th>排名</th><th>族名</th><th>单数</th><th>占比（D 路径）</th>
@@ -2497,10 +2497,9 @@ function renderFail() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // B 路径失败原因 - 横向柱（hover tooltip 加对比）
-  // v11 修复：之前 bReasons/dReasons 没定义（应该是 bReasonsAll/dReasonsAll）
-  const bReasons = bReasonsAll;
-  const dReasons = dReasonsAll;
+  // B 路径失败原因 - 横向柱（2026-07-26 简化：按 9 大环节，配色用 stage 语义色）
+  const bReasons = bFamilies;  // 9 行族数据（族名 + count）
+  const dReasons = dFamilies;
   createChart("chart-failB", {
     ...baseEchartsOpt,
     tooltip: {
@@ -2509,27 +2508,27 @@ function renderFail() {
       formatter: (params) => {
         const p = params[0];
         const r = bReasons[bReasons.length - 1 - p.dataIndex];
-        const cmp = cmpBMap[r.full];
+        const cmp = cmpBFamMap[r.family];
         const cur = r.count;
-        let html = `<b>${r.reason}</b><br/>当前: ${fmt.num(cur)} 单`;
+        let html = `<b>${r.family}</b><br/>当前: ${fmt.num(cur)} 单`;
         if (cmp) {
           const diff = cur - cmp.count;
           html += `<br/>${COMPARE_LABEL}: ${fmt.num(cmp.count)} 单<br/>差值: ${diff >= 0 ? '+' : ''}${fmt.num(diff)}`;
         } else if (cs) {
-          html += `<br/><span style="color:#ffa502">▲ 新增原因</span>`;
+          html += `<br/><span style="color:#ffa502">▲ 新增环节</span>`;
         }
         return html;
       }
     },
-    grid: { left: 250, right: 50, top: 20, bottom: 30 },
+    grid: { left: 100, right: 50, top: 20, bottom: 30 },
     xAxis: { type: "value", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
     yAxis: { type: "category",
-              data: bReasons.map(r => r.reason).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10 } },
+              data: bReasons.map(r => r.family).reverse(),
+              axisLabel: { color: "#7a8ba0", fontSize: 12, fontWeight: "bold" } },
     series: [{
-      type: "bar", data: bReasons.map(r => r.count).reverse(),
-      itemStyle: { color: color.B },
+      type: "bar",
+      data: bReasons.map(r => ({ value: r.count, itemStyle: { color: getStageColor(r.family) } })).reverse(),
       label: { show: true, position: "right", color: "#e0e6f0",
         formatter: p => fmt.num(p.value) },
     }],
@@ -2543,27 +2542,27 @@ function renderFail() {
       formatter: (params) => {
         const p = params[0];
         const r = dReasons[dReasons.length - 1 - p.dataIndex];
-        const cmp = cmpDMap[r.full];
+        const cmp = cmpDFamMap[r.family];
         const cur = r.count;
-        let html = `<b>${r.reason}</b><br/>当前: ${fmt.num(cur)} 单`;
+        let html = `<b>${r.family}</b><br/>当前: ${fmt.num(cur)} 单`;
         if (cmp) {
           const diff = cur - cmp.count;
           html += `<br/>${COMPARE_LABEL}: ${fmt.num(cmp.count)} 单<br/>差值: ${diff >= 0 ? '+' : ''}${fmt.num(diff)}`;
         } else if (cs) {
-          html += `<br/><span style="color:#ffa502">▲ 新增原因</span>`;
+          html += `<br/><span style="color:#ffa502">▲ 新增环节</span>`;
         }
         return html;
       }
     },
-    grid: { left: 250, right: 50, top: 20, bottom: 30 },
+    grid: { left: 100, right: 50, top: 20, bottom: 30 },
     xAxis: { type: "value", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
     yAxis: { type: "category",
-              data: dReasons.map(r => r.reason).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 10 } },
+              data: dReasons.map(r => r.family).reverse(),
+              axisLabel: { color: "#7a8ba0", fontSize: 12, fontWeight: "bold" } },
     series: [{
-      type: "bar", data: dReasons.map(r => r.count).reverse(),
-      itemStyle: { color: color.D },
+      type: "bar",
+      data: dReasons.map(r => ({ value: r.count, itemStyle: { color: getStageColor(r.family) } })).reverse(),
       label: { show: true, position: "right", color: "#e0e6f0",
         formatter: p => fmt.num(p.value) },
     }],
@@ -2634,16 +2633,16 @@ function renderFailureAnalysis() {
     (cs.fail_families_D || []).forEach(f => { cmpDFamMap[f.family] = f; });
   }
 
-  // 2. 失败根因族级行
+  // 2. 失败根因族级行（2026-07-26 简化：9 大环节，不展开子项）
   const bFamilyRow = (f, i) => {
     const cmp = cmpBFamMap[f.family];
     const cmpBadge = cs
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+    return `<tr>
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / curSummaryB * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -2655,9 +2654,9 @@ function renderFailureAnalysis() {
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+    return `<tr>
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><span style="color:#00e5ff">▸ </span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / curSummaryD * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -2690,8 +2689,7 @@ function renderFailureAnalysis() {
   // 4. HTML 主体：B 路径族级 + D 路径族级（垂直堆叠）
   const html = `
     <div class="section">
-      <div class="section-title">⚠️ B 路径失败根因（按出票环节 · ${fmt.num(curSummaryB)} 单）
-        <span class="badge badge-warn">点击族名展开原始 Top 5</span>
+      <div class="section-title">⚠️ B 路径 全自动失败环节（9 大环节 · ${fmt.num(curSummaryB)} 单）
         ${cmpBHdr}
       </div>
       <div class="chart-hint" style="margin-bottom:8px">
@@ -2702,7 +2700,7 @@ function renderFailureAnalysis() {
         ${stageSummaryHtml(bStages, curSummaryB)}
       </div>
       <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📋 B 路径 失败根因 Top 30（族级，按环节色编码）</div>
+        <div class="chart-title">📋 B 路径 全自动失败环节（9 大环节 · 全量展示）</div>
         <table class="data-table">
           <thead>
             <tr><th>排名</th><th>族名</th><th>单数</th><th>占比（B 路径）</th>
@@ -2715,7 +2713,7 @@ function renderFailureAnalysis() {
     </div>
 
     <div class="section">
-      <div class="section-title">🚨 D 路径失败根因（按出票环节 · ${fmt.num(curSummaryD)} 单）
+      <div class="section-title">🚨 D 路径 全自动失败环节（9 大环节 · ${fmt.num(curSummaryD)} 单）
         ${cmpDHdr}
       </div>
       <div class="chart-box" style="margin-top:14px">
@@ -2723,7 +2721,7 @@ function renderFailureAnalysis() {
         ${stageSummaryHtml(dStages, curSummaryD)}
       </div>
       <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📋 D 路径 失败根因 Top 30（族级，按环节色编码）</div>
+        <div class="chart-title">📋 D 路径 全自动失败环节（9 大环节 · 全量展示）</div>
         <table class="data-table">
           <thead>
             <tr><th>排名</th><th>族名</th><th>单数</th><th>占比（D 路径）</th>
