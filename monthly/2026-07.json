@@ -2857,7 +2857,7 @@
       "reason": "取票环节 原因为:暂时没有票号",
       "full": "取票环节 原因为:暂时没有票号",
       "count": 331,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 305,
       "prev_month": "2026-06"
     },
@@ -3009,7 +3009,7 @@
       "reason": "取票环节 原因为:当前订单状态为：待出票",
       "full": "取票环节 原因为:当前订单状态为：待出票",
       "count": 153,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 520,
       "prev_month": "2026-06"
     },
@@ -3081,7 +3081,7 @@
       "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
       "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
       "count": 114,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 123,
       "prev_month": "2026-06"
     },
@@ -3281,7 +3281,7 @@
       "reason": "取票环节 原因为:已支付 出票中",
       "full": "取票环节 原因为:已支付 出票中",
       "count": 51,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 327,
       "prev_month": "2026-06"
     },
@@ -3417,7 +3417,7 @@
       "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
       "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
       "count": 37,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 66,
       "prev_month": "2026-06"
     },
@@ -3465,7 +3465,7 @@
       "reason": "取票环节 原因为:ip异常",
       "full": "取票环节 原因为:ip异常",
       "count": 31,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 57,
       "prev_month": "2026-06"
     },
@@ -3505,7 +3505,7 @@
       "reason": "取票环节 原因为:ip异常 请重试",
       "full": "取票环节 原因为:ip异常 请重试",
       "count": 28,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 5,
       "prev_month": "2026-06"
     },
@@ -3585,7 +3585,7 @@
       "reason": "取票环节 原因为:取消订单失败",
       "full": "取票环节 原因为:取消订单失败",
       "count": 24,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 42,
       "prev_month": "2026-06"
     },
@@ -3601,7 +3601,7 @@
       "reason": "取票环节 原因为:票号未出 请稍后重试",
       "full": "取票环节 原因为:票号未出 请稍后重试",
       "count": 24,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -3625,7 +3625,7 @@
       "reason": "取票环节 原因为:获取订单booking失败",
       "full": "取票环节 原因为:获取订单booking失败",
       "count": 23,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 3,
       "prev_month": "2026-06"
     },
@@ -4025,7 +4025,7 @@
       "reason": "取票环节 原因为:Read timed out",
       "full": "取票环节 原因为:Read timed out",
       "count": 11,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 27,
       "prev_month": "2026-06"
     },
@@ -4361,7 +4361,7 @@
       "reason": "取票环节 原因为:订单支付待处理 请稍后重试",
       "full": "取票环节 原因为:订单支付待处理 请稍后重试",
       "count": 7,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -4521,7 +4521,7 @@
       "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
       "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
       "count": 5,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 2,
       "prev_month": "2026-06"
     },
@@ -4641,7 +4641,7 @@
       "reason": "取票环节 原因为:订单状态为空",
       "full": "取票环节 原因为:订单状态为空",
       "count": 5,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 13,
       "prev_month": "2026-06"
     },
@@ -4737,7 +4737,7 @@
       "reason": "取票环节 原因为:待出票",
       "full": "取票环节 原因为:待出票",
       "count": 4,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 9,
       "prev_month": "2026-06"
     },
@@ -4801,7 +4801,7 @@
       "reason": "取票环节 原因为:待支付",
       "full": "取票环节 原因为:待支付",
       "count": 4,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 2,
       "prev_month": "2026-06"
     },
@@ -4817,7 +4817,7 @@
       "reason": "取票环节 原因为:ip获取失败",
       "full": "取票环节 原因为:ip获取失败",
       "count": 4,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 8,
       "prev_month": "2026-06"
     },
@@ -4937,7 +4937,7 @@
       "reason": "取票环节 原因为:已取消",
       "full": "取票环节 原因为:已取消",
       "count": 3,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 2,
       "prev_month": "2026-06"
     },
@@ -4969,7 +4969,7 @@
       "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
       "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a p\"[truncated 59 chars] line: 1 column: 2]",
       "count": 3,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 2,
       "prev_month": "2026-06"
     },
@@ -5185,7 +5185,7 @@
       "reason": "取票环节 原因为:订单状态异常 orderStatus",
       "full": "取票环节 原因为:订单状态异常 orderStatus",
       "count": 3,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -5225,7 +5225,7 @@
       "reason": "取票环节 原因为:无合法票号 请核实",
       "full": "取票环节 原因为:无合法票号 请核实",
       "count": 2,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -5625,7 +5625,7 @@
       "reason": "取票环节 原因为:订单状态异常 支付失败",
       "full": "取票环节 原因为:订单状态异常 支付失败",
       "count": 2,
-      "family": "支付环节-支付异常",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -5905,7 +5905,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Penang'}] 'passengers': []...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Penang'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '486' 'shareId': '/Pk=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-80864'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -5945,7 +5945,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Nanjing'}] 'passengers': [] ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Nanjing'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-79215'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -5993,7 +5993,7 @@
       "reason": "取票环节 原因为:For input string",
       "full": "取票环节 原因为:For input string",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -6353,7 +6353,7 @@
       "reason": "取票环节 原因为:: partner.huoli.com",
       "full": "取票环节 原因为:: partner.huoli.com",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -6465,7 +6465,7 @@
       "reason": "取票环节 原因为:未发行票证",
       "full": "取票环节 原因为:未发行票证",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -6473,7 +6473,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Fuzhou' '': 'Surabaya'}] 'passengers': ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Fuzhou' '': 'Surabaya'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '788' 'shareId': '/AZsMI=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-4115'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -6481,7 +6481,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': []...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+Ym2DQ6HY=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-4438'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -7593,7 +7593,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Bangkok' '': 'Nanchang'}] 'passengers':...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Bangkok' '': 'Nanchang'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '/syAQ=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-91643'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -7713,7 +7713,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [ ] ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '/TJPDrJKKg=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-53675'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -7793,7 +7793,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Cheongju'}] 'passengers'...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Cheongju'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '+IOItl/WZiXdnZps=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-26341'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -8201,7 +8201,7 @@
       "reason": "取票环节 原因为:请求错误未查询到订单信息",
       "full": "取票环节 原因为:请求错误未查询到订单信息",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 5,
       "prev_month": "2026-06"
     },
@@ -8209,7 +8209,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Bangkok'}] 'passengers':...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Bangkok'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '773' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-62482'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -8441,7 +8441,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [ ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+DJsudZJU=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-66982'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -8545,7 +8545,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers':...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '7giAGQKCbLks/+Po8GpU=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-73328'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -9057,7 +9057,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Singapore'}] 'passenger...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Singapore'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '+Gs/2ZLVi6J/=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-80408'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -9297,7 +9297,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': 'Shanghai'}] 'passenger...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '/kHtp/=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-99247'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -9545,7 +9545,7 @@
       "reason": "取票环节 原因为:.aliyuncs.com",
       "full": "取票环节 原因为:.aliyuncs.com",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -9553,7 +9553,7 @@
       "reason": "取票环节 原因为:.aliyuncs.com: Temporary failure in name resolution",
       "full": "取票环节 原因为:.aliyuncs.com: Temporary failure in name resolution",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 2,
       "prev_month": "2026-06"
     },
@@ -9787,7 +9787,7 @@
       "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
       "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
       "count": 32,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 6,
       "prev_month": "2026-06"
     },
@@ -9795,7 +9795,7 @@
       "reason": "取票环节 原因为:当前订单状态为：待出票",
       "full": "取票环节 原因为:当前订单状态为：待出票",
       "count": 28,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 14,
       "prev_month": "2026-06"
     },
@@ -10307,7 +10307,7 @@
       "reason": "取票环节 原因为:退票中",
       "full": "取票环节 原因为:退票中",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10315,7 +10315,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Nanning' '': 'Bangkok'}] 'passengers': ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Nanning' '': 'Bangkok'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+oLI=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-44899'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10331,7 +10331,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': []...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-45910'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10347,7 +10347,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Phuket'}] 'passengers': ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Phuket'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '+=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-95390'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -10355,7 +10355,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Osaka'}] 'passengers': [...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Osaka'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-86285'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10419,7 +10419,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Chiang Mai'}] 'passenge...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Chiang Mai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '/4+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-78244'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -10451,7 +10451,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shenzhen' '': 'Phuket'}] 'passengers': ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shenzhen' '': 'Phuket'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '+=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-99207'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10467,7 +10467,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [] '...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '/=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-33134'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10483,7 +10483,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Kuala Lumpur'}] 'passen...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Kuala Lumpur'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '/o=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-82627'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10531,7 +10531,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Phuket' '': 'Shanghai'}] 'passengers': ...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Phuket' '': 'Shanghai'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+fRZgH0t0IA=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-53559'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10563,7 +10563,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Kuala Lumpur' '': 'Shanghai'}] 'passeng...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Kuala Lumpur' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '+hcpzfchXjm9+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-87557'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -10611,7 +10611,7 @@
       "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Seoul' '': 'Shanghai'}] 'passengers': [...",
       "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Seoul' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': 'taB0kQalwP0N+lPzKL5puypbY/+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-70030'}",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "取票环节-取票异常",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -10646,12 +10646,12 @@
       "count": 7334
     },
     {
-      "family": "其他环节",
-      "count": 1481
+      "family": "支付环节",
+      "count": 1420
     },
     {
-      "family": "支付环节",
-      "count": 1422
+      "family": "取票环节",
+      "count": 995
     },
     {
       "family": "人工环节",
@@ -10666,16 +10666,16 @@
       "count": 696
     },
     {
+      "family": "其他环节",
+      "count": 596
+    },
+    {
       "family": "系统环节",
       "count": 586
     },
     {
       "family": "回填环节",
       "count": 233
-    },
-    {
-      "family": "取票环节",
-      "count": 108
     }
   ],
   "fail_families_D": [
@@ -10689,11 +10689,11 @@
     },
     {
       "family": "其他环节",
-      "count": 169
+      "count": 97
     },
     {
       "family": "取票环节",
-      "count": 15
+      "count": 87
     },
     {
       "family": "回填环节",
@@ -17991,7 +17991,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 12,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18047,7 +18047,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18239,7 +18239,7 @@
           "reason": "取票环节 原因为:ip异常 请重试",
           "full": "取票环节 原因为:ip异常 请重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18287,7 +18287,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18295,7 +18295,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18343,7 +18343,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18439,7 +18439,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18463,7 +18463,7 @@
           "reason": "取票环节 原因为:无合法票号 请核实",
           "full": "取票环节 原因为:无合法票号 请核实",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18575,7 +18575,7 @@
           "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
           "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18615,7 +18615,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18833,7 +18833,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18884,16 +18884,20 @@
           "count": 240
         },
         {
-          "family": "其他环节",
-          "count": 65
-        },
-        {
           "family": "支付环节",
           "count": 43
         },
         {
           "family": "人工环节",
           "count": 38
+        },
+        {
+          "family": "其他环节",
+          "count": 35
+        },
+        {
+          "family": "取票环节",
+          "count": 31
         },
         {
           "family": "平台环节",
@@ -18910,10 +18914,6 @@
         {
           "family": "回填环节",
           "count": 5
-        },
-        {
-          "family": "取票环节",
-          "count": 1
         }
       ],
       "fail_families_D": [
@@ -18926,15 +18926,11 @@
           "count": 11
         },
         {
-          "family": "支付环节",
-          "count": 2
-        },
-        {
           "family": "取票环节",
-          "count": 2
+          "count": 4
         },
         {
-          "family": "其他环节",
+          "family": "支付环节",
           "count": 2
         }
       ],
@@ -21809,7 +21805,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 11,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 12,
           "prev_month": "2026-07-02"
         },
@@ -21881,7 +21877,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-02"
         },
@@ -21921,7 +21917,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-02"
         },
@@ -21969,7 +21965,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-02"
         },
@@ -22009,7 +22005,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-02"
         },
@@ -22025,7 +22021,7 @@
           "reason": "取票环节 原因为:ip异常 请重试",
           "full": "取票环节 原因为:ip异常 请重试",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-02"
         },
@@ -22121,7 +22117,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-02"
         },
@@ -22177,7 +22173,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-02"
         },
@@ -22521,7 +22517,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-02"
         },
@@ -22603,7 +22599,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-02"
         },
@@ -22759,11 +22755,15 @@
         },
         {
           "family": "其他环节",
-          "count": 110
+          "count": 73
         },
         {
           "family": "支付环节",
           "count": 51
+        },
+        {
+          "family": "取票环节",
+          "count": 43
         },
         {
           "family": "平台环节",
@@ -22782,10 +22782,6 @@
           "count": 7
         },
         {
-          "family": "取票环节",
-          "count": 6
-        },
-        {
           "family": "系统环节",
           "count": 6
         }
@@ -22801,7 +22797,11 @@
         },
         {
           "family": "其他环节",
-          "count": 6
+          "count": 3
+        },
+        {
+          "family": "取票环节",
+          "count": 3
         },
         {
           "family": "支付环节",
@@ -25945,7 +25945,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-03"
         },
@@ -26001,7 +26001,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 11,
           "prev_month": "2026-07-03"
         },
@@ -26273,7 +26273,7 @@
           "reason": "取票环节 原因为:ip异常 请重试",
           "full": "取票环节 原因为:ip异常 请重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-03"
         },
@@ -26361,7 +26361,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-03"
         },
@@ -26393,7 +26393,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-03"
         },
@@ -26625,7 +26625,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Penang'}] 'passengers': []...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Xiamen' '': 'Penang'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '486' 'shareId': '/Pk=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-80864'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-03"
         },
@@ -26795,7 +26795,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-03"
         },
@@ -26879,7 +26879,7 @@
         },
         {
           "family": "其他环节",
-          "count": 74
+          "count": 57
         },
         {
           "family": "系统环节",
@@ -26894,6 +26894,10 @@
           "count": 24
         },
         {
+          "family": "取票环节",
+          "count": 18
+        },
+        {
           "family": "人工环节",
           "count": 17
         },
@@ -26904,10 +26908,6 @@
         {
           "family": "回填环节",
           "count": 10
-        },
-        {
-          "family": "取票环节",
-          "count": 1
         }
       ],
       "fail_families_D": [
@@ -26920,11 +26920,11 @@
           "count": 11
         },
         {
-          "family": "其他环节",
+          "family": "取票环节",
           "count": 4
         },
         {
-          "family": "取票环节",
+          "family": "其他环节",
           "count": 2
         },
         {
@@ -29999,7 +29999,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-04"
         },
@@ -30015,7 +30015,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-04"
         },
@@ -30039,7 +30039,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30207,7 +30207,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-04"
         },
@@ -30231,7 +30231,7 @@
           "reason": "取票环节 原因为:已取消",
           "full": "取票环节 原因为:已取消",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30287,7 +30287,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Nanjing'}] 'passengers': [] ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Nanjing'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-79215'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30439,7 +30439,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30479,7 +30479,7 @@
           "reason": "取票环节 原因为:ip异常 请重试",
           "full": "取票环节 原因为:ip异常 请重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-04"
         },
@@ -30511,7 +30511,7 @@
           "reason": "取票环节 原因为:For input string",
           "full": "取票环节 原因为:For input string",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30575,7 +30575,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30649,7 +30649,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-04"
         },
@@ -30721,7 +30721,7 @@
           "reason": "取票环节 原因为:退票中",
           "full": "取票环节 原因为:退票中",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30744,8 +30744,8 @@
           "count": 43
         },
         {
-          "family": "其他环节",
-          "count": 28
+          "family": "取票环节",
+          "count": 25
         },
         {
           "family": "人工环节",
@@ -30768,8 +30768,8 @@
           "count": 7
         },
         {
-          "family": "取票环节",
-          "count": 1
+          "family": "其他环节",
+          "count": 4
         }
       ],
       "fail_families_D": [
@@ -30782,15 +30782,19 @@
           "count": 7
         },
         {
-          "family": "其他环节",
-          "count": 3
-        },
-        {
           "family": "回填环节",
           "count": 3
         },
         {
+          "family": "取票环节",
+          "count": 2
+        },
+        {
           "family": "系统环节",
+          "count": 1
+        },
+        {
+          "family": "其他环节",
           "count": 1
         }
       ],
@@ -33762,7 +33766,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 10,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-06"
         },
@@ -33834,7 +33838,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-06"
         },
@@ -33858,7 +33862,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-06"
         },
@@ -33906,7 +33910,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-06"
         },
@@ -34002,7 +34006,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-06"
         },
@@ -34058,7 +34062,7 @@
           "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
           "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a p\"[truncated 59 chars] line: 1 column: 2]",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-06"
         },
@@ -34130,7 +34134,7 @@
           "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
           "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-06"
         },
@@ -34650,7 +34654,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-06"
         },
@@ -34756,7 +34760,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-06"
         },
@@ -34836,7 +34840,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Nanning' '': 'Bangkok'}] 'passengers': ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Nanning' '': 'Bangkok'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+oLI=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-44899'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-06"
         },
@@ -34887,12 +34891,16 @@
           "count": 209
         },
         {
-          "family": "其他环节",
-          "count": 69
-        },
-        {
           "family": "支付环节",
           "count": 45
+        },
+        {
+          "family": "取票环节",
+          "count": 42
+        },
+        {
+          "family": "其他环节",
+          "count": 34
         },
         {
           "family": "人工环节",
@@ -34911,10 +34919,6 @@
           "count": 11
         },
         {
-          "family": "取票环节",
-          "count": 7
-        },
-        {
           "family": "回填环节",
           "count": 7
         }
@@ -34930,7 +34934,11 @@
         },
         {
           "family": "其他环节",
-          "count": 8
+          "count": 4
+        },
+        {
+          "family": "取票环节",
+          "count": 4
         }
       ],
       "fail_drill_B": [
@@ -37987,7 +37995,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 14,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-07"
         },
@@ -38099,7 +38107,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-07"
         },
@@ -38179,7 +38187,7 @@
           "reason": "取票环节 原因为:待出票",
           "full": "取票环节 原因为:待出票",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-07"
         },
@@ -38259,7 +38267,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 10,
           "prev_month": "2026-07-07"
         },
@@ -38307,7 +38315,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-07"
         },
@@ -38323,7 +38331,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-07"
         },
@@ -38339,7 +38347,7 @@
           "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
           "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String) line: 1 column: 2]",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-07"
         },
@@ -38355,7 +38363,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-07"
         },
@@ -38371,7 +38379,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-07"
         },
@@ -38563,7 +38571,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-07"
         },
@@ -38635,7 +38643,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-07"
         },
@@ -38715,7 +38723,7 @@
           "reason": "取票环节 原因为:: partner.huoli.com",
           "full": "取票环节 原因为:: partner.huoli.com",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-07"
         },
@@ -38861,7 +38869,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-07"
         },
@@ -38904,12 +38912,16 @@
           "count": 201
         },
         {
-          "family": "其他环节",
-          "count": 73
-        },
-        {
           "family": "人工环节",
           "count": 56
+        },
+        {
+          "family": "取票环节",
+          "count": 38
+        },
+        {
+          "family": "其他环节",
+          "count": 37
         },
         {
           "family": "平台环节",
@@ -38930,16 +38942,12 @@
         {
           "family": "回填环节",
           "count": 4
-        },
-        {
-          "family": "取票环节",
-          "count": 2
         }
       ],
       "fail_families_D": [
         {
           "family": "其他环节",
-          "count": 17
+          "count": 16
         },
         {
           "family": "人工环节",
@@ -38948,6 +38956,10 @@
         {
           "family": "预定环节",
           "count": 10
+        },
+        {
+          "family": "取票环节",
+          "count": 1
         },
         {
           "family": "支付环节",
@@ -41950,7 +41962,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 30,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 14,
           "prev_month": "2026-07-08"
         },
@@ -42070,7 +42082,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-08"
         },
@@ -42182,7 +42194,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-08"
         },
@@ -42278,7 +42290,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-08"
         },
@@ -42390,7 +42402,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-08"
         },
@@ -42398,7 +42410,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-08"
         },
@@ -42590,7 +42602,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-08"
         },
@@ -42686,7 +42698,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-08"
         },
@@ -42768,7 +42780,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-08"
         },
@@ -42795,8 +42807,8 @@
           "count": 182
         },
         {
-          "family": "其他环节",
-          "count": 55
+          "family": "取票环节",
+          "count": 51
         },
         {
           "family": "平台环节",
@@ -42823,8 +42835,8 @@
           "count": 11
         },
         {
-          "family": "取票环节",
-          "count": 5
+          "family": "其他环节",
+          "count": 9
         }
       ],
       "fail_families_D": [
@@ -42838,7 +42850,7 @@
         },
         {
           "family": "其他环节",
-          "count": 5
+          "count": 4
         },
         {
           "family": "平台环节",
@@ -42846,7 +42858,7 @@
         },
         {
           "family": "取票环节",
-          "count": 1
+          "count": 2
         }
       ],
       "fail_drill_B": [
@@ -45875,7 +45887,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 18,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 30,
           "prev_month": "2026-07-09"
         },
@@ -45947,7 +45959,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 8,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-09"
         },
@@ -45963,7 +45975,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-09"
         },
@@ -46075,7 +46087,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-09"
         },
@@ -46211,7 +46223,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-09"
         },
@@ -46219,7 +46231,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-09"
         },
@@ -46419,7 +46431,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-09"
         },
@@ -46443,7 +46455,7 @@
           "reason": "取票环节 原因为:未发行票证",
           "full": "取票环节 原因为:未发行票证",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-09"
         },
@@ -46483,7 +46495,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-09"
         },
@@ -46523,7 +46535,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-09"
         },
@@ -46603,7 +46615,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Fuzhou' '': 'Surabaya'}] 'passengers': ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Fuzhou' '': 'Surabaya'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '788' 'shareId': '/AZsMI=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-4115'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-09"
         },
@@ -46643,7 +46655,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': []...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+Ym2DQ6HY=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'g': '-4438'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-09"
         },
@@ -46675,7 +46687,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-09"
         },
@@ -46773,7 +46785,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': []...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-45910'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-09"
         },
@@ -46856,8 +46868,8 @@
           "count": 182
         },
         {
-          "family": "其他环节",
-          "count": 51
+          "family": "取票环节",
+          "count": 58
         },
         {
           "family": "平台环节",
@@ -46876,16 +46888,16 @@
           "count": 25
         },
         {
-          "family": "取票环节",
-          "count": 10
-        },
-        {
           "family": "回填环节",
           "count": 10
         },
         {
           "family": "验真环节",
           "count": 5
+        },
+        {
+          "family": "其他环节",
+          "count": 3
         }
       ],
       "fail_families_D": [
@@ -46898,11 +46910,11 @@
           "count": 19
         },
         {
-          "family": "其他环节",
-          "count": 3
+          "family": "系统环节",
+          "count": 2
         },
         {
-          "family": "系统环节",
+          "family": "其他环节",
           "count": 2
         },
         {
@@ -46912,6 +46924,10 @@
         {
           "family": "平台环节",
           "count": 2
+        },
+        {
+          "family": "取票环节",
+          "count": 1
         },
         {
           "family": "支付环节",
@@ -50231,7 +50247,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 16,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 18,
           "prev_month": "2026-07-10"
         },
@@ -50287,7 +50303,7 @@
           "reason": "取票环节 原因为:ip异常 请重试",
           "full": "取票环节 原因为:ip异常 请重试",
           "count": 11,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-10"
         },
@@ -50487,7 +50503,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-10"
         },
@@ -50511,7 +50527,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 8,
           "prev_month": "2026-07-10"
         },
@@ -50679,7 +50695,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-10"
         },
@@ -50735,7 +50751,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-10"
         },
@@ -50759,7 +50775,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-10"
         },
@@ -50823,7 +50839,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-10"
         },
@@ -51159,7 +51175,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-10"
         },
@@ -51385,7 +51401,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-10"
         },
@@ -51401,7 +51417,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Phuket'}] 'passengers': ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Phuket'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '+=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-95390'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-10"
         },
@@ -51409,7 +51425,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Osaka'}] 'passengers': [...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Osaka'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-86285'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-10"
         },
@@ -51473,7 +51489,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-10"
         },
@@ -51536,16 +51552,20 @@
           "count": 107
         },
         {
-          "family": "其他环节",
-          "count": 87
-        },
-        {
           "family": "支付环节",
           "count": 86
         },
         {
           "family": "人工环节",
           "count": 57
+        },
+        {
+          "family": "取票环节",
+          "count": 52
+        },
+        {
+          "family": "其他环节",
+          "count": 44
         },
         {
           "family": "平台环节",
@@ -51558,16 +51578,12 @@
         {
           "family": "回填环节",
           "count": 13
-        },
-        {
-          "family": "取票环节",
-          "count": 9
         }
       ],
       "fail_families_D": [
         {
           "family": "其他环节",
-          "count": 41
+          "count": 36
         },
         {
           "family": "预定环节",
@@ -51580,6 +51596,10 @@
         {
           "family": "回填环节",
           "count": 6
+        },
+        {
+          "family": "取票环节",
+          "count": 5
         },
         {
           "family": "系统环节",
@@ -54817,7 +54837,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 26,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 16,
           "prev_month": "2026-07-11"
         },
@@ -54977,7 +54997,7 @@
           "reason": "取票环节 原因为:ip异常 请重试",
           "full": "取票环节 原因为:ip异常 请重试",
           "count": 8,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 11,
           "prev_month": "2026-07-11"
         },
@@ -54985,7 +55005,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-11"
         },
@@ -55081,7 +55101,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-11"
         },
@@ -55225,7 +55245,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-11"
         },
@@ -55377,7 +55397,7 @@
           "reason": "取票环节 原因为:订单状态为空",
           "full": "取票环节 原因为:订单状态为空",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-11"
         },
@@ -55497,7 +55517,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-11"
         },
@@ -55521,7 +55541,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-11"
         },
@@ -55561,7 +55581,7 @@
           "reason": "取票环节 原因为:待出票",
           "full": "取票环节 原因为:待出票",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-11"
         },
@@ -55753,7 +55773,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-11"
         },
@@ -55931,7 +55951,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-11"
         },
@@ -56011,7 +56031,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-11"
         },
@@ -56110,8 +56130,8 @@
           "count": 304
         },
         {
-          "family": "其他环节",
-          "count": 72
+          "family": "取票环节",
+          "count": 58
         },
         {
           "family": "人工环节",
@@ -56134,12 +56154,12 @@
           "count": 20
         },
         {
-          "family": "系统环节",
-          "count": 10
+          "family": "其他环节",
+          "count": 18
         },
         {
-          "family": "取票环节",
-          "count": 4
+          "family": "系统环节",
+          "count": 10
         }
       ],
       "fail_families_D": [
@@ -56152,12 +56172,12 @@
           "count": 13
         },
         {
-          "family": "其他环节",
-          "count": 5
+          "family": "取票环节",
+          "count": 6
         },
         {
-          "family": "取票环节",
-          "count": 2
+          "family": "其他环节",
+          "count": 1
         },
         {
           "family": "支付环节",
@@ -59383,7 +59403,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 26,
           "prev_month": "2026-07-12"
         },
@@ -59391,7 +59411,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-12"
         },
@@ -59535,7 +59555,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-12"
         },
@@ -59615,7 +59635,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-12"
         },
@@ -59663,7 +59683,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-12"
         },
@@ -60273,7 +60293,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-12"
         },
@@ -60361,7 +60381,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Chiang Mai'}] 'passenge...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Chiang Mai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '/4+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-78244'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-12"
         },
@@ -60369,7 +60389,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-12"
         },
@@ -60404,16 +60424,20 @@
           "count": 55
         },
         {
-          "family": "其他环节",
-          "count": 41
-        },
-        {
           "family": "平台环节",
           "count": 34
         },
         {
+          "family": "取票环节",
+          "count": 24
+        },
+        {
           "family": "验真环节",
           "count": 23
+        },
+        {
+          "family": "其他环节",
+          "count": 19
         },
         {
           "family": "回填环节",
@@ -60422,10 +60446,6 @@
         {
           "family": "系统环节",
           "count": 9
-        },
-        {
-          "family": "取票环节",
-          "count": 2
         }
       ],
       "fail_families_D": [
@@ -60438,8 +60458,12 @@
           "count": 15
         },
         {
+          "family": "取票环节",
+          "count": 4
+        },
+        {
           "family": "其他环节",
-          "count": 7
+          "count": 3
         }
       ],
       "fail_drill_B": [
@@ -63530,7 +63554,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 13,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-13"
         },
@@ -63738,7 +63762,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-13"
         },
@@ -63842,7 +63866,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-13"
         },
@@ -63850,7 +63874,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-13"
         },
@@ -64018,7 +64042,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-13"
         },
@@ -64122,7 +64146,7 @@
           "reason": "取票环节 原因为:ip异常 请重试",
           "full": "取票环节 原因为:ip异常 请重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-13"
         },
@@ -64394,7 +64418,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-13"
         },
@@ -64474,7 +64498,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-13"
         },
@@ -64716,7 +64740,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-13"
         },
@@ -64839,16 +64863,20 @@
           "count": 68
         },
         {
-          "family": "其他环节",
-          "count": 58
-        },
-        {
           "family": "系统环节",
           "count": 42
         },
         {
+          "family": "取票环节",
+          "count": 34
+        },
+        {
           "family": "平台环节",
           "count": 31
+        },
+        {
+          "family": "其他环节",
+          "count": 27
         },
         {
           "family": "验真环节",
@@ -64857,10 +64885,6 @@
         {
           "family": "回填环节",
           "count": 16
-        },
-        {
-          "family": "取票环节",
-          "count": 3
         }
       ],
       "fail_families_D": [
@@ -64874,7 +64898,11 @@
         },
         {
           "family": "其他环节",
-          "count": 10
+          "count": 7
+        },
+        {
+          "family": "取票环节",
+          "count": 3
         },
         {
           "family": "支付环节",
@@ -68311,7 +68339,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 13,
           "prev_month": "2026-07-14"
         },
@@ -68351,7 +68379,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-14"
         },
@@ -68415,7 +68443,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-14"
         },
@@ -68487,7 +68515,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-14"
         },
@@ -68495,7 +68523,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-14"
         },
@@ -68639,7 +68667,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-14"
         },
@@ -68919,7 +68947,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-14"
         },
@@ -69015,7 +69043,7 @@
           "reason": "取票环节 原因为:订单状态为空",
           "full": "取票环节 原因为:订单状态为空",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-14"
         },
@@ -69023,7 +69051,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-14"
         },
@@ -69047,7 +69075,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-14"
         },
@@ -69119,7 +69147,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Bangkok' '': 'Nanchang'}] 'passengers':...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Bangkok' '': 'Nanchang'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '/syAQ=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-91643'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-14"
         },
@@ -69225,7 +69253,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-14"
         },
@@ -69289,7 +69317,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-14"
         },
@@ -69380,8 +69408,8 @@
           "count": 61
         },
         {
-          "family": "其他环节",
-          "count": 47
+          "family": "取票环节",
+          "count": 41
         },
         {
           "family": "平台环节",
@@ -69396,8 +69424,8 @@
           "count": 22
         },
         {
-          "family": "取票环节",
-          "count": 8
+          "family": "其他环节",
+          "count": 14
         },
         {
           "family": "回填环节",
@@ -69410,16 +69438,16 @@
           "count": 20
         },
         {
-          "family": "其他环节",
-          "count": 10
-        },
-        {
           "family": "人工环节",
           "count": 9
         },
         {
           "family": "取票环节",
-          "count": 1
+          "count": 7
+        },
+        {
+          "family": "其他环节",
+          "count": 4
         }
       ],
       "fail_drill_B": [
@@ -72673,7 +72701,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 20,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-15"
         },
@@ -72793,7 +72821,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-15"
         },
@@ -72817,7 +72845,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-15"
         },
@@ -72913,7 +72941,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-15"
         },
@@ -73017,7 +73045,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-15"
         },
@@ -73049,7 +73077,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-15"
         },
@@ -73305,7 +73333,7 @@
           "reason": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String...",
           "full": "取票环节 原因为: Number Array Object or token '' 'true' or 'false') at [Source: (String)\" <!-- a p\"[truncated 59 chars] line: 1 column: 2]",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-15"
         },
@@ -73473,7 +73501,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [ ] ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '/TJPDrJKKg=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-53675'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-15"
         },
@@ -73481,7 +73509,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-15"
         },
@@ -73619,7 +73647,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shenzhen' '': 'Phuket'}] 'passengers': ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shenzhen' '': 'Phuket'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '+=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-99207'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-15"
         },
@@ -73659,7 +73687,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [] '...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Ningbo'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '/=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-33134'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-15"
         },
@@ -73675,7 +73703,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-15"
         },
@@ -73698,8 +73726,8 @@
           "count": 66
         },
         {
-          "family": "其他环节",
-          "count": 56
+          "family": "取票环节",
+          "count": 49
         },
         {
           "family": "系统环节",
@@ -73718,8 +73746,8 @@
           "count": 14
         },
         {
-          "family": "取票环节",
-          "count": 5
+          "family": "其他环节",
+          "count": 12
         },
         {
           "family": "回填环节",
@@ -73736,12 +73764,12 @@
           "count": 10
         },
         {
-          "family": "其他环节",
-          "count": 5
+          "family": "取票环节",
+          "count": 4
         },
         {
-          "family": "取票环节",
-          "count": 1
+          "family": "其他环节",
+          "count": 2
         },
         {
           "family": "验真环节",
@@ -77082,7 +77110,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 20,
           "prev_month": "2026-07-16"
         },
@@ -77114,7 +77142,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-16"
         },
@@ -77122,7 +77150,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-16"
         },
@@ -77458,7 +77486,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-16"
         },
@@ -77538,7 +77566,7 @@
           "reason": "取票环节 原因为:订单状态为空",
           "full": "取票环节 原因为:订单状态为空",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-16"
         },
@@ -77610,7 +77638,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Cheongju'}] 'passengers'...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Cheongju'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '602' 'shareId': '+IOItl/WZiXdnZps=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-26341'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-16"
         },
@@ -77850,7 +77878,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-16"
         },
@@ -78026,7 +78054,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-16"
         },
@@ -78132,7 +78160,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-16"
         },
@@ -78223,8 +78251,8 @@
           "count": 61
         },
         {
-          "family": "其他环节",
-          "count": 39
+          "family": "取票环节",
+          "count": 31
         },
         {
           "family": "平台环节",
@@ -78239,12 +78267,12 @@
           "count": 16
         },
         {
-          "family": "回填环节",
-          "count": 8
+          "family": "其他环节",
+          "count": 12
         },
         {
-          "family": "取票环节",
-          "count": 4
+          "family": "回填环节",
+          "count": 8
         }
       ],
       "fail_families_D": [
@@ -78258,11 +78286,11 @@
         },
         {
           "family": "其他环节",
-          "count": 4
+          "count": 3
         },
         {
           "family": "取票环节",
-          "count": 1
+          "count": 2
         },
         {
           "family": "系统环节",
@@ -81520,7 +81548,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 15,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-17"
         },
@@ -81728,7 +81756,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-17"
         },
@@ -81824,7 +81852,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -81944,7 +81972,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-17"
         },
@@ -82144,7 +82172,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82256,7 +82284,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82368,7 +82396,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82488,7 +82516,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-17"
         },
@@ -82504,7 +82532,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-17"
         }
@@ -82554,7 +82582,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82594,7 +82622,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-17"
         },
@@ -82650,7 +82678,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Kuala Lumpur'}] 'passen...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Kuala Lumpur'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '/o=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-82627'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82693,10 +82721,6 @@
           "count": 357
         },
         {
-          "family": "其他环节",
-          "count": 67
-        },
-        {
           "family": "人工环节",
           "count": 54
         },
@@ -82709,6 +82733,14 @@
           "count": 39
         },
         {
+          "family": "其他环节",
+          "count": 38
+        },
+        {
+          "family": "取票环节",
+          "count": 35
+        },
+        {
           "family": "平台环节",
           "count": 33
         },
@@ -82719,10 +82751,6 @@
         {
           "family": "系统环节",
           "count": 13
-        },
-        {
-          "family": "取票环节",
-          "count": 6
         }
       ],
       "fail_families_D": [
@@ -82735,7 +82763,7 @@
           "count": 14
         },
         {
-          "family": "其他环节",
+          "family": "取票环节",
           "count": 5
         }
       ],
@@ -85934,7 +85962,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 15,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 15,
           "prev_month": "2026-07-18"
         },
@@ -86062,7 +86090,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-18"
         },
@@ -86134,7 +86162,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-18"
         },
@@ -86438,7 +86466,7 @@
           "reason": "取票环节 原因为:请求错误未查询到订单信息",
           "full": "取票环节 原因为:请求错误未查询到订单信息",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-18"
         },
@@ -86446,7 +86474,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Bangkok'}] 'passengers':...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Shanghai' '': 'Bangkok'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '773' 'shareId': '=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-62482'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-18"
         },
@@ -86494,7 +86522,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-18"
         },
@@ -86558,7 +86586,7 @@
           "reason": "取票环节 原因为:订单状态为空",
           "full": "取票环节 原因为:订单状态为空",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-18"
         },
@@ -86694,7 +86722,7 @@
           "reason": "取票环节 原因为:已取消",
           "full": "取票环节 原因为:已取消",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-18"
         },
@@ -86726,7 +86754,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-18"
         },
@@ -86886,7 +86914,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-18"
         }
@@ -86936,7 +86964,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-18"
         },
@@ -87039,16 +87067,20 @@
           "count": 82
         },
         {
-          "family": "其他环节",
-          "count": 71
-        },
-        {
           "family": "支付环节",
           "count": 48
         },
         {
+          "family": "其他环节",
+          "count": 37
+        },
+        {
           "family": "平台环节",
           "count": 36
+        },
+        {
+          "family": "取票环节",
+          "count": 35
         },
         {
           "family": "人工环节",
@@ -87061,10 +87093,6 @@
         {
           "family": "系统环节",
           "count": 6
-        },
-        {
-          "family": "取票环节",
-          "count": 1
         }
       ],
       "fail_families_D": [
@@ -87077,11 +87105,11 @@
           "count": 3
         },
         {
-          "family": "其他环节",
+          "family": "取票环节",
           "count": 3
         },
         {
-          "family": "取票环节",
+          "family": "其他环节",
           "count": 1
         }
       ],
@@ -90310,7 +90338,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 15,
           "prev_month": "2026-07-19"
         },
@@ -90350,7 +90378,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-19"
         },
@@ -90494,7 +90522,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-19"
         },
@@ -90502,7 +90530,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-19"
         },
@@ -90670,7 +90698,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-19"
         },
@@ -90710,7 +90738,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-19"
         },
@@ -90830,7 +90858,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [ ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Jeju' '': 'Shanghai'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+DJsudZJU=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-66982'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-19"
         },
@@ -90974,7 +91002,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-19"
         },
@@ -91144,7 +91172,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-19"
         },
@@ -91192,7 +91220,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-19"
         }
@@ -91207,16 +91235,20 @@
           "count": 72
         },
         {
-          "family": "其他环节",
-          "count": 66
-        },
-        {
           "family": "验真环节",
           "count": 47
         },
         {
           "family": "平台环节",
           "count": 47
+        },
+        {
+          "family": "其他环节",
+          "count": 45
+        },
+        {
+          "family": "取票环节",
+          "count": 30
         },
         {
           "family": "人工环节",
@@ -91229,10 +91261,6 @@
         {
           "family": "系统环节",
           "count": 11
-        },
-        {
-          "family": "取票环节",
-          "count": 9
         }
       ],
       "fail_families_D": [
@@ -91245,7 +91273,7 @@
           "count": 2
         },
         {
-          "family": "其他环节",
+          "family": "取票环节",
           "count": 2
         }
       ],
@@ -94565,7 +94593,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 19,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-20"
         },
@@ -94733,7 +94761,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-20"
         },
@@ -94829,7 +94857,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-20"
         },
@@ -94917,7 +94945,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-20"
         },
@@ -94941,7 +94969,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-20"
         },
@@ -95013,7 +95041,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-20"
         },
@@ -95029,7 +95057,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-20"
         },
@@ -95197,7 +95225,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers':...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': \"Xi'an\"}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '7giAGQKCbLks/+Po8GpU=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-73328'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-20"
         },
@@ -95213,7 +95241,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-20"
         },
@@ -95453,7 +95481,7 @@
           "reason": "取票环节 原因为:票号未出 请稍后重试",
           "full": "取票环节 原因为:票号未出 请稍后重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-20"
         },
@@ -95847,7 +95875,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Phuket' '': 'Shanghai'}] 'passengers': ...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Phuket' '': 'Shanghai'}] 'passengers': [ ] 'relations': []}] 'flights': [] 'passengers': [ ] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '822' 'shareId': '+fRZgH0t0IA=' '': False 'isDivide': False 'tickets': [ ] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-53559'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-20"
         },
@@ -95871,7 +95899,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-20"
         },
@@ -95906,12 +95934,12 @@
           "count": 75
         },
         {
-          "family": "其他环节",
-          "count": 65
-        },
-        {
           "family": "平台环节",
           "count": 49
+        },
+        {
+          "family": "取票环节",
+          "count": 46
         },
         {
           "family": "人工环节",
@@ -95922,12 +95950,12 @@
           "count": 32
         },
         {
-          "family": "回填环节",
-          "count": 8
+          "family": "其他环节",
+          "count": 21
         },
         {
-          "family": "取票环节",
-          "count": 2
+          "family": "回填环节",
+          "count": 8
         }
       ],
       "fail_families_D": [
@@ -95940,7 +95968,7 @@
           "count": 11
         },
         {
-          "family": "其他环节",
+          "family": "取票环节",
           "count": 3
         },
         {
@@ -95948,7 +95976,7 @@
           "count": 1
         },
         {
-          "family": "取票环节",
+          "family": "其他环节",
           "count": 1
         }
       ],
@@ -99483,7 +99511,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 17,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 19,
           "prev_month": "2026-07-21"
         },
@@ -99499,7 +99527,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 15,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-21"
         },
@@ -99643,7 +99671,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 8,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-21"
         },
@@ -99691,7 +99719,7 @@
           "reason": "取票环节 原因为:订单支付待处理 请稍后重试",
           "full": "取票环节 原因为:订单支付待处理 请稍后重试",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-21"
         },
@@ -99771,7 +99799,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-21"
         },
@@ -99875,7 +99903,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-21"
         },
@@ -99923,7 +99951,7 @@
           "reason": "取票环节 原因为:订单状态异常 orderStatus",
           "full": "取票环节 原因为:订单状态异常 orderStatus",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-21"
         },
@@ -100027,7 +100055,7 @@
           "reason": "取票环节 原因为:订单状态异常 支付失败",
           "full": "取票环节 原因为:订单状态异常 支付失败",
           "count": 2,
-          "family": "支付环节-支付异常",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-21"
         },
@@ -100323,7 +100351,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-21"
         },
@@ -100451,7 +100479,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-21"
         },
@@ -100837,7 +100865,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 7,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-21"
         },
@@ -100953,11 +100981,11 @@
         },
         {
           "family": "支付环节",
-          "count": 116
+          "count": 114
         },
         {
-          "family": "其他环节",
-          "count": 81
+          "family": "取票环节",
+          "count": 64
         },
         {
           "family": "平台环节",
@@ -100976,12 +101004,12 @@
           "count": 41
         },
         {
-          "family": "回填环节",
-          "count": 10
+          "family": "其他环节",
+          "count": 22
         },
         {
-          "family": "取票环节",
-          "count": 3
+          "family": "回填环节",
+          "count": 10
         }
       ],
       "fail_families_D": [
@@ -100994,12 +101022,8 @@
           "count": 11
         },
         {
-          "family": "其他环节",
-          "count": 7
-        },
-        {
           "family": "取票环节",
-          "count": 2
+          "count": 9
         }
       ],
       "fail_drill_B": [
@@ -104429,7 +104453,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 14,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 17,
           "prev_month": "2026-07-22"
         },
@@ -104517,7 +104541,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 5,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 15,
           "prev_month": "2026-07-22"
         },
@@ -104565,7 +104589,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 8,
           "prev_month": "2026-07-22"
         },
@@ -104597,7 +104621,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-22"
         },
@@ -104885,7 +104909,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Singapore'}] 'passenger...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Guangzhou' '': 'Singapore'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '+Q==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '+Gs/2ZLVi6J/=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-80408'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-22"
         },
@@ -104909,7 +104933,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-22"
         },
@@ -104917,7 +104941,7 @@
           "reason": "取票环节 原因为:已取消",
           "full": "取票环节 原因为:已取消",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-22"
         },
@@ -104997,7 +105021,7 @@
           "reason": "取票环节 原因为:无合法票号 请核实",
           "full": "取票环节 原因为:无合法票号 请核实",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-22"
         },
@@ -105261,7 +105285,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-22"
         },
@@ -105407,7 +105431,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 7,
           "prev_month": "2026-07-22"
         },
@@ -105463,7 +105487,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Kuala Lumpur' '': 'Shanghai'}] 'passeng...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Kuala Lumpur' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '+hcpzfchXjm9+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-87557'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-22"
         },
@@ -105578,8 +105602,8 @@
           "count": 45
         },
         {
-          "family": "其他环节",
-          "count": 38
+          "family": "取票环节",
+          "count": 40
         },
         {
           "family": "验真环节",
@@ -105594,11 +105618,11 @@
           "count": 24
         },
         {
-          "family": "取票环节",
-          "count": 8
+          "family": "回填环节",
+          "count": 6
         },
         {
-          "family": "回填环节",
+          "family": "其他环节",
           "count": 6
         }
       ],
@@ -105612,12 +105636,12 @@
           "count": 27
         },
         {
-          "family": "其他环节",
-          "count": 7
+          "family": "取票环节",
+          "count": 6
         },
         {
-          "family": "取票环节",
-          "count": 1
+          "family": "其他环节",
+          "count": 2
         },
         {
           "family": "支付环节",
@@ -109092,7 +109116,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 17,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 14,
           "prev_month": "2026-07-23"
         },
@@ -109124,7 +109148,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 11,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 5,
           "prev_month": "2026-07-23"
         },
@@ -109300,7 +109324,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 6,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-23"
         },
@@ -109388,7 +109412,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-23"
         },
@@ -109404,7 +109428,7 @@
           "reason": "取票环节 原因为:待支付",
           "full": "取票环节 原因为:待支付",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-23"
         },
@@ -109460,7 +109484,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-23"
         },
@@ -109620,7 +109644,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-23"
         },
@@ -109900,7 +109924,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': 'Shanghai'}] 'passenger...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Chiang Mai' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': '/kHtp/=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-99247'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-23"
         },
@@ -110166,7 +110190,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-23"
         },
@@ -110230,7 +110254,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-23"
         },
@@ -110257,7 +110281,7 @@
           "count": 57
         },
         {
-          "family": "其他环节",
+          "family": "取票环节",
           "count": 56
         },
         {
@@ -110277,7 +110301,7 @@
           "count": 8
         },
         {
-          "family": "取票环节",
+          "family": "其他环节",
           "count": 8
         }
       ],
@@ -110291,8 +110315,12 @@
           "count": 23
         },
         {
+          "family": "取票环节",
+          "count": 3
+        },
+        {
           "family": "其他环节",
-          "count": 6
+          "count": 3
         }
       ],
       "fail_drill_B": [
@@ -113585,7 +113613,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 12,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 17,
           "prev_month": "2026-07-24"
         },
@@ -113649,7 +113677,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 8,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 11,
           "prev_month": "2026-07-24"
         },
@@ -113777,7 +113805,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-24"
         },
@@ -113825,7 +113853,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-24"
         },
@@ -113961,7 +113989,7 @@
           "reason": "取票环节 原因为:ip获取失败",
           "full": "取票环节 原因为:ip获取失败",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-24"
         },
@@ -114009,7 +114037,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 6,
           "prev_month": "2026-07-24"
         },
@@ -114017,7 +114045,7 @@
           "reason": "取票环节 原因为:ip异常",
           "full": "取票环节 原因为:ip异常",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-24"
         },
@@ -114033,7 +114061,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-24"
         },
@@ -114281,7 +114309,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-24"
         },
@@ -114561,7 +114589,7 @@
           "reason": "取票环节 原因为:.aliyuncs.com",
           "full": "取票环节 原因为:.aliyuncs.com",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-24"
         },
@@ -114569,7 +114597,7 @@
           "reason": "取票环节 原因为:.aliyuncs.com: Temporary failure in name resolution",
           "full": "取票环节 原因为:.aliyuncs.com: Temporary failure in name resolution",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-24"
         },
@@ -114755,7 +114783,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-24"
         },
@@ -114779,7 +114807,7 @@
           "reason": "取票环节 原因为:订单未知状态 '': False '': False '': 'Seoul' '': 'Shanghai'}] 'passengers': [...",
           "full": "取票环节 原因为:订单未知状态 '': False '': False '': 'Seoul' '': 'Shanghai'}] 'passengers': [] 'relations': []}] 'flights': [] 'passengers': [] 'contact': '': None 'createDate': '' '': '0' 'insMemberId': '==' '': '/DItzng==' 'source': 852 'fromElong': False 'merchantId': '500' 'shareId': 'taB0kQalwP0N+lPzKL5puypbY/+=' '': False 'isDivide': False 'tickets': [] '': False '': True 'isAHHD': False 'orderTags': [] 'isBlackUser': False 'gmtPayment': '' 'gmtPayOut': '' '': '' 'isPresell': False 'isBlindBox': False '': False 'tgTips': 'æ\\x9cºç¥¨é\\x9c\\x80æ\\x8c\\x89åº\\x8fä½¿ç\\x94¨ï¼\\x8cå\\x8f¯è\\x83½å\\xad\\x98å\\x9c¨æ\\x97\\xa0æ³\\x95å\\x8d\\x95ç¨\\x8bé\\x80\\x80æ\\x94¹ï¼\\x8cå\\x85·ä½\\x93è§\\x84å\\x88\\x99ä»¥è\\x88ªå\\x8f¸å®¡æ\\xa0¸ä¸ºå\\x87\\x86' '': ['å\\x8f\\x91ç\\x94\\x9fæ\\x94¹ç\\xad¾/é\\x80\\x80ç¥¨ä¼\\x9aå½±å\\x93\\x8dè¿\\x94ç\\x8e°å\\x90\\x97' 'é\\x80\\x80æ¬¾é\\x87\\x91é¢\\x9dæ\\x9c\\x89é\\x97®é¢\\x98æ\\x80\\x8eä¹\\x88å\\x8a\\x9e' 'é\\x80\\x80æ¬¾ä»\\x80ä¹\\x88æ\\x97¶å\\x80\\x99å\\x88°è´¦' 'é\\x80\\x80ç¥¨å\\x90\\x8eæ\\x9cºç¥¨å\\x8f¯ä»¥æ\\x81¢å¤\\x8då\\x90\\x97'] '': 120 'isExistGap': False '': 'canCancel': False 'isReturnCash': False 'compensation': None '': False '': False '': False '': [] 'serverTime': '' 'redirectInfo': None '': 'payConfig': '': False 'pagePosition': 'order' 'site': '' 'needCardFee': 0 'otherInfo': 'g': '-70030'}",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-24"
         },
@@ -114811,7 +114839,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-24"
         },
@@ -114854,8 +114882,8 @@
           "count": 59
         },
         {
-          "family": "其他环节",
-          "count": 50
+          "family": "取票环节",
+          "count": 41
         },
         {
           "family": "验真环节",
@@ -114870,12 +114898,12 @@
           "count": 23
         },
         {
-          "family": "回填环节",
-          "count": 4
+          "family": "其他环节",
+          "count": 10
         },
         {
-          "family": "取票环节",
-          "count": 1
+          "family": "回填环节",
+          "count": 4
         }
       ],
       "fail_families_D": [
@@ -114888,7 +114916,7 @@
           "count": 6
         },
         {
-          "family": "其他环节",
+          "family": "取票环节",
           "count": 4
         },
         {
@@ -118098,7 +118126,7 @@
           "reason": "取票环节 原因为:当前订单状态为：待出票",
           "full": "取票环节 原因为:当前订单状态为：待出票",
           "count": 17,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 8,
           "prev_month": "2026-07-25"
         },
@@ -118106,7 +118134,7 @@
           "reason": "取票环节 原因为:暂时没有票号",
           "full": "取票环节 原因为:暂时没有票号",
           "count": 17,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 12,
           "prev_month": "2026-07-25"
         },
@@ -118210,7 +118238,7 @@
           "reason": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "full": "取票环节 原因为:用户令牌错误或用户登录已过期",
           "count": 8,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-25"
         },
@@ -118370,7 +118398,7 @@
           "reason": "取票环节 原因为:取消订单失败",
           "full": "取票环节 原因为:取消订单失败",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 1,
           "prev_month": "2026-07-25"
         },
@@ -118490,7 +118518,7 @@
           "reason": "取票环节 原因为:已支付 出票中",
           "full": "取票环节 原因为:已支付 出票中",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-25"
         },
@@ -118658,7 +118686,7 @@
           "reason": "取票环节 原因为:获取订单booking失败",
           "full": "取票环节 原因为:获取订单booking失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 2,
           "prev_month": "2026-07-25"
         },
@@ -118778,7 +118806,7 @@
           "reason": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "full": "取票环节 原因为:当前订单状态为：出票失败已退款",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 4,
           "prev_month": "2026-07-25"
         },
@@ -118842,7 +118870,7 @@
           "reason": "取票环节 原因为:ip获取失败",
           "full": "取票环节 原因为:ip获取失败",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 3,
           "prev_month": "2026-07-25"
         },
@@ -118994,7 +119022,7 @@
           "reason": "取票环节 原因为:Read timed out",
           "full": "取票环节 原因为:Read timed out",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "取票环节-取票异常",
           "prev_count": 0,
           "prev_month": "2026-07-25"
         },
@@ -119207,8 +119235,8 @@
           "count": 344
         },
         {
-          "family": "其他环节",
-          "count": 62
+          "family": "取票环节",
+          "count": 53
         },
         {
           "family": "平台环节",
@@ -119231,12 +119259,12 @@
           "count": 17
         },
         {
-          "family": "回填环节",
-          "count": 8
+          "family": "其他环节",
+          "count": 11
         },
         {
-          "family": "取票环节",
-          "count": 2
+          "family": "回填环节",
+          "count": 8
         }
       ],
       "fail_families_D": [
