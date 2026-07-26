@@ -2753,10 +2753,6 @@ function renderFailureAnalysis() {
           <tbody id="bFamilyTbody">${bFamilies.map(bFamilyRow).join("")}</tbody>
         </table>
       </div>
-      <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📑 B 路径 失败子分类明细（按 8 大环节分组 · 含亏损/利润/未匹配规则等子分类）</div>
-        ${subFamHtml(subFamB, curSummaryB)}
-      </div>
     </div>
 
     <div class="section">
@@ -2766,17 +2762,6 @@ function renderFailureAnalysis() {
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">🎯 D 路径 8 大环节汇总（哪一环出问题）</div>
         ${stageSummaryHtml(dStages, curSummaryD)}
-      </div>
-      <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📋 D 路径 全自动失败环节（9 大环节 · 全量展示）</div>
-        <table class="data-table">
-          <thead>
-            <tr><th>排名</th><th>族名</th><th>单数</th><th>占比（D 路径）</th>
-              ${cs ? '<th>vs ' + COMPARE_LABEL + '</th>' : ''}
-            </tr>
-          </thead>
-          <tbody id="dFamilyTbody">${dFamilies.map(dFamilyRow).join("")}</tbody>
-        </table>
       </div>
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">📑 D 路径 失败子分类明细（按 8 大环节分组）</div>
