@@ -2633,16 +2633,16 @@ function renderFailureAnalysis() {
     (cs.fail_families_D || []).forEach(f => { cmpDFamMap[f.family] = f; });
   }
 
-  // 2. 失败根因族级行（2026-07-26 简化：9 大环节，不展开子项）
+  // 2. 失败根因族级行（2026-07-26 简化：9 大环节 + 点族行展开原始根因 + 5 维度下钻）
   const bFamilyRow = (f, i) => {
     const cmp = cmpBFamMap[f.family];
     const cmpBadge = cs
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr>
+    return `<tr onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / curSummaryB * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -2654,9 +2654,9 @@ function renderFailureAnalysis() {
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr>
+    return `<tr onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / curSummaryD * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
