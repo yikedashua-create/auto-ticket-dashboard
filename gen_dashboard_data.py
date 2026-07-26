@@ -394,6 +394,24 @@ REASON_FAMILY_RULES = [
 ]
 
 
+def get_stage_only(family: str) -> str:
+    """2026-07-26 简化：把"族-子分类"提取成纯族名。
+    例：
+      - "预定环节-未匹配规则"        -> "预定"
+      - "预定环节-亏损过大-反采同程" -> "预定"
+      - "其他环节-兜底"              -> "其他"
+      - "其他环节-空原因"            -> "其他"
+      - "预定"                       -> "预定"（兜底）
+    固定 9 个族：人工/系统/预定/支付/取票/回填/验真/平台/其他（兜底）
+    """
+    if not family:
+        return "其他"
+    base = family.split("-")[0]
+    if base.endswith("环节"):
+        base = base[:-2]
+    return base if base else "其他"
+
+
 def family_reason(reason: str) -> str:
     """v11：把单条清洗后的 reason 归到「环节 - 子分类」。
     如果没有任何规则匹配，返回 '其他环节-兜底'。
@@ -1558,11 +1576,11 @@ def build_month_data(df, month_label):
         if p == "B":
             key = (cleaned_after, fam)
             reason_counter_b[key] = reason_counter_b.get(key, 0) + 1
-            fail_families_b[fam] += 1
+            fail_families_b[get_stage_only(fam)] += 1
         elif p == "D":
             key = (cleaned_after, fam)
             reason_counter_d[key] = reason_counter_d.get(key, 0) + 1
-            fail_families_d[fam] += 1
+            fail_families_d[get_stage_only(fam)] += 1
 
     # 简化：取前 60 字
     def short(s, n=60):
