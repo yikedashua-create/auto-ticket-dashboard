@@ -10642,77 +10642,77 @@
   ],
   "fail_families_B": [
     {
-      "family": "预定",
+      "family": "预定环节",
       "count": 7334
     },
     {
-      "family": "其他",
+      "family": "其他环节",
       "count": 1481
     },
     {
-      "family": "支付",
+      "family": "支付环节",
       "count": 1422
     },
     {
-      "family": "人工",
+      "family": "人工环节",
       "count": 930
     },
     {
-      "family": "平台",
+      "family": "平台环节",
       "count": 909
     },
     {
-      "family": "验真",
+      "family": "验真环节",
       "count": 696
     },
     {
-      "family": "系统",
+      "family": "系统环节",
       "count": 586
     },
     {
-      "family": "回填",
+      "family": "回填环节",
       "count": 233
     },
     {
-      "family": "取票",
+      "family": "取票环节",
       "count": 108
     }
   ],
   "fail_families_D": [
     {
-      "family": "预定",
+      "family": "预定环节",
       "count": 416
     },
     {
-      "family": "人工",
+      "family": "人工环节",
       "count": 336
     },
     {
-      "family": "其他",
+      "family": "其他环节",
       "count": 169
     },
     {
-      "family": "取票",
+      "family": "取票环节",
       "count": 15
     },
     {
-      "family": "回填",
+      "family": "回填环节",
       "count": 13
     },
     {
-      "family": "支付",
+      "family": "支付环节",
       "count": 12
     },
     {
-      "family": "系统",
+      "family": "系统环节",
       "count": 7
     },
     {
-      "family": "平台",
+      "family": "平台环节",
       "count": 4
     },
     {
-      "family": "验真",
+      "family": "验真环节",
       "count": 1
     }
   ],
@@ -18880,61 +18880,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 240
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 65
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 43
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 38
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 27
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 13
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 11
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 5
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 17
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 11
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 2
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 2
         }
       ],
@@ -22754,61 +22754,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 160
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 110
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 51
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 33
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 33
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 9
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 7
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 6
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 6
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 28
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 16
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 6
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 1
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 1
         }
       ],
@@ -26874,61 +26874,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 242
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 74
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 42
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 26
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 24
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 17
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 14
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 10
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 14
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 11
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 4
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 1
         }
       ],
@@ -30736,61 +30736,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 200
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 43
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 28
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 21
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 20
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 12
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 10
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 7
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 10
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 7
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 3
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 3
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 1
         }
       ],
@@ -34883,53 +34883,53 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 209
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 69
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 45
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 31
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 24
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 21
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 11
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 7
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 7
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 26
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 16
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 8
         }
       ],
@@ -38900,57 +38900,57 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 201
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 73
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 56
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 36
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 26
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 18
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 14
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 4
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         }
       ],
       "fail_families_D": [
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 17
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 11
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 10
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 1
         }
       ],
@@ -42791,61 +42791,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 182
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 55
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 49
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 30
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 19
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 13
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 11
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 11
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 5
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 19
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 6
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 5
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 2
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
@@ -46852,69 +46852,69 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 182
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 51
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 45
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 35
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 27
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 25
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 10
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 10
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 5
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 23
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 19
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 3
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 2
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 2
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 2
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 1
         }
       ],
@@ -51528,61 +51528,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 378
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 107
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 87
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 86
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 57
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 43
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 27
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 13
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 9
         }
       ],
       "fail_families_D": [
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 41
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 28
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 12
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 6
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 3
         }
       ],
@@ -56106,61 +56106,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 304
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 72
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 53
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 52
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 39
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 23
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 20
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 10
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 4
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 21
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 13
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 5
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 1
         }
       ],
@@ -60392,53 +60392,53 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 300
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 67
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 55
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 41
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 34
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 23
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 10
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 9
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 17
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 15
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 7
         }
       ],
@@ -64827,57 +64827,57 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 350
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 86
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 68
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 58
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 42
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 31
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 20
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 16
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 3
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 19
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 13
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 10
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 3
         }
       ],
@@ -69368,57 +69368,57 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 432
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 61
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 61
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 47
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 38
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 27
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 22
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 8
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 3
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 20
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 10
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 9
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
@@ -73690,61 +73690,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 261
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 66
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 56
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 42
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 24
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 24
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 14
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 5
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 5
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 13
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 10
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 5
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 1
         }
       ],
@@ -78211,61 +78211,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 303
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 84
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 61
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 39
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 30
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 18
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 16
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 8
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 4
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 11
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 11
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 4
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 1
         }
       ],
@@ -82689,53 +82689,53 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 357
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 67
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 54
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 48
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 39
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 33
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 14
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 13
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 6
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 18
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 14
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 5
         }
       ],
@@ -87031,57 +87031,57 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 351
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 82
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 71
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 48
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 36
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 20
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 15
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 6
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 19
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 3
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 3
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
@@ -91199,53 +91199,53 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 358
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 72
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 66
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 47
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 47
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 24
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 17
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 11
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 9
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 13
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 2
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 2
         }
       ],
@@ -95894,61 +95894,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 491
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 111
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 75
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 65
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 49
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 46
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 32
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 8
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 20
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 11
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 3
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 1
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
@@ -100948,57 +100948,57 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 410
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 116
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 81
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 56
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 52
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 47
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 41
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 10
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 3
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 22
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 11
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 7
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         }
       ],
@@ -105566,61 +105566,61 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 283
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 56
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 45
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 38
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 36
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 25
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 24
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 8
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 6
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 32
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 27
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 7
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 1
         }
       ],
@@ -110245,53 +110245,53 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 419
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 70
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 57
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 56
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 43
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 25
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 23
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 8
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 8
         }
       ],
       "fail_families_D": [
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 27
         },
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 23
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 6
         }
       ],
@@ -114842,57 +114842,57 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 377
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 82
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 59
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 50
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 38
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 27
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 23
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 4
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 1
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 13
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 6
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 4
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 1
         }
       ],
@@ -119203,53 +119203,53 @@
       ],
       "fail_families_B": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 344
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 62
         },
         {
-          "family": "平台",
+          "family": "平台环节",
           "count": 44
         },
         {
-          "family": "支付",
+          "family": "支付环节",
           "count": 41
         },
         {
-          "family": "验真",
+          "family": "验真环节",
           "count": 35
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 21
         },
         {
-          "family": "系统",
+          "family": "系统环节",
           "count": 17
         },
         {
-          "family": "回填",
+          "family": "回填环节",
           "count": 8
         },
         {
-          "family": "取票",
+          "family": "取票环节",
           "count": 2
         }
       ],
       "fail_families_D": [
         {
-          "family": "预定",
+          "family": "预定环节",
           "count": 28
         },
         {
-          "family": "人工",
+          "family": "人工环节",
           "count": 7
         },
         {
-          "family": "其他",
+          "family": "其他环节",
           "count": 2
         }
       ],
