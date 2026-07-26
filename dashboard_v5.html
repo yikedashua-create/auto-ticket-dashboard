@@ -2754,20 +2754,6 @@ function renderFailureAnalysis() {
         </table>
       </div>
     </div>
-
-    <div class="section">
-      <div class="section-title">🚨 D 路径 全自动失败环节（9 大环节 · ${fmt.num(curSummaryD)} 单）
-        ${cmpDHdr}
-      </div>
-      <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">🎯 D 路径 8 大环节汇总（哪一环出问题）</div>
-        ${stageSummaryHtml(dStages, curSummaryD)}
-      </div>
-      <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📑 D 路径 失败子分类明细（按 8 大环节分组）</div>
-        ${subFamHtml(subFamD, curSummaryD)}
-      </div>
-    </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
   // v10.14.7: 把当前视图的数据存全局变量，供 toggleFamilyDrill / toggleExpandFamily 用
