@@ -1817,7 +1817,7 @@ function renderChannel() {
                 const n = tt.n || 0;
                 const has = n >= 5;
                 const fmtMin = v => v == null ? '—' : v < 1 ? (v*60).toFixed(0)+'秒' : v.toFixed(2);
-                const sampleStr = has ? n : (n > 0 ? n : '<span style="color:#7a8ba0">数据缺失</span>');
+                const sampleStr = has ? n : (n > 0 ? n : '<span style="color:#7a8ba0">直连/无取票</span>');
                 const abnCls = has && tt.abnormal_rate >= 10 ? 'neg' : (has && tt.abnormal_rate >= 5 ? 'warn' : '');
                 return `
                   <tr>
