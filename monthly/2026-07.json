@@ -3185,7 +3185,7 @@
       "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
       "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
       "count": 67,
-      "family": "系统环节-定时维护",
+      "family": "支付环节-虚拟卡失败",
       "prev_count": 21,
       "prev_month": "2026-06"
     },
@@ -3561,7 +3561,7 @@
       "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
       "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
       "count": 26,
-      "family": "其他环节-兜底",
+      "family": "支付环节-虚拟卡失败",
       "prev_count": 3,
       "prev_month": "2026-06"
     },
@@ -4017,7 +4017,7 @@
       "reason": "开卡失败 原因:Cannot invoke \"java.lang.Integer.intValue()\" because the return value of...",
       "full": "开卡失败 原因:Cannot invoke \"java.lang.Integer.intValue()\" because the return value of \"com.upward.zhiqian.ticket.entity.response..getCode()\" is",
       "count": 12,
-      "family": "其他环节-兜底",
+      "family": "支付环节-虚拟卡失败",
       "prev_count": 1,
       "prev_month": "2026-06"
     },
@@ -4065,7 +4065,7 @@
       "reason": "开卡失败 原因:system error try later",
       "full": "开卡失败 原因:system error try later",
       "count": 11,
-      "family": "其他环节-兜底",
+      "family": "支付环节-虚拟卡失败",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -8169,7 +8169,7 @@
       "reason": "issue card error request timeout",
       "full": "issue card error request timeout",
       "count": 1,
-      "family": "系统环节-卡余额不足",
+      "family": "支付环节-虚拟卡失败",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -8177,7 +8177,7 @@
       "reason": "开卡失败 原因:business error",
       "full": "开卡失败 原因:business error",
       "count": 1,
-      "family": "其他环节-兜底",
+      "family": "支付环节-虚拟卡失败",
       "prev_count": 0,
       "prev_month": "2026-06"
     },
@@ -10647,7 +10647,7 @@
     },
     {
       "family": "支付环节",
-      "count": 1420
+      "count": 1538
     },
     {
       "family": "取票环节",
@@ -10667,11 +10667,11 @@
     },
     {
       "family": "其他环节",
-      "count": 596
+      "count": 546
     },
     {
       "family": "系统环节",
-      "count": 586
+      "count": 518
     },
     {
       "family": "回填环节",
@@ -18183,7 +18183,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 3,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-01"
         },
@@ -18885,7 +18885,7 @@
         },
         {
           "family": "支付环节",
-          "count": 43
+          "count": 46
         },
         {
           "family": "人工环节",
@@ -18904,12 +18904,12 @@
           "count": 27
         },
         {
-          "family": "系统环节",
-          "count": 13
-        },
-        {
           "family": "验真环节",
           "count": 11
+        },
+        {
+          "family": "系统环节",
+          "count": 10
         },
         {
           "family": "回填环节",
@@ -26049,7 +26049,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 4,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-03"
         },
@@ -26883,11 +26883,11 @@
         },
         {
           "family": "系统环节",
-          "count": 42
+          "count": 38
         },
         {
           "family": "支付环节",
-          "count": 26
+          "count": 30
         },
         {
           "family": "平台环节",
@@ -30159,7 +30159,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-04"
         },
@@ -30599,7 +30599,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 1,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 4,
           "prev_month": "2026-07-04"
         }
@@ -30748,12 +30748,12 @@
           "count": 25
         },
         {
-          "family": "人工环节",
-          "count": 21
+          "family": "支付环节",
+          "count": 23
         },
         {
-          "family": "支付环节",
-          "count": 20
+          "family": "人工环节",
+          "count": 21
         },
         {
           "family": "回填环节",
@@ -30765,11 +30765,11 @@
         },
         {
           "family": "系统环节",
-          "count": 7
+          "count": 6
         },
         {
           "family": "其他环节",
-          "count": 4
+          "count": 2
         }
       ],
       "fail_families_D": [
@@ -33934,7 +33934,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 3,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 1,
           "prev_month": "2026-07-06"
         },
@@ -34892,7 +34892,7 @@
         },
         {
           "family": "支付环节",
-          "count": 45
+          "count": 48
         },
         {
           "family": "取票环节",
@@ -34907,11 +34907,11 @@
           "count": 31
         },
         {
-          "family": "系统环节",
-          "count": 24
+          "family": "平台环节",
+          "count": 21
         },
         {
-          "family": "平台环节",
+          "family": "系统环节",
           "count": 21
         },
         {
@@ -38011,7 +38011,7 @@
           "reason": "开卡失败 原因:Cannot invoke \"java.lang.Integer.intValue()\" because the return value of...",
           "full": "开卡失败 原因:Cannot invoke \"java.lang.Integer.intValue()\" because the return value of \"com.upward.zhiqian.ticket.entity.response..getCode()\" is",
           "count": 12,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-07"
         },
@@ -38091,7 +38091,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 4,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 3,
           "prev_month": "2026-07-07"
         },
@@ -38916,27 +38916,27 @@
           "count": 56
         },
         {
-          "family": "取票环节",
-          "count": 38
+          "family": "支付环节",
+          "count": 42
         },
         {
-          "family": "其他环节",
-          "count": 37
+          "family": "取票环节",
+          "count": 38
         },
         {
           "family": "平台环节",
           "count": 36
         },
         {
-          "family": "支付环节",
-          "count": 26
-        },
-        {
-          "family": "系统环节",
-          "count": 18
+          "family": "其他环节",
+          "count": 25
         },
         {
           "family": "验真环节",
+          "count": 14
+        },
+        {
+          "family": "系统环节",
           "count": 14
         },
         {
@@ -42090,7 +42090,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 5,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 4,
           "prev_month": "2026-07-08"
         },
@@ -42816,7 +42816,7 @@
         },
         {
           "family": "支付环节",
-          "count": 30
+          "count": 35
         },
         {
           "family": "人工环节",
@@ -42827,16 +42827,16 @@
           "count": 13
         },
         {
-          "family": "系统环节",
-          "count": 11
-        },
-        {
           "family": "回填环节",
           "count": 11
         },
         {
           "family": "其他环节",
           "count": 9
+        },
+        {
+          "family": "系统环节",
+          "count": 6
         }
       ],
       "fail_families_D": [
@@ -46295,7 +46295,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 1,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 5,
           "prev_month": "2026-07-09"
         },
@@ -46567,7 +46567,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-09"
         },
@@ -46877,7 +46877,7 @@
         },
         {
           "family": "支付环节",
-          "count": 35
+          "count": 37
         },
         {
           "family": "人工环节",
@@ -46885,7 +46885,7 @@
         },
         {
           "family": "系统环节",
-          "count": 25
+          "count": 24
         },
         {
           "family": "回填环节",
@@ -46897,7 +46897,7 @@
         },
         {
           "family": "其他环节",
-          "count": 3
+          "count": 2
         }
       ],
       "fail_families_D": [
@@ -50487,7 +50487,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 4,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 1,
           "prev_month": "2026-07-10"
         },
@@ -51103,7 +51103,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 1,
           "prev_month": "2026-07-10"
         },
@@ -51549,11 +51549,11 @@
         },
         {
           "family": "系统环节",
-          "count": 107
+          "count": 103
         },
         {
           "family": "支付环节",
-          "count": 86
+          "count": 91
         },
         {
           "family": "人工环节",
@@ -51564,11 +51564,11 @@
           "count": 52
         },
         {
-          "family": "其他环节",
-          "count": 44
+          "family": "平台环节",
+          "count": 43
         },
         {
-          "family": "平台环节",
+          "family": "其他环节",
           "count": 43
         },
         {
@@ -55253,7 +55253,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 2,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 4,
           "prev_month": "2026-07-11"
         },
@@ -56134,12 +56134,12 @@
           "count": 58
         },
         {
-          "family": "人工环节",
-          "count": 53
+          "family": "支付环节",
+          "count": 54
         },
         {
-          "family": "支付环节",
-          "count": 52
+          "family": "人工环节",
+          "count": 53
         },
         {
           "family": "平台环节",
@@ -56159,7 +56159,7 @@
         },
         {
           "family": "系统环节",
-          "count": 10
+          "count": 8
         }
       ],
       "fail_families_D": [
@@ -59427,7 +59427,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 5,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 2,
           "prev_month": "2026-07-12"
         },
@@ -59659,7 +59659,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 3,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-12"
         },
@@ -60417,7 +60417,7 @@
         },
         {
           "family": "支付环节",
-          "count": 67
+          "count": 75
         },
         {
           "family": "人工环节",
@@ -60437,7 +60437,7 @@
         },
         {
           "family": "其他环节",
-          "count": 19
+          "count": 16
         },
         {
           "family": "回填环节",
@@ -60445,7 +60445,7 @@
         },
         {
           "family": "系统环节",
-          "count": 9
+          "count": 4
         }
       ],
       "fail_families_D": [
@@ -63834,7 +63834,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 4,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 3,
           "prev_month": "2026-07-13"
         },
@@ -64114,7 +64114,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 1,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 5,
           "prev_month": "2026-07-13"
         },
@@ -64856,7 +64856,7 @@
         },
         {
           "family": "支付环节",
-          "count": 86
+          "count": 91
         },
         {
           "family": "人工环节",
@@ -64864,7 +64864,7 @@
         },
         {
           "family": "系统环节",
-          "count": 42
+          "count": 41
         },
         {
           "family": "取票环节",
@@ -64876,7 +64876,7 @@
         },
         {
           "family": "其他环节",
-          "count": 27
+          "count": 23
         },
         {
           "family": "验真环节",
@@ -68683,7 +68683,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 4,
           "prev_month": "2026-07-14"
         },
@@ -69235,7 +69235,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 1,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 1,
           "prev_month": "2026-07-14"
         }
@@ -69401,7 +69401,7 @@
         },
         {
           "family": "支付环节",
-          "count": 61
+          "count": 64
         },
         {
           "family": "人工环节",
@@ -69421,11 +69421,11 @@
         },
         {
           "family": "系统环节",
-          "count": 22
+          "count": 21
         },
         {
           "family": "其他环节",
-          "count": 14
+          "count": 12
         },
         {
           "family": "回填环节",
@@ -77230,7 +77230,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 4,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-16"
         },
@@ -78244,7 +78244,7 @@
         },
         {
           "family": "支付环节",
-          "count": 84
+          "count": 88
         },
         {
           "family": "人工环节",
@@ -78259,12 +78259,12 @@
           "count": 30
         },
         {
-          "family": "系统环节",
-          "count": 18
-        },
-        {
           "family": "验真环节",
           "count": 16
+        },
+        {
+          "family": "系统环节",
+          "count": 14
         },
         {
           "family": "其他环节",
@@ -81604,7 +81604,7 @@
           "reason": "开卡失败 原因:system error try later",
           "full": "开卡失败 原因:system error try later",
           "count": 11,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -81844,7 +81844,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 3,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 4,
           "prev_month": "2026-07-17"
         },
@@ -81996,7 +81996,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 2,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82476,7 +82476,7 @@
           "reason": "issue card error request timeout",
           "full": "issue card error request timeout",
           "count": 1,
-          "family": "系统环节-卡余额不足",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82484,7 +82484,7 @@
           "reason": "开卡失败 原因:business error",
           "full": "开卡失败 原因:business error",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-17"
         },
@@ -82721,20 +82721,16 @@
           "count": 357
         },
         {
+          "family": "支付环节",
+          "count": 66
+        },
+        {
           "family": "人工环节",
           "count": 54
         },
         {
-          "family": "支付环节",
-          "count": 48
-        },
-        {
           "family": "验真环节",
           "count": 39
-        },
-        {
-          "family": "其他环节",
-          "count": 38
         },
         {
           "family": "取票环节",
@@ -82745,12 +82741,16 @@
           "count": 33
         },
         {
+          "family": "其他环节",
+          "count": 24
+        },
+        {
           "family": "回填环节",
           "count": 14
         },
         {
           "family": "系统环节",
-          "count": 13
+          "count": 9
         }
       ],
       "fail_families_D": [
@@ -86202,7 +86202,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 3,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 3,
           "prev_month": "2026-07-18"
         },
@@ -86674,7 +86674,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 2,
           "prev_month": "2026-07-18"
         },
@@ -87068,14 +87068,14 @@
         },
         {
           "family": "支付环节",
-          "count": 48
-        },
-        {
-          "family": "其他环节",
-          "count": 37
+          "count": 52
         },
         {
           "family": "平台环节",
+          "count": 36
+        },
+        {
+          "family": "其他环节",
           "count": 36
         },
         {
@@ -87092,7 +87092,7 @@
         },
         {
           "family": "系统环节",
-          "count": 6
+          "count": 3
         }
       ],
       "fail_families_D": [
@@ -90282,7 +90282,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 9,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 1,
           "prev_month": "2026-07-19"
         },
@@ -90330,7 +90330,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 7,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 3,
           "prev_month": "2026-07-19"
         },
@@ -91232,7 +91232,7 @@
         },
         {
           "family": "支付环节",
-          "count": 72
+          "count": 88
         },
         {
           "family": "验真环节",
@@ -91244,7 +91244,7 @@
         },
         {
           "family": "其他环节",
-          "count": 45
+          "count": 36
         },
         {
           "family": "取票环节",
@@ -91260,7 +91260,7 @@
         },
         {
           "family": "系统环节",
-          "count": 11
+          "count": 4
         }
       ],
       "fail_families_D": [
@@ -94977,7 +94977,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 2,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 7,
           "prev_month": "2026-07-20"
         },
@@ -95927,7 +95927,7 @@
         },
         {
           "family": "支付环节",
-          "count": 111
+          "count": 113
         },
         {
           "family": "验真环节",
@@ -95947,7 +95947,7 @@
         },
         {
           "family": "系统环节",
-          "count": 32
+          "count": 30
         },
         {
           "family": "其他环节",
@@ -99679,7 +99679,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 7,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 2,
           "prev_month": "2026-07-21"
         },
@@ -100981,7 +100981,7 @@
         },
         {
           "family": "支付环节",
-          "count": 114
+          "count": 121
         },
         {
           "family": "取票环节",
@@ -101001,7 +101001,7 @@
         },
         {
           "family": "系统环节",
-          "count": 41
+          "count": 34
         },
         {
           "family": "其他环节",
@@ -104877,7 +104877,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 1,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 7,
           "prev_month": "2026-07-22"
         },
@@ -105595,7 +105595,7 @@
         },
         {
           "family": "支付环节",
-          "count": 56
+          "count": 57
         },
         {
           "family": "人工环节",
@@ -105615,7 +105615,7 @@
         },
         {
           "family": "系统环节",
-          "count": 24
+          "count": 23
         },
         {
           "family": "回填环节",
@@ -114021,7 +114021,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 2,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-24"
         },
@@ -114875,7 +114875,7 @@
         },
         {
           "family": "支付环节",
-          "count": 82
+          "count": 84
         },
         {
           "family": "平台环节",
@@ -114895,7 +114895,7 @@
         },
         {
           "family": "系统环节",
-          "count": 23
+          "count": 21
         },
         {
           "family": "其他环节",
@@ -118334,7 +118334,7 @@
           "reason": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "full": "开卡失败 原因:daily maintenance window (23:55-00:05)",
           "count": 4,
-          "family": "系统环节-定时维护",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 2,
           "prev_month": "2026-07-25"
         },
@@ -118710,7 +118710,7 @@
           "reason": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "full": "开卡成功 查询详情失败 卡号: 原因:卡详情获取为空 请重试",
           "count": 1,
-          "family": "其他环节-兜底",
+          "family": "支付环节-虚拟卡失败",
           "prev_count": 0,
           "prev_month": "2026-07-25"
         },
@@ -119239,12 +119239,12 @@
           "count": 53
         },
         {
-          "family": "平台环节",
-          "count": 44
+          "family": "支付环节",
+          "count": 46
         },
         {
-          "family": "支付环节",
-          "count": 41
+          "family": "平台环节",
+          "count": 44
         },
         {
           "family": "验真环节",
@@ -119256,11 +119256,11 @@
         },
         {
           "family": "系统环节",
-          "count": 17
+          "count": 13
         },
         {
           "family": "其他环节",
-          "count": 11
+          "count": 10
         },
         {
           "family": "回填环节",
