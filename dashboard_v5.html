@@ -535,7 +535,7 @@ async function loadData() {
       //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
       //   浏览器缓存: 同一 URL 二次访问秒开
       //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-      const COMMIT = "b197d05";
+      const COMMIT = "f57dee1";
       const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       let dataLoaded = false;
       // 路径 1: 相对路径
@@ -1780,6 +1780,64 @@ function renderChannel() {
       </div>
     </div>
 
+    <!-- 2026-07-26: 出票时长分析 (A 路径 only, 口径: 上一次获取票号时间 - 支付时间) -->
+    <div class="section">
+      <div class="section-title">⏱️ 渠道出票时长分析（A 路径全自动出票）
+        <span class="badge badge-info">仅展示样本 ≥ 5 的渠道</span>
+        <span class="badge badge-warn">异常阈值: >30min</span>
+      </div>
+      <div class="grid-2x2">
+        <div class="chart-box">
+          <div class="chart-title">📊 渠道 P50 vs P90 散点（看长尾）</div>
+          <div id="chart-channelTT" class="chart-area" style="height:420px"></div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">🚨 渠道异常率排名（>30min 占比）</div>
+          <div id="chart-channelTTAbnormal" class="chart-area" style="height:420px"></div>
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <div class="chart-title">📋 出票时长明细（按 A 路径订单量排序）</div>
+        <div style="max-height: 600px; overflow-y: auto;">
+          <table class="data-table compact">
+            <thead>
+              <tr>
+                <th>渠道</th><th style="text-align:right">A 路径</th>
+                <th style="text-align:right">出票样本</th>
+                <th style="text-align:right">P50 (min)</th>
+                <th style="text-align:right">P90 (min)</th>
+                <th style="text-align:right">P99 (min)</th>
+                <th style="text-align:right">平均 (min)</th>
+                <th style="text-align:right">异常率</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${chList.map(c => {
+                const tt = c.ticket_time || {};
+                const n = tt.n || 0;
+                const has = n >= 5;
+                const fmtMin = v => v == null ? '—' : v < 1 ? (v*60).toFixed(0)+'秒' : v.toFixed(2);
+                const sampleStr = has ? n : (n > 0 ? n : '<span style="color:#7a8ba0">数据缺失</span>');
+                const abnCls = has && tt.abnormal_rate >= 10 ? 'neg' : (has && tt.abnormal_rate >= 5 ? 'warn' : '');
+                return `
+                  <tr>
+                    <td><b>${c.channel}</b></td>
+                    <td style="text-align:right">${fmt.num(c.A)}</td>
+                    <td style="text-align:right">${sampleStr}</td>
+                    <td style="text-align:right">${has ? fmtMin(tt.p50) : '—'}</td>
+                    <td style="text-align:right">${has ? fmtMin(tt.p90) : '—'}</td>
+                    <td style="text-align:right">${has ? fmtMin(tt.p99) : '—'}</td>
+                    <td style="text-align:right">${has ? fmtMin(tt.avg) : '—'}</td>
+                    <td style="text-align:right" class="${abnCls}">${has ? tt.abnormal_rate.toFixed(1)+'%' : '—'}</td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <div class="section">
       <div class="section-title">📋 渠道明细表</div>
       <div style="max-height: 600px; overflow-y: auto;">
@@ -1885,6 +1943,79 @@ function renderChannel() {
       itemStyle: { color: p => p.data >= 0 ? color.A : color.D },
       label: { show: true, position: "right", color: "#e0e6f0",
               formatter: p => fmt.avg(p.value) },
+    }],
+  });
+
+  // 2026-07-26: 渠道出票时长分析 (2 图)
+  // 过滤样本 >= 5 的渠道
+  const ttList = chList
+    .map(c => ({ ...c, tt: c.ticket_time || {} }))
+    .filter(c => (c.tt.n || 0) >= 5);
+
+  // 图 1: P50 vs P90 散点 (气泡=样本量, 颜色=异常率)
+  createChart("chart-channelTT", {
+    ...baseEchartsOpt,
+    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
+      formatter: p => {
+        const tt = p.data.tt;
+        return `<b>${p.data.channel}</b><br>` +
+          `A 路径订单: ${fmt.num(p.data.A)}<br>` +
+          `出票样本: ${tt.n}<br>` +
+          `P50: ${tt.p50 < 1 ? (tt.p50*60).toFixed(0)+'秒' : tt.p50.toFixed(2)+'min'}<br>` +
+          `P90: ${tt.p90 < 1 ? (tt.p90*60).toFixed(0)+'秒' : tt.p90.toFixed(2)+'min'}<br>` +
+          `P99: ${tt.p99 < 1 ? (tt.p99*60).toFixed(0)+'秒' : tt.p99.toFixed(2)+'min'}<br>` +
+          `异常率: ${tt.abnormal_rate.toFixed(1)}%`;
+      } },
+    xAxis: { type: "value", name: "P50 出票时长 (min)",
+              axisLabel: { color: "#7a8ba0", formatter: v => v < 1 ? (v*60).toFixed(0)+'秒' : v.toFixed(0) },
+              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    yAxis: { type: "value", name: "P90 出票时长 (min)",
+              axisLabel: { color: "#7a8ba0", formatter: v => v < 1 ? (v*60).toFixed(0)+'秒' : v.toFixed(0) },
+              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    visualMap: {
+      show: true, min: 0, max: 15,
+      text: ['异常率高', '低'],
+      textStyle: { color: '#7a8ba0', fontSize: 10 },
+      inRange: { color: ['#00ff88', '#ffa502', '#ff4757'] },
+      right: 10, top: 20,
+      calculable: true,
+    },
+    series: [{
+      type: "scatter",
+      data: ttList.map(c => ({
+        channel: c.channel,
+        value: [c.tt.p50, c.tt.p90],
+        tt: c.tt, A: c.A, total: c.total,
+      })),
+      symbolSize: d => Math.max(20, Math.min(80, Math.sqrt(d.tt.n) / 4)),
+      itemStyle: { opacity: 0.75 },
+      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
+              formatter: p => p.data.channel },
+    }],
+  });
+
+  // 图 2: 异常率排名柱状图 (按 A 路径订单量排序, top 8)
+  const ttSorted = [...ttList].sort((a, b) => -a.A + (b.A - a.A)).sort((a, b) => -b.A).slice(0, 8);
+  // 按异常率排序展示
+  const ttByAbn = [...ttList].sort((a, b) => -b.tt.abnormal_rate + (a.tt.abnormal_rate - b.tt.abnormal_rate));
+  createChart("chart-channelTTAbnormal", {
+    ...baseEchartsOpt,
+    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
+      formatter: p => {
+        const c = p[0].data;
+        return `<b>${c.channel}</b><br>异常率: ${c.tt.abnormal_rate.toFixed(1)}%<br>` +
+          `样本: ${c.tt.n}<br>P50: ${c.tt.p50.toFixed(2)}min`;
+      } },
+    grid: { left: 100, right: 30, top: 20, bottom: 20 },
+    xAxis: { type: "value", name: "异常率(%)", axisLabel: { color: "#7a8ba0", formatter: "{value}%" },
+              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    yAxis: { type: "category", data: ttByAbn.map(c => c.channel).reverse(),
+              axisLabel: { color: "#7a8ba0", fontSize: 11 } },
+    series: [{
+      type: "bar", data: ttByAbn.map(c => ({ value: c.tt.abnormal_rate, channel: c.channel, tt: c.tt })).reverse(),
+      itemStyle: { color: p => p.value >= 10 ? color.D : (p.value >= 5 ? "#ffa502" : color.A) },
+      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
+              formatter: p => p.value.toFixed(1) + "%" },
     }],
   });
 }
