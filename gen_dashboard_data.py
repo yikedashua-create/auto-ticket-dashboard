@@ -1673,7 +1673,8 @@ def build_month_data(df, month_label):
     # v10.4 修复（2026-06-22）：用 (cleaned_after, fam) 复合 key 累加，
     #   避免 `(无)` / `Java 数组越界` 这类 cleaned_after 在多个族都出现时
     #   pre_fam 字典被覆盖导致 reason family 字段错算（族级 vs reason 累加不一致）
-    reason_counter_b = {}  # (cleaned_after, fam) -> count
+    # 2026-07-27: 加 sample_orders (前 3 个订单号) 让前端展示案例
+    reason_counter_b = {}  # (cleaned_after, fam) -> {"count": N, "orders": [...]}
     reason_counter_d = {}
     fail_families_b = Counter()
     fail_families_d = Counter()
@@ -1689,13 +1690,26 @@ def build_month_data(df, month_label):
         cleaned_after = family_sub_normalize(cleaned, fam)
         if not cleaned_after or not cleaned_after.strip():
             cleaned_after = "(无)"
+        # 收集订单号样本 (前 3 个)
+        oid_raw = r.get("订单号", None)
+        oid_str = ""
+        if oid_raw is not None and pd.notna(oid_raw):
+            oid_str = str(int(oid_raw)) if isinstance(oid_raw, (int, float)) else str(oid_raw)
         if p == "B":
             key = (cleaned_after, fam)
-            reason_counter_b[key] = reason_counter_b.get(key, 0) + 1
+            if key not in reason_counter_b:
+                reason_counter_b[key] = {"count": 0, "orders": []}
+            reason_counter_b[key]["count"] += 1
+            if oid_str and len(reason_counter_b[key]["orders"]) < 3:
+                reason_counter_b[key]["orders"].append(oid_str)
             fail_families_b[get_stage_only(fam)] += 1
         elif p == "D":
             key = (cleaned_after, fam)
-            reason_counter_d[key] = reason_counter_d.get(key, 0) + 1
+            if key not in reason_counter_d:
+                reason_counter_d[key] = {"count": 0, "orders": []}
+            reason_counter_d[key]["count"] += 1
+            if oid_str and len(reason_counter_d[key]["orders"]) < 3:
+                reason_counter_d[key]["orders"].append(oid_str)
             fail_families_d[get_stage_only(fam)] += 1
 
     # 简化：取前 60 字
@@ -1705,12 +1719,12 @@ def build_month_data(df, month_label):
 
     # 输出：family 字段直接来自复合 key 的 fam，不再查 pre_fam 字典
     out["fail_reasons_B"] = [
-        {"reason": short(k[0], 80), "full": k[0], "count": v, "family": k[1]}
-        for k, v in sorted(reason_counter_b.items(), key=lambda kv: -kv[1])
+        {"reason": short(k[0], 80), "full": k[0], "count": v["count"], "family": k[1], "orders": v["orders"]}
+        for k, v in sorted(reason_counter_b.items(), key=lambda kv: -kv[1]["count"])
     ]
     out["fail_reasons_D"] = [
-        {"reason": short(k[0], 80), "full": k[0], "count": v, "family": k[1]}
-        for k, v in sorted(reason_counter_d.items(), key=lambda kv: -kv[1])
+        {"reason": short(k[0], 80), "full": k[0], "count": v["count"], "family": k[1], "orders": v["orders"]}
+        for k, v in sorted(reason_counter_d.items(), key=lambda kv: -kv[1]["count"])
     ]
     # 族级 Top（看板默认展示，Top 15 足够，前端限制显示 Top 10）
     out["fail_families_B"] = [
