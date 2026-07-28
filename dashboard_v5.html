@@ -2873,10 +2873,10 @@ function renderFailureAnalysis() {
       .sort((a, b) => b.count - a.count).slice(0, 5);
     const upBig = reasons.filter(r => r.prev_count > 0 && r.count > r.prev_count)
       .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
-      .sort((a, b) => b._pct - a._pct).slice(0, 10);
+      .sort((a, b) => b._diff - a._diff).slice(0, 10);
     const downBig = reasons.filter(r => r.prev_count > 0 && r.count < r.prev_count)
       .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
-      .sort((a, b) => a._pct - b._pct).slice(0, 5);
+      .sort((a, b) => a._diff - b._diff).slice(0, 5);
     if (!newOnes.length && !upBig.length && !downBig.length) return "";
     const newRow = r => `
       <tr>
@@ -2913,7 +2913,7 @@ function renderFailureAnalysis() {
         </div>` : ""}
         ${upBig.length ? `
         <div class="chart-box">
-          <div class="chart-title" style="color:#ff4757">📈 大幅增加（${upBig.length} · 按涨幅）</div>
+          <div class="chart-title" style="color:#ff4757">📈 大幅增加（${upBig.length} · 按差值）</div>
           <table class="data-table compact">
             <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">涨幅</th></tr></thead>
             <tbody>${upBig.map(diffRow).join("")}</tbody>
@@ -2921,7 +2921,7 @@ function renderFailureAnalysis() {
         </div>` : ""}
         ${downBig.length ? `
         <div class="chart-box">
-          <div class="chart-title" style="color:#00ff88">📉 大幅减少（${downBig.length} · 优化见效）</div>
+          <div class="chart-title" style="color:#00ff88">📉 大幅减少（${downBig.length} · 按差值 · 优化见效）</div>
           <table class="data-table compact">
             <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">降幅</th></tr></thead>
             <tbody>${downBig.map(diffRow).join("")}</tbody>
