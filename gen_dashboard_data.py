@@ -1073,6 +1073,11 @@ def classify(df):
 
 
 def safe_num(series):
+    # 2026-07-28: 过滤 control character 防止 xlsx 脏数据 (利润字段含 \x12 等) 写进 JSON
+    # 之前 dashboard_data.json 有 1 个 \x12 字符在 airline "TO" 的 profit_sum 里, 触发 jsDelivr 解析失败
+    if series.dtype == object:
+        # 数字字符串 + 数字 + NaN, to_numeric errors="coerce" 全部转数字 (非数字含 \x12 等 → NaN)
+        return pd.to_numeric(series.astype(str).str.replace(r"[\x00-\x1f\x7f]", "", regex=True), errors="coerce").dropna()
     return pd.to_numeric(series, errors="coerce").dropna()
 
 
@@ -1210,7 +1215,10 @@ def atomic_write_json(path, data):
     tmp_path = path + ".tmp"
     try:
         with open(tmp_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+            # 2026-07-28: 改 minified 写 (no indent + 紧凑分隔符) 防 jsDelivr 20MB 单文件限制
+            # 之前 indent=2 pretty print, 20.22MB 超 20MB 触发 403
+            # minified 后约 13-15MB, 留出 5-7MB 余量给后续加字段
+            json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
             f.flush()
             os.fsync(f.fileno())  # 强制刷盘
         os.replace(tmp_path, path)  # 原子重命名
