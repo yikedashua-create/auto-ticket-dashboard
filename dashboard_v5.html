@@ -2860,8 +2860,81 @@ function renderFailureAnalysis() {
     ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：D ${fmt.num(cs.summary.D)} 单</span>`
     : "";
 
+  // 3.7 自动分析（vs 基准期）：新出现 / 大幅增加 / 大幅减少
+  //   数据源: curFailReasonsB/D 已有 prev_count 字段
+  //   - 日视图: prev_count = 前一天单数
+  //   - 月视图: prev_count = 上月单数 (无上月时由 gen 端置 0)
+  //   没有基准时 (cs == null) 整段隐藏
+  const cmpLabelShort = cs ? (COMPARE_LABEL || "上一期") : "";
+  const autoAnalysisHtml = (reasons, path, total) => {
+    if (!cs || !reasons || !reasons.length) return "";
+    // 三类: 新出现 (prev=0, count>0), 大幅增加 (prev>0, diff>0), 大幅减少 (prev>count)
+    const newOnes = reasons.filter(r => (!r.prev_count || r.prev_count === 0) && r.count > 0)
+      .sort((a, b) => b.count - a.count).slice(0, 5);
+    const upBig = reasons.filter(r => r.prev_count > 0 && r.count > r.prev_count)
+      .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
+      .sort((a, b) => b._pct - a._pct).slice(0, 10);
+    const downBig = reasons.filter(r => r.prev_count > 0 && r.count < r.prev_count)
+      .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
+      .sort((a, b) => a._pct - b._pct).slice(0, 5);
+    if (!newOnes.length && !upBig.length && !downBig.length) return "";
+    const newRow = r => `
+      <tr>
+        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
+        <td style="text-align:right;color:#ffa502;font-weight:bold">${fmt.num(r.count)}</td>
+      </tr>`;
+    const diffRow = r => {
+      const isUp = r._diff > 0;
+      const arrow = isUp ? "↑" : "↓";
+      const color = isUp ? "#ff4757" : "#00ff88";
+      const sign = isUp ? "+" : "";
+      return `
+      <tr>
+        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
+        <td style="text-align:right">${fmt.num(r.count)}</td>
+        <td style="text-align:right;color:#7a8ba0">${fmt.num(r.prev_count)}</td>
+        <td style="text-align:right;color:${color};font-weight:bold">${arrow} ${sign}${fmt.num(r._diff)}</td>
+        <td style="text-align:right;color:${color}">${sign}${r._pct.toFixed(0)}%</td>
+      </tr>`;
+    };
+    return `
+    <div class="section">
+      <div class="section-title">📊 自动分析（vs ${escapeHtml(cmpLabelShort)}）
+        <span class="badge badge-info">${path} 路径 · ${fmt.num(total)} 单</span>
+      </div>
+      <div class="grid-3" style="gap:14px">
+        ${newOnes.length ? `
+        <div class="chart-box">
+          <div class="chart-title" style="color:#ffa502">🆕 新出现的失败原因（${newOnes.length}）</div>
+          <table class="data-table compact">
+            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th></tr></thead>
+            <tbody>${newOnes.map(newRow).join("")}</tbody>
+          </table>
+        </div>` : ""}
+        ${upBig.length ? `
+        <div class="chart-box">
+          <div class="chart-title" style="color:#ff4757">📈 大幅增加（${upBig.length} · 按涨幅）</div>
+          <table class="data-table compact">
+            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">涨幅</th></tr></thead>
+            <tbody>${upBig.map(diffRow).join("")}</tbody>
+          </table>
+        </div>` : ""}
+        ${downBig.length ? `
+        <div class="chart-box">
+          <div class="chart-title" style="color:#00ff88">📉 大幅减少（${downBig.length} · 优化见效）</div>
+          <table class="data-table compact">
+            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">降幅</th></tr></thead>
+            <tbody>${downBig.map(diffRow).join("")}</tbody>
+          </table>
+        </div>` : ""}
+      </div>
+    </div>`;
+  };
+
   // 4. HTML 主体：B 路径族级 + D 路径族级（垂直堆叠）
   const html = `
+    ${autoAnalysisHtml(curFailReasonsB, "B", curSummaryB)}
+    ${autoAnalysisHtml(curFailReasonsD, "D", curSummaryD)}
     <div class="section">
       <div class="section-title">⚠️ B 路径 全自动失败环节（9 大环节 · ${fmt.num(curSummaryB)} 单）
         ${cmpBHdr}
