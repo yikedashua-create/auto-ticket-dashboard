@@ -41,3 +41,4 @@ auto_sync/data/*.db-journal
 auto_sync/data/*.db-wal
 auto_sync/data/*.db-shm
 .github_token
+raw/
