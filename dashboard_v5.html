@@ -2934,7 +2934,6 @@ function renderFailureAnalysis() {
   // 4. HTML 主体：B 路径族级 + D 路径族级（垂直堆叠）
   const html = `
     ${autoAnalysisHtml(curFailReasonsB, "B", curSummaryB)}
-    ${autoAnalysisHtml(curFailReasonsD, "D", curSummaryD)}
     <div class="section">
       <div class="section-title">⚠️ B 路径 全自动失败环节（9 大环节 · ${fmt.num(curSummaryB)} 单）
         ${cmpBHdr}
