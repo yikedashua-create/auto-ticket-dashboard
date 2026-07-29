@@ -1044,7 +1044,10 @@ def classify(df):
     lock = df["最后锁定人"].fillna("").astype(str).str.strip()
     lock_empty = lock == ""
     first_reason = df["第一次失败原因"].fillna("").astype(str).str.strip()
-    is_pure_manual = first_reason.str.contains(MANUAL_KEY, regex=False)
+    # 2026-07-29: 辅营订单也归 C 路径 (政策强制人工), 不算"自动失败救场"
+    #   之前辅营 685 单/月 算 B 路径, 让 B 路径 KPI 虚高 + 自动分析 Top 20 列"修了能提升 A 成功率"误导
+    #   实际: 辅营订单是业务上人工处理, 不是"自动失败后人工救场"
+    is_pure_manual = first_reason.str.contains(MANUAL_KEY, regex=False) | first_reason.str.contains("辅营", regex=False)
 
     # 订单状态.1（区分留单订单）
     hold_status = df["订单状态.1"].fillna("").astype(str).str.strip() if "订单状态.1" in df.columns else pd.Series("", index=df.index)
