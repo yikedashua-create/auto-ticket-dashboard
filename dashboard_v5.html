@@ -2720,6 +2720,7 @@ function renderFailureAnalysis() {
   let curMonthData = CURRENT_DATA.months && CURRENT_DATA.months[CURRENT_MONTH];
   let curFailReasonsB, curFailReasonsD, curFailFamiliesB, curFailFamiliesD;
   let curSummaryB, curSummaryD, curTotalB, curTotalD;
+  let curSummaryA, curTotalA;  // 2026-07-29: 自动分析 V2 算 A 成功率需要 curSummaryA
   if (isDayView && curMonthData && curMonthData.daily_detail) {
     const dateKey = `${CURRENT_MONTH}-${CURRENT_DAY.padStart(2, "0")}`;
     const dayData = curMonthData.daily_detail[dateKey];
@@ -2732,6 +2733,8 @@ function renderFailureAnalysis() {
       curSummaryD = dayData.summary.D;
       curTotalB = dayData.summary.total_orders;
       curTotalD = dayData.summary.total_orders;
+      curSummaryA = dayData.summary.A;
+      curTotalA = dayData.summary.total_orders;
     }
   }
   // 兜底：如果日表没数据 / 选月视图，用顶层
@@ -2744,6 +2747,8 @@ function renderFailureAnalysis() {
     curSummaryD = CURRENT_DATA.summary.D;
     curTotalB = CURRENT_DATA.summary.total_orders;
     curTotalD = CURRENT_DATA.summary.total_orders;
+    curSummaryA = CURRENT_DATA.summary.A;
+    curTotalA = CURRENT_DATA.summary.total_orders;
   }
 
   const cs = COMPARE_DATA;
@@ -2860,73 +2865,90 @@ function renderFailureAnalysis() {
     ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：D ${fmt.num(cs.summary.D)} 单</span>`
     : "";
 
-  // 3.7 自动分析（vs 基准期）：新出现 / 大幅增加 / 大幅减少
-  //   数据源: curFailReasonsB/D 已有 prev_count 字段
-  //   - 日视图: prev_count = 前一天单数
-  //   - 月视图: prev_count = 上月单数 (无上月时由 gen 端置 0)
-  //   没有基准时 (cs == null) 整段隐藏
+  // 3.7 自动分析 V2（vs 基准期）：勾选式业务影响分析
+  //   - 数据源: curFailReasonsB 已有 prev_count 字段
+  //   - 日/月视图自动适配（日视图: prev = 前一天, 月视图: prev = 上月）
+  //   - 没有基准时 (cs == null) 整段隐藏
+  //   - 输出: 总结行 + 4 按钮 (Top 5/10/20/清空) + Top 20 勾选表
+  //   - 勾选变化实时算累计 diff / 预期 A 成功率
+  //   - 不持久化（刷新页面重置）
   const cmpLabelShort = cs ? (COMPARE_LABEL || "上一期") : "";
   const autoAnalysisHtml = (reasons, path, total) => {
     if (!cs || !reasons || !reasons.length) return "";
-    // 三类: 新出现 (prev=0, count>0), 大幅增加 (prev>0, diff>0), 大幅减少 (prev>count)
-    const newOnes = reasons.filter(r => (!r.prev_count || r.prev_count === 0) && r.count > 0)
-      .sort((a, b) => b.count - a.count).slice(0, 5);
-    const upBig = reasons.filter(r => r.prev_count > 0 && r.count > r.prev_count)
-      .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
-      .sort((a, b) => b._diff - a._diff).slice(0, 10);
-    const downBig = reasons.filter(r => r.prev_count > 0 && r.count < r.prev_count)
-      .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
-      .sort((a, b) => a._diff - b._diff).slice(0, 5);
-    if (!newOnes.length && !upBig.length && !downBig.length) return "";
-    const newRow = r => `
+    // 当前 path summary.A / summary.B 是 path 维度的, 用于算 A 成功率
+    const sumA = path === "B" ? curSummaryA : (curMonthData && curMonthData.summary ? curMonthData.summary.A : 0);
+    const sumB = path === "B" ? curSummaryB : (curMonthData && curMonthData.summary ? curMonthData.summary.B : 0);
+    const totalAB = sumA + sumB;
+    // 取 diff > 0 的 reason, 按 diff 降序
+    const candidates = reasons.filter(r => r.count > (r.prev_count || 0))
+      .map(r => {
+        const prev = r.prev_count || 0;
+        const diff = r.count - prev;
+        return {
+          ...r,
+          _diff: diff,
+          _singleLift: diff / totalAB * 100,  // 单条提升 (%)
+          _singleNewRate: (sumA + diff) / totalAB * 100,  // 修了这一条后 A 成功率
+        };
+      })
+      .sort((a, b) => b._singleNewRate - a._singleNewRate)  // 按"修了这一条后 A 成功率"降序
+      .slice(0, 20);  // Top 20
+    if (!candidates.length) return "";
+    // 算全部 diff 总和 (理论上限 / 乐观现实)
+    const allDiff = reasons.reduce((sum, r) => {
+      const diff = r.count - (r.prev_count || 0);
+      return sum + (diff > 0 ? diff : 0);
+    }, 0);
+    const curRate = sumA / totalAB * 100;
+    const theoreticalRate = (sumA + allDiff) / totalAB * 100;
+    const optimisticRate = (sumA + allDiff * 0.5) / totalAB * 100;
+    // 渲染行: 单条 (sorted 之后 diff, single_lift, single_new_rate 已算好)
+    const rowHtml = (r, idx) => `
       <tr>
+        <td style="text-align:center"><input type="checkbox" class="aa-pick" data-idx="${idx}" data-diff="${r._diff}"></td>
+        <td style="color:#7a8ba0">${idx + 1}</td>
         <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
-        <td style="text-align:right;color:#ffa502;font-weight:bold">${fmt.num(r.count)}</td>
+        <td style="text-align:right">+${fmt.num(r._diff)}</td>
+        <td style="text-align:right;color:#7a8ba0">${(r.count / sumB * 100).toFixed(1)}%</td>
+        <td style="text-align:right;color:#00e5ff;font-weight:bold">${r._singleNewRate.toFixed(2)}%</td>
       </tr>`;
-    const diffRow = r => {
-      const isUp = r._diff > 0;
-      const arrow = isUp ? "↑" : "↓";
-      const color = isUp ? "#ff4757" : "#00ff88";
-      const sign = isUp ? "+" : "";
-      return `
-      <tr>
-        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
-        <td style="text-align:right">${fmt.num(r.count)}</td>
-        <td style="text-align:right;color:#7a8ba0">${fmt.num(r.prev_count)}</td>
-        <td style="text-align:right;color:${color};font-weight:bold">${arrow} ${sign}${fmt.num(r._diff)}</td>
-        <td style="text-align:right;color:${color}">${sign}${r._pct.toFixed(0)}%</td>
-      </tr>`;
-    };
     return `
     <div class="section">
-      <div class="section-title">📊 自动分析（vs ${escapeHtml(cmpLabelShort)}）
-        <span class="badge badge-info">${path} 路径 · ${fmt.num(total)} 单</span>
+      <div class="section-title">💡 自动分析（vs ${escapeHtml(cmpLabelShort)}）
+        <span class="badge badge-info">${path} 路径 · ${fmt.num(sumB)} 单</span>
       </div>
-      <div class="grid-3" style="gap:14px">
-        ${newOnes.length ? `
-        <div class="chart-box">
-          <div class="chart-title" style="color:#ffa502">🆕 新出现的失败原因（${newOnes.length}）</div>
-          <table class="data-table compact">
-            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th></tr></thead>
-            <tbody>${newOnes.map(newRow).join("")}</tbody>
-          </table>
-        </div>` : ""}
-        ${upBig.length ? `
-        <div class="chart-box">
-          <div class="chart-title" style="color:#ff4757">📈 大幅增加（${upBig.length} · 按差值）</div>
-          <table class="data-table compact">
-            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">涨幅</th></tr></thead>
-            <tbody>${upBig.map(diffRow).join("")}</tbody>
-          </table>
-        </div>` : ""}
-        ${downBig.length ? `
-        <div class="chart-box">
-          <div class="chart-title" style="color:#00ff88">📉 大幅减少（${downBig.length} · 按差值 · 优化见效）</div>
-          <table class="data-table compact">
-            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">降幅</th></tr></thead>
-            <tbody>${downBig.map(diffRow).join("")}</tbody>
-          </table>
-        </div>` : ""}
+      <div class="chart-hint" style="background:#0a1929;padding:10px 14px;border-left:3px solid #00e5ff;margin-bottom:8px;border-radius:3px;font-size:13px;line-height:1.6">
+        当前 A 成功率 <b style="color:#00e5ff">${curRate.toFixed(2)}%</b> (A=${fmt.num(sumA)}, B=${fmt.num(sumB)}) ·
+        理论上限 <b style="color:#7a8ba0">${theoreticalRate.toFixed(2)}%</b> (消除全部 ${fmt.num(allDiff)} 单 diff>0) ·
+        乐观现实 <b style="color:#7a8ba0">${optimisticRate.toFixed(2)}%</b> (×50%)
+      </div>
+      <div class="chart-hint" id="aa-summary-${path}" style="background:#0a1929;padding:12px 14px;border-left:3px solid #00ff88;margin-bottom:12px;border-radius:3px;font-size:14px;line-height:1.6">
+        ✅ 已选 <b id="aa-count-${path}">0</b> 条 ·
+        累计 <b id="aa-cumdiff-${path}">+0</b> 单 ·
+        预期 A 成功率 <b id="aa-rate-${path}" style="color:#00ff88;font-size:18px">${curRate.toFixed(2)}%</b>
+        <span id="aa-arrow-${path}" style="color:#7a8ba0;font-size:12px;margin-left:6px">(勾选想修的, 实时看累计效果)</span>
+      </div>
+      <div style="margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="drill-btn aa-quick" data-path="${path}" data-n="5">☑ 全选 Top 5</button>
+        <button class="drill-btn aa-quick" data-path="${path}" data-n="10">☑ 全选 Top 10</button>
+        <button class="drill-btn aa-quick" data-path="${path}" data-n="20">☑ 全选 Top 20</button>
+        <button class="drill-btn aa-quick" data-path="${path}" data-n="0">☐ 清空</button>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">🎯 可勾选列表（按"修了这一条后 A 成功率"降序 · Top ${candidates.length}）</div>
+        <table class="data-table compact">
+          <thead>
+            <tr>
+              <th style="width:36px;text-align:center">☑</th>
+              <th style="width:36px">#</th>
+              <th>原始根因</th>
+              <th style="text-align:right">差值</th>
+              <th style="text-align:right">占 ${path} 路径</th>
+              <th style="text-align:right">修了这一条后<br/>A 成功率</th>
+            </tr>
+          </thead>
+          <tbody id="aa-tbody-${path}">${candidates.map(rowHtml).join("")}</tbody>
+        </table>
       </div>
     </div>`;
   };
@@ -2965,6 +2987,57 @@ function renderFailureAnalysis() {
   CURRENT_FAIL_REASONS_B = curFailReasonsB;
   CURRENT_FAIL_REASONS_D = curFailReasonsD;
   CURRENT_FAIL_VIEW = isDayView ? "daily" : "monthly";
+  // 2026-07-29: 自动分析勾选交互 (checkbox 变化 → 实时算累计预期 A 成功率)
+  bindAutoAnalysisPicks(curSummaryA, curSummaryB);
+}
+
+// 失败分析 → 自动分析 → 勾选式交互
+function bindAutoAnalysisPicks(aBase, bBase) {
+  const total = aBase + bBase;
+  const curRate = (aBase / total) * 100;
+  const update = () => {
+    const checks = document.querySelectorAll(".aa-pick:checked");
+    let cumDiff = 0;
+    checks.forEach(c => { cumDiff += parseInt(c.dataset.diff, 10) || 0; });
+    const newRate = ((aBase + cumDiff) / total) * 100;
+    const lift = newRate - curRate;
+    const count = checks.length;
+    // 更新所有 path 维度的累计数 (B/D 各自一份, 但通常只渲染 B)
+    ["B", "D"].forEach(p => {
+      const cnt = document.getElementById(`aa-count-${p}`);
+      const cd = document.getElementById(`aa-cumdiff-${p}`);
+      const rt = document.getElementById(`aa-rate-${p}`);
+      const ar = document.getElementById(`aa-arrow-${p}`);
+      if (cnt) cnt.textContent = count;
+      if (cd) cd.textContent = `+${fmt.num(cumDiff)}`;
+      if (rt) {
+        rt.textContent = `${newRate.toFixed(2)}%`;
+        rt.style.color = lift > 0 ? "#00ff88" : (lift < 0 ? "#ff4757" : "#7a8ba0");
+      }
+      if (ar) {
+        if (count === 0) {
+          ar.textContent = "(勾选想修的, 实时看累计效果)";
+          ar.style.color = "#7a8ba0";
+        } else {
+          ar.textContent = `(从 ${curRate.toFixed(2)}% → ${newRate.toFixed(2)}%, ${lift >= 0 ? "+" : ""}${lift.toFixed(2)})`;
+          ar.style.color = lift > 0 ? "#00ff88" : "#7a8ba0";
+        }
+      }
+    });
+  };
+  document.querySelectorAll(".aa-pick").forEach(c => c.addEventListener("change", update));
+  // 快捷按钮
+  document.querySelectorAll(".aa-quick").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const n = parseInt(btn.dataset.n, 10);
+      const allChecks = document.querySelectorAll(".aa-pick");
+      allChecks.forEach((c, i) => {
+        if (n === 0) c.checked = false;
+        else c.checked = (i < n);
+      });
+      update();
+    });
+  });
 }
 
 
