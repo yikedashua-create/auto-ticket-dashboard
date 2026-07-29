@@ -2879,39 +2879,29 @@ function renderFailureAnalysis() {
     const sumA = path === "B" ? curSummaryA : (curMonthData && curMonthData.summary ? curMonthData.summary.A : 0);
     const sumB = path === "B" ? curSummaryB : (curMonthData && curMonthData.summary ? curMonthData.summary.B : 0);
     const totalAB = sumA + sumB;
-    // 取 diff > 0 的 reason, 按 diff 降序
-    const candidates = reasons.filter(r => r.count > (r.prev_count || 0))
-      .map(r => {
-        const prev = r.prev_count || 0;
-        const diff = r.count - prev;
-        return {
-          ...r,
-          _diff: diff,
-          _singleLift: diff / totalAB * 100,  // 单条提升 (%)
-          _singleNewRate: (sumA + diff) / totalAB * 100,  // 修了这一条后 A 成功率
-        };
-      })
-      .sort((a, b) => b._singleNewRate - a._singleNewRate)  // 按"修了这一条后 A 成功率"降序
-      .slice(0, 20);  // Top 20
+    // 2026-07-29 V3: 不看 diff, 直接看 B 路径的 reason 修好多少能让 A 成功率到多少
+    // 排除 count=0 的 (无效 reason), 按 count 降序取 Top 20
+    const candidates = reasons.filter(r => r.count > 0)
+      .sort((a, b) => b.count - a.count)  // 按单量降序 (修这条影响最大)
+      .slice(0, 20);
     if (!candidates.length) return "";
-    // 算全部 diff 总和 (理论上限 / 乐观现实)
-    const allDiff = reasons.reduce((sum, r) => {
-      const diff = r.count - (r.prev_count || 0);
-      return sum + (diff > 0 ? diff : 0);
-    }, 0);
+    // 理论上限 (修 100% B 路径) + 乐观现实 (修 50% B 路径)
     const curRate = sumA / totalAB * 100;
-    const theoreticalRate = (sumA + allDiff) / totalAB * 100;
-    const optimisticRate = (sumA + allDiff * 0.5) / totalAB * 100;
+    const theoreticalRate = (sumA + sumB) / totalAB * 100;  // 100%
+    const optimisticRate = (sumA + sumB * 0.5) / totalAB * 100;  // 50%
     // 渲染行: 单条 (sorted 之后 diff, single_lift, single_new_rate 已算好)
-    const rowHtml = (r, idx) => `
+    const rowHtml = (r, idx) => {
+      const newRate = (sumA + r.count) / totalAB * 100;
+      return `
       <tr>
-        <td style="text-align:center"><input type="checkbox" class="aa-pick" data-idx="${idx}" data-diff="${r._diff}"></td>
+        <td style="text-align:center"><input type="checkbox" class="aa-pick" data-idx="${idx}" data-diff="${r.count}"></td>
         <td style="color:#7a8ba0">${idx + 1}</td>
         <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
-        <td style="text-align:right">+${fmt.num(r._diff)}</td>
+        <td style="text-align:right">${fmt.num(r.count)}</td>
         <td style="text-align:right;color:#7a8ba0">${(r.count / sumB * 100).toFixed(1)}%</td>
-        <td style="text-align:right;color:#00e5ff;font-weight:bold">${r._singleNewRate.toFixed(2)}%</td>
+        <td style="text-align:right;color:#00e5ff;font-weight:bold">${newRate.toFixed(2)}%</td>
       </tr>`;
+    };
     return `
     <div class="section">
       <div class="section-title">💡 自动分析（vs ${escapeHtml(cmpLabelShort)}）
@@ -2919,8 +2909,8 @@ function renderFailureAnalysis() {
       </div>
       <div class="chart-hint" style="background:#0a1929;padding:10px 14px;border-left:3px solid #00e5ff;margin-bottom:8px;border-radius:3px;font-size:13px;line-height:1.6">
         当前 A 成功率 <b style="color:#00e5ff">${curRate.toFixed(2)}%</b> (A=${fmt.num(sumA)}, B=${fmt.num(sumB)}) ·
-        理论上限 <b style="color:#7a8ba0">${theoreticalRate.toFixed(2)}%</b> (消除全部 ${fmt.num(allDiff)} 单 diff>0) ·
-        乐观现实 <b style="color:#7a8ba0">${optimisticRate.toFixed(2)}%</b> (×50%)
+        理论上限 <b style="color:#7a8ba0">${theoreticalRate.toFixed(2)}%</b> (修好 B 路径全部 ${fmt.num(sumB)} 单) ·
+        乐观现实 <b style="color:#7a8ba0">${optimisticRate.toFixed(2)}%</b> (修好 50% B 路径 = ${fmt.num(sumB * 0.5)} 单)
       </div>
       <div class="chart-hint" id="aa-summary-${path}" style="background:#0a1929;padding:12px 14px;border-left:3px solid #00ff88;margin-bottom:12px;border-radius:3px;font-size:14px;line-height:1.6">
         ✅ 已选 <b id="aa-count-${path}">0</b> 条 ·
@@ -2935,14 +2925,14 @@ function renderFailureAnalysis() {
         <button class="drill-btn aa-quick" data-path="${path}" data-n="0">☐ 清空</button>
       </div>
       <div class="chart-box">
-        <div class="chart-title">🎯 可勾选列表（按"修了这一条后 A 成功率"降序 · Top ${candidates.length}）</div>
+        <div class="chart-title">🎯 可勾选列表（按 B 路径单量降序 · Top ${candidates.length}）</div>
         <table class="data-table compact">
           <thead>
             <tr>
               <th style="width:36px;text-align:center">☑</th>
               <th style="width:36px">#</th>
               <th>原始根因</th>
-              <th style="text-align:right">差值</th>
+              <th style="text-align:right">B 单数</th>
               <th style="text-align:right">占 ${path} 路径</th>
               <th style="text-align:right">修了这一条后<br/>A 成功率</th>
             </tr>
