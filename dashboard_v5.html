@@ -458,10 +458,33 @@
    * ============================================================ */
   body { background: #050816; }  /* 底色加深, 让 aurora 更明显 */
 
-  /* 明显 Aurora — 调大透明度 + 加 blur 散射 */
-  body::before, body::after { filter: blur(80px); }
-  body::before { width: 700px; height: 700px; opacity: 0.22; }
-  body::after  { width: 700px; height: 700px; opacity: 0.18; }
+  /* 明显 Aurora — 调大透明度 + 加 blur 散射 + 3 团色 (青+紫+粉) */
+  body::before, body::after { content: ''; position: fixed; pointer-events: none; z-index: 0; border-radius: 50%; }
+  body::before {
+    top: -150px; right: -150px;
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.45) 0%, transparent 70%);
+    filter: blur(100px);
+    animation: aurora-float 14s ease-in-out infinite;
+  }
+  body::after {
+    bottom: -150px; left: -150px;
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    filter: blur(100px);
+    animation: aurora-float 18s ease-in-out infinite reverse;
+  }
+  /* 第 3 团: 粉色 (右下) */
+  .aurora-3rd {
+    position: fixed;
+    bottom: -100px; right: 20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.28) 0%, transparent 70%);
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+    animation: aurora-float 22s ease-in-out infinite;
+  }
 
   /* 玻璃卡片 — section / sidebar / kpi / chart-box / nav-section / nav-mini 全覆盖 */
   .section, .sidebar, .kpi, .chart-box, .nav-section, .nav-mini {
@@ -472,32 +495,55 @@
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   }
   .section, .chart-box { border-radius: 16px; padding: 20px; }
-  .kpi { border-radius: 14px; padding: 16px; }
+  .kpi { border-radius: 14px; padding: 16px; transition: all 0.3s; }
+  .kpi:hover { transform: translateY(-4px); border-color: rgba(0, 229, 255, 0.5); box-shadow: 0 8px 32px rgba(0, 229, 255, 0.2), 0 0 0 1px rgba(0, 229, 255, 0.1); }
   .sidebar, .nav-section, .nav-mini { border-radius: 14px; }
 
-  /* KPI 数字发光 (数字更出戏) */
+  /* KPI 数字 — 加大字号 + 强 glow (纯白底, 渐变会糊掉) */
   .kpi-value {
-    text-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    font-size: 36px;
     font-weight: 800;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(0, 229, 255, 0.5), 0 0 60px rgba(0, 229, 255, 0.2);
+    transition: transform 0.2s;
   }
-  .kpi-value.green { text-shadow: 0 0 20px rgba(0, 255, 136, 0.35); }
-  .kpi-value.red   { text-shadow: 0 0 20px rgba(255, 71, 87, 0.35); }
-  .kpi-value.yellow{ text-shadow: 0 0 20px rgba(255, 165, 2, 0.35); }
+  .kpi:hover .kpi-value { transform: scale(1.06); }
+  .kpi-value.green { color: #00ff88; text-shadow: 0 0 30px rgba(0, 255, 136, 0.6), 0 0 60px rgba(0, 255, 136, 0.25); }
+  .kpi-value.red   { color: #ff4757; text-shadow: 0 0 30px rgba(255, 71, 87, 0.6), 0 0 60px rgba(255, 71, 87, 0.25); }
+  .kpi-value.yellow{ color: #ffa502; text-shadow: 0 0 30px rgba(255, 165, 2, 0.6), 0 0 60px rgba(255, 165, 2, 0.25); }
 
   /* 动态颜色 (up-good / down-bad) 保留 — 只需让 border-color + value color 仍生效 */
   .kpi.up-good, .kpi.down-bad { border-color: rgba(0, 255, 136, 0.35) !important; }
   .kpi.up-bad, .kpi.down-good { border-color: rgba(255, 71, 87, 0.35) !important; }
   .kpi.flat, .kpi.warning { border-color: rgba(255, 165, 2, 0.35) !important; }
 
-  /* 标题加粗 + 字距 */
-  .section-title { font-weight: 700; letter-spacing: 0.5px; }
+  /* 标题加粗 + 字距 + 渐变文字 */
+  .section-title {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #ffffff 0%, #00e5ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-  /* 主标题 (顶部 "📊 自动出票数据看板") 渐变光晕 */
+  /* 主标题 (顶部 "📊 自动出票数据看板") 渐变光晕 + 动画 */
   .title {
+    font-size: 32px;
     font-weight: 800;
     letter-spacing: 3px;
-    text-shadow: 0 0 30px rgba(0, 229, 255, 0.4), 0 0 60px rgba(168, 85, 247, 0.2);
+    background: linear-gradient(135deg, #fff 0%, #00e5ff 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: hero-grad 6s ease infinite;
+  }
+  @keyframes hero-grad {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   /* 导航项玻璃化 */
@@ -614,6 +660,7 @@
 </style>
 </head>
 <body>
+  <div class="aurora-3rd"></div>
   <div class="title">📊 自动出票数据看板</div>
   <div class="subtitle" id="subtitle">v5 · 数据驱动 ECharts 实时渲染</div>
 
