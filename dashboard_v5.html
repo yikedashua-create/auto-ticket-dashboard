@@ -1342,14 +1342,10 @@ function renderOverview() {
       <div class="chart-box" style="display:flex;justify-content:center;align-items:center;min-height:380px">
         <div id="chart-pathPie" class="chart-area" style="width:100%;max-width:520px;height:380px"></div>
       </div>
-      <div id="table-pathOrders" style="margin-top:18px"></div>
     </div>
 
   `;
   document.getElementById("mainArea").innerHTML = html;
-
-  // 4 路径订单/利润对比明细表（v10.9：默认展示订单数 + vs 对比，避免 hover 才能看到）
-  renderPathComparisonTables();
 
   // 4 路径饼图（含对比 tooltip + 中心总数）
   const cs2 = COMPARE_DATA ? COMPARE_DATA.summary : null;
@@ -1383,52 +1379,6 @@ function renderOverview() {
       data: pieData,
     }],
   });
-}
-
-/* v10.9 新增（2026-06-23）：渲染 4 路径订单对比明细表
- * 2026-07-20 简化：只保留订单对比表，利润表已删（用户要"4 路径利润对比"从总览删除）
- */
-function renderPathComparisonTables() {
-  const s = CURRENT_DATA.summary;
-  const cs = COMPARE_DATA ? COMPARE_DATA.summary : null;
-  const pathOrder = [
-    { key: "A", label: "A", color: color.A },
-    { key: "B", label: "B", color: color.B },
-    { key: "C", label: "C", color: color.C },
-    { key: "D", label: "D", color: color.D },
-  ];
-  // 工具：变化箭头
-  const fmtDiff = (diff) => {
-    if (diff === null || diff === undefined) return '<span style="color:#7a8ba0">—</span>';
-    const sign = diff > 0 ? "+" : (diff < 0 ? "" : "·");
-    const arrow = diff > 0 ? "↑" : (diff < 0 ? "↓" : "→");
-    const c = diff > 0 ? "#00d4aa" : (diff < 0 ? "#ff4757" : "#7a8ba0");
-    return `<span style="color:${c}">${arrow} ${sign}${fmt.num(diff)}</span>`;
-  };
-  // 1) 订单对比表
-  const ordersHtml = `<table class="path-compare-table">
-    <thead>
-      <tr><th>路径</th><th>订单数</th><th>占比</th><th>${cs ? "对比基准" : ""}</th><th>${cs ? "变化" : ""}</th></tr>
-    </thead>
-    <tbody>
-      ${pathOrder.map(p => {
-        const cur = s[p.key] || 0;
-        const prev = cs ? (cs[p.key] || 0) : null;
-        const diff = prev !== null ? cur - prev : null;
-        const ratio = s.total_orders ? (cur / s.total_orders * 100).toFixed(1) + "%" : "—";
-        return `<tr>
-          <td><span style="display:inline-block;width:10px;height:10px;background:${p.color};border-radius:2px;margin-right:6px;vertical-align:middle"></span>${p.label}</td>
-          <td>${fmt.num(cur)}</td>
-          <td>${ratio}</td>
-          <td>${prev !== null ? fmt.num(prev) : '<span style="color:#7a8ba0">—</span>'}</td>
-          <td>${fmtDiff(diff)}</td>
-        </tr>`;
-      }).join("")}
-    </tbody>
-  </table>`;
-  const el1 = document.getElementById("table-pathOrders");
-  if (el1) el1.innerHTML = ordersHtml;
-  // 2026-07-20 删：利润对比表（用户要把"4 路径利润对比"从总览页完全删除）
 }
 
 /* ============== 页面：今日时段（2026-07-18 新增）============== */
