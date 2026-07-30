@@ -1133,6 +1133,133 @@ def compute_fuying_luggage(df):
     return out
 
 
+def compute_deadline(df):
+    """产品时限分析 (2026-07-30 新增)
+    - 公式: 产品时限(分钟) = 最新截止日期 - 平台时间
+    - 业务含义: 还剩多少时间出票 (越小越紧迫)
+    - 输出:
+      - summary: 总数 / 中位 / P10 / 7 档分布
+      - by_platform: 各平台 中位 + P10 + n
+      - by_airline:  各航司 中位 + n (top 30)
+      - matrix:      平台 × 航司 中位分钟
+    """
+    out = {"count": 0}
+    # 1. 算 产品时限
+    plat_t = pd.to_datetime(df["平台时间"], errors="coerce")
+    deadline = pd.to_datetime(df["最新截止日期"], errors="coerce")
+    valid_mask = plat_t.notna() & deadline.notna()
+    if valid_mask.sum() == 0:
+        return out
+
+    df_v = df.loc[valid_mask].copy()
+    df_v["_deadline_min"] = (deadline[valid_mask] - plat_t[valid_mask]).dt.total_seconds() / 60
+    # 过滤掉负值（数据异常）
+    df_v = df_v[df_v["_deadline_min"] >= 0]
+
+    series = df_v["_deadline_min"]
+    n = int(len(df_v))
+    if n == 0:
+        return out
+
+    # 2. 整体分布
+    def q(p): return round(float(series.quantile(p)), 1)
+    dist = {
+        "under_15min":  int((series < 15).sum()),
+        "under_30min":  int((series < 30).sum()),
+        "under_1h":     int((series < 60).sum()),
+        "1_3h":         int(((series >= 60)  & (series < 180)).sum()),
+        "3_12h":        int(((series >= 180) & (series < 720)).sum()),
+        "12_24h":       int(((series >= 720) & (series < 1440)).sum()),
+        "over_24h":     int((series >= 1440).sum()),
+    }
+    out["count"] = n
+    out["avg_min"]   = round(float(series.mean()), 1)
+    out["median_min"] = round(float(series.median()), 1)
+    out["p10_min"]    = q(0.10)
+    out["p25_min"]    = q(0.25)
+    out["p75_min"]    = q(0.75)
+    out["p90_min"]    = q(0.90)
+    out["min_min"]    = round(float(series.min()), 1)
+    out["max_min"]    = round(float(series.max()), 1)
+    out["distribution"] = dist
+    out["under_1h_pct"] = round(dist["under_1h"] / n * 100, 2)
+
+    # 3. 各平台聚合
+    plat_series = df_v.groupby("平台")["_deadline_min"]
+    plat_rows = []
+    for plat, s in plat_series:
+        if s.empty:
+            continue
+        plat_rows.append({
+            "platform": str(plat) if pd.notna(plat) else "未知",
+            "n": int(len(s)),
+            "median_min": round(float(s.median()), 1),
+            "p10_min": round(float(s.quantile(0.10)), 1),
+            "avg_min": round(float(s.mean()), 1),
+        })
+    plat_rows.sort(key=lambda x: x["median_min"])
+    out["by_platform"] = plat_rows
+
+    # 4. 各航司聚合（拆分多航司）
+    air_raw = df_v["航空公司列表"].fillna("").astype(str).str.strip()
+    valid_air = air_raw != ""
+    air_split = air_raw[valid_air].str.split(r"[,,;；\s]+", regex=True)
+    air_exploded = air_split.explode()
+    air_exploded = air_exploded[air_exploded.str.strip() != ""]
+    df_air = df_v.loc[air_exploded.index].copy()
+    df_air["_airline"] = air_exploded.values
+    air_rows = []
+    for air, g in df_air.groupby("_airline"):
+        if not air:
+            continue
+        s = g["_deadline_min"]
+        air_rows.append({
+            "airline": str(air),
+            "n": int(len(s)),
+            "median_min": round(float(s.median()), 1),
+        })
+    air_rows.sort(key=lambda x: x["median_min"])
+    out["by_airline"] = air_rows[:30]  # top 30
+
+    # 5. 平台 × 航司 中位矩阵 (热力图)
+    df_v["_platform"] = df_v["平台"].fillna("").astype(str).str.strip().replace("", "未知")
+    # 复用上一步的 explode 结果
+    df_matrix = df_air.copy()
+    df_matrix["_platform"] = df_matrix["平台"].fillna("").astype(str).str.strip().replace("", "未知")
+
+    # 只统计 ≥3 单的格子（避免噪音）
+    cross = df_matrix.groupby(["_platform", "_airline"])["_deadline_min"].agg(
+        n="count", median="median"
+    ).reset_index()
+    cross = cross[cross["n"] >= 3]
+
+    # 平台按时限短→长 (median 升序)
+    plat_order = sorted(cross["_platform"].unique(),
+                        key=lambda p: cross[cross["_platform"] == p]["median"].min())
+    # 航司按时限短→长
+    air_order = sorted(cross["_airline"].unique(),
+                       key=lambda a: cross[cross["_airline"] == a]["median"].min())
+
+    matrix = []
+    for plat in plat_order:
+        row = []
+        for air in air_order:
+            sub = cross[(cross["_platform"] == plat) & (cross["_airline"] == air)]
+            if len(sub) == 0:
+                row.append(None)
+            else:
+                row.append(int(round(sub["median"].iloc[0])))
+        matrix.append(row)
+
+    out["matrix"] = {
+        "platforms": plat_order,
+        "airlines": air_order,
+        "data": matrix,
+    }
+
+    return out
+
+
 def compute_order_analysis(df):
     out = {"total": len(df)}
     n = len(df)
@@ -1410,6 +1537,8 @@ def build_month_data(df, month_label):
     out["summary"]["order_analysis"] = compute_order_analysis(df)
     # 2026-07-29 新增: 辅营行李订单明细（path=C 子分类, 平台×航司热力图）
     out["summary"]["fuying_luggage"] = compute_fuying_luggage(df)
+    # 2026-07-30 新增: 产品时限分析（最新截止日期 - 平台时间, 平台×航司矩阵）
+    out["summary"]["deadline"] = compute_deadline(df)
 
     # 2026-07-18 新增：今日各小时分桶（取该月最后一天，dashboard 折线图用）
     if "_file_date" in df.columns and not df.empty:
