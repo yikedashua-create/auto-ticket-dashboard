@@ -3,17 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>自动出票数据看板 · v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>html, body { background: #0a0e1a; margin: 0; }</style>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"
         onerror="this.onerror=null;this.src='https://unpkg.com/echarts@5/dist/echarts.min.js'"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
     background: #0a0e1a;
     color: #e0e6f0;
     padding: 0 20px;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* Outfit 应用范围: 数字/英文/标题优先, 中文 fallback */
+  .title, .section-title, .kpi-value, .kpi-label, .hero-stat-value, .kpi-spotlight-value, .bento-big-num, .lamp-line h2 {
+    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  /* JetBrains Mono 用于纯数字 (KPI 数字) */
+  .kpi-value, .hero-stat-value, .kpi-spotlight-value, .bento-big-num, td.numeric, .cmp-badge, .kpi-sub {
+    font-family: 'JetBrains Mono', 'Outfit', monospace;
   }
   /* 自适应：屏幕很宽（>1750px）时让布局居中避免拉伸 */
   .layout-wrapper {
@@ -486,18 +499,35 @@
     animation: aurora-float 22s ease-in-out infinite;
   }
 
-  /* 玻璃卡片 — section / sidebar / kpi / chart-box / nav-section / nav-mini 全覆盖 */
+  /* 玻璃卡片 — 渐变背景 + neumorphic 多层阴影 + 顶部高光线 */
   .section, .sidebar, .kpi, .chart-box, .nav-section, .nav-mini {
-    background: rgba(10, 14, 26, 0.55);
+    background: linear-gradient(135deg, rgba(15, 22, 38, 0.85) 0%, rgba(10, 14, 26, 0.7) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+      0 1px 0 rgba(255, 255, 255, 0.04) inset;
   }
-  .section, .chart-box { border-radius: 16px; padding: 20px; }
-  .kpi { border-radius: 14px; padding: 16px; transition: all 0.3s; }
+  .section, .chart-box { border-radius: 18px; padding: 24px; position: relative; overflow: hidden; }
+  .section::before, .chart-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.4) 50%, transparent 100%);
+    pointer-events: none;
+  }
+  .kpi { border-radius: 16px; padding: 20px; transition: all 0.3s; position: relative; overflow: hidden; }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 229, 255, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+  }
   .kpi:hover { transform: translateY(-4px); border-color: rgba(0, 229, 255, 0.5); box-shadow: 0 8px 32px rgba(0, 229, 255, 0.2), 0 0 0 1px rgba(0, 229, 255, 0.1); }
-  .sidebar, .nav-section, .nav-mini { border-radius: 14px; }
+  .sidebar, .nav-section, .nav-mini { border-radius: 16px; }
 
   /* KPI 数字 — 加大字号 + 强 glow (纯白底, 渐变会糊掉) */
   .kpi-value {
@@ -518,28 +548,40 @@
   .kpi.up-bad, .kpi.down-good { border-color: rgba(255, 71, 87, 0.35) !important; }
   .kpi.flat, .kpi.warning { border-color: rgba(255, 165, 2, 0.35) !important; }
 
-  /* 标题加粗 + 字距 + 渐变文字 */
+  /* 标题加粗 + 字距 + 渐变文字 + 底部高亮线 */
   .section-title {
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    background: linear-gradient(135deg, #ffffff 0%, #00e5ff 100%);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, #00e5ff 0%, transparent 100%);
+    border-radius: 2px;
+  }
 
   /* 主标题 (顶部 "📊 自动出票数据看板") 渐变光晕 + 动画 */
   .title {
-    font-size: 32px;
+    font-size: 38px;
     font-weight: 800;
-    letter-spacing: 3px;
-    background: linear-gradient(135deg, #fff 0%, #00e5ff 50%, #a855f7 100%);
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #fff 0%, #00e5ff 40%, #a855f7 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 100%;
-    animation: hero-grad 6s ease infinite;
+    animation: hero-grad 8s ease infinite;
+    text-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
   }
   @keyframes hero-grad {
     0%, 100% { background-position: 0% 50%; }
