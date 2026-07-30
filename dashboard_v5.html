@@ -1339,44 +1339,8 @@ function renderOverview() {
       <div class="section-title">🔍 路径分布 · 4 路径
         <span class="badge badge-info">${fmt.num(s.total_orders)} 单全量</span>
       </div>
-      <div class="chart-box" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start">
-        <div>
-          <div class="chart-title">📊 4 路径订单分布</div>
-          <div id="chart-pathPie" class="chart-area" style="height:340px"></div>
-        </div>
-        <div>
-          <div class="chart-title">💡 4 路径快速一览</div>
-          <div style="display:grid;gap:10px;margin-top:8px">
-            <div class="path-stat-card" style="--c:${color.A}">
-              <div class="path-stat-dot"></div>
-              <div class="path-stat-body">
-                <div class="path-stat-name">A · 全自动成功</div>
-                <div class="path-stat-meta">${fmt.num(s.A)} 单 · ${fmt.pct(s.A/s.total_orders*100)} · ${cs ? cmpBadge(s.A, cs.A, "rate", false) : ''}</div>
-              </div>
-            </div>
-            <div class="path-stat-card" style="--c:${color.B}">
-              <div class="path-stat-dot"></div>
-              <div class="path-stat-body">
-                <div class="path-stat-name">B · 自动失败救场</div>
-                <div class="path-stat-meta">${fmt.num(s.B)} 单 · ${fmt.pct(s.B/s.total_orders*100)} · ${cs ? cmpBadge(s.B, cs.B, "amount", false) : ''}</div>
-              </div>
-            </div>
-            <div class="path-stat-card" style="--c:${color.C}">
-              <div class="path-stat-dot"></div>
-              <div class="path-stat-body">
-                <div class="path-stat-name">C · 政策转人工</div>
-                <div class="path-stat-meta">${fmt.num(s.C)} 单 · ${fmt.pct(s.C/s.total_orders*100)} · ${cs ? cmpBadge(s.C, cs.C, "amount", false) : ''}</div>
-              </div>
-            </div>
-            <div class="path-stat-card" style="--c:${color.D}">
-              <div class="path-stat-dot"></div>
-              <div class="path-stat-body">
-                <div class="path-stat-name">D · 处理中/异常</div>
-                <div class="path-stat-meta">${fmt.num(s.D)} 单 · ${fmt.pct(s.D/s.total_orders*100)} · ${cs ? cmpBadge(s.D, cs.D, "amount", false) : ''}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="chart-box" style="display:flex;justify-content:center;align-items:center;min-height:380px">
+        <div id="chart-pathPie" class="chart-area" style="width:100%;max-width:520px;height:380px"></div>
       </div>
       <div id="table-pathOrders" style="margin-top:18px"></div>
     </div>
@@ -1405,17 +1369,17 @@ function renderOverview() {
   createChart("chart-pathPie", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "item", formatter: tooltipFmt },
-    // 中心总数 graphic + 加大半径
+    // 中心总数 graphic + 居中饼图
     graphic: [
-      { type: 'text', left: '24%', top: '46%', style: { text: fmt.num(s.total_orders), fill: '#ffffff', fontSize: 32, fontWeight: 800, fontFamily: 'Outfit, sans-serif', textAlign: 'center' } },
-      { type: 'text', left: '24%', top: '60%', style: { text: '总订单数', fill: '#94a3b8', fontSize: 13, fontFamily: 'Outfit, sans-serif', textAlign: 'center' } },
+      { type: 'text', left: 'center', top: '44%', style: { text: fmt.num(s.total_orders), fill: '#ffffff', fontSize: 36, fontWeight: 800, fontFamily: 'Outfit, sans-serif', textAlign: 'center' } },
+      { type: 'text', left: 'center', top: '58%', style: { text: '总订单数', fill: '#94a3b8', fontSize: 13, fontFamily: 'Outfit, sans-serif', textAlign: 'center' } },
     ],
     series: [{
       type: "pie",
-      radius: ["50%", "78%"],
-      center: ["28%", "55%"],
-      label: { color: "#e0e6f0", formatter: "{b}\n{d}%", fontSize: 11 },
-      labelLine: { length: 8, length2: 8 },
+      radius: ["50%", "75%"],
+      center: ["50%", "55%"],
+      label: { color: "#e0e6f0", formatter: "{b}\n{d}%", fontSize: 12 },
+      labelLine: { length: 12, length2: 10 },
       data: pieData,
     }],
   });
