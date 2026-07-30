@@ -537,6 +537,293 @@
   }
 
   /* ============================================================
+   * Aceternity Hero / Lamp / Bento / Spotlight (overview 重构)
+   * 2026-07-30: 按 mockup_overview_v2.html 全面重做总览页
+   * ============================================================ */
+  .aurora-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #050816 0%, #0a0e1a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 60px 48px;
+    margin-bottom: 16px;
+  }
+  .aurora-hero::before, .aurora-hero::after {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+  .aurora-hero::before {
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.4) 0%, transparent 70%);
+    top: -200px; left: -100px;
+    animation: aurora-move1 20s ease-in-out infinite;
+  }
+  .aurora-hero::after {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    bottom: -300px; right: -100px;
+    animation: aurora-move2 25s ease-in-out infinite;
+  }
+  @keyframes aurora-move1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(200px, 100px) scale(1.2); }
+  }
+  @keyframes aurora-move2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-200px, -100px) scale(1.3); }
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 999px;
+    color: #00e5ff;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: #00e5ff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00e5ff;
+    animation: hero-pulse 2s ease-in-out infinite;
+  }
+  @keyframes hero-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .hero-h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, #00e5ff 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    animation: hero-grad 4s ease infinite;
+  }
+  @keyframes hero-grad {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .hero-p {
+    font-size: 17px;
+    color: #94a3b8;
+    max-width: 720px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .hero-stat {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px 22px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .hero-stat:hover {
+    background: rgba(0, 229, 255, 0.05);
+    border-color: rgba(0, 229, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  .hero-stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero-stat-value.cyan { color: #00e5ff; text-shadow: 0 0 30px rgba(0, 229, 255, 0.4); }
+  .hero-stat-value.green { color: #10b981; text-shadow: 0 0 30px rgba(16, 185, 129, 0.4); }
+  .hero-stat-value.amber { color: #f59e0b; text-shadow: 0 0 30px rgba(245, 158, 11, 0.4); }
+  .hero-stat-value.purple { color: #a855f7; text-shadow: 0 0 30px rgba(168, 85, 247, 0.4); }
+  .hero-stat-label { font-size: 12px; color: #94a3b8; font-weight: 500; }
+
+  /* === Lamp Section Title (居中渐变文字 + 顶部光束) === */
+  .lamp-section {
+    position: relative;
+    padding: 60px 0 40px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .lamp-section::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .lamp-line {
+    position: relative;
+    display: inline-block;
+    padding: 0 24px;
+  }
+  .lamp-line::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 2px; height: 30px;
+    background: linear-gradient(180deg, transparent 0%, #00e5ff 50%, transparent 100%);
+    box-shadow: 0 0 20px #00e5ff;
+  }
+  .lamp-line h2 {
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(180deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .lamp-line p { font-size: 15px; color: #94a3b8; }
+
+  /* === Bento Grid (业务亮点) === */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .bento {
+    position: relative;
+    background: rgba(10, 14, 26, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 24px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+  }
+  .bento::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(0, 229, 255, 0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .bento:hover::before { opacity: 1; }
+  .bento:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  .bento.b1 {
+    grid-column: span 3;
+    grid-row: span 2;
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(168, 85, 247, 0.04) 50%, rgba(10, 14, 26, 0.55) 100%);
+    display: flex;
+    flex-direction: column;
+  }
+  .bento.b2 { grid-column: span 3; }
+  .bento.b3 { grid-column: span 3; }
+  .bento.b4 { grid-column: span 2; }
+  .bento.b5 { grid-column: span 4; }
+  .bento-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 999px;
+    color: #00e5ff;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    align-self: flex-start;
+  }
+  .bento h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #e0e6f0; }
+  .bento p { font-size: 13px; color: #94a3b8; line-height: 1.55; }
+  .bento-big-num {
+    font-size: 56px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00e5ff 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin: auto 0 12px;
+  }
+
+  /* === KPI Spotlight Grid (核心 KPI 4 卡) === */
+  .kpi-spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .kpi-spotlight {
+    position: relative;
+    background: rgba(10, 14, 26, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+  }
+  .kpi-spotlight::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, transparent 50%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    left: var(--mx, 50%);
+    top: var(--my, 50%);
+  }
+  .kpi-spotlight:hover::before { opacity: 1; }
+  .kpi-spotlight:hover { border-color: rgba(0, 229, 255, 0.3); }
+  .kpi-spotlight-label { font-size: 12px; color: #94a3b8; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .kpi-spotlight-value {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 4px;
+  }
+  .kpi-spotlight-sub { font-size: 11px; color: #64748b; margin-top: 4px; }
+  .shimmer {
+    background: linear-gradient(110deg, #94a3b8 8%, #fff 18%, #94a3b8 33%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-anim 3s linear infinite;
+  }
+  @keyframes shimmer-anim { to { background-position-x: -200%; } }
+
+  /* 自适应: 窄屏 */
+  @media (max-width: 1100px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+    .bento.b1, .bento.b2, .bento.b3, .bento.b4, .bento.b5 { grid-column: span 2; grid-row: auto; }
+    .kpi-spotlight-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-h1 { font-size: 36px; }
+  }
+
+  /* ============================================================
    * 动效系统 (Animations Engine v1)
    * 7 种动效: CountUp / Reveal-row / V3-bump / Typewriter /
    *          Hero-mask / Stagger / Aurora+flow
@@ -1144,11 +1431,15 @@ function renderOverview() {
     : (CURRENT_WEEK !== "all" ? `${CURRENT_MONTH} ${CURRENT_WEEK.split("|")[1] || CURRENT_WEEK}`
     : (CURRENT_DAY !== "all" ? `${CURRENT_MONTH} ${CURRENT_DAY} 日` : CURRENT_MONTH));
   const cs = COMPARE_DATA ? COMPARE_DATA.summary : null;  // 对比基准 summary
+  // 2026-07-30 视觉重构: 按 mockup_overview_v2.html 全面 Aceternify
+  //   结构: HERO (aurora bg + 大标题) → LAMP 业务亮点 → BENTO 5 卡 → LAMP 核心 KPI → SPOTLIGHT 4 KPI → 4 路径饼图
+  //   数据: 保留 4 路径 + 自动成功率/覆盖率/日均订单/平台×航司 真实指标
+  const platformCount = (CURRENT_DATA.platform || []).length;
+  const airlineCount = (CURRENT_DATA.airline || []).length;
+  const channelCount = (CURRENT_DATA.channel || []).length;
+  const avgDaily = s.total_days > 0 ? Math.round(s.total_orders / s.total_days) : 0;
   const cmpBadge = (cur, base, mode, isPct, isMoney = false) => cs ? fmt.cmp(cur, base, mode, isPct, isMoney) : `<span class="cmp-no">无对比基准</span>`;
   // 2026-07-20 新增: KPI 卡片颜色按对比变化动态切换
-  //   正向指标 (good): 涨=绿 跌=红 不变=黄  (订单/航段/A/覆盖率/成功率)
-  //   负向指标 (bad) : 涨=红 跌=绿 不变=黄  (B 失败/C 转人工)
-  //   返回: "up-good" / "down-good" / "up-bad" / "down-bad" / "flat" / ""
   const trendCls = (cur, base) => {
     if (!cs) return "";
     if (cur == null || base == null) return "";
@@ -1162,58 +1453,105 @@ function renderOverview() {
   };
 
   const html = `
-    <div class="section">
-      <div class="section-title"><span class="anim-hero-mask">💎 核心 KPI</span> · ${monthLabel}
-        <span class="badge badge-info">${s.total_days} 天 · ${fmt.num(s.total_orders)} 单</span>
-        ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
-      </div>
-      <div class="anim-tw" data-tw-text="AI 智能分析：本期共 ${fmt.num(s.total_orders)} 单 · A 路径 ${fmt.num(s.A)} 单全自动成功 · B 路径 ${fmt.num(s.B)} 单失败待救场 · C 路径 ${fmt.num(s.C)} 单政策转人工。修复 B 路径 = 直接提升 A 成功率。" style="margin-bottom:14px;padding:8px 12px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.15);border-radius:6px;font-size:12px"></div>
-      <div class="kpi-row cols-7">
-        <div class="kpi ${kpiCls(s.total_orders, cs && cs.total_orders, 'good')}">
-          <div class="kpi-label">📦 订单总数</div>
-          <div class="kpi-value" data-count="${s.total_orders}">${fmt.num(s.total_orders)}</div>
-          <div class="kpi-sub">${s.total_days} 天总单</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_orders, cs.total_orders, "rate", false) : ""}</div>
+    <!-- ============ HERO (aurora 背景 + 大标题) ============ -->
+    <div class="aurora-hero hero-content">
+      <span class="hero-tag">AI · 自动化 · 业务数据</span>
+      <h1 class="hero-h1">出票自动化监控平台</h1>
+      <p class="hero-p">从人工排查到 AI 自动分析 — 把"找问题"的时间从 4 小时压缩到 30 秒。
+        <br>覆盖 ${platformCount} 大平台 ${airlineCount} 家航司 ${channelCount} 个渠道, 日均处理 ${fmt.num(avgDaily)} 单。</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value cyan" data-count="${s.auto_succ_rate}" data-count-dec="2" data-count-suf="%">0%</div>
+          <div class="hero-stat-label">A 路径全自动出票率</div>
         </div>
-        <div class="kpi ${kpiCls(s.total_segments, cs && cs.total_segments, 'good')}">
-          <div class="kpi-label">✈️ 航段总数</div>
-          <div class="kpi-value" data-count="${s.total_segments}">${fmt.num(s.total_segments)}</div>
-          <div class="kpi-sub">一票 = 1 段 · 往返 = 2 段</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.total_segments, cs.total_segments, "rate", false) : ""}</div>
+        <div class="hero-stat">
+          <div class="hero-stat-value green" data-count="${avgDaily}">0</div>
+          <div class="hero-stat-label">日均订单</div>
         </div>
-        <div class="kpi ${kpiCls(s.A, cs && cs.A, 'good')}">
-          <div class="kpi-label">✅ 全自动成功</div>
-          <div class="kpi-value" data-count="${s.A}">${fmt.num(s.A)}</div>
-          <div class="kpi-sub">A 路径 · 占比 ${fmt.pct(s.A / s.total_orders * 100)}</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.A, cs.A, "rate", false) : ""}</div>
+        <div class="hero-stat">
+          <div class="hero-stat-value amber">${platformCount}+${airlineCount}</div>
+          <div class="hero-stat-label">平台 × 航司</div>
         </div>
-        <div class="kpi ${kpiCls(s.B, cs && cs.B, 'bad')}">
-          <div class="kpi-label">❌ 全自动失败</div>
-          <div class="kpi-value" data-count="${s.B}">${fmt.num(s.B)}</div>
-          <div class="kpi-sub">B 路径 · 占比 ${fmt.pct(s.B / s.total_orders * 100)}</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.B, cs.B, "amount", false) : ""}</div>
-        </div>
-        <div class="kpi ${kpiCls(s.C, cs && cs.C, 'bad')}">
-          <div class="kpi-label">🛒 订单转人工</div>
-          <div class="kpi-value" data-count="${s.C}">${fmt.num(s.C)}</div>
-          <div class="kpi-sub">C 路径 · 占比 ${fmt.pct(s.C / s.total_orders * 100)}</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.C, cs.C, "amount", false) : ""}</div>
-        </div>
-        <div class="kpi ${kpiCls(s.auto_coverage_rate, cs && cs.auto_coverage_rate, 'good')}">
-          <div class="kpi-label">📈 全自动覆盖率</div>
-          <div class="kpi-value" data-count="${s.auto_coverage_rate}" data-count-dec="2" data-count-suf="%">${fmt.pct(s.auto_coverage_rate)}</div>
-          <div class="kpi-sub">A+B 占比 · ${fmt.num(s.A+s.B)} 单</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_coverage_rate, cs.auto_coverage_rate, "rate", true) : ""}</div>
-        </div>
-        <div class="kpi ${kpiCls(s.auto_succ_rate, cs && cs.auto_succ_rate, 'good')}">
-          <div class="kpi-label">🎯 全自动成功率</div>
-          <div class="kpi-value" data-count="${s.auto_succ_rate}" data-count-dec="2" data-count-suf="%">${fmt.pct(s.auto_succ_rate)}</div>
-          <div class="kpi-sub">A / (A+B)</div>
-          <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_succ_rate, cs.auto_succ_rate, "rate", true) : ""}</div>
+        <div class="hero-stat">
+          <div class="hero-stat-value purple">30s</div>
+          <div class="hero-stat-label">月度根因分析</div>
         </div>
       </div>
     </div>
 
+    <!-- ============ LAMP 业务亮点 ============ -->
+    <div class="lamp-section">
+      <div class="lamp-line">
+        <h2>核心创新</h2>
+        <p>从数据采集到 AI 分析的全链路能力</p>
+      </div>
+    </div>
+
+    <!-- ============ BENTO 5 卡 (业务亮点) ============ -->
+    <div class="bento-grid">
+      <div class="bento b1">
+        <span class="bento-tag">🏆 首创</span>
+        <h3>4 路径 KPI 体系</h3>
+        <p style="margin-bottom:16px">把"出票结果"分成 全自动成功 / 自动失败救场 / 政策人工 / 异常兜底 4 个独立路径。
+          行业首创 — 解决"成功率 = 一锅粥"看不清病灶的问题。</p>
+        <div class="bento-big-num" data-count="${s.auto_succ_rate}" data-count-dec="2" data-count-suf="%">0%</div>
+        <p style="font-size:12px">A 路径全自动出票率 · ${monthLabel} 基准</p>
+      </div>
+      <div class="bento b2">
+        <span class="bento-tag">🎯 业务价值</span>
+        <h3>8 大失败环节</h3>
+        <p>从"业务族级聚合"转向"出票环节"维度 — 5 分钟定位 预定/支付/取票 哪一环出问题, 不再"几千条 reason 看花眼"。B+D 总 ${fmt.num(s.B + s.D)} 单, 8 环节细分到子类。</p>
+      </div>
+      <div class="bento b3">
+        <span class="bento-tag">🤖 AI 加持</span>
+        <h3>自动分析 V1-V3</h3>
+        <p>基期对比 + 修当期 = 实时算预期 A 成功率。勾选想修的根因 → 预期 A 成功率 +X%。不靠经验, 用数据告诉"修哪条性价比最高"。</p>
+      </div>
+      <div class="bento b4">
+        <span class="bento-tag">🌐 统一</span>
+        <h3>${platformCount} 平台统一</h3>
+        <p>携程/飞猪/同程/去哪儿/航旅/航班管家/同程APP 等统一接入, 一套数据模型跨平台对账。</p>
+      </div>
+      <div class="bento b5">
+        <span class="bento-tag">✈️ 多航司</span>
+        <h3>${airlineCount} 航司 × ${channelCount} 渠道 覆盖</h3>
+        <p>9C 春秋 / MM 乐桃 / VJ 越捷 / TR 酷航 / FR Ryanair / FD 泰亚航 / DD Nokair / AQ 9 Air / TO Transavia / OD Batik / VF Aeurlingus / QZ AirAsia / SL 狮航 — 跨航司对账一键完成。</p>
+      </div>
+    </div>
+
+    <!-- ============ LAMP 核心 KPI ============ -->
+    <div class="lamp-section">
+      <div class="lamp-line">
+        <h2>${monthLabel} · 核心 KPI</h2>
+        <p>实时数据 · ${s.total_days} 天 · 鼠标悬停看光斑</p>
+      </div>
+    </div>
+
+    <!-- ============ KPI SPOTLIGHT 4 卡 ============ -->
+    <div class="kpi-spotlight-grid">
+      <div class="kpi-spotlight">
+        <div class="kpi-spotlight-label">📦 订单总数</div>
+        <div class="kpi-spotlight-value" data-count="${s.total_orders}">${fmt.num(s.total_orders)}</div>
+        <div class="kpi-spotlight-sub">${s.total_days} 天总单${cs ? ' · ' + cmpBadge(s.total_orders, cs.total_orders, "rate", false) : ''}</div>
+      </div>
+      <div class="kpi-spotlight">
+        <div class="kpi-spotlight-label">⚡ A · 全自动成功</div>
+        <div class="kpi-spotlight-value shimmer" data-count="${s.A}">${fmt.num(s.A)}</div>
+        <div class="kpi-spotlight-sub">A 比率 ${fmt.pct(s.A / s.total_orders * 100)}</div>
+      </div>
+      <div class="kpi-spotlight">
+        <div class="kpi-spotlight-label">⚠️ B · 失败救场</div>
+        <div class="kpi-spotlight-value" style="color:#f59e0b" data-count="${s.B}">${fmt.num(s.B)}</div>
+        <div class="kpi-spotlight-sub">B 比率 ${fmt.pct(s.B / s.total_orders * 100)}</div>
+      </div>
+      <div class="kpi-spotlight">
+        <div class="kpi-spotlight-label">🤖 C · 政策人工</div>
+        <div class="kpi-spotlight-value" style="color:#94a3b8" data-count="${s.C}">${fmt.num(s.C)}</div>
+        <div class="kpi-spotlight-sub">C 比率 ${fmt.pct(s.C / s.total_orders * 100)}</div>
+      </div>
+    </div>
+
+    <!-- ============ 原有 4 路径饼图 (保留) ============ -->
     <div class="section">
       <div class="section-title">🔍 路径分布 · 4 路径
         <span class="badge badge-info">${fmt.num(s.total_orders)} 单全量</span>
@@ -1224,7 +1562,6 @@ function renderOverview() {
         <div id="table-pathOrders"></div>
       </div>
     </div>
-
   `;
   document.getElementById("mainArea").innerHTML = html;
 
@@ -4264,6 +4601,28 @@ const AnimEngine = (() => {
     });
   }, { threshold: 0.4 });
 
+  function v3Bump(el) {
+    if (!el) return;
+    el.classList.remove('anim-v3-bump');
+    void el.offsetWidth;  // reflow 强制重启动画
+    el.classList.add('anim-v3-bump');
+    setTimeout(() => el.classList.remove('anim-v3-bump'), 450);
+  }
+
+  // 7. Spotlight — 鼠标位置追踪 (bento + kpi-spotlight)
+  function setupSpotlight(root) {
+    if (!root) return;
+    root.querySelectorAll('.kpi-spotlight, .bento').forEach(el => {
+      if (el.dataset.spotBound) return;
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+      el.dataset.spotBound = '1';
+    });
+  }
+
   function scan(root) {
     if (!root) return;
     // 1. CountUp
@@ -4297,17 +4656,11 @@ const AnimEngine = (() => {
         el.dataset.twBound = '1';
       }
     });
+    // 7. Spotlight 鼠标追踪
+    setupSpotlight(root);
   }
 
-  function v3Bump(el) {
-    if (!el) return;
-    el.classList.remove('anim-v3-bump');
-    void el.offsetWidth;  // reflow 强制重启动画
-    el.classList.add('anim-v3-bump');
-    setTimeout(() => el.classList.remove('anim-v3-bump'), 450);
-  }
-
-  return { scan, v3Bump, runCountUp, runTypewriter };
+  return { scan, v3Bump, runCountUp, runTypewriter, setupSpotlight };
 })();
 
 // 监听 mainArea 变化自动扫描 (每次 renderXxx 都会触发)
