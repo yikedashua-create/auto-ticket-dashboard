@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>自动出票数据看板 · v5</title>
+<title>出票自动化监控平台</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -366,39 +366,64 @@
   .loading-sub { color: #7a8ba0; font-size: 12px; margin-top: 8px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* 月份切换器 */
+  /* 月份切换器 — 玻璃化升级 (跟 section/kpi 统一) */
   .month-switcher {
-    background: linear-gradient(135deg, #0a1a2e, #131c30);
-    border: 1px solid #00e5ff60;
-    border-radius: 8px;
-    padding: 10px 16px;
+    background: linear-gradient(135deg, rgba(15, 22, 38, 0.6) 0%, rgba(10, 14, 26, 0.5) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 14px 20px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 4px;
+    gap: 14px;
+    margin-bottom: 16px;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+      0 1px 0 rgba(255, 255, 255, 0.04) inset;
+    position: relative;
+    overflow: hidden;
+  }
+  .month-switcher::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4), transparent);
   }
   .month-switcher label {
     color: #00e5ff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
+    letter-spacing: 0.5px;
   }
   .month-switcher select {
-    background: #0a0e1a;
-    border: 1px solid #00e5ff80;
+    background: rgba(15, 22, 38, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: #e0e6f0;
     padding: 6px 12px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
     outline: none;
+    transition: all 0.2s;
   }
-  .month-switcher select:hover { border-color: #00e5ff; }
+  .month-switcher select:hover {
+    border-color: rgba(0, 229, 255, 0.3);
+    background: rgba(15, 22, 38, 0.85);
+  }
   .month-switcher .month-info {
     color: #7a8ba0;
-    font-size: 12px;
+    font-size: 13px;
     margin-left: auto;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
   }
-  .month-switcher .month-info b { color: #00e5ff; }
+  .month-switcher .month-info b {
+    color: #00e5ff;
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+  }
 
   .empty-state {
     text-align: center;
@@ -472,37 +497,37 @@
    * ============================================================ */
   body { background: #050816; }  /* 底色加深, 让 aurora 更明显 */
 
-  /* 明显 Aurora — 调大透明度 + 加 blur 散射 + 3 团色 (青+紫+粉) */
+  /* 明显 Aurora — 3 团色 (青+紫+粉), 透明度调高 + 尺寸加大 + blur 收紧 */
   body::before, body::after { content: ''; position: fixed; pointer-events: none; z-index: 0; border-radius: 50%; }
   body::before {
-    top: -150px; right: -150px;
-    width: 900px; height: 900px;
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.45) 0%, transparent 70%);
-    filter: blur(100px);
-    animation: aurora-float 14s ease-in-out infinite;
+    top: -200px; right: -200px;
+    width: 1100px; height: 1100px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.9) 0%, rgba(0, 229, 255, 0.3) 40%, transparent 70%);
+    filter: blur(50px);
+    animation: aurora-float 12s ease-in-out infinite;
   }
   body::after {
-    bottom: -150px; left: -150px;
-    width: 900px; height: 900px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
-    filter: blur(100px);
-    animation: aurora-float 18s ease-in-out infinite reverse;
+    bottom: -200px; left: -200px;
+    width: 1100px; height: 1100px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.25) 40%, transparent 70%);
+    filter: blur(50px);
+    animation: aurora-float 15s ease-in-out infinite reverse;
   }
   /* 第 3 团: 粉色 (右下) */
   .aurora-3rd {
     position: fixed;
-    bottom: -100px; right: 20%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.28) 0%, transparent 70%);
-    filter: blur(100px);
+    bottom: -150px; right: 15%;
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.6) 0%, rgba(236, 72, 153, 0.2) 40%, transparent 70%);
+    filter: blur(50px);
     pointer-events: none;
     z-index: 0;
-    animation: aurora-float 22s ease-in-out infinite;
+    animation: aurora-float 18s ease-in-out infinite;
   }
 
-  /* 玻璃卡片 — 渐变背景 + neumorphic 多层阴影 + 顶部高光线 */
+  /* 玻璃卡片 — 渐变背景 + neumorphic 多层阴影 + 顶部高光线 (透明度调低让 aurora 透过来) */
   .section, .sidebar, .kpi, .chart-box, .nav-section, .nav-mini {
-    background: linear-gradient(135deg, rgba(15, 22, 38, 0.85) 0%, rgba(10, 14, 26, 0.7) 100%);
+    background: linear-gradient(135deg, rgba(15, 22, 38, 0.6) 0%, rgba(10, 14, 26, 0.5) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -568,12 +593,12 @@
     border-radius: 2px;
   }
 
-  /* 主标题 (顶部 "📊 自动出票数据看板") 渐变光晕 + 动画 */
+  /* 主标题 (顶部 "出票自动化监控平台") 横向渐变 + 动画 (青→紫, 保留青色基调) */
   .title {
     font-size: 38px;
     font-weight: 800;
     letter-spacing: 4px;
-    background: linear-gradient(135deg, #fff 0%, #00e5ff 40%, #a855f7 100%);
+    background: linear-gradient(90deg, #00e5ff 0%, #00e5ff 45%, #a855f7 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -622,12 +647,7 @@
     background: rgba(0, 229, 255, 0.06);
   }
 
-  /* 输入/下拉玻璃化 */
-  .month-switcher select {
-    background: rgba(15, 22, 38, 0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
+  /* 输入/下拉玻璃化 — 容器已升级, select 留 0 行 (避免重复定义) */
 
   /* 路径快速卡 (overview 4 路径饼图右侧) */
   .path-stat-card {
@@ -711,33 +731,71 @@
   /* 6. V3 bump (数字 scale 反馈) */
   .anim-v3-bump { animation: v3-bump-anim 0.4s ease; }
 
-  /* 7. Aurora 背景 — body 固定层, 透到 layout 间隙 */
-  body::before, body::after {
-    content: '';
-    position: fixed;
-    pointer-events: none;
-    z-index: 0;
-    border-radius: 50%;
+  /* 7. V3 勾选列表 — 行式布局 (失败分析 V3 5 数字卡下方) */
+  .aa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
   }
-  body::before {
-    top: -150px; right: -150px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
-    animation: aurora-float 14s ease-in-out infinite;
+  .aa-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: rgba(15, 22, 38, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
   }
-  body::after {
-    bottom: -150px; left: -150px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
-    animation: aurora-float 18s ease-in-out infinite reverse;
+  .aa-row:hover {
+    background: rgba(15, 22, 38, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
   }
+  /* 选中状态: 用 :has() 监听 input checked, 整体青色高光 */
+  .aa-row:has(.aa-pick:checked) {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.14) 0%, rgba(0, 229, 255, 0.06) 100%);
+    border-color: rgba(0, 229, 255, 0.5);
+    box-shadow: 0 0 16px rgba(0, 229, 255, 0.15), inset 0 0 0 1px rgba(0, 229, 255, 0.2);
+  }
+  .aa-row .aa-pick {
+    width: 16px;
+    height: 16px;
+    accent-color: #00e5ff;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .aa-row-reason {
+    flex: 1;
+    color: #c0c8d4;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .aa-row-total {
+    color: #7a8ba0;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .aa-row:has(.aa-pick:checked) .aa-row-reason { color: #ffffff; }
+  .aa-row:has(.aa-pick:checked) .aa-row-total {
+    color: #00e5ff;
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+  }
+
+  /* 7. Aurora 背景 — 已在 476 行定义强版本, 这里不再重复 (避免覆盖) */
   .title, .subtitle, .layout, .month-switcher { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
   <div class="aurora-3rd"></div>
-  <div class="title">📊 自动出票数据看板</div>
-  <div class="subtitle" id="subtitle">v5 · 数据驱动 ECharts 实时渲染</div>
+  <div class="title">出票自动化监控平台</div>
+  <div class="subtitle" id="subtitle">从人工排查到 AI 自动分析 · 4h → 30s</div>
 
   <div class="layout">
     <div class="sidebar">
@@ -766,6 +824,8 @@
 
     <div class="main">
       <div class="month-switcher" id="monthSwitcher" style="display:none">
+        <label>📅 年份</label>
+        <select id="yearSelect"></select>
         <label>📅 月份</label>
         <select id="monthSelect"></select>
         <label>📊 周</label>
@@ -819,7 +879,7 @@ async function loadData() {
       //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
       //   浏览器缓存: 同一 URL 二次访问秒开
       //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-const COMMIT = "93bb806";
+const COMMIT = "4a80647";
       const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       let dataLoaded = false;
       // 路径 1: 相对路径
@@ -858,14 +918,51 @@ const COMMIT = "93bb806";
 }
 
 function initMonthSwitcher() {
+  const yearSel = document.getElementById("yearSelect");
   const monthSel = document.getElementById("monthSelect");
   const sw = document.getElementById("monthSwitcher");
   sw.style.display = "flex";
-  monthSel.innerHTML = DATA.available_months.map(m => {
-    const label = m === "all" ? "全部月份" : m;
-    return `<option value="${m}">${label}</option>`;
-  }).join("");
-  monthSel.value = DATA.current_month;
+
+  // 1. 年份下拉: 从 available_months 提取所有年份 (降序)
+  const yearSet = [...new Set(
+    DATA.available_months.filter(m => m !== "all").map(m => m.substring(0, 4))
+  )].sort().reverse();
+  yearSel.innerHTML = '<option value="all">全部</option>' +
+    yearSet.map(y => `<option value="${y}">${y}</option>`).join("");
+
+  // 2. 月份下拉: 按选中年份过滤
+  function fillMonths(year) {
+    const months = year === "all"
+      ? DATA.available_months
+      : DATA.available_months.filter(m => m === "all" || m.startsWith(year));
+    monthSel.innerHTML = months.map(m => {
+      const label = m === "all" ? "全部" : m.substring(5);
+      return `<option value="${m}">${label}</option>`;
+    }).join("");
+    // 默认选 current_month, 如果不在过滤结果里就选第一个
+    if (months.includes(DATA.current_month)) {
+      monthSel.value = DATA.current_month;
+    } else {
+      monthSel.value = months[0] || "all";
+    }
+  }
+
+  // 默认选 current_month 所在年份
+  const currentYear = DATA.current_month !== "all"
+    ? DATA.current_month.substring(0, 4)
+    : (yearSet[0] || "all");
+  yearSel.value = currentYear;
+  fillMonths(currentYear);
+
+  // 3. 联动: 选年 → 重置月/周/日
+  yearSel.addEventListener("change", e => {
+    fillMonths(e.target.value);
+    CURRENT_WEEK = "all";
+    updateWeekOptions(monthSel.value);
+    updateDayOptions(monthSel.value, "all");
+    switchPeriod(monthSel.value, "all", "all");
+  });
+
   monthSel.addEventListener("change", e => {
     CURRENT_WEEK = "all";
     updateWeekOptions(e.target.value);
@@ -908,7 +1005,8 @@ function updateWeekOptions(month) {
     if (seen.has(key)) return;
     seen.add(key);
     const monthLabel = w._month || month || "all";
-    opts.push(`<option value="${monthLabel}|${w.week}">${monthLabel} ${w.week}（${w.date_range}）</option>`);
+    // 简化 label: W1 (07-01~07-05)  (省略月份前缀, 月份在 monthSelect 里)
+    opts.push(`<option value="${monthLabel}|${w.week}">${w.week}（${w.date_range}）</option>`);
   });
   weekSel.innerHTML = opts.join("");
   weekSel.value = "all";
@@ -917,6 +1015,8 @@ function updateWeekOptions(month) {
 function updateDayOptions(month, week) {
   const daySel = document.getElementById("daySelect");
   let dates = [];
+  // date -> total 映射, 用于显示每日单数
+  const dayTotals = {};
   // 2026-07-18 改造：周选中时，只列该周内日期
   if (week && week !== "all" && month !== "all") {
     // week = "2026-07|W1" 格式
@@ -924,20 +1024,36 @@ function updateDayOptions(month, week) {
     const m = DATA.months[mKey];
     if (m && m.summary && m.summary.natural_weekly) {
       const w = m.summary.natural_weekly.find(x => x.week === wKey);
-      if (w) dates = w.days;
+      if (w) {
+        dates = w.days;
+        // 从 daily 拿每日单数
+        if (m.daily) {
+          m.daily.forEach(d => {
+            if (dates.includes(d.date)) dayTotals[d.date] = d.total || 0;
+          });
+        }
+      }
     }
   } else if (month === "all") {
     Object.values(DATA.months).forEach(m => {
-      if (m.daily) m.daily.forEach(d => dates.push(d.date));
+      if (m.daily) m.daily.forEach(d => {
+        if (!dates.includes(d.date)) dates.push(d.date);
+        dayTotals[d.date] = d.total || 0;
+      });
     });
     dates = [...new Set(dates)].sort();
   } else {
     const m = DATA.months[month];
-    if (m && m.daily) dates = m.daily.map(d => d.date);
+    if (m && m.daily) {
+      dates = m.daily.map(d => d.date);
+      m.daily.forEach(d => { dayTotals[d.date] = d.total || 0; });
+    }
   }
-  daySel.innerHTML = `<option value="all">全${week && week !== "all" ? "周" : "月"}</option>` + dates.map(d => {
+  const isWeek = week && week !== "all";
+  const allLabel = isWeek ? '全周' : '全月';
+  daySel.innerHTML = `<option value="all">${allLabel}</option>` + dates.map(d => {
     const day = d.substring(8, 10);
-    return `<option value="${day}">${day} 日</option>`;
+    return `<option value="${day}">${day}</option>`;
   }).join("");
   daySel.value = "all";
 }
@@ -1141,12 +1257,11 @@ function switchPeriod(month, day, week) {
     : (week && week !== "all" ? `${month} ${week.split("|")[1]}（${CURRENT_DATA._period_date}）`
     : (month === "all" ? "全部月份" : month));
   document.getElementById("monthInfo").innerHTML =
-    `<b>${s.total_orders.toLocaleString()}</b> 单 · <b>${s.total_days}</b> 天 · ` +
-    `利润 <b style="color:${s.total_profit >= 0 ? '#00ff88' : '#ff4757'}">${s.total_profit >= 0 ? '+' : ''}¥${s.total_profit.toLocaleString()}</b>` +
+    `<b>${s.total_orders.toLocaleString()}</b> 单 · <b>${s.total_days}</b> 天` +
     (COMPARE_DATA ? ` <span style="color:#7a8ba0;font-size:11px">· 对比 ${COMPARE_LABEL}</span>` : "");
 
   document.getElementById("subtitle").textContent =
-    `v5 · ${periodLabel} · ${s.total_days} 天 · ${(s.total_orders/10000).toFixed(1)} 万单 · 数据驱动 ECharts 实时渲染`;
+    `从人工排查到 AI 自动分析 · 4h → 30s`;
 
   // 侧边栏概览
   if (CURRENT_DATA.daily && CURRENT_DATA.daily.length > 0) {
@@ -3218,32 +3333,42 @@ function renderFailureAnalysis() {
     const optimisticRate = (sumA + sumB * 0.5) / totalAB * 100;  // 50%
     // 渲染行: 单条 (sorted 之后 diff, single_lift, single_new_rate 已算好)
     const rowHtml = (r, idx) => {
-      const newRate = (sumA + r.count) / totalAB * 100;
       return `
-      <tr>
-        <td style="text-align:center"><input type="checkbox" class="aa-pick" data-idx="${idx}" data-diff="${r.count}"></td>
-        <td style="color:#7a8ba0">${idx + 1}</td>
-        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
-        <td style="text-align:right">${fmt.num(r.count)}</td>
-        <td style="text-align:right;color:#7a8ba0">${(r.count / sumB * 100).toFixed(1)}%</td>
-        <td style="text-align:right;color:#00e5ff;font-weight:bold">${newRate.toFixed(2)}%</td>
-      </tr>`;
+      <label class="aa-row">
+        <input type="checkbox" class="aa-pick" data-idx="${idx}" data-diff="${r.count}">
+        <span class="aa-row-reason" title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</span>
+        <span class="aa-row-total">${fmt.num(r.count)} 单</span>
+      </label>`;
     };
     return `
     <div class="section">
-      <div class="section-title">💡 全自动成功优化预测
+      <div class="section-title">💡 V3 勾选实时算预期（点击体验）
         <span class="badge badge-info">${path} 路径 · ${fmt.num(sumB)} 单</span>
       </div>
-      <div class="chart-hint" style="background:#0a1929;padding:10px 14px;border-left:3px solid #00e5ff;margin-bottom:8px;border-radius:3px;font-size:13px;line-height:1.6">
-        当前 A 成功率 <b style="color:#00e5ff">${curRate.toFixed(2)}%</b> (A=${fmt.num(sumA)}, B=${fmt.num(sumB)}) ·
-        理论上限 <b style="color:#7a8ba0">${theoreticalRate.toFixed(2)}%</b> (修好 B 路径全部 ${fmt.num(sumB)} 单) ·
-        乐观现实 <b style="color:#7a8ba0">${optimisticRate.toFixed(2)}%</b> (修好 50% B 路径 = ${fmt.num(sumB * 0.5)} 单)
+      <div class="chart-hint" style="margin-bottom:10px">
+        勾选/取消 → 实时算累计 A 成功率（5 个数字实时变化 + scale bump 动效）
       </div>
-      <div class="chart-hint" id="aa-summary-${path}" style="background:#0a1929;padding:12px 14px;border-left:3px solid #00ff88;margin-bottom:12px;border-radius:3px;font-size:14px;line-height:1.6">
-        ✅ 已选 <b id="aa-count-${path}">0</b> 条 ·
-        累计 <b id="aa-cumdiff-${path}">+0</b> 单 ·
-        预期 A 成功率 <b id="aa-rate-${path}" style="color:#00ff88;font-size:18px">${curRate.toFixed(2)}%</b>
-        <span id="aa-arrow-${path}" style="color:#7a8ba0;font-size:12px;margin-left:6px">(勾选想修的, 实时看累计效果)</span>
+      <div class="aa-kpi-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
+        <div class="kpi" style="padding:14px 16px">
+          <div class="kpi-label" style="color:#7a8ba0;font-size:11px">当前 A 成功率</div>
+          <div class="kpi-value" id="aa-curRate-${path}" style="font-size:26px;color:#00e5ff;text-shadow:0 0 16px rgba(0,229,255,0.3)">${curRate.toFixed(2)}%</div>
+        </div>
+        <div class="kpi" style="padding:14px 16px">
+          <div class="kpi-label" style="color:#7a8ba0;font-size:11px">已选</div>
+          <div class="kpi-value" id="aa-count-${path}" style="font-size:26px;color:#00e5ff;text-shadow:0 0 16px rgba(0,229,255,0.3)">0 条</div>
+        </div>
+        <div class="kpi" style="padding:14px 16px">
+          <div class="kpi-label" style="color:#7a8ba0;font-size:11px">累计单数</div>
+          <div class="kpi-value" id="aa-cumdiff-${path}" style="font-size:26px;color:#00e5ff;text-shadow:0 0 16px rgba(0,229,255,0.3)">+0</div>
+        </div>
+        <div class="kpi" style="padding:14px 16px">
+          <div class="kpi-label" style="color:#7a8ba0;font-size:11px">预期 A 成功率</div>
+          <div class="kpi-value" id="aa-rate-${path}" style="font-size:26px;color:#00ff88;text-shadow:0 0 16px rgba(0,255,136,0.3)">${curRate.toFixed(2)}%</div>
+        </div>
+        <div class="kpi" style="padding:14px 16px">
+          <div class="kpi-label" style="color:#7a8ba0;font-size:11px">提升</div>
+          <div class="kpi-value" id="aa-lift-${path}" style="font-size:26px;color:#00ff88;text-shadow:0 0 16px rgba(0,255,136,0.3)">+0.00%</div>
+        </div>
       </div>
       <div style="margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap">
         <button class="drill-btn aa-quick" data-path="${path}" data-n="5">☑ 全选 Top 5</button>
@@ -3251,22 +3376,7 @@ function renderFailureAnalysis() {
         <button class="drill-btn aa-quick" data-path="${path}" data-n="20">☑ 全选 Top 20</button>
         <button class="drill-btn aa-quick" data-path="${path}" data-n="0">☐ 清空</button>
       </div>
-      <div class="chart-box">
-        <div class="chart-title">🎯 可勾选列表（按 B 路径单量降序 · Top ${candidates.length}）</div>
-        <table class="data-table compact">
-          <thead>
-            <tr>
-              <th style="width:36px;text-align:center">☑</th>
-              <th style="width:36px">#</th>
-              <th>原始根因</th>
-              <th style="text-align:right">B 单数</th>
-              <th style="text-align:right">占 ${path} 路径</th>
-              <th style="text-align:right">修了这一条后<br/>A 成功率</th>
-            </tr>
-          </thead>
-          <tbody id="aa-tbody-${path}">${candidates.map(rowHtml).join("")}</tbody>
-        </table>
-      </div>
+      <div class="aa-list" id="aa-tbody-${path}">${candidates.map(rowHtml).join("")}</div>
     </div>`;
   };
 
@@ -3325,8 +3435,8 @@ function bindAutoAnalysisPicks(aBase, bBase) {
       const cnt = document.getElementById(`aa-count-${p}`);
       const cd = document.getElementById(`aa-cumdiff-${p}`);
       const rt = document.getElementById(`aa-rate-${p}`);
-      const ar = document.getElementById(`aa-arrow-${p}`);
-      if (cnt) cnt.textContent = count;
+      const lf = document.getElementById(`aa-lift-${p}`);
+      if (cnt) cnt.textContent = `${count} 条`;
       if (cd) cd.textContent = `+${fmt.num(cumDiff)}`;
       if (rt) {
         rt.textContent = `${newRate.toFixed(2)}%`;
@@ -3334,14 +3444,10 @@ function bindAutoAnalysisPicks(aBase, bBase) {
         // 2026-07-30: 数字变更触发 v3-bump 动效
         AnimEngine.v3Bump(rt);
       }
-      if (ar) {
-        if (count === 0) {
-          ar.textContent = "(勾选想修的, 实时看累计效果)";
-          ar.style.color = "#7a8ba0";
-        } else {
-          ar.textContent = `(从 ${curRate.toFixed(2)}% → ${newRate.toFixed(2)}%, ${lift >= 0 ? "+" : ""}${lift.toFixed(2)})`;
-          ar.style.color = lift > 0 ? "#00ff88" : "#7a8ba0";
-        }
+      if (lf) {
+        lf.textContent = `${lift >= 0 ? "+" : ""}${lift.toFixed(2)}%`;
+        lf.style.color = lift > 0 ? "#00ff88" : (lift < 0 ? "#ff4757" : "#7a8ba0");
+        AnimEngine.v3Bump(lf);
       }
     });
   };
