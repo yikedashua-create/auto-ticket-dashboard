@@ -196,13 +196,47 @@
   .kpi-value.red { color: #ff4757; }
   .kpi-value.yellow { color: #ffa502; }
   .kpi-sub {
-    font-size: 11px;
-    color: #7a8ba0;
-    margin-top: 4px;
+    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 12px;
+    color: rgba(192, 200, 212, 0.82);
+    margin-top: 6px;
+    letter-spacing: 0.3px;
+    text-shadow: 0 0 4px rgba(0, 229, 255, 0.08);
   }
   .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .grid-1x2 { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
   .grid-1x3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  /* 10. 产品时限分析（deadline 页, 2026-07-30 新增）— 热力图 + 柱状图 + 分布 */
+  .heatmap { display: grid; gap: 3px; font-family: 'JetBrains Mono', 'Outfit', monospace; font-size: 11px; }
+  .hm-cell { padding: 6px 8px; text-align: center; border-radius: 4px; background: rgba(15,22,38,0.6); color: rgba(224,230,240,0.95); border: 1px solid rgba(255,255,255,0.04); }
+  .hm-cell.empty { background: transparent; border: none; }
+  .hm-cell.head  { background: transparent; border: none; color: #00e5ff; font-weight: 600; }
+  .hm-cell.row-head { background: transparent; border: none; color: #c0c8d4; text-align: right; font-weight: 600; }
+  .hm-cell[data-tier="1"] { background: rgba(255,71,87,0.4); border-color: rgba(255,71,87,0.5); text-shadow: 0 0 6px rgba(255,71,87,0.6); }
+  .hm-cell[data-tier="2"] { background: rgba(255,165,2,0.3); border-color: rgba(255,165,2,0.4); }
+  .hm-cell[data-tier="3"] { background: rgba(0,229,255,0.18); border-color: rgba(0,229,255,0.25); }
+  .hm-cell[data-tier="4"] { background: rgba(0,255,136,0.12); border-color: rgba(0,255,136,0.2); }
+  .hm-legend { display: flex; align-items: center; gap: 14px; margin-top: 10px; font-size: 11px; color: rgba(192,200,212,0.75); flex-wrap: wrap; }
+  .hm-legend .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
+
+  .bars { display: flex; flex-direction: column; gap: 6px; }
+  .bar-row { display: grid; grid-template-columns: 130px 1fr 90px; align-items: center; gap: 10px; font-size: 12px; }
+  .bar-name { color: #c0c8d4; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-track { position: relative; height: 18px; background: rgba(15,22,38,0.55); border-radius: 9px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 9px; background: linear-gradient(90deg, #00e5ff 0%, #a855f7 100%); box-shadow: 0 0 12px rgba(0,229,255,0.4); position: relative; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+  .bar-fill.warn { background: linear-gradient(90deg, #ffa502 0%, #ff6b35 100%); box-shadow: 0 0 12px rgba(255,165,2,0.5); }
+  .bar-fill.danger { background: linear-gradient(90deg, #ff4757 0%, #c0392b 100%); box-shadow: 0 0 12px rgba(255,71,87,0.5); }
+  .bar-pct { font-family: 'JetBrains Mono', monospace; color: #00e5ff; text-shadow: 0 0 8px rgba(0,229,255,0.5); font-weight: 600; font-size: 11px; }
+
+  .dist-row { display: grid; grid-template-columns: 100px 1fr 80px; align-items: center; gap: 10px; padding: 6px 0; font-size: 12px; }
+  .dist-label { color: #c0c8d4; }
+  .dist-track { position: relative; height: 14px; background: rgba(15,22,38,0.55); border-radius: 7px; overflow: hidden; }
+  .dist-fill { height: 100%; border-radius: 7px; box-shadow: 0 0 10px currentColor; }
+  .dist-pct { font-family: 'JetBrains Mono', monospace; font-weight: 600; text-align: right; }
+
+  .note { font-size: 11px; color: rgba(148,163,184,0.7); padding: 8px 12px; background: rgba(0,229,255,0.04); border: 1px solid rgba(0,229,255,0.12); border-radius: 6px; margin-top: 10px; line-height: 1.6; }
   .chart-box {
     background: #131c30;
     border: 1px solid #1e3a5f;
@@ -467,26 +501,30 @@
 
   .cmp-badge {
     display: inline-block;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    margin-left: 6px;
+    font-family: 'JetBrains Mono', 'Outfit', monospace;
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: 11px;
+    margin-left: 0;
     font-weight: 600;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
+    text-shadow: 0 0 6px currentColor;
   }
   .cmp-no {
-    color: #94a3b8;
-    font-size: 12px;
-    margin-left: 6px;
+    color: rgba(148, 163, 184, 0.7);
+    font-size: 11px;
+    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", sans-serif;
+    margin-left: 0;
+    letter-spacing: 0.3px;
   }
   .kpi-sub-row {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 4px;
-    margin-top: 4px;
+    gap: 6px;
+    margin-top: 6px;
   }
 
   /* ============================================================
@@ -561,13 +599,13 @@
     font-weight: 800;
     letter-spacing: -1px;
     color: #ffffff;
-    text-shadow: 0 0 30px rgba(0, 229, 255, 0.5), 0 0 60px rgba(0, 229, 255, 0.2);
+    text-shadow: 0 0 18px rgba(0, 229, 255, 0.65), 0 0 40px rgba(0, 229, 255, 0.35), 0 0 80px rgba(0, 229, 255, 0.15);
     transition: transform 0.2s;
   }
   .kpi:hover .kpi-value { transform: scale(1.06); }
-  .kpi-value.green { color: #00ff88; text-shadow: 0 0 30px rgba(0, 255, 136, 0.6), 0 0 60px rgba(0, 255, 136, 0.25); }
-  .kpi-value.red   { color: #ff4757; text-shadow: 0 0 30px rgba(255, 71, 87, 0.6), 0 0 60px rgba(255, 71, 87, 0.25); }
-  .kpi-value.yellow{ color: #ffa502; text-shadow: 0 0 30px rgba(255, 165, 2, 0.6), 0 0 60px rgba(255, 165, 2, 0.25); }
+  .kpi-value.green { color: #00ff88; text-shadow: 0 0 18px rgba(0, 255, 136, 0.75), 0 0 40px rgba(0, 255, 136, 0.4), 0 0 80px rgba(0, 255, 136, 0.18); }
+  .kpi-value.red   { color: #ff4757; text-shadow: 0 0 18px rgba(255, 71, 87, 0.75), 0 0 40px rgba(255, 71, 87, 0.4), 0 0 80px rgba(255, 71, 87, 0.18); }
+  .kpi-value.yellow{ color: #ffa502; text-shadow: 0 0 18px rgba(255, 165, 2, 0.75), 0 0 40px rgba(255, 165, 2, 0.4), 0 0 80px rgba(255, 165, 2, 0.18); }
 
   /* 动态颜色 (up-good / down-bad) 保留 — 只需让 border-color + value color 仍生效 */
   .kpi.up-good, .kpi.down-bad { border-color: rgba(0, 255, 136, 0.35) !important; }
@@ -788,6 +826,172 @@
     text-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
   }
 
+  /* 8. V1 基期对比分析 — 行式列表 (跟 V3 .aa-row 风格统一) */
+  .v1-block {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .v1-block:first-of-type {
+    margin-top: 12px;
+    padding-top: 0;
+    border-top: none;
+  }
+  .v1-block-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 12px;
+    letter-spacing: 0.5px;
+  }
+  .v1-block-title::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 4px; bottom: 4px;
+    width: 3px;
+    border-radius: 2px;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .v1-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .v1-row {
+    display: grid;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 14px;
+    background: rgba(15, 22, 38, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 13px;
+    transition: all 0.15s;
+  }
+  .v1-row:hover {
+    background: rgba(15, 22, 38, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .v1-row-2col { grid-template-columns: 1fr 60px; }
+  .v1-row-5col { grid-template-columns: 1fr 55px 60px 60px 60px; }
+  .v1-reason {
+    color: #c0c8d4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .v1-num {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 600;
+    text-align: right;
+    font-size: 13px;
+  }
+  .v1-num-current { color: #00e5ff; text-shadow: 0 0 8px rgba(0, 229, 255, 0.3); }
+  .v1-num-prev { color: #7a8ba0; }
+  .v1-num-bad { color: #ff4757; text-shadow: 0 0 8px rgba(255, 71, 87, 0.3); }
+  .v1-num-good { color: #00ff88; text-shadow: 0 0 8px rgba(0, 255, 136, 0.3); }
+  .v1-num-warn { color: #a855f7; text-shadow: 0 0 8px rgba(168, 85, 247, 0.3); }
+
+  /* 9. 自动化成功率排行 (overview 新增 section, 航司/渠道各一个 section, 目标 83%, 全量降序) */
+  .succ-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 720px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  .succ-list::-webkit-scrollbar { width: 6px; }
+  .succ-list::-webkit-scrollbar-track { background: rgba(15, 22, 38, 0.4); border-radius: 3px; }
+  .succ-list::-webkit-scrollbar-thumb { background: rgba(0, 229, 255, 0.3); border-radius: 3px; }
+  .succ-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 70px 130px;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 12px 8px 12px;
+    background: rgba(15, 22, 38, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 12px;
+    transition: all 0.15s;
+  }
+  .succ-row:hover {
+    background: rgba(15, 22, 38, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .succ-name {
+    color: #c0c8d4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-weight: 500;
+  }
+  .succ-bar {
+    height: 10px;
+    background: rgba(15, 22, 38, 0.6);
+    border-radius: 5px;
+    overflow: visible;
+    position: relative;
+  }
+  .succ-fill {
+    height: 100%;
+    border-radius: 5px;
+    width: 0;  /* 初始 0, IntersectionObserver 触发后设 width: data-target% */
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 1;
+  }
+  .succ-target-line {
+    position: absolute;
+    top: -4px; bottom: -4px;
+    width: 3px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.65));
+    z-index: 3;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 4px rgba(0, 229, 255, 0.4);
+    border-radius: 1px;
+  }
+  /* 目标线顶部 ▼ 三角（提示这是 83% 目标线，不挡进度条） */
+  .succ-target-line::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #fff;
+    filter: drop-shadow(0 0 3px rgba(0, 229, 255, 0.8));
+  }
+  .succ-pct {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 600;
+    text-align: right;
+    font-size: 13px;
+  }
+  .succ-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 10px;
+    border: 1px solid;
+    text-align: center;
+    background: rgba(15, 22, 38, 0.3);
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .succ-perfect .succ-badge { background: rgba(0, 255, 136, 0.15); }
+  .succ-mid     .succ-badge { background: rgba(0, 229, 255, 0.1); }
+  .succ-bad     .succ-badge { background: rgba(255, 71, 87, 0.1); }
+
   /* 7. Aurora 背景 — 已在 476 行定义强版本, 这里不再重复 (避免覆盖) */
   .title, .subtitle, .layout, .month-switcher { position: relative; z-index: 1; }
 </style>
@@ -805,9 +1009,10 @@
       <div class="nav-item" data-page="airline">✈️ 航司分析</div>
       <div class="nav-item" data-page="platform">🏢 平台分析</div>
       <div class="nav-item" data-page="channel">🛒 渠道分析</div>
-      <div class="nav-item" data-page="staff">👥 人员绩效</div>
+      <div class="nav-item" data-page="staff">👥 人员分析</div>
       <div class="nav-item" data-page="failAnalysis">🔍 失败分析</div>
       <div class="nav-item" data-page="orderAnalysis">📋 订单分析</div>
+      <div class="nav-item" data-page="deadline">⏰ 产品时限</div>
       <div class="nav-section">
         <div class="nav-section-title">📊 数据</div>
         <div class="nav-mini" id="navDateRange">—</div>
@@ -1364,12 +1569,18 @@ function createChart(id, option) {
 
 const baseEchartsOpt = {
   backgroundColor: "transparent",
-  textStyle: { color: "#b0c4de", fontFamily: 'PingFang SC, "Microsoft YaHei", "WenQuanYi Micro Hei", "Source Han Sans CN", sans-serif' },
-  legend: { textStyle: { color: "#7a8ba0" }, top: 5 },
+  textStyle: { color: "rgba(192, 200, 212, 0.85)", fontFamily: "'Outfit', 'PingFang SC', 'Microsoft YaHei', sans-serif" },
+  legend: {
+    textStyle: { color: "rgba(192, 200, 212, 0.85)", fontFamily: "'Outfit', 'PingFang SC', 'Microsoft YaHei', sans-serif", fontSize: 12 },
+    top: 5,
+    itemGap: 18,
+    itemWidth: 12,
+    itemHeight: 12,
+  },
   tooltip: {
     backgroundColor: "#0a0e1a",
-    borderColor: "#1e3a5f",
-    textStyle: { color: "#e0e6f0" },
+    borderColor: "rgba(0, 229, 255, 0.3)",
+    textStyle: { color: "#e0e6f0", fontFamily: "'Outfit', 'PingFang SC', 'Microsoft YaHei', sans-serif" },
   },
   grid: { left: 50, right: 20, top: 40, bottom: 35 },
 };
@@ -1395,6 +1606,40 @@ function renderOverview() {
     return t ? `${t}-${type}` : "";
   };
 
+  // 2026-07-30 新增: 自动化成功率排行 (航司/渠道, 目标 83%, 3 档状态徽章)
+  //   - 筛选 auto_succ_rate > 0 (排除数据缺失项) → 降序 (最优秀排前面) → 全量
+  //   - 3 档阈值: ≥83% 达标 / ≥50% 中等 / <50% 待改
+  //   - 行式: [名称] [进度条（含 83% 目标线 + 目标标签）] [auto_succ_rate%] [状态徽章]
+  //   - 进度条滚动渐入: IntersectionObserver 触发 width 0→data-target%
+  const SUCC_TARGET = 83;  // 目标值
+  const succRowHtml = (r, type) => {
+    const rate = r.auto_succ_rate || 0;
+    let level, badgeText, color, glow;
+    if (rate >= SUCC_TARGET) { level = 'perfect'; badgeText = '达标'; color = '#00ff88'; glow = 'rgba(0,255,136,0.4)'; }
+    else if (rate >= 50)     { level = 'mid';     badgeText = '中等'; color = '#00e5ff'; glow = 'rgba(0,229,255,0.3)'; }
+    else                     { level = 'bad';     badgeText = '待改'; color = '#ff4757'; glow = 'rgba(255,71,87,0.3)'; }
+    const name = type === 'airline' ? r.airline : r.channel;
+    const diff = (SUCC_TARGET - rate).toFixed(2);
+    const diffStr = rate >= SUCC_TARGET ? `+${(rate - SUCC_TARGET).toFixed(2)}` : `差 ${diff}`;
+    return `
+      <div class="succ-row succ-${level}">
+        <span class="succ-name" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
+        <div class="succ-bar">
+          <div class="succ-target-line" style="left:${SUCC_TARGET}%"></div>
+          <div class="succ-fill" data-target="${rate.toFixed(2)}" style="background:${color};box-shadow:0 0 8px ${glow}"></div>
+        </div>
+        <span class="succ-pct" style="color:${color};text-shadow:0 0 8px ${glow}">${rate.toFixed(2)}%</span>
+        <span class="succ-badge" style="border-color:${color};color:${color}">${badgeText} · ${diffStr}</span>
+      </div>`;
+  };
+  // 全量 (32 航司 + 15 渠道), 降序: 最优秀排前面
+  const succAirlines = (CURRENT_DATA.airline || [])
+    .filter(a => (a.auto_succ_rate || 0) > 0)
+    .sort((a, b) => b.auto_succ_rate - a.auto_succ_rate);
+  const succChannels = (CURRENT_DATA.channel || [])
+    .filter(c => (c.auto_succ_rate || 0) > 0)
+    .sort((a, b) => b.auto_succ_rate - a.auto_succ_rate);
+
   // 2026-07-30 回滚: 还原 7-KPI 横排 + 4 路径饼图 原始结构
   // 之前 c58e06e 误改成 marketing-style hero, 太花且改了用户原本的布局, 已退回
   const html = `
@@ -1403,7 +1648,6 @@ function renderOverview() {
         <span class="badge badge-info">${s.total_days} 天 · ${fmt.num(s.total_orders)} 单</span>
         ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
       </div>
-      <div class="anim-tw" data-tw-text="AI 智能分析：本期共 ${fmt.num(s.total_orders)} 单 · A 路径 ${fmt.num(s.A)} 单全自动成功 · B 路径 ${fmt.num(s.B)} 单失败待救场 · C 路径 ${fmt.num(s.C)} 单政策转人工。修复 B 路径 = 直接提升 A 成功率。" style="margin-bottom:14px;padding:8px 12px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.15);border-radius:6px;font-size:12px"></div>
       <div class="kpi-row cols-7">
         <div class="kpi ${kpiCls(s.total_orders, cs && cs.total_orders, 'good')}">
           <div class="kpi-label">📦 订单总数</div>
@@ -1459,8 +1703,44 @@ function renderOverview() {
       </div>
     </div>
 
+    <div class="section">
+      <div class="section-title">✈️ 航司自动化成功率（目标 ${SUCC_TARGET}%）
+        <span class="badge badge-info">全量 ${succAirlines.length} 航司（优→差）</span>
+        <span class="badge badge-info" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">▎ 目标线 ${SUCC_TARGET}% · 达标 ≥${SUCC_TARGET}% · 中等 ≥50% · 待改 &lt;50%</span>
+      </div>
+      <div class="succ-list">${succAirlines.map(a => succRowHtml(a, 'airline')).join("")}</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🛒 渠道自动化成功率（目标 ${SUCC_TARGET}%）
+        <span class="badge badge-info">全量 ${succChannels.length} 渠道（优→差）</span>
+        <span class="badge badge-info" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">▎ 目标线 ${SUCC_TARGET}% · 达标 ≥${SUCC_TARGET}% · 中等 ≥50% · 待改 &lt;50%</span>
+      </div>
+      <div class="succ-list">${succChannels.map(c => succRowHtml(c, 'channel')).join("")}</div>
+    </div>
+
   `;
   document.getElementById("mainArea").innerHTML = html;
+
+  // 2026-07-30 新增: 自动化成功率进度条滚动渐入 (IntersectionObserver)
+  //   - 初次渲染 width: 0 (CSS)
+  //   - 进入视口时, 把 .succ-fill 的 width 设为 data-target% (1.2s ease-out)
+  //   - 一次性触发, unobserve 避免重复
+  if (typeof IntersectionObserver !== 'undefined') {
+    const succBarObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const fill = e.target.querySelector('.succ-fill');
+          if (fill) fill.style.width = fill.dataset.target + '%';
+          succBarObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.succ-row').forEach(r => succBarObs.observe(r));
+  } else {
+    // 降级: 浏览器不支持 IO, 直接显示最终宽度
+    document.querySelectorAll('.succ-fill').forEach(f => { f.style.width = f.dataset.target + '%'; });
+  }
 
   // 4 路径饼图（含对比 tooltip + 中心总数）
   const cs2 = COMPARE_DATA ? COMPARE_DATA.summary : null;
@@ -1482,15 +1762,15 @@ function renderOverview() {
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "item", formatter: tooltipFmt },
     // 中心总数 graphic + 居中饼图
     graphic: [
-      { type: 'text', left: 'center', top: '44%', style: { text: fmt.num(s.total_orders), fill: '#ffffff', fontSize: 36, fontWeight: 800, fontFamily: 'Outfit, sans-serif', textAlign: 'center' } },
-      { type: 'text', left: 'center', top: '58%', style: { text: '总订单数', fill: '#94a3b8', fontSize: 13, fontFamily: 'Outfit, sans-serif', textAlign: 'center' } },
+      { type: 'text', left: 'center', top: '44%', style: { text: fmt.num(s.total_orders), fill: '#ffffff', fontSize: 36, fontWeight: 800, fontFamily: "'Outfit', 'PingFang SC', sans-serif", textAlign: 'center', textShadow: '0 0 16px rgba(0, 229, 255, 0.4)' } },
+      { type: 'text', left: 'center', top: '58%', style: { text: '总订单数', fill: 'rgba(148, 163, 184, 0.85)', fontSize: 12, fontFamily: "'Outfit', 'PingFang SC', sans-serif", textAlign: 'center', letterSpacing: 1 } },
     ],
     series: [{
       type: "pie",
       radius: ["50%", "75%"],
       center: ["50%", "55%"],
-      label: { color: "#e0e6f0", formatter: "{b}\n{d}%", fontSize: 12 },
-      labelLine: { length: 12, length2: 10 },
+      label: { color: "rgba(224, 230, 240, 0.92)", formatter: "{b}\n{d}%", fontSize: 12, fontFamily: "'Outfit', 'PingFang SC', sans-serif", textShadowColor: "rgba(0, 0, 0, 0.6)", textShadowBlur: 4 },
+      labelLine: { length: 12, length2: 10, lineStyle: { color: "rgba(0, 229, 255, 0.4)" } },
       data: pieData,
     }],
   });
@@ -1645,13 +1925,13 @@ function renderHourly() {
           <div class="kpi-value">${total.toLocaleString()}</div>
           <div class="kpi-foot">${dateLabel} 0-24 点</div>
         </div>
-        <div class="kpi" style="border-color:#ff4757">
-          <div class="kpi-label" style="color:#ff4757">A 全自动成功</div>
-          <div class="kpi-value" style="color:#ff4757">${totalA.toLocaleString()}</div>
+        <div class="kpi" style="border-color:#00ff88">
+          <div class="kpi-label" style="color:#00ff88">A 全自动成功</div>
+          <div class="kpi-value" style="color:#00ff88">${totalA.toLocaleString()}</div>
           <div class="kpi-foot">${total ? (totalA / total * 100).toFixed(1) : 0}% 占总单数</div>
         </div>
-        <div class="kpi" style="border-color:#ff6348">
-          <div class="kpi-label" style="color:#ff6348">B 全自动失败</div>
+        <div class="kpi" style="border-color:#ff4757">
+          <div class="kpi-label" style="color:#ff4757">B 全自动失败</div>
           <div class="kpi-value" style="color:#ff4757">${totalB.toLocaleString()}</div>
           <div class="kpi-foot">${total ? (totalB / total * 100).toFixed(1) : 0}% 占总单数</div>
         </div>
@@ -1986,7 +2266,6 @@ function renderPlatform() {
       <div class="section-title">🏢 各平台 (对比 前日 ${prevDateLabel || "—"})
         <span class="badge badge-info">5 指标涨/降百分比</span>
       </div>
-      <div class="chart-hint">每格显示：当前值 ▲/▼ 差值 (涨/降百分比)。绿涨红降，灰不变。</div>
       <table class="data-table">
         <thead>
           <tr>
@@ -2376,7 +2655,7 @@ function renderChannel() {
   });
 }
 
-/* ============== 页面：人员绩效 ============== */
+/* ============== 页面：人员分析 ============== */
 function renderStaff() {
   // 2026-07-21：日/周/月对比（COMPARE_DATA 由 switchPeriod 算好）
   const cs = COMPARE_DATA;
@@ -2473,7 +2752,7 @@ function renderStaff() {
           return `
             <div class="chart-box">
               <div class="chart-title">${r.icon} ${r.title}</div>
-              <div style="max-height: 520px; overflow-y: auto;">
+              <div>
                 <table class="data-table compact">
                   <thead>
                     <tr><th class="rank-num">#</th><th>员工</th><th style="text-align:right">${r.label}</th><th style="text-align:right">占比</th><th style="text-align:right">排名变化</th></tr>
@@ -2516,7 +2795,7 @@ function renderStaff() {
 
   const html = `
     <div class="section">
-      <div class="section-title">👥 员工绩效（${CURRENT_DATA.staff.length} 人）
+      <div class="section-title">👥 人员分析（${CURRENT_DATA.staff.length} 人）
         ${cs ? `<span class="badge badge-info">对比 ${cmpShortLabel}</span>` : ''}
       </div>
       <div class="kpi-row cols-4" style="margin-bottom:14px">
@@ -3255,55 +3534,44 @@ function renderFailureAnalysis() {
       .sort((a, b) => a._pct - b._pct).slice(0, 5);
     if (!newOnes.length && !upBig.length && !downBig.length) return "";
     const newRow = r => `
-      <tr>
-        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
-        <td style="text-align:right;color:#ffa502;font-weight:bold">${fmt.num(r.count)}</td>
-      </tr>`;
+      <div class="v1-row v1-row-2col">
+        <span class="v1-reason" title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</span>
+        <span class="v1-num v1-num-warn">${fmt.num(r.count)}</span>
+      </div>`;
     const diffRow = r => {
       const isUp = r._diff > 0;
       const arrow = isUp ? "↑" : "↓";
-      const color = isUp ? "#ff4757" : "#00ff88";
       const sign = isUp ? "+" : "";
+      const cls = isUp ? "v1-num-bad" : "v1-num-good";
       return `
-      <tr>
-        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
-        <td style="text-align:right">${fmt.num(r.count)}</td>
-        <td style="text-align:right;color:#7a8ba0">${fmt.num(r.prev_count)}</td>
-        <td style="text-align:right;color:${color};font-weight:bold">${arrow} ${sign}${fmt.num(r._diff)}</td>
-        <td style="text-align:right;color:${color}">${sign}${r._pct.toFixed(0)}%</td>
-      </tr>`;
+      <div class="v1-row v1-row-5col">
+        <span class="v1-reason" title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</span>
+        <span class="v1-num v1-num-current">${fmt.num(r.count)}</span>
+        <span class="v1-num v1-num-prev">${fmt.num(r.prev_count)}</span>
+        <span class="v1-num ${cls}">${arrow} ${sign}${fmt.num(r._diff)}</span>
+        <span class="v1-num ${cls}">${sign}${r._pct.toFixed(0)}%</span>
+      </div>`;
     };
     return `
     <div class="section">
       <div class="section-title">📊 基期对比分析（vs ${escapeHtml(cmpLabelShort)}）
         <span class="badge badge-info">${path} 路径 · ${fmt.num(total)} 单</span>
       </div>
-      <div class="grid-3" style="gap:14px">
-        ${newOnes.length ? `
-        <div class="chart-box">
-          <div class="chart-title" style="color:#ffa502">🆕 新出现的失败原因（${newOnes.length}）</div>
-          <table class="data-table compact">
-            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th></tr></thead>
-            <tbody>${newOnes.map(newRow).join("")}</tbody>
-          </table>
-        </div>` : ""}
-        ${upBig.length ? `
-        <div class="chart-box">
-          <div class="chart-title" style="color:#ff4757">📈 大幅增加（${upBig.length} · 按涨幅）</div>
-          <table class="data-table compact">
-            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">涨幅</th></tr></thead>
-            <tbody>${upBig.map(diffRow).join("")}</tbody>
-          </table>
-        </div>` : ""}
-        ${downBig.length ? `
-        <div class="chart-box">
-          <div class="chart-title" style="color:#00ff88">📉 大幅减少（${downBig.length} · 优化见效）</div>
-          <table class="data-table compact">
-            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">降幅</th></tr></thead>
-            <tbody>${downBig.map(diffRow).join("")}</tbody>
-          </table>
-        </div>` : ""}
-      </div>
+      ${newOnes.length ? `
+      <div class="v1-block">
+        <div class="v1-block-title" style="color:#a855f7">🆕 新出现的失败原因（${newOnes.length}）</div>
+        <div class="v1-list">${newOnes.map(newRow).join("")}</div>
+      </div>` : ""}
+      ${upBig.length ? `
+      <div class="v1-block">
+        <div class="v1-block-title" style="color:#ff4757">📈 大幅增加（${upBig.length} · 按涨幅）</div>
+        <div class="v1-list">${upBig.map(diffRow).join("")}</div>
+      </div>` : ""}
+      ${downBig.length ? `
+      <div class="v1-block">
+        <div class="v1-block-title" style="color:#00ff88">📉 大幅减少（${downBig.length} · 优化见效）</div>
+        <div class="v1-list">${downBig.map(diffRow).join("")}</div>
+      </div>` : ""}
     </div>`;
   };
 
@@ -3385,9 +3653,6 @@ function renderFailureAnalysis() {
     <div class="section">
       <div class="section-title">⚠️ 全自动失败环节（9 大环节 · ${fmt.num(curSummaryB)} 单）
         ${cmpBHdr}
-      </div>
-      <div class="chart-hint" style="margin-bottom:8px">
-        8 大环节（人工/系统/预定/支付/取票/验真/回填/平台）+ 其他。色块编码 = 环节类别。
       </div>
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">🎯 B 路径 8 大环节汇总（哪一环出问题）</div>
@@ -3924,14 +4189,14 @@ function renderOrderAnalysis() {
       </div>
     </div>
 
-    <!-- ① 拆分订单分析：航司 × 平台 热力图 -->
+    <!-- ① 拆分订单分析：平台 × 航司 热力图（跟产品时限页统一：行=平台，列=航司，4 档离散色） -->
     <div class="section">
-      <div class="section-title">🪓 拆分订单明细（航司 × 平台 热力图）
+      <div class="section-title">🪓 拆分订单明细（平台 × 航司 矩阵）
         <span class="badge badge-info">${fmt.num(split.count || 0)} 单 / 占比 ${split.ratio || 0}%</span>
       </div>
       <div class="chart-box">
-        <div class="chart-hint">行=航司 / 列=平台 / 颜色=拆分单数（深→浅：少→多，深青色系贴合页面 UI）</div>
-        <div id="chart-heatmap-split" style="height: 520px;"></div>
+        <div class="chart-hint">行=平台 / 列=航司 / 颜色=拆分单数（4 档：&lt;3 浅 / 3-15 / 16-50 / &gt;50 亮）</div>
+        <div id="chart-heatmap-split" style="padding: 6px 0;"></div>
       </div>
     </div>
 
@@ -3941,8 +4206,8 @@ function renderOrderAnalysis() {
         <span class="badge badge-info">${fmt.num(repeat.count || 0)} 单 / 占比 ${repeat.ratio || 0}% · 7 种子类</span>
       </div>
       <div class="chart-box">
-        <div class="chart-hint">行=重复类型（7 种子类全展示）/ 列=平台 / 颜色=重复单数（深→浅：少→多，深青色系）</div>
-        <div id="chart-heatmap-repeat" style="height: 460px;"></div>
+        <div class="chart-hint">行=重复类型（7 种子类全展示）/ 列=平台 / 颜色=重复单数（4 档：&lt;10 浅 / 10-50 / 51-150 / &gt;150 亮）</div>
+        <div id="chart-heatmap-repeat" style="padding: 6px 0;"></div>
       </div>
     </div>
 
@@ -4039,293 +4304,353 @@ function renderOrderAnalysis() {
         第一次失败原因 = "辅营行李订单,人工处理"。不算"自动失败救场"，单独看平台 × 航司 分布。
       </div>
       <div class="chart-box">
-        <div class="chart-title">🗺️ 平台 × 航司 热力图</div>
-        <div id="chart-heatmap-fuying" style="height: 480px;"></div>
+        <div class="chart-title">🗺️ 平台 × 航司 矩阵（4 档：&lt;5 浅 / 5-20 / 21-60 / &gt;60 亮）</div>
+        <div id="chart-heatmap-fuying" style="padding: 6px 0;"></div>
       </div>
     </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // ========== ① 拆分明细 航司 × 平台 热力图 ==========
+  // ========== ① 拆分明细 平台 × 航司 矩阵（2026-07-30 跟产品时限页统一：HTML 网格 + 4 档离散色） ==========
   const splitCross = (split.cross_airline_platform) || { airlines: [], platforms: [], matrix: [] };
   if (splitCross.matrix && splitCross.matrix.length > 0) {
-    const splitHeatData = [];
-    let splitMaxV = 0;
-    for (let i = 0; i < splitCross.airlines.length; i++) {
-      for (let j = 0; j < splitCross.platforms.length; j++) {
-        const v = splitCross.matrix[i][j] || 0;
-        if (v > splitMaxV) splitMaxV = v;
-        splitHeatData.push([j, i, v]);
-      }
-    }
-    const splitColSum = splitCross.platforms.map((_, j) =>
-      splitCross.matrix.reduce((s, row) => s + (row[j] || 0), 0)
-    );
-    const splitRowSum = splitCross.matrix.map((row) =>
-      row.reduce((s, v) => s + (v || 0), 0)
-    );
-    const splitGrandTotal = splitRowSum.reduce((a, b) => a + b, 0);
-
-    const splitHeatOpt = {
-      backgroundColor: "transparent",
-      textStyle: { color: "#b0c4de", fontFamily: 'PingFang SC, "Microsoft YaHei", sans-serif' },
-      tooltip: {
-        position: "top",
-        backgroundColor: "#0a0e1a",
-        borderColor: "#1e3a5f",
-        textStyle: { color: "#e0e6f0" },
-        formatter: (p) => {
-          const airline = splitCross.airlines[p.value[1]];
-          const plat = splitCross.platforms[p.value[0]];
-          const v = p.value[2];
-          const pctCol = splitColSum[p.value[0]] > 0 ? (v / splitColSum[p.value[0]] * 100).toFixed(1) : 0;
-          const pctRow = splitRowSum[p.value[1]] > 0 ? (v / splitRowSum[p.value[1]] * 100).toFixed(1) : 0;
-          const pctAll = splitGrandTotal > 0 ? (v / splitGrandTotal * 100).toFixed(2) : 0;
-          return `<b>${airline}</b> × <b>${plat}</b><br/>` +
-                 `拆分单数：<b style="color:#00ffff">${v}</b><br/>` +
-                 `占该平台：${pctCol}% · 占该航司：${pctRow}%<br/>` +
-                 `占拆分总量：${pctAll}%`;
-        },
-      },
-      grid: { left: 80, right: 120, top: 30, bottom: 90 },
-      xAxis: {
-        type: "category",
-        data: splitCross.platforms,
-        splitArea: { show: true },
-        axisLabel: { color: "#b0c4de", rotate: 30, fontSize: 12 },
-        axisLine: { lineStyle: { color: "#1e3a5f" } },
-        name: "平台",
-        nameLocation: "end",
-        nameTextStyle: { color: "#7a8ba0", padding: [10, 0, 0, 0] },
-      },
-      yAxis: {
-        type: "category",
-        data: splitCross.airlines,
-        splitArea: { show: true },
-        axisLabel: { color: "#b0c4de", fontSize: 12, fontWeight: "bold" },
-        axisLine: { lineStyle: { color: "#1e3a5f" } },
-        name: "航司",
-        nameLocation: "end",
-        nameTextStyle: { color: "#7a8ba0" },
-      },
-      visualMap: {
-        min: 0,
-        max: splitMaxV || 1,
-        calculable: true,
-        orient: "vertical",
-        right: 10,
-        top: "center",
-        textStyle: { color: "#b0c4de" },
-        inRange: { color: ["#0a1929", "#0e3a52", "#0a7d8c", "#00d4e6", "#00ffff"] },
-      },
-      series: [
-        {
-          name: "拆分单数",
-          type: "heatmap",
-          data: splitHeatData,
-          label: {
-            show: true,
-            color: "#fff",
-            fontSize: 11,
-            formatter: (p) => p.value[2] > 0 ? p.value[2] : "",
-          },
-          emphasis: {
-            itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,255,255,0.5)" },
-            label: { color: "#fff", fontSize: 13, fontWeight: "bold" },
-          },
-        },
-      ],
+    // 4 档阈值: <3 / 3-15 / 16-50 / >50 (跟产品时限页风格一致)
+    const splitTier = (v) => {
+      if (v == null || v === 0) return null;
+      if (v < 3) return 1;
+      if (v < 16) return 2;
+      if (v < 51) return 3;
+      return 4;
     };
-    createChart("chart-heatmap-split", splitHeatOpt);
+    // matrix 结构: matrix[airline_idx][platform_idx]
+    // 显示布局: 行=平台, 列=航司
+    const splitAirlines = splitCross.airlines;
+    const splitPlatforms = splitCross.platforms;
+    let splitHtml = `<div class="heatmap" style="grid-template-columns: 100px repeat(${splitAirlines.length}, 1fr);">`;
+    splitHtml += `<div class="hm-cell empty"></div>`;
+    splitAirlines.forEach(a => {
+      splitHtml += `<div class="hm-cell head">${escapeHtml(a)}</div>`;
+    });
+    splitPlatforms.forEach((plat, pi) => {
+      splitHtml += `<div class="hm-cell row-head">${escapeHtml(plat)}</div>`;
+      splitAirlines.forEach((air, ai) => {
+        const v = splitCross.matrix[ai] ? (splitCross.matrix[ai][pi] || 0) : 0;
+        const tier = splitTier(v);
+        if (tier == null) {
+          splitHtml += `<div class="hm-cell empty"></div>`;
+        } else {
+          splitHtml += `<div class="hm-cell" data-tier="${tier}" title="${escapeHtml(plat)} × ${escapeHtml(air)}: ${v} 单">${v}</div>`;
+        }
+      });
+    });
+    splitHtml += `</div>`;
+    splitHtml += `
+      <div class="hm-legend">
+        <span><span class="sw" style="background:rgba(255,71,87,0.4)"></span>&lt;3 单</span>
+        <span><span class="sw" style="background:rgba(255,165,2,0.3)"></span>3-15</span>
+        <span><span class="sw" style="background:rgba(0,229,255,0.18)"></span>16-50</span>
+        <span><span class="sw" style="background:rgba(0,255,136,0.12)"></span>&gt;50（高）</span>
+      </div>
+    `;
+    document.getElementById("chart-heatmap-split").innerHTML = splitHtml;
+  } else {
+    document.getElementById("chart-heatmap-split").innerHTML = `<div style="padding:40px;text-align:center;color:#7a8ba0">⚠️ 暂无拆分订单</div>`;
   }
 
-  // ========== ⑥ 辅营行李订单 平台 × 航司 热力图 ==========
+  // ========== ⑥ 辅营行李订单 平台 × 航司 矩阵（2026-07-30 跟产品时限页统一：HTML 网格 + 4 档离散色） ==========
   // 2026-07-29 新增: path=C 子分类, 第一次失败原因 = "辅营行李订单,人工处理"
   const fyCross = fyLuggage.cross_platform_airline || { platforms: [], airlines: [], matrix: [] };
   if (fyCross.matrix && fyCross.matrix.length > 0) {
-    const fyHeatData = [];
-    let fyMaxV = 0;
-    for (let i = 0; i < fyCross.platforms.length; i++) {
-      for (let j = 0; j < fyCross.airlines.length; j++) {
-        const v = fyCross.matrix[i][j] || 0;
-        if (v > fyMaxV) fyMaxV = v;
-        fyHeatData.push([j, i, v]);
-      }
-    }
-    const fyColSum = fyCross.airlines.map((_, j) =>
-      fyCross.matrix.reduce((s, row) => s + (row[j] || 0), 0)
-    );
-    const fyRowSum = fyCross.matrix.map((row) =>
-      row.reduce((s, v) => s + (v || 0), 0)
-    );
-    const fyGrandTotal = fyRowSum.reduce((a, b) => a + b, 0);
-
-    const fyHeatOpt = {
-      backgroundColor: "transparent",
-      textStyle: { color: "#b0c4de", fontFamily: 'PingFang SC, "Microsoft YaHei", sans-serif' },
-      tooltip: {
-        position: "top",
-        backgroundColor: "#0a0e1a",
-        borderColor: "#1e3a5f",
-        textStyle: { color: "#e0e6f0" },
-        formatter: (p) => {
-          const airline = fyCross.airlines[p.value[1]];
-          const plat = fyCross.platforms[p.value[0]];
-          const v = p.value[2];
-          const pctCol = fyColSum[p.value[0]] > 0 ? (v / fyColSum[p.value[0]] * 100).toFixed(1) : 0;
-          const pctRow = fyRowSum[p.value[1]] > 0 ? (v / fyRowSum[p.value[1]] * 100).toFixed(1) : 0;
-          const pctAll = fyGrandTotal > 0 ? (v / fyGrandTotal * 100).toFixed(2) : 0;
-          return `<b>${plat}</b> × <b>${airline}</b><br/>` +
-                 `辅营单数：<b style="color:#00e5ff">${v}</b><br/>` +
-                 `占该航司：${pctCol}% · 占该平台：${pctRow}%<br/>` +
-                 `占辅营总量：${pctAll}%`;
-        },
-      },
-      grid: { left: 80, right: 120, top: 30, bottom: 90 },
-      xAxis: {
-        type: "category",
-        data: fyCross.airlines,
-        splitArea: { show: true },
-        axisLabel: { color: "#b0c4de", rotate: 30, fontSize: 12 },
-        axisLine: { lineStyle: { color: "#1e3a5f" } },
-        name: "航司",
-        nameLocation: "end",
-        nameTextStyle: { color: "#7a8ba0", padding: [10, 0, 0, 0] },
-      },
-      yAxis: {
-        type: "category",
-        data: fyCross.platforms,
-        splitArea: { show: true },
-        axisLabel: { color: "#b0c4de", fontSize: 12, fontWeight: "bold" },
-        axisLine: { lineStyle: { color: "#1e3a5f" } },
-        name: "平台",
-        nameLocation: "end",
-        nameTextStyle: { color: "#7a8ba0" },
-      },
-      visualMap: {
-        min: 0,
-        max: fyMaxV || 1,
-        calculable: true,
-        orient: "vertical",
-        right: 10,
-        top: "center",
-        textStyle: { color: "#b0c4de" },
-        inRange: { color: ["#0a1929", "#0e3a52", "#0a7d8c", "#00d4e6", "#00ffff"] },
-      },
-      series: [
-        {
-          name: "辅营单数",
-          type: "heatmap",
-          data: fyHeatData,
-          label: {
-            show: true,
-            color: "#fff",
-            fontSize: 11,
-            formatter: (p) => p.value[2] > 0 ? p.value[2] : "",
-          },
-          emphasis: {
-            itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,255,255,0.5)" },
-            label: { color: "#fff", fontSize: 13, fontWeight: "bold" },
-          },
-        },
-      ],
+    // 4 档阈值: <5 / 5-20 / 21-60 / >60
+    const fyTier = (v) => {
+      if (v == null || v === 0) return null;
+      if (v < 5) return 1;
+      if (v < 21) return 2;
+      if (v < 61) return 3;
+      return 4;
     };
-    createChart("chart-heatmap-fuying", fyHeatOpt);
+    // matrix 结构: matrix[platform_idx][airline_idx] (跟产品时限页结构一致)
+    const fyPlatforms = fyCross.platforms;
+    const fyAirlines = fyCross.airlines;
+    let fyHtml = `<div class="heatmap" style="grid-template-columns: 100px repeat(${fyAirlines.length}, 1fr);">`;
+    fyHtml += `<div class="hm-cell empty"></div>`;
+    fyAirlines.forEach(a => {
+      fyHtml += `<div class="hm-cell head">${escapeHtml(a)}</div>`;
+    });
+    fyPlatforms.forEach((plat, pi) => {
+      fyHtml += `<div class="hm-cell row-head">${escapeHtml(plat)}</div>`;
+      fyAirlines.forEach((air, ai) => {
+        const v = fyCross.matrix[pi] ? (fyCross.matrix[pi][ai] || 0) : 0;
+        const tier = fyTier(v);
+        if (tier == null) {
+          fyHtml += `<div class="hm-cell empty"></div>`;
+        } else {
+          fyHtml += `<div class="hm-cell" data-tier="${tier}" title="${escapeHtml(plat)} × ${escapeHtml(air)}: ${v} 单">${v}</div>`;
+        }
+      });
+    });
+    fyHtml += `</div>`;
+    fyHtml += `
+      <div class="hm-legend">
+        <span><span class="sw" style="background:rgba(255,71,87,0.4)"></span>&lt;5 单</span>
+        <span><span class="sw" style="background:rgba(255,165,2,0.3)"></span>5-20</span>
+        <span><span class="sw" style="background:rgba(0,229,255,0.18)"></span>21-60</span>
+        <span><span class="sw" style="background:rgba(0,255,136,0.12)"></span>&gt;60（高）</span>
+      </div>
+    `;
+    document.getElementById("chart-heatmap-fuying").innerHTML = fyHtml;
+  } else {
+    document.getElementById("chart-heatmap-fuying").innerHTML = `<div style="padding:40px;text-align:center;color:#7a8ba0">⚠️ 暂无辅营行李订单</div>`;
   }
 
-  // ========== ② 重复明细 重复分类 × 平台 热力图 ==========
+  // ========== ② 重复明细 重复分类 × 平台 矩阵（2026-07-30 跟产品时限页统一：HTML 网格 + 4 档离散色） ==========
   const repeatCross = (repeat.cross_category_platform) || { categories: [], platforms: [], matrix: [] };
   if (repeatCross.matrix && repeatCross.matrix.length > 0) {
-    const repeatHeatData = [];
-    let repeatMaxV = 0;
-    for (let i = 0; i < repeatCross.categories.length; i++) {
-      for (let j = 0; j < repeatCross.platforms.length; j++) {
-        const v = repeatCross.matrix[i][j] || 0;
-        if (v > repeatMaxV) repeatMaxV = v;
-        repeatHeatData.push([j, i, v]);
-      }
-    }
-    const repeatColSum = repeatCross.platforms.map((_, j) =>
-      repeatCross.matrix.reduce((s, row) => s + (row[j] || 0), 0)
-    );
-    const repeatRowSum = repeatCross.matrix.map((row) =>
-      row.reduce((s, v) => s + (v || 0), 0)
-    );
-    const repeatGrandTotal = repeatRowSum.reduce((a, b) => a + b, 0);
-
-    const repeatHeatOpt = {
-      backgroundColor: "transparent",
-      textStyle: { color: "#b0c4de", fontFamily: 'PingFang SC, "Microsoft YaHei", sans-serif' },
-      tooltip: {
-        position: "top",
-        backgroundColor: "#0a0e1a",
-        borderColor: "#1e3a5f",
-        textStyle: { color: "#e0e6f0" },
-        formatter: (p) => {
-          const cat = repeatCross.categories[p.value[1]];
-          const plat = repeatCross.platforms[p.value[0]];
-          const v = p.value[2];
-          const pctCol = repeatColSum[p.value[0]] > 0 ? (v / repeatColSum[p.value[0]] * 100).toFixed(1) : 0;
-          const pctRow = repeatRowSum[p.value[1]] > 0 ? (v / repeatRowSum[p.value[1]] * 100).toFixed(1) : 0;
-          const pctAll = repeatGrandTotal > 0 ? (v / repeatGrandTotal * 100).toFixed(2) : 0;
-          return `<b>${cat}</b> × <b>${plat}</b><br/>` +
-                 `重复单数：<b style="color:#00ffff">${v}</b><br/>` +
-                 `占该平台：${pctCol}% · 占该分类：${pctRow}%<br/>` +
-                 `占重复总量：${pctAll}%`;
-        },
-      },
-      grid: { left: 170, right: 120, top: 30, bottom: 90 },
-      xAxis: {
-        type: "category",
-        data: repeatCross.platforms,
-        splitArea: { show: true },
-        axisLabel: { color: "#b0c4de", rotate: 30, fontSize: 12 },
-        axisLine: { lineStyle: { color: "#1e3a5f" } },
-        name: "平台",
-        nameLocation: "end",
-        nameTextStyle: { color: "#7a8ba0", padding: [10, 0, 0, 0] },
-      },
-      yAxis: {
-        type: "category",
-        data: repeatCross.categories,
-        splitArea: { show: true },
-        axisLabel: { color: "#b0c4de", fontSize: 11 },
-        axisLine: { lineStyle: { color: "#1e3a5f" } },
-        name: "重复类型",
-        nameLocation: "end",
-        nameTextStyle: { color: "#7a8ba0" },
-      },
-      visualMap: {
-        min: 0,
-        max: repeatMaxV || 1,
-        calculable: true,
-        orient: "vertical",
-        right: 10,
-        top: "center",
-        textStyle: { color: "#b0c4de" },
-        inRange: { color: ["#0a1929", "#0e3a52", "#0a7d8c", "#00d4e6", "#00ffff"] },
-      },
-      series: [
-        {
-          name: "重复单数",
-          type: "heatmap",
-          data: repeatHeatData,
-          label: {
-            show: true,
-            color: "#fff",
-            fontSize: 11,
-            formatter: (p) => p.value[2] > 0 ? p.value[2] : "",
-          },
-          emphasis: {
-            itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,255,255,0.5)" },
-            label: { color: "#fff", fontSize: 13, fontWeight: "bold" },
-          },
-        },
-      ],
+    // 4 档阈值: <10 / 10-50 / 51-150 / >150
+    const repeatTier = (v) => {
+      if (v == null || v === 0) return null;
+      if (v < 10) return 1;
+      if (v < 51) return 2;
+      if (v < 151) return 3;
+      return 4;
     };
-    createChart("chart-heatmap-repeat", repeatHeatOpt);
+    // matrix 结构: matrix[category_idx][platform_idx]
+    // 显示布局: 行=类型(category), 列=平台
+    const repeatCats = repeatCross.categories;
+    const repeatPlats = repeatCross.platforms;
+    let repeatHtml = `<div class="heatmap" style="grid-template-columns: 200px repeat(${repeatPlats.length}, 1fr);">`;
+    repeatHtml += `<div class="hm-cell empty"></div>`;
+    repeatPlats.forEach(p => {
+      repeatHtml += `<div class="hm-cell head">${escapeHtml(p)}</div>`;
+    });
+    repeatCats.forEach((cat, ci) => {
+      repeatHtml += `<div class="hm-cell row-head">${escapeHtml(cat)}</div>`;
+      repeatPlats.forEach((plat, pi) => {
+        const v = repeatCross.matrix[ci] ? (repeatCross.matrix[ci][pi] || 0) : 0;
+        const tier = repeatTier(v);
+        if (tier == null) {
+          repeatHtml += `<div class="hm-cell empty"></div>`;
+        } else {
+          repeatHtml += `<div class="hm-cell" data-tier="${tier}" title="${escapeHtml(cat)} × ${escapeHtml(plat)}: ${v} 单">${v}</div>`;
+        }
+      });
+    });
+    repeatHtml += `</div>`;
+    repeatHtml += `
+      <div class="hm-legend">
+        <span><span class="sw" style="background:rgba(255,71,87,0.4)"></span>&lt;10 单</span>
+        <span><span class="sw" style="background:rgba(255,165,2,0.3)"></span>10-50</span>
+        <span><span class="sw" style="background:rgba(0,229,255,0.18)"></span>51-150</span>
+        <span><span class="sw" style="background:rgba(0,255,136,0.12)"></span>&gt;150（高）</span>
+      </div>
+    `;
+    document.getElementById("chart-heatmap-repeat").innerHTML = repeatHtml;
+  } else {
+    document.getElementById("chart-heatmap-repeat").innerHTML = `<div style="padding:40px;text-align:center;color:#7a8ba0">⚠️ 暂无重复订单</div>`;
   }
 }
+
+
+/* ============== 页面：产品时限（2026-07-30 新增）============== */
+/* 公式: 产品时限(分钟) = 最新截止日期 - 平台时间 (剩余出票时间) */
+function renderDeadline() {
+  const d = (CURRENT_DATA && CURRENT_DATA.summary && CURRENT_DATA.summary.deadline) || null;
+  if (!d || !d.count) {
+    document.getElementById("mainArea").innerHTML = `
+      <div class="section">
+        <div class="section-title">⏰ 产品时限分析</div>
+        <div style="padding:40px;text-align:center;color:#7a8ba0">⚠️ 当前周期暂无产品时限数据</div>
+      </div>`;
+    return;
+  }
+
+  // 比较基准（如果选月有 COMPARE_DATA，则对比）
+  const cmp = (COMPARE_DATA && COMPARE_DATA.summary && COMPARE_DATA.summary.deadline) || null;
+  const cmpBadge = (cur, base, isPct) => {
+    if (!cmp || base == null) return "";
+    const diff = cur - base;
+    const arrow = diff > 0 ? "▲" : (diff < 0 ? "▼" : "·");
+    const color = diff === 0 ? "#7a8ba0" : (diff > 0 ? "#ff4757" : "#00ff88");  // 时限越大 = 越不紧迫 (绿色好); 时限变小 = 紧迫 (红色警示)
+    return `<span class="cmp-badge" style="color:${color}">${arrow} ${isPct ? base.toFixed(1) + "%" : base.toFixed(0)}</span>`;
+  };
+
+  // 月份 label
+  const monthLabel = CURRENT_MONTH === "all" ? "全月"
+    : (CURRENT_WEEK !== "all" ? `${CURRENT_MONTH} ${CURRENT_WEEK.split("|")[1] || CURRENT_WEEK}`
+    : (CURRENT_DAY !== "all" ? `${CURRENT_MONTH} ${CURRENT_DAY} 日` : CURRENT_MONTH));
+
+  // 时限格式: < 60min 显示 "X min", 否则 "X h"
+  const fmtMin = (m) => m == null ? "—" : (m < 60 ? `${Math.round(m)} min` : `${(m / 60).toFixed(1)} h`);
+  const fmtMinShort = (m) => m == null ? "—" : (m < 60 ? `${Math.round(m)}` : `${(m / 60).toFixed(1)}h`);
+
+  // 4 KPI 卡
+  const kpiHtml = `
+    <div class="kpi ${d.median_min < 240 ? '' : ''}">
+      <div class="kpi-label">📊 中位产品时限</div>
+      <div class="kpi-value" style="color:#ffffff">${fmtMin(d.median_min)}</div>
+      <div class="kpi-sub">P50 = ${d.median_min.toFixed(0)} min</div>
+      <div class="kpi-sub-row">${cmp ? cmpBadge(d.median_min, cmp.median_min) : ""}</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">⚠️ P10 紧急区</div>
+      <div class="kpi-value" style="color:#ff4757">${d.p10_min.toFixed(0)}<span class="kpi-unit">min</span></div>
+      <div class="kpi-sub">10% 单只剩 ${d.p10_min.toFixed(0)} min 出票</div>
+      <div class="kpi-sub-row">${cmp ? cmpBadge(d.p10_min, cmp.p10_min) : ""}</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">🕐 &lt;1h 占比</div>
+      <div class="kpi-value">${d.under_1h_pct.toFixed(1)}<span class="kpi-unit">%</span></div>
+      <div class="kpi-sub">${fmt.num(d.distribution.under_1h)} 单剩 1h 内</div>
+      <div class="kpi-sub-row">${cmp ? `<span class="cmp-badge" style="color:#7a8ba0">${cmp.under_1h_pct.toFixed(1)}%</span>` : ""}</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">🚨 &lt;15min 紧急</div>
+      <div class="kpi-value" style="color:#ffa502">${d.distribution.under_15min}<span class="kpi-unit">单</span></div>
+      <div class="kpi-sub">占 ${(d.distribution.under_15min / d.count * 100).toFixed(2)}% · 需立即处理</div>
+    </div>
+  `;
+
+  // 平台 × 航司 矩阵热力图
+  const tierOf = (m) => {
+    if (m == null) return null;
+    if (m < 120) return 1;     // < 2h 红
+    if (m < 1440) return 2;    // 2-24h 橙
+    if (m < 2880) return 3;    // 24-48h 青
+    return 4;                  // > 48h 绿
+  };
+  const m = d.matrix || { platforms: [], airlines: [], data: [] };
+  const matrixHtml = `
+    <div class="heatmap" style="grid-template-columns: 80px repeat(${m.platforms.length}, 1fr); margin-top: 8px;">
+      <div class="hm-cell empty"></div>
+      ${m.platforms.map(p => `<div class="hm-cell head">${escapeHtml(p)}</div>`).join("")}
+      ${m.airlines.map((air, i) => `
+        <div class="hm-cell row-head">${escapeHtml(air)}</div>
+        ${m.data.map(row => {
+          const v = row[i];
+          if (v == null) return `<div class="hm-cell empty"></div>`;
+          return `<div class="hm-cell" data-tier="${tierOf(v)}">${fmtMinShort(v)}</div>`;
+        }).join("")}
+      `).join("")}
+    </div>
+    <div class="hm-legend">
+      <span><span class="sw" style="background:rgba(255,71,87,0.4)"></span>&lt;2h（紧急）</span>
+      <span><span class="sw" style="background:rgba(255,165,2,0.3)"></span>2-24h</span>
+      <span><span class="sw" style="background:rgba(0,229,255,0.18)"></span>24-48h</span>
+      <span><span class="sw" style="background:rgba(0,255,136,0.12)"></span>&gt;48h（充裕）</span>
+    </div>
+  `;
+
+  // 各平台柱状图 (按时限短→长, max=24h 比例)
+  const platMax = Math.max(1440, ...(d.by_platform || []).map(p => p.median_min));
+  const platRows = (d.by_platform || []).map(p => {
+    const pct = Math.min(100, p.median_min / platMax * 100);
+    const cls = p.median_min < 240 ? "danger" : (p.median_min < 1440 ? "warn" : "");
+    const color = p.median_min < 240 ? "#ff4757" : (p.median_min < 1440 ? "#ffa502" : "#00e5ff");
+    return `
+      <div class="bar-row">
+        <div class="bar-name">${escapeHtml(p.platform)}</div>
+        <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct.toFixed(1)}%"></div></div>
+        <div class="bar-pct" style="color:${color}">${fmtMin(p.median_min)}</div>
+      </div>`;
+  }).join("");
+  const platBarsHtml = `
+    <div class="bars">${platRows}</div>
+    <div class="note">⚠️ 时限短（红/橙）的平台接单后必须更快出票 — 携程/去哪儿 P10 较短说明接单可能滞后</div>
+  `;
+
+  // 时限紧迫度分布 (7 档)
+  const distColors = [
+    { k: "under_15min", name: "🚨 <15min", color: "#ff4757" },
+    { k: "under_30min_minus_15", name: "🔴 15-30min", color: "#ff6b35", custom: true },
+    { k: "under_1h_minus_30", name: "🟠 30-60min", color: "#ffa502", custom: true },
+    { k: "1_3h", name: "🟡 1-3h", color: "#00e5ff" },
+    { k: "3_12h", name: "🔵 3-12h", color: "#a855f7" },
+    { k: "12_24h", name: "🟣 12-24h", color: "#7a8ba0" },
+    { k: "over_24h", name: "🟢 >24h", color: "#00ff88" },
+  ];
+  const dist = d.distribution;
+  const distRows = distColors.map(({ k, name, color, custom }) => {
+    let n;
+    if (custom) {
+      if (k === "under_30min_minus_15") n = Math.max(0, dist.under_30min - dist.under_15min);
+      else if (k === "under_1h_minus_30") n = Math.max(0, dist.under_1h - dist.under_30min);
+    } else {
+      n = dist[k] || 0;
+    }
+    const pct = n / d.count * 100;
+    return `
+      <div class="dist-row">
+        <div class="dist-label">${name}</div>
+        <div class="dist-track"><div class="dist-fill" style="width:${Math.max(pct, 0.5).toFixed(2)}%; background:${color}; color:${color}"></div></div>
+        <div class="dist-pct" style="color:${color}">${n} 单</div>
+      </div>`;
+  }).join("");
+  const distHtml = `
+    <div class="bars">${distRows}</div>
+    <div class="note">💡 业务关注：30-60min 区间（${(dist.under_1h - dist.under_30min)} 单）是日常出票窗口；&lt;30min 极少（${dist.under_30min} 单）说明接单到起飞前还有足够缓冲</div>
+  `;
+
+  // 各航司 Top 12 柱状图 (按时限短→长)
+  const airTop = (d.by_airline || []).slice(0, 12);
+  const airMax = Math.max(1440, ...airTop.map(a => a.median_min));
+  const airRows = airTop.map(a => {
+    const pct = Math.min(100, a.median_min / airMax * 100);
+    const cls = a.median_min < 240 ? "danger" : (a.median_min < 1440 ? "warn" : "");
+    const color = a.median_min < 240 ? "#ff4757" : (a.median_min < 1440 ? "#ffa502" : "#00e5ff");
+    return `
+      <div class="bar-row">
+        <div class="bar-name">${escapeHtml(a.airline)}</div>
+        <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct.toFixed(1)}%"></div></div>
+        <div class="bar-pct" style="color:${color}">${fmtMin(a.median_min)}</div>
+      </div>`;
+  }).join("");
+  const airBarsHtml = `
+    <div class="bars">${airRows}</div>
+    <div class="note">🚨 F9/W6/W4/PC/OD/FD 等廉航 → 中位时限 ≤ 142 min（2.4h），出票链路必须 &lt; 1h 才能留余量</div>
+  `;
+
+  const html = `
+    <div class="section">
+      <div class="section-title"><span class="anim-hero-mask">⏰ 产品时限分析</span> · ${monthLabel}
+        <span class="badge badge-info">${fmt.num(d.count)} 单</span>
+      </div>
+      <div class="anim-tw" data-tw-text="公式：产品时限 = 最新截止日期 - 平台时间（单位：分钟）· 数字越小越紧迫 · P10 紧急区 = 10% 单的时限已 ≤ ${d.p10_min.toFixed(0)} min" style="margin-bottom:14px;padding:8px 12px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.15);border-radius:6px;font-size:12px"></div>
+      <div class="kpi-row cols-4">${kpiHtml}</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔥 平台 × 航司 矩阵（中位产品时限 · 分钟）
+        <span class="badge badge-info">颜色越深越紧急</span>
+      </div>
+      ${matrixHtml}
+    </div>
+
+    <div class="grid-2">
+      <div class="section">
+        <div class="section-title">📊 各平台 中位产品时限
+          <span class="badge badge-info">按时限短→长</span>
+        </div>
+        ${platBarsHtml}
+      </div>
+      <div class="section">
+        <div class="section-title">⏱️ 时限紧迫度分布
+          <span class="badge badge-info">${fmt.num(d.count)} 单</span>
+        </div>
+        ${distHtml}
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">✈️ 各航司 中位产品时限（Top 12）
+        <span class="badge badge-info">高风险航司（短时限）排前面</span>
+      </div>
+      ${airBarsHtml}
+    </div>
+  `;
+
+  document.getElementById("mainArea").innerHTML = html;
+}
+
 
 /* ============== 路由 ============== */
 function renderAll() {
@@ -4342,6 +4667,7 @@ function renderAll() {
     case "staff": renderStaff(); break;
     case "failAnalysis": renderFailureAnalysis(); break;
     case "orderAnalysis": renderOrderAnalysis(); break;
+    case "deadline": renderDeadline(); break;
     // 兼容旧 hash（如果用户收藏了 /stage 或 /fail）
     case "stage": renderFailureAnalysis(); break;
     case "fail": renderFailureAnalysis(); break;
