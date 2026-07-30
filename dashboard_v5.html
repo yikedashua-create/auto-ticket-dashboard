@@ -451,6 +451,92 @@
   }
 
   /* ============================================================
+   * Aceternity 视觉升级 (2026-07-30)
+   * 全局 8 页统一: 玻璃卡片 + 明显 Aurora + 圆角加大 + 柔边框
+   * 思路: 在原 CSS 之后追加 override, 同优先级靠后覆盖
+   * 保持所有动态 class (up-good/down-bad 等) 的颜色逻辑
+   * ============================================================ */
+  body { background: #050816; }  /* 底色加深, 让 aurora 更明显 */
+
+  /* 明显 Aurora — 调大透明度 + 加 blur 散射 */
+  body::before, body::after { filter: blur(80px); }
+  body::before { width: 700px; height: 700px; opacity: 0.22; }
+  body::after  { width: 700px; height: 700px; opacity: 0.18; }
+
+  /* 玻璃卡片 — section / sidebar / kpi / chart-box / nav-section / nav-mini 全覆盖 */
+  .section, .sidebar, .kpi, .chart-box, .nav-section, .nav-mini {
+    background: rgba(10, 14, 26, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  }
+  .section, .chart-box { border-radius: 16px; padding: 20px; }
+  .kpi { border-radius: 14px; padding: 16px; }
+  .sidebar, .nav-section, .nav-mini { border-radius: 14px; }
+
+  /* KPI 数字发光 (数字更出戏) */
+  .kpi-value {
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .kpi-value.green { text-shadow: 0 0 20px rgba(0, 255, 136, 0.35); }
+  .kpi-value.red   { text-shadow: 0 0 20px rgba(255, 71, 87, 0.35); }
+  .kpi-value.yellow{ text-shadow: 0 0 20px rgba(255, 165, 2, 0.35); }
+
+  /* 动态颜色 (up-good / down-bad) 保留 — 只需让 border-color + value color 仍生效 */
+  .kpi.up-good, .kpi.down-bad { border-color: rgba(0, 255, 136, 0.35) !important; }
+  .kpi.up-bad, .kpi.down-good { border-color: rgba(255, 71, 87, 0.35) !important; }
+  .kpi.flat, .kpi.warning { border-color: rgba(255, 165, 2, 0.35) !important; }
+
+  /* 标题加粗 + 字距 */
+  .section-title { font-weight: 700; letter-spacing: 0.5px; }
+
+  /* 主标题 (顶部 "📊 自动出票数据看板") 渐变光晕 */
+  .title {
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-shadow: 0 0 30px rgba(0, 229, 255, 0.4), 0 0 60px rgba(168, 85, 247, 0.2);
+  }
+
+  /* 导航项玻璃化 */
+  .nav-item {
+    background: rgba(15, 22, 38, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+  }
+  .nav-item.active {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(168, 85, 247, 0.1));
+    border-color: rgba(0, 229, 255, 0.4);
+    box-shadow: 0 0 16px rgba(0, 229, 255, 0.2);
+  }
+
+  /* 徽章玻璃化 */
+  .badge {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(4px);
+  }
+
+  /* 表格轻玻璃化 (不破坏结构) */
+  .data-table, .path-compare-table, .detail-table {
+    background: rgba(10, 14, 26, 0.3);
+    border-radius: 8px;
+  }
+  .data-table thead, .path-compare-table thead, .detail-table thead {
+    background: rgba(0, 229, 255, 0.06);
+  }
+
+  /* 输入/下拉玻璃化 */
+  .month-switcher select {
+    background: rgba(15, 22, 38, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ============================================================
    * 动效系统 (Animations Engine v1)
    * 7 种动效: CountUp / Reveal-row / V3-bump / Typewriter /
    *          Hero-mask / Stagger / Aurora+flow
