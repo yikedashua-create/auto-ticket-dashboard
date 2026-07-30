@@ -1094,6 +1094,45 @@ def safe_num(series):
 #               例: PVG-CJU / CJU-NRT (中转点 = CJU)
 #   - 多人订单: 乘客数量 >= 2
 #   - 儿童订单: 暂不分析
+def compute_fuying_luggage(df):
+    """辅营行李订单明细 (2026-07-29 新增)
+    - 数据源: 第一次失败原因 = "辅营行李订单,人工处理" 的订单 (path=C 下的子分类)
+    - 输出: count + by_platform + by_airline + cross_platform_airline (热力图)
+    - 跟"订单分析"5 维度平行, 但只输出"平台 × 航司"热力图
+    """
+    FUYING_KEY = "辅营行李订单"
+    mask = df["第一次失败原因"].fillna("").astype(str).str.contains(FUYING_KEY, regex=False, na=False)
+    sub = df[mask]
+    out = {"count": int(len(sub))}
+    if len(sub) == 0:
+        return out
+
+    platform = sub["平台"].fillna("").astype(str).str.strip().replace("", "未知")
+    airline = sub["航空公司列表"].fillna("").astype(str).str.strip().replace("", "未知")
+
+    out["by_platform"] = {str(k): int(v) for k, v in platform.value_counts().items()}
+    out["by_airline"] = {str(k): int(v) for k, v in airline.value_counts().head(15).items()}
+
+    # 平台 × 航司 交叉矩阵（用于热力图）
+    cross = (
+        sub.assign(_platform=platform, _airline=airline)
+            .groupby(["_platform", "_airline"])
+            .size()
+            .unstack(fill_value=0)
+    )
+    # 平台按总数降序, 航司按总数降序, 都取 top 15
+    top_platforms = platform.value_counts().head(15).index.tolist()
+    top_airlines = airline.value_counts().head(15).index.tolist()
+    cross_top = cross.loc[cross.index.isin(top_platforms), cross.columns.isin(top_airlines)]
+
+    out["cross_platform_airline"] = {
+        "platforms": [str(x) for x in cross_top.index.tolist()],
+        "airlines": [str(x) for x in cross_top.columns.tolist()],
+        "matrix": cross_top.values.astype(int).tolist(),
+    }
+    return out
+
+
 def compute_order_analysis(df):
     out = {"total": len(df)}
     n = len(df)
@@ -1369,6 +1408,8 @@ def build_month_data(df, month_label):
 
     # 2026-07-22 新增: 订单分析（拆分/重复/往返/中转/多人）— 顶层 summary 暴露给 dashboard
     out["summary"]["order_analysis"] = compute_order_analysis(df)
+    # 2026-07-29 新增: 辅营行李订单明细（path=C 子分类, 平台×航司热力图）
+    out["summary"]["fuying_luggage"] = compute_fuying_luggage(df)
 
     # 2026-07-18 新增：今日各小时分桶（取该月最后一天，dashboard 折线图用）
     if "_file_date" in df.columns and not df.empty:

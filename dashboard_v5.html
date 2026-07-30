@@ -449,6 +449,82 @@
     gap: 4px;
     margin-top: 4px;
   }
+
+  /* ============================================================
+   * 动效系统 (Animations Engine v1)
+   * 7 种动效: CountUp / Reveal-row / V3-bump / Typewriter /
+   *          Hero-mask / Stagger / Aurora+flow
+   * 通过 data-count / .anim-reveal / .anim-stagger / data-tw-text
+   *    / .anim-hero-mask 等属性自动触发
+   * 由 AnimEngine.scan() 在 mainArea 变化时扫描激活
+   * ============================================================ */
+  @keyframes tw-char-in { to { opacity: 1; } }
+  @keyframes tw-blink { 50%, 100% { opacity: 0; } 50.01% { opacity: 1; } }
+  @keyframes hero-mask-anim {
+    0%   { -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%); }
+    100% { -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); }
+  }
+  @keyframes v3-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.18); color: #00e5ff; } 100% { transform: scale(1); } }
+  @keyframes count-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
+  @keyframes aurora-float { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(40px, 30px); } }
+  @keyframes flow-sweep { 0% { left: -100%; } 100% { left: 100%; } }
+
+  /* 1. CountUp — 数字带 data-count 走 tabular-nums */
+  .kpi-value[data-count] { font-variant-numeric: tabular-nums; }
+  .kpi-value.counted { animation: count-bump-anim 0.4s ease; }
+
+  /* 2. Reveal row (失败根因表行渐入 + 进度条) */
+  .anim-reveal { opacity: 0; transform: translateX(-16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .anim-reveal.in { opacity: 1; transform: translateX(0); }
+  .anim-reveal .anim-bar { display: block; height: 3px; background: rgba(0,229,255,0.06); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+  .anim-reveal .anim-bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #00e5ff, #a855f7); transition: width 1.2s cubic-bezier(0.25,1,0.5,1) 0.2s; border-radius: 2px; box-shadow: 0 0 6px rgba(0,229,255,0.4); }
+  .anim-reveal.in .anim-bar > i { width: var(--w, 0%); }
+
+  /* 3. Stagger 卡片 (8 大环节) */
+  .anim-stagger { opacity: 0; transform: translateY(16px) scale(0.97); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .anim-stagger.in { opacity: 1; transform: translateY(0) scale(1); }
+
+  /* 4. Hero mask (大标题从左揭开) */
+  .anim-hero-mask {
+    display: inline-block;
+    background: linear-gradient(135deg, #fff 0%, #00e5ff 60%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
+    animation: hero-mask-anim 1.6s cubic-bezier(0.65,0,0.35,1) 0.15s forwards;
+  }
+
+  /* 5. Typewriter */
+  .anim-tw { font-size: 13px; color: #94a3b8; line-height: 1.7; min-height: 22px; }
+  .anim-tw .tw-char { opacity: 0; display: inline-block; animation: tw-char-in 0.04s forwards; }
+  .anim-tw .tw-cursor { display: inline-block; width: 2px; height: 1em; background: #00e5ff; margin-left: 2px; vertical-align: -2px; animation: tw-blink 1s step-end infinite; }
+
+  /* 6. V3 bump (数字 scale 反馈) */
+  .anim-v3-bump { animation: v3-bump-anim 0.4s ease; }
+
+  /* 7. Aurora 背景 — body 固定层, 透到 layout 间隙 */
+  body::before, body::after {
+    content: '';
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+  }
+  body::before {
+    top: -150px; right: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
+    animation: aurora-float 14s ease-in-out infinite;
+  }
+  body::after {
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+    animation: aurora-float 18s ease-in-out infinite reverse;
+  }
+  .title, .subtitle, .layout, .month-switcher { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
@@ -1001,50 +1077,51 @@ function renderOverview() {
 
   const html = `
     <div class="section">
-      <div class="section-title">💎 核心 KPI · ${monthLabel}
+      <div class="section-title"><span class="anim-hero-mask">💎 核心 KPI</span> · ${monthLabel}
         <span class="badge badge-info">${s.total_days} 天 · ${fmt.num(s.total_orders)} 单</span>
         ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
       </div>
+      <div class="anim-tw" data-tw-text="AI 智能分析：本期共 ${fmt.num(s.total_orders)} 单 · A 路径 ${fmt.num(s.A)} 单全自动成功 · B 路径 ${fmt.num(s.B)} 单失败待救场 · C 路径 ${fmt.num(s.C)} 单政策转人工。修复 B 路径 = 直接提升 A 成功率。" style="margin-bottom:14px;padding:8px 12px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.15);border-radius:6px;font-size:12px"></div>
       <div class="kpi-row cols-7">
         <div class="kpi ${kpiCls(s.total_orders, cs && cs.total_orders, 'good')}">
           <div class="kpi-label">📦 订单总数</div>
-          <div class="kpi-value">${fmt.num(s.total_orders)}</div>
+          <div class="kpi-value" data-count="${s.total_orders}">${fmt.num(s.total_orders)}</div>
           <div class="kpi-sub">${s.total_days} 天总单</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.total_orders, cs.total_orders, "rate", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.total_segments, cs && cs.total_segments, 'good')}">
           <div class="kpi-label">✈️ 航段总数</div>
-          <div class="kpi-value">${fmt.num(s.total_segments)}</div>
+          <div class="kpi-value" data-count="${s.total_segments}">${fmt.num(s.total_segments)}</div>
           <div class="kpi-sub">一票 = 1 段 · 往返 = 2 段</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.total_segments, cs.total_segments, "rate", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.A, cs && cs.A, 'good')}">
           <div class="kpi-label">✅ 全自动成功</div>
-          <div class="kpi-value">${fmt.num(s.A)}</div>
+          <div class="kpi-value" data-count="${s.A}">${fmt.num(s.A)}</div>
           <div class="kpi-sub">A 路径 · 占比 ${fmt.pct(s.A / s.total_orders * 100)}</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.A, cs.A, "rate", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.B, cs && cs.B, 'bad')}">
           <div class="kpi-label">❌ 全自动失败</div>
-          <div class="kpi-value">${fmt.num(s.B)}</div>
+          <div class="kpi-value" data-count="${s.B}">${fmt.num(s.B)}</div>
           <div class="kpi-sub">B 路径 · 占比 ${fmt.pct(s.B / s.total_orders * 100)}</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.B, cs.B, "amount", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.C, cs && cs.C, 'bad')}">
           <div class="kpi-label">🛒 订单转人工</div>
-          <div class="kpi-value">${fmt.num(s.C)}</div>
+          <div class="kpi-value" data-count="${s.C}">${fmt.num(s.C)}</div>
           <div class="kpi-sub">C 路径 · 占比 ${fmt.pct(s.C / s.total_orders * 100)}</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.C, cs.C, "amount", false) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.auto_coverage_rate, cs && cs.auto_coverage_rate, 'good')}">
           <div class="kpi-label">📈 全自动覆盖率</div>
-          <div class="kpi-value">${fmt.pct(s.auto_coverage_rate)}</div>
+          <div class="kpi-value" data-count="${s.auto_coverage_rate}" data-count-dec="2" data-count-suf="%">${fmt.pct(s.auto_coverage_rate)}</div>
           <div class="kpi-sub">A+B 占比 · ${fmt.num(s.A+s.B)} 单</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_coverage_rate, cs.auto_coverage_rate, "rate", true) : ""}</div>
         </div>
         <div class="kpi ${kpiCls(s.auto_succ_rate, cs && cs.auto_succ_rate, 'good')}">
           <div class="kpi-label">🎯 全自动成功率</div>
-          <div class="kpi-value">${fmt.pct(s.auto_succ_rate)}</div>
+          <div class="kpi-value" data-count="${s.auto_succ_rate}" data-count-dec="2" data-count-suf="%">${fmt.pct(s.auto_succ_rate)}</div>
           <div class="kpi-sub">A / (A+B)</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_succ_rate, cs.auto_succ_rate, "rate", true) : ""}</div>
         </div>
@@ -2540,28 +2617,34 @@ function renderFail() {
   };
 
   // === v10：环节汇总条（B/D 各 1 行，紧贴在族级表上方）===
+  // 2026-07-30: anim-stagger-parent 包裹, 每张卡 anim-stagger 触发错位渐入
   const bStages = groupByStage(CURRENT_DATA.fail_families_B || []);
   const dStages = groupByStage(CURRENT_DATA.fail_families_D || []);
   const stageSummaryHtml = (stages, path, total) => {
     if (!stages.length) return "";
+    const maxCount = Math.max(...stages.map(s => s.count));
     const cells = stages.map(s => {
       const color = getStageColor(s.stage + "-x");  // 取色用 stage 名
-      return `<div style="flex:1;min-width:90px;background:#0a1929;border-left:3px solid ${color};padding:8px 10px;margin-right:6px;border-radius:3px">
+      const barW = maxCount ? (s.count / maxCount * 100).toFixed(0) : 0;
+      return `<div class="anim-stagger" style="flex:1;min-width:90px;background:#0a1929;border-left:3px solid ${color};padding:8px 10px;margin-right:6px;border-radius:3px;--w:${barW}%;position:relative;overflow:hidden">
         <div style="font-size:11px;color:#7a8ba0">${escapeHtml(s.stage)}</div>
         <div style="font-size:18px;font-weight:bold;color:${color}">${fmt.num(s.count)}</div>
         <div style="font-size:10px;color:#7a8ba0">${fmt.pct(s.count / total * 100)}</div>
+        <span class="anim-bar" style="display:block;position:absolute;bottom:0;left:0;height:2px;width:100%;background:rgba(0,0,0,0.2)"><i style="display:block;height:100%;width:0;background:${color};transition:width 1.2s cubic-bezier(0.25,1,0.5,1) 0.3s"></i></span>
       </div>`;
     }).join("");
-    return `<div style="display:flex;flex-wrap:wrap;margin-bottom:12px">${cells}</div>`;
+    return `<div class="anim-stagger-parent" style="display:flex;flex-wrap:wrap;margin-bottom:12px">${cells}</div>`;
   };
 
   // === 原始行（清洗后，第二级展开时用）===
+  // 2026-07-30: tr 加 anim-reveal, 渐入 + 占比条
   const bReasonRow = (r, i, famName) => {
     const cmp = cmpBMap[r.full];
     const cmpBadge = cs
       ? (cmp ? fmt.cmp(r.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
-    return `<tr onclick="toggleDrill('B', ${i}, this)" style="cursor:pointer" data-idx="${i}">
+    const pctW = CURRENT_DATA.summary.B ? (r.count / CURRENT_DATA.summary.B * 100).toFixed(0) : 0;
+    return `<tr class="anim-reveal" onclick="toggleDrill('B', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-idx="${i}">
       <td>${i + 1}</td>
       <td title="${escapeHtml(r.full)}"><span style="color:#00e5ff">▸ </span>${escapeHtml(r.reason)}</td>
       <td>${fmt.num(r.count)}</td>
@@ -2574,7 +2657,8 @@ function renderFail() {
     const cmpBadge = cs
       ? (cmp ? fmt.cmp(r.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
-    return `<tr onclick="toggleDrill('D', ${i}, this)" style="cursor:pointer" data-idx="${i}">
+    const pctW = CURRENT_DATA.summary.D ? (r.count / CURRENT_DATA.summary.D * 100).toFixed(0) : 0;
+    return `<tr class="anim-reveal" onclick="toggleDrill('D', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-idx="${i}">
       <td>${i + 1}</td>
       <td title="${escapeHtml(r.full)}"><span style="color:#00e5ff">▸ </span>${escapeHtml(r.reason)}</td>
       <td>${fmt.num(r.count)}</td>
@@ -2770,13 +2854,15 @@ function renderFailureAnalysis() {
   }
 
   // 2. 失败根因族级行（2026-07-26 简化：9 大环节 + 点族行展开原始根因 + 5 维度下钻）
+  // 2026-07-30: 加 anim-reveal 触发错位渐入
   const bFamilyRow = (f, i) => {
     const cmp = cmpBFamMap[f.family];
     const cmpBadge = cs
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+    const pctW = curSummaryB ? (f.count / curSummaryB * 100).toFixed(0) : 0;
+    return `<tr class="anim-reveal" onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-fam-idx="${i}">
       <td>${i + 1}</td>
       <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
       <td>${fmt.num(f.count)}</td>
@@ -2790,7 +2876,8 @@ function renderFailureAnalysis() {
       ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
       : "—";
     const stageColor = getStageColor(f.family);
-    return `<tr onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer" data-fam-idx="${i}">
+    const pctW = curSummaryD ? (f.count / curSummaryD * 100).toFixed(0) : 0;
+    return `<tr class="anim-reveal" onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-fam-idx="${i}">
       <td>${i + 1}</td>
       <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
       <td>${fmt.num(f.count)}</td>
@@ -2800,19 +2887,23 @@ function renderFailureAnalysis() {
   };
 
   // 3. 失败根因族级环节汇总条
+  // 2026-07-30: anim-stagger-parent + 每卡 anim-stagger 触发错位渐入
   const bStages = groupByStage(curFailFamiliesB || []);
   const dStages = groupByStage(curFailFamiliesD || []);
   const stageSummaryHtml = (stages, total) => {
     if (!stages.length) return "";
+    const maxCount = Math.max(...stages.map(s => s.count));
     const cells = stages.map(s => {
       const color = getStageColor(s.stage + "-x");
-      return `<div style="flex:1;min-width:90px;background:#0a1929;border-left:3px solid ${color};padding:8px 10px;margin-right:6px;border-radius:3px">
+      const barW = maxCount ? (s.count / maxCount * 100).toFixed(0) : 0;
+      return `<div class="anim-stagger" style="flex:1;min-width:90px;background:#0a1929;border-left:3px solid ${color};padding:8px 10px;margin-right:6px;border-radius:3px;--w:${barW}%;position:relative;overflow:hidden">
         <div style="font-size:11px;color:#7a8ba0">${escapeHtml(s.stage)}</div>
         <div style="font-size:18px;font-weight:bold;color:${color}">${fmt.num(s.count)}</div>
         <div style="font-size:10px;color:#7a8ba0">${fmt.pct(s.count / total * 100)}</div>
+        <span class="anim-bar" style="display:block;position:absolute;bottom:0;left:0;height:2px;width:100%;background:rgba(0,0,0,0.2)"><i style="display:block;height:100%;width:0;background:${color};transition:width 1.2s cubic-bezier(0.25,1,0.5,1) 0.3s"></i></span>
       </div>`;
     }).join("");
-    return `<div style="display:flex;flex-wrap:wrap;margin-bottom:12px">${cells}</div>`;
+    return `<div class="anim-stagger-parent" style="display:flex;flex-wrap:wrap;margin-bottom:12px">${cells}</div>`;
   };
 
   // 3.5 失败子分类明细（2026-07-26 新增）
@@ -2865,6 +2956,78 @@ function renderFailureAnalysis() {
     ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}：D ${fmt.num(cs.summary.D)} 单</span>`
     : "";
 
+  // 3.7 V1 自动分析（vs 基准期）：新出现 / 大幅增加 / 大幅减少
+  //   依据: curFailReasonsB/D 的 prev_count 字段
+  //   - 日视图: prev_count = 前一天失败原因 count
+  //   - 月视图: prev_count = 上月失败原因 count (当前 gen 输出 0)
+  //   - 无基准时 (cs == null) 整段隐藏
+  // V1 名称叫 v1AutoAnalysisHtml, 跟 V3 autoAnalysisHtml 区分 (V3 是勾选式)
+  // V3 之后加 V1: 业务方既要看 "修了能到多少" (V3) 又要看 "vs 上期变化" (V1)
+  const v1AutoAnalysisHtml = (reasons, path, total) => {
+    if (!cs || !reasons || !reasons.length) return "";
+    // 三类: 新出现 (prev=0, count>0), 大幅增加 (prev>0, diff>0), 大幅减少 (prev>count)
+    const newOnes = reasons.filter(r => (!r.prev_count || r.prev_count === 0) && r.count > 0)
+      .sort((a, b) => b.count - a.count).slice(0, 5);
+    const upBig = reasons.filter(r => r.prev_count > 0 && r.count > r.prev_count)
+      .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
+      .sort((a, b) => b._pct - a._pct).slice(0, 10);
+    const downBig = reasons.filter(r => r.prev_count > 0 && r.count < r.prev_count)
+      .map(r => ({...r, _diff: r.count - r.prev_count, _pct: (r.count - r.prev_count) / r.prev_count * 100}))
+      .sort((a, b) => a._pct - b._pct).slice(0, 5);
+    if (!newOnes.length && !upBig.length && !downBig.length) return "";
+    const newRow = r => `
+      <tr>
+        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
+        <td style="text-align:right;color:#ffa502;font-weight:bold">${fmt.num(r.count)}</td>
+      </tr>`;
+    const diffRow = r => {
+      const isUp = r._diff > 0;
+      const arrow = isUp ? "↑" : "↓";
+      const color = isUp ? "#ff4757" : "#00ff88";
+      const sign = isUp ? "+" : "";
+      return `
+      <tr>
+        <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
+        <td style="text-align:right">${fmt.num(r.count)}</td>
+        <td style="text-align:right;color:#7a8ba0">${fmt.num(r.prev_count)}</td>
+        <td style="text-align:right;color:${color};font-weight:bold">${arrow} ${sign}${fmt.num(r._diff)}</td>
+        <td style="text-align:right;color:${color}">${sign}${r._pct.toFixed(0)}%</td>
+      </tr>`;
+    };
+    return `
+    <div class="section">
+      <div class="section-title">📊 基期对比分析（vs ${escapeHtml(cmpLabelShort)}）
+        <span class="badge badge-info">${path} 路径 · ${fmt.num(total)} 单</span>
+      </div>
+      <div class="grid-3" style="gap:14px">
+        ${newOnes.length ? `
+        <div class="chart-box">
+          <div class="chart-title" style="color:#ffa502">🆕 新出现的失败原因（${newOnes.length}）</div>
+          <table class="data-table compact">
+            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th></tr></thead>
+            <tbody>${newOnes.map(newRow).join("")}</tbody>
+          </table>
+        </div>` : ""}
+        ${upBig.length ? `
+        <div class="chart-box">
+          <div class="chart-title" style="color:#ff4757">📈 大幅增加（${upBig.length} · 按涨幅）</div>
+          <table class="data-table compact">
+            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">涨幅</th></tr></thead>
+            <tbody>${upBig.map(diffRow).join("")}</tbody>
+          </table>
+        </div>` : ""}
+        ${downBig.length ? `
+        <div class="chart-box">
+          <div class="chart-title" style="color:#00ff88">📉 大幅减少（${downBig.length} · 优化见效）</div>
+          <table class="data-table compact">
+            <thead><tr><th>原始根因</th><th style="text-align:right">本期</th><th style="text-align:right">${escapeHtml(cmpLabelShort)}</th><th style="text-align:right">差值</th><th style="text-align:right">降幅</th></tr></thead>
+            <tbody>${downBig.map(diffRow).join("")}</tbody>
+          </table>
+        </div>` : ""}
+      </div>
+    </div>`;
+  };
+
   // 3.7 自动分析 V2（vs 基准期）：勾选式业务影响分析
   //   - 数据源: curFailReasonsB 已有 prev_count 字段
   //   - 日/月视图自动适配（日视图: prev = 前一天, 月视图: prev = 上月）
@@ -2904,7 +3067,7 @@ function renderFailureAnalysis() {
     };
     return `
     <div class="section">
-      <div class="section-title">💡 自动分析（当期 B 路径修复预测）
+      <div class="section-title">💡 全自动成功优化预测
         <span class="badge badge-info">${path} 路径 · ${fmt.num(sumB)} 单</span>
       </div>
       <div class="chart-hint" style="background:#0a1929;padding:10px 14px;border-left:3px solid #00e5ff;margin-bottom:8px;border-radius:3px;font-size:13px;line-height:1.6">
@@ -2943,11 +3106,10 @@ function renderFailureAnalysis() {
     </div>`;
   };
 
-  // 4. HTML 主体：B 路径族级 + D 路径族级（垂直堆叠）
+  // 4. HTML 主体：9 大环节 + V1 基期对比 + V3 勾选式（垂直堆叠）
   const html = `
-    ${autoAnalysisHtml(curFailReasonsB, "B", curSummaryB)}
     <div class="section">
-      <div class="section-title">⚠️ B 路径 全自动失败环节（9 大环节 · ${fmt.num(curSummaryB)} 单）
+      <div class="section-title">⚠️ 全自动失败环节（9 大环节 · ${fmt.num(curSummaryB)} 单）
         ${cmpBHdr}
       </div>
       <div class="chart-hint" style="margin-bottom:8px">
@@ -2969,6 +3131,8 @@ function renderFailureAnalysis() {
         </table>
       </div>
     </div>
+    ${v1AutoAnalysisHtml(curFailReasonsB, "B", curSummaryB)}
+    ${autoAnalysisHtml(curFailReasonsB, "B", curSummaryB)}
   `;
   document.getElementById("mainArea").innerHTML = html;
   // v10.14.7: 把当前视图的数据存全局变量，供 toggleFamilyDrill / toggleExpandFamily 用
@@ -3003,6 +3167,8 @@ function bindAutoAnalysisPicks(aBase, bBase) {
       if (rt) {
         rt.textContent = `${newRate.toFixed(2)}%`;
         rt.style.color = lift > 0 ? "#00ff88" : (lift < 0 ? "#ff4757" : "#7a8ba0");
+        // 2026-07-30: 数字变更触发 v3-bump 动效
+        AnimEngine.v3Bump(rt);
       }
       if (ar) {
         if (count === 0) {
@@ -3054,7 +3220,7 @@ function renderFamilyReasonRows(reasons, allReasons, path, fam, expanded) {
       ? r.orders.map(o => `<code style="background:#1e3a5f;color:#00e5ff;padding:1px 5px;border-radius:2px;font-size:11px">${escapeHtml(o)}</code>`).join(" ")
       : '<span style="color:#7a8ba0;font-size:11px">—</span>';
     return `
-    <tr>
+    <tr class="anim-reveal" style="--w:${(r.count / fam.count * 100).toFixed(0)}%;position:relative">
       <td>${i + 1}</td>
       <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
       <td>${fmt.num(r.count)}</td>
@@ -3444,6 +3610,8 @@ function renderOrderAnalysis() {
   const rt = oa.round_trip || {};
   const tr = oa.transfer || {};
   const mp = oa.multi_pax || {};
+  // 2026-07-29 新增: 辅营行李订单明细 (path=C 子分类)
+  const fyLuggage = (CURRENT_DATA.summary && CURRENT_DATA.summary.fuying_luggage) || { count: 0 };
 
   // 5 个 KPI
   const kpiColor = (n) => n === 0 ? "var(--dim, #7a8ba0)" : "#00e5ff";
@@ -3452,7 +3620,7 @@ function renderOrderAnalysis() {
       <div class="section-title">📋 订单分析（拆分/重复/往返/中转/多人）
         <span class="badge badge-info">${fmt.num(total)} 总单</span>
       </div>
-      <div class="kpi-row cols-5" style="margin-bottom:14px">
+      <div class="kpi-row cols-6" style="margin-bottom:14px">
         <div class="kpi">
           <div class="kpi-label">🪓 拆分订单</div>
           <div class="kpi-value">${fmt.num(split.count || 0)}</div>
@@ -3477,6 +3645,11 @@ function renderOrderAnalysis() {
           <div class="kpi-label">👨‍👩‍👧 多人订单</div>
           <div class="kpi-value">${fmt.num(mp.count || 0)}</div>
           <div class="kpi-sub">占比 ${mp.ratio || 0}% · ≥2 人</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">🧳 辅营行李订单</div>
+          <div class="kpi-value">${fmt.num(fyLuggage.count || 0)}</div>
+          <div class="kpi-sub">path=C 子分类</div>
         </div>
       </div>
     </div>
@@ -3586,6 +3759,20 @@ function renderOrderAnalysis() {
         </div>
       </div>
     </div>
+
+    <!-- ⑥ 辅营行李订单明细（2026-07-29 新增）: path=C 子分类, 平台 × 航司 热力图 -->
+    <div class="section">
+      <div class="section-title">🧳 辅营行李订单明细（path=C 子分类）
+        <span class="badge badge-info">${fmt.num(fyLuggage.count || 0)} 单</span>
+      </div>
+      <div class="chart-hint" style="margin-bottom:8px">
+        第一次失败原因 = "辅营行李订单,人工处理"。不算"自动失败救场"，单独看平台 × 航司 分布。
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">🗺️ 平台 × 航司 热力图</div>
+        <div id="chart-heatmap-fuying" style="height: 480px;"></div>
+      </div>
+    </div>
   `;
   document.getElementById("mainArea").innerHTML = html;
 
@@ -3680,6 +3867,100 @@ function renderOrderAnalysis() {
       ],
     };
     createChart("chart-heatmap-split", splitHeatOpt);
+  }
+
+  // ========== ⑥ 辅营行李订单 平台 × 航司 热力图 ==========
+  // 2026-07-29 新增: path=C 子分类, 第一次失败原因 = "辅营行李订单,人工处理"
+  const fyCross = fyLuggage.cross_platform_airline || { platforms: [], airlines: [], matrix: [] };
+  if (fyCross.matrix && fyCross.matrix.length > 0) {
+    const fyHeatData = [];
+    let fyMaxV = 0;
+    for (let i = 0; i < fyCross.platforms.length; i++) {
+      for (let j = 0; j < fyCross.airlines.length; j++) {
+        const v = fyCross.matrix[i][j] || 0;
+        if (v > fyMaxV) fyMaxV = v;
+        fyHeatData.push([j, i, v]);
+      }
+    }
+    const fyColSum = fyCross.airlines.map((_, j) =>
+      fyCross.matrix.reduce((s, row) => s + (row[j] || 0), 0)
+    );
+    const fyRowSum = fyCross.matrix.map((row) =>
+      row.reduce((s, v) => s + (v || 0), 0)
+    );
+    const fyGrandTotal = fyRowSum.reduce((a, b) => a + b, 0);
+
+    const fyHeatOpt = {
+      backgroundColor: "transparent",
+      textStyle: { color: "#b0c4de", fontFamily: 'PingFang SC, "Microsoft YaHei", sans-serif' },
+      tooltip: {
+        position: "top",
+        backgroundColor: "#0a0e1a",
+        borderColor: "#1e3a5f",
+        textStyle: { color: "#e0e6f0" },
+        formatter: (p) => {
+          const airline = fyCross.airlines[p.value[1]];
+          const plat = fyCross.platforms[p.value[0]];
+          const v = p.value[2];
+          const pctCol = fyColSum[p.value[0]] > 0 ? (v / fyColSum[p.value[0]] * 100).toFixed(1) : 0;
+          const pctRow = fyRowSum[p.value[1]] > 0 ? (v / fyRowSum[p.value[1]] * 100).toFixed(1) : 0;
+          const pctAll = fyGrandTotal > 0 ? (v / fyGrandTotal * 100).toFixed(2) : 0;
+          return `<b>${plat}</b> × <b>${airline}</b><br/>` +
+                 `辅营单数：<b style="color:#00e5ff">${v}</b><br/>` +
+                 `占该航司：${pctCol}% · 占该平台：${pctRow}%<br/>` +
+                 `占辅营总量：${pctAll}%`;
+        },
+      },
+      grid: { left: 80, right: 120, top: 30, bottom: 90 },
+      xAxis: {
+        type: "category",
+        data: fyCross.airlines,
+        splitArea: { show: true },
+        axisLabel: { color: "#b0c4de", rotate: 30, fontSize: 12 },
+        axisLine: { lineStyle: { color: "#1e3a5f" } },
+        name: "航司",
+        nameLocation: "end",
+        nameTextStyle: { color: "#7a8ba0", padding: [10, 0, 0, 0] },
+      },
+      yAxis: {
+        type: "category",
+        data: fyCross.platforms,
+        splitArea: { show: true },
+        axisLabel: { color: "#b0c4de", fontSize: 12, fontWeight: "bold" },
+        axisLine: { lineStyle: { color: "#1e3a5f" } },
+        name: "平台",
+        nameLocation: "end",
+        nameTextStyle: { color: "#7a8ba0" },
+      },
+      visualMap: {
+        min: 0,
+        max: fyMaxV || 1,
+        calculable: true,
+        orient: "vertical",
+        right: 10,
+        top: "center",
+        textStyle: { color: "#b0c4de" },
+        inRange: { color: ["#0a1929", "#0e3a52", "#0a7d8c", "#00d4e6", "#00ffff"] },
+      },
+      series: [
+        {
+          name: "辅营单数",
+          type: "heatmap",
+          data: fyHeatData,
+          label: {
+            show: true,
+            color: "#fff",
+            fontSize: 11,
+            formatter: (p) => p.value[2] > 0 ? p.value[2] : "",
+          },
+          emphasis: {
+            itemStyle: { shadowBlur: 10, shadowColor: "rgba(0,255,255,0.5)" },
+            label: { color: "#fff", fontSize: 13, fontWeight: "bold" },
+          },
+        },
+      ],
+    };
+    createChart("chart-heatmap-fuying", fyHeatOpt);
   }
 
   // ========== ② 重复明细 重复分类 × 平台 热力图 ==========
@@ -3810,6 +4091,153 @@ window.addEventListener("resize", () => {
 });
 
 loadData();
+
+/* ============================================================
+ * 动效引擎 (Animations Engine)
+ * 入口: AnimEngine.scan(root) — 由 MutationObserver 在
+ *   mainArea 内容变化时自动调用 (DOM 重新渲染 = 重新扫描)
+ *
+ * 7 种动效激活条件:
+ *   1. CountUp    — <.kpi-value data-count="123" data-count-dec="2" data-count-suf="%">
+ *   2. Reveal-row — <tr class="anim-reveal" style="--w:80%"><span class="anim-bar"><i></i></span></tr>
+ *   3. V3-bump    — AnimEngine.v3Bump(el) — 勾选/取消时手动调用
+ *   4. Typewriter — <div class="anim-tw" data-tw-text="..."> 
+ *   5. Hero-mask  — <span class="anim-hero-mask">文本</span>
+ *   6. Stagger    — 父级 .anim-stagger-parent 内多个 .anim-stagger, 自动按 DOM 顺序延迟
+ *   7. Aurora     — CSS only, body::before/::after 自动跑
+ * ============================================================ */
+const AnimEngine = (() => {
+  const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+  const fmtNum = (n, dec) => {
+    if (dec > 0) return n.toFixed(dec);
+    return Math.round(n).toLocaleString();
+  };
+
+  // 1. CountUp
+  function runCountUp(el) {
+    if (el.dataset.counted) return;
+    const target = parseFloat(el.dataset.count);
+    if (isNaN(target)) return;
+    const dur = parseInt(el.dataset.countDur || '2200');
+    const dec = parseInt(el.dataset.countDec || '0');
+    const pre = el.dataset.countPre || '';
+    const suf = el.dataset.countSuf || '';
+    const start = performance.now();
+    el.textContent = pre + fmtNum(0, dec) + suf;
+    function tick(now) {
+      const t = Math.min((now - start) / dur, 1);
+      el.textContent = pre + fmtNum(target * easeOutQuart(t), dec) + suf;
+      if (t < 1) requestAnimationFrame(tick);
+      else { el.classList.add('counted'); el.dataset.counted = '1'; }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // 4. Typewriter
+  function runTypewriter(el) {
+    if (el.dataset.twRun) return;
+    el.dataset.twRun = '1';
+    const text = el.dataset.twText || el.textContent.trim();
+    el.innerHTML = '';
+    const chars = [...text];
+    chars.forEach((c, i) => {
+      const s = document.createElement('span');
+      s.className = 'tw-char';
+      s.textContent = c === ' ' ? '\u00A0' : c;
+      s.style.animationDelay = (i * 28) + 'ms';
+      el.appendChild(s);
+    });
+    const cursor = document.createElement('span');
+    cursor.className = 'tw-cursor';
+    el.appendChild(cursor);
+  }
+
+  // Reveal / Stagger 观察器
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      if (el.dataset.staggerIdx !== undefined) {
+        const idx = parseInt(el.dataset.staggerIdx);
+        setTimeout(() => el.classList.add('in'), idx * 70);
+      } else {
+        el.classList.add('in');
+      }
+      revealObs.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+  // CountUp / Typewriter 观察器 (延迟到元素进入视野)
+  const triggerObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      if (el.dataset.count !== undefined && !el.dataset.counted) runCountUp(el);
+      if (el.dataset.twText !== undefined && !el.dataset.twRun) runTypewriter(el);
+      triggerObs.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+
+  function scan(root) {
+    if (!root) return;
+    // 1. CountUp
+    root.querySelectorAll('[data-count]').forEach(el => {
+      if (!el.dataset.countBound) {
+        triggerObs.observe(el);
+        el.dataset.countBound = '1';
+      }
+    });
+    // 6. Stagger 群组 (父级 .anim-stagger-parent 内所有 .anim-stagger)
+    root.querySelectorAll('.anim-stagger-parent').forEach(parent => {
+      const items = parent.querySelectorAll('.anim-stagger');
+      items.forEach((el, i) => {
+        if (el.dataset.staggerIdx === undefined) {
+          el.dataset.staggerIdx = String(i);
+          revealObs.observe(el);
+        }
+      });
+    });
+    // 2. Reveal row
+    root.querySelectorAll('.anim-reveal').forEach(el => {
+      if (!el.dataset.revealBound) {
+        revealObs.observe(el);
+        el.dataset.revealBound = '1';
+      }
+    });
+    // 4. Typewriter
+    root.querySelectorAll('[data-tw-text]').forEach(el => {
+      if (!el.dataset.twBound) {
+        triggerObs.observe(el);
+        el.dataset.twBound = '1';
+      }
+    });
+  }
+
+  function v3Bump(el) {
+    if (!el) return;
+    el.classList.remove('anim-v3-bump');
+    void el.offsetWidth;  // reflow 强制重启动画
+    el.classList.add('anim-v3-bump');
+    setTimeout(() => el.classList.remove('anim-v3-bump'), 450);
+  }
+
+  return { scan, v3Bump, runCountUp, runTypewriter };
+})();
+
+// 监听 mainArea 变化自动扫描 (每次 renderXxx 都会触发)
+(function setupAnimAutoScan() {
+  const main = document.getElementById('mainArea');
+  if (!main) return;
+  let raf = null;
+  const mo = new MutationObserver(() => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      AnimEngine.scan(main);
+    });
+  });
+  mo.observe(main, { childList: true, subtree: true });
+})();
 </script>
 </body>
 </html>
