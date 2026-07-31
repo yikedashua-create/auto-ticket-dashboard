@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>出票自动化监控平台</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- 2026-07-31: 删 Google Fonts 外部依赖，部署后网络隔离/超时会导致字体 fallback，KPI 字距错乱
+     改用系统字体栈（Segoe UI / 微软雅黑 / Consolas），保证本地 = 部署一致 -->
 <style>html, body { background: #0a0e1a; margin: 0; }</style>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"
         onerror="this.onerror=null;this.src='https://unpkg.com/echarts@5/dist/echarts.min.js'"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     background: #0a0e1a;
     color: #e0e6f0;
     padding: 0 20px;
@@ -22,11 +21,11 @@
   }
   /* Outfit 应用范围: 数字/英文/标题优先, 中文 fallback */
   .title, .section-title, .kpi-value, .kpi-label, .hero-stat-value, .kpi-spotlight-value, .bento-big-num, .lamp-line h2 {
-    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: 'Segoe UI', "PingFang SC", "Microsoft YaHei", sans-serif;
   }
   /* JetBrains Mono 用于纯数字 (KPI 数字) */
   .kpi-value, .hero-stat-value, .kpi-spotlight-value, .bento-big-num, td.numeric, .cmp-badge, .kpi-sub {
-    font-family: 'JetBrains Mono', 'Outfit', monospace;
+    font-family: 'Cascadia Code', 'Consolas', 'Courier New', 'Segoe UI', monospace;
   }
   /* 自适应：屏幕很宽（>1750px）时让布局居中避免拉伸 */
   .layout-wrapper {
@@ -196,7 +195,7 @@
   .kpi-value.red { color: #ff4757; }
   .kpi-value.yellow { color: #ffa502; }
   .kpi-sub {
-    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: 'Segoe UI', "PingFang SC", "Microsoft YaHei", sans-serif;
     font-size: 12px;
     color: rgba(192, 200, 212, 0.82);
     margin-top: 6px;
@@ -209,7 +208,7 @@
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 
   /* 10. 产品时限分析（deadline 页, 2026-07-30 新增）— 热力图 + 柱状图 + 分布 */
-  .heatmap { display: grid; gap: 3px; font-family: 'JetBrains Mono', 'Outfit', monospace; font-size: 11px; }
+  .heatmap { display: grid; gap: 3px; font-family: 'Cascadia Code', 'Consolas', 'Courier New', 'Segoe UI', monospace; font-size: 11px; }
   .hm-cell { padding: 6px 8px; text-align: center; border-radius: 4px; background: rgba(15,22,38,0.6); color: rgba(224,230,240,0.95); border: 1px solid rgba(255,255,255,0.04); }
   .hm-cell.empty { background: transparent; border: none; }
   .hm-cell.head  { background: transparent; border: none; color: #00e5ff; font-weight: 600; }
@@ -228,13 +227,13 @@
   .bar-fill { height: 100%; border-radius: 9px; background: linear-gradient(90deg, #00e5ff 0%, #a855f7 100%); box-shadow: 0 0 12px rgba(0,229,255,0.4); position: relative; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
   .bar-fill.warn { background: linear-gradient(90deg, #ffa502 0%, #ff6b35 100%); box-shadow: 0 0 12px rgba(255,165,2,0.5); }
   .bar-fill.danger { background: linear-gradient(90deg, #ff4757 0%, #c0392b 100%); box-shadow: 0 0 12px rgba(255,71,87,0.5); }
-  .bar-pct { font-family: 'JetBrains Mono', monospace; color: #00e5ff; text-shadow: 0 0 8px rgba(0,229,255,0.5); font-weight: 600; font-size: 11px; }
+  .bar-pct { font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace; color: #00e5ff; text-shadow: 0 0 8px rgba(0,229,255,0.5); font-weight: 600; font-size: 11px; }
 
   .dist-row { display: grid; grid-template-columns: 100px 1fr 80px; align-items: center; gap: 10px; padding: 6px 0; font-size: 12px; }
   .dist-label { color: #c0c8d4; }
   .dist-track { position: relative; height: 14px; background: rgba(15,22,38,0.55); border-radius: 7px; overflow: hidden; }
   .dist-fill { height: 100%; border-radius: 7px; box-shadow: 0 0 10px currentColor; }
-  .dist-pct { font-family: 'JetBrains Mono', monospace; font-weight: 600; text-align: right; }
+  .dist-pct { font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace; font-weight: 600; text-align: right; }
 
   .note { font-size: 11px; color: rgba(148,163,184,0.7); padding: 8px 12px; background: rgba(0,229,255,0.04); border: 1px solid rgba(0,229,255,0.12); border-radius: 6px; margin-top: 10px; line-height: 1.6; }
   .chart-box {
@@ -403,8 +402,6 @@
   /* 月份切换器 — 玻璃化升级 (跟 section/kpi 统一) */
   .month-switcher {
     background: linear-gradient(135deg, rgba(15, 22, 38, 0.6) 0%, rgba(10, 14, 26, 0.5) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 16px;
     padding: 14px 20px;
@@ -451,7 +448,7 @@
     color: #7a8ba0;
     font-size: 13px;
     margin-left: auto;
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'Cascadia Code', 'Consolas', 'Courier New', 'Courier New', monospace;
   }
   .month-switcher .month-info b {
     color: #00e5ff;
@@ -501,7 +498,7 @@
 
   .cmp-badge {
     display: inline-block;
-    font-family: 'JetBrains Mono', 'Outfit', monospace;
+    font-family: 'Cascadia Code', 'Consolas', 'Courier New', 'Segoe UI', monospace;
     background: transparent;
     border: none;
     padding: 0;
@@ -515,7 +512,7 @@
   .cmp-no {
     color: rgba(148, 163, 184, 0.7);
     font-size: 11px;
-    font-family: 'Outfit', "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: 'Segoe UI', "PingFang SC", "Microsoft YaHei", sans-serif;
     margin-left: 0;
     letter-spacing: 0.3px;
   }
@@ -542,14 +539,12 @@
     width: 1100px; height: 1100px;
     background: radial-gradient(circle, rgba(0, 229, 255, 0.9) 0%, rgba(0, 229, 255, 0.3) 40%, transparent 70%);
     filter: blur(50px);
-    animation: aurora-float 12s ease-in-out infinite;
   }
   body::after {
     bottom: -200px; left: -200px;
     width: 1100px; height: 1100px;
     background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.25) 40%, transparent 70%);
     filter: blur(50px);
-    animation: aurora-float 15s ease-in-out infinite reverse;
   }
   /* 第 3 团: 粉色 (右下) */
   .aurora-3rd {
@@ -560,14 +555,11 @@
     filter: blur(50px);
     pointer-events: none;
     z-index: 0;
-    animation: aurora-float 18s ease-in-out infinite;
   }
 
   /* 玻璃卡片 — 渐变背景 + neumorphic 多层阴影 + 顶部高光线 (透明度调低让 aurora 透过来) */
   .section, .sidebar, .kpi, .chart-box, .nav-section, .nav-mini {
     background: linear-gradient(135deg, rgba(15, 22, 38, 0.6) 0%, rgba(10, 14, 26, 0.5) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow:
       0 4px 24px rgba(0, 0, 0, 0.5),
@@ -641,19 +633,14 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 100%;
-    animation: hero-grad 8s ease infinite;
     text-shadow: 0 0 40px rgba(0, 229, 255, 0.3);
   }
-  @keyframes hero-grad {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+      50% { background-position: 100% 50%; }
   }
 
   /* 导航项玻璃化 */
   .nav-item {
     background: rgba(15, 22, 38, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
   }
@@ -666,7 +653,6 @@
   /* 徽章玻璃化 — 提升可见度 */
   .badge {
     background: rgba(15, 22, 38, 0.6) !important;
-    backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
     color: #cbd5e1 !important;
   }
@@ -725,16 +711,11 @@
    * ============================================================ */
   @keyframes tw-char-in { to { opacity: 1; } }
   @keyframes tw-blink { 50%, 100% { opacity: 0; } 50.01% { opacity: 1; } }
-  @keyframes hero-mask-anim {
-    0%   { -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%); }
-    100% { -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); }
+      100% { -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); }
   }
   @keyframes v3-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.18); color: #00e5ff; } 100% { transform: scale(1); } }
   @keyframes count-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
-  @keyframes aurora-float { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(40px, 30px); } }
-  @keyframes flow-sweep { 0% { left: -100%; } 100% { left: 100%; } }
-
-  /* 1. CountUp — 数字带 data-count 走 tabular-nums */
+      /* 1. CountUp — 数字带 data-count 走 tabular-nums */
   .kpi-value[data-count] { font-variant-numeric: tabular-nums; }
   .kpi-value.counted { animation: count-bump-anim 0.4s ease; }
 
@@ -758,7 +739,6 @@
     -webkit-text-fill-color: transparent;
     -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
     mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
-    animation: hero-mask-anim 1.6s cubic-bezier(0.65,0,0.35,1) 0.15s forwards;
   }
 
   /* 5. Typewriter */
@@ -816,7 +796,7 @@
   .aa-row-total {
     color: #7a8ba0;
     font-size: 13px;
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'Cascadia Code', 'Consolas', 'Courier New', 'Courier New', monospace;
     font-weight: 600;
     flex-shrink: 0;
   }
@@ -838,7 +818,7 @@
     border-top: none;
   }
   .v1-block-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -885,7 +865,7 @@
     min-width: 0;
   }
   .v1-num {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'Cascadia Code', 'Consolas', 'Courier New', 'Courier New', monospace;
     font-weight: 600;
     text-align: right;
     font-size: 13px;
@@ -972,7 +952,7 @@
     filter: drop-shadow(0 0 3px rgba(0, 229, 255, 0.8));
   }
   .succ-pct {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-family: 'Cascadia Code', 'Consolas', 'Courier New', 'Courier New', monospace;
     font-weight: 600;
     text-align: right;
     font-size: 13px;
@@ -985,7 +965,7 @@
     border: 1px solid;
     text-align: center;
     background: rgba(15, 22, 38, 0.3);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     letter-spacing: 0.3px;
   }
   .succ-perfect .succ-badge { background: rgba(0, 255, 136, 0.15); }
@@ -1569,9 +1549,9 @@ function createChart(id, option) {
 
 const baseEchartsOpt = {
   backgroundColor: "transparent",
-  textStyle: { color: "rgba(192, 200, 212, 0.85)", fontFamily: "'Outfit', 'PingFang SC', 'Microsoft YaHei', sans-serif" },
+  textStyle: { color: "rgba(192, 200, 212, 0.85)", fontFamily: "'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" },
   legend: {
-    textStyle: { color: "rgba(192, 200, 212, 0.85)", fontFamily: "'Outfit', 'PingFang SC', 'Microsoft YaHei', sans-serif", fontSize: 12 },
+    textStyle: { color: "rgba(192, 200, 212, 0.85)", fontFamily: "'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif", fontSize: 12 },
     top: 5,
     itemGap: 18,
     itemWidth: 12,
@@ -1580,7 +1560,7 @@ const baseEchartsOpt = {
   tooltip: {
     backgroundColor: "#0a0e1a",
     borderColor: "rgba(0, 229, 255, 0.3)",
-    textStyle: { color: "#e0e6f0", fontFamily: "'Outfit', 'PingFang SC', 'Microsoft YaHei', sans-serif" },
+    textStyle: { color: "#e0e6f0", fontFamily: "'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" },
   },
   grid: { left: 50, right: 20, top: 40, bottom: 35 },
 };
@@ -1762,14 +1742,14 @@ function renderOverview() {
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "item", formatter: tooltipFmt },
     // 中心总数 graphic + 居中饼图
     graphic: [
-      { type: 'text', left: 'center', top: '44%', style: { text: fmt.num(s.total_orders), fill: '#ffffff', fontSize: 36, fontWeight: 800, fontFamily: "'Outfit', 'PingFang SC', sans-serif", textAlign: 'center', textShadow: '0 0 16px rgba(0, 229, 255, 0.4)' } },
-      { type: 'text', left: 'center', top: '58%', style: { text: '总订单数', fill: 'rgba(148, 163, 184, 0.85)', fontSize: 12, fontFamily: "'Outfit', 'PingFang SC', sans-serif", textAlign: 'center', letterSpacing: 1 } },
+      { type: 'text', left: 'center', top: '44%', style: { text: fmt.num(s.total_orders), fill: '#ffffff', fontSize: 36, fontWeight: 800, fontFamily: "'Segoe UI', 'PingFang SC', sans-serif", textAlign: 'center', textShadow: '0 0 16px rgba(0, 229, 255, 0.4)' } },
+      { type: 'text', left: 'center', top: '58%', style: { text: '总订单数', fill: 'rgba(148, 163, 184, 0.85)', fontSize: 12, fontFamily: "'Segoe UI', 'PingFang SC', sans-serif", textAlign: 'center', letterSpacing: 1 } },
     ],
     series: [{
       type: "pie",
       radius: ["50%", "75%"],
       center: ["50%", "55%"],
-      label: { color: "rgba(224, 230, 240, 0.92)", formatter: "{b}\n{d}%", fontSize: 12, fontFamily: "'Outfit', 'PingFang SC', sans-serif", textShadowColor: "rgba(0, 0, 0, 0.6)", textShadowBlur: 4 },
+      label: { color: "rgba(224, 230, 240, 0.92)", formatter: "{b}\n{d}%", fontSize: 12, fontFamily: "'Segoe UI', 'PingFang SC', sans-serif", textShadowColor: "rgba(0, 0, 0, 0.6)", textShadowBlur: 4 },
       labelLine: { length: 12, length2: 10, lineStyle: { color: "rgba(0, 229, 255, 0.4)" } },
       data: pieData,
     }],
