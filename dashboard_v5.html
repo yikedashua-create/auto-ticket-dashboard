@@ -550,13 +550,14 @@
     background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.25) 40%, transparent 70%);
     filter: blur(50px);
   }
-  /* 第 3 团: 粉色 (右下) */
+  /* 第 3 团: 粉色 (右下) — 2026-07-31 加强: 100vw 撑满后粉色被 chart-box 半透明盖住，
+     不透明度 0.6→0.9，中圈 0.2→0.5，blur 50→35 让光晕更集中更亮 */
   .aurora-3rd {
     position: fixed;
-    bottom: -150px; right: 15%;
+    bottom: -150px; right: 8%;
     width: 900px; height: 900px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.6) 0%, rgba(236, 72, 153, 0.2) 40%, transparent 70%);
-    filter: blur(50px);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(236, 72, 153, 0.5) 30%, rgba(236, 72, 153, 0.2) 55%, transparent 75%);
+    filter: blur(35px);
     pointer-events: none;
     z-index: 0;
   }
