@@ -14,7 +14,7 @@
     font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     background: #0a0e1a;
     color: #e0e6f0;
-    padding: 0 20px;
+    padding: 0;            /* 2026-07-31: 去掉 20px 内边距，撑满 Streamlit iframe 100vw */
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -48,9 +48,13 @@
     display: grid;
     grid-template-columns: 200px 1fr;
     gap: 16px;
-    max-width: 100%;      /* 撑满 Streamlit 容器，不再有左右空白 */
+    width: 100vw;          /* 2026-07-31: 强制 100vw 撑满，避开 streamlit 1.58 的 736px 限制 */
+    max-width: 100vw;
     margin: 0;
+    padding: 0;
   }
+  /* grid 子项 min-width: 0 — 防止 ECharts / KPI 文字撑爆列宽导致偏移 */
+  .layout > * { min-width: 0; }
   /* 自适应：超窄屏（<900px）侧边栏与主区上下排版，避免挤压 */
   @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; }

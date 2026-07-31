@@ -22,37 +22,58 @@ st.set_page_config(
 st.markdown(
     """
 <style>
-    /* 隐藏部署状态条，腾出空间给 dashboard iframe */
+    /* ========== 2026-07-31 修复: Streamlit 部署后 iframe 不能铺满浏览器全屏 ==========
+       根因: streamlit 1.58 的 .block-container 有内置 max-width: 736px 响应式约束，
+       max-width: 100% !important 是相对父 .main，而 .main 自己也被限制，导致中间窄两边空白
+       修法: 强制 html/body/.stApp/.main/.block-container/iframe 全部 100vw 撑满 viewport
+    */
+    html, body { margin: 0 !important; padding: 0 !important; overflow-x: hidden; }
+
+    /* 隐藏 streamlit chrome（顶部条/底部条/管理按钮），腾出空间 */
     [data-testid="stToolbar"] { display: none !important; }
     [data-testid="stDecoration"] { display: none !important; }
     [data-testid="stHeader"] { display: none !important; }
     [data-testid="stStatusWidget"] { visibility: hidden !important; }
     #MainMenu { visibility: hidden !important; }
     footer { visibility: hidden !important; }
-    /* streamlit 右下角 "Manage app" 按钮 */
     .viewerBadge_link__qRIco,
     [class*="viewerBadge"] { display: none !important; }
 
-    /* 关键：把 streamlit 外层背景改成和 dashboard 一样的 #0a0e1a，
-       消除 iframe 周围的白边（白边的根本原因） */
-    .stApp { background: #0a0e1a !important; }
-    [data-testid="stAppViewContainer"] { background: #0a0e1a !important; }
-
-    /* 干掉 main 区域的 padding 和 max-width 限制 */
-    .main .block-container {
+    /* 强制 .stApp 占满 viewport（关键：width: 100vw 绕过 streamlit 1.58 的 736px 限制） */
+    .stApp {
+        background: #0a0e1a !important;
+        max-width: 100vw !important;
+        width: 100vw !important;
         padding: 0 !important;
-        max-width: 100% !important;
         margin: 0 !important;
     }
-    section.main { padding: 0 !important; }
-    div[data-testid="stVerticalBlock"] { padding: 0 !important; gap: 0 !important; }
 
-    /* iframe 撑满 + 去边框 */
+    /* 强制 main / appViewContainer / block-container 占满 */
+    [data-testid="stAppViewContainer"],
+    .main,
+    .main > div,
+    .block-container,
+    section.main,
+    div[data-testid="stVerticalBlock"] {
+        background: #0a0e1a !important;
+        max-width: 100vw !important;
+        width: 100vw !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 0 !important;
+    }
+
+    /* iframe 强制 100vw 撑满（避开 streamlit 默认 min-width 限制） */
     iframe {
-        width: 100% !important;
+        width: 100vw !important;
+        min-width: 100vw !important;
+        max-width: 100vw !important;
+        height: 8000px !important;  /* 调到 8000 容纳整个 dashboard，让 streamlit 滚动控制 */
         border: none !important;
         display: block !important;
         background: #0a0e1a !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 </style>
 """,
@@ -74,4 +95,4 @@ with open(HTML_FILE, "r", encoding="utf-8") as f:
 # 2. components.html() 通过上面的 CSS 注入已经把"白边"问题解决
 import streamlit.components.v1 as components
 
-components.html(html, height=5200, scrolling=True)
+components.html(html, height=8000, scrolling=True)
