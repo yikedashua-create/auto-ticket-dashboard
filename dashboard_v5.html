@@ -977,7 +977,10 @@
   .succ-bad     .succ-badge { background: rgba(255, 71, 87, 0.1); }
 
   /* 7. Aurora 背景 — 已在 476 行定义强版本, 这里不再重复 (避免覆盖) */
-  .title, .subtitle, .layout, .month-switcher { position: relative; z-index: 1; }
+  /* 2026-07-31: 把 .layout 从 z=1 那行拿掉，让 layout 不形成 stacking context，
+     aurora (z=0) 才能透出到 layout 区域（section 半透明卡片"漂浮"在 aurora 之上） */
+  .title, .subtitle, .month-switcher { position: relative; z-index: 1; }
+  .layout { position: relative; }  /* z-index auto，不形成 stacking context，让 aurora 透出 */
 </style>
 </head>
 <body>
