@@ -718,7 +718,7 @@
   @keyframes tw-blink { 50%, 100% { opacity: 0; } 50.01% { opacity: 1; } }
       100% { -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); }
   }
-  @keyframes v3-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.18); color: #00e5ff; } 100% { transform: scale(1); } }
+  @keyframes v3-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.25); color: #00e5ff; text-shadow: 0 0 24px rgba(0, 229, 255, 0.7); } 100% { transform: scale(1); } }
   @keyframes count-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
       /* 1. CountUp — 数字带 data-count 走 tabular-nums */
   .kpi-value[data-count] { font-variant-numeric: tabular-nums; }
@@ -752,7 +752,7 @@
   .anim-tw .tw-cursor { display: inline-block; width: 2px; height: 1em; background: #00e5ff; margin-left: 2px; vertical-align: -2px; animation: tw-blink 1s step-end infinite; }
 
   /* 6. V3 bump (数字 scale 反馈) */
-  .anim-v3-bump { animation: v3-bump-anim 0.4s ease; }
+  .anim-v3-bump { animation: v3-bump-anim 0.55s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
   /* 7. V3 勾选列表 — 行式布局 (失败分析 V3 5 数字卡下方) */
   .aa-list {
@@ -3598,7 +3598,7 @@ function renderFailureAnalysis() {
     };
     return `
     <div class="section">
-      <div class="section-title">💡 V3 勾选实时算预期（点击体验）
+      <div class="section-title">💡 全自动成功率预测（点击体验）
         <span class="badge badge-info">${path} 路径 · ${fmt.num(sumB)} 单</span>
       </div>
       <div class="chart-hint" style="margin-bottom:10px">
@@ -3689,12 +3689,18 @@ function bindAutoAnalysisPicks(aBase, bBase) {
       const cd = document.getElementById(`aa-cumdiff-${p}`);
       const rt = document.getElementById(`aa-rate-${p}`);
       const lf = document.getElementById(`aa-lift-${p}`);
-      if (cnt) cnt.textContent = `${count} 条`;
-      if (cd) cd.textContent = `+${fmt.num(cumDiff)}`;
+      if (cnt) {
+        cnt.textContent = `${count} 条`;
+        AnimEngine.v3Bump(cnt);  // 2026-07-31: 补 bump（之前只 bump 2/5 数字）
+      }
+      if (cd) {
+        cd.textContent = `+${fmt.num(cumDiff)}`;
+        AnimEngine.v3Bump(cd);
+      }
       if (rt) {
         rt.textContent = `${newRate.toFixed(2)}%`;
         rt.style.color = lift > 0 ? "#00ff88" : (lift < 0 ? "#ff4757" : "#7a8ba0");
-        // 2026-07-30: 数字变更触发 v3-bump 动效
+        // 数字变更触发 v3-bump 动效
         AnimEngine.v3Bump(rt);
       }
       if (lf) {
@@ -4767,7 +4773,7 @@ const AnimEngine = (() => {
     el.classList.remove('anim-v3-bump');
     void el.offsetWidth;  // reflow 强制重启动画
     el.classList.add('anim-v3-bump');
-    setTimeout(() => el.classList.remove('anim-v3-bump'), 450);
+    setTimeout(() => el.classList.remove('anim-v3-bump'), 600);
   }
 
   // 7. Spotlight — 鼠标位置追踪 (bento + kpi-spotlight)
