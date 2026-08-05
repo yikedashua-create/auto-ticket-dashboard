@@ -4845,5 +4845,74 @@ const AnimEngine = (() => {
   mo.observe(main, { childList: true, subtree: true });
 })();
 </script>
+
+<!-- ============================================================
+ * 2026-08-05 页面视图统一（4 个调整，按用户偏好"换皮不动布局"）
+ *   A. 标题装饰条: 已有 ::after 装饰条, 加 inset border-bottom 让层级更清晰
+ *   B. 圆角统一: .section/.chart-box 18→16, .nav-item 10→16 (其他保持)
+ *   C. KPI 副标题强化: .kpi-sub + .cmp-badge 加 cyan glow + tabular-nums
+ *   D. 导航高亮: .nav-item.active 加 ::before 3px cyan 竖条 + glow
+ * ============================================================ -->
+<style>
+  /* B. 圆角统一 16px (覆盖前面的 18px / 10px) */
+  .section, .chart-box { border-radius: 16px !important; }
+  .nav-item { border-radius: 12px !important; }   /* nav-item 太小, 提到 12px 平衡感 */
+  .kpi { border-radius: 12px !important; }       /* kpi 也统一到 12px 跟 nav 一致 */
+
+  /* C. KPI 副标题行统一风格 */
+  .kpi-sub {
+    font-variant-numeric: tabular-nums !important;  /* 等宽数字, 涨跌对齐 */
+    letter-spacing: 0.3px !important;
+    text-shadow: 0 0 12px rgba(0, 229, 255, 0.08) !important;  /* 极淡 cyan glow */
+  }
+  .cmp-badge {
+    font-variant-numeric: tabular-nums !important;
+    letter-spacing: 0.3px !important;
+    text-shadow: 0 0 14px currentColor !important;  /* 用 currentColor 让绿色/红色自然 glow */
+    transition: text-shadow 0.3s ease !important;
+  }
+  /* 副标题行整体: 行高 + 间距统一 */
+  .kpi-sub-row {
+    gap: 8px !important;        /* 从 6px 增到 8px 增强呼吸 */
+    margin-top: 8px !important;  /* 从 6px 增到 8px 平衡字间距 */
+  }
+
+  /* D. 导航高亮强化: 当前页左侧 cyan 竖条 + 强 glow */
+  .nav-item {
+    position: relative !important;
+    padding-left: 16px !important;  /* 给竖条留位置 (从 12px 增到 16px) */
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  .nav-item::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) scaleY(0);
+    width: 3px;
+    height: 60%;
+    background: #00e5ff;
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .nav-item.active::before {
+    transform: translateY(-50%) scaleY(1);
+  }
+  .nav-item.active {
+    box-shadow:
+      0 0 20px rgba(0, 229, 255, 0.25),
+      inset 0 0 0 1px rgba(0, 229, 255, 0.15) !important;
+  }
+  .nav-item:hover {
+    background: rgba(0, 229, 255, 0.08) !important;
+    border-color: rgba(0, 229, 255, 0.3) !important;
+    transform: translateX(2px);
+  }
+  .nav-item:not(.active):hover::before {
+    transform: translateY(-50%) scaleY(0.5);
+    opacity: 0.5;
+  }
+</style>
 </body>
 </html>
