@@ -4914,5 +4914,64 @@ const AnimEngine = (() => {
     opacity: 0.5;
   }
 </style>
+
+<!-- ============================================================
+ * 2026-08-05 背景去花（3 个调整全做）
+ *   根因: 之前为让 aurora 透出把 .layout 改 z-index: auto + 玻璃卡片透明度 0.6/0.5
+ *         → 100vw 撑满后 aurora 在主区大块透出, 紫色光晕盖住卡片, 看起来"花"
+ *   A. 强化主区背景: 玻璃卡片 0.6/0.5 → 0.88/0.85 实色化, 主区压住 aurora
+ *   B. 降 aurora 不透明度: aurora-3rd 0.9/0.5/0.2 → 0.5/0.3/0.1, blur 35→40
+ *                  body::before 0.9→0.55, body::after 0.8→0.45, blur 50→40
+ *   C. 主区背景加柔化磨砂: .layout::before 加 radial-gradient 柔化层,
+ *                  中心 rgba(10,14,26,0.92) 实色, 边缘 transparent, 让 aurora 仅在边缘透出
+ * ============================================================ -->
+<style>
+  /* A. 强化主区背景 - 玻璃卡片实色化 (覆盖前面的 0.6/0.5) */
+  .section, .sidebar, .kpi, .chart-box, .nav-section, .nav-mini {
+    background: linear-gradient(135deg, rgba(15, 22, 38, 0.88) 0%, rgba(10, 14, 26, 0.85) 100%) !important;
+  }
+  .month-switcher {
+    background: linear-gradient(135deg, rgba(15, 22, 38, 0.92) 0%, rgba(10, 14, 26, 0.88) 100%) !important;
+  }
+
+  /* B. 降 aurora 不透明度 (让 aurora 仅作为边缘"呼吸", 不抢主区) */
+  /*    body::before 青色右上 */
+  body::before {
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.55) 0%, rgba(0, 229, 255, 0.2) 40%, transparent 70%) !important;
+    filter: blur(40px) !important;
+  }
+  /*    body::after 紫色左下 */
+  body::after {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, rgba(168, 85, 247, 0.15) 40%, transparent 70%) !important;
+    filter: blur(40px) !important;
+  }
+  /*    aurora-3rd 粉色右下 */
+  .aurora-3rd {
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(236, 72, 153, 0.3) 30%, rgba(236, 72, 153, 0.1) 55%, transparent 75%) !important;
+    filter: blur(40px) !important;
+  }
+
+  /* C. 主区背景加柔化磨砂 - 中心实色覆盖, 边缘透出 aurora */
+  .layout {
+    position: relative !important;  /* 覆盖前面 .layout 不形成 stacking context 的设置 */
+  }
+  .layout::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 240px;  /* 避开侧栏 (sidebar 200px + gap 16px + 24px padding buffer) */
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(10, 14, 26, 0.92) 0%,
+      rgba(10, 14, 26, 0.75) 35%,
+      rgba(10, 14, 26, 0.3) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: -1;  /* 放最底层, 卡片(z=auto)在它之上 */
+  }
+</style>
 </body>
 </html>
