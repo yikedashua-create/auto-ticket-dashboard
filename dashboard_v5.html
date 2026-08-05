@@ -4934,24 +4934,24 @@ const AnimEngine = (() => {
     background: linear-gradient(135deg, rgba(15, 22, 38, 0.92) 0%, rgba(10, 14, 26, 0.88) 100%) !important;
   }
 
-  /* B. 降 aurora 不透明度 (让 aurora 仅作为边缘"呼吸", 不抢主区) */
+  /* B. 降 aurora 不透明度 (让 aurora 仅作为边缘"暗示", 不抢主区) - 2026-08-05 再降一档 */
   /*    body::before 青色右上 */
   body::before {
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.55) 0%, rgba(0, 229, 255, 0.2) 40%, transparent 70%) !important;
-    filter: blur(40px) !important;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.4) 0%, rgba(0, 229, 255, 0.12) 40%, transparent 70%) !important;
+    filter: blur(45px) !important;
   }
   /*    body::after 紫色左下 */
   body::after {
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, rgba(168, 85, 247, 0.15) 40%, transparent 70%) !important;
-    filter: blur(40px) !important;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0.1) 40%, transparent 70%) !important;
+    filter: blur(45px) !important;
   }
   /*    aurora-3rd 粉色右下 */
   .aurora-3rd {
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(236, 72, 153, 0.3) 30%, rgba(236, 72, 153, 0.1) 55%, transparent 75%) !important;
-    filter: blur(40px) !important;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(236, 72, 153, 0.2) 30%, rgba(236, 72, 153, 0.05) 55%, transparent 75%) !important;
+    filter: blur(45px) !important;
   }
 
-  /* C. 主区背景加柔化磨砂 - 中心实色覆盖, 边缘透出 aurora */
+  /* C. 主区背景加柔化磨砂 - 2026-08-05 更实, 仅边缘 8% 极淡透出 aurora */
   .layout {
     position: relative !important;  /* 覆盖前面 .layout 不形成 stacking context 的设置 */
   }
@@ -4964,13 +4964,13 @@ const AnimEngine = (() => {
     bottom: 0;
     background: radial-gradient(
       ellipse at center,
-      rgba(10, 14, 26, 0.92) 0%,
-      rgba(10, 14, 26, 0.75) 35%,
-      rgba(10, 14, 26, 0.3) 70%,
+      rgba(10, 14, 26, 0.97) 0%,
+      rgba(10, 14, 26, 0.92) 50%,
+      rgba(10, 14, 26, 0.7) 85%,
       transparent 100%
     );
     pointer-events: none;
-    z-index: -1;  /* 放最底层, 卡片(z=auto)在它之上 */
+    z-index: -1;
   }
 </style>
 </body>
