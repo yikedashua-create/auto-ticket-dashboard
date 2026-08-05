@@ -148,6 +148,111 @@ def git_has_changes(repo_dir: str) -> bool:
     return result.success and bool(result.output.strip())
 
 
+def sync_html_commit(repo_dir: str, git_remote: str, git_branch: str) -> StepResult:
+    """2026-08-05 新增: 数据 commit + push 后自动同步 dashboard_v5.html 的 COMMIT 字段
+
+    流程:
+      1. git rev-parse --short HEAD 拿最新 commit short hash（就是刚才 commit 的数据 commit）
+      2. 替换 dashboard_v5.html 里的 `const COMMIT = "..."` 为新 hash
+      3. git add + commit + push（chore commit）
+
+    为何必要: dashboard_v5.html 里的 const COMMIT 决定前端从哪个 jsDelivr URL 拉数据
+              数据 commit 后必须同步 COMMIT 字段 + 再 commit，前端刷新才能拉到新数据
+              否则前端还在拉旧 COMMIT 指向的旧 data
+
+    避免循环: chore commit 本身不修改 COMMIT 字段（下次 trigger 才改）
+    """
+    import re
+
+    t0 = time.time()
+    html_path = os.path.join(repo_dir, "dashboard_v5.html")
+    if not os.path.exists(html_path):
+        return StepResult(
+            name="sync_html_commit",
+            success=False,
+            duration=time.time() - t0,
+            error=f"找不到 dashboard_v5.html: {html_path}",
+        )
+
+    # 1) 拿最新 commit short hash
+    hash_step = _run(["git", "rev-parse", "--short", "HEAD"], cwd=repo_dir, timeout=10)
+    if not hash_step.success:
+        return StepResult(
+            name="sync_html_commit",
+            success=False,
+            duration=time.time() - t0,
+            error=f"git rev-parse HEAD 失败: {hash_step.error[:200]}",
+        )
+    new_commit = hash_step.output.strip()
+    if not re.match(r"^[a-f0-9]{7,12}$", new_commit):
+        return StepResult(
+            name="sync_html_commit",
+            success=False,
+            duration=time.time() - t0,
+            error=f"commit hash 格式异常: {new_commit!r}",
+        )
+
+    # 2) 读 dashboard_v5.html，替换 COMMIT 字段
+    with open(html_path, "r", encoding="utf-8") as f:
+        html = f.read()
+    new_html, n = re.subn(
+        r'const\s+COMMIT\s*=\s*"[a-f0-9]+"\s*;',
+        f'const COMMIT = "{new_commit}";',
+        html,
+        count=1,
+    )
+    if n == 0:
+        return StepResult(
+            name="sync_html_commit",
+            success=False,
+            duration=time.time() - t0,
+            error="dashboard_v5.html 里找不到 'const COMMIT = \"...\";' 字段",
+        )
+    if new_html == html:
+        # 已经匹配但内容相同（如已经同步过），跳过 commit
+        return StepResult(
+            name="sync_html_commit",
+            success=True,
+            duration=time.time() - t0,
+            output=f"COMMIT 已是最新 ({new_commit})，跳过",
+        )
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(new_html)
+
+    # 3) git add + commit + push
+    add_step = _run(["git", "add", "dashboard_v5.html"], cwd=repo_dir, timeout=30)
+    if not add_step.success:
+        return StepResult(
+            name="sync_html_commit",
+            success=False,
+            duration=time.time() - t0,
+            error=f"git add dashboard_v5.html 失败: {add_step.error[:200]}",
+        )
+    msg = f"chore: 同步 HTML COMMIT 到 {new_commit} (auto_sync 触发)"
+    commit_step = _run(["git", "commit", "-m", msg], cwd=repo_dir, timeout=30)
+    if not commit_step.success:
+        return StepResult(
+            name="sync_html_commit",
+            success=False,
+            duration=time.time() - t0,
+            error=f"git commit 失败: {commit_step.error[:200]}",
+        )
+    push_step = _run(["git", "push", git_remote, git_branch], cwd=repo_dir, timeout=60)
+    if not push_step.success:
+        return StepResult(
+            name="sync_html_commit",
+            success=False,
+            duration=time.time() - t0,
+            error=f"git push 失败: {push_step.error[:200]}",
+        )
+    return StepResult(
+        name="sync_html_commit",
+        success=True,
+        duration=time.time() - t0,
+        output=f"chore commit {new_commit} 已 push",
+    )
+
+
 def execute_trigger(
     file_path: str,
     file_size: int,
@@ -239,6 +344,16 @@ def execute_trigger(
                 steps=steps,
                 error=f"git push 失败（commit 已保存到本地）: {push_step.error[:200]}",
             )
+
+    # Step 6 (2026-08-05 新增): 同步 dashboard_v5.html COMMIT 字段
+    # 原因: dashboard_v5.html 内的 `const COMMIT = "..."` 决定前端从哪个 jsDelivr 路径拉数据
+    #       数据 commit 后必须同步 COMMIT 字段 + 再 commit 一次，前端才能拉到新数据
+    # 关键: chore commit 本身不修改 COMMIT 字段（避免循环）
+    sync_step = sync_html_commit(script_dir, git_remote, git_branch)
+    steps.append(sync_step)
+    if not sync_step.success:
+        # 非致命: 同步失败不影响 data 同步成功
+        log.warning(f"sync_html_commit 失败（不影响本次 trigger 状态）: {sync_step.error[:200]}")
 
     return TriggerResult(
         success=True,
