@@ -17,6 +17,16 @@ import os
 import subprocess
 import sys
 
+# 2026-08-05 修复: PowerShell 5.1 + 中文 Windows 默认 GBK 编码
+# start_background() 起 daemon 线程，print emoji 会触发 UnicodeEncodeError
+# 整个主进程退出 → 守护线程一起死 → auto_sync 假启动
+# 修法: 启动时强制 stdout/stderr utf-8 + 后续 print 用 ASCII 替代 emoji
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 from . import __version__
 from .config import AutoSyncConfig, DEFAULT_CONFIG
 from .manager import AutoSyncManager
@@ -44,25 +54,56 @@ def cmd_start(args):
     for k, v in config_overrides.items():
         setattr(config, k, v)
 
-    mgr = AutoSyncManager(config=config)
-
     if args.foreground:
         # 前台阻塞（开发调试用）
+        mgr = AutoSyncManager(config=config)
         mgr.start_blocking()
     else:
-        # 后台线程（daemon=True，进程退出时自动停止）
-        mgr.start_background()
-        print(f"✅ auto_sync 已后台启动 (v{__version__})")
-        print(f"   监控目录: {config.watch_dir}")
-        print(f"   状态库: {config.status_db_path}")
+        # 2026-08-05 修复: 原来用 daemon 线程（mgr.start_background()），
+        # 主进程退出 → 守护线程一起死 → auto_sync 假启动。
+        # 改用 detached 子进程跑 foreground watchdog，父进程 print 后立即退出，
+        # 子进程独立存活。
+        script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        log_path = os.path.join(script_dir, "auto_sync", "data", "daemon.log")
+        err_path = os.path.join(script_dir, "auto_sync", "data", "daemon.err.log")
+        pid_path = os.path.join(script_dir, "auto_sync", "data", "daemon.pid")
+        # 写 daemon.pid 让外部知道子进程 PID
+        with open(pid_path, "w") as f:
+            f.write("")  # 占位，下面子进程自己覆写
+
+        env = os.environ.copy()
+        env["PYTHONIOENCODING"] = "utf-8"
+        env["PYTHONUTF8"] = "1"
+        # CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS: 子进程独立 session，父进程退出不影响
+        creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+        log_fh = open(log_path, "a", encoding="utf-8")
+        child = subprocess.Popen(
+            [sys.executable, "-m", "auto_sync", "start", "--foreground"],
+            cwd=script_dir,
+            env=env,
+            stdout=log_fh,
+            stderr=log_fh,
+            stdin=subprocess.DEVNULL,
+            creationflags=creationflags,
+            close_fds=True,
+        )
+        with open(pid_path, "w") as f:
+            f.write(str(child.pid))
+        log_fh.close()
+
+        print(f"[OK] auto_sync 已后台启动 (v{__version__})")
+        print(f"     子进程 PID: {child.pid}")
+        print(f"     监控目录: {config.watch_dir}")
+        print(f"     状态库: {config.status_db_path}")
+        print(f"     日志: {log_path}")
         print()
-        print("   常用命令：")
-        print("     python -m auto_sync status    # 看状态")
-        print("     python -m auto_sync history   # 看历史")
-        print("     python -m auto_sync trigger   # 手动触发一次")
+        print("     常用命令：")
+        print("       python -m auto_sync status    # 看状态")
+        print("       python -m auto_sync history   # 看历史")
+        print("       python -m auto_sync trigger   # 手动触发一次")
+        print("       taskkill /F /PID " + str(child.pid) + "  # 停止守护")
         print()
-        print("   进程退出时自动停止（daemon 线程）")
-        print("   如需常驻，建议用 Windows Task Scheduler / NSSM 注册服务")
+        print("     子进程独立 session，父进程退出后继续跑")
 
 
 def cmd_trigger(args):

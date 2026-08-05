@@ -116,13 +116,14 @@ def git_add(repo_dir: str) -> StepResult:
     """git add 只跟踪必要的文件（不污染其他）
 
     注意：不要直接 add auto_sync/（会把 status.db 等运行时数据加进去）
+    注意：raw/ 在 .gitignore 排除，加它会 git exit 1 → 整个 trigger 失败（2026-08-04 bug）
     """
     # 1) 数据文件
     # 2) 源码文件（只看 *.py，不含 data/ 子目录里的运行数据）
     # 3) 启动脚本
     return _run(
         ["git", "add",
-         "dashboard_data.json", "monthly/", "raw/",
+         "dashboard_data.json", "monthly/",
          "gen_dashboard_data.py",
          "auto_sync/*.py", "auto_sync/__init__.py",
          "auto_sync/__main__.py", "auto_sync/examples/",
