@@ -105,19 +105,21 @@ def build_stage_distribution(date: str, full: Dict, max_top_n: int = 5) -> Dict:
     for r in day_data.get("fail_reasons_D", []):
         all_reasons.append({**r, "_source": "D"})
 
-    # 建 fail_drill 索引：reason → {platform_top, airline_top}
-    # (fail_drill_B/D 里 reason 跟 fail_reasons_B/D 同名字段，匹配)
+    # 建 fail_reasons_B/D 索引：reason_full → {platform_top, airline_top, channel_top}
+    # 2026-08-11 v8.x: gen 已给 fail_reasons_B/D 每个 reason 附加全量 platform/airline/channel
     drill_index = {}
-    for fd in (day_data.get("fail_drill_B", []) or []):
-        r = fd.get("reason", "")
-        platform_top = (fd.get("platform_dist", [{}])[0] or {}).get("name", "") if fd.get("platform_dist") else ""
-        airline_top = (fd.get("airline_dist", [{}])[0] or {}).get("code", "") if fd.get("airline_dist") else ""
-        drill_index[r] = {"platform": platform_top, "airline": airline_top}
-    for fd in (day_data.get("fail_drill_D", []) or []):
-        r = fd.get("reason", "")
-        platform_top = (fd.get("platform_dist", [{}])[0] or {}).get("name", "") if fd.get("platform_dist") else ""
-        airline_top = (fd.get("airline_dist", [{}])[0] or {}).get("code", "") if fd.get("airline_dist") else ""
-        drill_index[r] = {"platform": platform_top, "airline": airline_top}
+    for r in (day_data.get("fail_reasons_B", []) or []):
+        key = r.get("full", "") or r.get("reason", "")
+        platform_top = (r.get("platform_dist", [{}])[0] or {}).get("name", "") if r.get("platform_dist") else ""
+        airline_top = (r.get("airline_dist", [{}])[0] or {}).get("code", "") if r.get("airline_dist") else ""
+        channel_top = (r.get("channel_dist", [{}])[0] or {}).get("name", "") if r.get("channel_dist") else ""
+        drill_index[key] = {"platform": platform_top, "airline": airline_top, "channel": channel_top}
+    for r in (day_data.get("fail_reasons_D", []) or []):
+        key = r.get("full", "") or r.get("reason", "")
+        platform_top = (r.get("platform_dist", [{}])[0] or {}).get("name", "") if r.get("platform_dist") else ""
+        airline_top = (r.get("airline_dist", [{}])[0] or {}).get("code", "") if r.get("airline_dist") else ""
+        channel_top = (r.get("channel_dist", [{}])[0] or {}).get("name", "") if r.get("channel_dist") else ""
+        drill_index[key] = {"platform": platform_top, "airline": airline_top, "channel": channel_top}
 
     # 按 9 大环节分组
     stage_groups = {stage: [] for stage in STAGE_ORDER}
@@ -156,6 +158,7 @@ def build_stage_distribution(date: str, full: Dict, max_top_n: int = 5) -> Dict:
                     "sample_order": (tr.get("orders") or [None])[0],
                     "sample_platform": drill_index.get(tr.get("reason", ""), {}).get("platform", ""),
                     "sample_airline": drill_index.get(tr.get("reason", ""), {}).get("airline", ""),
+                    "sample_channel": drill_index.get(tr.get("reason", ""), {}).get("channel", ""),
                 }
                 for tr in top_reasons
             ],
@@ -239,14 +242,17 @@ def render_markdown(report: Dict) -> str:
             reason = r["reason"]
             count = r["count"]
             sample = r["sample_order"] or "—"
-            # E 改动：加平台 + 航司（渠道待补）
+            # E 改动：加平台 + 航司 + 采购渠道
             extras = []
             platform = r.get("sample_platform", "")
             airline = r.get("sample_airline", "")
+            channel = r.get("sample_channel", "")
             if platform:
                 extras.append(platform)
             if airline:
                 extras.append(airline)
+            if channel:
+                extras.append(channel)
             extra_str = " · ".join(extras)
 
             line = f"{num_cn}{reason}（{count}） 例：{sample}"

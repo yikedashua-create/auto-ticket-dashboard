@@ -1907,6 +1907,85 @@ def build_month_data(df, month_label):
         {"reason": short(k[0], 80), "full": k[0], "count": v["count"], "family": k[1], "orders": v["orders"]}
         for k, v in sorted(reason_counter_d.items(), key=lambda kv: -kv[1]["count"])
     ]
+
+    # 2026-08-11 v8.x: 给每个 reason 附加全量 platform/airline/channel 下钻
+    # 复用 build_drilldown 内部逻辑，但不限 top_n=10
+    # 在 build_month_data 内部调用：月调用和日调用都会自动加，daily_detail 也覆盖
+    # 关键：必须用跟 fail_reasons_B 构造**完全一致**的 pipeline：
+    #   cleaned = get_root_reason(r)
+    #   fam = family_reason(cleaned)
+    #   cleaned_after = family_sub_normalize(cleaned, fam)  ← 这一步把"验真异常 报错:xxx"归一到"验真异常"
+    # 否则 daily_detail 的 fail_reasons_B 的 full 字段（=cleaned_after）匹配不上
+    def _compute_extras_for_reasons(reason_list, path_df):
+        extras = {}
+        if path_df.empty or not reason_list:
+            return extras
+        # 完全对齐 fail_reasons_B 构造的 pipeline
+        cleaned = path_df.apply(lambda r: get_root_reason(r), axis=1)
+        cleaned = cleaned.fillna("").astype(str).str.strip()
+        # 算 cleaned_after（族内归一）
+        cleaned_after_list = []
+        for c in cleaned:
+            c2 = c if c else "(无)"
+            fam = family_reason(c2) or "(无)"
+            after = family_sub_normalize(c2, fam)
+            if not after or not after.strip():
+                after = "(无)"
+            cleaned_after_list.append(after)
+        cleaned_after_series = pd.Series(cleaned_after_list, index=path_df.index)
+
+        for r in reason_list:
+            full = r.get("full", "")
+            if not full:
+                continue
+            sub_mask = cleaned_after_series == full
+            if not sub_mask.any():
+                sub_mask = cleaned_after_series.str.contains(full, regex=False, na=False)
+            if not sub_mask.any():
+                continue
+            sub = path_df[sub_mask]
+            # 平台
+            plat_dist = sub["平台"].value_counts().head(10)
+            platform_dist = [{"name": k, "count": int(v)} for k, v in plat_dist.items()]
+            # 航司（explode 多航司）
+            air_col = "航空公司列表" if "航空公司列表" in sub.columns else ("航司编码信息" if "航司编码信息" in sub.columns else "航司")
+            air_exploded = sub[air_col].fillna("").astype(str).str.strip()
+            air_exploded = air_exploded[air_exploded != ""].str.split(r"[,,;；\s]+", regex=True).explode()
+            air_exploded = air_exploded[air_exploded.str.strip() != ""]
+            air_dist = air_exploded.value_counts().head(10)
+            airline_dist = []
+            for k, v in air_dist.items():
+                k_str = str(k).strip()
+                cn = AIRLINE_NAME.get(k_str, k_str)
+                airline_dist.append({"code": k_str, "name": cn, "count": int(v)})
+            # 渠道
+            chan_series = sub["_channel"].fillna("").astype(str).str.strip()
+            chan_series = chan_series[chan_series != ""]
+            chan_counts = chan_series.value_counts().head(10)
+            channel_dist = [{"name": k, "count": int(v)} for k, v in chan_counts.items()]
+            extras[full] = {
+                "platform_dist": platform_dist,
+                "airline_dist": airline_dist,
+                "channel_dist": channel_dist,
+            }
+        return extras
+
+    path_df_b = df[df["path"] == "B"]
+    path_df_d = df[df["path"] == "D"]
+    extras_b = _compute_extras_for_reasons(out["fail_reasons_B"], path_df_b)
+    extras_d = _compute_extras_for_reasons(out["fail_reasons_D"], path_df_d)
+    for r in out["fail_reasons_B"]:
+        full_key = r.get("full", "")
+        extra = extras_b.get(full_key, {})
+        r["platform_dist"] = extra.get("platform_dist", [])
+        r["airline_dist"] = extra.get("airline_dist", [])
+        r["channel_dist"] = extra.get("channel_dist", [])
+    for r in out["fail_reasons_D"]:
+        full_key = r.get("full", "")
+        extra = extras_d.get(full_key, {})
+        r["platform_dist"] = extra.get("platform_dist", [])
+        r["airline_dist"] = extra.get("airline_dist", [])
+        r["channel_dist"] = extra.get("channel_dist", [])
     # 族级 Top（看板默认展示，Top 15 足够，前端限制显示 Top 10）
     out["fail_families_B"] = [
         {"family": k, "count": v}
@@ -2012,6 +2091,12 @@ def build_month_data(df, month_label):
             rescued_count = int(staff_series.shape[0])
             rescue_rate = round(rescued_count / n_sub * 100, 2) if n_sub else 0
 
+            # 6. 采购渠道分布（2026-08-11 新增，日报需要）
+            chan_series = sub["_channel"].fillna("").astype(str).str.strip()
+            chan_series = chan_series[chan_series != ""]
+            chan_counts = chan_series.value_counts().head(10)
+            channel_dist = [{"name": k, "count": int(v)} for k, v in chan_counts.items()]
+
             drills.append({
                 "reason": short(reason_text, 80),
                 "total": int(n_sub),
@@ -2021,6 +2106,7 @@ def build_month_data(df, month_label):
                 "cross": cross,
                 "date_trend": date_trend,
                 "staff_dist": staff_dist,
+                "channel_dist": channel_dist,  # 2026-08-11 新增
                 "rescued_count": rescued_count,
                 "rescue_rate": rescue_rate,
             })
