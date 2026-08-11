@@ -72,16 +72,16 @@ def build_path_distribution(daily: Dict) -> Dict:
 # --------------------------------------------------------------------------- #
 # 9 大环节 × Top 3 错误
 # --------------------------------------------------------------------------- #
-def build_stage_distribution(date: str, full: Dict, top_n: int = 3) -> Dict:
+def build_stage_distribution(date: str, full: Dict, max_top_n: int = 5) -> Dict:
     """9 大环节分布（按 family 聚合 B+D，按天切）
 
-    数据源: daily_detail[date].fail_families_B/D + fail_reasons_B/D
+    数据源: daily_detail[date].fail_families_B/D + fail_reasons_B/D + fail_drill_B/D
     9 大环节 = 预定/支付/取票/验真/回填/平台/系统/人工/其他
 
     每个环节：
       - 环节名 + 数量（B+D 当天）
-      - Top N 错误（按 count 降序）
-      - 每条 reason 带 1 个案例订单号（orders[0]）
+      - 1-5 个 Top 错误（按 count 降序，最多 5）
+      - 每条 reason 带：案例订单号 + 平台 + 航司（渠道待补）
     """
     # 取 daily_detail[date] 里的按天数据
     dd = full.get("daily_detail", {})
@@ -105,6 +105,20 @@ def build_stage_distribution(date: str, full: Dict, top_n: int = 3) -> Dict:
     for r in day_data.get("fail_reasons_D", []):
         all_reasons.append({**r, "_source": "D"})
 
+    # 建 fail_drill 索引：reason → {platform_top, airline_top}
+    # (fail_drill_B/D 里 reason 跟 fail_reasons_B/D 同名字段，匹配)
+    drill_index = {}
+    for fd in (day_data.get("fail_drill_B", []) or []):
+        r = fd.get("reason", "")
+        platform_top = (fd.get("platform_dist", [{}])[0] or {}).get("name", "") if fd.get("platform_dist") else ""
+        airline_top = (fd.get("airline_dist", [{}])[0] or {}).get("code", "") if fd.get("airline_dist") else ""
+        drill_index[r] = {"platform": platform_top, "airline": airline_top}
+    for fd in (day_data.get("fail_drill_D", []) or []):
+        r = fd.get("reason", "")
+        platform_top = (fd.get("platform_dist", [{}])[0] or {}).get("name", "") if fd.get("platform_dist") else ""
+        airline_top = (fd.get("airline_dist", [{}])[0] or {}).get("code", "") if fd.get("airline_dist") else ""
+        drill_index[r] = {"platform": platform_top, "airline": airline_top}
+
     # 按 9 大环节分组
     stage_groups = {stage: [] for stage in STAGE_ORDER}
     unmatched = []
@@ -121,13 +135,16 @@ def build_stage_distribution(date: str, full: Dict, top_n: int = 3) -> Dict:
     if unmatched:
         stage_groups["其他"].extend(unmatched)
 
-    # 构造最终结构
+    # 构造最终结构（按 9 大环节分桶，total 留给外部排序）
     sections = []
     for stage in STAGE_ORDER:
         reasons = stage_groups[stage]
         # 排序：count 降序
         reasons_sorted = sorted(reasons, key=lambda x: -x.get("count", 0))
-        top_reasons = reasons_sorted[:top_n]
+        # 1-5 动态：实际 reason 数量 ≤ max_top_n 时取全部，否则取前 max_top_n
+        # 至少 1 个（避免显示空环节）
+        n = min(len(reasons_sorted), max_top_n)
+        top_reasons = reasons_sorted[:max(1, n)]
         total_count = sum(r.get("count", 0) for r in reasons)
         sections.append({
             "stage": stage,
@@ -137,6 +154,8 @@ def build_stage_distribution(date: str, full: Dict, top_n: int = 3) -> Dict:
                     "reason": tr.get("reason", ""),
                     "count": tr.get("count", 0),
                     "sample_order": (tr.get("orders") or [None])[0],
+                    "sample_platform": drill_index.get(tr.get("reason", ""), {}).get("platform", ""),
+                    "sample_airline": drill_index.get(tr.get("reason", ""), {}).get("airline", ""),
                 }
                 for tr in top_reasons
             ],
@@ -165,7 +184,7 @@ def build_report(date: str) -> Dict:
         "date": date,
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "path_dist": build_path_distribution(daily),
-        "stage_dist": build_stage_distribution(date, full, top_n=3),
+        "stage_dist": build_stage_distribution(date, full, max_top_n=5),
     }
 
 
@@ -179,7 +198,7 @@ def render_markdown(report: Dict) -> str:
     date = report["date"]
 
     lines = []
-    lines.append(f"# 失败订单归因分析日报 · {date}")
+    lines.append(f"# 自动化数据日报 · {date}")
     lines.append("")
     lines.append(f"> 生成时间：{report['generated_at']}  ·  数据源：dashboard_data.json")
     lines.append("")
@@ -195,11 +214,14 @@ def render_markdown(report: Dict) -> str:
     lines.append(f"D 订单处理中 **{pd['D']}** 单 (**{pd['D_ratio']:.2f}%**)")
     lines.append("")
 
-    # ---- 失败分布（9 大环节）----
+    # ---- 失败分布（9 大环节，按 total 数量降序）----
     lines.append(f"## {sd['title']}")
     lines.append("")
 
-    for i, sec in enumerate(sd["sections"], 1):
+    # C 改动：按 total 数量降序
+    sorted_sections = sorted(sd["sections"], key=lambda x: -x["total"])
+
+    for i, sec in enumerate(sorted_sections, 1):
         stage = sec["stage"]
         total = sec["total"]
         top = sec["top_reasons"]
@@ -217,7 +239,20 @@ def render_markdown(report: Dict) -> str:
             reason = r["reason"]
             count = r["count"]
             sample = r["sample_order"] or "—"
-            lines.append(f"{num_cn}{reason}（{count}） 例：{sample}")
+            # E 改动：加平台 + 航司（渠道待补）
+            extras = []
+            platform = r.get("sample_platform", "")
+            airline = r.get("sample_airline", "")
+            if platform:
+                extras.append(platform)
+            if airline:
+                extras.append(airline)
+            extra_str = " · ".join(extras)
+
+            line = f"{num_cn}{reason}（{count}） 例：{sample}"
+            if extra_str:
+                line += f"  ·  {extra_str}"
+            lines.append(line)
         lines.append("")
 
     return "\n".join(lines)
