@@ -465,9 +465,78 @@ def main():
     add_common(p_stop)
     p_stop.set_defaults(func=cmd_stop)
 
+    # daily-report（生成日报/周报/月报并推送）
+    p_report = subparsers.add_parser("daily-report", help="生成归因分析报告并推送（钉钉/飞书/控制台）")
+    p_report.add_argument("--date", help="报告日期 YYYY-MM-DD（默认最近一天）")
+    p_report.add_argument("--prev-date", help="环比日期 YYYY-MM-DD（默认自动取前一天）")
+    p_report.add_argument("--period", default="daily", choices=["daily", "weekly", "monthly"], help="报告周期")
+    p_report.add_argument("--channel", default="console", choices=["console", "dingtalk", "feishu"], help="推送通道")
+    p_report.add_argument("--config", help="推送配置文件（YAML）")
+    p_report.add_argument("--output", help="输出报告到指定文件（JSON）")
+    p_report.set_defaults(func=cmd_daily_report)
+
     args = parser.parse_args()
     setup_logging(args.log_level)
     return args.func(args) or 0
+
+
+def cmd_daily_report(args):
+    """生成归因分析报告并推送"""
+    from .notify import NotifyConfig, send, load_config_from_yaml
+    from .daily_report import build_pushable_report, build_report, render_markdown
+
+    # 1. 确定报告日期（默认最近一天）
+    import json as _json
+    data_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "dashboard_data.json",
+    )
+    with open(data_path, encoding="utf-8") as f:
+        data = _json.load(f)
+    daily_dates = sorted([d.get("date", "") for d in data.get("daily", []) if d.get("date")])
+    target_date = args.date or (daily_dates[-1] if daily_dates else None)
+    if not target_date:
+        print("[X] dashboard_data.json 里没有 daily 数据")
+        return 1
+
+    # 2. 生成报告
+    print(f">>> 生成报告: {target_date} ({args.period})")
+    pushable = build_pushable_report(target_date, args.period, args.prev_date)
+
+    # 3. 输出到文件（如果指定）
+    if args.output:
+        out_path = Path(args.output)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        # _raw 太大，只输出可推送部分
+        save = {k: v for k, v in pushable.items() if k != "_raw"}
+        save["_raw_summary"] = {
+            "date": pushable["_raw"]["date"],
+            "prev_date": pushable["_raw"].get("prev_date"),
+            "generated_at": pushable["_raw"]["generated_at"],
+            "sections_keys": list(pushable["_raw"]["sections"].keys()),
+        }
+        with open(out_path, "w", encoding="utf-8") as f:
+            _json.dump(save, f, ensure_ascii=False, indent=2)
+        print(f"   已输出: {out_path}")
+
+    # 4. 推送
+    if args.config:
+        cfg = load_config_from_yaml(args.config)
+        print(f"   加载配置: {args.config} → channel={cfg.channel}")
+    else:
+        cfg = NotifyConfig(channel=args.channel)
+        print(f"   用默认配置: channel={cfg.channel}")
+
+    # 强制覆盖 channel（命令行优先）
+    cfg.channel = args.channel
+    print(f">>> 推送 (channel={cfg.channel})")
+    result = send(pushable, cfg)
+    if result.success:
+        print(f"[OK] 推送成功 (channel={result.channel}, {result.duration_ms}ms)")
+    else:
+        print(f"[X] 推送失败: {result.error}")
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
