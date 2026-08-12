@@ -242,22 +242,9 @@ def render_markdown(report: Dict) -> str:
             reason = r["reason"]
             count = r["count"]
             sample = r["sample_order"] or "—"
-            # 2026-08-12 拆 2 行：第 1 行 reason + 案例订单号，第 2 行 平台·航司·渠道
-            # 第 1 行
+            # 2026-08-12 v7：去掉 平台·航司·采购渠道（用户拍板）
+            # 简化为 1 行：reason + 案例订单号
             lines.append(f"{num_cn}{reason}（{count}） 例：{sample}")
-            # 第 2 行：平台·航司·渠道（缩进 2 个全角空格对齐 ① 之后）
-            platform = r.get("sample_platform", "")
-            airline = r.get("sample_airline", "")
-            channel = r.get("sample_channel", "")
-            extras = []
-            if platform:
-                extras.append(f"平台：{platform}")
-            if airline:
-                extras.append(f"航司：{airline}")
-            if channel:
-                extras.append(f"渠道：{channel}")
-            if extras:
-                lines.append(f"　　{'　'.join(extras)}")
         lines.append("")
 
     # 2026-08-11: 钉钉 markdown 单换行 \n 被忽略（当空格），必须 \n\n 才换段
@@ -346,21 +333,8 @@ def render_feishu_card(report: Dict) -> Dict:
                 reason = r["reason"]
                 count = r["count"]
                 sample = r.get("sample_order") or "—"
-                platform = r.get("sample_platform", "")
-                airline = r.get("sample_airline", "")
-                channel = r.get("sample_channel", "")
-                extras = []
-                if platform:
-                    extras.append(f"平台:{platform}")
-                if airline:
-                    extras.append(f"航司:{airline}")
-                if channel:
-                    extras.append(f"渠道:{channel}")
-                info_str = "  ".join(extras) if extras else ""
-                line = f"- **{num}{reason}（{count}）** 例:`{sample}`"
-                if info_str:
-                    line += f"  \n　　{info_str}"
-                lines.append(line)
+                # 2026-08-12 v7：去掉 平台·航司·采购渠道
+                lines.append(f"- **{num}{reason}（{count}）** 例:`{sample}`")
 
         elements.append({
             "tag": "div",
