@@ -279,14 +279,116 @@ def render_dingtalk_actioncard(report: Dict) -> Dict:
 
 
 # --------------------------------------------------------------------------- #
+# 渲染：飞书 interactive card（含真表格 + 折叠面板）
+# --------------------------------------------------------------------------- #
+def render_feishu_card(report: Dict) -> Dict:
+    """飞书 interactive card v3（纯 div 降级版）
+
+    2026-08-12：飞书自定义机器人 webhook 不支持 collapsible / table / fields / column / column_set
+    只支持 div / markdown / hr / img / actions / button。
+    全部用 div + markdown 重组，飞书 markdown 单换行保留（不像钉钉要 \n\n）。
+
+    元素组成：
+      - Header: 标题
+      - 报告期 + 生成时间
+      - 4 路径（单 div，markdown 列出）
+      - 9 大环节（每个 div 含 markdown 标题 + reason 列表）
+    """
+    pd = report["path_dist"]
+    sd = report["stage_dist"]
+    date = report["date"]
+
+    elements = []
+
+    # 1. 报告期 + 生成时间
+    elements.append({
+        "tag": "div",
+        "text": {
+            "tag": "lark_md",
+            "content": (
+                f"**报告期**：{date}  \n"
+                f"**生成时间**：{report['generated_at']}  \n"
+                f"**数据源**：dashboard_data.json"
+            ),
+        },
+    })
+    elements.append({"tag": "hr"})
+
+    # 2. 4 路径（单 div + markdown 列表）
+    path_md_lines = [
+        "**📊 4 路径分布**",
+        f"- **总订单**：{pd['total']} 单",
+        f"- **自动成功率**：{pd['auto_succ_rate']:.2f}%",
+        f"- ✅ A 全自动成功：**{pd['A']}** 单 ({pd['A_ratio']:.2f}%)",
+        f"- 🛟 B 全自动失败：**{pd['B']}** 单 ({pd['B_ratio']:.2f}%)",
+        f"- 🚧 C 订单转人工：**{pd['C']}** 单 ({pd['C_ratio']:.2f}%)",
+        f"- ⚠️ D 订单处理中：**{pd['D']}** 单 ({pd['D_ratio']:.2f}%)",
+    ]
+    elements.append({
+        "tag": "div",
+        "text": {"tag": "lark_md", "content": "\n".join(path_md_lines)},
+    })
+    elements.append({"tag": "hr"})
+
+    # 3. 9 大环节（每个 div，markdown 包含 reason 列表）
+    sorted_sections = sorted(sd["sections"], key=lambda x: -x["total"])
+    for i, sec in enumerate(sorted_sections, 1):
+        stage = sec["stage"]
+        total = sec["total"]
+        top = sec["top_reasons"]
+
+        lines = [f"**{i}.{stage}环节**（{total} 单）", ""]
+        if not top:
+            lines.append("（无数据）")
+        else:
+            for j, r in enumerate(top, 1):
+                num = ["①", "②", "③", "④", "⑤"][j - 1] if j <= 5 else f"{j}."
+                reason = r["reason"]
+                count = r["count"]
+                sample = r.get("sample_order") or "—"
+                platform = r.get("sample_platform", "")
+                airline = r.get("sample_airline", "")
+                channel = r.get("sample_channel", "")
+                extras = []
+                if platform:
+                    extras.append(f"平台:{platform}")
+                if airline:
+                    extras.append(f"航司:{airline}")
+                if channel:
+                    extras.append(f"渠道:{channel}")
+                info_str = "  ".join(extras) if extras else ""
+                line = f"- **{num}{reason}（{count}）** 例:`{sample}`"
+                if info_str:
+                    line += f"  \n　　{info_str}"
+                lines.append(line)
+
+        elements.append({
+            "tag": "div",
+            "text": {"tag": "lark_md", "content": "\n".join(lines)},
+        })
+
+    return {
+        "header": {
+            "title": {"tag": "plain_text", "content": f"📊 自动化数据日报 · {date}"},
+        },
+        "elements": elements,
+    }
+
+
+# --------------------------------------------------------------------------- #
 # 包装：构造可直接 push 的 report
 # --------------------------------------------------------------------------- #
 def build_pushable_report(date: str) -> Dict:
-    """构造可直接传给 notify.send() 的报告"""
+    """构造可直接传给 notify.send() 的报告
+
+    同时含钉钉 (markdown) + 飞书 (interactive card) 两种格式
+    推送时由 cfg.channel 选哪种
+    """
     r = build_report(date)
     return {
-        "title": f"📊 失败订单归因分析日报 · {r['date']}",
+        "title": f"📊 自动化数据日报 · {r['date']}",
         "markdown": render_markdown(r),
         "dingtalk_card": render_dingtalk_actioncard(r),
+        "feishu_card": render_feishu_card(r),
         "_raw": r,
     }
