@@ -1717,36 +1717,10 @@ def build_month_data(df, month_label, is_daily=False):
             })
         airline.sort(key=lambda x: -x["total"])
         # 2026-07-21: 长尾过滤（total < 5 归"其他"），避免 1 单 2 单的航司占位
-        # v10.15（2026-08-17）：单日模式（is_daily=True）不归并——用户拍板"8/15 Excel 21 个 vs dashboard 18 个对不上"
-        # 单日航司数最多 20-30，全量展示不影响视觉密度，且避免"对不上"的认知偏差
-        if is_daily:
-            main_airlines = airline
-        else:
-            THRESHOLD = 5
-            main_airlines = [a for a in airline if a["total"] >= THRESHOLD]
-            others = [a for a in airline if a["total"] < THRESHOLD]
-        if not is_daily:
-            if others:
-                o_total = sum(a["total"] for a in others)
-                o_A = sum(a["A"] for a in others)
-                o_B = sum(a["B"] for a in others)
-                o_C = sum(a["C"] for a in others)
-                o_D = sum(a["D"] for a in others)
-                o_profit = sum(a["profit_sum"] for a in others)
-                main_airlines.append({
-                    "airline": f"其他（{len(others)}个长尾）",
-                    "name": "其他",
-                    "total": o_total,
-                    "A": o_A, "B": o_B, "C": o_C, "D": o_D,
-                    "auto_coverage_rate": round((o_A+o_B)/o_total*100, 2) if o_total else 0,
-                    "auto_succ_rate": round(o_A/(o_A+o_B)*100, 2) if (o_A+o_B) else 0,
-                    "B_ratio": round(o_B/o_total*100, 2) if o_total else 0,
-                    "D_ratio": round(o_D/o_total*100, 2) if o_total else 0,
-                    "profit_sum": round(o_profit, 2),
-                    "avg_profit": round(o_profit/o_total, 2) if o_total else 0,
-                    "tier": "tail",
-                    "is_other": True,  # 2026-07-21 标记: 方便前端判断
-                })
+        # v10.15（2026-08-17）：用户拍板"月顶层也全展开"——所有模式都不再归并"其他"桶
+        # 原因：归并会让"dashboard 数字 vs Excel 数字"对不上，月度也避免同样问题
+        # 单日 20-30 / 月度 35-40 都不多，全展示视觉密度可控
+        main_airlines = airline
         main_airlines.sort(key=lambda x: (-x["total"], x["airline"]))
         airline = main_airlines
     out["airline"] = airline
