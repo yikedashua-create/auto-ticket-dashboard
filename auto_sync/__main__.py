@@ -475,6 +475,14 @@ def main():
     p_report.add_argument("--output", help="输出报告到指定文件（JSON）")
     p_report.set_defaults(func=cmd_daily_report)
 
+    # fetch（2026-08-27 新增：API 拉 xlsx，替代手动下载）
+    p_fetch = subparsers.add_parser("fetch", help="调 API 拉 xlsx 到 DATA_DIR（替代手动下载）")
+    p_fetch.add_argument("--days", "-n", type=int, default=7, help="拉最近 N 天（默认 7, 含今天）")
+    p_fetch.add_argument("--date", help="拉指定日期 YYYY-MM-DD（覆盖 --days）")
+    p_fetch.add_argument("--force", action="store_true", help="覆盖已存在的 xlsx")
+    p_fetch.add_argument("--trigger", action="store_true", help="拉完自动触发 gen+git+push")
+    p_fetch.set_defaults(func=cmd_fetch)
+
     args = parser.parse_args()
     setup_logging(args.log_level)
     return args.func(args) or 0
@@ -537,6 +545,81 @@ def cmd_daily_report(args):
         print(f"[X] 推送失败: {result.error}")
         return 1
     return 0
+
+
+def cmd_fetch(args):
+    """调 API 拉 xlsx 到 DATA_DIR（v1，2026-08-27）"""
+    from .elephant_api import fetch_day, fetch_recent
+
+    # 1. 拉数据
+    if args.date:
+        # 拉指定日期
+        results = [fetch_day(args.date, force=args.force)]
+    else:
+        # 拉最近 N 天
+        results = fetch_recent(days=args.days, force=args.force)
+
+    # 2. 汇总
+    success_n = sum(1 for r in results if r.success and not r.skipped)
+    skip_n = sum(1 for r in results if r.success and r.skipped)
+    fail_n = sum(1 for r in results if not r.success)
+
+    print(f"\n=== 拉取汇总 ===")
+    print(f"  成功新拉: {success_n}")
+    print(f"  已存在跳过: {skip_n}")
+    print(f"  失败: {fail_n}")
+    for r in results:
+        if r.success and r.skipped:
+            mark = "[SKIP]"
+        elif r.success:
+            mark = "[OK]"
+        else:
+            mark = "[FAIL]"
+        size_str = f"{r.xlsx_size // 1024}KB" if r.xlsx_size else "-"
+        dur = f"{r.duration_sec:.1f}s" if r.duration_sec else "-"
+        print(f"  {mark} {r.date}  {size_str:8s}  {dur:5s}  {r.error or r.xlsx_path or ''}")
+
+    # 3. 失败处理
+    if fail_n > 0:
+        print(f"\n[!] {fail_n} 天拉取失败, 详情:")
+        for r in results:
+            if not r.success:
+                print(f"  {r.date}: {r.error}")
+                if r.trace_id:
+                    print(f"    traceId={r.trace_id} (给后端排查用)")
+        # 全部失败（可能 token 过期） → 提示用户重新登录
+        if fail_n == len(results):
+            print("\n[!] 全部失败 → 可能是 token 过期, 请重新登录 elephant 系统并更新凭据文件:")
+            print("    E:\\Work\\Documents\\凭据\\elephant_api.yaml")
+
+    # 4. 触发 gen + git + push
+    if args.trigger and success_n > 0:
+        print(f"\n>>> 触发 gen + git + push ...")
+        from .trigger import execute_trigger
+        repo_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        gen_script = os.path.join(repo_dir, "gen_dashboard_data.py")
+        # 用最近一次拉到的文件作 commit message
+        latest = max((r for r in results if r.success and not r.skipped), key=lambda r: r.date, default=None)
+        file_path = latest.xlsx_path if latest else "(no new file)"
+        file_size = latest.xlsx_size if latest else 0
+        commit_msg = f"data: API 自动拉取 {latest.date}.xlsx" if latest else "data: API auto fetch"
+        result = execute_trigger(
+            file_path=file_path,
+            file_size=file_size,
+            script_dir=repo_dir,
+            gen_script=gen_script,
+            git_remote="origin",
+            git_branch="main",
+            commit_message=commit_msg,
+            push_enabled=True,
+        )
+        if result.success:
+            print(f"[OK] 触发成功 ({result.duration:.1f}s)")
+        else:
+            print(f"[X] 触发失败: {result.error}")
+            return 1
+
+    return 0 if fail_n == 0 else 1
 
 
 if __name__ == "__main__":
