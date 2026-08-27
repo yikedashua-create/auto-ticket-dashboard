@@ -547,6 +547,108 @@ def cmd_daily_report(args):
     return 0
 
 
+def _classify_failure(r) -> str:
+    """分类失败类型, 用于决定是否告警.
+
+    Returns:
+        'no_access' - 业务码 NO_ACCESS (token 过期/无效)
+        'http_5xx'  - 后端 5xx 错误
+        'network'   - 网络/超时
+        'unknown'   - 其他
+    """
+    if r.error_code == '-1' or r.error_msg == 'NO_ACCESS':
+        return 'no_access'
+    if 500 <= r.http_status < 600:
+        return 'http_5xx'
+    if r.error.startswith('网络失败') or r.error.startswith('HTTP '):
+        return 'network'
+    return 'unknown'
+
+
+def _maybe_alert(results: list, fail_n: int, total: int):
+    """严重失败时推钉钉告警（v2，2026-08-27）.
+
+    告警规则:
+    - 任何 no_access / http_5xx / network → 告警
+    - 全部失败 → 告警（@所有人）
+    - 单天未知失败 → 不告警（可能是今天数据还没生成）
+    """
+    # 1. 分类失败
+    severe_failures = []  # (result, category)
+    for r in results:
+        if not r.success:
+            cat = _classify_failure(r)
+            if cat in ('no_access', 'http_5xx', 'network'):
+                severe_failures.append((r, cat))
+
+    if not severe_failures:
+        return  # 严重失败 0 个 → 不告警
+
+    # 2. 构造告警内容
+    lines = []
+    lines.append(f"**自动拉取失败告警** (失败 {len(severe_failures)}/{total})\n")
+    for r, cat in severe_failures:
+        cat_label = {'no_access': '🔑 Token 失效', 'http_5xx': '🌐 后端 5xx',
+                     'network': '📡 网络异常'}[cat]
+        lines.append(f"- {r.date} | {cat_label}")
+        if r.error:
+            lines.append(f"  - 错误: {r.error[:200]}")
+        if r.trace_id:
+            lines.append(f"  - traceId: `{r.trace_id}`")
+
+    if any(cat == 'no_access' for _, cat in severe_failures):
+        lines.append("\n**🔴 疑似 Token 过期**, 请:")
+        lines.append("1. 浏览器登录 elephant 系统")
+        lines.append("2. F12 → Network → 抓新 header")
+        lines.append("3. 更新凭据文件: `E:\\Work\\Documents\\凭据\\elephant_api.yaml`")
+        lines.append("4. 手动重跑: `python -m auto_sync fetch --days 1`")
+
+    title = "🔴 auto-ticket 拉取失败"
+    body = "\n".join(lines)
+
+    # 3. 推钉钉
+    print(f"\n[!] 严重失败, 推送告警到钉钉...")
+    try:
+        from .notify import NotifyConfig, send, load_config_from_yaml
+        from . import notify as _notify
+
+        # 优先用 elephant 专用的告警配置, 没有则用日报配置
+        elephant_cfg = r'E:\Work\Documents\凭据\elephant_notify.yaml'
+        if os.path.exists(elephant_cfg):
+            cfg = load_config_from_yaml(elephant_cfg)
+            print(f"  使用凭据: {elephant_cfg}")
+        else:
+            # 复用日报的钉钉配置
+            daily_cfg = r'E:\Work\Documents\凭据\dingtalk_notify.yaml'
+            if os.path.exists(daily_cfg):
+                cfg = load_config_from_yaml(daily_cfg)
+                cfg.channel = 'dingtalk'
+                print(f"  使用日报凭据: {daily_cfg}")
+            else:
+                cfg = NotifyConfig(channel='console')
+                print("  无钉钉凭据, 用 console 输出")
+
+        # 告警推 dingtalk, 其他推 console
+        cfg.channel = 'dingtalk' if cfg.dingtalk_webhook else 'console'
+        # 严重 → @所有人
+        if any(cat == 'no_access' for _, cat in severe_failures):
+            cfg.at_all = True
+
+        # 用 markdown 推 (action card 看起来更好, 但 markdown 兼容性更广)
+        report = {
+            "title": title,
+            "markdown": body,
+        }
+        result = send(report, cfg)
+        if result.success:
+            print(f"[OK] 告警已推送 (channel={result.channel}, {result.duration_ms}ms)")
+        else:
+            print(f"[X] 告警推送失败: {result.error}")
+    except Exception as e:
+        print(f"[X] 告警推送异常: {type(e).__name__}: {e}")
+        # 不影响 fetch 主流程, 继续往下走
+
+
 def cmd_fetch(args):
     """调 API 拉 xlsx 到 DATA_DIR（v1，2026-08-27）"""
     from .elephant_api import fetch_day, fetch_recent
@@ -591,6 +693,10 @@ def cmd_fetch(args):
         if fail_n == len(results):
             print("\n[!] 全部失败 → 可能是 token 过期, 请重新登录 elephant 系统并更新凭据文件:")
             print("    E:\\Work\\Documents\\凭据\\elephant_api.yaml")
+
+    # 3.5 v2（2026-08-27）：严重失败 → 钉钉告警
+    if fail_n > 0:
+        _maybe_alert(results, fail_n, len(results))
 
     # 4. 触发 gen + git + push
     if args.trigger and success_n > 0:
