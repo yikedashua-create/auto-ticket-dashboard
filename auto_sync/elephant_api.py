@@ -99,6 +99,119 @@ def _is_xlsx_response(content: bytes, content_type: str) -> bool:
     return False
 
 
+# ============================================================
+# v2.1（2026-08-31）：Token 登录轮换自动恢复
+#
+# 背景：elephant 改为每次登录轮换一对新 Token+Vcode，旧值立即作废，
+#   手动从 DevTools 复制凭据注定过期（2026-08-27 起自动拉取连续失败的根因）。
+# 方案：NO_ACCESS 时扫描 Chrome localStorage（明文 LevelDB），取页面当前
+#   生效的 token/vcode，逐对重放验证，成功后写回凭据文件并继续本次请求。
+#   浏览器保持登录 → 自动拉取自愈，不再需要人工抓凭据。
+# ============================================================
+CHROME_LDB_GLOB = r'C:\Users\admin\AppData\Local\Google\Chrome\User Data\*\Local Storage\leveldb\*'
+_ELEPHANT_ORIGIN = 'elephant.xiangshangsl.com'
+
+
+def _looks_like_token(v: str) -> bool:
+    """真 token/vcode 是混合大小写+数字的 base62；过滤 md5(hex)/扩展 id 等纯小写噪声。"""
+    return bool(re.search(r'[A-Z]', v) and re.search(r'[a-z]', v) and re.search(r'[0-9]', v))
+
+
+def _read_chrome_token_pairs() -> list:
+    """扫描 Chrome 各 profile 的 localStorage LevelDB，返回 elephant 的 (token, vcode) 候选。
+
+    LevelDB 的 .log 是追加写（文件内越靠后越新），.log 本身比 .ldb（已压实）新，
+    按 ".log 优先 + mtime 新者优先" 排序，让最新登录的配对排在前面。
+    """
+    from glob import glob as _glob
+    files = []
+    for fp in _glob(CHROME_LDB_GLOB):
+        if not os.path.isdir(fp):
+            files.append(fp)
+    files.sort(key=lambda p: (not p.endswith('.log'), os.path.getmtime(p)))
+
+    pairs = []
+    seen = set()
+    for fp in files:
+        try:
+            with open(fp, 'rb') as f:
+                text = f.read().decode('utf-8', errors='ignore')
+        except OSError:
+            continue
+        if _ELEPHANT_ORIGIN not in text:
+            continue
+        for m in re.finditer(re.escape(_ELEPHANT_ORIGIN), text):
+            window = text[m.end():m.end() + 800]
+            toks, vcos, pos = [], [], 0
+            while True:
+                km = re.search(r'(vcode|token)', window[pos:])
+                if not km:
+                    break
+                seg = window[pos + km.end():pos + km.end() + 120]
+                vm = re.search(r'[A-Za-z0-9]{32}', seg)
+                if vm:
+                    (toks if km.group(1) == 'token' else vcos).append(vm.group(0))
+                    pos += km.end() + vm.end()
+                else:
+                    pos += km.end() + 10
+            toks = [t for t in toks if _looks_like_token(t)]
+            vcos = [v for v in vcos if _looks_like_token(v)]
+            if toks and vcos and toks[0] not in seen:
+                seen.add(toks[0])
+                pairs.append((toks[0], vcos[0]))
+    return pairs
+
+
+def _save_creds_yaml(token: str, vcode: str):
+    """把新的 token/vcode 按两行一组格式写回凭据文件（只动 Token/Vcode/Cookie 三行）。"""
+    with open(CRED_PATH, encoding='utf-8') as f:
+        lines = f.read().splitlines()
+    i = 0
+    while i < len(lines):
+        m = re.match(r'^\s*([A-Za-z][\w-]*)\s*:\s*$', lines[i])
+        if m and i + 1 < len(lines):
+            key = m.group(1)
+            if key == 'Token':
+                lines[i + 1] = token
+            elif key == 'Vcode':
+                lines[i + 1] = vcode
+            elif key == 'Cookie' and 'token=' in lines[i + 1]:
+                lines[i + 1] = re.sub(r'token=[^;]*', f'token={token}', lines[i + 1])
+        i += 1
+    with open(CRED_PATH, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines) + '\n')
+
+
+def _refresh_creds_from_chrome(url: str, timeout: int = 20):
+    """从 Chrome localStorage 找当前 token/vcode，逐对验证，成功者写回凭据文件。
+
+    Returns: 验证通过的新 headers dict；失败返回 None。
+    """
+    pairs = _read_chrome_token_pairs()
+    if not pairs:
+        log.info("Chrome localStorage 未找到 elephant token（浏览器可能未登录 elephant）")
+        return None
+    base = _read_creds()  # 保留 Referer/UA/Regiontype 等其余 header
+    for tok, vco in pairs[:4]:
+        h = dict(base)
+        h['Token'] = tok
+        h['Vcode'] = vco
+        h['Cookie'] = f'token={tok}'
+        try:
+            r = requests.get(url, headers=h, timeout=timeout)
+        except Exception:
+            continue
+        if r.status_code == 200 and _is_xlsx_response(r.content, r.headers.get('Content-Type', '')):
+            try:
+                _save_creds_yaml(tok, vco)
+                log.info(f"凭据自动恢复成功: token={tok[:6]}...{tok[-4:]} vcode={vco[:6]}...{vco[-4:]}（已写回凭据文件）")
+            except Exception as e:
+                log.warning(f"凭据验证通过但写回文件失败: {e}（本次请求仍用新凭据继续）")
+            return h
+    log.info(f"Chrome localStorage 的 {min(len(pairs), 4)} 对 token 候选均未通过验证（可能需要重新登录 elephant）")
+    return None
+
+
 def fetch_day(date_str: str, *, force: bool = False, timeout: int = 30) -> FetchResult:
     """拉指定日期的 xlsx 到 DATA_DIR.
 
@@ -130,39 +243,55 @@ def fetch_day(date_str: str, *, force: bool = False, timeout: int = 30) -> Fetch
         return FetchResult(date=date_str, success=False, error=f"读凭据失败: {e}",
                            duration_sec=time.time() - t0)
 
-    # 3. 发请求
+    # 3. 发请求（v2.1：NO_ACCESS 时自动从 Chrome localStorage 恢复凭据后重试一次）
     url = f'{BASE_URL}?orderTime={date_str}+00:00:00,{date_str}+23:59:59&page=1&size=16&derive=true'
-    try:
-        r = requests.get(url, headers=headers, timeout=timeout)
-    except Exception as e:
-        return FetchResult(date=date_str, success=False, error=f"网络失败: {type(e).__name__}: {e}",
-                           duration_sec=time.time() - t0)
+    tried_refresh = False
 
-    # 4. 校验
-    if r.status_code != 200:
-        return FetchResult(
-            date=date_str, success=False, http_status=r.status_code,
-            error=f"HTTP {r.status_code}", duration_sec=time.time() - t0,
-        )
-
-    content_type = r.headers.get('Content-Type', '')
-    if not _is_xlsx_response(r.content, content_type):
-        # 可能是 NO_ACCESS 业务响应（JSON 格式）
+    while True:
         try:
-            j = r.json()
+            r = requests.get(url, headers=headers, timeout=timeout)
+        except Exception as e:
+            return FetchResult(date=date_str, success=False, error=f"网络失败: {type(e).__name__}: {e}",
+                               duration_sec=time.time() - t0)
+
+        # 4. 校验
+        if r.status_code != 200:
             return FetchResult(
                 date=date_str, success=False, http_status=r.status_code,
-                error_code=str(j.get('code', '')),
-                error_msg=str(j.get('msg', '')),
-                trace_id=str(j.get('traceId', '')),
-                error=f"业务码 {j.get('code')}: {j.get('msg')} (traceId={j.get('traceId')})",
-                duration_sec=time.time() - t0,
+                error=f"HTTP {r.status_code}", duration_sec=time.time() - t0,
             )
+
+        content_type = r.headers.get('Content-Type', '')
+        if _is_xlsx_response(r.content, content_type):
+            break  # 拿到 xlsx，去写文件
+
+        # 可能是业务错误响应（JSON 格式）
+        try:
+            j = r.json()
         except Exception:
             return FetchResult(
                 date=date_str, success=False, http_status=r.status_code,
                 error=f"响应非 xlsx: {r.content[:200]!r}", duration_sec=time.time() - t0,
             )
+
+        error_msg = str(j.get('msg', ''))
+        if error_msg == 'NO_ACCESS' and not tried_refresh:
+            tried_refresh = True
+            _print("[!] NO_ACCESS → 尝试从 Chrome localStorage 自动恢复凭据...")
+            refreshed = _refresh_creds_from_chrome(url, timeout=timeout)
+            if refreshed:
+                headers = refreshed
+                continue  # 用新凭据重放本请求
+            _print("[!] 自动恢复失败（浏览器可能未登录 elephant，或需人工处理）")
+
+        return FetchResult(
+            date=date_str, success=False, http_status=r.status_code,
+            error_code=str(j.get('code', '')),
+            error_msg=error_msg,
+            trace_id=str(j.get('traceId', '')),
+            error=f"业务码 {j.get('code')}: {j.get('msg')} (traceId={j.get('traceId')})",
+            duration_sec=time.time() - t0,
+        )
 
     # 5. 写文件
     try:
