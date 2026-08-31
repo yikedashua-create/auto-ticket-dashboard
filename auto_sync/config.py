@@ -35,6 +35,12 @@ class AutoSyncConfig:
     """文件最后修改时间最少这么久了才触发（避免边写边读）"""
     cooldown_seconds: float = 30.0
     """两次触发的最小间隔（秒），防止短时间内多次触发"""
+    ignore_events_older_than_sec: float = 86400.0
+    """忽略 mtime 早于该秒数的文件事件。
+    Windows 索引器/杀软扫描旧 xlsx 会触发 LAST_ACCESS 类 "modified" 事件，
+    曾导致 watcher 以 ~7 分钟/个串行重处理整个历史目录（2026-08-30/31 全天 CPU 空转）。
+    真实新文件的 mtime 一定是新的；旧文件即便漏过 watcher，
+    30 分钟兜底任务的 sync_raw 也会按 parquet 新旧自动补转。"""
 
     # ===== 处理命令 =====
     gen_script: str = "gen_dashboard_data.py"

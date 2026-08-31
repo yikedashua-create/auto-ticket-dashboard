@@ -49,8 +49,10 @@ try:
         "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     ))
-    # 给所有 auto_sync.* logger 加文件 handler
-    for name in ["auto_sync", "auto_sync.watcher", "auto_sync.manager", "auto_sync.trigger", "auto_sync.status"]:
+    # 只挂在父 logger "auto_sync" 上即可：子 logger（watcher/manager/trigger/status）
+    # 通过 propagation 冒泡到父 logger 的 handler。之前给 5 个 logger 都挂同一
+    # handler，每条日志写两遍（2026-08-31 修复）。
+    for name in ["auto_sync"]:
         logging.getLogger(name).addHandler(_file_handler)
     logging.getLogger("auto_sync").setLevel(logging.INFO)
 except Exception as _e:
@@ -241,6 +243,15 @@ class WatcherWorker:
             return
         if _matches_any(os.path.basename(file_path), self.config.ignore_patterns):
             log.debug(f"忽略（匹配 ignore）: {file_path}")
+            return
+
+        # v1.2（2026-08-31）：忽略 mtime 过旧的文件事件（索引器/杀软扫描噪声）
+        try:
+            age = time.time() - os.path.getmtime(file_path)
+            if age > self.config.ignore_events_older_than_sec:
+                log.debug(f"忽略（mtime 过旧 {age / 3600:.1f}h）: {file_path}")
+                return
+        except OSError:
             return
 
         log.debug(f"文件事件 [{event_type}]: {file_path}")
