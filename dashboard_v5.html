@@ -1058,6 +1058,10 @@ let COMPARE_DATA = null;  // 对比基准数据（上一周期）
 let COMPARE_LABEL = "";   // 对比基准的标签
 const chartInstances = {};
 
+// v10.16（2026-08-31）：COMMIT 提升到模块顶层（daily_detail 懒加载也要用它拼 jsDelivr URL）
+// ⚠️ auto_sync/trigger.py 的 sync_html_commit 按正则替换本行，格式勿改
+const COMMIT = "59b287b";
+
 async function loadData() {
   try {
     // 优先从 window.__DASHBOARD_DATA__ 读取（Streamlit 部署用）
@@ -1072,7 +1076,6 @@ async function loadData() {
       //   用最新 commit hash 作 URL 段, 绕过 jsDelivr CDN 缓存 (commit 变 → URL 变 → jsDelivr 当新 URL 返回)
       //   浏览器缓存: 同一 URL 二次访问秒开
       //   实测: 1.3MB gzip 走 jsDelivr 约 3-4s, raw 15MB 不带 gzip 头 100s+
-const COMMIT = "59b287b";
       const DATA_URL_JS = `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/dashboard_data.json`;
       let dataLoaded = false;
       // 路径 1: 相对路径
@@ -1103,6 +1106,8 @@ const COMMIT = "59b287b";
     // 初始化月份切换器
     initMonthSwitcher();
     switchPeriod(DATA.current_month, "all");
+    // v10.16：预取当月 daily_detail（后台加载，首次点日视图无等待）
+    ensureMonthDetail(DATA.current_month);
   } catch (e) {
     document.getElementById("mainArea").innerHTML =
       '<div class="loading" style="color:#ff4757">❌ 数据加载失败：' + e.message +
@@ -1400,7 +1405,41 @@ function aggregateDayToMonthShape(monthData, dayRow) {
   };
 }
 
-function switchPeriod(month, day, week) {
+/* ============== v10.16 daily_detail 懒加载 ==============
+   dashboard_data.json 顶层不再携带 daily_detail（jsDelivr 单文件 20MB 上限），
+   日/周下钻时从 monthly/{ym}.json 按需拉取并合入 DATA.months[ym]。
+   拉取失败时 getDayData 自动降级为 daily 单行聚合，页面不会挂。 */
+let _switchToken = 0;
+const MONTH_DD_PROMISES = {};
+function ensureMonthDetail(ym) {
+  const m = DATA.months && DATA.months[ym];
+  if (!m) return Promise.resolve();
+  if (m.daily_detail) return Promise.resolve();
+  if (MONTH_DD_PROMISES[ym]) return MONTH_DD_PROMISES[ym];
+  MONTH_DD_PROMISES[ym] = (async () => {
+    const rel = (DATA.monthly_index && DATA.monthly_index[ym]) || `monthly/${ym}.json`;
+    const urls = [
+      "./" + rel,
+      `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/${rel}`,
+    ];
+    for (const u of urls) {
+      try {
+        const r = await fetch(u);
+        if (!r.ok) continue;
+        const md = await r.json();
+        if (md && md.daily_detail) {
+          m.daily_detail = md.daily_detail;
+          console.log("[daily_detail] 懒加载成功", ym, u);
+          return;
+        }
+      } catch (e) { /* 试下一个 URL */ }
+    }
+    console.warn("[daily_detail] 懒加载失败", ym, "（日视图降级为 daily 单行聚合）");
+  })();
+  return MONTH_DD_PROMISES[ym];
+}
+
+async function switchPeriod(month, day, week) {
   Object.keys(chartInstances).forEach(k => destroyChart(k));
 
   CURRENT_MONTH = month;
@@ -1409,6 +1448,20 @@ function switchPeriod(month, day, week) {
 
   // 算对比基准
   const comparePeriod = getComparePeriod(month, day, week);
+
+  // v10.16：需要的月份先懒加载 daily_detail（日/周视图 + 对比周期都要用）
+  const _token = ++_switchToken;
+  const need = new Set();
+  const addNeed = ym => { if (ym && ym !== "all" && DATA.months[ym]) need.add(ym); };
+  addNeed(month);
+  if (week && week !== "all" && String(week).includes("|")) addNeed(String(week).split("|")[0]);
+  if (comparePeriod) {
+    if (comparePeriod.type === "week" && comparePeriod.week) addNeed(comparePeriod.week.split("|")[0]);
+    else addNeed(comparePeriod.month);
+  }
+  await Promise.all([...need].map(ensureMonthDetail));
+  if (_token !== _switchToken) return;  // 已被更新的切换请求取代，丢弃本次渲染
+
   if (comparePeriod) {
     if (comparePeriod.type === "day") {
       COMPARE_DATA = getDayData(comparePeriod.month, comparePeriod.day);

@@ -2397,19 +2397,26 @@ def main():
         monthly_index[m] = f"monthly/{m}.json"
         print(f"[输出] {monthly_path} ({os.path.getsize(monthly_path)/1024:.1f} KB)")
 
-    # Step B：顶层 dashboard_data.json 是 KB 级索引（兼容旧前端：months + 顶层平铺）
+    # Step B：顶层 dashboard_data.json（v10.16：剥离 daily_detail，防 jsDelivr 20MB 超限）
+    # 背景（2026-08-31）：顶层 19.8MB，逼近 jsDelivr 单文件 20MB 硬上限，9 月新数据必超。
+    # 方案：daily_detail 只保留在 monthly/{ym}.json（Step A 本来就写全量），
+    #       顶层 months 不带 daily_detail；dashboard_v5.html 的 ensureMonthDetail()
+    #       在日/周下钻时从 monthly/{ym}.json 懒加载合入（失败自动降级 daily 单行聚合）。
+    months_top = {}
+    for m, data in months_data.items():
+        months_top[m] = {k: v for k, v in data.items() if k != "daily_detail"}
     final = {
         "generated_at": generated_at,
         "available_months": available_months,
         "current_month": target_months[-1],
         "monthly_index": monthly_index,
-        "months": months_data,
-        # 兼容旧版（顶层还有默认月数据，前端可平滑切换）
-        **months_data[target_months[-1]],
+        "months": months_top,
+        # 兼容旧版（顶层还有默认月数据，前端可平滑切换；同样剥离 daily_detail）
+        **months_top[target_months[-1]],
     }
     out_path = os.path.join(OUT_DIR, "dashboard_data.json")
     atomic_write_json(out_path, final)
-    print(f"\n[输出] {out_path} ({os.path.getsize(out_path)/1024:.1f} KB)")
+    print(f"\n[输出] {out_path} ({os.path.getsize(out_path)/1024:.1f} KB) [v10.16 已剥离 daily_detail]")
     print(f"[统计] 月份={target_months}，"
           f"总单数={sum(months_data[m]['summary']['total_orders'] for m in target_months):,}")
 
