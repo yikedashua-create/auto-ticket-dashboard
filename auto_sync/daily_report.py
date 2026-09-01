@@ -68,6 +68,43 @@ def _get_9_stages_today_yesterday(date: str, full: Dict) -> tuple:
     return _merge_9_stages(today_data), _merge_9_stages(yesterday_data), yesterday_date
 
 
+def _check_health(full: Dict, latest_date: str) -> Dict:
+    """v9（2026-09-01）：健康检查——数据滞后 + auto_sync 心跳。
+
+    - 数据滞后：最新数据日期距今 >=2 天 → 警示（断档时日报照发、业务无感知的教训）
+    - auto_sync 心跳：status.db 上次触发距今 >90 分钟 → 疑似停摆
+      （30 分钟兜底任务正常时 age 应 <=40 分钟左右）
+    """
+    warnings = []
+    try:
+        today = datetime.now().strftime("%Y-%m-%d")
+        from datetime import date as _date
+        d0 = _date.fromisoformat(latest_date)
+        d1 = _date.fromisoformat(today)
+        lag_days = (d1 - d0).days
+    except Exception:
+        lag_days = 0
+    if lag_days >= 2:
+        warnings.append(f"⚠️ 数据滞后：最新数据为 {latest_date}（距今 {lag_days} 天），拉取链路疑似异常")
+
+    trigger_age_min = None
+    try:
+        import sqlite3
+        from .status import StatusStore
+        store = StatusStore(str(DATA_PATH.parent / "auto_sync" / "data" / "status.db"))
+        st = store.get_status()
+        if st and st.last_trigger_at:
+            t = datetime.fromisoformat(st.last_trigger_at)
+            now = datetime.now(t.tzinfo) if t.tzinfo else datetime.now()  # 对齐时区感知
+            trigger_age_min = int((now - t).total_seconds() / 60)
+            if trigger_age_min > 90:
+                warnings.append(f"🔴 auto_sync 疑似停摆：上次触发距今 {trigger_age_min} 分钟")
+    except Exception as e:
+        logger.warning(f"心跳检查失败（不影响报告）: {e}")
+
+    return {"lag_days": lag_days, "trigger_age_min": trigger_age_min, "warnings": warnings}
+
+
 def build_report(date: str) -> Dict:
     """v8 报告：含 9 环节百分比 + 环比 + reason 比例 + 3 个案例订单"""
     full = _load_data()
@@ -77,6 +114,29 @@ def build_report(date: str) -> Dict:
         daily = max(daily_list, key=lambda x: x.get("date", ""))
         date = daily.get("date", "")
         logger.warning(f"找不到 {date}，用最近一天")
+
+    # v10.16（2026-09-01）：daily_detail 已从顶层 json 剥离到 monthly/{ym}.json，
+    # 这里按需合入（9 环节环比 / 失败明细都依赖它）。
+    # 同时合入上一个月，月初第一天的"环比昨天"才能跨月取到。
+    if not full.get("daily_detail"):
+        merged = {}
+        ym = date[:7]
+        months_avail = full.get("available_months") or []
+        if ym in months_avail:
+            idx = months_avail.index(ym)
+            prev_ym = months_avail[idx - 1] if idx > 0 else None
+        else:
+            prev_ym = None
+        for m in filter(None, [prev_ym, ym]):
+            mp = DATA_PATH.parent / "monthly" / f"{m}.json"
+            if mp.exists():
+                try:
+                    merged.update(json.loads(mp.read_text(encoding="utf-8")).get("daily_detail", {}))
+                except Exception as e:
+                    logger.warning(f"读 {mp} 失败: {e}")
+        full["daily_detail"] = merged
+
+    health = _check_health(full, date)
 
     today_9, yesterday_9, yesterday_date = _get_9_stages_today_yesterday(date, full)
     total_today_9 = sum(today_9.values()) or 1
@@ -164,6 +224,7 @@ def build_report(date: str) -> Dict:
         "date": date,
         "yesterday_date": yesterday_date,
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "health": health,
         "path_dist": {
             "total": total, "A": A, "B": B, "C": C, "D": D,
             "A_ratio": A_ratio, "B_ratio": B_ratio, "C_ratio": C_ratio, "D_ratio": D_ratio,
@@ -188,6 +249,10 @@ def render_markdown(report: Dict) -> str:
     yesterday_date = report.get("yesterday_date", "?")
 
     lines = []
+    # v9：健康警示置顶（数据滞后 / auto_sync 停摆时第一时间可见）
+    for w in report.get("health", {}).get("warnings", []):
+        lines.append(w)
+        lines.append("")
     lines.append(f"# 自动化数据日报 · {date}")
     lines.append("")
     lines.append(f"> 报告期：{date}（环比 {yesterday_date}）")
@@ -276,6 +341,15 @@ def render_feishu_card(report: Dict) -> Dict:
 
     elements = []
 
+    # v9：健康警示置顶
+    warns = report.get("health", {}).get("warnings", [])
+    if warns:
+        elements.append({
+            "tag": "div",
+            "text": {"tag": "lark_md", "content": "\n".join(warns)},
+        })
+        elements.append({"tag": "hr"})
+
     # 1. 报告期
     elements.append({
         "tag": "div",
@@ -356,10 +430,16 @@ def render_feishu_card(report: Dict) -> Dict:
 # --------------------------------------------------------------------------- #
 # 包装：构造可直接 push 的 report
 # --------------------------------------------------------------------------- #
-def build_pushable_report(date: str) -> Dict:
+def build_pushable_report(date: str, period: str = "daily", prev_date: Optional[str] = None) -> Dict:
+    """构造可直接 push 的 report。
+
+    period / prev_date：v9 加的可选参数（兼容 __main__ 的调用签名；
+    当前 v8 模板按日渲染，周报/月报渲染留待扩展）。
+    """
     r = build_report(date)
+    prefix = "⚠️ " if r.get("health", {}).get("warnings") else ""
     return {
-        "title": f"📊 自动化数据日报 · {r['date']}",
+        "title": f"{prefix}📊 自动化数据日报 · {r['date']}",
         "markdown": render_markdown(r),
         "dingtalk_card": render_dingtalk_actioncard(r),
         "feishu_card": render_feishu_card(r),

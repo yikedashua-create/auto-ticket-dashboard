@@ -7,12 +7,15 @@
 
 设计：每个步骤独立函数，可单独调用（方便测试和扩展）。
 """
+import logging
 import os
 import subprocess
 import sys
 import time
 from dataclasses import dataclass
 from typing import Optional, List
+
+log = logging.getLogger("auto_sync.trigger")
 
 
 @dataclass

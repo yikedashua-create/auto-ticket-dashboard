@@ -34,6 +34,7 @@ r"""auto_sync 主管理器
 import logging
 import os
 import signal
+import subprocess
 import sys
 import threading
 from typing import Callable, Optional
@@ -91,6 +92,53 @@ class AutoSyncManager:
         self._bg_thread: Optional[threading.Thread] = None
         self._stop_event = threading.Event()
 
+    # ========== daemon 互斥锁（v1.2，2026-08-31） ==========
+    # 背景：daemon 可能被多种途径拉起（开机任务/手动/其它启动器），pid 文件
+    # 只在走 cmd_daemon 时写入，检测不到旁路启动的实例。文件锁对所有
+    # start_blocking 路径生效，保证任何时刻只有一个 daemon。
+    # 持有者被强杀时锁会残留 → 用"pid 存活检查"判 stale 并自动接管。
+
+    def _acquire_daemon_lock(self) -> bool:
+        lock_path = os.path.join(self.script_dir, "auto_sync", "data", "daemon.lock")
+        os.makedirs(os.path.dirname(lock_path), exist_ok=True)
+        if os.path.exists(lock_path):
+            try:
+                with open(lock_path) as f:
+                    old_pid = int(f.read().strip().split("|")[0])
+                r = subprocess.run(
+                    ["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
+                    capture_output=True, text=True,
+                    encoding="utf-8", errors="replace",  # tasklist 输出 GBK，防 UTF-8 环境解码崩
+                )
+                if str(old_pid) in (r.stdout or ""):
+                    log.warning(f"daemon.lock 被 PID {old_pid} 持有且进程存活，拒绝启动")
+                    return False
+            except (ValueError, OSError):
+                pass  # 文件损坏 → 视为 stale
+            try:
+                os.remove(lock_path)
+            except OSError:
+                pass
+        try:
+            with open(lock_path + ".tmp", "w") as f:
+                f.write(f"{os.getpid()}")
+            os.replace(lock_path + ".tmp", lock_path)
+        except OSError as e:
+            log.warning(f"写 daemon.lock 失败: {e}")
+            return False
+        return True
+
+    def _release_daemon_lock(self):
+        lock_path = os.path.join(self.script_dir, "auto_sync", "data", "daemon.lock")
+        try:
+            with open(lock_path) as f:
+                owner = f.read().strip().split("|")[0]
+            # Windows: 必须先关掉句柄再删，否则 PermissionError
+            if owner == str(os.getpid()):
+                os.remove(lock_path)
+        except (OSError, ValueError):
+            pass
+
     # ========== 生命周期 ==========
 
     def start_background(self):
@@ -124,6 +172,9 @@ class AutoSyncManager:
 
     def start_blocking(self):
         """同步阻塞跑（用 Ctrl+C 退出）"""
+        if not self._acquire_daemon_lock():
+            log.warning("已有 daemon 在运行（锁被持有），本次 start_blocking 直接退出")
+            return
         try:
             self._worker = WatcherWorker(
                 config=self.config,
@@ -158,6 +209,7 @@ class AutoSyncManager:
             self._bg_thread = None
         if self._worker is not None:
             self._worker.stop(timeout=timeout)
+        self._release_daemon_lock()
         log.info("AutoSyncManager 已停止")
 
     # ========== API：供外部调用 ==========

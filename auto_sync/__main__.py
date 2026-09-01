@@ -16,6 +16,7 @@ import logging
 import os
 import subprocess
 import sys
+from pathlib import Path  # cmd_daily_report --output 用
 
 # 2026-08-05 修复: PowerShell 5.1 + 中文 Windows 默认 GBK 编码
 # start_background() 起 daemon 线程，print emoji 会触发 UnicodeEncodeError
@@ -165,8 +166,9 @@ def cmd_status(args):
             r = subprocess.run(
                 ["tasklist", "/FI", f"PID eq {daemon_pid}", "/NH"],
                 capture_output=True, text=True,
+                encoding="utf-8", errors="replace",  # tasklist 输出 GBK
             )
-            daemon_alive = (str(daemon_pid) in r.stdout)
+            daemon_alive = (str(daemon_pid) in (r.stdout or ""))
         except Exception:
             pass
 
@@ -254,6 +256,27 @@ def cmd_daemon(args):
     DETACHED_PROCESS = 0x00000008
     CREATE_NEW_PROCESS_GROUP = 0x00000200
     flags = DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
+
+    # v1.2（2026-08-31）：防重入守卫——已有存活 daemon 时直接退出，不再起第二个。
+    # 背景：开机任务 + 手动启动可能叠加（双 daemon = 每个文件事件跑两次 gen）。
+    pid_file = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "auto_sync", "data", "daemon.pid",
+    )
+    if os.path.exists(pid_file):
+        try:
+            with open(pid_file) as f:
+                old_pid = int(f.read().strip())
+            r = subprocess.run(
+                ["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
+                capture_output=True, text=True,
+                encoding="utf-8", errors="replace",  # tasklist 输出 GBK
+            )
+            if str(old_pid) in (r.stdout or ""):
+                print(f"[OK] auto_sync daemon 已在运行 (PID {old_pid})，跳过本次启动")
+                return 0
+        except (ValueError, OSError):
+            pass  # pid 文件损坏 → 视为未运行，正常启动
 
     # 启动新 Python 进程，跑 --foreground 模式（内部用 watchdog observer 阻塞）
     cmd = [

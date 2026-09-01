@@ -17,7 +17,8 @@ echo ============================================
 echo.
 
 REM 用 daemon 子命令启动（独立进程，关 cmd 不影响）
-python -m auto_sync daemon %*
+REM v1.2: 固定 venv python（裸 python 依赖 PATH，venv 外可能缺 watchdog）
+"D:\pycharm3\.venv\Scripts\python.exe" -m auto_sync daemon %*
 
 echo.
 echo ============================================

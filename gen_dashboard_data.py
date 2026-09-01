@@ -17,7 +17,7 @@ dashboard_v5 数据生成器：按月聚合 + 维度下钻。
   python gen_dashboard_data.py --month all      # 显式跑全部
 """
 import pandas as pd
-import os, re, json, glob, argparse
+import os, re, json, glob, argparse, time
 from datetime import datetime
 from collections import defaultdict, Counter
 
@@ -1380,6 +1380,11 @@ def atomic_write_json(path, data):
       - os.replace 原子重命名（POSIX rename + Windows MoveFileEx 等价语义）
 
     失败时清理 tmp 文件，避免下次再写到坏 tmp。
+
+    v10.16.1（2026-09-01）：内容无实质变化（仅 generated_at 等时间戳字段不同）时
+    跳过写入。否则每次 gen 都刷新 generated_at → git 永远有 diff → 30 分钟兜底
+    任务每半小时产生一对无意义的 data+chore 空 commit（~1400 个/月）。
+    跳过写入后 trigger.py 的 git_skip_no_changes 分支自然生效。
     """
     tmp_path = path + ".tmp"
     try:
@@ -1390,6 +1395,20 @@ def atomic_write_json(path, data):
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
             f.flush()
             os.fsync(f.fileno())  # 强制刷盘
+        # v10.16.1: 与旧文件比较（mask 掉时间戳字段），无实质变化则不落盘
+        if os.path.exists(path):
+            try:
+                with open(path, encoding="utf-8") as fo:
+                    old = fo.read()
+                with open(tmp_path, encoding="utf-8") as fn:
+                    new = fn.read()
+                mask = lambda s: re.sub(r'("generated_at":")[^"]*(")', r'\1\2', s)
+                if mask(old) == mask(new):
+                    os.remove(tmp_path)
+                    print(f"[输出] {os.path.basename(path)} 无实质变化，跳过写入")
+                    return
+            except Exception:
+                pass  # 比较失败 → 照常原子替换
         os.replace(tmp_path, path)  # 原子重命名
     except Exception:
         if os.path.exists(tmp_path):
@@ -2245,6 +2264,51 @@ def build_month_data(df, month_label, is_daily=False):
     return out
 
 
+def _acquire_gen_lock(max_age_sec: int = 2400) -> bool:
+    """v10.16.1（2026-09-01）：gen 互斥锁。
+
+    背景：watcher 事件触发的 gen 和 30 分钟兜底任务的 gen 会并发跑，
+    同时写 monthly/*.json 和 dashboard_data.json（最后写者胜出 + git 竞争）。
+    锁文件在 auto_sync/data/（已 gitignore）；持有者 pid 存活则拒绝，
+    pid 死亡或锁超龄（40 分钟，单次 gen 上限 ~15 分钟）则接管。
+    """
+    import subprocess as _sp
+    lock_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "auto_sync", "data")
+    os.makedirs(lock_dir, exist_ok=True)
+    lock_path = os.path.join(lock_dir, "gen.lock")
+    if os.path.exists(lock_path):
+        try:
+            with open(lock_path) as f:
+                old_pid = int(f.read().strip().split("|")[0])
+            r = _sp.run(["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
+                        capture_output=True, text=True,
+                        encoding="utf-8", errors="replace")
+            age = time.time() - os.path.getmtime(lock_path)
+            if str(old_pid) in (r.stdout or "") and age < max_age_sec:
+                print(f"[锁] 另一个 gen 正在运行 (PID {old_pid}, age {age/60:.0f}min)，本次跳过")
+                return False
+        except (ValueError, OSError):
+            pass
+        try:
+            os.remove(lock_path)
+        except OSError:
+            pass
+    with open(lock_path, "w") as f:
+        f.write(str(os.getpid()))
+    return True
+
+
+def _release_gen_lock():
+    lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "auto_sync", "data", "gen.lock")
+    try:
+        with open(lock_path) as f:
+            owner = f.read().strip().split("|")[0]
+        if owner == str(os.getpid()):  # Windows: 先关句柄再删
+            os.remove(lock_path)
+    except (OSError, ValueError):
+        pass
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--month", default="all",
@@ -2252,6 +2316,17 @@ def main():
     parser.add_argument("--force", action="store_true",
                         help="强制全转所有 xlsx → parquet（xlsx 重新上传但 mtime 顺序倒挂时用）")
     args = parser.parse_args()
+
+    # v10.16.1：并发互斥（拿不到锁 = 已有 gen 在跑，本次直接退出）
+    if not _acquire_gen_lock():
+        return
+    try:
+        _main_inner(args)
+    finally:
+        _release_gen_lock()
+
+
+def _main_inner(args):
 
     # v10.13：先 sync raw（xlsx → parquet 增量），再 load_all
     print("[Step 1] 同步 xlsx → raw parquet（增量）")
