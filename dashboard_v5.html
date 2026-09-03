@@ -1060,7 +1060,7 @@ const chartInstances = {};
 
 // v10.16（2026-08-31）：COMMIT 提升到模块顶层（daily_detail 懒加载也要用它拼 jsDelivr URL）
 // ⚠️ auto_sync/trigger.py 的 sync_html_commit 按正则替换本行，格式勿改
-const COMMIT = "83f82bb";
+const COMMIT = "3b18b03";
 
 async function loadData() {
   try {
@@ -3194,7 +3194,7 @@ function renderFail() {
     const stageColor = getStageColor(f.family);
     return `<tr>
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${famLabel(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / CURRENT_DATA.summary.B * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -3208,7 +3208,7 @@ function renderFail() {
     const stageColor = getStageColor(f.family);
     return `<tr>
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${famLabel(f.family)}</strong></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / CURRENT_DATA.summary.D * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -3454,6 +3454,15 @@ function renderFailureAnalysis() {
 
   // 2. 失败根因族级行（2026-07-26 简化：9 大环节 + 点族行展开原始根因 + 5 维度下钻）
   // 2026-07-30: 加 anim-reveal 触发错位渐入
+  // v11（2026-09-03）：AI 语义归因族名显示——'预定环节-AI:下单异常' → '预定环节 · 下单异常 [✨AI]'
+  const famLabel = family => {
+    if (typeof family !== "string") return "";
+    if (family.includes("-AI:")) {
+      const [stage, sub] = family.split("-AI:");
+      return `${escapeHtml(stage)} · ${escapeHtml(sub)} <span style="color:#b98bff;font-size:10px;border:1px solid #7c4dff;border-radius:3px;padding:0 4px;margin-left:2px">✨AI</span>`;
+    }
+    return escapeHtml(family);
+  };
   const bFamilyRow = (f, i) => {
     const cmp = cmpBFamMap[f.family];
     const cmpBadge = cs
@@ -3463,7 +3472,7 @@ function renderFailureAnalysis() {
     const pctW = curSummaryB ? (f.count / curSummaryB * 100).toFixed(0) : 0;
     return `<tr class="anim-reveal" onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-fam-idx="${i}">
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${famLabel(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / curSummaryB * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -3478,7 +3487,7 @@ function renderFailureAnalysis() {
     const pctW = curSummaryD ? (f.count / curSummaryD * 100).toFixed(0) : 0;
     return `<tr class="anim-reveal" onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-fam-idx="${i}">
       <td>${i + 1}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${escapeHtml(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${stageColor};border-radius:2px;margin-right:6px"></span><strong>${famLabel(f.family)}</strong> <span style="color:#00e5ff;font-size:10px">▸ 点击展开</span></td>
       <td>${fmt.num(f.count)}</td>
       <td>${fmt.pct(f.count / curSummaryD * 100)}</td>
       <td style="font-size:11px">${cmpBadge}</td>
@@ -3690,11 +3699,17 @@ function renderFailureAnalysis() {
   };
 
   // 4. HTML 主体：9 大环节 + V1 基期对比 + V3 勾选式（垂直堆叠）
+  // v11：AI 归因覆盖率行（规则引擎为主 + GLM 语义归因兜底补充）
+  const aiAtt = (typeof DATA !== "undefined" && DATA && DATA.ai_attribution) || null;
+  const aiLine = aiAtt && aiAtt.ai_orders
+    ? `<div style="margin-top:4px;font-size:11px;color:#7a8ba0">🤖 归因引擎：规则命中 ${aiAtt.rules_cover_pct}% · <span style="color:#b98bff">AI 语义补充 ${aiAtt.ai_cover_pct}%</span> · 兜底 ${aiAtt.fallback_pct}%（AI 归类族带 ✨ 标记）</div>`
+    : "";
   const html = `
     <div class="section">
       <div class="section-title">⚠️ 全自动失败环节（9 大环节 · ${fmt.num(curSummaryB)} 单）
         ${cmpBHdr}
       </div>
+      ${aiLine}
       <div class="chart-box" style="margin-top:14px">
         <div class="chart-title">🎯 B 路径 8 大环节汇总（哪一环出问题）</div>
         ${stageSummaryHtml(bStages, curSummaryB)}
@@ -4162,6 +4177,16 @@ function renderDrillCharts(key, d) {
   }
 }
 
+/* v11（2026-09-03）：AI 语义归因族名显示——'预定环节-AI:下单异常' → '预定环节 · 下单异常 [✨AI]' */
+function famLabel(family) {
+  if (typeof family !== "string") return "";
+  if (family.includes("-AI:")) {
+    const [stage, sub] = family.split("-AI:");
+    return escapeHtml(stage) + " · " + escapeHtml(sub) +
+      ' <span style="color:#b98bff;font-size:10px;border:1px solid #7c4dff;border-radius:3px;padding:0 4px;margin-left:2px">✨AI</span>';
+  }
+  return escapeHtml(family);
+}
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 }
