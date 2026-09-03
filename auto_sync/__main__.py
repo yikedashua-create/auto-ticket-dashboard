@@ -525,7 +525,11 @@ def cmd_daily_report(args):
     with open(data_path, encoding="utf-8") as f:
         data = _json.load(f)
     daily_dates = sorted([d.get("date", "") for d in data.get("daily", []) if d.get("date")])
-    target_date = args.date or (daily_dates[-1] if daily_dates else None)
+    # v9：日报基准 = 今天之前的最新完整日（今天的文件 8:30 只有早晨部分数据）
+    from datetime import date as _date
+    _today = _date.today().isoformat()
+    complete = [d for d in daily_dates if d < _today]
+    target_date = args.date or (complete[-1] if complete else (daily_dates[-1] if daily_dates else None))
     if not target_date:
         print("[X] dashboard_data.json 里没有 daily 数据")
         return 1

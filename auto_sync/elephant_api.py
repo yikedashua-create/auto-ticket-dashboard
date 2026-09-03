@@ -317,12 +317,15 @@ def fetch_recent(days: int = 7, *, force: bool = False) -> list:
     today = datetime.now(BJ_TZ)
     results = []
     for i in range(days):
-        # i=0 → 昨天 (N=1 时只拉昨天)
-        # i=days-1 → N-1 天前
-        # 调整为: i=0 → 今天, i=1 → 昨天, ..., i=days-1 → N-1 天前
+        # i=0 → 今天, i=1 → 昨天, ..., i=days-1 → N-1 天前
         # 业务上, 今天 8:30 拉数据时, 昨天数据已经完整, 今天可能还有遗漏
         d = today - timedelta(days=i)
-        r = fetch_day(d.strftime('%Y-%m-%d'), force=force)
+        # v2.2（2026-09-03）：最近 2 天强制重拉。背景：每天 8:30 拉的"今天"只是
+        # 早晨部分数据（当天订单还没发生完），而已存在的文件会被 skip 永不更新
+        # → 9/1 仅 276 单、9/2 仅 490 单（正常 ~2500+/天），8/27 的 689 单同因。
+        # 修复后：昨天的不完整文件会在次日 8:30 被完整版覆盖，更早的天保持不变。
+        force_today = force or (i <= 1)
+        r = fetch_day(d.strftime('%Y-%m-%d'), force=force_today)
         results.append(r)
         _print(f"  {r.date}: {'skip' if r.skipped else 'ok' if r.success else 'FAIL'} "
                f"{r.xlsx_path or r.error}")
