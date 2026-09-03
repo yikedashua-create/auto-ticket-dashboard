@@ -90,12 +90,13 @@ def _validate(result: dict) -> bool:
             and isinstance(result.get("sub"), str) and result["sub"])
 
 
-def _call_api(reasons: list, creds: dict, timeout: int = 40) -> dict:
+def _call_api(reasons: list, creds: dict, timeout: int = 120) -> dict:
     """调智谱 chat completions，返回 {reason: {"stage","sub"}}。异常向上抛。"""
     url = creds.get("base_url", DEFAULT_BASE_URL).rstrip("/") + "/chat/completions"
     headers = {"Authorization": f"Bearer {creds['api_key']}", "Content-Type": "application/json"}
+    model = creds.get("model", DEFAULT_MODEL)
     body = {
-        "model": creds.get("model", DEFAULT_MODEL),
+        "model": model,
         "temperature": 0.1,
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
@@ -116,7 +117,7 @@ def _call_api(reasons: list, creds: dict, timeout: int = 40) -> dict:
     return out
 
 
-def classify_unmatched(reasons: list, batch_size: int = 20, max_batches: int = 30) -> dict:
+def classify_unmatched(reasons: list, batch_size: int = 10, max_batches: int = 60) -> dict:
     """把规则未命中的 unique 原因交给 AI 归类（带缓存 + 降级）。
 
     Args:

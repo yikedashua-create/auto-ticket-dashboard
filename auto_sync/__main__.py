@@ -506,6 +506,11 @@ def main():
     p_fetch.add_argument("--trigger", action="store_true", help="拉完自动触发 gen+git+push")
     p_fetch.set_defaults(func=cmd_fetch)
 
+    # ai-rules（2026-09-03 新增：AI 语义归因结果 → 建议采纳为规则，人工审批）
+    p_airules = subparsers.add_parser("ai-rules", help="查看 AI 语义归因结果，产出可采纳为正则规则的建议")
+    p_airules.add_argument("--limit", type=int, default=30, help="展示条数（默认 30）")
+    p_airules.set_defaults(func=cmd_ai_rules)
+
     args = parser.parse_args()
     setup_logging(args.log_level)
     return args.func(args) or 0
@@ -674,6 +679,23 @@ def _maybe_alert(results: list, fail_n: int, total: int):
     except Exception as e:
         print(f"[X] 告警推送异常: {type(e).__name__}: {e}")
         # 不影响 fetch 主流程, 继续往下走
+
+
+def cmd_ai_rules(args):
+    """AI 语义归因结果 → 建议采纳为 REASON_FAMILY_RULES 规则（人工审批后粘贴）"""
+    from .ai_classifier import suggest_rules, _load_cache
+    cache = _load_cache()
+    if not cache:
+        print("AI 归因缓存为空（尚未跑过 gen 的 AI 预 pass，或历史原因全部被规则命中）")
+        return 0
+    print(f"AI 归因缓存共 {len(cache)} 条，展示前 {args.limit} 条建议：\n")
+    for s in suggest_rules(args.limit):
+        print(f"  ◆ {s['ai_family']}")
+        print(f"    原因: {s['reason'][:80]}")
+        print(f"    建议规则: {s['suggested_rule']}")
+    print("\n采纳方式：把'建议规则'行粘贴进 gen_dashboard_data.py 的 REASON_FAMILY_RULES 列表")
+    print("（放在具体关键词规则区即可；采纳后该原因回到规则引擎，AI 缓存自动失效于下次全量归因）")
+    return 0
 
 
 def cmd_fetch(args):
