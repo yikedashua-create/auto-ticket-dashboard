@@ -469,15 +469,24 @@ def get_stage_only(family: str) -> str:
     return "其他环节"
 
 
+_AI_FAMILY_MAP = {}
+"""v11（2026-09-03）AI 语义归因映射：{清洗后原因: 'X环节-AI:子分类'}。
+由 main() 的预 pass 调 auto_sync.ai_classifier.classify_unmatched() 填充；
+无 key / API 失败时为空 dict，family_reason 继续走规则兜底（AI 不阻塞管道）。"""
+
+
 def family_reason(reason: str) -> str:
     """v11：把单条清洗后的 reason 归到「环节 - 子分类」。
-    如果没有任何规则匹配，返回 '其他环节-兜底'。
+    优先级：REASON_FAMILY_RULES 正则 → AI 语义归类（_AI_FAMILY_MAP）→ '其他环节-兜底'。
     空 reason 在 D 订单处理中很常见（票已出但无失败原因记录），归'其他环节-空原因'。"""
     if not reason or reason == "(无)":
         return "其他环节-空原因"
     for pattern, family in REASON_FAMILY_RULES:
         if re.search(pattern, reason):
             return family
+    ai = _AI_FAMILY_MAP.get(reason)
+    if ai:
+        return ai
     return "其他环节-兜底"
 
 
@@ -2338,6 +2347,27 @@ def _main_inner(args):
     print(f"[切分] A={(df_all['path']=='A').sum()}, B={(df_all['path']=='B').sum()}, "
           f"C={(df_all['path']=='C').sum()}, D={(df_all['path']=='D').sum()}\n")
 
+    # v11（2026-09-03）：AI 语义归因预 pass
+    # 规则未命中的 unique 原因交给智谱 GLM 归类（带全量缓存 + 失败降级），
+    # 结果填进 _AI_FAMILY_MAP 供 family_reason 使用。AI 挂了不影响主流程。
+    try:
+        from auto_sync.ai_classifier import classify_unmatched
+        uniq = set()
+        for col in ("第一次失败原因", "失败原因"):
+            if col in df_all.columns:
+                uniq.update(x.strip() for x in df_all[col].fillna("").astype(str).unique() if x.strip())
+        cleaned_uniq = {clean_reason_text(u) for u in uniq}
+        cleaned_uniq.discard("")
+        unmatched = [u for u in cleaned_uniq
+                     if not any(re.search(p, u) for p, _ in REASON_FAMILY_RULES)
+                     and u != "(无)"]
+        print(f"[AI 归因] unique 原因 {len(cleaned_uniq)} 条，规则未命中 {len(unmatched)} 条，"
+              f"开始语义归类（缓存命中部分零调用）...")
+        _AI_FAMILY_MAP.update(classify_unmatched(unmatched))
+        print(f"[AI 归因] 新增归类 {len(_AI_FAMILY_MAP)} 条")
+    except Exception as e:
+        print(f"[AI 归因] 预 pass 异常（继续走规则兜底）: {type(e).__name__}: {e}")
+
     # 按月分桶
     df_all["_month"] = df_all["_file_date"].str[:7]  # "2026-05-01" -> "2026-05"
     available_months = sorted(df_all["_month"].unique().tolist())
@@ -2480,11 +2510,34 @@ def _main_inner(args):
     months_top = {}
     for m, data in months_data.items():
         months_top[m] = {k: v for k, v in data.items() if k != "daily_detail"}
+
+    # v11：AI 归因统计（按 B+D 失败单量拆：规则命中 / AI 补充 / 仍兜底）
+    ai_stats = {"rules_orders": 0, "ai_orders": 0, "fallback_orders": 0,
+                "ai_family_count": len(_AI_FAMILY_MAP)}
+    for data in months_data.values():
+        for r in (data.get("fail_reasons_B", []) or []) + (data.get("fail_reasons_D", []) or []):
+            fam = r.get("family", "")
+            if "-AI:" in fam:
+                ai_stats["ai_orders"] += r.get("count", 0)
+            elif "兜底" in fam or "空原因" in fam:
+                ai_stats["fallback_orders"] += r.get("count", 0)
+            else:
+                ai_stats["rules_orders"] += r.get("count", 0)
+    tot_fail = ai_stats["rules_orders"] + ai_stats["ai_orders"] + ai_stats["fallback_orders"]
+    if tot_fail:
+        ai_stats["ai_cover_pct"] = round(ai_stats["ai_orders"] / tot_fail * 100, 2)
+        ai_stats["rules_cover_pct"] = round(ai_stats["rules_orders"] / tot_fail * 100, 2)
+        ai_stats["fallback_pct"] = round(ai_stats["fallback_orders"] / tot_fail * 100, 2)
+    print(f"[AI 归因] 失败单量口径：规则 {ai_stats['rules_orders']:,}（{ai_stats.get('rules_cover_pct', 0)}%）"
+          f" + AI {ai_stats['ai_orders']:,}（{ai_stats.get('ai_cover_pct', 0)}%）"
+          f" + 兜底 {ai_stats['fallback_orders']:,}（{ai_stats.get('fallback_pct', 0)}%）")
+
     final = {
         "generated_at": generated_at,
         "available_months": available_months,
         "current_month": target_months[-1],
         "monthly_index": monthly_index,
+        "ai_attribution": ai_stats,
         "months": months_top,
         # 兼容旧版（顶层还有默认月数据，前端可平滑切换；同样剥离 daily_detail）
         **months_top[target_months[-1]],
