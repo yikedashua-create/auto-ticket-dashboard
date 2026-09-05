@@ -515,9 +515,30 @@ def build_brief(date: str) -> Dict:
     prev_ym = months_avail[months_avail.index(ym) - 1] if ym in months_avail and months_avail.index(ym) > 0 else None
     prev_month_sum = months.get(prev_ym, {}).get("summary", {}) if prev_ym else {}
 
+    succ = s.get("auto_succ_rate") or 0
+    succ_prev = y_s.get("auto_succ_rate") or 0
+
     staff_top = sorted(today.get("staff", []), key=lambda x: -x.get("B", 0))[:2]
     attention = _collect_attention(full, date)
     health = _check_health(full, date)
+
+    # v9.1（2026-09-03）：AI 解读层（生成永远执行写入预览文件供灰度审查；
+    # 是否进推送由 build_pushable_report 按 insight_enabled 开关裁剪）
+    try:
+        from .ai_insight import daily_comment, reason_note
+        ai_comment = daily_comment({
+            "date": date, "yesterday_date": prevs[0] if prevs else None,
+            "succ": succ, "succ_prev": succ_prev, "succ_delta": (succ - succ_prev) if succ_prev else None,
+            "total": s.get("total_orders", 0), "A": s.get("A", 0), "B": s.get("B", 0),
+            "C": s.get("C", 0), "D": s.get("D", 0), "attention": attention,
+            "month_rate": None,  # 月度下面再补
+        })
+        for it in attention:
+            if it["kind"] == "new":
+                it["ai_note"] = reason_note(it["reason"])
+    except Exception as e:
+        logger.warning(f"AI 解读层异常（降级为不显示）: {e}")
+        ai_comment = ""
 
     succ = s.get("auto_succ_rate") or 0
     succ_prev = y_s.get("auto_succ_rate") or 0
@@ -535,6 +556,7 @@ def build_brief(date: str) -> Dict:
         "staff_top": [{"name": x.get("name"), "B": x.get("B", 0)} for x in staff_top],
         "attention": attention,
         "health": health,
+        "ai_comment": ai_comment,
     }
 
 
@@ -563,8 +585,12 @@ def render_brief_markdown(b: Dict) -> str:
         for it in b["attention"]:
             tag = "新根因" if it["kind"] == "new" else "连续上升"
             L.append(f"- 【{tag}】{it['reason']}（{it['count']} 单）")
+            if it.get("ai_note"):
+                L.append(f"  处置：{it['ai_note']}")
             if it["orders"]:
                 L.append(f"  订单号：{' · '.join(it['orders'])}")
+    if b.get("ai_comment"):
+        L.append(f"🤖 **AI 点评**：{b['ai_comment']}")
     if b["month_rate"] is not None:
         pm = f"（上月 {b['prev_month_rate']:.1f}%）" if b["prev_month_rate"] is not None else ""
         L.append(f"📈 本月累计 {b['month_rate']:.1f}%{pm}")
@@ -590,10 +616,17 @@ def render_brief_feishu(b: Dict) -> Dict:
         for it in b["attention"]:
             tag = "新根因" if it["kind"] == "new" else "连续上升"
             ln = f"- 【{tag}】{it['reason']}（{it['count']} 单）"
+            sub = []
+            if it.get("ai_note"):
+                sub.append(f"处置：{it['ai_note']}")
             if it["orders"]:
-                ln += f"\n  订单号：{' · '.join(it['orders'])}"
+                sub.append(f"订单号：{' · '.join(it['orders'])}")
+            if sub:
+                ln += "\n  " + "｜".join(sub)
             lines.append(ln)
         els.append({"tag": "div", "text": {"tag": "lark_md", "content": "\n".join(lines)}})
+    if b.get("ai_comment"):
+        els.append({"tag": "div", "text": {"tag": "lark_md", "content": f"🤖 **AI 点评**：{b['ai_comment']}"}})
     tail = []
     if b["month_rate"] is not None:
         pm = f"（上月 {b['prev_month_rate']:.1f}%）" if b["prev_month_rate"] is not None else ""
@@ -676,6 +709,20 @@ def build_weekly(date: str) -> Dict:
         if c >= 20 and p and c > p * 1.3:
             worsen.append((fam, c, p))
     worsen.sort(key=lambda x: -(x[1] - x[2]))
+    # v9.1：恶化环节的 AI 归因假设（闸门控制，失败静默）
+    worsen_ai = {}
+    try:
+        from .ai_insight import anomaly_explain
+        for fam, c, p in worsen[:3]:
+            top_changes = sorted(
+                [(r, cur["reasonB"].get(r, 0) - prev["reasonB"].get(r, 0))
+                 for r in cur["reasonB"] if cur["reasonB"].get(r, 0) - prev["reasonB"].get(r, 0) > 5],
+                key=lambda kv: -abs(kv[1]))[:5]
+            exp = anomaly_explain(fam, c, p, [{"原因": r, "变化": d} for r, d in top_changes])
+            if exp:
+                worsen_ai[fam] = exp
+    except Exception as e:
+        logger.warning(f"周报 AI 归因异常（降级）: {e}")
     return {
         "period": f"{cur_d[0]} ~ {cur_d[-1]}", "prev_period": f"{prev_d[0]} ~ {prev_d[-1]}" if prev_d else "?",
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -685,6 +732,7 @@ def build_weekly(date: str) -> Dict:
         "plat_low": [(k, v, _rate(v)) for k, v in plat if v["total"] >= 50][:5],
         "air_low": [(k, v, _rate(v)) for k, v in air if v["total"] >= 100][:5],
         "worsen": worsen[:3],
+        "worsen_ai": worsen_ai,
         "staff_top": sorted(cur["staff"].items(), key=lambda kv: -kv[1])[:5],
     }
 
@@ -738,7 +786,9 @@ def render_weekly(w) -> Dict:
         "**📉 平台成功率后 5**\n\n" + "\n\n".join(_digest_kv_rows(w["plat_low"])) if w["plat_low"] else "",
         "**✈️ 航司成功率后 5**\n\n" + "\n\n".join(_digest_kv_rows(w["air_low"])) if w["air_low"] else "",
         "**⚠️ 连续恶化的环节**\n\n" + "\n\n".join(
-            f"- {f}：{c} 单（上周 {p} 单，+{c - p}）" for f, c, p in w["worsen"]) if w["worsen"] else "",
+            f"- {f}：{c} 单（上周 {p} 单，+{c - p}）"
+            + (f"\n  🤖 {w.get('worsen_ai', {}).get(f)}" if w.get("worsen_ai", {}).get(f) else "")
+            for f, c, p in w["worsen"]) if w["worsen"] else "",
         "**🔧 技术失败 Top 5**\n\n" + "\n\n".join(
             f"- {r}（{c} 单）" for r, c in w["top_tech"]) if w["top_tech"] else "",
         "**👨‍💼 救场 Top 5**：" + " · ".join(f"{n} {c}" for n, c in w["staff_top"]) if w["staff_top"] else "",
@@ -750,7 +800,10 @@ def render_weekly(w) -> Dict:
                         f"🛡️ 风控拦截 {w['risk']:,} 单 · 🔧 技术失败 {w['tech']:,} 单"] +
               ([ "**📉 平台成功率后 5**\n" + "\n".join(_digest_kv_rows(w["plat_low"])) ] if w["plat_low"] else []) +
               ([ "**✈️ 航司成功率后 5**\n" + "\n".join(_digest_kv_rows(w["air_low"])) ] if w["air_low"] else []) +
-              ([ "**⚠️ 连续恶化的环节**\n" + "\n".join(f"- {f}：{c} 单（上周 {p} 单，+{c - p}）" for f, c, p in w["worsen"]) ] if w["worsen"] else []) +
+              ([ "**⚠️ 连续恶化的环节**\n" + "\n".join(
+                   f"- {f}：{c} 单（上周 {p} 单，+{c - p}）"
+                   + (f"\n  🤖 {w.get('worsen_ai', {}).get(f)}" if w.get('worsen_ai', {}).get(f) else "")
+                   for f, c, p in w["worsen"]) ] if w["worsen"] else []) +
               ([ "**🔧 技术失败 Top 5**\n" + "\n".join(f"- {r}（{c} 单）" for r, c in w["top_tech"]) ] if w["top_tech"] else []) +
               ([ "**👨‍💼 救场 Top 5**：" + " · ".join(f"{n} {c}" for n, c in w["staff_top"]) ] if w["staff_top"] else []) +
               [ f"🔗 [打开完整看板]({DASHBOARD_URL})" ]]
@@ -810,6 +863,12 @@ def build_pushable_report(date: str, period: str = "daily", prev_date: Optional[
     """
     if period == "weekly":
         w = build_weekly(date)
+        try:
+            from .ai_insight import insight_enabled
+            if not insight_enabled():
+                w["worsen_ai"] = {}
+        except Exception:
+            pass
         out = render_weekly(w)
         out["_raw"] = {"date": date, "period": "weekly", "generated_at": w["generated_at"]}
         out["action_url"] = DASHBOARD_URL
@@ -832,6 +891,15 @@ def build_pushable_report(date: str, period: str = "daily", prev_date: Optional[
             "_raw": r,
         }
     b = build_brief(date)
+    # 闸门5：灰度开关未开时裁掉 AI 内容（生成结果仍在预览文件里供审查）
+    try:
+        from .ai_insight import insight_enabled
+        if not insight_enabled():
+            b["ai_comment"] = ""
+            for it in b.get("attention", []):
+                it.pop("ai_note", None)
+    except Exception:
+        pass
     has_issue = bool(b["attention"]) or bool(b["health"].get("warnings"))
     return {
         "title": f"📊 出票日报 · {b['date']} {'⚠️' if has_issue else '✅'}",

@@ -511,6 +511,11 @@ def main():
     p_airules.add_argument("--limit", type=int, default=30, help="展示条数（默认 30）")
     p_airules.set_defaults(func=cmd_ai_rules)
 
+    # ai-insight（2026-09-03 新增：AI 解读灰度审查预览）
+    p_aiinsight = subparsers.add_parser("ai-insight", help="预览 AI 点评/处置描述（灰度审查用，不推送）")
+    p_aiinsight.add_argument("--date", help="预览日期 YYYY-MM-DD（默认最新一天）")
+    p_aiinsight.set_defaults(func=cmd_ai_insight)
+
     args = parser.parse_args()
     setup_logging(args.log_level)
     return args.func(args) or 0
@@ -679,6 +684,27 @@ def _maybe_alert(results: list, fail_n: int, total: int):
     except Exception as e:
         print(f"[X] 告警推送异常: {type(e).__name__}: {e}")
         # 不影响 fetch 主流程, 继续往下走
+
+
+def cmd_ai_insight(args):
+    """灰度审查：预览某天的 AI 解读产出（不推送，不受 insight_enabled 开关影响）"""
+    from .ai_insight import daily_comment, reason_note, insight_enabled
+    from .daily_report import build_brief, _load_data, _load_dd_for_months, _recent_month_keys
+
+    full = _load_data()
+    daily_dates = sorted([d.get("date", "") for d in full.get("daily", []) if d.get("date")])
+    date = args.date or daily_dates[-1] if daily_dates else None
+    if not date:
+        print("[X] 无可用数据日期")
+        return 1
+    print(f"预览日期: {date}（当前灰度开关 insight_enabled={insight_enabled()}）\n")
+    b = build_brief(date)
+    print(f"🤖 AI 点评: {b.get('ai_comment') or '（未生成/被闸门丢弃）'}")
+    for it in b.get("attention", []):
+        if it["kind"] == "new":
+            print(f"📝 新根因处置 [{it['reason'][:40]}]: {it.get('ai_note') or '（未生成）'}")
+    print(f"\n预览文件: E:\\Work\\Tools\\_workbench\\_ai_insight_preview.txt（含历史所有产出与丢弃记录）")
+    return 0
 
 
 def cmd_ai_rules(args):
