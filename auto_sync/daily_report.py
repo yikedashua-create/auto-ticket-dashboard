@@ -36,6 +36,15 @@ def _load_data() -> Dict:
     return json.loads(DATA_PATH.read_text(encoding="utf-8"))
 
 
+def _oid(x) -> str:
+    """v11.2 兼容：orders 元素从字符串变为 {'o':订单号,'s':最终状态} dict"""
+    return x.get("o", "") if isinstance(x, dict) else str(x)
+
+
+def _oid_status(x) -> str:
+    return x.get("s", "") if isinstance(x, dict) else ""
+
+
 def _delta_arrow(delta: float) -> str:
     if delta > 0.5:
         return "⬆️"
@@ -306,8 +315,11 @@ def render_markdown(report: Dict) -> str:
             lines.append(f"**{num}{reason}（{count}/{prev_count}）{r_arrow}{abs(r_delta):.0f}%**")
             orders = r["orders"]
             if orders:
-                orders_str = "、`".join(orders)
+                orders_str = "、`".join(_oid(o) for o in orders)
                 lines.append(f"例:`{orders_str}`")
+                stats = [s for s in (_oid_status(o) for o in orders) if s]
+                if stats:
+                    lines.append(f"  最终状态：{' / '.join(stats)}")
             lines.append("")
 
     # 钉钉 markdown 单换行被忽略，必须 \n\n 才换段
@@ -411,7 +423,7 @@ def render_feishu_card(report: Dict) -> Dict:
                 lines.append(f"- **{num}{reason}（{count}/{prev_count}）{r_arrow}{abs(r_delta):.0f}%**")
                 orders = r["orders"]
                 if orders:
-                    orders_str = "、`".join(orders)
+                    orders_str = "、`".join(_oid(o) for o in orders)
                     lines.append(f"  例:`{orders_str}`")
 
         elements.append({
@@ -479,7 +491,7 @@ def _collect_attention(full, date, limit=3):
         if c >= 2 and r["reason"] not in y1:
             items.append({
                 "kind": "new", "reason": r["reason"], "count": c,
-                "orders": [str(o) for o in (r.get("orders") or [])[:2]],
+                "orders": [_oid(o) for o in (r.get("orders") or [])[:2]],
             })
         if sum(1 for i in items if i["kind"] == "new") >= 2:
             break
@@ -491,7 +503,7 @@ def _collect_attention(full, date, limit=3):
         if c0 >= 5 and c0 > c1 > c2 and c0 >= c1 * 1.5:
             items.append({
                 "kind": "rise", "reason": r["reason"], "count": c0,
-                "orders": [str(o) for o in (r.get("orders") or [])[:2]],
+                "orders": [_oid(o) for o in (r.get("orders") or [])[:2]],
             })
     return items[:limit]
 

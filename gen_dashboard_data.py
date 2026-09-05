@@ -475,6 +475,68 @@ _AI_FAMILY_MAP = {}
 无 key / API 失败时为空 dict，family_reason 继续走规则兜底（AI 不阻塞管道）。"""
 
 
+_FINAL_STATUS_LABELS = {}
+
+
+def final_status_label(row) -> str:
+    """v11.2（2026-09-05）：订单最终状态（去重后每行即最新快照，直接读行内字段）。
+
+    映射：已出票白名单→已出票；待出票类→待出票（留单订单单列）；
+    其余→其他（取消/作废等）。前端徽标：✅⏳🔴❓
+    """
+    plat = str(row.get("平台状态", "") or "").strip()
+    if plat in SUCCESS_STATUSES:
+        return "已出票"
+    if plat in {"支付成功等待出票", "待出票", "未出票"}:
+        hold = str(row.get("订单状态.1", "") or "").strip()
+        return "留单处理中" if hold == HOLD_STATUS else "待出票"
+    return "其他"
+
+
+def dedup_master_orders(df):
+    """v11.2（2026-09-05）：主单去重——同订单号跨天快照/拆分行只算一张主单。
+
+    用户拍板（2026-09-05，主口径切换 B 方案）：
+      - 归属日 = 订单首次出现日（下单日）→ 日/月聚合自然无重复
+      - 最终状态 = 最新一天快照的行（含 path/平台状态/锁定人/平台/航司）
+      - 失败原因 = 最早非空快照回填（保住"第一次失败"语义）
+    副作用（口径说明）：航司/平台分布按主单归属行计，拆分单不再按航段重复计。
+    """
+    if "订单号" not in df.columns:
+        return df
+    df = df.copy()
+    df["_oid"] = df["订单号"].astype(str).str.strip()
+    df = df.sort_values(["_oid", "_file_date"], kind="mergesort")
+    first_date = df.groupby("_oid")["_file_date"].transform("first")
+    for col in ("第一次失败原因", "失败原因"):
+        if col in df.columns:
+            s = df[col].fillna("").astype(str).str.strip()
+            df.loc[s == "", col] = None
+            df[col] = df[col].fillna(df.groupby("_oid")[col].transform("first"))
+    dedup = df.groupby("_oid").tail(1).copy()
+    dedup["_file_date"] = first_date.loc[dedup.index]
+    return (dedup.drop(columns=["_oid"])
+            .sort_values("_file_date", kind="mergesort")
+            .reset_index(drop=True))
+
+
+def snapshot_summary(df_snap):
+    """v11.2：快照口径（旧口径）并行保留——同订单多日快照/拆分行各计一次。"""
+    out = {}
+    if "_month" not in df_snap.columns:
+        return out
+    for m, g in df_snap.groupby("_month"):
+        A = int((g["path"] == "A").sum()); B = int((g["path"] == "B").sum())
+        C = int((g["path"] == "C").sum()); D = int((g["path"] == "D").sum())
+        total = int(len(g))
+        out[str(m)] = {
+            "total_orders": total, "A": A, "B": B, "C": C, "D": D,
+            "auto_succ_rate": round(A / (A + B) * 100, 2) if A + B else 0,
+            "auto_coverage_rate": round((A + B) / total * 100, 2) if total else 0,
+        }
+    return out
+
+
 def family_reason(reason: str) -> str:
     """v11：把单条清洗后的 reason 归到「环节 - 子分类」。
     优先级：REASON_FAMILY_RULES 正则 → AI 语义归类（_AI_FAMILY_MAP）→ '其他环节-兜底'。
@@ -1881,26 +1943,27 @@ def build_month_data(df, month_label, is_daily=False):
         cleaned_after = family_sub_normalize(cleaned, fam)
         if not cleaned_after or not cleaned_after.strip():
             cleaned_after = "(无)"
-        # 收集订单号样本 (前 3 个)
+        # 收集订单号样本 (前 3 个；v11.2 起带最终状态 dict)
         oid_raw = r.get("订单号", None)
         oid_str = ""
         if oid_raw is not None and pd.notna(oid_raw):
             oid_str = str(int(oid_raw)) if isinstance(oid_raw, (int, float)) else str(oid_raw)
+        oid_obj = {"o": oid_str, "s": final_status_label(r)} if oid_str else None
         if p == "B":
             key = (cleaned_after, fam)
             if key not in reason_counter_b:
                 reason_counter_b[key] = {"count": 0, "orders": []}
             reason_counter_b[key]["count"] += 1
-            if oid_str and len(reason_counter_b[key]["orders"]) < 3:
-                reason_counter_b[key]["orders"].append(oid_str)
+            if oid_obj and len(reason_counter_b[key]["orders"]) < 3:
+                reason_counter_b[key]["orders"].append(oid_obj)
             fail_families_b[get_stage_only(fam)] += 1
         elif p == "D":
             key = (cleaned_after, fam)
             if key not in reason_counter_d:
                 reason_counter_d[key] = {"count": 0, "orders": []}
             reason_counter_d[key]["count"] += 1
-            if oid_str and len(reason_counter_d[key]["orders"]) < 3:
-                reason_counter_d[key]["orders"].append(oid_str)
+            if oid_obj and len(reason_counter_d[key]["orders"]) < 3:
+                reason_counter_d[key]["orders"].append(oid_obj)
             fail_families_d[get_stage_only(fam)] += 1
 
     # 简化：取前 60 字
@@ -2098,8 +2161,25 @@ def build_month_data(df, month_label, is_daily=False):
             staff_series = staff_series[staff_series != ""]
             staff_counts = staff_series.value_counts().head(10)
             staff_dist = [{"name": k, "count": int(v)} for k, v in staff_counts.items()]
-            rescued_count = int(staff_series.shape[0])
+            # v11.2：rescued 改"最终状态=已出票"口径（旧口径=有人锁定≈恒100%，无区分度）
+            status_series = sub.apply(final_status_label, axis=1)
+            rescued_count = int((status_series == "已出票").sum())
             rescue_rate = round(rescued_count / n_sub * 100, 2) if n_sub else 0
+
+            # 5.5 订单明细 Top20（业务员行动清单：订单号/平台/航司/最终状态/救场员工）
+            orders_detail = []
+            for _, rr in sub.head(20).iterrows():
+                o_raw = rr.get("订单号", None)
+                if o_raw is None or pd.isna(o_raw):
+                    continue
+                o_str = str(int(o_raw)) if isinstance(o_raw, (int, float)) else str(o_raw)
+                orders_detail.append({
+                    "o": o_str,
+                    "p": str(rr.get("平台", "") or "")[:10],
+                    "a": str(rr.get(air_col, "") or "")[:14],
+                    "s": final_status_label(rr),
+                    "l": str(rr.get("最后锁定人", "") or "").strip()[:12],
+                })
 
             # 6. 采购渠道分布（2026-08-11 新增，日报需要）
             chan_series = sub["_channel"].fillna("").astype(str).str.strip()
@@ -2119,6 +2199,7 @@ def build_month_data(df, month_label, is_daily=False):
                 "channel_dist": channel_dist,  # 2026-08-11 新增
                 "rescued_count": rescued_count,
                 "rescue_rate": rescue_rate,
+                "orders": orders_detail,  # v11.2 订单明细 Top20
             })
         return drills
 
@@ -2344,8 +2425,20 @@ def _main_inner(args):
 
     df_all = load_all()
     df_all = classify(df_all)
-    print(f"[切分] A={(df_all['path']=='A').sum()}, B={(df_all['path']=='B').sum()}, "
-          f"C={(df_all['path']=='C').sum()}, D={(df_all['path']=='D').sum()}\n")
+
+    # v11.2（2026-09-05，用户拍板 B 方案）：主口径切换为独立订单口径（主单去重）。
+    # 快照口径（旧口径）并行保留在 summary.snapshot，供双口径对照。
+    df_snap = df_all
+    df_all = dedup_master_orders(df_all)
+    df_snap = df_snap.copy()
+    df_snap["_month"] = df_snap["_file_date"].str[:7]
+    snap_sum = snapshot_summary(df_snap)
+    print(f"[切分·快照口径] 总={len(df_snap):,} 行 | "
+          f"A={(df_snap['path']=='A').sum():,}, B={(df_snap['path']=='B').sum():,}, "
+          f"C={(df_snap['path']=='C').sum():,}, D={(df_snap['path']=='D').sum():,}")
+    print(f"[切分·独立订单口径] 总={len(df_all):,} 张主单 | "
+          f"A={(df_all['path']=='A').sum():,}, B={(df_all['path']=='B').sum():,}, "
+          f"C={(df_all['path']=='C').sum():,}, D={(df_all['path']=='D').sum():,}\n")
 
     # v11（2026-09-03）：AI 语义归因预 pass
     # 规则未命中的 unique 原因交给智谱 GLM 归类（带全量缓存 + 失败降级），
@@ -2510,6 +2603,10 @@ def _main_inner(args):
     months_top = {}
     for m, data in months_data.items():
         months_top[m] = {k: v for k, v in data.items() if k != "daily_detail"}
+        # v11.2：快照口径并行注入（双口径对照）
+        if m in snap_sum:
+            months_top[m].setdefault("summary", {})["snapshot"] = snap_sum[m]
+            months_data[m].setdefault("summary", {})["snapshot"] = snap_sum[m]
 
     # v11：AI 归因统计（按 B+D 失败单量拆：规则命中 / AI 补充 / 仍兜底）
     ai_stats = {"rules_orders": 0, "ai_orders": 0, "fallback_orders": 0,
