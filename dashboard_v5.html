@@ -1060,7 +1060,7 @@ const chartInstances = {};
 
 // v10.16（2026-08-31）：COMMIT 提升到模块顶层（daily_detail 懒加载也要用它拼 jsDelivr URL）
 // ⚠️ auto_sync/trigger.py 的 sync_html_commit 按正则替换本行，格式勿改
-const COMMIT = "2311bb9";
+const COMMIT = "02ee897";
 
 async function loadData() {
   try {
@@ -1504,6 +1504,7 @@ async function switchPeriod(month, day, week) {
     : (month === "all" ? "全部月份" : month));
   document.getElementById("monthInfo").innerHTML =
     `<b>${s.total_orders.toLocaleString()}</b> 单 · <b>${s.total_days}</b> 天` +
+    (s.snapshot ? ` <span style="color:#5a6b80;font-size:10px">独立订单口径 · 快照口径 ${s.snapshot.total_orders.toLocaleString()} 次</span>` : "") +
     (COMPARE_DATA ? ` <span style="color:#7a8ba0;font-size:11px">· 对比 ${COMPARE_LABEL}</span>` : "");
 
   document.getElementById("subtitle").textContent =
@@ -3813,8 +3814,17 @@ function renderFamilyReasonRows(reasons, allReasons, path, fam, expanded) {
     const diffArrow = diff > 0 ? "↑" : (diff < 0 ? "↓" : "→");
     const prevLabel = isDayView ? "前一天" : (r.prev_month || "上月");
     // 2026-07-27: 案例订单号 (从 gen 端 sample_orders 字段取, 前 3 个)
+    // v11.2: orders 变为 {o, s(最终状态)} dict → 订单号 + 状态徽标
+    const _ordObj = o => (typeof o === "object" && o !== null) ? o : { o: String(o), s: "" };
     const ordersHtml = (r.orders && r.orders.length)
-      ? r.orders.map(o => `<code style="background:#1e3a5f;color:#00e5ff;padding:1px 5px;border-radius:2px;font-size:11px">${escapeHtml(o)}</code>`).join(" ")
+      ? r.orders.map(x => {
+          const oo = _ordObj(x);
+          const badge = oo.s === "已出票" ? '<span style="color:#2ed573;font-size:10px">✓出票</span>'
+            : oo.s === "待出票" ? '<span style="color:#ffa502;font-size:10px">⏳待出票</span>'
+            : oo.s === "留单处理中" ? '<span style="color:#ff6b81;font-size:10px">留单</span>'
+            : oo.s ? '<span style="color:#7a8ba0;font-size:10px">' + escapeHtml(oo.s) + '</span>' : '';
+          return `<code style="background:#1e3a5f;color:#00e5ff;padding:1px 5px;border-radius:2px;font-size:11px">${escapeHtml(oo.o)}</code>${badge}`;
+        }).join(" ")
       : '<span style="color:#7a8ba0;font-size:11px">—</span>';
     return `
     <tr class="anim-reveal" style="--w:${(r.count / fam.count * 100).toFixed(0)}%;position:relative">
@@ -3975,6 +3985,20 @@ function toggleDrill(path, idx, rowEl) {
           <div id="drill-${key}-staff" style="height:240px"></div>
         </div>
       </div>
+      ${d.orders && d.orders.length ? `
+      <div style="margin-top:14px">
+        <div class="drill-chart-title">📋 订单明细 Top ${d.orders.length}（最终状态口径 · 订单号可选中复制）</div>
+        <table class="data-table" style="font-size:11px">
+          <thead><tr><th>订单号</th><th>平台</th><th>航司</th><th>最终状态</th><th>救场员工</th></tr></thead>
+          <tbody>${d.orders.map(x => {
+            const b = x.s === "已出票" ? '<span style="color:#2ed573">✅ 已出票</span>'
+              : x.s === "待出票" ? '<span style="color:#ffa502">⏳ 待出票</span>'
+              : x.s === "留单处理中" ? '<span style="color:#ff6b81">🔴 留单处理中</span>'
+              : '<span style="color:#7a8ba0">❓ ' + escapeHtml(x.s || "未知") + '</span>';
+            return `<tr><td><code style="background:#1e3a5f;color:#00e5ff;padding:1px 5px;border-radius:2px">${escapeHtml(x.o)}</code></td><td>${escapeHtml(x.p)}</td><td>${escapeHtml(x.a)}</td><td>${b}</td><td>${escapeHtml(x.l || "—")}</td></tr>`;
+          }).join("")}</tbody>
+        </table>
+      </div>` : ""}
     </div>
   `;
   tr.parentNode.insertBefore(newTr, tr.nextSibling);
