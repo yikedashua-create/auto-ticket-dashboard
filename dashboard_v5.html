@@ -3829,7 +3829,7 @@ function renderFamilyReasonRows(reasons, allReasons, path, fam, expanded) {
     return `
     <tr class="anim-reveal" style="--w:${(r.count / fam.count * 100).toFixed(0)}%;position:relative">
       <td>${i + 1}</td>
-      <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</td>
+      <td title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}${(r.family || "").includes("-AI:") ? ' <span style="color:#b98bff;font-size:10px;border:1px solid #7c4dff;border-radius:3px;padding:0 4px;margin-left:4px;white-space:nowrap">✨AI 归因</span>' : ""}</td>
       <td>${fmt.num(r.count)}</td>
       <td>${fmt.pct(r.count / fam.count * 100)}</td>
       <td style="color:${diffColor}">${diffArrow} ${diffSign}${fmt.num(diff)}</td>
