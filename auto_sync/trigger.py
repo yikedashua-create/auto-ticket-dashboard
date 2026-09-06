@@ -126,7 +126,7 @@ def git_add(repo_dir: str) -> StepResult:
     # 3) 启动脚本
     return _run(
         ["git", "add",
-         "dashboard_data.json", "monthly/",
+         "dashboard_data.json", "monthly/", "targets.json",
          "gen_dashboard_data.py",
          "auto_sync/*.py", "auto_sync/__init__.py",
          "auto_sync/__main__.py", "auto_sync/examples/",

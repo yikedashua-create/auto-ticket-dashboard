@@ -902,9 +902,9 @@
   .succ-list::-webkit-scrollbar-thumb { background: rgba(0, 229, 255, 0.3); border-radius: 3px; }
   .succ-row {
     display: grid;
-    grid-template-columns: 140px 1fr 70px 130px;
+    grid-template-columns: 140px 1fr 74px 118px 62px;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     padding: 12px 12px 8px 12px;
     background: rgba(15, 22, 38, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -923,6 +923,12 @@
     white-space: nowrap;
     min-width: 0;
     font-weight: 500;
+  }
+  .succ-cnt {
+    color: #5a6b80;
+    font-size: 11px;
+    text-align: right;
+    white-space: nowrap;
   }
   .succ-bar {
     height: 10px;
@@ -1065,6 +1071,33 @@ let COMPARE_DATA = null;  // 对比基准数据（上一周期）
 let COMPARE_LABEL = "";   // 对比基准的标签
 const chartInstances = {};
 
+// v11.4（2026-09-06）：自动化成功率月度目标，从 targets.json 读取（可按月人工修改）。
+// 文件在仓库根：改本地 → 30 分钟兜底任务自动 commit+push → CDN 生效。
+let MONTH_TARGETS = { _default: 83 };
+function getMonthTarget(ym) {
+  const v = parseFloat(MONTH_TARGETS && MONTH_TARGETS[ym]);
+  if (!isNaN(v) && v > 0) return v;
+  const d = parseFloat(MONTH_TARGETS && MONTH_TARGETS._default);
+  return (!isNaN(d) && d > 0) ? d : 83;
+}
+async function loadTargets() {
+  const urls = ["./targets.json",
+    `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/targets.json`];
+  for (const u of urls) {
+    try {
+      const r = await fetch(u);
+      if (!r.ok) continue;
+      const j = await r.json();
+      if (j && (j._default !== undefined || Object.keys(j).length > 1)) {
+        MONTH_TARGETS = j;
+        console.log("[targets] 月度目标已加载", u);
+        return;
+      }
+    } catch (e) { /* 试下一个 */ }
+  }
+  console.warn("[targets] 加载失败，用默认 83%");
+}
+
 // v10.16（2026-08-31）：COMMIT 提升到模块顶层（daily_detail 懒加载也要用它拼 jsDelivr URL）
 // ⚠️ auto_sync/trigger.py 的 sync_html_commit 按正则替换本行，格式勿改
 const COMMIT = "b1c5a20";
@@ -1112,6 +1145,7 @@ async function loadData() {
 
     // 初始化月份切换器
     initMonthSwitcher();
+    await loadTargets();  // v11.4：月度目标先于首屏渲染加载
     switchPeriod(DATA.current_month, "all");
     // v10.16：预取当月 daily_detail（后台加载，首次点日视图无等待）
     ensureMonthDetail(DATA.current_month);
@@ -1719,12 +1753,12 @@ function renderOverview() {
     return t ? `${t}-${type}` : "";
   };
 
-  // 2026-07-30 新增: 自动化成功率排行 (航司/渠道, 目标 83%, 3 档状态徽章)
+  // 2026-07-30 新增: 自动化成功率排行 (航司/渠道, 目标线, 3 档状态徽章)
   //   - 筛选 auto_succ_rate > 0 (排除数据缺失项) → 降序 (最优秀排前面) → 全量
-  //   - 3 档阈值: ≥83% 达标 / ≥50% 中等 / <50% 待改
-  //   - 行式: [名称] [进度条（含 83% 目标线 + 目标标签）] [auto_succ_rate%] [状态徽章]
-  //   - 进度条滚动渐入: IntersectionObserver 触发 width 0→data-target%
-  const SUCC_TARGET = 83;  // 目标值
+  //   - 3 档阈值: ≥目标 达标 / ≥50% 中等 / <50% 待改
+  //   - 行式: [名称] [进度条（含目标线）] [成功率%] [状态徽章·差值%] [订单量]
+  //   - v11.4（2026-09-06）：目标值按月可配（targets.json），差值带 %，加订单量列
+  const SUCC_TARGET = getMonthTarget(CURRENT_MONTH);
   const succRowHtml = (r, type) => {
     const rate = r.auto_succ_rate || 0;
     let level, badgeText, color, glow;
@@ -1732,17 +1766,21 @@ function renderOverview() {
     else if (rate >= 50)     { level = 'mid';     badgeText = '中等'; color = '#00e5ff'; glow = 'rgba(0,229,255,0.3)'; }
     else                     { level = 'bad';     badgeText = '待改'; color = '#ff4757'; glow = 'rgba(255,71,87,0.3)'; }
     const name = type === 'airline' ? r.airline : r.channel;
-    const diff = (SUCC_TARGET - rate).toFixed(2);
-    const diffStr = rate >= SUCC_TARGET ? `+${(rate - SUCC_TARGET).toFixed(2)}` : `差 ${diff}`;
+    const diffStr = rate >= SUCC_TARGET
+      ? `+${(rate - SUCC_TARGET).toFixed(2)}%`
+      : `差 ${(SUCC_TARGET - rate).toFixed(2)}%`;
+    const cnt = r.total || 0;
+    const cntStr = cnt >= 10000 ? (cnt / 10000).toFixed(1) + '万单' : fmt.num(cnt) + '单';
     return `
       <div class="succ-row succ-${level}">
-        <span class="succ-name" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
+        <span class="succ-name" title="${escapeHtml(name)} · ${cntStr}">${escapeHtml(name)}</span>
         <div class="succ-bar">
           <div class="succ-target-line" style="left:${SUCC_TARGET}%"></div>
           <div class="succ-fill" data-target="${rate.toFixed(2)}" style="background:${color};box-shadow:0 0 8px ${glow}"></div>
         </div>
         <span class="succ-pct" style="color:${color};text-shadow:0 0 8px ${glow}">${rate.toFixed(2)}%</span>
         <span class="succ-badge" style="border-color:${color};color:${color}">${badgeText} · ${diffStr}</span>
+        <span class="succ-cnt">${cntStr}</span>
       </div>`;
   };
   // 全量 (32 航司 + 15 渠道), 降序: 最优秀排前面
@@ -1817,17 +1855,15 @@ function renderOverview() {
     </div>
 
     <div class="section">
-      <div class="section-title">✈️ 航司自动化成功率（目标 ${SUCC_TARGET}%）
+      <div class="section-title">✈️ 航司自动化成功率（目标 ${SUCC_TARGET}% · 本月可配）
         <span class="badge badge-info">全量 ${succAirlines.length} 航司（优→差）</span>
-        <span class="badge badge-info" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">▎ 目标线 ${SUCC_TARGET}% · 达标 ≥${SUCC_TARGET}% · 中等 ≥50% · 待改 &lt;50%</span>
       </div>
       <div class="succ-list">${succAirlines.map(a => succRowHtml(a, 'airline')).join("")}</div>
     </div>
 
     <div class="section">
-      <div class="section-title">🛒 渠道自动化成功率（目标 ${SUCC_TARGET}%）
+      <div class="section-title">🛒 渠道自动化成功率（目标 ${SUCC_TARGET}% · 本月可配）
         <span class="badge badge-info">全量 ${succChannels.length} 渠道（优→差）</span>
-        <span class="badge badge-info" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15)">▎ 目标线 ${SUCC_TARGET}% · 达标 ≥${SUCC_TARGET}% · 中等 ≥50% · 待改 &lt;50%</span>
       </div>
       <div class="succ-list">${succChannels.map(c => succRowHtml(c, 'channel')).join("")}</div>
     </div>
