@@ -716,8 +716,6 @@
    * ============================================================ */
   @keyframes tw-char-in { to { opacity: 1; } }
   @keyframes tw-blink { 50%, 100% { opacity: 0; } 50.01% { opacity: 1; } }
-      100% { -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%); }
-  }
   @keyframes v3-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.25); color: #00e5ff; text-shadow: 0 0 24px rgba(0, 229, 255, 0.7); } 100% { transform: scale(1); } }
   @keyframes count-bump-anim { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
       /* 1. CountUp — 数字带 data-count 走 tabular-nums */
@@ -735,15 +733,24 @@
   .anim-stagger { opacity: 0; transform: translateY(16px) scale(0.97); transition: opacity 0.5s ease, transform 0.5s ease; }
   .anim-stagger.in { opacity: 1; transform: translateY(0) scale(1); }
 
-  /* 4. Hero mask (大标题从左揭开) */
+  /* 4. Hero mask (大标题从左揭开) — v11.3 修复：keyframes 补全，纯 CSS 自动播放 */
+  @keyframes hero-mask-in {
+    0% {
+      -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
+      mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
+    }
+    100% {
+      -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%);
+      mask-image: linear-gradient(90deg, #000 0%, #000 100%, transparent 100%, transparent 100%);
+    }
+  }
   .anim-hero-mask {
     display: inline-block;
     background: linear-gradient(135deg, #fff 0%, #00e5ff 60%, #a855f7 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
-    mask-image: linear-gradient(90deg, #000 0%, #000 0%, transparent 0%, transparent 100%);
+    animation: hero-mask-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
   }
 
   /* 5. Typewriter */
