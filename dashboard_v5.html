@@ -1301,6 +1301,15 @@ function getComparePeriod(month, day, week) {
       const idx = DATA.available_months.indexOf(month);
       if (idx <= 0) return null;
       const prevMonth = DATA.available_months[idx - 1];
+      // v11.3（2026-09-06）：当月未走完（天数 < 上月可比天数）→ 对比"上月同期"，
+      // 消除月初"6 天 vs 31 天"满屏 -99% 的失真对比
+      const cur = DATA.months[month];
+      const pm = DATA.months[prevMonth];
+      const nDays = cur && cur.daily ? cur.daily.length : 0;
+      const pmDays = pm && pm.daily ? pm.daily.length : 0;
+      if (nDays && pmDays && nDays < pmDays) {
+        return { type: "month", month: prevMonth, day: "all", mtd: nDays, label: `${prevMonth} 同期（前${nDays}天）` };
+      }
       return { type: "month", month: prevMonth, day: "all", label: prevMonth + " 全月" };
     }
   }
@@ -1378,9 +1387,60 @@ function getWeekData(weekKey) {
   };
 }
 
-/* 把 daily 单行包装成 month-data 同等结构（降级方案） */
-function aggregateDayToMonthShape(monthData, dayRow) {
+/* v11.3（2026-09-06）：聚合某月前 N 天做"上月同期"对比基准。
+   月初看当月时，与上月全月对比会产生满屏 -99% 噪音；
+   这里把上月前 N 天的 summary / fail_families / fail_reasons
+   聚合成一个与月数据同构的对象，让所有对比组件自然对齐同期口径。 */
+function buildCompareMTD(ym, nDays) {
+  const m = DATA.months[ym];
+  if (!m || !m.daily || !m.daily.length) return null;
+  const rows = m.daily.slice(0, nDays);
+  if (!rows.length) return null;
+  const sum = { A: 0, B: 0, C: 0, D: 0, total: 0, profit_sum: 0, profit_pos: 0 };
+  rows.forEach(d => {
+    sum.A += d.A; sum.B += d.B; sum.C += d.C; sum.D += d.D;
+    sum.total += d.total; sum.profit_sum += d.profit_sum || 0; sum.profit_pos += d.profit_pos || 0;
+  });
+  const auto = sum.A + sum.B;
+  const dd = m.daily_detail || {};
+  const famB = {}, famD = {}, reB = {}, reD = {};
+  rows.forEach(d => {
+    const day = dd[d.date];
+    if (!day) return;
+    (day.fail_families_B || []).forEach(f => famB[f.family] = (famB[f.family] || 0) + f.count);
+    (day.fail_families_D || []).forEach(f => famD[f.family] = (famD[f.family] || 0) + f.count);
+    (day.fail_reasons_B || []).forEach(r => {
+      const k = r.full || r.reason;
+      if (!reB[k]) reB[k] = { reason: r.reason, full: k, count: 0, family: r.family, orders: r.orders || [] };
+      reB[k].count += r.count;
+    });
+    (day.fail_reasons_D || []).forEach(r => {
+      const k = r.full || r.reason;
+      if (!reD[k]) reD[k] = { reason: r.reason, full: k, count: 0, family: r.family, orders: r.orders || [] };
+      reD[k].count += r.count;
+    });
+  });
+  const toArr = o => Object.entries(o).map(([k, v]) => typeof v === "number" ? { family: k, count: v } : v)
+    .sort((a, b) => b.count - a.count);
   return {
+    summary: {
+      month: ym + " 同期", total_days: rows.length, total_orders: sum.total,
+      A: sum.A, B: sum.B, C: sum.C, D: sum.D,
+      auto_succ_rate: auto ? sum.A / auto * 100 : 0,
+      auto_coverage_rate: sum.total ? auto / sum.total * 100 : 0,
+      total_profit: sum.profit_sum, profit_pos: sum.profit_pos,
+    },
+    fail_families_B: toArr(famB),
+    fail_families_D: toArr(famD),
+    fail_reasons_B: toArr(reB),
+    fail_reasons_D: toArr(reD),
+    daily: rows,
+    _period_type: "mtd",
+  };
+}
+
+/* 把 daily 单行包装成 month-data 同等结构（降级方案） */
+function aggregateDayToMonthShape(monthData, dayRow) {  return {
     ...monthData,
     summary: {
       month: dayRow.date,
@@ -1469,6 +1529,10 @@ async function switchPeriod(month, day, week) {
       COMPARE_DATA = getWeekData(comparePeriod.week);
     } else {
       COMPARE_DATA = DATA.months[comparePeriod.month] || null;
+      // v11.3：未满月 → 聚合上月前 N 天做同期基准
+      if (comparePeriod.mtd) {
+        COMPARE_DATA = buildCompareMTD(comparePeriod.month, comparePeriod.mtd) || COMPARE_DATA;
+      }
     }
     COMPARE_LABEL = comparePeriod.label;
   } else {
@@ -3453,6 +3517,19 @@ function renderFailureAnalysis() {
     (cs.fail_families_D || []).forEach(f => { cmpDFamMap[f.family] = f; });
   }
 
+  // v11.3（2026-09-06）：原因行基准统一用"当前对比周期"口径。
+  // 背景：gen 的 prev_count 恒为"上月全月"，月初看当月时 N 天 vs 31 天 → 满屏 -99% 噪音。
+  // COMPARE_DATA 现已是同期口径（未满月=上月前 N 天聚合），这里把原因级 prev 一并校正。
+  // 周视图的对比数据仍是月级（历史遗留），跳过不 Patch。
+  const isWeekView = CURRENT_WEEK && CURRENT_WEEK !== "all";
+  if (cs && !isWeekView) {
+    const patchPrev = (arr, map) => (arr || []).map(r => map[r.full]
+      ? { ...r, prev_count: map[r.full].count, prev_month: COMPARE_LABEL }
+      : { ...r, prev_count: 0, prev_month: COMPARE_LABEL });
+    curFailReasonsB = patchPrev(curFailReasonsB, cmpBMap);
+    curFailReasonsD = patchPrev(curFailReasonsD, cmpDMap);
+  }
+
   // 2. 失败根因族级行（2026-07-26 简化：9 大环节 + 点族行展开原始根因 + 5 维度下钻）
   // 2026-07-30: 加 anim-reveal 触发错位渐入
   // v11（2026-09-03）：AI 语义归因族名显示——'预定环节-AI:下单异常' → '预定环节 · 下单异常 [✨AI]'
@@ -3712,7 +3789,7 @@ function renderFailureAnalysis() {
       </div>
       ${aiLine}
       <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">🎯 B 路径 8 大环节汇总（哪一环出问题）</div>
+        <div class="chart-title">🎯 B 路径 9 大环节汇总（哪一环出问题）</div>
         ${stageSummaryHtml(bStages, curSummaryB)}
       </div>
       <div class="chart-box" style="margin-top:14px">
