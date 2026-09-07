@@ -930,6 +930,18 @@
     text-align: right;
     white-space: nowrap;
   }
+  /* v11.5（2026-09-06）：平台对比卡片 */
+  .plat-list { display: flex; flex-direction: column; gap: 8px; }
+  .plat-card { background: rgba(15, 22, 38, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 12px 16px; transition: all 0.15s; }
+  .plat-card:hover { background: rgba(15, 22, 38, 0.65); border-color: rgba(0, 229, 255, 0.25); }
+  .plat-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .plat-name { font-weight: 600; color: #e0e6f0; font-size: 13px; min-width: 110px; }
+  .plat-stack { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: rgba(15, 22, 38, 0.9); margin-top: 8px; }
+  .plat-stack i { display: block; height: 100%; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .plat-legend { display: flex; gap: 14px; margin-top: 6px; font-size: 11px; color: #94a3b8; flex-wrap: wrap; }
+  .plat-meta { display: flex; gap: 18px; margin-top: 8px; font-size: 12px; color: #94a3b8; flex-wrap: wrap; align-items: baseline; }
+  .plat-meta b { font-size: 13px; color: #e0e6f0; font-weight: 600; }
+  .plat-d { font-size: 11px; margin-left: 3px; }
   .succ-bar {
     height: 10px;
     background: rgba(15, 22, 38, 0.6);
@@ -1445,6 +1457,7 @@ function buildCompareMTD(ym, nDays) {
   const auto = sum.A + sum.B;
   const dd = m.daily_detail || {};
   const famB = {}, famD = {}, reB = {}, reD = {};
+  const platAgg = {};
   rows.forEach(d => {
     const day = dd[d.date];
     if (!day) return;
@@ -1459,6 +1472,13 @@ function buildCompareMTD(ym, nDays) {
       const k = r.full || r.reason;
       if (!reD[k]) reD[k] = { reason: r.reason, full: k, count: 0, family: r.family, orders: r.orders || [] };
       reD[k].count += r.count;
+    });
+    // v11.5：平台同期聚合（平台分析页对比用）
+    (day.platform || []).forEach(p => {
+      const t = platAgg[p.platform] || (platAgg[p.platform] =
+        { platform: p.platform, total: 0, A: 0, B: 0, C: 0, D: 0, profit_sum: 0 });
+      t.total += p.total || 0; t.A += p.A || 0; t.B += p.B || 0;
+      t.C += p.C || 0; t.D += p.D || 0; t.profit_sum += p.profit_sum || 0;
     });
   });
   const toArr = o => Object.entries(o).map(([k, v]) => typeof v === "number" ? { family: k, count: v } : v)
@@ -1475,6 +1495,12 @@ function buildCompareMTD(ym, nDays) {
     fail_families_D: toArr(famD),
     fail_reasons_B: toArr(reB),
     fail_reasons_D: toArr(reD),
+    platform: Object.values(platAgg).map(t => {
+      const auto = t.A + t.B;
+      return { ...t, avg_profit: t.total ? t.profit_sum / t.total : 0,
+        auto_coverage_rate: t.total ? auto / t.total * 100 : 0,
+        auto_succ_rate: auto ? t.A / auto * 100 : 0 };
+    }).sort((a, b) => b.total - a.total),
     daily: rows,
     _period_type: "mtd",
   };
@@ -1963,18 +1989,37 @@ function renderHourly() {
       dateLabel = `${mKey} ${wKey}（${weekInfo.date_range}）`;
     }
   } else if (CURRENT_MONTH && CURRENT_MONTH !== "all" && m) {
-    // 选某月：该月 hourly_today（最后一天）
-    if (m.summary && m.summary.hourly_today) {
+    // v11.5（2026-09-06）：选某月 → 聚合整月所有天的小时分布。
+    // 原实现只取该月最后一天的 hourly_today，用户选月看到的其实是一天的曲线（日期联动假象）。
+    if (m.daily_detail) {
+      hourlyArr = (m.daily || [])
+        .map(d => m.daily_detail[d.date] && m.daily_detail[d.date].summary && m.daily_detail[d.date].summary.hourly_today
+          ? m.daily_detail[d.date].summary.hourly_today.data
+          : null)
+        .filter(x => x);
+      dateLabel = hourlyArr.length
+        ? `${CURRENT_MONTH} 全月聚合（${hourlyArr.length} 天合计）`
+        : `${CURRENT_MONTH}（无逐日小时数据）`;
+    } else if (m.summary && m.summary.hourly_today) {
+      // daily_detail 未加载时降级：用该月最后一天
       hourlyArr = [m.summary.hourly_today.data];
-      dateLabel = m.summary.hourly_today.date;
+      dateLabel = m.summary.hourly_today.date + "（末日降级）";
     }
   } else {
-    // 选 all month：聚合所有月最后一天 hourly
-    const all = Object.values(DATA.months || {})
-      .map(mm => mm.summary && mm.summary.hourly_today)
-      .filter(x => x);
+    // 选 all month：聚合所有月的全部天（原为每月只取最后一天）
+    const all = [];
+    Object.values(DATA.months || {}).forEach(mm => {
+      if (mm.daily_detail) {
+        (mm.daily || []).forEach(d => {
+          const dd = mm.daily_detail[d.date];
+          if (dd && dd.summary && dd.summary.hourly_today) all.push(dd.summary.hourly_today.data);
+        });
+      } else if (mm.summary && mm.summary.hourly_today) {
+        all.push(mm.summary.hourly_today.data);
+      }
+    });
     if (all.length) {
-      hourlyArr = all.map(x => x.data);
+      hourlyArr = all;
       dateLabel = "全部月份（聚合）";
     }
   }
@@ -2123,19 +2168,26 @@ function renderHourly() {
     });
     // 2026-07-20 优化: max/min 排除 0:00 跨天点 (永远是 0, 会被误标为"最低")
     // 手算 1-24 范围的极值, 用 coord 显式指定 markPoint 位置
+    // v11.5（2026-09-06）: 空桶(无订单小时)比率 = null 而不是 0——
+    //   "无数据"和"0% 成功率"是两回事, 原实现把跨天 00:00 桶和无单小时硬画成 0%,
+    //   造成"成功率从 0% 爬升"的业务假象。null + connectNulls 让曲线直接跨过空桶。
     const findExtreme = (arr, mode) => {
-      let bestI = 1, bestV = arr[1];
-      for (let i = 2; i < arr.length; i++) {
-        if (mode === 'max' ? arr[i] > bestV : arr[i] < bestV) {
+      let bestI = -1, bestV = null;
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] == null) continue;
+        if (bestI < 0 || (mode === 'max' ? arr[i] > bestV : arr[i] < bestV)) {
           bestV = arr[i]; bestI = i;
         }
       }
-      return { i: bestI, v: +bestV.toFixed(2) };
+      return bestI < 0 ? { i: 1, v: 0 } : { i: bestI, v: +bestV.toFixed(2) };
     };
-    const A_arr = fullData.map(r => (r.A + r.B) ? r.A / (r.A + r.B) * 100 : 0);
-    const B_arr = fullData.map(r => (r.A + r.B) ? r.B / (r.A + r.B) * 100 : 0);
-    const C_arr = fullData.map(r => r.total ? r.C / r.total * 100 : 0);
-    const D_arr = fullData.map(r => r.total ? r.D / r.total * 100 : 0);
+    const A_arr = fullData.map(r => (r.A + r.B) ? r.A / (r.A + r.B) * 100 : null);
+    const B_arr = fullData.map(r => (r.A + r.B) ? r.B / (r.A + r.B) * 100 : null);
+    const C_arr = fullData.map(r => r.total ? r.C / r.total * 100 : null);
+    const D_arr = fullData.map(r => r.total ? r.D / r.total * 100 : null);
+    // 跨天 00:00 桶：无数据 → null（不是 0%）
+    if (fullData[0] && !fullData[0].total) { A_arr[0] = B_arr[0] = C_arr[0] = D_arr[0] = null; }
+    const toSeries = arr => arr.map(v => (v == null || isNaN(v)) ? null : +v.toFixed(2));
     const A_max = findExtreme(A_arr, 'max'), A_min = findExtreme(A_arr, 'min');
     const B_max = findExtreme(B_arr, 'max'), B_min = findExtreme(B_arr, 'min');
     const C_max = findExtreme(C_arr, 'max'), C_min = findExtreme(C_arr, 'min');
@@ -2173,25 +2225,29 @@ function renderHourly() {
       },
       series: [
         { name: "A 路径 · 自动出票成功率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
+          connectNulls: true,
           lineStyle: { color: "#ff4757", width: 3 },
           itemStyle: { color: "#ff4757" },
           markPoint: mkPt(A_max, A_min),
-          data: A_arr.map(v => +v.toFixed(2)) },
+          data: toSeries(A_arr) },
         { name: "B 路径 · 自动出票失败率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
+          connectNulls: true,
           lineStyle: { color: "#ff6348", width: 3 },
           itemStyle: { color: "#ff6348" },
           markPoint: mkPt(B_max, B_min),
-          data: B_arr.map(v => +v.toFixed(2)) },
+          data: toSeries(B_arr) },
         { name: "C 路径 · 人工介入率", type: "line", smooth: true, symbol: "circle", symbolSize: 8,
           lineStyle: { color: "#ffa502", width: 3 },
           itemStyle: { color: "#ffa502" },
+          connectNulls: true,
           markPoint: mkPt(C_max, C_min),
-          data: C_arr.map(v => +v.toFixed(2)) },
+          data: toSeries(C_arr) },
         { name: "D 路径 · 异常率", type: "line", smooth: true, symbol: "circle", symbolSize: 6,
+          connectNulls: true,
           lineStyle: { color: "#7a8ba0", width: 2, type: "dashed" },
           itemStyle: { color: "#7a8ba0" },
           markPoint: mkPt(D_max, D_min),
-          data: D_arr.map(v => +v.toFixed(2)) }
+          data: toSeries(D_arr) }
       ]
     });
     chartInstances["hourlyLine"] = lineChart;
@@ -2268,13 +2324,6 @@ function renderAirline() {
           <div id="chart-airlineProfit" class="chart-area" style="height:${Math.max(380, top.length * 20 + 40)}px"></div>
         </div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">🎯 航司气泡矩阵：X=自动化率 / Y=单均利润 / 大小=订单量
-        <span class="badge badge-warn">识别"高价值但低自动化"航司</span>
-      </div>
-      <div id="chart-airlineBubble" class="chart-area" style="height:480px"></div>
     </div>
 
     <div class="section">
@@ -2369,163 +2418,77 @@ function renderAirline() {
     }],
   });
 
-  // 气泡图
-  const bubbleData = CURRENT_DATA.airline.map(a => ({
-    name: a.airline,
-    value: [a.auto_coverage_rate, a.avg_profit, a.total],
-    total: a.total,
-    profit: a.profit_sum,
-  }));
-  createChart("chart-airlineBubble", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
-      formatter: p => `<b>${p.data.name}</b><br>订单: ${fmt.num(p.data.total)}<br>覆盖率: ${p.value[0].toFixed(1)}%<br>单均利润: ${fmt.avg(p.value[1])}<br>总利润: ¥${fmt.money(p.data.profit)}` },
-    xAxis: { type: "value", name: "自动化覆盖率(%)", min: 70, max: 100,
-              axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "value", name: "单均利润(元)",
-              axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{
-      type: "scatter", data: bubbleData,
-      symbolSize: d => Math.max(8, Math.min(60, Math.sqrt(d[2]) / 5)),
-      itemStyle: {
-        color: p => p.data.profit >= 0 ? color.A : color.D,
-        opacity: 0.75,
-      },
-      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
-        formatter: p => p.data.name },
-    }],
-  });
+  // 气泡图（v11.5 删除：用户要求移除航司气泡矩阵区块）
 }
 
 /* ============== 页面：平台渠道 ============== */
 function renderPlatform() {
-  // D30（2026-07-18）：各平台 对比 前日 表格（仅在选日时显示）
-  // 表格头：# | 平台 | 今日 | 全自动成功 | 全自动失败 | 订单转人工 | 票未出完异常
-  // 每格显示：当前值 + 涨/降/百分比
+  // v11.5（2026-09-06）：平台页重做——各平台对比卡片（4 路径堆叠条 + 率值 + 环比），日/月视图统一。
+  // 原"平台维度（N 个）"区块（订单量散点 + 单均利润柱图 + 明细表 + 日视图裸表）按用户要求删除。
   const isDayView = CURRENT_DAY && CURRENT_DAY !== "all";
-  const platList = CURRENT_DATA.platform || [];
-  // 取前一个日期作为 prevDateLabel（第一条 platform 记录上的 prev_date）
-  const prevDateLabel = isDayView && platList.length > 0 && platList[0].prev_date
-    ? platList[0].prev_date.substring(5)  // "2026-07-16" -> "07-16"
-    : null;
-  const prevPlatformSection = (isDayView && platList.length > 0) ? `
-    <div class="section">
-      <div class="section-title">🏢 各平台 (对比 前日 ${prevDateLabel || "—"})
-        <span class="badge badge-info">5 指标涨/降百分比</span>
-      </div>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>平台</th>
-            <th>今日</th>
-            <th>全自动成功</th>
-            <th>全自动失败</th>
-            <th>订单转人工</th>
-            <th>票未出完异常</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${platList.map((p, i) => `
-            <tr>
-              <td>${i + 1}</td>
-              <td><b>${p.platform}</b></td>
-              <td>${fmt.cellDelta(p.total, p.prev_total)}</td>
-              <td>${fmt.cellDelta(p.A, p.prev_A)}</td>
-              <td>${fmt.cellDelta(p.B, p.prev_B)}</td>
-              <td>${fmt.cellDelta(p.C, p.prev_C)}</td>
-              <td>${fmt.cellDelta(p.D, p.prev_D)}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    </div>
-  ` : "";
-  const html = `
-    ${prevPlatformSection}
-    <div class="section">
-      <div class="section-title">🏢 平台维度（${CURRENT_DATA.platform.length} 个）
-        <span class="badge badge-info">点击切换</span>
-      </div>
-      <div class="grid-2x2">
-        <div class="chart-box">
-          <div class="chart-title">📊 平台订单量 vs 总利润</div>
-          <div id="chart-platform" class="chart-area" style="height:340px"></div>
+  const platList = (CURRENT_DATA.platform || []).slice().sort((a, b) => b.total - a.total);
+
+  // 对比基准：日视图用行内 prev_*（前一天）；月视图用 COMPARE_DATA.platform（未满月=同期聚合）
+  const cmpMap = {};
+  if (!isDayView && COMPARE_DATA && Array.isArray(COMPARE_DATA.platform)) {
+    COMPARE_DATA.platform.forEach(p => { cmpMap[p.platform] = p; });
+  }
+  const prevOf = (p, key) => isDayView ? p["prev_" + key]
+    : (cmpMap[p.platform] ? cmpMap[p.platform][key] : null);
+
+  const pd = (cur, prev, kind) => {
+    // 环比小标：kind good=多好/坏色按方向, bad=B/C/D升为红, pct=pp, money=元
+    if (prev == null || prev === 0 || cur == null) return "";
+    const d = cur - prev;
+    if (Math.abs(d) < (kind === "pct" ? 0.05 : 0.5)) return '<span class="plat-d" style="color:#7a8ba0">±0</span>';
+    const up = d > 0;
+    const color = (kind === "bad") ? (up ? "#ff4757" : "#00d4aa") : (up ? "#00d4aa" : "#ff4757");
+    let txt;
+    if (kind === "pct") txt = (up ? "+" : "") + d.toFixed(1) + "pp";
+    else if (kind === "money") txt = (up ? "+" : "") + fmt.money(Math.round(d));
+    else txt = (up ? "+" : "") + fmt.num(d);
+    return `<span class="plat-d" style="color:${color}">${up ? "▲" : "▼"}${txt}</span>`;
+  };
+
+  const cards = platList.map((p, i) => {
+    const tot = p.total || 0;
+    const seg = [["A 全自动成功", p.A, "#00d4aa"], ["B 自动失败", p.B, "#ff4757"],
+                 ["C 转人工", p.C, "#ffa502"], ["D 处理中", p.D, "#7a8ba0"]];
+    const stack = seg.map(([k, v, c]) =>
+      `<i style="width:${Math.max(0, Math.min(100, tot ? v / tot * 100 : 0))}%;background:linear-gradient(180deg,${c},${c}cc)" title="${k} ${fmt.num(v)}"></i>`).join("");
+    const legend = seg.map(([k, v, c]) =>
+      `<span><b style="color:${c}">${k.split(" ")[0]}</b> ${fmt.num(v)}</span>`).join("");
+    const cmpLabel = isDayView
+      ? (p.prev_date ? "对比前日 " + p.prev_date.substring(5) : "对比前日")
+      : "对比 " + COMPARE_LABEL;
+    return `
+      <div class="plat-card">
+        <div class="plat-head">
+          <span class="plat-name">${i + 1}. ${escapeHtml(p.platform)}</span>
+          <span style="color:#00e5ff;font-weight:600">${fmt.num(tot)}</span>
+          <span style="color:#7a8ba0;font-size:11px">单${pd(p.total, prevOf(p, "total"))}</span>
+          <span style="margin-left:auto;font-size:11px;color:#5a6b80">${cmpLabel}</span>
         </div>
-        <div class="chart-box">
-          <div class="chart-title">💰 平台单均利润排名</div>
-          <div id="chart-platformProfit" class="chart-area" style="height:340px"></div>
+        <div class="plat-stack">${stack}</div>
+        <div class="plat-legend">${legend}</div>
+        <div class="plat-meta">
+          <span>覆盖率 <b>${fmt.pct(p.auto_coverage_rate)}</b>${pd(p.auto_coverage_rate, prevOf(p, "auto_coverage_rate"), "pct")}</span>
+          <span>成功率 <b style="color:${p.auto_succ_rate >= getMonthTarget(CURRENT_MONTH) ? "#00ff88" : "#ffa502"}">${fmt.pct(p.auto_succ_rate)}</b>${pd(p.auto_succ_rate, prevOf(p, "auto_succ_rate"), "pct")}</span>
+          <span>单均 <b class="${p.avg_profit >= 0 ? "pos" : "neg"}">${fmt.avg(p.avg_profit)}</b>${pd(p.avg_profit, prevOf(p, "avg_profit"), "money")}</span>
+          <span>总利润 <b class="${p.profit_sum >= 0 ? "pos" : "neg"}">¥${fmt.money(p.profit_sum)}</b>${pd(p.profit_sum, prevOf(p, "profit_sum"), "money")}</span>
+          <span>D 处理中 <b style="color:${p.D > 100 ? "#ff4757" : "#e0e6f0"}">${fmt.num(p.D)}</b>${pd(p.D, prevOf(p, "D"), "bad")}</span>
         </div>
+      </div>`;
+  }).join("");
+
+  document.getElementById("mainArea").innerHTML = `
+    <div class="section">
+      <div class="section-title">🏢 各平台对比 · ${isDayView ? CURRENT_DATA.summary.month : (CURRENT_MONTH === "all" ? "全部月份" : CURRENT_MONTH)}
+        <span class="badge badge-info">${platList.length} 个平台（按订单量降序）</span>
       </div>
-      <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📋 平台明细</div>
-        <table class="data-table">
-          <thead>
-            <tr><th>平台</th><th>订单</th><th>A</th><th>B</th><th>C</th><th>D</th><th>覆盖率</th><th>单均</th><th>总利润</th></tr>
-          </thead>
-          <tbody>
-            ${CURRENT_DATA.platform.map(p => `
-              <tr>
-                <td><b>${p.platform}</b></td>
-                <td>${fmt.num(p.total)}</td>
-                <td>${fmt.num(p.A)}</td>
-                <td>${fmt.num(p.B)}</td>
-                <td>${fmt.num(p.C)}</td>
-                <td class="${(p.D > 100) ? 'neg' : ''}">${fmt.num(p.D)}</td>
-                <td>${fmt.pct(p.auto_coverage_rate)}</td>
-                <td class="${p.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(p.avg_profit)}</td>
-                <td class="${(p.profit_sum >= 0) ? 'pos' : 'neg'}">¥${fmt.money(p.profit_sum)}</td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
-      </div>
+      <div class="plat-list">${cards}</div>
     </div>
   `;
-  document.getElementById("mainArea").innerHTML = html;
-
-  // 平台 - 散点：x=订单量 y=总利润 size=D单量
-  createChart("chart-platform", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
-      formatter: p => '<b>' + p.data.platform + '</b><br>订单: ' + fmt.num(p.data.total) + '<br>总利润: ¥' + fmt.money(p.data.profit_sum) + '<br>单均: ' + fmt.avg(p.data.avg_profit) },
-    xAxis: { type: "value", name: "订单量", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "value", name: "总利润(元)", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{
-      type: "scatter", data: CURRENT_DATA.platform.map(p => ({
-        name: p.platform, value: [p.total, p.profit_sum], ...p
-      })),
-      symbolSize: d => Math.max(15, Math.min(60, Math.sqrt(d[0]) / 5)),
-      itemStyle: { color: p => p.data.profit_sum >= 0 ? color.A : color.D, opacity: 0.75 },
-      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
-        formatter: p => p.data.platform },
-    }],
-  });
-
-  // 平台 - 单均利润
-  createChart("chart-platformProfit", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 50, right: 30, top: 20, bottom: 80 },
-    xAxis: { type: "category",
-              data: CURRENT_DATA.platform.map(p => p.platform).reverse(),
-              axisLabel: { color: "#7a8ba0", rotate: 30, fontSize: 10 } },
-    yAxis: { type: "value", name: "单均利润(元)", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{
-      type: "bar",
-      data: CURRENT_DATA.platform.map(p => ({
-        value: p.avg_profit,
-        itemStyle: { color: p.avg_profit >= 0 ? color.A : color.D }
-      })).reverse(),
-      label: { show: true, position: p => p.value >= 0 ? "top" : "bottom",
-        color: "#e0e6f0", formatter: p => fmt.avg(p.value) },
-    }],
-  });
 }
 
 /* ============== 页面：渠道分析（2026-07-20 新增）============== */
@@ -2544,22 +2507,6 @@ function renderChannel() {
         <div class="chart-box">
           <div class="chart-title">💸 渠道总利润（全量）</div>
           <div id="chart-channelProfit" class="chart-area" style="height:${Math.max(380, chList.length * 20 + 40)}px"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">🎯 渠道自动化效率分析
-        <span class="badge badge-warn">识别"高单量但低自动化"渠道</span>
-      </div>
-      <div class="grid-2x2">
-        <div class="chart-box">
-          <div class="chart-title">📈 渠道覆盖率 vs 单均利润（散点）</div>
-          <div id="chart-channelCoverage" class="chart-area" style="height:380px"></div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">💰 渠道单均利润排名（全量）</div>
-          <div id="chart-channelAvgProfit" class="chart-area" style="height:${Math.max(380, chList.length * 20 + 40)}px"></div>
         </div>
       </div>
     </div>
@@ -2651,21 +2598,21 @@ function renderChannel() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // 1. 渠道订单量（垂直柱图 / 全量）
+  // 1. 渠道订单量（v11.5 改横向柱图：渠道名完整显示不堆积，数字标签在柱尾清晰可读。
+  //    原垂直柱 + rotate60 + label position:"right" 导致数字与渠道名交叉错位，且渠道增多横向拥挤）
   createChart("chart-channelBar", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
       formatter: p => `${p[0].name}<br>${fmt.num(p[0].value)} 单` },
-    grid: { left: 60, right: 30, top: 20, bottom: 120 },
-    xAxis: { type: "category", data: chList.map(c => c.channel).reverse(),
-              axisLabel: { color: "#7a8ba0", rotate: 60, fontSize: 9,
-                          interval: Math.max(0, Math.floor(chList.length / 30) - 1) } },
-    yAxis: { type: "value", axisLabel: { color: "#7a8ba0" },
+    grid: { left: 110, right: 60, top: 20, bottom: 20 },
+    xAxis: { type: "value", name: "订单量", axisLabel: { color: "#7a8ba0" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    yAxis: { type: "category", data: chList.map(c => c.channel).reverse(),
+              axisLabel: { color: "#aab5c5", fontSize: 10 } },
     series: [{
       type: "bar", data: chList.map(c => c.total).reverse(),
       itemStyle: { color: color.cyan },
-      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 9,
+      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
               formatter: p => fmt.num(p.value) },
     }],
   });
@@ -2688,47 +2635,7 @@ function renderChannel() {
     }],
   });
 
-  // 3. 渠道散点：x=覆盖率 y=单均利润 size=订单量
-  createChart("chart-channelCoverage", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
-      formatter: p => `<b>${p.data.channel}</b><br>订单: ${fmt.num(p.data.total)}<br>覆盖率: ${p.value[0].toFixed(1)}%<br>成功率: ${p.data.auto_succ_rate.toFixed(1)}%<br>单均: ${fmt.avg(p.value[1])}<br>总利润: ¥${fmt.money(p.data.profit_sum)}` },
-    xAxis: { type: "value", name: "自动化覆盖率(%)", min: 50, max: 100,
-              axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "value", name: "单均利润(元)",
-              axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    series: [{
-      type: "scatter",
-      data: chList.map(c => ({
-        channel: c.channel, value: [c.auto_coverage_rate, c.avg_profit],
-        total: c.total, profit_sum: c.profit_sum, auto_succ_rate: c.auto_succ_rate,
-      })),
-      symbolSize: d => Math.max(10, Math.min(60, Math.sqrt(d.total) / 5)),
-      itemStyle: { color: p => p.data.profit_sum >= 0 ? color.A : color.D, opacity: 0.75 },
-      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
-              formatter: p => p.data.channel },
-    }],
-  });
-
-  // 4. 渠道单均利润排名（横向柱图 / 全量）
-  createChart("chart-channelAvgProfit", {
-    ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
-    grid: { left: 100, right: 30, top: 20, bottom: 20 },
-    xAxis: { type: "value", name: "单均利润(元)", axisLabel: { color: "#7a8ba0" },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "category", data: chList.map(c => c.channel).reverse(),
-              axisLabel: { color: "#7a8ba0", fontSize: 9,
-                          interval: Math.max(0, Math.floor(chList.length / 30) - 1) } },
-    series: [{
-      type: "bar", data: chList.map(c => c.avg_profit).reverse(),
-      itemStyle: { color: p => p.data >= 0 ? color.A : color.D },
-      label: { show: true, position: "right", color: "#e0e6f0",
-              formatter: p => fmt.avg(p.value) },
-    }],
-  });
+  // 3/4 渠道散点+单均排名（v11.5 删除：用户要求移除"渠道自动化效率分析"区块）
 
   // 2026-07-26: 渠道出票时长分析 (2 图)
   // 过滤样本 >= 5 的渠道
