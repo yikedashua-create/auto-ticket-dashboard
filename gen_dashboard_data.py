@@ -1900,19 +1900,26 @@ def build_month_data(df, month_label, is_daily=False):
         b = int((g["path"] == "B").sum())
         c = int((g["path"] == "C").sum())
         d = int((g["path"] == "D").sum())
-        succ = b  # B 全自动失败 = 救场成功的
+        # v11.7（2026-09-07，绩效口径，用户拍板）：
+        #   救回成功 = B 单中"最终状态=已出票"的量（旧 succ_rate=B/total 把 C 政策转人工
+        #   混进分母，接 C 单多的员工被系统性低估——考核场景误导，废弃）
+        gB = g[g["path"] == "B"]
+        rescued = int(gB["平台状态"].isin(SUCCESS_STATUSES).sum()) if len(gB) else 0
+        days = int(g["_file_date"].nunique()) if "_file_date" in g.columns else 1
         p = safe_num(g["利润"])
         psum = float(p.sum()) if len(p) else 0
         pavg = float(p.mean()) if len(p) else 0
         ppos = int((p > 0).sum()) if len(p) else 0
         staff.append({
-            "name": staff_name, "total": n,
+            "name": staff_name, "total": n, "days": days,
             "B": b, "C": c, "D": d,
-            "succ": succ,  # 救场单数
-            "succ_rate": round(b/n*100, 2) if n else 0,
+            "rescued": rescued,
+            "rescue_ok_rate": round(rescued / b * 100, 2) if b else None,
             "profit_sum": round(psum, 2),
             "avg_profit": round(pavg, 2),
-            "profit_pos_rate": round(ppos/len(p)*100, 2) if len(p) else 0,
+            "profit_pos_rate": round(ppos / len(p) * 100, 2) if len(p) else 0,
+            # 旧字段保留（兼容已有消费方；succ_rate 语义已废弃勿再用于考核）
+            "succ": b, "succ_rate": round(b / n * 100, 2) if n else 0,
         })
     staff.sort(key=lambda x: -x["total"])
     out["staff"] = staff
