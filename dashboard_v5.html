@@ -1458,6 +1458,7 @@ function buildCompareMTD(ym, nDays) {
   const dd = m.daily_detail || {};
   const famB = {}, famD = {}, reB = {}, reD = {};
   const platAgg = {};
+  const staffAgg = {};
   rows.forEach(d => {
     const day = dd[d.date];
     if (!day) return;
@@ -1480,6 +1481,12 @@ function buildCompareMTD(ym, nDays) {
       t.total += p.total || 0; t.A += p.A || 0; t.B += p.B || 0;
       t.C += p.C || 0; t.D += p.D || 0; t.profit_sum += p.profit_sum || 0;
     });
+    // v11.6：员工同期聚合（人员分析页对比用。v11.3 曾因此缺失导致
+    // renderStaff 的 cs.staff.reduce 崩溃、人员分析整页打不开）
+    (day.staff || []).forEach(s => {
+      const t = staffAgg[s.name] || (staffAgg[s.name] = { name: s.name, total: 0, B: 0, C: 0, D: 0, succ: 0 });
+      t.total += s.total || 0; t.B += s.B || 0; t.C += s.C || 0; t.D += s.D || 0; t.succ += s.succ || 0;
+    });
   });
   const toArr = o => Object.entries(o).map(([k, v]) => typeof v === "number" ? { family: k, count: v } : v)
     .sort((a, b) => b.count - a.count);
@@ -1501,6 +1508,9 @@ function buildCompareMTD(ym, nDays) {
         auto_coverage_rate: t.total ? auto / t.total * 100 : 0,
         auto_succ_rate: auto ? t.A / auto * 100 : 0 };
     }).sort((a, b) => b.total - a.total),
+    staff: Object.values(staffAgg).map(t => ({
+      ...t, succ_rate: t.total ? t.succ / t.total * 100 : 0,
+    })).sort((a, b) => b.B - a.B),
     daily: rows,
     _period_type: "mtd",
   };
@@ -2519,7 +2529,7 @@ function renderChannel() {
       </div>
       <div class="grid-2x2">
         <div class="chart-box">
-          <div class="chart-title">📊 渠道 P50 vs P90 散点（看长尾）</div>
+          <div class="chart-title">📊 渠道 P50/P90 出票时长排名（按 P90 降序）</div>
           <div id="chart-channelTT" class="chart-area" style="height:420px"></div>
         </div>
         <div class="chart-box">
@@ -2547,7 +2557,7 @@ function renderChannel() {
                 const tt = c.ticket_time || {};
                 const n = tt.n || 0;
                 const has = n >= 5;
-                const fmtMin = v => v == null ? '—' : v < 1 ? (v*60).toFixed(0)+'秒' : v.toFixed(2);
+                const fmtMin = v => v == null ? '—' : v < 0.01 ? '即时' : v < 1 ? (v*60).toFixed(0)+'秒' : v < 60 ? v.toFixed(1)+'分' : (v/60).toFixed(1)+'时';
                 const sampleStr = has ? n : (n > 0 ? n : '<span style="color:#7a8ba0">直连/无取票</span>');
                 const abnCls = has && tt.abnormal_rate >= 10 ? 'neg' : (has && tt.abnormal_rate >= 5 ? 'warn' : '');
                 return `
@@ -2638,57 +2648,57 @@ function renderChannel() {
   // 3/4 渠道散点+单均排名（v11.5 删除：用户要求移除"渠道自动化效率分析"区块）
 
   // 2026-07-26: 渠道出票时长分析 (2 图)
-  // 过滤样本 >= 5 的渠道
+  // v11.6（2026-09-07）重做展示层：
+  //   - 部分渠道支付后秒出票（业务真实）→ P50≈0 与 P90 小时级并存，
+  //     原线性散点图所有点挤在原点不可读 → 改为 P50/P90 横向分组条形（按 P90 降序）
+  //   - 修复异常率排名图的 comparator bug（原 a-2b 导致完全倒序：0% 排第一）
+  //   - 时长自适应显示（即时/秒/分/时）
   const ttList = chList
     .map(c => ({ ...c, tt: c.ticket_time || {} }))
     .filter(c => (c.tt.n || 0) >= 5);
+  const fmtDur = v => {
+    if (v == null) return "—";
+    if (v < 0.01) return "即时";
+    if (v < 1) return (v * 60).toFixed(0) + "秒";
+    if (v < 60) return v.toFixed(1) + "分";
+    return (v / 60).toFixed(1) + "时";
+  };
+  const durAxis = v => v < 0.01 ? "即时" : (v < 1 ? (v * 60).toFixed(0) + "秒"
+    : (v < 60 ? v.toFixed(0) + "分" : (v / 60).toFixed(1) + "时"));
 
-  // 图 1: P50 vs P90 散点 (气泡=样本量, 颜色=异常率)
+  // 图 1: P50/P90 出票时长排名（横向分组条形 · 按 P90 降序）
+  const ttByP90 = [...ttList].sort((a, b) => b.tt.p90 - a.tt.p90);
   createChart("chart-channelTT", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
       formatter: p => {
-        const tt = p.data.tt;
-        return `<b>${p.data.channel}</b><br>` +
-          `A 路径订单: ${fmt.num(p.data.A)}<br>` +
-          `出票样本: ${tt.n}<br>` +
-          `P50: ${tt.p50 < 1 ? (tt.p50*60).toFixed(0)+'秒' : tt.p50.toFixed(2)+'min'}<br>` +
-          `P90: ${tt.p90 < 1 ? (tt.p90*60).toFixed(0)+'秒' : tt.p90.toFixed(2)+'min'}<br>` +
-          `P99: ${tt.p99 < 1 ? (tt.p99*60).toFixed(0)+'秒' : tt.p99.toFixed(2)+'min'}<br>` +
-          `异常率: ${tt.abnormal_rate.toFixed(1)}%`;
+        const c = ttByP90[p.dataIndex];
+        const tt = c.tt;
+        return `<b>${c.channel}</b><br>` +
+          `A 路径订单: ${fmt.num(c.A)}<br>出票样本: ${tt.n}<br>` +
+          `P50: ${fmtDur(tt.p50)}<br>P90: ${fmtDur(tt.p90)}<br>` +
+          `P99: ${fmtDur(tt.p99)}<br>平均: ${fmtDur(tt.avg)}<br>异常率(>30分): ${tt.abnormal_rate.toFixed(1)}%`;
       } },
-    xAxis: { type: "value", name: "P50 出票时长 (min)",
-              axisLabel: { color: "#7a8ba0", formatter: v => v < 1 ? (v*60).toFixed(0)+'秒' : v.toFixed(0) },
+    legend: { top: 0, textStyle: { color: "#aab5c5" } },
+    grid: { left: 110, right: 60, top: 30, bottom: 20 },
+    xAxis: { type: "value", name: "出票时长", axisLabel: { color: "#7a8ba0", formatter: v => durAxis(v) },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    yAxis: { type: "value", name: "P90 出票时长 (min)",
-              axisLabel: { color: "#7a8ba0", formatter: v => v < 1 ? (v*60).toFixed(0)+'秒' : v.toFixed(0) },
-              splitLine: { lineStyle: { color: "#1e3a5f40" } } },
-    visualMap: {
-      show: true, min: 0, max: 15,
-      text: ['异常率高', '低'],
-      textStyle: { color: '#7a8ba0', fontSize: 10 },
-      inRange: { color: ['#00ff88', '#ffa502', '#ff4757'] },
-      right: 10, top: 20,
-      calculable: true,
-    },
-    series: [{
-      type: "scatter",
-      data: ttList.map(c => ({
-        channel: c.channel,
-        value: [c.tt.p50, c.tt.p90],
-        tt: c.tt, A: c.A, total: c.total,
-      })),
-      symbolSize: (val, params) => Math.max(20, Math.min(80, Math.sqrt(params.data.tt.n) / 4)),
-      itemStyle: { opacity: 0.75 },
-      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
-              formatter: p => p.data.channel },
-    }],
+    yAxis: { type: "category", data: ttByP90.map(c => c.channel).reverse(),
+              axisLabel: { color: "#aab5c5", fontSize: 11 } },
+    series: [
+      { name: "P50（一半订单以内）", type: "bar", barGap: "20%",
+        data: ttByP90.map(c => c.tt.p50).reverse(),
+        itemStyle: { color: "#00e5ff" },
+        label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10, formatter: p => fmtDur(p.value) } },
+      { name: "P90（九成订单以内）", type: "bar",
+        data: ttByP90.map(c => c.tt.p90).reverse(),
+        itemStyle: { color: "#ffa502" },
+        label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10, formatter: p => fmtDur(p.value) } },
+    ],
   });
 
-  // 图 2: 异常率排名柱状图 (按 A 路径订单量排序, top 8)
-  const ttSorted = [...ttList].sort((a, b) => -a.A + (b.A - a.A)).sort((a, b) => -b.A).slice(0, 8);
-  // 按异常率排序展示
-  const ttByAbn = [...ttList].sort((a, b) => -b.tt.abnormal_rate + (a.tt.abnormal_rate - b.tt.abnormal_rate));
+  // 图 2: 异常率排名柱状图（v11.6 修复：原 comparator a-2b 导致倒序——0% 排第一）
+  const ttByAbn = [...ttList].sort((a, b) => b.tt.abnormal_rate - a.tt.abnormal_rate);
   createChart("chart-channelTTAbnormal", {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
@@ -2735,10 +2745,11 @@ function renderStaff() {
   const curB = CURRENT_DATA.staff.reduce((s, x) => s + x.B, 0);
   const curC = CURRENT_DATA.staff.reduce((s, x) => s + x.C, 0);
   const curD = CURRENT_DATA.staff.reduce((s, x) => s + x.D, 0);
-  const cmpTotal = cs ? cs.staff.reduce((s, x) => s + x.total, 0) : 0;
-  const cmpB = cs ? cs.staff.reduce((s, x) => s + x.B, 0) : 0;
-  const cmpC = cs ? cs.staff.reduce((s, x) => s + x.C, 0) : 0;
-  const cmpD = cs ? cs.staff.reduce((s, x) => s + x.D, 0) : 0;
+  const cmpStaffArr = (cs && cs.staff) || [];  // v11.6 防御：对比数据可能无 staff 字段
+  const cmpTotal = cmpStaffArr.reduce((s, x) => s + x.total, 0);
+  const cmpB = cmpStaffArr.reduce((s, x) => s + x.B, 0);
+  const cmpC = cmpStaffArr.reduce((s, x) => s + x.C, 0);
+  const cmpD = cmpStaffArr.reduce((s, x) => s + x.D, 0);
   // 颜色 class helpers（与总览页一致）
   const trendCls = (cur, base) => {
     if (!cs) return "";
