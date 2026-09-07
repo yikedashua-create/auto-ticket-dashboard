@@ -1112,7 +1112,7 @@ async function loadTargets() {
 
 // v10.16（2026-08-31）：COMMIT 提升到模块顶层（daily_detail 懒加载也要用它拼 jsDelivr URL）
 // ⚠️ auto_sync/trigger.py 的 sync_html_commit 按正则替换本行，格式勿改
-const COMMIT = "28b8e75";
+const COMMIT = "380fe31";
 
 async function loadData() {
   try {
@@ -1484,8 +1484,11 @@ function buildCompareMTD(ym, nDays) {
     // v11.6：员工同期聚合（人员分析页对比用。v11.3 曾因此缺失导致
     // renderStaff 的 cs.staff.reduce 崩溃、人员分析整页打不开）
     (day.staff || []).forEach(s => {
-      const t = staffAgg[s.name] || (staffAgg[s.name] = { name: s.name, total: 0, B: 0, C: 0, D: 0, succ: 0 });
-      t.total += s.total || 0; t.B += s.B || 0; t.C += s.C || 0; t.D += s.D || 0; t.succ += s.succ || 0;
+      const t = staffAgg[s.name] || (staffAgg[s.name] =
+        { name: s.name, total: 0, B: 0, C: 0, D: 0, succ: 0, rescued: 0, profit_sum: 0, _days: new Set() });
+      t.total += s.total || 0; t.B += s.B || 0; t.C += s.C || 0; t.D += s.D || 0;
+      t.succ += s.succ || 0; t.rescued += s.rescued || 0; t.profit_sum += s.profit_sum || 0;
+      t._days.add(d.date);
     });
   });
   const toArr = o => Object.entries(o).map(([k, v]) => typeof v === "number" ? { family: k, count: v } : v)
@@ -1509,7 +1512,10 @@ function buildCompareMTD(ym, nDays) {
         auto_succ_rate: auto ? t.A / auto * 100 : 0 };
     }).sort((a, b) => b.total - a.total),
     staff: Object.values(staffAgg).map(t => ({
-      ...t, succ_rate: t.total ? t.succ / t.total * 100 : 0,
+      name: t.name, total: t.total, B: t.B, C: t.C, D: t.D,
+      rescued: t.rescued, profit_sum: t.profit_sum, days: t._days.size,
+      rescue_ok_rate: t.B ? +(t.rescued / t.B * 100).toFixed(2) : null,
+      succ: t.succ, succ_rate: t.total ? +(t.succ / t.total * 100).toFixed(2) : 0,
     })).sort((a, b) => b.B - a.B),
     daily: rows,
     _period_type: "mtd",
@@ -2860,53 +2866,88 @@ function renderStaff() {
     </div>
   `;
 
+  const staffArr = CURRENT_DATA.staff || [];
+  // v11.7（2026-09-07，绩效参考改造，用户拍板）：
+  //   - 救回成功率 = B 单最终已出票比例（旧"救场率"=B/(B+C+D) 把政策转人工混进分母，考核误导，废弃）
+  //   - 补利润三件套（gen 已算未展示）+ 活跃天数 + 团队均值参照
+  const totRescued = staffArr.reduce((s2, x) => s2 + (x.rescued || 0), 0);
+  const avgTotal = staffArr.length ? curTotal / staffArr.length : 0;
+  const avgProfit = staffArr.length ? staffArr.reduce((s2, x) => s2 + (x.avg_profit || 0), 0) / staffArr.length : 0;
+  const totProfit = staffArr.reduce((s2, x) => s2 + (x.profit_sum || 0), 0);
+
   const html = `
     <div class="section">
-      <div class="section-title">👥 人员分析（${CURRENT_DATA.staff.length} 人）
+      <div class="section-title">👥 人员分析（${staffArr.length} 人）· 绩效参考
         ${cs ? `<span class="badge badge-info">对比 ${cmpShortLabel}</span>` : ''}
+      </div>
+      <div style="font-size:11px;color:#5a6b80;margin:2px 0 10px">
+        口径说明：按"最后锁定人"统计（多人接力单只记最后操作者）；B救场=自动失败后人工救回，
+        救回成功=B 单最终已出票；D 处理中未完结不计入接单；利润为该员工名下订单利润合计。
       </div>
       <div class="kpi-row cols-4" style="margin-bottom:14px">
         <div class="kpi ${kpiCls(curTotal, cmpTotal, 'amount')}">
           <div class="kpi-label">总人工处理单</div>
           <div class="kpi-value">${fmt.num(curTotal)}</div>
-          <div class="kpi-sub">${kpiSub(curTotal, cmpTotal)}</div>
+          <div class="kpi-sub">${kpiSub(curTotal, cmpTotal)} · 人均 ${fmt.num(Math.round(avgTotal))}</div>
         </div>
-        <div class="kpi ${kpiCls(curB, cmpB, 'amount')}">
-          <div class="kpi-label">全自动失败</div>
-          <div class="kpi-value">${fmt.num(curB)}</div>
-          <div class="kpi-sub">${kpiSub(curB, cmpB)}</div>
+        <div class="kpi" style="border-color:#00ff88">
+          <div class="kpi-label" style="color:#00ff88">🛟 救回成功</div>
+          <div class="kpi-value">${fmt.num(totRescued)}</div>
+          <div class="kpi-sub">救回成功率 ${curB ? (totRescued / curB * 100).toFixed(1) : 0}%（B ${fmt.num(curB)} 单）</div>
         </div>
         <div class="kpi ${kpiCls(curC, cmpC, 'amount')}">
           <div class="kpi-label">订单转人工</div>
           <div class="kpi-value">${fmt.num(curC)}</div>
-          <div class="kpi-sub">${kpiSub(curC, cmpC)}</div>
+          <div class="kpi-sub">${kpiSub(curC, cmpC)} · 政策性正常单</div>
         </div>
-        <div class="kpi ${kpiCls(curD, cmpD, 'amount')}">
-          <div class="kpi-label">订单处理中</div>
-          <div class="kpi-value">${fmt.num(curD)}</div>
-          <div class="kpi-sub">${kpiSub(curD, cmpD)}</div>
+        <div class="kpi">
+          <div class="kpi-label">💰 名下利润</div>
+          <div class="kpi-value ${totProfit >= 0 ? 'pos' : 'neg'}">${totProfit >= 0 ? '+' : ''}${fmt.money(Math.round(totProfit))}</div>
+          <div class="kpi-sub">单均 ${fmt.avg(avgProfit)}</div>
         </div>
       </div>
       ${rankingHtml}
       <div class="chart-box" style="margin-top:14px">
-        <div class="chart-title">📋 员工明细</div>
-        <div style="max-height: 500px; overflow-y: auto;">
+        <div class="chart-title">🎯 员工绩效四象限（横轴=接单量 · 纵轴=单均利润 · 大小=B救场量 · 颜色=救回成功率）</div>
+        <div id="chart-staffPerf" class="chart-area" style="height:440px"></div>
+      </div>
+      <div class="chart-box" style="margin-top:14px">
+        <div class="chart-title">📋 员工绩效明细（团队均值参照）</div>
+        <div style="max-height: 520px; overflow-y: auto;">
           <table class="data-table">
             <thead>
-              <tr><th>员工</th><th>接单</th><th>B全自动失败</th><th>C订单转人工</th><th>D订单处理中</th><th>救场率</th><th>对比</th></tr>
+              <tr><th>员工</th><th>活跃天</th><th>接单</th><th>B救场</th><th>救回成功率</th><th>C转人工</th><th>D处理中</th><th>利润总额</th><th>单均利润</th><th>盈利率</th><th>环比</th></tr>
             </thead>
             <tbody>
-              ${CURRENT_DATA.staff.map(s => {
+              <tr style="background:rgba(0,229,255,0.06);font-weight:600">
+                <td>团队均值</td>
+                <td>—</td>
+                <td>${fmt.num(Math.round(avgTotal))}</td>
+                <td>—</td>
+                <td>${curB ? (totRescued / curB * 100).toFixed(1) + '%' : '—'}</td>
+                <td>—</td>
+                <td>—</td>
+                <td>${fmt.money(Math.round(totProfit / (staffArr.length || 1)))}</td>
+                <td>${fmt.avg(avgProfit)}</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              ${staffArr.map(s => {
                 const prev = cmpStaffMap[s.name];
                 const prevTotal = prev ? prev.total : 0;
+                const handled = s.B + s.C;  // 接单 = 完结单（B+C），D 处理中不计
                 return `
                   <tr>
                     <td><b>${s.name}</b></td>
-                    <td>${fmt.num(s.total)}</td>
+                    <td>${s.days || '—'}</td>
+                    <td>${fmt.num(handled)}</td>
                     <td>${fmt.num(s.B)}</td>
+                    <td>${s.rescue_ok_rate != null ? fmt.pct(s.rescue_ok_rate) : '—'}</td>
                     <td>${fmt.num(s.C)}</td>
-                    <td>${fmt.num(s.D)}</td>
-                    <td>${fmt.pct(s.succ_rate)}</td>
+                    <td style="color:#7a8ba0">${fmt.num(s.D)}</td>
+                    <td class="${s.profit_sum >= 0 ? 'pos' : 'neg'}">${s.profit_sum >= 0 ? '+' : ''}${fmt.money(Math.round(s.profit_sum))}</td>
+                    <td class="${s.avg_profit >= 0 ? 'pos' : 'neg'}">${fmt.avg(s.avg_profit)}</td>
+                    <td>${s.profit_pos_rate != null ? s.profit_pos_rate.toFixed(1) + '%' : '—'}</td>
                     <td>${cmpCell(s.total, prevTotal, 'rate')}</td>
                   </tr>
                 `;
@@ -2919,8 +2960,52 @@ function renderStaff() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // 2026-07-21: 删除"员工接单量"全宽柱状图（排行榜已全量展示，柱状图冗余）
-  // 2026-07-21: 删除"员工单均利润 + 盈利占比"散点图（用户要求）
+  // v11.7：绩效四象限散点（团队均值十字线分四象限：
+  // 右上=高量高利骨干 / 右下=高量低利苦劳 / 左上=低量高利 / 左下=待改进）
+  setTimeout(() => {
+    const el = document.getElementById("chart-staffPerf");
+    if (!el || !staffArr.length) return;
+    const chart = echarts.init(el);
+    chart.setOption({
+      ...baseEchartsOpt,
+      tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
+        formatter: p => {
+          const s = p.data.s;
+          return `<b>${s.name}</b><br>接单(B+C): ${fmt.num(s.B + s.C)}<br>B救场: ${fmt.num(s.B)}` +
+            (s.rescue_ok_rate != null ? `<br>救回成功率: ${s.rescue_ok_rate.toFixed(1)}%` : "") +
+            `<br>单均利润: ${fmt.avg(s.avg_profit)}<br>利润总额: ${s.profit_sum >= 0 ? '+' : ''}${fmt.money(Math.round(s.profit_sum))}<br>活跃: ${s.days || '—'} 天`;
+        } },
+      grid: { left: 60, right: 30, top: 30, bottom: 45 },
+      xAxis: { type: "value", name: "接单量(B+C)", axisLabel: { color: "#7a8ba0" },
+                splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+      yAxis: { type: "value", name: "单均利润(元)", axisLabel: { color: "#7a8ba0" },
+                splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+      series: [{
+        type: "scatter",
+        data: staffArr.map(s => ({
+          name: s.name, s,
+          value: [s.B + s.C, s.avg_profit || 0],
+        })),
+        symbolSize: p => Math.max(12, Math.min(56, Math.sqrt(p.data.s.B || 1) * 1.6)),
+        itemStyle: { color: p => {
+            const r = p.data.s.rescue_ok_rate;
+            if (r == null) return "#7a8ba0";
+            if (r >= 95) return "#00ff88";
+            if (r >= 85) return "#00e5ff";
+            return "#ffa502";
+          }, opacity: 0.85 },
+        label: { show: true, position: "top", color: "#e0e6f0", fontSize: 10, formatter: p => p.data.s.name },
+        markLine: { silent: true, symbol: "none",
+          lineStyle: { color: "#7a8ba0", type: "dashed", opacity: 0.5 },
+          label: { color: "#7a8ba0", fontSize: 10 },
+          data: [
+            { xAxis: +avgTotal.toFixed(0), label: { formatter: "人均 {c}" } },
+            { yAxis: +avgProfit.toFixed(1), label: { formatter: "均值 {c}" } },
+          ] },
+      }],
+    });
+    chartInstances["staffPerf"] = chart;
+  }, 50);
 }
 
 
