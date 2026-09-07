@@ -1112,7 +1112,7 @@ async function loadTargets() {
 
 // v10.16（2026-08-31）：COMMIT 提升到模块顶层（daily_detail 懒加载也要用它拼 jsDelivr URL）
 // ⚠️ auto_sync/trigger.py 的 sync_html_commit 按正则替换本行，格式勿改
-const COMMIT = "380fe31";
+const COMMIT = "c1219cc";
 
 async function loadData() {
   try {
@@ -2986,7 +2986,11 @@ function renderStaff() {
           name: s.name, s,
           value: [s.B + s.C, s.avg_profit || 0],
         })),
-        symbolSize: p => Math.max(12, Math.min(56, Math.sqrt(p.data.s.B || 1) * 1.6)),
+        symbolSize: (val, params) => {
+          // 防御：ECharts 内部某些阶段 params.data 未绑定（裸访问会抛跨域 Script error）
+          const B = params && params.data && params.data.s ? (params.data.s.B || 1) : 1;
+          return Math.max(12, Math.min(56, Math.sqrt(B) * 1.6));
+        },
         itemStyle: { color: p => {
             const r = p.data.s.rescue_ok_rate;
             if (r == null) return "#7a8ba0";
