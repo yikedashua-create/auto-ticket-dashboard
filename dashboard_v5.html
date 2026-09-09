@@ -1017,12 +1017,15 @@
   <div class="layout">
     <div class="sidebar">
       <div class="logo">🚀 出票看板 v5</div>
+      <div style="font-size:10px;color:#3d4f66;margin:2px 0 4px 12px;letter-spacing:1px">总览</div>
       <div class="nav-item active" data-page="overview">📊 数据总览</div>
+      <div style="font-size:10px;color:#3d4f66;margin:8px 0 4px 12px;letter-spacing:1px">维度分析</div>
       <div class="nav-item" data-page="hourly">🕐 时段分析</div>
       <div class="nav-item" data-page="airline">✈️ 航司分析</div>
       <div class="nav-item" data-page="platform">🏢 平台分析</div>
       <div class="nav-item" data-page="channel">🛒 渠道分析</div>
       <div class="nav-item" data-page="staff">👥 人员分析</div>
+      <div style="font-size:10px;color:#3d4f66;margin:8px 0 4px 12px;letter-spacing:1px">问题与订单</div>
       <div class="nav-item" data-page="failAnalysis">🔍 失败分析</div>
       <div class="nav-item" data-page="orderAnalysis">📋 订单分析</div>
       <div class="nav-item" data-page="deadline">⏰ 产品时限</div>
@@ -1835,12 +1838,38 @@ function renderOverview() {
 
   // 2026-07-30 回滚: 还原 7-KPI 横排 + 4 路径饼图 原始结构
   // 之前 c58e06e 误改成 marketing-style hero, 太花且改了用户原本的布局, 已退回
+  // v11.8（2026-09-09）：AI 洞察摘要卡——打开总览第一眼看到 AI 在发力
+  const aiAtt = (typeof DATA !== "undefined" && DATA && DATA.ai_attribution) || null;
+  const aiSummary = (() => {
+    const parts = [];
+    // 1. 成功率趋势
+    if (cs && cs.auto_succ_rate != null) {
+      const d = s.auto_succ_rate - cs.auto_succ_rate;
+      const arrow = d > 0.5 ? "📈" : d < -0.5 ? "📉" : "➡️";
+      parts.push(`${arrow} 成功率 ${s.auto_succ_rate.toFixed(1)}%（${COMPARE_LABEL} ${d >= 0 ? "+" : ""}${d.toFixed(1)}pp）`);
+    }
+    // 2. 失败集中在哪
+    const failB = (CURRENT_DATA.fail_families_B || []).slice(0, 2);
+    if (failB.length && s.B > 0) {
+      parts.push(`🎯 失败集中在：${failB.map(f => f.family).join("、")}（占 ${Math.round(failB.reduce((a, b) => a + b.count, 0) / s.B * 100)}%）`);
+    }
+    // 3. AI 覆盖率
+    if (aiAtt && aiAtt.ai_cover_pct > 0) {
+      parts.push(`🤖 归因引擎：规则 ${aiAtt.rules_cover_pct}% + AI 补充 ${aiAtt.ai_cover_pct}%`);
+    }
+    return parts;
+  })();
+
   const html = `
     <div class="section">
       <div class="section-title"><span class="anim-hero-mask">💎 核心 KPI</span> · ${monthLabel}
         <span class="badge badge-info">${s.total_days} 天 · ${fmt.num(s.total_orders)} 单</span>
         ${cs ? `<span class="badge badge-info" style="background:#1e3a5f">对比 ${COMPARE_LABEL}</span>` : ""}
       </div>
+      ${aiSummary.length ? `
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding:10px 16px;background:linear-gradient(135deg,rgba(15,22,38,0.6),rgba(20,30,55,0.4));border:1px solid rgba(124,77,255,0.15);border-radius:10px;font-size:12px;color:#aab5c5">
+        ${aiSummary.map(p => `<span>${p}</span>`).join('<span style="color:#3d4f66">｜</span>')}
+      </div>` : ""}
       <div class="kpi-row cols-7">
         <div class="kpi ${kpiCls(s.total_orders, cs && cs.total_orders, 'good')}">
           <div class="kpi-label">📦 订单总数</div>
@@ -3593,9 +3622,17 @@ function renderFailureAnalysis() {
   };
   const bFamilyRow = (f, i) => {
     const cmp = cmpBFamMap[f.family];
-    const cmpBadge = cs
-      ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
-      : "—";
+    // v11.8：对比数字视觉增强——大箭头 + 绝对值 + 百分比
+    let cmpBadge;
+    if (!cs) cmpBadge = "—";
+    else if (!cmp) cmpBadge = `<span style="color:#ffa502;font-size:11px">🆕 新增</span>`;
+    else {
+      const d = f.count - cmp.count;
+      const pct = cmp.count ? Math.abs(d / cmp.count * 100).toFixed(0) : "∞";
+      const c = d > 0 ? "#ff6348" : d < 0 ? "#00d4aa" : "#7a8ba0";
+      const a = d > 0 ? "▲" : d < 0 ? "▼" : "—";
+      cmpBadge = `<span style="color:${c};font-size:11px">${a} ${Math.abs(d).toLocaleString()}（${pct}%）</span>`;
+    }
     const stageColor = getStageColor(f.family);
     const pctW = curSummaryB ? (f.count / curSummaryB * 100).toFixed(0) : 0;
     return `<tr class="anim-reveal" onclick="toggleFamilyDrill('B', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-fam-idx="${i}">
@@ -3608,9 +3645,16 @@ function renderFailureAnalysis() {
   };
   const dFamilyRow = (f, i) => {
     const cmp = cmpDFamMap[f.family];
-    const cmpBadge = cs
-      ? (cmp ? fmt.cmp(f.count, cmp.count, "amount", false) : `<span style="color:#7a8ba0">新增</span>`)
-      : "—";
+    let cmpBadge;
+    if (!cs) cmpBadge = "—";
+    else if (!cmp) cmpBadge = `<span style="color:#ffa502;font-size:11px">🆕 新增</span>`;
+    else {
+      const d = f.count - cmp.count;
+      const pct = cmp.count ? Math.abs(d / cmp.count * 100).toFixed(0) : "∞";
+      const c = d > 0 ? "#ff6348" : d < 0 ? "#00d4aa" : "#7a8ba0";
+      const a = d > 0 ? "▲" : d < 0 ? "▼" : "—";
+      cmpBadge = `<span style="color:${c};font-size:11px">${a} ${Math.abs(d).toLocaleString()}（${pct}%）</span>`;
+    }
     const stageColor = getStageColor(f.family);
     const pctW = curSummaryD ? (f.count / curSummaryD * 100).toFixed(0) : 0;
     return `<tr class="anim-reveal" onclick="toggleFamilyDrill('D', ${i}, this)" style="cursor:pointer;--w:${pctW}%;position:relative" data-fam-idx="${i}">
@@ -4417,6 +4461,7 @@ function renderOrderAnalysis() {
       <div class="section-title">🪓 拆分订单明细（平台 × 航司 矩阵）
         <span class="badge badge-info">${fmt.num(split.count || 0)} 单 / 占比 ${split.ratio || 0}%</span>
       </div>
+      <div style="font-size:11px;color:#5a6b80;margin:2px 0 8px">💡 拆分 = 一张票拆多段出票，占比 &lt;3% 属正常业务结构；集中在某平台说明该渠道多段票源多</div>
       <div class="chart-box">
         <div class="chart-hint">行=平台 / 列=航司 / 颜色=拆分单数（4 档：&lt;3 浅 / 3-15 / 16-50 / &gt;50 亮）</div>
         <div id="chart-heatmap-split" style="padding: 6px 0;"></div>
@@ -4428,6 +4473,7 @@ function renderOrderAnalysis() {
       <div class="section-title">🔁 重复订单明细（重复分类 × 平台 热力图）
         <span class="badge badge-info">${fmt.num(repeat.count || 0)} 单 / 占比 ${repeat.ratio || 0}% · 7 种子类</span>
       </div>
+      <div style="font-size:11px;color:#5a6b80;margin:2px 0 8px">💡 重复 &lt;2% 正常；"重复无效单"需人工清理，"重复反采"是比价策略的副产物——重点关注无效单占比</div>
       <div class="chart-box">
         <div class="chart-hint">行=重复类型（7 种子类全展示）/ 列=平台 / 颜色=重复单数（4 档：&lt;10 浅 / 10-50 / 51-150 / &gt;150 亮）</div>
         <div id="chart-heatmap-repeat" style="padding: 6px 0;"></div>
@@ -4439,6 +4485,7 @@ function renderOrderAnalysis() {
       <div class="section-title">✈️ 往返订单明细
         <span class="badge badge-info">${fmt.num(rt.count || 0)} 单 / 占比 ${rt.ratio || 0}%</span>
       </div>
+      <div style="font-size:11px;color:#5a6b80;margin:2px 0 8px">💡 往返票是利润主力（往返通常比单程利润高 30%+），占比高说明客源质量好</div>
       <div class="grid-1x2">
         <div class="chart-box">
           <div class="chart-title">往返航线（前 50）</div>
@@ -4470,6 +4517,7 @@ function renderOrderAnalysis() {
       <div class="section-title">🔀 中转订单明细
         <span class="badge badge-info">${fmt.num(tr.count || 0)} 单 / 占比 ${tr.ratio || 0}%</span>
       </div>
+      <div style="font-size:11px;color:#5a6b80;margin:2px 0 8px">💡 中转票操作复杂（两段航司联动），占比低是好事——高出 2% 需排查渠道是否推送了过多中转方案</div>
       <div class="grid-1x2">
         <div class="chart-box">
           <div class="chart-title">中转航线（前 50）</div>
@@ -4501,6 +4549,7 @@ function renderOrderAnalysis() {
       <div class="section-title">👨‍👩‍👧 多人订单明细（按乘客数分桶）
         <span class="badge badge-info">${fmt.num(mp.count || 0)} 单 / 占比 ${mp.ratio || 0}%</span>
       </div>
+      <div style="font-size:11px;color:#5a6b80;margin:2px 0 8px">💡 多人票（≥2 人）占比 ~22% 是家庭/团队出行的正常结构；单人票失败率通常更低，多人票需额外关注乘客信息校验类失败</div>
       <div class="chart-box">
         <div style="max-height: 400px; overflow-y: auto;">
           <table class="data-table">
