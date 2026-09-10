@@ -296,10 +296,9 @@
   .drill-title { font-size: 14px; font-weight: 600; }
   .drill-close { background: transparent; border: 1px solid #2a4a6e; color: #b0c4de; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
   .drill-close:hover { background: #1e3a5f; color: #fff; }
-  .drill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
-  .drill-chart { background: #0a1a2e; border: 1px solid #1e3a5f; border-radius: 6px; padding: 10px; min-width: 0; overflow: hidden; }
-  .drill-chart .drill-chart-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .drill-chart [id^="drill-"] { width: 100%; }
+  .drill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; min-width: 600px; }
+  .drill-chart { background: #0a1a2e; border: 1px solid #1e3a5f; border-radius: 6px; padding: 10px; min-width: 280px; }
+  .drill-chart [id^="drill-"] { width: 100%; min-width: 250px; }
   .drill-wide { grid-column: 1 / -1; }
   .drill-wide { grid-column: 1 / -1; }
   .drill-chart-title { color: #00e5ff; font-size: 12px; font-weight: 600; margin-bottom: 8px; padding-left: 4px; border-left: 2px solid #00e5ff; }
@@ -3748,20 +3747,21 @@ function renderFailureAnalysis() {
     const newRow = r => `
       <div class="v1-row v1-row-2col">
         <span class="v1-reason" title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</span>
-        <span class="v1-num v1-num-warn">${fmt.num(r.count)}</span>
+        <span class="v1-num v1-num-warn">${fmt.num(r.count)} 单</span>
       </div>`;
     const diffRow = r => {
       const isUp = r._diff > 0;
       const arrow = isUp ? "↑" : "↓";
       const sign = isUp ? "+" : "";
       const cls = isUp ? "v1-num-bad" : "v1-num-good";
+      const pctStr = Math.abs(r._pct) >= 100 ? Math.abs(r._pct).toFixed(0) + "%" : Math.abs(r._pct).toFixed(0) + "%";
       return `
-      <div class="v1-row v1-row-5col">
+      <div class="v1-row v1-row-5col" title="${escapeHtml(r.full)}">
         <span class="v1-reason" title="${escapeHtml(r.full)}">${escapeHtml(r.reason)}</span>
-        <span class="v1-num v1-num-current">${fmt.num(r.count)}</span>
-        <span class="v1-num v1-num-prev">${fmt.num(r.prev_count)}</span>
-        <span class="v1-num ${cls}">${arrow} ${sign}${fmt.num(r._diff)}</span>
-        <span class="v1-num ${cls}">${sign}${r._pct.toFixed(0)}%</span>
+        <span class="v1-num v1-num-current" title="当期单数">${fmt.num(r.count)} 单</span>
+        <span class="v1-num v1-num-prev" title="基准期单数">基期 ${fmt.num(r.prev_count)}</span>
+        <span class="v1-num ${cls}" title="变化量">${arrow}${fmt.num(Math.abs(r._diff))} 单</span>
+        <span class="v1-num ${cls}" title="变化百分比">${sign}${pctStr}</span>
       </div>`;
     };
     return `
@@ -3826,7 +3826,7 @@ function renderFailureAnalysis() {
         <span class="badge badge-info">${path} 路径 · ${fmt.num(sumB)} 单</span>
       </div>
       <div class="chart-hint" style="margin-bottom:10px">
-        勾选失败原因 → 模拟如果修好这些对成功率的影响
+        勾选失败原因，查看修复后预期达到的成功率（此处 Top ${candidates.length} 条覆盖 B 路径 ${fmt.num(candidates.reduce((s, r) => s + r.count, 0))} / ${fmt.num(sumB)} 单，约 ${(candidates.reduce((s, r) => s + r.count, 0) / sumB * 100).toFixed(0)}%）
       </div>
       <div class="aa-kpi-row" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
         <div class="kpi" style="padding:14px 16px">
@@ -4114,7 +4114,7 @@ function toggleDrill(path, idx, rowEl) {
   const newTr = document.createElement("tr");
   newTr.id = "drill-row";
   newTr.classList.add("drill-row");
-  newTr.innerHTML = `<td colspan="${colspan}" style="padding:0; background:#0a1424">
+  newTr.innerHTML = `<td colspan="${colspan}" style="padding:0; background:#0a1424; overflow:visible;">
     <div class="drill-panel">
       <div class="drill-header">
         <div class="drill-title">
@@ -4164,9 +4164,19 @@ function toggleDrill(path, idx, rowEl) {
   `;
   tr.parentNode.insertBefore(newTr, tr.nextSibling);
 
-  // 渲染 5 个图表
+  // 渲染 5 个图表（v11.9.3: 加 resize 确保宽度正确——表格内嵌图表初次初始化可能取到 0 宽）
   setTimeout(() => {
     renderDrillCharts(key, d);
+    // 强制 resize 让 ECharts 重算宽度
+    setTimeout(() => {
+      ["plat", "air", "cross", "date", "staff"].forEach(sfx => {
+        const el = document.getElementById(`drill-${key}-${sfx}`);
+        if (el) {
+          const c = echarts.getInstanceByDom(el);
+          if (c) c.resize();
+        }
+      });
+    }, 100);
   }, 50);
 }
 
