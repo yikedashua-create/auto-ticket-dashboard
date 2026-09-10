@@ -4108,8 +4108,9 @@ function toggleDrill(path, idx, rowEl) {
   if (!d) return;
   currentDrillKey = key;
 
-  // v11.9.6：图表面板作为独立 div 追加到 .chart-box 尾部（彻底摆脱两层表格嵌套的列宽约束）
-  const container = document.querySelector("#family-drill-row")?.closest(".chart-box")
+  // v11.9.7：图表面板作为独立 div 插到族展开面板正后方（用户看得到的位置）+ 自动滚动
+  const famTable = document.querySelector("#family-drill-row")?.closest("table");
+  const container = famTable?.parentElement
     || document.querySelector("#bFamilyTbody")?.closest(".chart-box")
     || document.getElementById("mainArea");
   const panelDiv = document.createElement("div");
@@ -4161,7 +4162,14 @@ function toggleDrill(path, idx, rowEl) {
         </table>
       </div>` : ""}
   `;
-  container.appendChild(panelDiv);
+  // 插到族展开表格的正后方（不是 chart-box 尾部——那样用户看不到）
+  if (famTable && famTable.nextSibling) {
+    container.insertBefore(panelDiv, famTable.nextSibling);
+  } else {
+    container.appendChild(panelDiv);
+  }
+  // 自动滚到面板位置
+  panelDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
   // 渲染 5 个图表
   setTimeout(() => { renderDrillCharts(key, d); }, 80);
