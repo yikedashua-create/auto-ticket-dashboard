@@ -4095,17 +4095,31 @@ function collapseFamilyDrill() {
 }
 
 function toggleDrill(path, idx, rowEl) {
+  // v11.9.8：按原因文本匹配下钻数据（原来按索引查——fail_drill 只有 Top 10，
+  // 验真/回填等小环节的根因不在 Top 10 里，导致点击无反应）
+  const allReasons = (path === "B" ? CURRENT_FAIL_REASONS_B : CURRENT_FAIL_REASONS_D) || [];
+  const clickedReason = allReasons[idx];
+  const drillData = (path === "B" ? CURRENT_DATA.fail_drill_B : CURRENT_DATA.fail_drill_D) || [];
+  let d = drillData[idx];
+  if (!d && clickedReason) {
+    d = drillData.find(x => x.reason === clickedReason.reason || x.reason === clickedReason.full);
+  }
   const key = `${path}-${idx}`;
-  // 同一个面板再次点击：收起
-  if (currentDrillKey === key) {
-    collapseDrill();
+  if (currentDrillKey === key) { collapseDrill(); return; }
+  collapseDrill();
+  if (!d) {
+    // 没有下钻数据：显示提示而不是无反应
+    const famT = document.querySelector("#family-drill-row")?.closest("table");
+    const cont = famT?.parentElement || document.getElementById("mainArea");
+    const tip = document.createElement("div");
+    tip.id = "drill-row";
+    tip.style.cssText = "margin-top:10px;padding:14px 18px;background:#0a1424;border-left:3px solid #ffa502;border-radius:0 8px 8px 0;color:#a0b4cc;font-size:13px";
+    tip.innerHTML = `⚠️ 该失败原因暂无下钻数据（下钻数据仅预计算 Top 10 高频原因）<br><span style="font-size:11px;color:#8ea4bd">${escapeHtml(clickedReason?.reason || "")} · ${fmt.num(clickedReason?.count || 0)} 单</span><button onclick="collapseDrill()" style="float:right;background:#1e3a5f;border:1px solid #ffa502;color:#ffa502;padding:2px 10px;border-radius:4px;cursor:pointer;font-size:11px">关闭</button>`;
+    if (famT && famT.nextSibling) cont.insertBefore(tip, famT.nextSibling);
+    else cont.appendChild(tip);
+    currentDrillKey = key;
     return;
   }
-  // 收起旧的，展开新的
-  collapseDrill();
-  const drillData = (path === "B" ? CURRENT_DATA.fail_drill_B : CURRENT_DATA.fail_drill_D) || [];
-  const d = drillData[idx];
-  if (!d) return;
   currentDrillKey = key;
 
   // v11.9.7：图表面板作为独立 div 插到族展开面板正后方（用户看得到的位置）+ 自动滚动
