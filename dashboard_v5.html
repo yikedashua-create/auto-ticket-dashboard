@@ -4108,29 +4108,28 @@ function toggleDrill(path, idx, rowEl) {
   if (!d) return;
   currentDrillKey = key;
 
-
-  // 在表格行下方插入下钻面板（v11.9.5: 恢复内嵌形式，父表已加 table-layout:fixed 占满宽度）
-  const tr = rowEl.closest("tr");
-  const colspan = 5;
-  const newTr = document.createElement("tr");
-  newTr.id = "drill-row";
-  newTr.classList.add("drill-row");
-  newTr.innerHTML = `<td colspan="${colspan}" style="padding:0; background:#0a1424">
-    <div class="drill-panel">
-      <div class="drill-header">
-        <div class="drill-title">
-          <span style="color:#00e5ff">▾ ${escapeHtml(d.reason)}</span>
+  // v11.9.6：图表面板作为独立 div 追加到 .chart-box 尾部（彻底摆脱两层表格嵌套的列宽约束）
+  const container = document.querySelector("#family-drill-row")?.closest(".chart-box")
+    || document.querySelector("#bFamilyTbody")?.closest(".chart-box")
+    || document.getElementById("mainArea");
+  const panelDiv = document.createElement("div");
+  panelDiv.id = "drill-row";
+  panelDiv.style.cssText = "margin-top:14px;padding:14px 18px;background:#0a1424;border-left:3px solid #00e5ff;border-radius:0 8px 8px 0";
+  panelDiv.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <span style="color:#00e5ff;font-size:13px;font-weight:600">▾ ${escapeHtml(d.reason)}</span>
           <span class="badge badge-info" style="margin-left:8px">${fmt.num(d.total)} 单</span>
           <span class="badge badge-warn" style="margin-left:4px">救回 ${fmt.num(d.rescued_count)} 单（${d.rescue_rate}%）</span>
         </div>
-        <button class="drill-close" onclick="collapseDrill()">收起 ✕</button>
+        <button class="drill-close" onclick="collapseDrill()" style="background:#1e3a5f;border:1px solid #00e5ff;color:#00e5ff;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px">收起 ✕</button>
       </div>
-      <div class="drill-grid" style="min-width:600px">
-        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px;min-width:280px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%">
+        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px">
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">📱 平台分布 Top 10</div>
           <div id="drill-${key}-plat" style="height:280px;width:100%"></div>
         </div>
-        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px;min-width:280px">
+        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px">
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">✈️ 航司分布 Top 10</div>
           <div id="drill-${key}-air" style="height:280px;width:100%"></div>
         </div>
@@ -4138,11 +4137,11 @@ function toggleDrill(path, idx, rowEl) {
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">🔥 航司 × 平台 交叉热力图</div>
           <div id="drill-${key}-cross" style="height:340px;width:100%"></div>
         </div>
-        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px;min-width:280px">
+        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px">
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">📅 日期趋势</div>
           <div id="drill-${key}-date" style="height:240px;width:100%"></div>
         </div>
-        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px;min-width:280px">
+        <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px">
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">👤 员工救场 Top 10</div>
           <div id="drill-${key}-staff" style="height:240px;width:100%"></div>
         </div>
@@ -4161,23 +4160,11 @@ function toggleDrill(path, idx, rowEl) {
           }).join("")}</tbody>
         </table>
       </div>` : ""}
-    </div>
   `;
-  tr.parentNode.insertBefore(newTr, tr.nextSibling);
+  container.appendChild(panelDiv);
 
   // 渲染 5 个图表
-  setTimeout(() => {
-    renderDrillCharts(key, d);
-    setTimeout(() => {
-      ["plat", "air", "cross", "date", "staff"].forEach(sfx => {
-        const el = document.getElementById(`drill-${key}-${sfx}`);
-        if (el) {
-          const c = echarts.getInstanceByDom(el);
-          if (c) c.resize();
-        }
-      });
-    }, 100);
-  }, 50);
+  setTimeout(() => { renderDrillCharts(key, d); }, 80);
 }
 
 function collapseDrill() {
