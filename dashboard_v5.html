@@ -4108,8 +4108,7 @@ function toggleDrill(path, idx, rowEl) {
   if (!d) return;
   currentDrillKey = key;
 
-  // 在表格行下方插入下钻面板
-  const tr = rowEl;
+
   // 在表格行下方插入下钻面板（v11.9.5: 恢复内嵌形式，父表已加 table-layout:fixed 占满宽度）
   const tr = rowEl.closest("tr");
   const colspan = 5;
