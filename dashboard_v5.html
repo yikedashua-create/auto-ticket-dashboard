@@ -2362,7 +2362,7 @@ function renderAirline() {
       <div class="grid-2x2">
         <div class="chart-box">
           <div class="chart-title">📊 全量航司订单量</div>
-          <div id="chart-airlineBar" class="chart-area" style="height:380px"></div>
+          <div id="chart-airlineBar" class="chart-area" style="height:${Math.max(380, top.length * 20 + 40)}px"></div>
         </div>
         <div class="chart-box">
           <div class="chart-title">💸 航司利润率（按总利润）</div>
@@ -2399,31 +2399,31 @@ function renderAirline() {
   `;
   document.getElementById("mainArea").innerHTML = html;
 
-  // 全量航司订单量（按 tier 着色：core 绿 / mid 青 / tail 灰 / other 深灰）
+  // 全量航司订单量（v11.9.2 改横向条形图：与利润图形态统一，数字不堆积，航司名完整显示）
   createChart("chart-airlineBar", {
     ...baseEchartsOpt,
-    tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis",
-      formatter: ps => {
-        const a = top[ps[0].dataIndex];
+    tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
+      formatter: p => {
+        const a = top[p.dataIndex];
         return `<b>${a.airline}</b> <span style="color:#a0b4cc">(${tierLabel(a.tier)})</span><br>${fmt.num(a.total)} 单<br>利润: <span style="color:${a.profit_sum>=0?'#00ff88':'#ff4757'}">${a.profit_sum>=0?'+':''}¥${fmt.money(a.profit_sum)}</span>`;
       } },
-    grid: { left: 50, right: 30, top: 20, bottom: 120 },
-    xAxis: { type: "category", data: top.map(a => a.airline),
-              axisLabel: { color: "#a0b4cc", rotate: 60, fontSize: 9, interval: Math.max(0, Math.floor(top.length / 30) - 1) } },
-    yAxis: { type: "value", name: "订单量", axisLabel: { color: "#a0b4cc" },
+    grid: { left: 50, right: 60, top: 20, bottom: 20 },
+    xAxis: { type: "value", name: "订单量", axisLabel: { color: "#a0b4cc" },
               splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+    yAxis: { type: "category", data: top.map(a => a.airline).reverse(),
+              axisLabel: { color: "#a0b4cc", fontSize: 10 } },
     series: [{
-      type: "bar", data: top.map(a => a.total),
+      type: "bar", data: top.map(a => a.total).reverse(),
       itemStyle: {
         color: params => {
-          const a = top[params.dataIndex];
-          if (a.is_other) return "#3a4860";  // 其他桶：深灰
-          if (a.tier === 'core') return "#00ff88";  // 主力：绿
-          if (a.tier === 'mid') return "#00e5ff";  // 中等：青
-          return "#a0b4cc";  // 长尾：灰
+          const a = top[top.length - 1 - params.dataIndex];
+          if (a.is_other) return "#3a4860";
+          if (a.tier === 'core') return "#00ff88";
+          if (a.tier === 'mid') return "#00e5ff";
+          return "#a0b4cc";
         }
       },
-      label: { show: true, position: "top", color: "#e0e6f0", fontSize: 9,
+      label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10,
         formatter: p => fmt.num(p.value) },
     }],
   });
