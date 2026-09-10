@@ -2234,7 +2234,22 @@ function renderHourly() {
     lineChart.setOption({
       tooltip: {
         trigger: "axis",
-        axisPointer: { type: "cross", label: { backgroundColor: "#1e3a5f" } }
+        axisPointer: { type: "cross", label: { backgroundColor: "#1e3a5f" } },
+        formatter: (params) => {
+          const idx = params[0].dataIndex;
+          const d = fullData[idx];
+          if (!d || !d.total) return `${params[0].axisValue}<br>无数据`;
+          const auto = d.A + d.B;
+          let html = `<b>${params[0].axisValue}</b><br>📦 总量 <b>${fmt.num(d.total)}</b> 单`;
+          html += `<br><span style="color:#00d4aa">A</span> ${fmt.num(d.A)} 单 (${auto ? (d.A / auto * 100).toFixed(1) : 0}%)`;
+          html += ` | <span style="color:#ff4757">B</span> ${fmt.num(d.B)} 单 (${auto ? (d.B / auto * 100).toFixed(1) : 0}%)`;
+          html += `<br><span style="color:#ffa502">C</span> ${fmt.num(d.C)} 单 (${d.total ? (d.C / d.total * 100).toFixed(1) : 0}%)`;
+          html += ` | <span style="color:#a0b4cc">D</span> ${fmt.num(d.D)} 单 (${d.total ? (d.D / d.total * 100).toFixed(1) : 0}%)`;
+          html += `<br>───────────`;
+          html += `<br>成功率 <b style="color:#00ff88">${auto ? (d.A / auto * 100).toFixed(1) : "—"}%</b>`;
+          html += ` · 覆盖率 ${d.total ? (auto / d.total * 100).toFixed(1) : "—"}%`;
+          return html;
+        }
       },
       legend: { top: 0, textStyle: { color: "#aab5c5" } },
       grid: { top: 50, left: 60, right: 30, bottom: 60 },
