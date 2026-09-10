@@ -4491,77 +4491,54 @@ function renderOrderAnalysis() {
 
     <!-- ③ 往返订单分析 -->
     <div class="section">
-      <div class="section-title">✈️ 往返订单明细
+      <div class="section-title">✈️ 往返订单分析
         <span class="badge badge-info">${fmt.num(rt.count || 0)} 单 / 占比 ${rt.ratio || 0}%</span>
       </div>
-      <div style="font-size:11px;color:#9ab0c9;margin:2px 0 8px">💡 往返票是利润主力（往返通常比单程利润高 30%+），占比高说明客源质量好</div>
-      <div class="grid-1x2">
-        <div class="chart-box">
-          <div class="chart-title">往返航线（前 50）</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead><tr><th>#</th><th>航线（去程 / 回程）</th></tr></thead>
-              <tbody>
-                ${(rt.samples || []).map((s, i) => `<tr><td>${i + 1}</td><td>${escapeHtml(s)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#a0b4cc">无数据</td></tr>'}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">航司分布</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead><tr><th>航司</th><th style="text-align:right">单数</th></tr></thead>
-              <tbody>
-                ${Object.entries(rt.by_airline || {}).map(([k, v]) => `<tr><td><b>${escapeHtml(k)}</b></td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#a0b4cc">无数据</td></tr>'}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div style="font-size:11px;color:#9ab0c9;margin:2px 0 8px">💡 往返票是利润主力（通常比单程利润高 30%+），占比高说明客源质量好</div>
+      <div class="kpi-row cols-3" style="margin-bottom:12px">
+        <div class="kpi"><div class="kpi-label">📦 往返订单</div><div class="kpi-value">${fmt.num(rt.count || 0)}</div><div class="kpi-sub">占比 ${rt.ratio || 0}%</div></div>
+        <div class="kpi"><div class="kpi-label">🏆 第一大航司</div><div class="kpi-value">${Object.entries(rt.by_airline || {}).sort((a,b)=>b[1]-a[1])[0]?.[0] || '—'}</div><div class="kpi-sub">${fmt.num(Object.entries(rt.by_airline || {}).sort((a,b)=>b[1]-a[1])[0]?.[1] || 0)} 单</div></div>
+        <div class="kpi"><div class="kpi-label">🔝 热门航线</div><div class="kpi-value" style="font-size:16px">${(rt.samples || [])[0] || '—'}</div><div class="kpi-sub">Top 1 of ${(rt.samples || []).length}</div></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">✈️ 往返订单航司分布</div>
+        <div id="chart-rt-airline" style="height:${Math.max(200, Object.keys(rt.by_airline || {}).length * 24 + 40)}px"></div>
       </div>
     </div>
 
     <!-- ④ 中转订单分析 -->
     <div class="section">
-      <div class="section-title">🔀 中转订单明细
+      <div class="section-title">🔀 中转订单分析
         <span class="badge badge-info">${fmt.num(tr.count || 0)} 单 / 占比 ${tr.ratio || 0}%</span>
       </div>
       <div style="font-size:11px;color:#9ab0c9;margin:2px 0 8px">💡 中转票操作复杂（两段航司联动），占比低是好事——高出 2% 需排查渠道是否推送了过多中转方案</div>
-      <div class="grid-1x2">
-        <div class="chart-box">
-          <div class="chart-title">中转航线（前 50）</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead><tr><th>#</th><th>航线（去程 / 中转后）</th></tr></thead>
-              <tbody>
-                ${(tr.samples || []).map((s, i) => `<tr><td>${i + 1}</td><td>${escapeHtml(s)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#a0b4cc">无数据</td></tr>'}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="chart-box">
-          <div class="chart-title">航司分布</div>
-          <div style="max-height: 400px; overflow-y: auto;">
-            <table class="data-table compact">
-              <thead><tr><th>航司</th><th style="text-align:right">单数</th></tr></thead>
-              <tbody>
-                ${Object.entries(tr.by_airline || {}).map(([k, v]) => `<tr><td><b>${escapeHtml(k)}</b></td><td style="text-align:right">${fmt.num(v)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:#a0b4cc">无数据</td></tr>'}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="kpi-row cols-3" style="margin-bottom:12px">
+        <div class="kpi"><div class="kpi-label">📦 中转订单</div><div class="kpi-value">${fmt.num(tr.count || 0)}</div><div class="kpi-sub">占比 ${tr.ratio || 0}%</div></div>
+        <div class="kpi"><div class="kpi-label">🏆 第一大航司</div><div class="kpi-value">${Object.entries(tr.by_airline || {}).sort((a,b)=>b[1]-a[1])[0]?.[0] || '—'}</div><div class="kpi-sub">${fmt.num(Object.entries(tr.by_airline || {}).sort((a,b)=>b[1]-a[1])[0]?.[1] || 0)} 单</div></div>
+        <div class="kpi"><div class="kpi-label">🔝 热门航线</div><div class="kpi-value" style="font-size:16px">${(tr.samples || [])[0] || '—'}</div><div class="kpi-sub">Top 1 of ${(tr.samples || []).length}</div></div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">🔀 中转订单航司分布</div>
+        <div id="chart-tr-airline" style="height:${Math.max(200, Object.keys(tr.by_airline || {}).length * 24 + 40)}px"></div>
       </div>
     </div>
 
     <!-- ⑤ 多人订单分析 -->
     <div class="section">
-      <div class="section-title">👨‍👩‍👧 多人订单明细（按乘客数分桶）
+      <div class="section-title">👨‍👩‍👧 多人订单分析
         <span class="badge badge-info">${fmt.num(mp.count || 0)} 单 / 占比 ${mp.ratio || 0}%</span>
       </div>
       <div style="font-size:11px;color:#9ab0c9;margin:2px 0 8px">💡 多人票（≥2 人）占比 ~22% 是家庭/团队出行的正常结构；单人票失败率通常更低，多人票需额外关注乘客信息校验类失败</div>
+      <div class="kpi-row cols-3" style="margin-bottom:12px">
+        <div class="kpi"><div class="kpi-label">📦 多人订单</div><div class="kpi-value">${fmt.num(mp.count || 0)}</div><div class="kpi-sub">占比 ${mp.ratio || 0}%</div></div>
+        <div class="kpi"><div class="kpi-label">👥 最多乘客</div><div class="kpi-value">${Math.max(...Object.keys(mp.by_pax_count || {1:0}).map(Number), 0) || '—'} 人</div><div class="kpi-sub">单笔最大人数</div></div>
+        <div class="kpi"><div class="kpi-label">couple 主力</div><div class="kpi-value">${fmt.num((mp.by_pax_count || {})[2] || 0)}</div><div class="kpi-sub">2 人订单占多人 ${mp.count ? (((mp.by_pax_count || {})[2] || 0) / mp.count * 100).toFixed(0) : 0}%</div></div>
+      </div>
       <div class="chart-box">
-        <div style="max-height: 400px; overflow-y: auto;">
-          <table class="data-table">
+        <div class="chart-title">👥 按乘客数分布</div>
+        <div id="chart-mp-pax" style="height:280px"></div>
+      </div>
+    </div>
             <thead>
               <tr><th>乘客数</th><th style="text-align:right">单数</th><th style="text-align:right">占多人单%</th></tr>
             </thead>
@@ -4576,9 +4553,9 @@ function renderOrderAnalysis() {
       </div>
     </div>
 
-    <!-- ⑥ 辅营订单明细（2026-07-29 新增）: path=C 子分类, 平台 × 航司 热力图 -->
+    <!-- ⑥ 辅营订单明细（2026-07-29 新增）: 平台 × 航司 热力图 -->
     <div class="section">
-      <div class="section-title">🧳 辅营订单明细（path=C 子分类）
+      <div class="section-title">🧳 辅营订单明细
         <span class="badge badge-info">${fmt.num(fyLuggage.count || 0)} 单</span>
       </div>
       <div class="chart-hint" style="margin-bottom:8px">
@@ -4729,6 +4706,44 @@ function renderOrderAnalysis() {
   } else {
     document.getElementById("chart-heatmap-repeat").innerHTML = `<div style="padding:40px;text-align:center;color:#a0b4cc">⚠️ 暂无重复订单</div>`;
   }
+
+  // v11.9.9：往返/中转航司分布图 + 多人订单乘客数分布图
+  setTimeout(() => {
+    const mkAirlineBar = (id, data) => {
+      const el = document.getElementById(id);
+      if (!el || !data || !Object.keys(data).length) return;
+      const sorted = Object.entries(data).sort((a, b) => b[1] - a[1]);
+      const c = echarts.init(el);
+      c.setOption({
+        ...baseEchartsOpt,
+        tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis" },
+        grid: { left: 50, right: 50, top: 10, bottom: 20 },
+        xAxis: { type: "value", axisLabel: { color: "#a0b4cc" }, splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+        yAxis: { type: "category", data: sorted.map(x => x[0]).reverse(), axisLabel: { color: "#aab5c5", fontSize: 11 } },
+        series: [{ type: "bar", data: sorted.map(x => x[1]).reverse(),
+          itemStyle: { color: "#00e5ff" },
+          label: { show: true, position: "right", color: "#e0e6f0", fontSize: 10, formatter: p => fmt.num(p.value) } }],
+      });
+    };
+    mkAirlineBar("chart-rt-airline", rt.by_airline);
+    mkAirlineBar("chart-tr-airline", tr.by_airline);
+
+    const mpEl = document.getElementById("chart-mp-pax");
+    if (mpEl && mp.by_pax_count) {
+      const entries = Object.entries(mp.by_pax_count).sort((a, b) => Number(a[0]) - Number(b[0]));
+      const c = echarts.init(mpEl);
+      c.setOption({
+        ...baseEchartsOpt,
+        tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis", formatter: ps => `${ps[0].axisValue} 人：${fmt.num(ps[0].value)} 单` },
+        grid: { left: 50, right: 30, top: 20, bottom: 30 },
+        xAxis: { type: "category", data: entries.map(x => x[0] + "人"), axisLabel: { color: "#a0b4cc" } },
+        yAxis: { type: "value", axisLabel: { color: "#a0b4cc" }, splitLine: { lineStyle: { color: "#1e3a5f40" } } },
+        series: [{ type: "bar", data: entries.map(x => x[1]),
+          itemStyle: { color: p => p.dataIndex === 0 ? "#00e5ff" : "#a855f7" },
+          label: { show: true, position: "top", color: "#e0e6f0", fontSize: 10, formatter: p => fmt.num(p.value) } }],
+      });
+    }
+  }, 80);
 }
 
 
