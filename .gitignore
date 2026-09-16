@@ -42,3 +42,9 @@ raw/
 
 # WorkBuddy 工作区记忆目录
 .workbuddy/
+
+# 本地 xlsx 镜像（166MB，可从 E:\Work\Data 重新同步；代码不读这里）
+data/
+
+# 展示材料的 node_modules 依赖
+展示材料/node_modules/
