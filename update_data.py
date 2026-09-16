@@ -106,15 +106,21 @@ def run_cmd(cmd, cwd=None, timeout=None):
 
 
 def check_environment():
-    """检查环境（python / pyarrow / xlsx 目录 / git 仓库）"""
+    """检查环境（python / pyarrow / xlsx 目录 / git 仓库）
+
+    2026-09-16：全部改用 sys.executable（当前解释器），
+    不再依赖 PATH 里的裸 python——否则用 venv 跑本脚本时，
+    子进程可能落到另一个缺 pyarrow 的解释器上。
+    """
+    PY = f'"{sys.executable}"'
     # Python
-    rc, out, _ = run_cmd("python --version")
+    rc, out, _ = run_cmd(f"{PY} --version")
     if rc != 0:
-        return False, f"Python 未安装或未配置 PATH\n请先安装 Python 3.10+"
+        return False, f"Python 不可用: {sys.executable}"
     # pyarrow
-    rc, _, _ = run_cmd("python -c \"import pyarrow; print(pyarrow.__version__)\"")
+    rc, _, _ = run_cmd(f'{PY} -c "import pyarrow; print(pyarrow.__version__)"')
     if rc != 0:
-        return False, f"pyarrow 未安装\n请运行: pip install pyarrow"
+        return False, f"pyarrow 未安装（解释器 {sys.executable}）\n请运行: \"{sys.executable}\" -m pip install pyarrow"
     # xlsx 源目录
     if not os.path.isdir(DATA_DIR):
         return False, f"xlsx 源目录不存在:\n{DATA_DIR}\n请确认桌面有这个目录"
@@ -154,7 +160,8 @@ def parse_gen_output(stdout):
 def run_gen(force=False):
     """跑 gen_dashboard_data.py，捕获输出"""
     print(f"[update_data] 跑 gen_dashboard_data.py ...")
-    cmd = f"python \"{GEN_SCRIPT}\" --month all"
+    # 2026-09-16：用当前解释器，避免 PATH 里的 python 与 venv 不一致
+    cmd = f'"{sys.executable}" "{GEN_SCRIPT}" --month all'
     if force:
         cmd += " --force"
     rc, out, err = run_cmd(

@@ -1,52 +1,94 @@
 # auto-ticket-dashboard 项目
 
-> AI / 协作者进入本目录时**必须先读本文 + 上一级 E:\Work\AGENTS.md**
+> AI / 协作者进入本目录时**先读本文**。
+> 2026-09-16 起本项目**只在本目录（D 盘）维护**。
 
 ## 项目位置
 
-**项目根目录**：`E:\Work\Projects\auto-ticket-dashboard\auto-ticket-dashboard\`
-
-⚠️ **嵌套结构说明**：
-- 外层 `E:\Work\Projects\auto-ticket-dashboard\` 只有 3 个独立文件（generate_report.py / openapi.json / _v10.5_archive.zip），**不是项目根**
-- 真正的项目根是**嵌套子目录** `auto-ticket-dashboard\`（含 .git）
-- 历史：搬桌面项目时，外层已有同名空目录 + 文件，导致嵌套
-- **本目录才是项目根**
-
-## 关键文件
-
-| 文件 | 用途 |
-|------|------|
-| `app.py` | Streamlit 入口 |
-| `dashboard_v5.html` | 主页面（Alpine.js） |
-| `gen_dashboard_data.py` | 数据生成（95KB） |
-| `update_data.py` | 数据更新（cron 入口） |
-| `dashboard_data.json` | 主数据（14MB） |
-| `requirements.txt` | 依赖 |
-| `.git/` | 完整 git 历史 |
-
-## 启动方式
+**项目根目录（唯一主副本）**：`D:\自动出票数据分析项目\`
 
 ```bash
-# 数据更新（桌面快捷方式 "更新数据.lnk"）
+# 数据更新（一键）
 更新数据.bat
 # 或直接：
 D:\pycharm3\.venv\Scripts\python.exe update_data.py
 ```
 
 ```bash
-# 启动 Streamlit
+# 启动 Streamlit 本地预览
 D:\pycharm3\.venv\Scripts\python.exe -m streamlit run app.py --server.address=0.0.0.0 --server.port=8501
 ```
+
+⚠️ **历史遗留副本（已废弃，不要再在那里提交/推送）**：
+`E:\Work\Projects\auto-ticket-dashboard\auto-ticket-dashboard\`
+（原为嵌套结构 `E:\Work\Projects\auto-ticket-dashboard\auto-ticket-dashboard\`，
+外层只有 generate_report.py / openapi.json / _v10.5_archive.zip 等散件。）
+
+**血的教训（2026-09-11 ~ 09-16）**：两份副本同时对同一个 GitHub 仓库 push，
+D 盘那一侧抢先推成功、占据远程历史，E 盘自此每次 push 都被
+`non-fast-forward` 拒绝，线上看板数据卡在 9/11 长达 5 天。
+**以后只在一处提交和推送。**
+
+- 远程仓库：`git@github.com:yikedashua-create/auto-ticket-dashboard.git`，分支 `main`
+- 线上看板：`https://auto-ticket-dashboard.streamlit.app/`
+
+## 关键文件
+
+| 文件 | 用途 |
+|------|------|
+| `app.py` | Streamlit 入口（只渲染 HTML 骨架，数据由前端自取） |
+| `dashboard_v5.html` | 主页面（Alpine.js），内含 `const COMMIT` 数据锚点 |
+| `gen_dashboard_data.py` | 数据生成（xlsx/parquet → dashboard_data.json） |
+| `update_data.py` | 手工一键更新（gen + git commit + push） |
+| `dashboard_data.json` | 主数据（约 4MB，已剥离 daily_detail） |
+| `auto_sync/` | 自动同步（监控目录 / 守护进程 / 触发 / 状态库） |
+| `raw/*.parquet` | 按日中间数据（gitignore，不提交） |
+| `monthly/*.json` | 月度明细（提交） |
+| `targets.json` | 月度目标值（提交） |
+| `register_startup_admin.bat` | 注册/迁移计划任务（**需右键以管理员运行**） |
+| `start_auto_sync.bat` / `stop_auto_sync.bat` | 手动启停守护进程 |
+| `更新数据.bat` | 手工更新入口 |
 
 ## 数据流向
 
 ```
-raw/*.xlsx (原始数据)
-  → gen_dashboard_data.py
-  → dashboard_data.json (14MB)
-  → Streamlit 加载
-  → dashboard_v5.html 渲染
+E:\Work\Data\订单\出票总订单数据\YYYY-MM-DD.xlsx   ← 源数据，每天 08:30 落新文件
+  → auto_sync（监控目录 + 30 分钟兜底任务）
+  → gen_dashboard_data.py --month all
+       ├─ raw/YYYY-MM-DD.parquet   （按日中间数据）
+       ├─ monthly/YYYY-MM.json     （月度明细）
+       └─ dashboard_data.json      （聚合结果）
+  → git commit + push
+  → Streamlit Cloud 自动重新部署
+  → 前端 dashboard_v5.html 从 jsDelivr 拉数据
 ```
+
+**关键坑（必须记住）**：`dashboard_v5.html` 里的
+
+```js
+const COMMIT = "xxxxxxx";   // 约 1120 行
+```
+
+是**硬编码的 commit 锚点**，前端据此拼
+`https://cdn.jsdelivr.net/gh/.../auto-ticket-dashboard@${COMMIT}/dashboard_data.json`。
+**数据 commit 之后必须把 COMMIT 改成新 commit 并再 commit+push**，否则前端还在拉旧数据。
+`auto_sync/trigger.py` 的 `sync_html_commit()` 负责自动做这件事（在 push 成功之后才执行）。
+
+## auto_sync 运行机制
+
+- 守护进程：`python -m auto_sync daemon`（DETACHED_PROCESS 独立进程）
+  - 监控 `E:\Work\Data\订单\出票总订单数据`
+  - 状态：`python -m auto_sync status`，日志 `auto_sync/data/auto_sync.log`
+- 计划任务（由 `register_startup_admin.bat` 注册，**SYSTEM 级**）：
+  - `auto_ticket_dashboard_sync`：开机自启 daemon
+  - `auto_ticket_dashboard_sync_30min`：每 30 分钟兜底 `python -m auto_sync trigger`
+- 停止守护进程需要**管理员权限**（任务以 SYSTEM 身份运行）：
+  用 `stop_auto_sync.bat`（右键以管理员运行），并先 `schtasks /Delete` 掉任务，否则下次开机又起来。
+- 凭据文件：`E:\Work\Documents\凭据\elephant_api.yaml`（token 失效时 daemon 会自动恢复并写回）
+
+**已知待改进点**：`manager.trigger_now()` 取监控目录里 **mtime 最新** 的 xlsx，
+但"当天文件"常比"前一天的重导出文件"mtime 早几秒，导致 30 分钟兜底任务反复重跑前一天的文件
+（每次白烧约 7.5 分钟 CPU）。建议改为"按未处理过的文件"驱动。
 
 ## 业务背景
 
@@ -84,8 +126,14 @@ raw/*.xlsx (原始数据)
 - B. **治标不动 KPI**：D 路径子分类里标注"含同订单历史快照"，加文案说明
 - C. **结构性改造**：新增第 5 路径"X - 人工处理中"（被锁定+订单未完结），D 只剩真烂尾
 
-**探查脚本**：`E:\Work\Tools\_workbench\_check_d_breakdown.py`（删于本次会话后）→ 重新探查用 `python -c "import sys; sys.stdout=open('_d.txt','w',encoding='utf-8'); exec(open('_check.py').read())"` 模式（避免 PS 5.1 编码崩码）
+**探查脚本**：`E:\Work\Tools\_workbench\_check_d_breakdown.py`（已删）→ 重新探查用 `python -c "import sys; sys.stdout=open('_d.txt','w',encoding='utf-8'); exec(open('_check.py').read())"` 模式（避免 PS 5.1 编码崩码）
+
+## 环境约定
+
+- Python 一律用 venv：`D:\pycharm3\.venv\Scripts\python.exe`
+  （裸 `python` 依赖 PATH，可能缺 pyarrow / watchdog）
+- git push 被拒时先 `git fetch` 看清 `ahead/behind`，**不要直接 force push**
 
 ## 父规范
 
-工作区根规范：`E:\Work\AGENTS.md`（**先读那个**）
+工作区根规范：`E:\Work\AGENTS.md`（如存在，可参考）

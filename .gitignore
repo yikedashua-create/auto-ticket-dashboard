@@ -39,3 +39,6 @@ C'
 auto_sync/data/
 .github_token
 raw/
+
+# WorkBuddy 工作区记忆目录
+.workbuddy/
