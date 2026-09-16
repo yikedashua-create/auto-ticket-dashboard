@@ -54,7 +54,9 @@ echo [校验] 解释器 = %PY%
 echo.
 
 echo [1/5] 结束残留的 auto_sync / gen 进程（含 E 盘 SYSTEM 旧守护进程）...
-powershell -NoProfile -Command "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like '*auto_sync*' -or $_.CommandLine -like '*gen_dashboard_data.py*' } | ForEach-Object { Write-Host ('        kill PID ' + $_.ProcessId + '  ' + $_.Name); Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"
+REM 注意：过滤条件必须限定 Name like python* —— 否则 powershell 自己的
+REM       命令行里含 "auto_sync" 字面量，会把自身也杀掉
+powershell -NoProfile -Command "Get-CimInstance Win32_Process | Where-Object { $_.Name -like 'python*' -and ($_.CommandLine -like '*auto_sync*' -or $_.CommandLine -like '*gen_dashboard_data.py*') } | ForEach-Object { Write-Host ('        kill PID ' + $_.ProcessId + '  ' + $_.Name); Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"
 timeout /t 2 /nobreak >nul
 
 echo.
