@@ -90,6 +90,7 @@ class AutoSyncManager:
 
         # 后台线程
         self._bg_thread: Optional[threading.Thread] = None
+        self._keepalive_thread: Optional[threading.Thread] = None
         self._stop_event = threading.Event()
 
     # ========== daemon 互斥锁（v1.2，2026-08-31） ==========
@@ -147,6 +148,22 @@ class AutoSyncManager:
             log.warning("AutoSyncManager 已经在运行")
             return
         self._stop_event.clear()
+        self._start_token_keepalive()
+
+    def _start_token_keepalive(self):
+        """token 保活线程：定期探活 + 失效自动恢复 + 提前告警（见 token_keepalive.py）"""
+        try:
+            from .token_keepalive import run_loop, PROBE_INTERVAL_HOURS
+        except Exception as e:
+            log.warning(f"token 保活模块加载失败（跳过）: {e}")
+            return
+        if self._keepalive_thread is not None and self._keepalive_thread.is_alive():
+            return
+        self._keepalive_thread = threading.Thread(
+            target=run_loop, name="token_keepalive", daemon=True,
+            kwargs={"interval_hours": PROBE_INTERVAL_HOURS},
+        )
+        self._keepalive_thread.start()
 
         def _run():
             try:
@@ -175,6 +192,7 @@ class AutoSyncManager:
         if not self._acquire_daemon_lock():
             log.warning("已有 daemon 在运行（锁被持有），本次 start_blocking 直接退出")
             return
+        self._start_token_keepalive()
         try:
             self._worker = WatcherWorker(
                 config=self.config,

@@ -506,6 +506,11 @@ def main():
     p_fetch.add_argument("--trigger", action="store_true", help="拉完自动触发 gen+git+push")
     p_fetch.set_defaults(func=cmd_fetch)
 
+    # token-check（2026-09-11 新增：探活 + 自动恢复 + 提前告警）
+    p_token = subparsers.add_parser("token-check", help="elephant token 探活/自动恢复/失效告警")
+    p_token.add_argument("--no-alert", action="store_true", help="只检查恢复，不推送告警")
+    p_token.set_defaults(func=cmd_token_check)
+
     # ai-rules（2026-09-03 新增：AI 语义归因结果 → 建议采纳为规则，人工审批）
     p_airules = subparsers.add_parser("ai-rules", help="查看 AI 语义归因结果，产出可采纳为正则规则的建议")
     p_airules.add_argument("--limit", type=int, default=30, help="展示条数（默认 30）")
@@ -722,6 +727,15 @@ def cmd_ai_rules(args):
     print("\n采纳方式：把'建议规则'行粘贴进 gen_dashboard_data.py 的 REASON_FAMILY_RULES 列表")
     print("（放在具体关键词规则区即可；采纳后该原因回到规则引擎，AI 缓存自动失效于下次全量归因）")
     return 0
+
+
+def cmd_token_check(args):
+    """token 探活 → 失效自动恢复 → 仍失效推送告警（带登录指引）"""
+    from .token_keepalive import check_and_recover
+    state, detail = check_and_recover(alert=not args.no_alert)
+    icon = '✅' if state == 'ok' else ('⚠️' if state == 'NO_ACCESS' else 'ℹ️')
+    print(f"{icon} token 状态: {state}" + (f"（{detail}）" if detail else ""))
+    return 0 if state == 'ok' else 1
 
 
 def cmd_fetch(args):

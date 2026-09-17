@@ -85,6 +85,9 @@ const COMMIT = "xxxxxxx";   // 约 1120 行
 - 停止守护进程需要**管理员权限**（任务以 SYSTEM 身份运行）：
   用 `stop_auto_sync.bat`（右键以管理员运行），并先 `schtasks /Delete` 掉任务，否则下次开机又起来。
 - 凭据文件：`E:\Work\Documents\凭据\elephant_api.yaml`（token 失效时 daemon 会自动恢复并写回）
+- **token 保活（2026-09-17 加）**：daemon 内置每 4h 探活线程（`auto_sync/token_keepalive.py`），
+  失效→自动走 Chrome localStorage 恢复→仍失败才推钉钉告警（附"在 Chrome 登录一次 elephant"指引，
+  状态翻转才推一次防刷屏）。手动检查：`python -m auto_sync token-check`。
 
 **已知待改进点**：`manager.trigger_now()` 取监控目录里 **mtime 最新** 的 xlsx，
 但"当天文件"常比"前一天的重导出文件"mtime 早几秒，导致 30 分钟兜底任务反复重跑前一天的文件
