@@ -53,6 +53,8 @@ D 盘那一侧抢先推成功、占据远程历史，E 盘自此每次 push 都�
 
 ```
 E:\Work\Data\订单\出票总订单数据\YYYY-MM-DD.xlsx   ← 源数据，每天 08:30 落新文件
+  （v2.3 起只拉**昨天及更早**，不拉当天——8:30 时当天订单未发生完，
+   当天文件只有部分数据；手动补当天用 `--today` 或 `--date`）
   → auto_sync（监控目录 + 30 分钟兜底任务）
   → gen_dashboard_data.py --month all
        ├─ raw/YYYY-MM-DD.parquet   （按日中间数据）

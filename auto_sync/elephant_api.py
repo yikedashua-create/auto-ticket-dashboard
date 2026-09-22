@@ -138,10 +138,18 @@ def _read_chrome_token_pairs() -> list:
                 text = f.read().decode('utf-8', errors='ignore')
         except OSError:
             continue
-        if _ELEPHANT_ORIGIN not in text:
+        # v2.4（2026-09-22）：.ldb 压实块经 Snappy 压缩后，origin 字符串常被拆碎
+        # （实测 origin 完整出现 0 次但 use-token/vcode 键仍可读），导致扫不出
+        # 候选。改为 origin 或 use-token 任一命中即入窗；其他网站的 use-token
+        # 候选无害——_refresh_creds_from_chrome 会逐对发请求验证，错的自然被淘汰。
+        if _ELEPHANT_ORIGIN not in text and 'use-token' not in text:
             continue
-        for m in re.finditer(re.escape(_ELEPHANT_ORIGIN), text):
-            window = text[m.end():m.end() + 800]
+        # 锚点取 start()：use-token 自身的 'token' 键也要留在窗口内
+        # （否则 token 值在锚点后、vcode 键前，token 键被吞导致配不上对）
+        anchors = [m.start() for m in re.finditer(re.escape(_ELEPHANT_ORIGIN), text)]
+        anchors += [m.start() for m in re.finditer(r'use-token', text)]
+        for aend in anchors:
+            window = text[aend:aend + 800]
             toks, vcos, pos = [], [], 0
             while True:
                 km = re.search(r'(vcode|token)', window[pos:])
@@ -308,24 +316,26 @@ def fetch_day(date_str: str, *, force: bool = False, timeout: int = 30) -> Fetch
     )
 
 
-def fetch_recent(days: int = 7, *, force: bool = False) -> list:
-    """拉最近 N 天（含今天）的 xlsx.
+def fetch_recent(days: int = 7, *, force: bool = False, include_today: bool = False) -> list:
+    """拉最近 N 天（默认不含今天）的 xlsx.
 
-    默认从昨天往前 N-1 天 + 今天 = N 天.
-    跳过已存在的文件（除非 force=True）.
+    v2.3（2026-09-22）：默认从**昨天**往前拉 N 天，**不拉今天**。
+    背景：每天 8:30 拉的"今天"只有凌晨几小时的数据（当天订单还没发生完），
+    即使次日强制重拉覆盖，看板当天也会先展示一个偏小的数（9/16、9/18、9/21
+    实测仅 450~530 行，正常 ~4000 行/天）。业务口径：8:30 只需要昨天的完整数据。
+    include_today=True 可恢复旧行为（一般只在手动补数时用）。
     """
     today = datetime.now(BJ_TZ)
     results = []
-    for i in range(days):
-        # i=0 → 今天, i=1 → 昨天, ..., i=days-1 → N-1 天前
-        # 业务上, 今天 8:30 拉数据时, 昨天数据已经完整, 今天可能还有遗漏
+    start_i = 0 if include_today else 1
+    for i in range(start_i, start_i + days):
+        # include_today=False: i=1 → 昨天, i=2 → 前天, ...
         d = today - timedelta(days=i)
-        # v2.2（2026-09-03）：最近 2 天强制重拉。背景：每天 8:30 拉的"今天"只是
-        # 早晨部分数据（当天订单还没发生完），而已存在的文件会被 skip 永不更新
-        # → 9/1 仅 276 单、9/2 仅 490 单（正常 ~2500+/天），8/27 的 689 单同因。
-        # 修复后：昨天的不完整文件会在次日 8:30 被完整版覆盖，更早的天保持不变。
-        force_today = force or (i <= 1)
-        r = fetch_day(d.strftime('%Y-%m-%d'), force=force_today)
+        # v2.2（2026-09-03，v2.3 后仅对昨天生效）：昨天的文件强制重拉。
+        # 背景：昨天若曾被"含今天"模式拉过部分数据（450~530 行），文件已存在
+        # 会被 skip 永不更新 → 次日 8:30 用完整版覆盖。更早的天保持不变。
+        force_yesterday = force or (i == 1)
+        r = fetch_day(d.strftime('%Y-%m-%d'), force=force_yesterday)
         results.append(r)
         _print(f"  {r.date}: {'skip' if r.skipped else 'ok' if r.success else 'FAIL'} "
                f"{r.xlsx_path or r.error}")

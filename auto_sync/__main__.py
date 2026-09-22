@@ -504,6 +504,7 @@ def main():
     p_fetch.add_argument("--date", help="拉指定日期 YYYY-MM-DD（覆盖 --days）")
     p_fetch.add_argument("--force", action="store_true", help="覆盖已存在的 xlsx")
     p_fetch.add_argument("--trigger", action="store_true", help="拉完自动触发 gen+git+push")
+    p_fetch.add_argument("--today", action="store_true", help="包含今天（默认只拉昨天及更早，见 fetch_recent v2.3）")
     p_fetch.set_defaults(func=cmd_fetch)
 
     # token-check（2026-09-11 新增：探活 + 自动恢复 + 提前告警）
@@ -748,7 +749,7 @@ def cmd_fetch(args):
         results = [fetch_day(args.date, force=args.force)]
     else:
         # 拉最近 N 天
-        results = fetch_recent(days=args.days, force=args.force)
+        results = fetch_recent(days=args.days, force=args.force, include_today=args.today)
 
     # 2. 汇总
     success_n = sum(1 for r in results if r.success and not r.skipped)
