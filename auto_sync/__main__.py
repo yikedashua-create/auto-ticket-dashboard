@@ -502,6 +502,8 @@ def main():
     p_fetch = subparsers.add_parser("fetch", help="调 API 拉 xlsx 到 DATA_DIR（替代手动下载）")
     p_fetch.add_argument("--days", "-n", type=int, default=7, help="拉最近 N 天（默认 7, 含今天）")
     p_fetch.add_argument("--date", help="拉指定日期 YYYY-MM-DD（覆盖 --days）")
+    p_fetch.add_argument("--yesterday", action="store_true",
+                         help="只拉昨天（存在即跳过，不 force；30 分钟兜底任务用）")
     p_fetch.add_argument("--force", action="store_true", help="覆盖已存在的 xlsx")
     p_fetch.add_argument("--trigger", action="store_true", help="拉完自动触发 gen+git+push")
     p_fetch.add_argument("--today", action="store_true", help="包含今天（默认只拉昨天及更早，见 fetch_recent v2.3）")
@@ -744,6 +746,10 @@ def cmd_fetch(args):
     from .elephant_api import fetch_day, fetch_recent
 
     # 1. 拉数据
+    if args.yesterday:
+        from datetime import datetime, timezone, timedelta
+        bj = timezone(timedelta(hours=8))
+        args.date = (datetime.now(bj) - timedelta(days=1)).strftime('%Y-%m-%d')
     if args.date:
         # 拉指定日期
         results = [fetch_day(args.date, force=args.force)]
