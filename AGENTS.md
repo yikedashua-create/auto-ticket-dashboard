@@ -83,7 +83,7 @@ const COMMIT = "xxxxxxx";   // 约 1120 行
   - 状态：`python -m auto_sync status`，日志 `auto_sync/data/auto_sync.log`
 - 计划任务（由 `register_startup_admin.bat` 注册，**SYSTEM 级**）：
   - `auto_ticket_dashboard_sync`：开机自启 daemon
-  - `auto_ticket_dashboard_sync_fetch`：每日 08:35 主拉数 `fetch --days 2 --trigger`（2026-09-24 新增）
+  - `auto_ticket_dashboard_sync_fetch`：每日 08:35 主拉数 `fetch --days 2 --trigger`（2026-09-25 新增）
   - `auto_ticket_dashboard_sync_30min`：每 30 分钟兜底 `fetch --yesterday`（存在即跳过、不 force；
     新文件落地由 daemon watcher 触发 gen，避免空跑）
   - ⚠️ **历史教训（2026-09-17~09-24 断更根因）**：9/16 迁移 D 盘时 30 分钟任务被注册成裸 `trigger`
@@ -96,7 +96,7 @@ const COMMIT = "xxxxxxx";   // 约 1120 行
   失效→自动走 Chrome localStorage 恢复→仍失败才推钉钉告警（附"在 Chrome 登录一次 elephant"指引，
   状态翻转才推一次防刷屏）。手动检查：`python -m auto_sync token-check`。
 
-**2026-09-24 重装恢复记录**：C/E 盘被重装清空（计划任务、git、SSH 密钥、Chrome profile、
+**2026-09-25 重装恢复记录（9/22 重装）**：C/E 盘被重装清空（计划任务、git、SSH 密钥、Chrome profile、
 E 盘全部历史 xlsx 和凭据 yaml 全丢；D 盘项目完好但 `D:\pycharm3` venv 没了）。
 恢复动作：重建 venv、winget 装 git、重写 elephant_api.yaml 骨架（header 清单见 HANDOFF.md §8.2）、
 生成新 SSH 密钥（用户加到 GitHub 后 push 生效）、本地 reset 到线上 afc65ae（线上比本地新，

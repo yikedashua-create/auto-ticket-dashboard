@@ -73,7 +73,7 @@ if %errorLevel% neq 0 echo [警告] 开机自启任务注册失败
 
 echo.
 echo [4/6] 注册每日 08:35 主拉取任务（fetch 昨天+前天 + gen + push）-^> %PROJ%
-REM 2026-09-24 修复：重装前 30 分钟任务只跑 trigger 从不 fetch，
+REM 2026-09-25 修复：重装前 30 分钟任务只跑 trigger 从不 fetch，
 REM 导致 9/17 起数据断更（watcher 等不到新文件）。主路径改为每日定点拉取。
 schtasks /Create /TN "auto_ticket_dashboard_sync_fetch" /SC DAILY /ST 08:35 /RL HIGHEST /F ^
     /TR "cmd /c cd /d \"%PROJ%\" && \"%PY%\" -m auto_sync fetch --days 2 --trigger"
