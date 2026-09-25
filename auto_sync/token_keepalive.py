@@ -18,6 +18,7 @@ from .elephant_api import (
     _is_xlsx_response,
     _read_creds,
     _refresh_creds_from_chrome,
+    _signed_get,
 )
 
 NOTIFY_YAML = r'E:\Work\Documents\凭据\elephant_notify.yaml'
@@ -40,7 +41,7 @@ def probe() -> tuple:
     headers = _read_creds()
     url = f'{BASE_URL}?orderTime=2026-01-01+00:00:00,2026-01-01+23:59:59&page=1&size=1&derive=true'
     try:
-        r = requests.get(url, headers=headers, timeout=20)
+        r = _signed_get(url, headers, timeout=20)
     except Exception as e:
         return 'net', f'{type(e).__name__}: {str(e)[:120]}'
     if r.status_code != 200:

@@ -99,6 +99,29 @@ def _is_xlsx_response(content: bytes, content_type: str) -> bool:
     return False
 
 
+def _signed_get(url: str, headers: dict, timeout: int = 30):
+    """带网关签名头的 GET。
+
+    2026-09-25：elephant 网关新增 SIGNATURE_REQUIRED 风控层，业务接口必须带
+    X-Request-Signature 等头（实现见 gateway_signature.py），静态 header 不再够用。
+    403 SIGNATURE_CLIENT_INVALID（clientId 过期/失效）时强制重注册并重试一次。
+    """
+    from .gateway_signature import signed_headers, ensure_registered
+    h = dict(headers)
+    h.update(signed_headers(url))
+    r = requests.get(url, headers=h, timeout=timeout)
+    if r.status_code == 403:
+        try:
+            if r.json().get('code') == 'SIGNATURE_CLIENT_INVALID':
+                ensure_registered(force=True)
+                h = dict(headers)
+                h.update(signed_headers(url))
+                r = requests.get(url, headers=h, timeout=timeout)
+        except Exception:
+            pass
+    return r
+
+
 # ============================================================
 # v2.1（2026-08-31）：Token 登录轮换自动恢复
 #
@@ -206,7 +229,7 @@ def _refresh_creds_from_chrome(url: str, timeout: int = 20):
         h['Vcode'] = vco
         h['Cookie'] = f'token={tok}'
         try:
-            r = requests.get(url, headers=h, timeout=timeout)
+            r = _signed_get(url, h, timeout=timeout)
         except Exception:
             continue
         if r.status_code == 200 and _is_xlsx_response(r.content, r.headers.get('Content-Type', '')):
@@ -257,9 +280,10 @@ def fetch_day(date_str: str, *, force: bool = False, timeout: int = 30) -> Fetch
 
     while True:
         try:
-            r = requests.get(url, headers=headers, timeout=timeout)
+            r = _signed_get(url, headers, timeout=timeout)
         except Exception as e:
-            return FetchResult(date=date_str, success=False, error=f"网络失败: {type(e).__name__}: {e}",
+            # 签名层异常（注册失败等）不算网络失败，但也无路可走，原样返回错误
+            return FetchResult(date=date_str, success=False, error=f"请求失败: {type(e).__name__}: {e}",
                                duration_sec=time.time() - t0)
 
         # 4. 校验

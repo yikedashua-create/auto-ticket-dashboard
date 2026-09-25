@@ -6,3 +6,5 @@ watchdog>=4.0
 # auto_sync HTTP API（可选，Dora 工作台集成时需要）
 # fastapi>=0.100
 # uvicorn>=0.23
+# elephant 网关请求签名（2026-09-25 新增风控层，gateway_signature.py）
+cryptography>=42.0
