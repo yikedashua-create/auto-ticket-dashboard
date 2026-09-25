@@ -92,6 +92,9 @@ const COMMIT = "xxxxxxx";   // 约 1120 行
 - 停止守护进程需要**管理员权限**（任务以 SYSTEM 身份运行）：
   用 `stop_auto_sync.bat`（右键以管理员运行），并先 `schtasks /Delete` 掉任务，否则下次开机又起来。
 - 凭据文件：`E:\Work\Documents\凭据\elephant_api.yaml`（token 失效时 daemon 会自动恢复并写回）
+- **网关签名（2026-09-25 新增）**：elephant 网关对业务接口强制请求签名（`X-Request-Signature` 等，
+  ECDSA P-256 + PoW 注册，客户端状态存 `E:\Work\Documents\凭据\elephant_sig_client.json`，约 24h 过期自动重注册）。
+  实现在 `auto_sync/gateway_signature.py`，协议逆向自前端 bundle，细节见模块 docstring。
 - **token 保活（2026-09-17 加）**：daemon 内置每 4h 探活线程（`auto_sync/token_keepalive.py`），
   失效→自动走 Chrome localStorage 恢复→仍失败才推钉钉告警（附"在 Chrome 登录一次 elephant"指引，
   状态翻转才推一次防刷屏）。手动检查：`python -m auto_sync token-check`。
