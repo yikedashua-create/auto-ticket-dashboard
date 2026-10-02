@@ -18,6 +18,7 @@ title 注册 auto_sync 计划任务（需 admin）
 set "PROJ=%~dp0"
 if "%PROJ:~-1%"=="\" set "PROJ=%PROJ:~0,-1%"
 set "PY=D:\pycharm3\.venv\Scripts\python.exe"
+set "PYW=D:\pycharm3\.venv\Scripts\pythonw.exe"
 set "OLDE=E:\Work\Projects\auto-ticket-dashboard\auto-ticket-dashboard"
 
 echo.
@@ -72,18 +73,19 @@ schtasks /Create /TN "auto_ticket_dashboard_sync" /SC ONSTART /RL HIGHEST /F ^
 if %errorLevel% neq 0 echo [警告] 开机自启任务注册失败
 
 echo.
-echo [4/6] 注册每日 08:35 主拉取任务（fetch 昨天+前天 + gen + push）-^> %PROJ%
+echo [4/6] 注册每日 08:35 主拉取任务（fetch 昨天+前天 + gen + push，无窗口）-^> %PROJ%
 REM 2026-09-25 修复：重装前 30 分钟任务只跑 trigger 从不 fetch，
 REM 导致 9/17 起数据断更（watcher 等不到新文件）。主路径改为每日定点拉取。
+REM 2026-10-02 改为 pythonw + silent_task.pyw 无窗口运行（原 cmd /c 形式每半小时闪黑框）。
 schtasks /Create /TN "auto_ticket_dashboard_sync_fetch" /SC DAILY /ST 08:35 /RL HIGHEST /F ^
-    /TR "cmd /c cd /d \"%PROJ%\" && \"%PY%\" -m auto_sync fetch --days 2 --trigger"
+    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --days 2 --trigger"
 if %errorLevel% neq 0 echo [警告] 每日拉取任务注册失败
 
 echo.
-echo [5/6] 注册 30 分钟兜底任务（fetch 昨天，存在即跳过；新文件落地由 daemon watcher 触发 gen）-^> %PROJ%
-schtasks /Create /TN "auto_ticket_dashboard_sync_30min" /SC MINUTE /MO 30 /F ^
-    /TR "cmd /c cd /d \"%PROJ%\" && \"%PY%\" -m auto_sync fetch --yesterday"
-if %errorLevel% neq 0 echo [警告] 30 分钟兜底任务注册失败
+echo [5/6] 注册 2 小时兜底任务（fetch 昨天，存在即跳过；无窗口；新文件落地由 daemon watcher 触发 gen）-^> %PROJ%
+schtasks /Create /TN "auto_ticket_dashboard_sync_30min" /SC MINUTE /MO 120 /F ^
+    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --yesterday"
+if %errorLevel% neq 0 echo [警告] 兜底任务注册失败
 
 echo.
 echo [6/6] 立即启动 daemon 并验证...

@@ -12,6 +12,7 @@ REM ============================================
 set "PROJ=%~dp0"
 if "%PROJ:~-1%"=="\" set "PROJ=%PROJ:~0,-1]"
 set "PY=D:\pycharm3\.venv\Scripts\python.exe"
+set "PYW=D:\pycharm3\.venv\Scripts\pythonw.exe"
 
 echo [check] project dir = %PROJ%
 if not exist "%PROJ%\gen_dashboard_data.py" (
@@ -30,13 +31,13 @@ if %errorLevel% neq 0 echo [warn] on-logon task failed
 
 echo [2/4] register daily 08:35 fetch task...
 schtasks /Create /TN "auto_ticket_dashboard_sync_fetch" /SC DAILY /ST 08:35 /F ^
-    /TR "cmd /c cd /d \"%PROJ%\" && \"%PY%\" -m auto_sync fetch --days 2 --trigger"
+    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --days 2 --trigger"
 if %errorLevel% neq 0 echo [warn] daily fetch task failed
 
-echo [3/4] register 30-min fallback task...
-schtasks /Create /TN "auto_ticket_dashboard_sync_30min" /SC MINUTE /MO 30 /F ^
-    /TR "cmd /c cd /d \"%PROJ%\" && \"%PY%\" -m auto_sync fetch --yesterday"
-if %errorLevel% neq 0 echo [warn] 30-min task failed
+echo [3/4] register 2-hour fallback task (hidden, skip if exists)...
+schtasks /Create /TN "auto_ticket_dashboard_sync_30min" /SC MINUTE /MO 120 /F ^
+    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --yesterday"
+if %errorLevel% neq 0 echo [warn] fallback task failed
 
 echo [4/4] start daemon now...
 cd /d "%PROJ%"

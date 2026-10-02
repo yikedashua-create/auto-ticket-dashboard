@@ -84,7 +84,8 @@ const COMMIT = "xxxxxxx";   // 约 1120 行
 - 计划任务（由 `register_startup_admin.bat` 注册，**SYSTEM 级**）：
   - `auto_ticket_dashboard_sync`：开机自启 daemon
   - `auto_ticket_dashboard_sync_fetch`：每日 08:35 主拉数 `fetch --days 2 --trigger`（2026-09-25 新增）
-  - `auto_ticket_dashboard_sync_30min`：每 30 分钟兜底 `fetch --yesterday`（存在即跳过、不 force；
+  - `auto_ticket_dashboard_sync_30min`：每 2 小时兜底 `fetch --yesterday`（存在即跳过、不 force；
+    2026-10-02 由 30 分钟降频并改为 pythonw + silent_task.pyw 无窗口运行——原 cmd /c 形式每半小时闪黑框；
     新文件落地由 daemon watcher 触发 gen，避免空跑）
   - ⚠️ **历史教训（2026-09-17~09-24 断更根因）**：9/16 迁移 D 盘时 30 分钟任务被注册成裸 `trigger`
     （从不 fetch），watcher 等不到新文件 → 数据停在 9/16；9/22 重装电脑又把任务/凭据/Chrome 全清了。
