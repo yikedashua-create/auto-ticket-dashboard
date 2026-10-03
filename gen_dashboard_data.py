@@ -2101,22 +2101,34 @@ def build_month_data(df, month_label, is_daily=False):
         path_df = df[df["path"] == target_path].copy()
         if path_df.empty:
             return []
-        # v10.7：用 cleaned reason 排序，跟 fail_reasons_B 对齐
-        cleaned_reasons = path_df.apply(lambda r: get_root_reason(r), axis=1)
-        cleaned_reasons = cleaned_reasons.fillna("").astype(str).str.strip()
-        cleaned_nonempty = cleaned_reasons[cleaned_reasons != ""]
-        cnt = cleaned_nonempty.value_counts().head(top_n)
+        # v10.15.1（2026-10-02）修复下钻错位：改用与 fail_reasons **完全一致**的
+        # (cleaned_after, fam) 复合 key 分组（cleaned → "(无)" → fam → family_sub_normalize），
+        # 并直接取 out["fail_reasons_X"] 排序后的前 top_n 条作为钻取对象。
+        # 旧实现用未归一的 cleaned reason 且剔除空值后统计 Top 10，
+        # 与 fail_reasons（含"(无)"、经 family_sub_normalize 归一）的序列不一致，
+        # 前端按 fail_drill 数组索引取数 → B 路径错 3 位 / D 路径错 8 位
+        # （症状：点"内部程序异常"显示"反采同程"的数据；点验真显示取票的数据）。
+        def _row_key(r):
+            c = get_root_reason(r)
+            if not c:
+                c = "(无)"
+            f_ = family_reason(c) or "(无)"
+            ca = family_sub_normalize(c, f_)
+            if not ca or not ca.strip():
+                ca = "(无)"
+            return (ca, f_)
+
+        keys = path_df.apply(lambda r: _row_key(r), axis=1)
+        target_list = out[f"fail_reasons_{target_path}"][:top_n]
         drills = []
-        for reason_text, top_count in cnt.items():
-            # 用 numpy 数组按位置匹配（避免索引对齐问题）
-            sub = path_df[cleaned_reasons == reason_text]
+        for entry in target_list:
+            want = (entry["full"], entry["family"])
+            sub = path_df[keys == want]
             n_sub = len(sub)
             if n_sub == 0:
-                # fallback：substring 匹配
-                sub = path_df[cleaned_reasons.str.contains(reason_text, regex=False, na=False)]
-                n_sub = len(sub)
-            if n_sub == 0:
                 continue
+            reason_text = entry["full"]
+            top_count = entry["count"]
 
             # 1. 平台分布
             plat_dist = sub["平台"].value_counts().head(10)
@@ -2195,7 +2207,7 @@ def build_month_data(df, month_label, is_daily=False):
             channel_dist = [{"name": k, "count": int(v)} for k, v in chan_counts.items()]
 
             drills.append({
-                "reason": short(reason_text, 80),
+                "reason": entry["reason"],  # = short(cleaned_after, 80)，与 fail_reasons 的 reason 逐字一致
                 "total": int(n_sub),
                 "top_count": int(top_count),
                 "platform_dist": platform_dist,

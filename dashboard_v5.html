@@ -4095,14 +4095,20 @@ function collapseFamilyDrill() {
 }
 
 function toggleDrill(path, idx, rowEl) {
-  // v11.9.8：按原因文本匹配下钻数据（原来按索引查——fail_drill 只有 Top 10，
-  // 验真/回填等小环节的根因不在 Top 10 里，导致点击无反应）
+  // v11.9.10（2026-10-02）：文本匹配优先，索引仅在校验同文本时兜底。
+  // 旧逻辑 drillData[idx] 优先——gen v10.15.1 修复前 fail_drill 与 fail_reasons
+  // 序列错位（B 错 3 位 / D 错 8 位），点 A 原因显示出 B 原因的下钻数据、
+  // 点验真环节的根因显示出取票环节的数据。
   const allReasons = (path === "B" ? CURRENT_FAIL_REASONS_B : CURRENT_FAIL_REASONS_D) || [];
   const clickedReason = allReasons[idx];
   const drillData = (path === "B" ? CURRENT_DATA.fail_drill_B : CURRENT_DATA.fail_drill_D) || [];
-  let d = drillData[idx];
-  if (!d && clickedReason) {
-    d = drillData.find(x => x.reason === clickedReason.reason || x.reason === clickedReason.full);
+  let d = clickedReason
+    ? drillData.find(x => x.reason === clickedReason.reason || x.reason === clickedReason.full)
+    : null;
+  if (!d && idx < drillData.length && clickedReason && drillData[idx]
+      && (drillData[idx].reason === clickedReason.reason
+          || drillData[idx].reason === clickedReason.full)) {
+    d = drillData[idx];
   }
   const key = `${path}-${idx}`;
   if (currentDrillKey === key) { collapseDrill(); return; }
