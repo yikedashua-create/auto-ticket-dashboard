@@ -29,6 +29,29 @@ D 盘那一侧抢先推成功、占据远程历史，E 盘自此每次 push 都�
 `non-fast-forward` 拒绝，线上看板数据卡在 9/11 长达 5 天。
 **以后只在一处提交和推送。**
 
+## 协作开发规范（2026-10-14 起，双人协作）
+
+**核心原则：一台生产机跑数据管道，其他机器只做开发。**
+
+- **生产机（唯一）**：`D:\自动出票数据分析项目` 所在的这台电脑。
+  独占数据管道：auto_sync daemon、计划任务（08:35 拉数 / 2h 兜底）、elephant 凭据与
+  token 自动恢复（依赖本机 Chrome 登录态）、每日自动 commit+push。
+- **开发机（协作者）铁律**：
+  1. **永远不要**在自己的机器上跑 `python -m auto_sync daemon/start/fetch/trigger`、
+     注册计划任务、或运行 `更新数据.bat`——两条管道并行会互相抢拉数、双份 gen、
+     锚点互踩（同"血的教训"同类事故）。
+  2. 上手顺序：clone 仓库 → 通读本文件与 HANDOFF.md →
+     `pip install -r requirements.txt` 建自己的 venv（不要共用 `D:\pycharm3`）→
+     `streamlit run app.py` 本地预览 → 改代码 → push 或提分支 PR。
+  3. **不要手工修改数据文件**（`dashboard_data.json`、`monthly/*.json`、`raw/`、`targets.json`），
+     它们由生产机管道自动生成提交；人工改动只碰代码与文档，避免与自动提交冲突。
+  4. 看数据改前端：数据结构和字段含义见 HANDOFF.md §8。
+- **凭据安全**：elephant/钉钉等凭据只存在生产机 `E:\Work\Documents\凭据\`，不提交、不拷贝、不外发。
+  注意：本仓库当前为**公开仓库**（线上看板的 jsDelivr 数据链路依赖公开性，改私有会直接断数据），
+  因此任何敏感信息（原始订单明细、密钥、密码）都绝不能进仓库。
+- **commit 约定**：管道自动提交用 `data:` / `chore: 同步 HTML COMMIT` 前缀；人工提交请用
+  `feat:` / `fix:` / `docs:` 等前缀，便于区分管道与人的提交。
+
 - 远程仓库：`git@github.com:yikedashua-create/auto-ticket-dashboard.git`，分支 `main`
 - 线上看板：`https://auto-ticket-dashboard.streamlit.app/`
 
