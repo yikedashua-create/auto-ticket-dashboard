@@ -244,13 +244,20 @@ def sync_html_commit(repo_dir: str, git_remote: str, git_branch: str) -> StepRes
             duration=time.time() - t0,
             error=f"git commit 失败: {commit_step.error[:200]}",
         )
-    push_step = _run(["git", "push", git_remote, git_branch], cwd=repo_dir, timeout=60)
+    # 2026-10-14 修复：push 超时 60s→300s + 失败重试一次。
+    # 背景：直连 GitHub 的 SSH 握手偶发超时（10/7、10/14 早上均发生），
+    # 数据 commit 的 push 有 300s 都成功了，唯独锚点这步 60s 超时；
+    # 且锚点失败后次日任务走"无变更→跳过"分支不会自愈，看板会一直停在旧数据。
+    push_step = _run(["git", "push", git_remote, git_branch], cwd=repo_dir, timeout=300)
+    if not push_step.success:
+        time.sleep(15)
+        push_step = _run(["git", "push", git_remote, git_branch], cwd=repo_dir, timeout=300)
     if not push_step.success:
         return StepResult(
             name="sync_html_commit",
             success=False,
             duration=time.time() - t0,
-            error=f"git push 失败: {push_step.error[:200]}",
+            error=f"git push 失败（已重试一次）: {push_step.error[:200]}",
         )
     return StepResult(
         name="sync_html_commit",
