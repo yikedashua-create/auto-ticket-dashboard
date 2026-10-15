@@ -16,8 +16,15 @@ dashboard_v5 数据生成器：按月聚合 + 维度下钻。
   python gen_dashboard_data.py --month 2026-06  # 只跑 6 月
   python gen_dashboard_data.py --month all      # 显式跑全部
 """
+import os
+# 2026-10-15：锁定 BLAS 单线程。gen 曾每月数次在 numpy _multiarray_umath
+# 原生层 0xc0000005 崩溃（事件日志 10-05/06/10/12/15 共 5 次，均在聚合阶段，
+# Python 层无异常无日志、任务静默失败），单线程跑后 10-15 复跑成功。
+# 必须在 import pandas/numpy 之前设置才生效。
+for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    os.environ.setdefault(_v, "1")
 import pandas as pd
-import os, re, json, glob, argparse, time
+import re, json, glob, argparse, time
 from datetime import datetime
 from collections import defaultdict, Counter
 
