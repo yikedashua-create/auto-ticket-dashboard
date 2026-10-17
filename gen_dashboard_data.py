@@ -2215,6 +2215,7 @@ def build_month_data(df, month_label, is_daily=False):
 
             drills.append({
                 "reason": entry["reason"],  # = short(cleaned_after, 80)，与 fail_reasons 的 reason 逐字一致
+                "family": entry["family"],  # v11.9.12（2026-10-17）：前端文本+族双重校验，防 80 字截断撞车跨族错配
                 "total": int(n_sub),
                 "top_count": int(top_count),
                 "platform_dist": platform_dist,

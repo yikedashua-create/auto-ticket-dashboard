@@ -1390,6 +1390,136 @@ function getDayData(month, day) {
   return aggregateDayToMonthShape(m, d);
 }
 
+/* v11.9.12（2026-10-17）：周视图失败数据按日聚合。
+   getWeekData 原 ...m 展开把整月口径的 fail_reasons/families/drill 带进周视图，
+   页面 KPI 是周、根因和下钻是月，数字必然对不上。这里把本周各天 daily_detail
+   的失败数据合并成周级：reasons 按 full 求和、families 按环节前缀求和、
+   drill 按文本合并（各分布求和取 Top10、cross 矩阵并集重建、date_trend 拼接、
+   orders 去重取 20）。daily_detail 未加载（懒加载失败）时返回空数组——
+   宁可显示无数据也不冒充月级数据。 */
+function _mergeNamedLists(lists, n) {
+  const m = new Map();
+  (lists || []).filter(Boolean).forEach(list => (list || []).forEach(x => {
+    const k = x.name || "(空)";
+    m.set(k, (m.get(k) || 0) + (x.count || 0));
+  }));
+  return [...m.entries()].map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count).slice(0, n || 10);
+}
+
+function _mergeDrillParts(parts, topCount, topFamily) {
+  // total 用周级 reason 求和口径：部分天该原因不在当天 Top10 时没有 drill 明细，
+  // Σ天drill.total 会小于周 count，头部徽标要与点击行 count 一致
+  const total = topCount;
+  const rescued = parts.reduce((s, p) => s + (p.rescued_count || 0), 0);
+  // 航司按 code 合并（中文名与代码混存，同一航司不同天可能字段不一致）
+  const airMap = new Map();
+  parts.forEach(p => (p.airline_dist || []).forEach(x => {
+    const k = x.code || x.name;
+    const e = airMap.get(k) || { code: k, name: x.name, count: 0 };
+    e.count += x.count || 0;
+    airMap.set(k, e);
+  }));
+  const airline_dist = [...airMap.values()].sort((a, b) => b.count - a.count).slice(0, 10);
+  // 交叉矩阵：airlines/platforms 取并集后重建
+  const airIdx = new Map(), platIdx = new Map();
+  parts.forEach(p => {
+    ((p.cross && p.cross.airlines) || []).forEach(a => { if (!airIdx.has(a)) airIdx.set(a, airIdx.size); });
+    ((p.cross && p.cross.platforms) || []).forEach(pl => { if (!platIdx.has(pl)) platIdx.set(pl, platIdx.size); });
+  });
+  const crossData = Array.from({ length: airIdx.size }, () => Array(platIdx.size).fill(0));
+  parts.forEach(p => {
+    if (!p.cross || !p.cross.data) return;
+    (p.cross.airlines || []).forEach((a, i) => {
+      (p.cross.platforms || []).forEach((pl, j) => {
+        crossData[airIdx.get(a)][platIdx.get(pl)] += ((p.cross.data[i] || [])[j] || 0);
+      });
+    });
+  });
+  // 日期趋势按 date 求和
+  const dateMap = new Map();
+  parts.forEach(p => (p.date_trend || []).forEach(x => {
+    dateMap.set(x.date, (dateMap.get(x.date) || 0) + (x.count || 0));
+  }));
+  const date_trend = [...dateMap.entries()].map(([date, count]) => ({ date, count }))
+    .sort((a, b) => a.date < b.date ? -1 : 1);
+  // 订单明细去重合并（各天样例取并集，最多 20 条）
+  const seen = new Set(); const orders = [];
+  parts.forEach(p => (p.orders || []).forEach(o => {
+    if (seen.has(o.o) || orders.length >= 20) return;
+    seen.add(o.o); orders.push(o);
+  }));
+  return {
+    reason: parts[0].reason,
+    family: topFamily,
+    total,
+    top_count: topCount,
+    platform_dist: _mergeNamedLists(parts.map(p => p.platform_dist), 10),
+    airline_dist,
+    channel_dist: _mergeNamedLists(parts.map(p => p.channel_dist), 10),
+    staff_dist: _mergeNamedLists(parts.map(p => p.staff_dist), 10),
+    date_trend,
+    cross: { airlines: [...airIdx.keys()], platforms: [...platIdx.keys()], data: crossData },
+    rescued_count: rescued,
+    rescue_rate: total ? Math.round(rescued / total * 10000) / 100 : 0,
+    orders,
+  };
+}
+
+function _mergeWeekFailures(days) {
+  const out = {};
+  ["B", "D"].forEach(path => {
+    out["fail_reasons_" + path] = [];
+    out["fail_families_" + path] = [];
+    out["fail_drill_" + path] = [];
+  });
+  const dayArr = (days || []).filter(Boolean);
+  if (!dayArr.length) return out;
+  ["B", "D"].forEach(path => {
+    // reasons 按 (full, family) 复合键求和——gen 端这是复合主键，
+    // 同文本不同族（80 字截断撞车）不能合并（案例订单号各天取前 3 条）
+    const byFull = new Map();
+    dayArr.forEach(day => (day["fail_reasons_" + path] || []).forEach(r => {
+      const k = (r.full || r.reason) + "\u0001" + (r.family || "");
+      let e = byFull.get(k);
+      if (!e) {
+        e = { reason: r.reason, full: r.full, family: r.family, count: 0, orders: [] };
+        byFull.set(k, e);
+      }
+      e.count += r.count || 0;
+      if (r.orders && r.orders.length && e.orders.length < 3) {
+        e.orders.push(...r.orders.slice(0, 3 - e.orders.length));
+      }
+    }));
+    const reasons = [...byFull.values()].sort((a, b) => b.count - a.count);
+    out["fail_reasons_" + path] = reasons;
+    // families 按环节前缀求和（与前端族面板 split("-")[0] 口径一致）
+    const famMap = new Map();
+    reasons.forEach(r => {
+      const fam = (r.family || "").split("-")[0] || "(无)";
+      famMap.set(fam, (famMap.get(fam) || 0) + r.count);
+    });
+    out["fail_families_" + path] = [...famMap.entries()].map(([family, count]) => ({ family, count }))
+      .sort((a, b) => b.count - a.count);
+    // drills：合并后 Top10，按 reason 文本收集各天 drill 再合并
+    const byText = new Map();
+    dayArr.forEach(day => (day["fail_drill_" + path] || []).forEach(dr => {
+      if (!byText.has(dr.reason)) byText.set(dr.reason, []);
+      byText.get(dr.reason).push(dr);
+    }));
+    out["fail_drill_" + path] = reasons.slice(0, 10).map(r => {
+      let parts = byText.get(r.reason) || [];
+      // 同文本撞车时优先取同族的各天 drill（gen v11.9.12 起天级 drill 带 family）
+      if (parts.length > 1 && r.family) {
+        const sameFam = parts.filter(p => p.family === r.family);
+        if (sameFam.length) parts = sameFam;
+      }
+      return parts.length ? _mergeDrillParts(parts, r.count, r.family) : null;
+    }).filter(Boolean);
+  });
+  return out;
+}
+
 /* 计算某月某周的数据（按日聚合 + 合并 daily_detail）
    weekKey 格式: "2026-07|W1" */
 function getWeekData(weekKey) {
@@ -1420,6 +1550,8 @@ function getWeekData(weekKey) {
 
   return {
     ...m,
+    // v11.9.12：周级失败根因/族/下钻覆盖 ...m 展开带进来的月级字段
+    ..._mergeWeekFailures(days.map(d => m.daily_detail && m.daily_detail[d])),
     summary: {
       month: `${mKey} ${wKey}`,
       total_days: days.length,
@@ -1530,6 +1662,11 @@ function buildCompareMTD(ym, nDays) {
 /* 把 daily 单行包装成 month-data 同等结构（降级方案） */
 function aggregateDayToMonthShape(monthData, dayRow) {  return {
     ...monthData,
+    // v11.9.12（2026-10-17）：懒加载失败降级时拿不到当天明细，失败根因/族/下钻置空——
+    // 原 ...monthData 会把整月口径的根因和下钻冒充当天数据（页面 KPI 是当天、根因是全月，必然对不上）
+    fail_reasons_B: [], fail_reasons_D: [],
+    fail_families_B: [], fail_families_D: [],
+    fail_drill_B: [], fail_drill_D: [],
     summary: {
       month: dayRow.date,
       total_days: 1,
@@ -4099,15 +4236,22 @@ function toggleDrill(path, idx, rowEl) {
   // 旧逻辑 drillData[idx] 优先——gen v10.15.1 修复前 fail_drill 与 fail_reasons
   // 序列错位（B 错 3 位 / D 错 8 位），点 A 原因显示出 B 原因的下钻数据、
   // 点验真环节的根因显示出取票环节的数据。
+  // v11.9.12（2026-10-17）：文本命中后再做 family + top_count 双重校验——
+  // gen 的 short(80) 截断会把多条不同 full 截成同一 reason 文本（撞车），
+  // 纯文本 find 会命中同文本的高频条目，导致点击行 count 与面板 total 对不上。
   const allReasons = (path === "B" ? CURRENT_FAIL_REASONS_B : CURRENT_FAIL_REASONS_D) || [];
   const clickedReason = allReasons[idx];
   const drillData = (path === "B" ? CURRENT_DATA.fail_drill_B : CURRENT_DATA.fail_drill_D) || [];
-  let d = clickedReason
-    ? drillData.find(x => x.reason === clickedReason.reason || x.reason === clickedReason.full)
-    : null;
-  if (!d && idx < drillData.length && clickedReason && drillData[idx]
-      && (drillData[idx].reason === clickedReason.reason
-          || drillData[idx].reason === clickedReason.full)) {
+  const matchDrill = (x) => {
+    if (x.reason !== clickedReason.reason && x.reason !== clickedReason.full) return false;
+    // family 双重校验（gen v11.9.12 起随数据下发；旧数据无此字段时跳过）
+    if (x.family && clickedReason.family && x.family !== clickedReason.family) return false;
+    // count 校验：top_count 与点击行 count 同源同周期，撞车时低频条目必然不等
+    if (x.top_count != null && clickedReason.count != null && x.top_count !== clickedReason.count) return false;
+    return true;
+  };
+  let d = clickedReason ? drillData.find(matchDrill) : null;
+  if (!d && idx >= 0 && idx < drillData.length && clickedReason && matchDrill(drillData[idx])) {
     d = drillData[idx];
   }
   const key = `${path}-${idx}`;
@@ -4201,6 +4345,33 @@ function collapseDrill() {
   currentDrillKey = null;
 }
 
+// v11.9.11（2026-10-17）：下钻面板「航司分布 Top 10」「航司 × 平台 交叉热力图」
+// 航司统一显示二字代码。数据里 airline_dist.name / cross.airlines 是中文短名与
+// 原始代码混杂（gen 的 AIRLINE_NAME 只映射了部分航司）；airline_dist 自带 code
+// 字段直接用，cross 只有展示名，用 AIRLINE_NAME 反查表转回代码，
+// 查不到的（本来就是代码或"未识别"）原样保留。与 gen_dashboard_data.py 的
+// AIRLINE_NAME 保持同步。
+const AIRLINE_CODE_BY_NAME = (() => {
+  const fwd = {
+    "9C": "春秋", "SL": "狮航", "HO": "吉祥", "AQ": "九元", "AK": "亚航",
+    "MF": "厦航", "HX": "港航", "VJ": "越捷", "FR": "瑞安", "5J": "宿务",
+    "TR": "酷航", "JT": "狮航印尼", "PR": "菲航", "D7": "亚航X", "BX": "釜山",
+    "7C": "济州", "MM": "乐桃", "NH": "全日空", "JL": "日航", "KE": "大韩",
+    "OZ": "韩亚", "TG": "泰航", "FD": "泰亚航", "BE": "英伦", "BA": "英航",
+    "AF": "法航", "LH": "汉莎", "KL": "荷航", "EY": "阿提哈德", "EK": "阿联酋",
+    "QR": "卡塔尔", "SQ": "新航", "CX": "国泰", "BR": "长荣", "CI": "华航",
+    "CA": "国航", "CZ": "南航", "MU": "东航", "HU": "海航", "FM": "上航",
+    "ZH": "深航", "3U": "川航", "GS": "华夏",
+  };
+  const rev = {};
+  Object.entries(fwd).forEach(([c, n]) => { if (!(n in rev)) rev[n] = c; });
+  return rev;
+})();
+const airlineCode = (v) => {
+  const s = String(v || "").trim();
+  return AIRLINE_CODE_BY_NAME[s] || s;
+};
+
 function renderDrillCharts(key, d) {
   // 1. 平台分布（横向柱）
   if (d.platform_dist && d.platform_dist.length) {
@@ -4225,7 +4396,7 @@ function renderDrillCharts(key, d) {
       grid: { left: 90, right: 30, top: 10, bottom: 25 },
       tooltip: { ...baseEchartsOpt.tooltip, trigger: "axis", axisPointer: { type: "shadow" } },
       xAxis: { type: "value", axisLabel: { color: "#b0c4de", fontSize: 10 } },
-      yAxis: { type: "category", data: d.airline_dist.map(x => x.name).reverse(), axisLabel: { color: "#b0c4de", fontSize: 10 } },
+      yAxis: { type: "category", data: d.airline_dist.map(x => x.code || airlineCode(x.name)).reverse(), axisLabel: { color: "#b0c4de", fontSize: 10 } },
       series: [{
         type: "bar",
         data: d.airline_dist.map(x => x.count).reverse(),
@@ -4239,11 +4410,12 @@ function renderDrillCharts(key, d) {
   //   双方都 ≥ 2  → 热力图（标准）
   //   一方只有 1  → 横向条形图（避免 1×N 长条）
   if (d.cross && d.cross.airlines && d.cross.airlines.length && d.cross.platforms && d.cross.platforms.length) {
+    const crossAirlines = d.cross.airlines.map(airlineCode);  // v11.9.11：中文名反查为二字代码
     const nAir = d.cross.airlines.length;
     const nPlat = d.cross.platforms.length;
     // 汇总：每个 (airline, platform) 的单数
     const pairs = [];
-    d.cross.airlines.forEach((a, i) => {
+    crossAirlines.forEach((a, i) => {
       d.cross.platforms.forEach((p, j) => {
         const v = d.cross.data[i][j];
         if (v > 0) pairs.push({ airline: a, platform: p, count: v });
@@ -4264,7 +4436,7 @@ function renderDrillCharts(key, d) {
         tooltip: {
           position: "top",
           formatter: (p) => {
-            const airline = d.cross.airlines[p.value[1]];
+            const airline = crossAirlines[p.value[1]];
             const platform = d.cross.platforms[p.value[0]];
             return `${airline} × ${platform}<br/><b>${p.value[2]}</b> 单`;
           },
@@ -4278,7 +4450,7 @@ function renderDrillCharts(key, d) {
         },
         yAxis: {
           type: "category",
-          data: d.cross.airlines,
+          data: crossAirlines,
           axisLabel: { color: "#b0c4de", fontSize: 10 },
           splitArea: { show: true },
         },
