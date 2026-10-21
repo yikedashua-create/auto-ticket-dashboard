@@ -1084,6 +1084,7 @@ let CURRENT_FAIL_VIEW = "monthly";  // "monthly" or "daily"
 let CURRENT_MONTH = null; // 当前月份
 let CURRENT_DAY = "all";  // 当前日（"all"=全月，"01"~"31"=具体日）
 let CURRENT_WEEK = "all"; // 当前周（"all"=全月，"W1"~"W5"=自然周）
+let DAY_CTX_WEEK = null;  // v11.9.13：日下拉构建时的周上下文（"2026-10|W1" 或 null）
 let COMPARE_DATA = null;  // 对比基准数据（上一周期）
 let COMPARE_LABEL = "";   // 对比基准的标签
 const chartInstances = {};
@@ -1231,6 +1232,12 @@ function initMonthSwitcher() {
     switchPeriod(CURRENT_MONTH, "all", e.target.value);
   });
   document.getElementById("daySelect").addEventListener("change", e => {
+    // v11.9.13：周上下文里点「全周」→ 回到周视图（而不是整月）
+    if (e.target.value === "all" && DAY_CTX_WEEK) {
+      document.getElementById("weekSelect").value = DAY_CTX_WEEK;
+      switchPeriod(DAY_CTX_WEEK.split("|")[0], "all", DAY_CTX_WEEK);
+      return;
+    }
     CURRENT_WEEK = "all";
     switchPeriod(CURRENT_MONTH, e.target.value, "all");
   });
@@ -1307,6 +1314,10 @@ function updateDayOptions(month, week) {
   }
   const isWeek = week && week !== "all";
   const allLabel = isWeek ? '全周' : '全月';
+  // v11.9.13（2026-10-21）：记录日下拉的周上下文。
+  // 周选中时日下拉首项显示「全周」，点它应回到周视图而非整月
+  //（此前 daySelect handler 无条件清掉周 → 点「全周」显示的是整月数据）。
+  DAY_CTX_WEEK = isWeek ? week : null;
   daySel.innerHTML = `<option value="all">${allLabel}</option>` + dates.map(d => {
     const day = d.substring(8, 10);
     return `<option value="${day}">${day}</option>`;
@@ -1540,6 +1551,10 @@ function getWeekData(weekKey) {
   const D = dailyRows.reduce((s, r) => s + r.D, 0);
   const profit_sum = dailyRows.reduce((s, r) => s + r.profit_sum, 0);
   const profit_pos = dailyRows.reduce((s, r) => s + r.profit_pos, 0);
+  // v11.9.13（2026-10-21）：周级 summary 补 total_segments。
+  // 此前缺失导致 renderOverview 渲染「航段总数」时 fmt.num(undefined) 抛
+  // TypeError（异步 switchPeriod 内静默失败）→ 点 W1/W2/W3 页面毫无反应。
+  const seg = dailyRows.reduce((s, r) => s + (r.total_segments || 0), 0);
   const auto = A + B;
 
   // 合并 daily_detail（用于下钻）
@@ -1556,6 +1571,7 @@ function getWeekData(weekKey) {
       month: `${mKey} ${wKey}`,
       total_days: days.length,
       total_orders: total,
+      total_segments: seg,
       A, B, C, D,
       A_ratio: total ? A / total * 100 : 0,
       B_ratio: total ? B / total * 100 : 0,
