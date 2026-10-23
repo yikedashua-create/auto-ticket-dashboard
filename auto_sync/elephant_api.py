@@ -243,7 +243,7 @@ def _refresh_creds_from_chrome(url: str, timeout: int = 20):
     return None
 
 
-def fetch_day(date_str: str, *, force: bool = False, timeout: int = 30) -> FetchResult:
+def fetch_day(date_str: str, *, force: bool = False, timeout: int = 90) -> FetchResult:
     """拉指定日期的 xlsx 到 DATA_DIR.
 
     Args:
@@ -277,11 +277,18 @@ def fetch_day(date_str: str, *, force: bool = False, timeout: int = 30) -> Fetch
     # 3. 发请求（v2.1：NO_ACCESS 时自动从 Chrome localStorage 恢复凭据后重试一次）
     url = f'{BASE_URL}?orderTime={date_str}+00:00:00,{date_str}+23:59:59&page=1&size=16&derive=true'
     tried_refresh = False
+    # v2.4（2026-10-23）：导出接口早高峰偶发慢（10-23 实测 42s 才返回，30s 超时误报失败），
+    # timeout 默认调到 90s；网络类异常（读超时/连接失败）重试一次再放弃
+    net_tried = 0
 
     while True:
         try:
             r = _signed_get(url, headers, timeout=timeout)
         except Exception as e:
+            if net_tried < 1 and type(e).__name__ in ('ReadTimeout', 'ConnectTimeout', 'ConnectionError'):
+                net_tried += 1
+                _print(f"[!] {type(e).__name__} → 网络抖动，重试一次 ...")
+                continue
             # 签名层异常（注册失败等）不算网络失败，但也无路可走，原样返回错误
             return FetchResult(date=date_str, success=False, error=f"请求失败: {type(e).__name__}: {e}",
                                duration_sec=time.time() - t0)
