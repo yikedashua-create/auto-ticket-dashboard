@@ -1480,7 +1480,7 @@ function _mergeDrillParts(parts, topCount, topFamily) {
   };
 }
 
-function _mergeWeekFailures(days) {
+function _mergeWeekFailures(days, prevDays) {
   const out = {};
   ["B", "D"].forEach(path => {
     out["fail_reasons_" + path] = [];
@@ -1489,18 +1489,26 @@ function _mergeWeekFailures(days) {
   });
   const dayArr = (days || []).filter(Boolean);
   if (!dayArr.length) return out;
+  const prevDayArr = (prevDays || []).filter(Boolean);
   ["B", "D"].forEach(path => {
     // reasons 按 (full, family) 复合键求和——gen 端这是复合主键，
     // 同文本不同族（80 字截断撞车）不能合并（案例订单号各天取前 3 条）。
     // v11.9.13c：同时聚合各天的 platform/airline/channel 分布（extras 字段，
-    // 下钻面板"即时合成"模式的数据源——旧数据 fail_drill 只有 Top10 时兜底）
+    // 下钻面板"即时合成"模式的数据源——旧数据 fail_drill 只有 Top10 时兜底）。
+    // v11.9.13d：补上一自然周同期合计作为 prev_count——旧版合并时丢了该字段，
+    // 周视图根因表"基准单数"恒 0、vs 基准满屏虚假 +100% 涨幅
+    const prevMap = new Map();
+    prevDayArr.forEach(day => (day["fail_reasons_" + path] || []).forEach(r => {
+      const k = (r.full || r.reason) + "\u0001" + (r.family || "");
+      prevMap.set(k, (prevMap.get(k) || 0) + (r.count || 0));
+    }));
     const byFull = new Map();
     dayArr.forEach(day => (day["fail_reasons_" + path] || []).forEach(r => {
       const k = (r.full || r.reason) + "\u0001" + (r.family || "");
       let e = byFull.get(k);
       if (!e) {
         e = { reason: r.reason, full: r.full, family: r.family, count: 0, orders: [],
-              _pd: [], _ad: [], _cd: [] };
+              _pd: [], _ad: [], _cd: [], _k: k };
         byFull.set(k, e);
       }
       e.count += r.count || 0;
@@ -1511,6 +1519,8 @@ function _mergeWeekFailures(days) {
     }));
     const reasons = [...byFull.values()].map(e => ({
       reason: e.reason, full: e.full, family: e.family, count: e.count, orders: e.orders,
+      prev_count: prevMap.get(e._k) || 0,
+      prev_month: prevDayArr.length ? (typeof COMPARE_LABEL !== "undefined" && COMPARE_LABEL) || "上周" : "无上周数据",
       platform_dist: _mergeNamedLists(e._pd, 10),
       airline_dist: _mergeNamedLists(e._ad, 10, x => x.code || x.name),
       channel_dist: _mergeNamedLists(e._cd, 10),
@@ -1577,10 +1587,33 @@ function getWeekData(weekKey) {
     if (m.daily_detail && m.daily_detail[d]) daily_detail[d] = m.daily_detail[d];
   });
 
+  // v11.9.13d（2026-10-25）：找上一自然周的各天明细——周视图根因级
+  // prev_count 基准。月内直接取前一周；W1（每月第一周）的上一周是
+  // 上月残余周（如 10 月 W1 的基准 = 9 月 W5 09-29~30），跨月取上月数据
+  //（switchPeriod 对比基准路径已懒加载上月 daily_detail）。
+  const weeksArr = (m.summary && m.summary.natural_weekly) || [];
+  const wIdx = weeksArr.findIndex(w => w.week === wKey);
+  let prevDayArr = [];
+  if (wIdx > 0) {
+    prevDayArr = weeksArr[wIdx - 1].days.map(d => m.daily_detail && m.daily_detail[d]);
+  } else {
+    const monthsList = (typeof DATA !== "undefined"
+      && (DATA.available_months || []).filter(x => x !== "all").sort()) || [];
+    const mi = monthsList.indexOf(mKey);
+    if (mi > 0) {
+      const pm = DATA.months[monthsList[mi - 1]];
+      const pws = (pm && pm.summary && pm.summary.natural_weekly) || [];
+      const pw = pws[pws.length - 1];
+      if (pw && pm.daily_detail) {
+        prevDayArr = pw.days.map(d => pm.daily_detail[d]);
+      }
+    }
+  }
+
   return {
     ...m,
     // v11.9.12：周级失败根因/族/下钻覆盖 ...m 展开带进来的月级字段
-    ..._mergeWeekFailures(days.map(d => m.daily_detail && m.daily_detail[d])),
+    ..._mergeWeekFailures(days.map(d => m.daily_detail && m.daily_detail[d]), prevDayArr),
     summary: {
       month: `${mKey} ${wKey}`,
       total_days: days.length,
