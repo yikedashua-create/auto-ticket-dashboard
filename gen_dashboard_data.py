@@ -2126,7 +2126,10 @@ def build_month_data(df, month_label, is_daily=False):
             return (ca, f_)
 
         keys = path_df.apply(lambda r: _row_key(r), axis=1)
-        target_list = out[f"fail_reasons_{target_path}"][:top_n]
+        # v11.9.13（2026-10-17）：top_n=None → 全量根因都生成下钻（用户要求每个环节
+        # 所有异常都能五维度下钻，不再限 Top 10）。体积控制：orders 明细 20→3 条。
+        target_list = (out[f"fail_reasons_{target_path}"] if top_n is None
+                       else out[f"fail_reasons_{target_path}"][:top_n])
         drills = []
         for entry in target_list:
             want = (entry["full"], entry["family"])
@@ -2156,20 +2159,30 @@ def build_month_data(df, month_label, is_daily=False):
                 airline_dist.append({"code": k_str, "name": cn, "count": int(v)})
 
             # 3. 航司 × 平台 交叉（同样需要拆分多航司）
-            cross_dict = {}
-            for _, r in sub.iterrows():
-                air_raw = str(r.get(air_col, "")).strip()
-                if not air_raw:
-                    air_list = ["未识别"]
-                else:
-                    air_list = [a.strip() for a in re.split(r"[,,;；\s]+", air_raw) if a.strip()]
-                    if not air_list:
-                        air_list = ["未识别"]
-                plat = str(r.get("平台", "")).strip() or "未识别"
-                for air in air_list:
-                    air_cn = AIRLINE_NAME.get(air, air)
-                    key = (air_cn, plat)
-                    cross_dict[key] = cross_dict.get(key, 0) + 1
+            # v11.9.13：改 explode+groupby 向量化——全量下钻后 iterrows 逐行构造
+            # 会让 gen 多花 1-2 分钟；语义与旧 iterrows 完全一致
+            # （空航司/空 split → "未识别"，空平台 → "未识别"，航司过 AIRLINE_NAME 映射）
+            air_raw_s = sub[air_col].fillna("").astype(str).str.strip()
+            plat_s = sub["平台"].fillna("").astype(str).str.strip()
+            air_split = air_raw_s.str.split(r"[,,;；\s]+", regex=True)
+            has_air = air_raw_s != ""
+            has_valid = has_air & air_split.apply(
+                lambda lst: any(s.strip() for s in lst if s), )
+            # 有航司的行：explode 拆多航司
+            dfx = pd.DataFrame({"air": air_split[has_valid], "plat": plat_s[has_valid]})
+            dfx = dfx.explode("air")
+            dfx["air"] = dfx["air"].fillna("").astype(str).str.strip()
+            dfx = dfx[dfx["air"] != ""]
+            # 无航司（或 split 后全空）的行：计一笔"未识别"
+            no_air = pd.DataFrame({
+                "air": "未识别",
+                "plat": plat_s[~has_valid].where(plat_s[~has_valid] != "", "未识别"),
+            })
+            dfx = pd.concat([dfx, no_air], ignore_index=True)
+            dfx["air"] = dfx["air"].map(lambda a: AIRLINE_NAME.get(a, a))
+            dfx["plat"] = dfx["plat"].where(dfx["plat"] != "", "未识别")
+            cross_counts = dfx.groupby(["air", "plat"]).size()
+            cross_dict = {k: int(v) for k, v in cross_counts.items()}
             airlines_set = sorted({k[0] for k in cross_dict.keys()})
             platforms_set = sorted({k[1] for k in cross_dict.keys()})
             cross = {
@@ -2192,9 +2205,11 @@ def build_month_data(df, month_label, is_daily=False):
             rescued_count = int((status_series == "已出票").sum())
             rescue_rate = round(rescued_count / n_sub * 100, 2) if n_sub else 0
 
-            # 5.5 订单明细 Top20（业务员行动清单：订单号/平台/航司/最终状态/救场员工）
+            # 5.5 订单明细（案例订单号：业务员行动清单）
+            # v11.9.13：20→3 条——全量根因都有下钻后每条都要带明细，
+            # 20 条会把 dashboard_data.json 撑爆（详见 build_drilldown 头部注释）
             orders_detail = []
-            for _, rr in sub.head(20).iterrows():
+            for _, rr in sub.head(3).iterrows():
                 o_raw = rr.get("订单号", None)
                 if o_raw is None or pd.isna(o_raw):
                     continue
@@ -2230,8 +2245,12 @@ def build_month_data(df, month_label, is_daily=False):
             })
         return drills
 
-    out["fail_drill_B"] = build_drilldown("B", top_n=10)
-    out["fail_drill_D"] = build_drilldown("D", top_n=10)
+    # v11.9.13（2026-10-17）：全量根因都生成下钻（用户要求每个环节所有异常都能
+    # 五维度下钻，不再限 Top 10）。体积：全量 B+D 单月约 +1.5-2MB，
+    # 历史月的全量 drill 在 Step B 从 dashboard_data.json 剥离（只留当月），
+    # 由前端 ensureMonthDetail 从 monthly/{ym}.json 懒加载，主文件只涨约 2MB。
+    out["fail_drill_B"] = build_drilldown("B", top_n=None)
+    out["fail_drill_D"] = build_drilldown("D", top_n=None)
 
     # ========== 8.5 流程归因（v4 定版）==========
     # 阶段分布、子类分布、每日阶段堆叠
@@ -2630,6 +2649,12 @@ def _main_inner(args):
     months_top = {}
     for m, data in months_data.items():
         months_top[m] = {k: v for k, v in data.items() if k != "daily_detail"}
+        # v11.9.13：历史月的全量 fail_drill 剥离出主文件（只留当月的），
+        # 防止 6 个月 × 全量 drill 把主文件撑到 14MB+（jsDelivr 20MB 上限 + 首屏加载）。
+        # 历史月切到时由前端 ensureMonthDetail() 从 monthly/{ym}.json 懒加载合入。
+        if m != target_months[-1]:
+            months_top[m]["fail_drill_B"] = []
+            months_top[m]["fail_drill_D"] = []
         # v11.2：快照口径并行注入（双口径对照）
         if m in snap_sum:
             months_top[m].setdefault("summary", {})["snapshot"] = snap_sum[m]

@@ -1408,14 +1408,17 @@ function getDayData(month, day) {
    drill 按文本合并（各分布求和取 Top10、cross 矩阵并集重建、date_trend 拼接、
    orders 去重取 20）。daily_detail 未加载（懒加载失败）时返回空数组——
    宁可显示无数据也不冒充月级数据。 */
-function _mergeNamedLists(lists, n) {
+function _mergeNamedLists(lists, n, keyOf) {
+  // v11.9.13c：keyOf 可选自定义合并键（airline_dist 按 code 合并并保留 name 等原字段）
+  const kf = keyOf || (x => x.name || "(空)");
   const m = new Map();
   (lists || []).filter(Boolean).forEach(list => (list || []).forEach(x => {
-    const k = x.name || "(空)";
-    m.set(k, (m.get(k) || 0) + (x.count || 0));
+    const k = kf(x);
+    const e = m.get(k);
+    if (e) e.count += (x.count || 0);
+    else m.set(k, Object.assign({}, x, { count: x.count || 0 }));
   }));
-  return [...m.entries()].map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count).slice(0, n || 10);
+  return [...m.values()].sort((a, b) => b.count - a.count).slice(0, n || 10);
 }
 
 function _mergeDrillParts(parts, topCount, topFamily) {
@@ -1488,21 +1491,30 @@ function _mergeWeekFailures(days) {
   if (!dayArr.length) return out;
   ["B", "D"].forEach(path => {
     // reasons 按 (full, family) 复合键求和——gen 端这是复合主键，
-    // 同文本不同族（80 字截断撞车）不能合并（案例订单号各天取前 3 条）
+    // 同文本不同族（80 字截断撞车）不能合并（案例订单号各天取前 3 条）。
+    // v11.9.13c：同时聚合各天的 platform/airline/channel 分布（extras 字段，
+    // 下钻面板"即时合成"模式的数据源——旧数据 fail_drill 只有 Top10 时兜底）
     const byFull = new Map();
     dayArr.forEach(day => (day["fail_reasons_" + path] || []).forEach(r => {
       const k = (r.full || r.reason) + "\u0001" + (r.family || "");
       let e = byFull.get(k);
       if (!e) {
-        e = { reason: r.reason, full: r.full, family: r.family, count: 0, orders: [] };
+        e = { reason: r.reason, full: r.full, family: r.family, count: 0, orders: [],
+              _pd: [], _ad: [], _cd: [] };
         byFull.set(k, e);
       }
       e.count += r.count || 0;
+      e._pd.push(r.platform_dist); e._ad.push(r.airline_dist); e._cd.push(r.channel_dist);
       if (r.orders && r.orders.length && e.orders.length < 3) {
         e.orders.push(...r.orders.slice(0, 3 - e.orders.length));
       }
     }));
-    const reasons = [...byFull.values()].sort((a, b) => b.count - a.count);
+    const reasons = [...byFull.values()].map(e => ({
+      reason: e.reason, full: e.full, family: e.family, count: e.count, orders: e.orders,
+      platform_dist: _mergeNamedLists(e._pd, 10),
+      airline_dist: _mergeNamedLists(e._ad, 10, x => x.code || x.name),
+      channel_dist: _mergeNamedLists(e._cd, 10),
+    })).sort((a, b) => b.count - a.count);
     out["fail_reasons_" + path] = reasons;
     // families 按环节前缀求和（与前端族面板 split("-")[0] 口径一致）
     const famMap = new Map();
@@ -1512,13 +1524,15 @@ function _mergeWeekFailures(days) {
     });
     out["fail_families_" + path] = [...famMap.entries()].map(([family, count]) => ({ family, count }))
       .sort((a, b) => b.count - a.count);
-    // drills：合并后 Top10，按 reason 文本收集各天 drill 再合并
+    // drills：按 reason 文本收集各天 drill 再合并。
+    // v11.9.13b：全量合成（原 slice(0,10) 漏掉 11 名以后——周视图点小根因
+    // 仍"暂无下钻"）。天级 drill 未覆盖的 reason 自然产出 null 被过滤（旧数据降级）。
     const byText = new Map();
     dayArr.forEach(day => (day["fail_drill_" + path] || []).forEach(dr => {
       if (!byText.has(dr.reason)) byText.set(dr.reason, []);
       byText.get(dr.reason).push(dr);
     }));
-    out["fail_drill_" + path] = reasons.slice(0, 10).map(r => {
+    out["fail_drill_" + path] = reasons.map(r => {
       let parts = byText.get(r.reason) || [];
       // 同文本撞车时优先取同族的各天 drill（gen v11.9.12 起天级 drill 带 family）
       if (parts.length > 1 && r.family) {
@@ -1730,6 +1744,14 @@ function ensureMonthDetail(ym) {
         const md = await r.json();
         if (md && md.daily_detail) {
           m.daily_detail = md.daily_detail;
+          // v11.9.13：gen 已把历史月的全量 fail_drill 从主文件剥离，
+          // 这里从 monthly json 一并合入（当月/旧数据自带非空 drill 时不覆盖）
+          if (md.fail_drill_B && md.fail_drill_B.length && !(m.fail_drill_B || []).length) {
+            m.fail_drill_B = md.fail_drill_B;
+          }
+          if (md.fail_drill_D && md.fail_drill_D.length && !(m.fail_drill_D || []).length) {
+            m.fail_drill_D = md.fail_drill_D;
+          }
           console.log("[daily_detail] 懒加载成功", ym, u);
           return;
         }
@@ -4247,6 +4269,51 @@ function collapseFamilyDrill() {
   currentFamilyExpanded = false;
 }
 
+// v11.9.13c（2026-10-25）：下钻"即时合成"——正式 fail_drill 数据（gen 预计算）
+// 找不到该根因时，从 fail_reasons 条目自带的 extras（platform/airline/channel 分布、
+// 案例订单，gen 全量生成）+ daily_detail（日期趋势）现场拼出下钻对象。
+// 覆盖维度：平台/航司/渠道分布、日期趋势、订单明细；
+// 交叉热力图/员工救场/救回率三项旧数据没有源数据，显示占位说明，
+// 生产机用 v11.9.13 gen 重算数据后 fail_drill 全量命中、自动切回完整版。
+function _synthDrillFromReason(path, r) {
+  const dt = [];
+  if (CURRENT_DATA && CURRENT_DATA._period_type === "week" && CURRENT_DATA.daily_detail) {
+    const dd = CURRENT_DATA.daily_detail;
+    const key = (r.full || r.reason) + "\u0001" + (r.family || "");
+    Object.keys(dd).sort().forEach(date => {
+      const dayReasons = (dd[date] && dd[date]["fail_reasons_" + path]) || [];
+      const hit = dayReasons.find(x => ((x.full || x.reason) + "\u0001" + (x.family || "")) === key);
+      if (hit && hit.count > 0) dt.push({ date, count: hit.count });
+    });
+  } else if (CURRENT_DATA && CURRENT_DATA._period_type === "day" && CURRENT_DATA._period_date) {
+    dt.push({ date: CURRENT_DATA._period_date, count: r.count });
+  } else if (typeof DATA !== "undefined" && DATA.months && DATA.months[CURRENT_MONTH]
+             && DATA.months[CURRENT_MONTH].daily_detail) {
+    const dd = DATA.months[CURRENT_MONTH].daily_detail;
+    const key = (r.full || r.reason) + "\u0001" + (r.family || "");
+    Object.keys(dd).sort().forEach(date => {
+      const dayReasons = (dd[date] && dd[date]["fail_reasons_" + path]) || [];
+      const hit = dayReasons.find(x => ((x.full || x.reason) + "\u0001" + (x.family || "")) === key);
+      if (hit && hit.count > 0) dt.push({ date, count: hit.count });
+    });
+  }
+  return {
+    reason: r.reason, family: r.family,
+    total: r.count, top_count: r.count,
+    platform_dist: r.platform_dist || [],
+    airline_dist: r.airline_dist || [],
+    channel_dist: r.channel_dist || [],
+    staff_dist: [],
+    date_trend: dt,
+    cross: null,
+    rescued_count: null, rescue_rate: null,
+    orders: (r.orders || []).map(o => (typeof o === "object" && o !== null)
+      ? { o: o.o, s: o.s || "", p: "", a: "", l: "" }
+      : { o: String(o), s: "", p: "", a: "", l: "" }),
+    _synthetic: true,
+  };
+}
+
 function toggleDrill(path, idx, rowEl) {
   // v11.9.10（2026-10-02）：文本匹配优先，索引仅在校验同文本时兜底。
   // 旧逻辑 drillData[idx] 优先——gen v10.15.1 修复前 fail_drill 与 fail_reasons
@@ -4270,17 +4337,22 @@ function toggleDrill(path, idx, rowEl) {
   if (!d && idx >= 0 && idx < drillData.length && clickedReason && matchDrill(drillData[idx])) {
     d = drillData[idx];
   }
+  // v11.9.13c：正式下钻数据缺失时即时合成（分布/趋势/订单明细可用，
+  // 交叉热力图与员工救场占位）——新数据全量命中后此分支不再触发
+  if (!d && clickedReason && clickedReason.count > 0) {
+    d = _synthDrillFromReason(path, clickedReason);
+  }
   const key = `${path}-${idx}`;
   if (currentDrillKey === key) { collapseDrill(); return; }
   collapseDrill();
   if (!d) {
-    // 没有下钻数据：显示提示而不是无反应
+    // 连 clickedReason 都没有（索引越界等异常）：显示提示而不是无反应
     const famT = document.querySelector("#family-drill-row")?.closest("table");
     const cont = famT?.parentElement || document.getElementById("mainArea");
     const tip = document.createElement("div");
     tip.id = "drill-row";
     tip.style.cssText = "margin-top:10px;padding:14px 18px;background:#0a1424;border-left:3px solid #ffa502;border-radius:0 8px 8px 0;color:#a0b4cc;font-size:13px";
-    tip.innerHTML = `⚠️ 该失败原因暂无下钻数据（下钻数据仅预计算 Top 10 高频原因）<br><span style="font-size:11px;color:#8ea4bd">${escapeHtml(clickedReason?.reason || "")} · ${fmt.num(clickedReason?.count || 0)} 单</span><button onclick="collapseDrill()" style="float:right;background:#1e3a5f;border:1px solid #ffa502;color:#ffa502;padding:2px 10px;border-radius:4px;cursor:pointer;font-size:11px">关闭</button>`;
+    tip.innerHTML = `⚠️ 该失败原因暂无下钻数据（v11.9.13 起新数据全量根因均有下钻；此提示说明数据版本较旧或该根因在所选周期内无明细）<br><span style="font-size:11px;color:#8ea4bd">${escapeHtml(clickedReason?.reason || "")} · ${fmt.num(clickedReason?.count || 0)} 单</span><button onclick="collapseDrill()" style="float:right;background:#1e3a5f;border:1px solid #ffa502;color:#ffa502;padding:2px 10px;border-radius:4px;cursor:pointer;font-size:11px">关闭</button>`;
     if (famT && famT.nextSibling) cont.insertBefore(tip, famT.nextSibling);
     else cont.appendChild(tip);
     currentDrillKey = key;
@@ -4301,7 +4373,8 @@ function toggleDrill(path, idx, rowEl) {
         <div>
           <span style="color:#00e5ff;font-size:13px;font-weight:600">▾ ${escapeHtml(d.reason)}</span>
           <span class="badge badge-info" style="margin-left:8px">${fmt.num(d.total)} 单</span>
-          <span class="badge badge-warn" style="margin-left:4px">救回 ${fmt.num(d.rescued_count)} 单（${d.rescue_rate}%）</span>
+          ${d.rescue_rate != null ? `<span class="badge badge-warn" style="margin-left:4px">救回 ${fmt.num(d.rescued_count)} 单（${d.rescue_rate}%）</span>` : ""}
+          ${d._synthetic ? `<span class="badge" style="margin-left:4px;background:#3a2a10;border:1px solid #ffa502;color:#ffa502" title="正式下钻数据未覆盖该根因，此面板由现有数据即时合成；交叉热力图/员工救场/救回率待生产机用 v11.9.13 gen 重算数据后自动补全">⚡ 即时合成 · 部分维度待数据更新</span>` : ""}
         </div>
         <button class="drill-close" onclick="collapseDrill()" style="background:#1e3a5f;border:1px solid #00e5ff;color:#00e5ff;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px">收起 ✕</button>
       </div>
@@ -4316,7 +4389,8 @@ function toggleDrill(path, idx, rowEl) {
         </div>
         <div style="grid-column:1/-1;background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px">
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">🔥 航司 × 平台 交叉热力图</div>
-          <div id="drill-${key}-cross" style="height:340px;width:100%"></div>
+          ${d.cross ? `<div id="drill-${key}-cross" style="height:340px;width:100%"></div>`
+            : `<div style="height:60px;display:flex;align-items:center;justify-content:center;color:#8ea4bd;font-size:12px">⏳ 交叉热力图需 v11.9.13 版下钻数据（生产机重算后自动补全）</div>`}
         </div>
         <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px">
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">📅 日期趋势</div>
@@ -4324,7 +4398,8 @@ function toggleDrill(path, idx, rowEl) {
         </div>
         <div style="background:#0a1a2e;border:1px solid #1e3a5f;border-radius:6px;padding:10px">
           <div style="font-size:12px;color:#a0b4cc;margin-bottom:6px">👤 员工救场 Top 10</div>
-          <div id="drill-${key}-staff" style="height:240px;width:100%"></div>
+          ${(d.staff_dist && d.staff_dist.length) ? `<div id="drill-${key}-staff" style="height:240px;width:100%"></div>`
+            : `<div style="height:60px;display:flex;align-items:center;justify-content:center;color:#8ea4bd;font-size:12px">⏳ 员工救场需 v11.9.13 版下钻数据（生产机重算后自动补全）</div>`}
         </div>
       </div>
       ${d.orders && d.orders.length ? `
@@ -4337,7 +4412,7 @@ function toggleDrill(path, idx, rowEl) {
               : x.s === "待出票" ? '<span style="color:#ffa502">⏳ 待出票</span>'
               : x.s === "留单处理中" ? '<span style="color:#ff6b81">🔴 留单处理中</span>'
               : '<span style="color:#a0b4cc">❓ ' + escapeHtml(x.s || "未知") + '</span>';
-            return `<tr><td><code style="background:#1e3a5f;color:#00e5ff;padding:1px 5px;border-radius:2px">${escapeHtml(x.o)}</code></td><td>${escapeHtml(x.p)}</td><td>${escapeHtml(x.a)}</td><td>${b}</td><td>${escapeHtml(x.l || "—")}</td></tr>`;
+            return `<tr><td><code style="background:#1e3a5f;color:#00e5ff;padding:1px 5px;border-radius:2px">${escapeHtml(x.o)}</code></td><td>${x.p ? escapeHtml(x.p) : "—"}</td><td>${x.a ? escapeHtml(x.a) : "—"}</td><td>${b}</td><td>${x.l ? escapeHtml(x.l) : "—"}</td></tr>`;
           }).join("")}</tbody>
         </table>
       </div>` : ""}
