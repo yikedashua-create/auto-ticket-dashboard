@@ -113,10 +113,11 @@ def _run(cmd: List[str], cwd: Optional[str] = None, timeout: int = 600) -> StepR
 def run_gen(gen_script: str, cwd: str) -> StepResult:
     """跑 gen_dashboard_data.py
 
-    timeout 1800s（2026-09-26 从 900 调大）：数据量涨到 42 万单后实测全量 gen
-    约 18 分钟，900s 必超时（9/26 凌晨兜底任务拉到 9/25 数据后 gen 连续超时的根因）。
+    timeout 3600s：2026-10-26 从 1800s 调大——2bf6faf 全量 drill 版 gen 在
+    1800s 内跑不完（10-25 18:01 实测被杀，孤儿进程也未能写出文件），数据量
+    涨后只会更慢。60 分钟留足余量，宁可慢不可杀。
     """
-    return _run(["python", gen_script, "--month", "all"], cwd=cwd, timeout=1800)
+    return _run(["python", gen_script, "--month", "all"], cwd=cwd, timeout=3600)
 
 
 def git_add(repo_dir: str) -> StepResult:
