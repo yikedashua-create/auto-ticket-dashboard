@@ -497,9 +497,9 @@
     background: linear-gradient(135deg, rgba(15, 22, 38, 0.98) 0%, rgba(10, 14, 26, 0.98) 100%);
     border: 1px solid rgba(0, 229, 255, 0.3);
     border-radius: 16px;
-    width: 820px;
-    max-width: 95vw;
-    max-height: 92vh;
+    width: 920px;
+    max-width: 96vw;
+    max-height: 94vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
@@ -508,7 +508,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 24px;
+    padding: 14px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color: #00e5ff;
     font-weight: 700;
@@ -532,11 +532,11 @@
   }
   .report-modal-close:hover { color: #ff4757; }
 
-  /* 录入区 + 历史（上半，左右分栏） */
+  /* 录入区 + 历史（上半，左右分栏，尽量压缩高度留给预览） */
   .report-modal-mid {
     display: flex;
-    gap: 16px;
-    padding: 16px 24px;
+    gap: 14px;
+    padding: 10px 20px 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     flex-shrink: 0;
   }
@@ -545,8 +545,8 @@
     min-width: 0;
   }
   .report-section h4 {
-    margin: 0 0 8px;
-    font-size: 13px;
+    margin: 0 0 6px;
+    font-size: 12px;
     color: #00e5ff;
     font-weight: 600;
     display: flex;
@@ -556,15 +556,15 @@
   .report-section h4 .cnt {
     background: rgba(0, 229, 255, 0.15);
     color: #00e5ff;
-    font-size: 11px;
-    padding: 1px 7px;
+    font-size: 10px;
+    padding: 1px 6px;
     border-radius: 10px;
     border: 1px solid rgba(0, 229, 255, 0.3);
   }
   .opt-input-row {
     display: flex;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 6px;
+    margin-bottom: 6px;
   }
   .opt-input-row select {
     flex: 1;
@@ -572,8 +572,8 @@
     background: rgba(10, 14, 26, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #e0e6f0;
-    padding: 6px 10px;
-    border-radius: 6px;
+    padding: 5px 8px;
+    border-radius: 5px;
     font-size: 12px;
     cursor: pointer;
   }
@@ -582,8 +582,8 @@
     background: rgba(0, 229, 255, 0.15);
     border: 1px solid rgba(0, 229, 255, 0.35);
     color: #00e5ff;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 5px 12px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 12px;
     font-weight: 600;
@@ -595,7 +595,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    max-height: 130px;
+    max-height: 90px;
     overflow-y: auto;
   }
   .opt-list li {
@@ -635,23 +635,24 @@
     padding: 6px 0;
   }
 
-  /* 预览区（下半） */
+  /* 预览区（下半，占主要空间） */
   .report-modal-text {
     flex: 1;
     background: rgba(10, 14, 26, 0.6);
     border: none;
     color: #e0e6f0;
-    padding: 18px 24px;
+    padding: 20px 28px;
     font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
-    font-size: 14px;
-    line-height: 1.75;
+    font-size: 15px;
+    line-height: 1.85;
     resize: none;
     outline: none;
     white-space: pre;
     overflow: auto;
+    min-height: 280px;
   }
   .report-modal-actions {
-    padding: 12px 24px;
+    padding: 10px 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     gap: 10px;
