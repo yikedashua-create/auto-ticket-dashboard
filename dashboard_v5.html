@@ -595,7 +595,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    max-height: 90px;
+    max-height: 180px;
     overflow-y: auto;
   }
   .opt-list li {
@@ -641,10 +641,10 @@
     background: rgba(10, 14, 26, 0.6);
     border: none;
     color: #e0e6f0;
-    padding: 20px 28px;
+    padding: 18px 24px;
     font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
-    font-size: 15px;
-    line-height: 1.85;
+    font-size: 14px;
+    line-height: 1.75;
     resize: none;
     outline: none;
     white-space: pre;
@@ -5743,12 +5743,15 @@ function renderOptLists() {
   if (yCnt) yCnt.textContent = yList.length;
 
   if (tEl) {
+    const wasAtBottom = tEl.scrollHeight - tEl.scrollTop - tEl.clientHeight < 40;
     tEl.innerHTML = tList.length
       ? tList.map((r, i) =>
           `<li><span class="idx">${i + 1}.</span><span class="txt">${escapeHtml(r)}</span>` +
           `<button class="del" data-idx="${i}" title="删除">×</button></li>`
         ).join('')
       : '<div class="opt-empty">今日还没记录，上方下拉选一个添加</div>';
+    // 添加新条目后自动滚到底部（让最新一条可见）
+    if (wasAtBottom) tEl.scrollTop = tEl.scrollHeight;
   }
   if (yEl) {
     yEl.innerHTML = yList.length
