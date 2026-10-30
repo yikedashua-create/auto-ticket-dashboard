@@ -461,18 +461,12 @@
     font-weight: 700;
     text-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
   }
-  /* v11.10 优化记录 + 日报生成 */
-  .month-switcher #optReasonSelect {
-    max-width: 230px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  /* v11.10 日报面板（筛选栏只剩一个入口按钮） */
   .month-switcher .opt-btn {
     background: rgba(0, 229, 255, 0.1);
     border: 1px solid rgba(0, 229, 255, 0.3);
     color: #00e5ff;
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 8px;
     font-size: 13px;
     cursor: pointer;
@@ -487,14 +481,14 @@
   .month-switcher .opt-btn.opt-gen {
     background: rgba(0, 229, 255, 0.2);
   }
-  /* 日报弹窗 */
+  /* 日报面板 */
   .report-modal {
     display: none;
     position: fixed;
     z-index: 9999;
     left: 0; top: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(4px);
     align-items: center;
     justify-content: center;
@@ -503,9 +497,9 @@
     background: linear-gradient(135deg, rgba(15, 22, 38, 0.98) 0%, rgba(10, 14, 26, 0.98) 100%);
     border: 1px solid rgba(0, 229, 255, 0.3);
     border-radius: 16px;
-    width: 620px;
-    max-width: 92vw;
-    max-height: 88vh;
+    width: 820px;
+    max-width: 95vw;
+    max-height: 92vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
@@ -514,47 +508,161 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 20px;
+    padding: 16px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color: #00e5ff;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .report-modal-header .date-tag {
+    color: #a0b4cc;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 10px;
   }
   .report-modal-close {
     background: none;
     border: none;
     color: #a0b4cc;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     padding: 0 4px;
+    line-height: 1;
   }
   .report-modal-close:hover { color: #ff4757; }
+
+  /* 录入区 + 历史（上半，左右分栏） */
+  .report-modal-mid {
+    display: flex;
+    gap: 16px;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+  }
+  .report-section {
+    flex: 1;
+    min-width: 0;
+  }
+  .report-section h4 {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: #00e5ff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .report-section h4 .cnt {
+    background: rgba(0, 229, 255, 0.15);
+    color: #00e5ff;
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+  }
+  .opt-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .opt-input-row select {
+    flex: 1;
+    min-width: 0;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e0e6f0;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .opt-input-row select:focus { outline: none; border-color: rgba(0, 229, 255, 0.5); }
+  .opt-input-row button {
+    background: rgba(0, 229, 255, 0.15);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    color: #00e5ff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .opt-input-row button:hover { background: rgba(0, 229, 255, 0.28); }
+  .opt-input-row button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .opt-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 130px;
+    overflow-y: auto;
+  }
+  .opt-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 8px;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #e0e6f0;
+    line-height: 1.5;
+  }
+  .opt-list li .idx {
+    color: #00e5ff;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .opt-list li .txt { flex: 1; word-break: break-all; }
+  .opt-list li .del {
+    background: none;
+    border: none;
+    color: #ff6b81;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 2px;
+    flex-shrink: 0;
+    line-height: 1.5;
+  }
+  .opt-list li .del:hover { color: #ff4757; }
+  .opt-empty {
+    color: #6b7c95;
+    font-size: 12px;
+    font-style: italic;
+    padding: 6px 0;
+  }
+
+  /* 预览区（下半） */
   .report-modal-text {
     flex: 1;
     background: rgba(10, 14, 26, 0.6);
     border: none;
     color: #e0e6f0;
-    padding: 16px 20px;
+    padding: 18px 24px;
     font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.75;
     resize: none;
     outline: none;
     white-space: pre;
     overflow: auto;
   }
   .report-modal-actions {
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    flex-shrink: 0;
   }
   .report-modal-actions button {
     background: rgba(0, 229, 255, 0.15);
     border: 1px solid rgba(0, 229, 255, 0.3);
     color: #00e5ff;
-    padding: 7px 18px;
+    padding: 8px 20px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 13px;
@@ -562,6 +670,12 @@
   }
   .report-modal-actions button:hover {
     background: rgba(0, 229, 255, 0.25);
+  }
+  .report-modal-actions .hint {
+    color: #6b7c95;
+    font-size: 11px;
+    align-self: center;
+    margin-right: auto;
   }
 
   .empty-state {
@@ -1161,10 +1275,7 @@
         <select id="daySelect">
           <option value="all">全月</option>
         </select>
-        <label style="margin-left:6px">✏️ 优化</label>
-        <select id="optReasonSelect" title="选当日失败根因记为今日优化"><option value="">— 选异常根因 —</option></select>
-        <button id="optAddBtn" class="opt-btn" title="把选中的根因记为今日优化">+ 今日</button>
-        <button id="optGenBtn" class="opt-btn opt-gen" title="生成当日日报文本">📋 日报</button>
+        <button id="optGenBtn" class="opt-btn opt-gen" title="打开日报面板：录入优化 + 生成日报">📋 日报</button>
         <div class="month-info" id="monthInfo"></div>
       </div>
       <div id="mainArea">
@@ -1272,8 +1383,7 @@ async function loadData() {
     await loadTargets();  // v11.4：月度目标先于首屏渲染加载
     switchPeriod(DATA.current_month, "all");
     // v10.16：预取当月 daily_detail（后台加载，首次点日视图无等待）
-    // v11.10：daily_detail 加载完后填充优化根因下拉
-    ensureMonthDetail(DATA.current_month).then(() => loadOptReasons());
+    ensureMonthDetail(DATA.current_month);
   } catch (e) {
     document.getElementById("mainArea").innerHTML =
       '<div class="loading" style="color:#ff4757">❌ 数据加载失败：' + e.message +
@@ -5597,7 +5707,7 @@ function shortReason(r, n) {
   return r.length > n ? r.slice(0, n) + '…' : r;
 }
 
-// 加载当日 fail_reasons_B 填下拉
+// 加载当日 fail_reasons_B 填下拉（弹窗内的下拉）
 async function loadOptReasons() {
   const today = getTodayDateStr();
   if (!today) return;
@@ -5609,20 +5719,54 @@ async function loadOptReasons() {
   const sel = document.getElementById('optReasonSelect');
   if (!sel) return;
   const cur = sel.value;
-  sel.innerHTML = '<option value="">— 选异常根因 —</option>' +
+  sel.innerHTML = '<option value="">— 选今日要处理的异常根因 —</option>' +
     reasons.map(r =>
-      `<option value="${escapeAttr(r.reason)}">${escapeAttr(shortReason(r.reason, 28))} (${r.count}次)</option>`
+      `<option value="${escapeAttr(r.reason)}">${escapeAttr(shortReason(r.reason, 32))} (${r.count}次)</option>`
     ).join('');
   if (cur) sel.value = cur;
 }
 
-// 添加今日优化
+// 渲染今日/昨日优化列表
+function renderOptLists() {
+  const today = getTodayDateStr();
+  const yest = getYesterdayDateStr();
+  const actions = getOptActions();
+  const tList = actions[today] || [];
+  const yList = actions[yest] || [];
+
+  const tEl = document.getElementById('todayOptList');
+  const yEl = document.getElementById('yestOptList');
+  const tCnt = document.getElementById('todayOptCnt');
+  const yCnt = document.getElementById('yestOptCnt');
+  if (tCnt) tCnt.textContent = tList.length;
+  if (yCnt) yCnt.textContent = yList.length;
+
+  if (tEl) {
+    tEl.innerHTML = tList.length
+      ? tList.map((r, i) =>
+          `<li><span class="idx">${i + 1}.</span><span class="txt">${escapeHtml(r)}</span>` +
+          `<button class="del" data-idx="${i}" title="删除">×</button></li>`
+        ).join('')
+      : '<div class="opt-empty">今日还没记录，上方下拉选一个添加</div>';
+  }
+  if (yEl) {
+    yEl.innerHTML = yList.length
+      ? yList.map((r, i) => `<li><span class="idx">${i + 1}.</span><span class="txt">${escapeHtml(r)}</span></li>`).join('')
+      : '<div class="opt-empty">昨日无记录</div>';
+  }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// 添加今日优化（无 alert，录入后即时刷新列表 + 预览）
 function addOptAction() {
   const sel = document.getElementById('optReasonSelect');
-  const reason = sel.value;
-  if (!reason) { alert('请先选一个异常根因'); return; }
+  const reason = sel ? sel.value : '';
+  if (!reason) return;
   const today = getTodayDateStr();
-  if (!today) { alert('当前无数据日期'); return; }
+  if (!today) return;
   const actions = getOptActions();
   if (!actions[today]) actions[today] = [];
   if (!actions[today].includes(reason)) {
@@ -5630,20 +5774,33 @@ function addOptAction() {
     saveOptActions(actions);
   }
   sel.value = '';
-  alert('✅ 已记录今日优化：\n' + shortReason(reason, 40));
+  renderOptLists();
+  refreshReportPreview();
 }
 
-// 生成日报
-async function genDailyReport() {
+// 删除今日某条
+function delOptAction(idx) {
+  const today = getTodayDateStr();
+  const actions = getOptActions();
+  if (!actions[today]) return;
+  actions[today].splice(idx, 1);
+  if (actions[today].length === 0) delete actions[today];
+  saveOptActions(actions);
+  renderOptLists();
+  refreshReportPreview();
+}
+
+// 生成日报文本（纯函数，返回字符串）
+async function buildDailyReportText() {
   const today = getTodayDateStr();
   const yest = getYesterdayDateStr();
-  if (!today) { alert('当前无数据'); return; }
+  if (!today) return '当前无数据';
   const ym = today.substring(0, 7);
   await ensureMonthDetail(ym);
   const m = DATA.months[ym];
   const dToday = m.daily.find(d => d.date === today);
   const dYest = yest ? m.daily.find(d => d.date === yest) : null;
-  if (!dToday) { alert('今日数据缺失'); return; }
+  if (!dToday) return '今日数据缺失';
   const ddToday = m.daily_detail && m.daily_detail[today];
   const failB = (ddToday && ddToday.fail_reasons_B) || [];
 
@@ -5670,7 +5827,7 @@ async function genDailyReport() {
   const cR = (C / total * 100).toFixed(1);
   const dR = (D / total * 100).toFixed(1);
 
-  // —— 昨日优化 → 今日效果（localStorage 昨日记录 + 今日 failB 匹配）——
+  // —— 昨日优化 → 今日效果 ——
   const actions = getOptActions();
   const yActions = actions[yest] || [];
   let yOptText;
@@ -5692,9 +5849,9 @@ async function genDailyReport() {
   const tActions = actions[today] || [];
   const tOptText = tActions.length
     ? tActions.map((r, i) => `${i + 1}.${shortReason(r, 45)}`).join('\n')
-    : '（今日未录入，点「+今日」添加）';
+    : '（今日未录入）';
 
-  // —— 增长Top3（count - prev_count 降序，取正增长）——
+  // —— 增长Top3 ——
   const growth = failB
     .map(f => ({ reason: f.reason, count: f.count, prev: f.prev_count || 0, delta: f.count - (f.prev_count || 0) }))
     .filter(g => g.delta > 0)
@@ -5704,7 +5861,7 @@ async function genDailyReport() {
     ? growth.map((g, i) => `${i + 1}.${shortReason(g.reason, 40)} ${g.count}单（昨${g.prev} ↑${g.delta}单）`).join('\n')
     : '（无明显增长）';
 
-  // —— 新增失败（prev_count=0 或不存在，按今日次数降序取Top5）——
+  // —— 新增失败 Top5 ——
   const newFails = failB.filter(f => !f.prev_count || f.prev_count === 0)
     .sort((a, b) => b.count - a.count)
     .slice(0, 5);
@@ -5715,8 +5872,7 @@ async function genDailyReport() {
   // —— 拼日报 ——
   const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(today + 'T00:00:00').getDay()];
   const arrow = (v, suffix) => v > 0 ? `↑${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : (v < 0 ? `↓${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : '持平');
-  const report =
-`📊 出票日报 | ${today}（${weekday}）
+  return `📊 出票日报 | ${today}（${weekday}）
 
 【核心数据】（当日 / 昨日 / 月均 / 目标）
 单量 ${total.toLocaleString()}（昨${yTotal.toLocaleString()} ${arrow(totalDelta, '%')}）
@@ -5741,59 +5897,115 @@ ${tOptText}
 ${growthText}
 新增失败：
 ${newText}`;
-
-  showReportModal(report, today);
 }
 
-// 日报弹窗
-function showReportModal(text, dateStr) {
-  let modal = document.getElementById('reportModal');
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = 'reportModal';
-    modal.className = 'report-modal';
-    modal.innerHTML =
-      '<div class="report-modal-content">' +
-      '<div class="report-modal-header"><span>📋 出票日报预览</span>' +
-      '<button class="report-modal-close" onclick="document.getElementById(\'reportModal\').style.display=\'none\'">✕</button></div>' +
+// 录入/删除后异步刷新预览（不带 loading）
+async function refreshReportPreview() {
+  const text = await buildDailyReportText();
+  const ta = document.getElementById('reportModalText');
+  if (ta) ta.value = text;
+}
+
+// 打开日报面板（点筛选栏「📋 日报」触发）
+async function openReportPanel() {
+  ensureReportModal();
+  const modal = document.getElementById('reportModal');
+  modal.style.display = 'flex';
+  const today = getTodayDateStr();
+  const dateTag = document.getElementById('reportModalDate');
+  if (dateTag) dateTag.textContent = today ? `数据日期：${today}` : '';
+  // 先渲染列表（同步，立即看到）
+  renderOptLists();
+  // 下拉 + 预览异步加载
+  await loadOptReasons();
+  await refreshReportPreview();
+}
+
+// 构建弹窗 DOM（三区结构：录入+历史 / 预览）
+function ensureReportModal() {
+  if (document.getElementById('reportModal')) return;
+  const modal = document.createElement('div');
+  modal.id = 'reportModal';
+  modal.className = 'report-modal';
+  modal.innerHTML =
+    '<div class="report-modal-content">' +
+      '<div class="report-modal-header">' +
+        '<span>📋 出票日报面板<span class="date-tag" id="reportModalDate"></span></span>' +
+        '<button class="report-modal-close" id="reportModalClose">✕</button>' +
+      '</div>' +
+      '<div class="report-modal-mid">' +
+        '<div class="report-section">' +
+          '<h4>✏️ 今日优化 <span class="cnt" id="todayOptCnt">0</span></h4>' +
+          '<div class="opt-input-row">' +
+            '<select id="optReasonSelect"></select>' +
+            '<button id="optAddBtn">+ 添加</button>' +
+          '</div>' +
+          '<ul class="opt-list" id="todayOptList"></ul>' +
+        '</div>' +
+        '<div class="report-section">' +
+          '<h4>📅 昨日优化记录 <span class="cnt" id="yestOptCnt">0</span></h4>' +
+          '<ul class="opt-list" id="yestOptList"></ul>' +
+        '</div>' +
+      '</div>' +
       '<textarea class="report-modal-text" id="reportModalText" readonly></textarea>' +
       '<div class="report-modal-actions">' +
-      '<button onclick="copyReport()">📋 复制到剪贴板</button>' +
-      '</div></div>';
-    document.body.appendChild(modal);
-  }
-  document.getElementById('reportModalText').value = text;
-  modal.style.display = 'flex';
+        '<span class="hint">录入后预览自动刷新</span>' +
+        '<button id="reportCopyBtn">📋 复制到剪贴板</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(modal);
+  // 绑定静态按钮
+  document.getElementById('reportModalClose').addEventListener('click', () => modal.style.display = 'none');
+  document.getElementById('optAddBtn').addEventListener('click', addOptAction);
+  document.getElementById('reportCopyBtn').addEventListener('click', copyReport);
 }
 
-function copyReport() {
+function copyReport(ev) {
   const ta = document.getElementById('reportModalText');
+  if (!ta) return;
   ta.select();
   ta.setSelectionRange(0, ta.value.length);
   let ok = false;
   try { ok = document.execCommand('copy'); } catch (e) {}
+  const btn = ev && ev.target;
+  const flashHint = (msg) => {
+    if (!btn) { alert(msg); return; }
+    const orig = btn.textContent;
+    btn.textContent = msg;
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  };
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(ta.value).then(() => alert('✅ 已复制，可粘贴到钉钉')).catch(() => alert(ok ? '✅ 已复制' : '复制失败，请手动选择'));
+    navigator.clipboard.writeText(ta.value).then(() => flashHint('✅ 已复制')).catch(() => flashHint(ok ? '✅ 已复制' : '复制失败'));
   } else {
-    alert(ok ? '✅ 已复制，可粘贴到钉钉' : '复制失败，请手动选择文本');
+    flashHint(ok ? '✅ 已复制' : '复制失败，手动选择');
   }
 }
 
-// 绑定按钮（DOM 已加载，script 在 body 末尾）
+// 绑定按钮（筛选栏只剩「📋 日报」一个入口）
 (function bindOptButtons() {
-  const addBtn = document.getElementById('optAddBtn');
   const genBtn = document.getElementById('optGenBtn');
-  if (addBtn) addBtn.addEventListener('click', addOptAction);
-  if (genBtn) genBtn.addEventListener('click', genDailyReport);
-  // 切换月份/日期后刷新下拉（switchPeriod 是 async，用 setTimeout 等 daily_detail 加载）
-  const origSwitch = window.switchPeriod;
-  if (origSwitch) {
-    window.switchPeriod = async function (month, day, week) {
-      await origSwitch.call(this, month, day, week);
-      setTimeout(loadOptReasons, 600);
-    };
-  }
+  if (genBtn) genBtn.addEventListener('click', openReportPanel);
+  // ESC 关闭
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const m = document.getElementById('reportModal');
+      if (m) m.style.display = 'none';
+    }
+  });
+  // 点遮罩关闭
+  document.addEventListener('click', e => {
+    const m = document.getElementById('reportModal');
+    if (m && e.target === m) m.style.display = 'none';
+  });
+  // 今日列表删除按钮：事件委托（列表动态重建，不逐个绑）
+  document.addEventListener('click', e => {
+    const btn = e.target.closest && e.target.closest('.opt-list .del');
+    if (!btn) return;
+    const idx = parseInt(btn.getAttribute('data-idx'), 10);
+    if (!isNaN(idx)) delOptAction(idx);
+  });
 })();
+
 </script>
 
 <!-- ============================================================
