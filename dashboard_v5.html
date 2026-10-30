@@ -502,6 +502,7 @@
     max-height: 88vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;          /* 内容不溢出弹窗边界 */
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
   }
   .report-modal-header {
@@ -638,6 +639,8 @@
   /* 预览区（下半，占主要空间，结构化渲染） */
   .report-preview {
     flex: 1;
+    min-height: 0;             /* flex 子元素需 min-height:0 才能 overflow 滚动 */
+    overflow-y: auto;          /* 内容过长在预览区内滚动，不溢出弹窗 */
     background: rgba(10, 14, 26, 0.6);
     border: none;
     color: #e0e6f0;
@@ -645,8 +648,6 @@
     font-family: -apple-system, 'Microsoft YaHei', '微软雅黑', sans-serif;
     font-size: 13px;
     line-height: 1.75;
-    overflow: auto;
-    min-height: 220px;
     white-space: pre-wrap;
     word-break: break-all;
   }
