@@ -635,21 +635,47 @@
     padding: 6px 0;
   }
 
-  /* 预览区（下半，占主要空间） */
-  .report-modal-text {
+  /* 预览区（下半，占主要空间，结构化渲染） */
+  .report-preview {
     flex: 1;
     background: rgba(10, 14, 26, 0.6);
     border: none;
     color: #e0e6f0;
-    padding: 18px 24px;
-    font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+    padding: 20px 28px;
+    font-family: -apple-system, 'Microsoft YaHei', '微软雅黑', sans-serif;
     font-size: 14px;
-    line-height: 1.75;
-    resize: none;
-    outline: none;
-    white-space: pre;
+    line-height: 1.8;
     overflow: auto;
     min-height: 280px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .report-preview .rp-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #00e5ff;
+    margin-bottom: 4px;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+  }
+  .report-preview .rp-section {
+    color: #ffd166;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 2px;
+  }
+  .report-preview .rp-data {
+    color: #d0dae8;
+  }
+  .report-preview .rp-warn { color: #ff6b6b; font-weight: 600; }
+  .report-preview .rp-ok { color: #51cf66; font-weight: 600; }
+  .report-preview .rp-up { color: #ff8a65; }   /* 增长=坏，橙红 */
+  .report-preview .rp-down { color: #69db7c; } /* 下降=好，绿 */
+  .report-preview .rp-empty { color: #6b7c95; font-style: italic; }
+  .report-preview .rp-sub {
+    color: #a0b4cc;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 2px;
   }
   .report-modal-actions {
     padding: 10px 24px;
@@ -5941,8 +5967,50 @@ ${newText}`;
 // 录入/删除后异步刷新预览（不带 loading）
 async function refreshReportPreview() {
   const text = await buildDailyReportText();
-  const ta = document.getElementById('reportModalText');
-  if (ta) ta.value = text;
+  window.__reportText = text;  // 纯文本，供复制用
+  const box = document.getElementById('reportModalText');
+  if (box) box.innerHTML = renderReportHtml(text);
+}
+
+// 把纯文本转成结构化 HTML（板块标题高亮、⚠/✅/↑↓ 着色）
+function renderReportHtml(text) {
+  const lines = text.split('\n');
+  const sectionRe = /^【.+】/;
+  const subRe = /^(增长Top|新增失败|增长Top\d)/;
+  let html = '';
+  for (const raw of lines) {
+    const line = raw.replace(/\s+$/, '');
+    if (!line) { html += '<div style="height:6px"></div>'; continue; }
+    // 转义
+    const esc = escapeHtml(line);
+    // 标题行（📊 开头）
+    if (line.startsWith('📊')) {
+      html += `<div class="rp-title">${esc}</div>`;
+      continue;
+    }
+    // 板块标题行 【...】
+    if (sectionRe.test(line)) {
+      html += `<div class="rp-section">${colorInline(esc)}</div>`;
+      continue;
+    }
+    // 子标题（增长Top/新增失败）
+    if (subRe.test(line)) {
+      html += `<div class="rp-sub">${esc}</div>`;
+      continue;
+    }
+    // 普通数据行
+    html += `<div class="rp-data">${colorInline(esc)}</div>`;
+  }
+  return html;
+}
+
+// 行内着色：⚠ → 红，✅ → 绿，↑X → 橙，↓X → 绿
+function colorInline(s) {
+  return s
+    .replace(/⚠/g, '<span class="rp-warn">⚠</span>')
+    .replace(/✅/g, '<span class="rp-ok">✅</span>')
+    .replace(/(↑[\d.]+%?|↑\d+单)/g, '<span class="rp-up">$1</span>')
+    .replace(/(↓[\d.]+%?|↓\d+单)/g, '<span class="rp-down">$1</span>');
 }
 
 // 打开日报面板（点筛选栏「📋 日报」触发）
@@ -5988,7 +6056,7 @@ function ensureReportModal() {
           '<ul class="opt-list" id="yestOptList"></ul>' +
         '</div>' +
       '</div>' +
-      '<textarea class="report-modal-text" id="reportModalText" readonly></textarea>' +
+      '<div class="report-preview" id="reportModalText"></div>' +
       '<div class="report-modal-actions">' +
         '<span class="hint">录入后预览自动刷新</span>' +
         '<button id="reportCopyBtn">📋 复制到剪贴板</button>' +
@@ -6002,12 +6070,8 @@ function ensureReportModal() {
 }
 
 function copyReport(ev) {
-  const ta = document.getElementById('reportModalText');
-  if (!ta) return;
-  ta.select();
-  ta.setSelectionRange(0, ta.value.length);
-  let ok = false;
-  try { ok = document.execCommand('copy'); } catch (e) {}
+  const text = window.__reportText || '';
+  if (!text) return;
   const btn = ev && ev.target;
   const flashHint = (msg) => {
     if (!btn) { alert(msg); return; }
@@ -6016,9 +6080,19 @@ function copyReport(ev) {
     setTimeout(() => { btn.textContent = orig; }, 1500);
   };
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(ta.value).then(() => flashHint('✅ 已复制')).catch(() => flashHint(ok ? '✅ 已复制' : '复制失败'));
+    navigator.clipboard.writeText(text).then(() => flashHint('✅ 已复制')).catch(() => flashHint('复制失败，手动选择预览区复制'));
   } else {
-    flashHint(ok ? '✅ 已复制' : '复制失败，手动选择');
+    // 降级：建临时 textarea 选中复制
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    flashHint(ok ? '✅ 已复制' : '复制失败，手动选择预览区复制');
   }
 }
 
