@@ -5882,7 +5882,7 @@ async function buildDailyReportText() {
       return `${i + 1}.${shortReason(r, 30)}→昨日未出现该根因`;
     }).join('\n');
   } else {
-    yOptText = `（${yOptDate || '昨日'}无优化记录）`;
+    yOptText = '（昨日无优化记录）';
   }
 
   // —— 今日优化（日历今天记的，optToday 已在函数开头声明）——
@@ -5909,14 +5909,11 @@ async function buildDailyReportText() {
     : '（无新增）';
 
   // —— 拼日报 ——
-  // 标题 = 日历今天（今天发的日报）；核心数据用 dataToday（最新可得，可能≠日历今天）
   const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(optToday + 'T00:00:00').getDay()];
   const arrow = (v, suffix) => v > 0 ? `↑${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : (v < 0 ? `↓${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : '持平');
-  const isPartial = (optToday === dataToday);  // 日历今天=数据最新日 → 当天部分数据（17:00后）
-  const dataNote = isPartial ? `（数据 ${dataToday} 0:00-17:00 部分）` : `（数据截至 ${dataToday}）`;
-  return `📊 出票日报 | ${optToday}（${weekday}）${dataNote}
+  return `📊 出票日报 | ${optToday}（${weekday}）
 
-【核心数据】（当日 ${dataToday} / 昨日 ${dataYest || '—'} / 月均 / 目标）
+【核心数据】（当日 / 昨日 / 月均 / 目标）
 单量 ${total.toLocaleString()}（昨${yTotal.toLocaleString()} ${arrow(totalDelta, '%')}）
 自动化覆盖率 ${cov}%（昨${yCov}% / 月均${mCovAvg}%）
 自动化成功率 ${succ}%（昨${ySucc}% ${arrow(succDelta, 'pp')} / 月均${mSuccAvg}% / 目标${target}% ${succ >= target ? '✅' : '⚠'}）
@@ -5928,13 +5925,13 @@ B 转人工 ${B}（${bR}%）
 C 政策人工 ${C}（${cR}%）
 D 异常 ${D}（${dR}%）
 
-【昨日优化 → 效果】（${yOptDate || '—'} 记录 + ${yOptDate || '—'} vs 前日对比）
+【昨日优化 → 效果】
 ${yOptText}
 
-【今日优化】（${optToday} 录入，基于 ${yOptDate || '—'} 数据）
+【今日优化】
 ${tOptText}
 
-【⚠今日重点】（基于 ${yOptDate || '—'} 昨日数据）
+【⚠今日重点】
 增长Top3：
 ${growthText}
 新增失败：
