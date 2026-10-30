@@ -5815,27 +5815,32 @@ function delOptAction(idx) {
 }
 
 // 生成日报文本（纯函数，返回字符串）
-// 时序：核心数据=最新数据日；今日优化=日历今天记的；昨日优化+今日重点=昨日数据
+// 时序（以日历10-30、数据最新10-29为例）：
+//   标题 = 日历今天(10-30)
+//   核心数据/4路径 = 数据最新日(10-29)；"昨日"对比 = 数据前一天(10-28)
+//   今日优化 = 日历今天(10-30)记的（基于昨日数据做的）
+//   昨日优化→效果 = 昨日记录日(10-29)记的 + count(10-29) vs prev_count(10-28)
+//   今日重点 = 昨日记录日(10-29)的 failB（增长Top/新增失败）
 async function buildDailyReportText() {
-  const dataToday = getDataTodayStr();       // 核心数据日（最新数据，可能当天部分）
-  const yOptDate = getYestOptDateStr();       // 昨日优化记录日 + 今日重点数据日
+  const optToday = getCalendarToday();        // 日历今天（标题 + 今日优化记录日）
+  const dataToday = getDataTodayStr();         // 核心数据日（最新可得）
+  const dataYest = getDataYestStr();           // 核心数据"昨日"对比基准（dataToday 前一天）
+  const yOptDate = getYestOptDateStr();         // 昨日优化记录日 + 今日重点数据日
   if (!dataToday) return '当前无数据';
 
-  // 加载昨日数据的 daily_detail（用于昨日优化效果 + 今日重点）
-  if (yOptDate) {
-    const yYm = yOptDate.substring(0, 7);
-    await ensureMonthDetail(yYm);
-  }
-  const ym = dataToday.substring(0, 7);
-  await ensureMonthDetail(ym);
+  // 加载所需月份的 daily_detail
+  const monthsToLoad = new Set([dataToday.substring(0, 7)]);
+  if (dataYest) monthsToLoad.add(dataYest.substring(0, 7));
+  if (yOptDate) monthsToLoad.add(yOptDate.substring(0, 7));
+  for (const ym of monthsToLoad) await ensureMonthDetail(ym);
 
-  const m = DATA.months[ym];
+  const m = DATA.months[dataToday.substring(0, 7)];
   const dToday = m.daily.find(d => d.date === dataToday);
   if (!dToday) return '今日数据缺失';
 
-  // —— 核心数据：对比昨日完整数据（yOptDate，因为核心数据的"昨日"就是昨天完整数据）——
-  const mYest = yOptDate ? DATA.months[yOptDate.substring(0, 7)] : null;
-  const dYest = mYest ? mYest.daily.find(d => d.date === yOptDate) : null;
+  // —— 核心数据：当日=dataToday，昨日对比=dataYest（不是 yOptDate）——
+  const mYest = dataYest ? DATA.months[dataYest.substring(0, 7)] : null;
+  const dYest = mYest ? mYest.daily.find(d => d.date === dataYest) : null;
 
   const total = dToday.total;
   const yTotal = dYest ? dYest.total : 0;
@@ -5850,7 +5855,7 @@ async function buildDailyReportText() {
   const bDelta = yB ? ((B - yB) / yB * 100) : 0;
   const mSuccAvg = (m.summary && m.summary.auto_succ_rate) ? m.summary.auto_succ_rate.toFixed(2) : '—';
   const mCovAvg = (m.summary && m.summary.auto_coverage_rate) ? m.summary.auto_coverage_rate.toFixed(2) : '—';
-  const target = getMonthTarget(ym);
+  const target = getMonthTarget(dataToday.substring(0, 7));
 
   // —— 4路径（核心数据日）——
   const A = dToday.A, C = dToday.C, D = dToday.D;
@@ -5859,8 +5864,10 @@ async function buildDailyReportText() {
   const cR = (C / total * 100).toFixed(1);
   const dR = (D / total * 100).toFixed(1);
 
-  // —— 昨日优化 → 效果（昨日记录 + 昨日数据的 failB：count=昨天, prev_count=前天）——
-  const failBYest = (mYest && mYest.daily_detail && mYest.daily_detail[yOptDate] && mYest.daily_detail[yOptDate].fail_reasons_B) || [];
+  // —— 昨日优化 → 效果（昨日记录 + yOptDate 的 failB：count=那天, prev_count=前一天）——
+  // 注意：failB 从 yOptDate 自己的月份取（不是 dataYest 月份，避免跨月取不到）
+  const mYOpt = yOptDate ? DATA.months[yOptDate.substring(0, 7)] : null;
+  const failBYest = (mYOpt && mYOpt.daily_detail && mYOpt.daily_detail[yOptDate] && mYOpt.daily_detail[yOptDate].fail_reasons_B) || [];
   const actions = getOptActions();
   const yActions = yOptDate ? (actions[yOptDate] || []) : [];
   let yOptText;
@@ -5878,8 +5885,7 @@ async function buildDailyReportText() {
     yOptText = `（${yOptDate || '昨日'}无优化记录）`;
   }
 
-  // —— 今日优化（日历今天记的）——
-  const optToday = getCalendarToday();
+  // —— 今日优化（日历今天记的，optToday 已在函数开头声明）——
   const tActions = actions[optToday] || [];
   const tOptText = tActions.length
     ? tActions.map((r, i) => `${i + 1}.${shortReason(r, 45)}`).join('\n')
@@ -5902,15 +5908,15 @@ async function buildDailyReportText() {
     ? newFails.map((f, i) => `${i + 1}.${shortReason(f.reason, 45)}`).join('\n')
     : '（无新增）';
 
-  // —— 拼日报（标题用核心数据日，注明数据范围）——
-  const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(dataToday + 'T00:00:00').getDay()];
+  // —— 拼日报 ——
+  // 标题 = 日历今天（今天发的日报）；核心数据用 dataToday（最新可得，可能≠日历今天）
+  const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(optToday + 'T00:00:00').getDay()];
   const arrow = (v, suffix) => v > 0 ? `↑${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : (v < 0 ? `↓${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : '持平');
-  const calToday = getCalendarToday();
-  const isPartial = (calToday === dataToday);  // 日历今天=数据最新日 → 当天部分数据
-  const dataRange = isPartial ? '（0:00-17:00 部分）' : '';
-  return `📊 出票日报 | ${dataToday}（${weekday}）${dataRange}
+  const isPartial = (optToday === dataToday);  // 日历今天=数据最新日 → 当天部分数据（17:00后）
+  const dataNote = isPartial ? `（数据 ${dataToday} 0:00-17:00 部分）` : `（数据截至 ${dataToday}）`;
+  return `📊 出票日报 | ${optToday}（${weekday}）${dataNote}
 
-【核心数据】（当日 / 昨日 / 月均 / 目标）
+【核心数据】（当日 ${dataToday} / 昨日 ${dataYest || '—'} / 月均 / 目标）
 单量 ${total.toLocaleString()}（昨${yTotal.toLocaleString()} ${arrow(totalDelta, '%')}）
 自动化覆盖率 ${cov}%（昨${yCov}% / 月均${mCovAvg}%）
 自动化成功率 ${succ}%（昨${ySucc}% ${arrow(succDelta, 'pp')} / 月均${mSuccAvg}% / 目标${target}% ${succ >= target ? '✅' : '⚠'}）
@@ -5922,13 +5928,13 @@ B 转人工 ${B}（${bR}%）
 C 政策人工 ${C}（${cR}%）
 D 异常 ${D}（${dR}%）
 
-【昨日优化 → 效果】（基于 ${yOptDate} 数据）
+【昨日优化 → 效果】（${yOptDate || '—'} 记录 + ${yOptDate || '—'} vs 前日对比）
 ${yOptText}
 
-【今日优化】（${optToday} 录入，基于昨日数据）
+【今日优化】（${optToday} 录入，基于 ${yOptDate || '—'} 数据）
 ${tOptText}
 
-【⚠今日重点】（基于 ${yOptDate} 昨日数据）
+【⚠今日重点】（基于 ${yOptDate || '—'} 昨日数据）
 增长Top3：
 ${growthText}
 新增失败：
