@@ -5937,7 +5937,10 @@ async function buildDailyReportText() {
   // —— 拼日报 ——
   const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(optToday + 'T00:00:00').getDay()];
   const arrow = (v, suffix) => v > 0 ? `↑${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : (v < 0 ? `↓${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : '持平');
-  return `📊 出票日报 | ${optToday}（${weekday}）
+  // 日历今天=数据最新日 → 今天数据已更新（17:10 盘中快照，约95%完整），标题标注避免误读环比
+  const isPartial = (optToday === dataToday);
+  const partialTag = isPartial ? ' · 盘中快照' : '';
+  return `📊 出票日报 | ${optToday}（${weekday}）${partialTag}
 
 【核心数据】（当日 / 昨日 / 月均 / 目标）
 单量 ${total.toLocaleString()}（昨${yTotal.toLocaleString()} ${arrow(totalDelta, '%')}）
