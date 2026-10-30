@@ -5942,7 +5942,7 @@ async function buildDailyReportText() {
 【核心数据】（当日 / 昨日 / 月均 / 目标）
 单量 ${total.toLocaleString()}（昨${yTotal.toLocaleString()} ${arrow(totalDelta, '%')}）
 自动化覆盖率 ${cov}%（昨${yCov}% / 月均${mCovAvg}%）
-自动化成功率 ${succ}%（昨${ySucc}% ${arrow(succDelta, 'pp')} / 月均${mSuccAvg}% / 目标${target}% ${succ >= target ? '✅' : '⚠'}）
+自动化成功率 ${succ}%（昨${ySucc}% ${arrow(succDelta, '')} / 月均${mSuccAvg}% / 目标${target}% ${succ >= target ? '✅' : '⚠'}）
 订单转人工 ${B}（昨${yB} ${arrow(bDelta, '%')}）
 
 【4路径分布】
