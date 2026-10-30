@@ -1875,7 +1875,15 @@ async function switchPeriod(month, day, week) {
     const d0 = CURRENT_DATA.daily[0].date;
     const d1 = CURRENT_DATA.daily[CURRENT_DATA.daily.length - 1].date;
     const fmt = d => d.substring(5, 7) + "月" + d.substring(8, 10) + "日";
-    document.getElementById("navDateRange").textContent = day !== "all" ? `${month} ${day} 日` : `${fmt(d0)} ~ ${fmt(d1)}`;
+    // 2026-10-26：周期覆盖"今天"时打"盘中"徽标——今日数据是 17:10 盘中快照
+    // （约 95% 完整），明早 08:35 强拉完整版自动校正；防止读者把盘中数当终值
+    const _n = new Date();
+    const _today = _n.getFullYear() + "-" + String(_n.getMonth() + 1).padStart(2, "0") + "-" + String(_n.getDate()).padStart(2, "0");
+    const _selDate = day !== "all" ? `${month}-${String(day).padStart(2, "0")}` : d1;
+    const _label = day !== "all" ? `${month} ${day} 日` : `${fmt(d0)} ~ ${fmt(d1)}`;
+    document.getElementById("navDateRange").innerHTML = _label + (_selDate === _today
+      ? ' <span style="background:#c27803;color:#fff;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:600" title="今日为盘中快照（约95%完整），明早08:35自动校正为终值">盘中</span>'
+      : "");
   }
   document.getElementById("navTotalOrders").textContent = `${s.total_orders.toLocaleString()} 单`;
   document.getElementById("navDimCount").textContent =

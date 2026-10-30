@@ -88,6 +88,12 @@ schtasks /Create /TN "auto_ticket_dashboard_sync_30min" /SC MINUTE /MO 120 /F ^
 if %errorLevel% neq 0 echo [警告] 兜底任务注册失败
 
 echo.
+echo [2026-10-26 新增] 注册 17:10 盘中快照任务（拉今日盘中数据 --force → gen → 推送，18:00 下班前可看当天）
+schtasks /Create /TN "auto_ticket_dashboard_sync_eod" /SC DAILY /ST 17:10 /RL HIGHEST /F ^
+    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --days 1 --today --force --trigger"
+if %errorLevel% neq 0 echo [警告] 盘中快照任务注册失败
+
+echo.
 echo [6/6] 立即启动 daemon 并验证...
 cd /d "%PROJ%"
 "%PY%" -m auto_sync daemon
@@ -96,19 +102,22 @@ timeout /t 5 /nobreak >nul
 
 echo.
 echo ============================================
-echo   完成。三个任务都已指向当前项目目录：
+echo   完成。四个任务都已指向当前项目目录：
 echo     auto_ticket_dashboard_sync         开机自启 daemon（watcher+token保活）
 echo     auto_ticket_dashboard_sync_fetch   每日 08:35 拉数+生成+推送（主路径）
 echo     auto_ticket_dashboard_sync_30min   每 30 分钟补拉昨天（兜底，按文件驱动）
+echo     auto_ticket_dashboard_sync_eod     每日 17:10 盘中快照（今日数据 --force，18:00 可看当天）
 echo.
 echo   查看任务:
 echo     schtasks /Query /TN "auto_ticket_dashboard_sync" /V /FO LIST
 echo     schtasks /Query /TN "auto_ticket_dashboard_sync_fetch" /V /FO LIST
 echo     schtasks /Query /TN "auto_ticket_dashboard_sync_30min" /V /FO LIST
+echo     schtasks /Query /TN "auto_ticket_dashboard_sync_eod" /V /FO LIST
 echo.
 echo   删除任务（如需）:
 echo     schtasks /Delete /TN "auto_ticket_dashboard_sync" /F
 echo     schtasks /Delete /TN "auto_ticket_dashboard_sync_fetch" /F
 echo     schtasks /Delete /TN "auto_ticket_dashboard_sync_30min" /F
+echo     schtasks /Delete /TN "auto_ticket_dashboard_sync_eod" /F
 echo ============================================
 pause
