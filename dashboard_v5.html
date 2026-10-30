@@ -461,6 +461,108 @@
     font-weight: 700;
     text-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
   }
+  /* v11.10 优化记录 + 日报生成 */
+  .month-switcher #optReasonSelect {
+    max-width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .month-switcher .opt-btn {
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: #00e5ff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .month-switcher .opt-btn:hover {
+    background: rgba(0, 229, 255, 0.22);
+    border-color: rgba(0, 229, 255, 0.5);
+  }
+  .month-switcher .opt-btn.opt-gen {
+    background: rgba(0, 229, 255, 0.2);
+  }
+  /* 日报弹窗 */
+  .report-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+  }
+  .report-modal-content {
+    background: linear-gradient(135deg, rgba(15, 22, 38, 0.98) 0%, rgba(10, 14, 26, 0.98) 100%);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 16px;
+    width: 620px;
+    max-width: 92vw;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+  }
+  .report-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #00e5ff;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .report-modal-close {
+    background: none;
+    border: none;
+    color: #a0b4cc;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+  .report-modal-close:hover { color: #ff4757; }
+  .report-modal-text {
+    flex: 1;
+    background: rgba(10, 14, 26, 0.6);
+    border: none;
+    color: #e0e6f0;
+    padding: 16px 20px;
+    font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    white-space: pre;
+    overflow: auto;
+  }
+  .report-modal-actions {
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .report-modal-actions button {
+    background: rgba(0, 229, 255, 0.15);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: #00e5ff;
+    padding: 7px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .report-modal-actions button:hover {
+    background: rgba(0, 229, 255, 0.25);
+  }
 
   .empty-state {
     text-align: center;
@@ -1059,6 +1161,10 @@
         <select id="daySelect">
           <option value="all">全月</option>
         </select>
+        <label style="margin-left:6px">✏️ 优化</label>
+        <select id="optReasonSelect" title="选当日失败根因记为今日优化"><option value="">— 选异常根因 —</option></select>
+        <button id="optAddBtn" class="opt-btn" title="把选中的根因记为今日优化">+ 今日</button>
+        <button id="optGenBtn" class="opt-btn opt-gen" title="生成当日日报文本">📋 日报</button>
         <div class="month-info" id="monthInfo"></div>
       </div>
       <div id="mainArea">
@@ -1166,7 +1272,8 @@ async function loadData() {
     await loadTargets();  // v11.4：月度目标先于首屏渲染加载
     switchPeriod(DATA.current_month, "all");
     // v10.16：预取当月 daily_detail（后台加载，首次点日视图无等待）
-    ensureMonthDetail(DATA.current_month);
+    // v11.10：daily_detail 加载完后填充优化根因下拉
+    ensureMonthDetail(DATA.current_month).then(() => loadOptReasons());
   } catch (e) {
     document.getElementById("mainArea").innerHTML =
       '<div class="loading" style="color:#ff4757">❌ 数据加载失败：' + e.message +
@@ -5455,6 +5562,237 @@ const AnimEngine = (() => {
     });
   });
   mo.observe(main, { childList: true, subtree: true });
+})();
+
+/* ============== v11.10 优化记录 + 日报生成 ==============
+   每天在筛选栏选当日失败根因 → 存 localStorage → 点「日报」生成5块日报文本。
+   昨日优化记录 + 今日该根因数据(count/prev_count) → 自动拼「昨日优化→效果」。
+   纯前端，不依赖后端；localStorage 按日期存，换设备需重新录入（够用，用户主要单机操作）。
+   ====================================================================== */
+const OPT_LS_KEY = 'ticket_opt_actions_v1';
+
+function getOptActions() {
+  try { return JSON.parse(localStorage.getItem(OPT_LS_KEY) || '{}'); }
+  catch (e) { return {}; }
+}
+function saveOptActions(obj) {
+  localStorage.setItem(OPT_LS_KEY, JSON.stringify(obj));
+}
+// 「今天」= 当月 daily 最新那天（数据最新日期，不是系统日期）
+function getTodayDateStr() {
+  const m = DATA.months[CURRENT_MONTH];
+  if (m && m.daily && m.daily.length) return m.daily[m.daily.length - 1].date;
+  return '';
+}
+function getYesterdayDateStr() {
+  const m = DATA.months[CURRENT_MONTH];
+  if (m && m.daily && m.daily.length >= 2) return m.daily[m.daily.length - 2].date;
+  return '';
+}
+function escapeAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function shortReason(r, n) {
+  r = String(r);
+  return r.length > n ? r.slice(0, n) + '…' : r;
+}
+
+// 加载当日 fail_reasons_B 填下拉
+async function loadOptReasons() {
+  const today = getTodayDateStr();
+  if (!today) return;
+  const ym = today.substring(0, 7);
+  await ensureMonthDetail(ym);
+  const m = DATA.months[ym];
+  const dd = m && m.daily_detail && m.daily_detail[today];
+  const reasons = (dd && dd.fail_reasons_B) || [];
+  const sel = document.getElementById('optReasonSelect');
+  if (!sel) return;
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">— 选异常根因 —</option>' +
+    reasons.map(r =>
+      `<option value="${escapeAttr(r.reason)}">${escapeAttr(shortReason(r.reason, 28))} (${r.count}次)</option>`
+    ).join('');
+  if (cur) sel.value = cur;
+}
+
+// 添加今日优化
+function addOptAction() {
+  const sel = document.getElementById('optReasonSelect');
+  const reason = sel.value;
+  if (!reason) { alert('请先选一个异常根因'); return; }
+  const today = getTodayDateStr();
+  if (!today) { alert('当前无数据日期'); return; }
+  const actions = getOptActions();
+  if (!actions[today]) actions[today] = [];
+  if (!actions[today].includes(reason)) {
+    actions[today].push(reason);
+    saveOptActions(actions);
+  }
+  sel.value = '';
+  alert('✅ 已记录今日优化：\n' + shortReason(reason, 40));
+}
+
+// 生成日报
+async function genDailyReport() {
+  const today = getTodayDateStr();
+  const yest = getYesterdayDateStr();
+  if (!today) { alert('当前无数据'); return; }
+  const ym = today.substring(0, 7);
+  await ensureMonthDetail(ym);
+  const m = DATA.months[ym];
+  const dToday = m.daily.find(d => d.date === today);
+  const dYest = yest ? m.daily.find(d => d.date === yest) : null;
+  if (!dToday) { alert('今日数据缺失'); return; }
+  const ddToday = m.daily_detail && m.daily_detail[today];
+  const failB = (ddToday && ddToday.fail_reasons_B) || [];
+
+  // —— 核心数据 ——
+  const total = dToday.total;
+  const yTotal = dYest ? dYest.total : 0;
+  const totalDelta = yTotal ? ((total - yTotal) / yTotal * 100) : 0;
+  const cov = dToday.auto_coverage_rate;
+  const yCov = dYest ? dYest.auto_coverage_rate : 0;
+  const succ = dToday.auto_succ_rate;
+  const ySucc = dYest ? dYest.auto_succ_rate : 0;
+  const succDelta = succ - ySucc;
+  const B = dToday.B;
+  const yB = dYest ? dYest.B : 0;
+  const bDelta = yB ? ((B - yB) / yB * 100) : 0;
+  const mSuccAvg = (m.summary && m.summary.auto_succ_rate) ? m.summary.auto_succ_rate.toFixed(2) : '—';
+  const mCovAvg = (m.summary && m.summary.auto_coverage_rate) ? m.summary.auto_coverage_rate.toFixed(2) : '—';
+  const target = getMonthTarget(ym);
+
+  // —— 4路径 ——
+  const A = dToday.A, C = dToday.C, D = dToday.D;
+  const aR = (A / total * 100).toFixed(1);
+  const bR = (B / total * 100).toFixed(1);
+  const cR = (C / total * 100).toFixed(1);
+  const dR = (D / total * 100).toFixed(1);
+
+  // —— 昨日优化 → 今日效果（localStorage 昨日记录 + 今日 failB 匹配）——
+  const actions = getOptActions();
+  const yActions = actions[yest] || [];
+  let yOptText;
+  if (yActions.length) {
+    yOptText = yActions.map((r, i) => {
+      const f = failB.find(x => x.reason === r);
+      if (f) {
+        const cnt = f.count, pcnt = f.prev_count || 0;
+        const arrow = pcnt ? (cnt < pcnt ? `↓${Math.abs(((cnt - pcnt) / pcnt * 100)).toFixed(0)}%` : `↑${((cnt - pcnt) / pcnt * 100).toFixed(0)}%`) : '新增';
+        return `${i + 1}.${shortReason(r, 30)}→今日${cnt}次（昨${pcnt} ${arrow}）`;
+      }
+      return `${i + 1}.${shortReason(r, 30)}→今日未出现该根因`;
+    }).join('\n');
+  } else {
+    yOptText = '（昨日无优化记录）';
+  }
+
+  // —— 今日优化 ——
+  const tActions = actions[today] || [];
+  const tOptText = tActions.length
+    ? tActions.map((r, i) => `${i + 1}.${shortReason(r, 45)}`).join('\n')
+    : '（今日未录入，点「+今日」添加）';
+
+  // —— 增长Top3（count - prev_count 降序，取正增长）——
+  const growth = failB
+    .map(f => ({ reason: f.reason, count: f.count, prev: f.prev_count || 0, delta: f.count - (f.prev_count || 0) }))
+    .filter(g => g.delta > 0)
+    .sort((a, b) => b.delta - a.delta)
+    .slice(0, 3);
+  const growthText = growth.length
+    ? growth.map((g, i) => `${i + 1}.${shortReason(g.reason, 40)} ${g.count}单（昨${g.prev} ↑${g.delta}单）`).join('\n')
+    : '（无明显增长）';
+
+  // —— 新增失败（prev_count=0 或不存在，按今日次数降序取Top5）——
+  const newFails = failB.filter(f => !f.prev_count || f.prev_count === 0)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5);
+  const newText = newFails.length
+    ? newFails.map((f, i) => `${i + 1}.${shortReason(f.reason, 45)}`).join('\n')
+    : '（无新增）';
+
+  // —— 拼日报 ——
+  const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(today + 'T00:00:00').getDay()];
+  const arrow = (v, suffix) => v > 0 ? `↑${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : (v < 0 ? `↓${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : '持平');
+  const report =
+`📊 出票日报 | ${today}（${weekday}）
+
+【核心数据】（当日 / 昨日 / 月均 / 目标）
+单量 ${total.toLocaleString()}（昨${yTotal.toLocaleString()} ${arrow(totalDelta, '%')}）
+自动化覆盖率 ${cov}%（昨${yCov}% / 月均${mCovAvg}%）
+自动化成功率 ${succ}%（昨${ySucc}% ${arrow(succDelta, 'pp')} / 月均${mSuccAvg}% / 目标${target}% ${succ >= target ? '✅' : '⚠'}）
+订单转人工 ${B}（昨${yB} ${arrow(bDelta, '%')}）
+
+【4路径分布】
+A 自动成功 ${A}（${aR}%）
+B 转人工 ${B}（${bR}%）
+C 政策人工 ${C}（${cR}%）
+D 异常 ${D}（${dR}%）
+
+【昨日优化 → 效果】
+${yOptText}
+
+【今日优化】
+${tOptText}
+
+【⚠今日重点】
+增长Top3：
+${growthText}
+新增失败：
+${newText}`;
+
+  showReportModal(report, today);
+}
+
+// 日报弹窗
+function showReportModal(text, dateStr) {
+  let modal = document.getElementById('reportModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'reportModal';
+    modal.className = 'report-modal';
+    modal.innerHTML =
+      '<div class="report-modal-content">' +
+      '<div class="report-modal-header"><span>📋 出票日报预览</span>' +
+      '<button class="report-modal-close" onclick="document.getElementById(\'reportModal\').style.display=\'none\'">✕</button></div>' +
+      '<textarea class="report-modal-text" id="reportModalText" readonly></textarea>' +
+      '<div class="report-modal-actions">' +
+      '<button onclick="copyReport()">📋 复制到剪贴板</button>' +
+      '</div></div>';
+    document.body.appendChild(modal);
+  }
+  document.getElementById('reportModalText').value = text;
+  modal.style.display = 'flex';
+}
+
+function copyReport() {
+  const ta = document.getElementById('reportModalText');
+  ta.select();
+  ta.setSelectionRange(0, ta.value.length);
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(ta.value).then(() => alert('✅ 已复制，可粘贴到钉钉')).catch(() => alert(ok ? '✅ 已复制' : '复制失败，请手动选择'));
+  } else {
+    alert(ok ? '✅ 已复制，可粘贴到钉钉' : '复制失败，请手动选择文本');
+  }
+}
+
+// 绑定按钮（DOM 已加载，script 在 body 末尾）
+(function bindOptButtons() {
+  const addBtn = document.getElementById('optAddBtn');
+  const genBtn = document.getElementById('optGenBtn');
+  if (addBtn) addBtn.addEventListener('click', addOptAction);
+  if (genBtn) genBtn.addEventListener('click', genDailyReport);
+  // 切换月份/日期后刷新下拉（switchPeriod 是 async，用 setTimeout 等 daily_detail 加载）
+  const origSwitch = window.switchPeriod;
+  if (origSwitch) {
+    window.switchPeriod = async function (month, day, week) {
+      await origSwitch.call(this, month, day, week);
+      setTimeout(loadOptReasons, 600);
+    };
+  }
 })();
 </script>
 
