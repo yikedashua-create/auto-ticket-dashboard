@@ -6091,8 +6091,10 @@ function ensureReportModal() {
   modal.style.zIndex = '9999';
   modal.style.left = '0';
   modal.style.top = '0';
-  modal.style.width = '100%';
-  modal.style.height = '100%';
+  modal.style.background = 'rgba(0, 0, 0, 0.65)';
+  modal.style.backdropFilter = 'blur(4px)';
+  modal.style.alignItems = 'center';
+  modal.style.justifyContent = 'center';
   modal.style.display = 'none';
   modal.innerHTML =
     '<div class="report-modal-content">' +
