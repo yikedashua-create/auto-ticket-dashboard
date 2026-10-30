@@ -5689,17 +5689,38 @@ function getOptActions() {
 function saveOptActions(obj) {
   localStorage.setItem(OPT_LS_KEY, JSON.stringify(obj));
 }
-// 「今天」= 当月 daily 最新那天（数据最新日期，不是系统日期）
-function getTodayDateStr() {
+// 数据最新日（daily 最后一条，可能当天部分数据）
+function getDataTodayStr() {
   const m = DATA.months[CURRENT_MONTH];
   if (m && m.daily && m.daily.length) return m.daily[m.daily.length - 1].date;
   return '';
 }
-function getYesterdayDateStr() {
+// 数据最新前一天
+function getDataYestStr() {
   const m = DATA.months[CURRENT_MONTH];
   if (m && m.daily && m.daily.length >= 2) return m.daily[m.daily.length - 2].date;
   return '';
 }
+// 日历今天（系统日期，"今日优化"记录归属这天）
+function getCalendarToday() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const mo = String(d.getMonth() + 1).padStart(2, '0');
+  const da = String(d.getDate()).padStart(2, '0');
+  return `${y}-${mo}-${da}`;
+}
+// 昨日优化记录日 + 今日重点数据日（基于"昨天数据"）
+// 规则：日历今天≠数据最新日（数据还是昨天的）→ 昨日=数据最新日
+//       日历今天=数据最新日（今天数据已更新）→ 昨日=数据最新前一天
+function getYestOptDateStr() {
+  const calToday = getCalendarToday();
+  const dataToday = getDataTodayStr();
+  if (!dataToday) return '';
+  return (calToday === dataToday) ? getDataYestStr() : dataToday;
+}
+// 兼容旧引用
+function getTodayDateStr() { return getDataTodayStr(); }
+function getYesterdayDateStr() { return getDataYestStr(); }
 function escapeAttr(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
@@ -5708,19 +5729,19 @@ function shortReason(r, n) {
   return r.length > n ? r.slice(0, n) + '…' : r;
 }
 
-// 加载当日 fail_reasons_B 填下拉（弹窗内的下拉）
+// 加载昨日数据 fail_reasons_B 填下拉（优化基于昨天数据做的）
 async function loadOptReasons() {
-  const today = getTodayDateStr();
-  if (!today) return;
-  const ym = today.substring(0, 7);
+  const yOptDate = getYestOptDateStr();
+  if (!yOptDate) return;
+  const ym = yOptDate.substring(0, 7);
   await ensureMonthDetail(ym);
   const m = DATA.months[ym];
-  const dd = m && m.daily_detail && m.daily_detail[today];
+  const dd = m && m.daily_detail && m.daily_detail[yOptDate];
   const reasons = (dd && dd.fail_reasons_B) || [];
   const sel = document.getElementById('optReasonSelect');
   if (!sel) return;
   const cur = sel.value;
-  sel.innerHTML = '<option value="">— 选今日要处理的异常根因 —</option>' +
+  sel.innerHTML = '<option value="">— 选昨日数据的异常根因 —</option>' +
     reasons.map(r =>
       `<option value="${escapeAttr(r.reason)}">${escapeAttr(shortReason(r.reason, 32))} (${r.count}次)</option>`
     ).join('');
@@ -5729,11 +5750,11 @@ async function loadOptReasons() {
 
 // 渲染今日/昨日优化列表
 function renderOptLists() {
-  const today = getTodayDateStr();
-  const yest = getYesterdayDateStr();
+  const optToday = getCalendarToday();      // 今日优化记录日（日历今天）
+  const yOptDate = getYestOptDateStr();      // 昨日优化记录日
   const actions = getOptActions();
-  const tList = actions[today] || [];
-  const yList = actions[yest] || [];
+  const tList = actions[optToday] || [];
+  const yList = yOptDate ? (actions[yOptDate] || []) : [];
 
   const tEl = document.getElementById('todayOptList');
   const yEl = document.getElementById('yestOptList');
@@ -5750,13 +5771,13 @@ function renderOptLists() {
           `<button class="del" data-idx="${i}" title="删除">×</button></li>`
         ).join('')
       : '<div class="opt-empty">今日还没记录，上方下拉选一个添加</div>';
-    // 添加新条目后自动滚到底部（让最新一条可见）
     if (wasAtBottom) tEl.scrollTop = tEl.scrollHeight;
   }
   if (yEl) {
+    const yLabel = yOptDate ? `（${yOptDate} 记录）` : '';
     yEl.innerHTML = yList.length
       ? yList.map((r, i) => `<li><span class="idx">${i + 1}.</span><span class="txt">${escapeHtml(r)}</span></li>`).join('')
-      : '<div class="opt-empty">昨日无记录</div>';
+      : `<div class="opt-empty">昨日（${yOptDate || '—'}）无记录</div>`;
   }
 }
 
@@ -5764,17 +5785,16 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-// 添加今日优化（无 alert，录入后即时刷新列表 + 预览）
+// 添加今日优化（无 alert，录入后即时刷新列表 + 预览；记录挂"日历今天"名下）
 function addOptAction() {
   const sel = document.getElementById('optReasonSelect');
   const reason = sel ? sel.value : '';
   if (!reason) return;
-  const today = getTodayDateStr();
-  if (!today) return;
+  const optToday = getCalendarToday();
   const actions = getOptActions();
-  if (!actions[today]) actions[today] = [];
-  if (!actions[today].includes(reason)) {
-    actions[today].push(reason);
+  if (!actions[optToday]) actions[optToday] = [];
+  if (!actions[optToday].includes(reason)) {
+    actions[optToday].push(reason);
     saveOptActions(actions);
   }
   sel.value = '';
@@ -5784,31 +5804,39 @@ function addOptAction() {
 
 // 删除今日某条
 function delOptAction(idx) {
-  const today = getTodayDateStr();
+  const optToday = getCalendarToday();
   const actions = getOptActions();
-  if (!actions[today]) return;
-  actions[today].splice(idx, 1);
-  if (actions[today].length === 0) delete actions[today];
+  if (!actions[optToday]) return;
+  actions[optToday].splice(idx, 1);
+  if (actions[optToday].length === 0) delete actions[optToday];
   saveOptActions(actions);
   renderOptLists();
   refreshReportPreview();
 }
 
 // 生成日报文本（纯函数，返回字符串）
+// 时序：核心数据=最新数据日；今日优化=日历今天记的；昨日优化+今日重点=昨日数据
 async function buildDailyReportText() {
-  const today = getTodayDateStr();
-  const yest = getYesterdayDateStr();
-  if (!today) return '当前无数据';
-  const ym = today.substring(0, 7);
-  await ensureMonthDetail(ym);
-  const m = DATA.months[ym];
-  const dToday = m.daily.find(d => d.date === today);
-  const dYest = yest ? m.daily.find(d => d.date === yest) : null;
-  if (!dToday) return '今日数据缺失';
-  const ddToday = m.daily_detail && m.daily_detail[today];
-  const failB = (ddToday && ddToday.fail_reasons_B) || [];
+  const dataToday = getDataTodayStr();       // 核心数据日（最新数据，可能当天部分）
+  const yOptDate = getYestOptDateStr();       // 昨日优化记录日 + 今日重点数据日
+  if (!dataToday) return '当前无数据';
 
-  // —— 核心数据 ——
+  // 加载昨日数据的 daily_detail（用于昨日优化效果 + 今日重点）
+  if (yOptDate) {
+    const yYm = yOptDate.substring(0, 7);
+    await ensureMonthDetail(yYm);
+  }
+  const ym = dataToday.substring(0, 7);
+  await ensureMonthDetail(ym);
+
+  const m = DATA.months[ym];
+  const dToday = m.daily.find(d => d.date === dataToday);
+  if (!dToday) return '今日数据缺失';
+
+  // —— 核心数据：对比昨日完整数据（yOptDate，因为核心数据的"昨日"就是昨天完整数据）——
+  const mYest = yOptDate ? DATA.months[yOptDate.substring(0, 7)] : null;
+  const dYest = mYest ? mYest.daily.find(d => d.date === yOptDate) : null;
+
   const total = dToday.total;
   const yTotal = dYest ? dYest.total : 0;
   const totalDelta = yTotal ? ((total - yTotal) / yTotal * 100) : 0;
@@ -5824,59 +5852,63 @@ async function buildDailyReportText() {
   const mCovAvg = (m.summary && m.summary.auto_coverage_rate) ? m.summary.auto_coverage_rate.toFixed(2) : '—';
   const target = getMonthTarget(ym);
 
-  // —— 4路径 ——
+  // —— 4路径（核心数据日）——
   const A = dToday.A, C = dToday.C, D = dToday.D;
   const aR = (A / total * 100).toFixed(1);
   const bR = (B / total * 100).toFixed(1);
   const cR = (C / total * 100).toFixed(1);
   const dR = (D / total * 100).toFixed(1);
 
-  // —— 昨日优化 → 今日效果 ——
+  // —— 昨日优化 → 效果（昨日记录 + 昨日数据的 failB：count=昨天, prev_count=前天）——
+  const failBYest = (mYest && mYest.daily_detail && mYest.daily_detail[yOptDate] && mYest.daily_detail[yOptDate].fail_reasons_B) || [];
   const actions = getOptActions();
-  const yActions = actions[yest] || [];
+  const yActions = yOptDate ? (actions[yOptDate] || []) : [];
   let yOptText;
   if (yActions.length) {
     yOptText = yActions.map((r, i) => {
-      const f = failB.find(x => x.reason === r);
+      const f = failBYest.find(x => x.reason === r);
       if (f) {
         const cnt = f.count, pcnt = f.prev_count || 0;
         const arrow = pcnt ? (cnt < pcnt ? `↓${Math.abs(((cnt - pcnt) / pcnt * 100)).toFixed(0)}%` : `↑${((cnt - pcnt) / pcnt * 100).toFixed(0)}%`) : '新增';
-        return `${i + 1}.${shortReason(r, 30)}→今日${cnt}次（昨${pcnt} ${arrow}）`;
+        return `${i + 1}.${shortReason(r, 30)}→昨日${cnt}次（前日${pcnt} ${arrow}）`;
       }
-      return `${i + 1}.${shortReason(r, 30)}→今日未出现该根因`;
+      return `${i + 1}.${shortReason(r, 30)}→昨日未出现该根因`;
     }).join('\n');
   } else {
-    yOptText = '（昨日无优化记录）';
+    yOptText = `（${yOptDate || '昨日'}无优化记录）`;
   }
 
-  // —— 今日优化 ——
-  const tActions = actions[today] || [];
+  // —— 今日优化（日历今天记的）——
+  const optToday = getCalendarToday();
+  const tActions = actions[optToday] || [];
   const tOptText = tActions.length
     ? tActions.map((r, i) => `${i + 1}.${shortReason(r, 45)}`).join('\n')
     : '（今日未录入）';
 
-  // —— 增长Top3 ——
-  const growth = failB
+  // —— 增长Top3 + 新增失败（基于昨日数据 failBYest）——
+  const growth = failBYest
     .map(f => ({ reason: f.reason, count: f.count, prev: f.prev_count || 0, delta: f.count - (f.prev_count || 0) }))
     .filter(g => g.delta > 0)
     .sort((a, b) => b.delta - a.delta)
     .slice(0, 3);
   const growthText = growth.length
-    ? growth.map((g, i) => `${i + 1}.${shortReason(g.reason, 40)} ${g.count}单（昨${g.prev} ↑${g.delta}单）`).join('\n')
+    ? growth.map((g, i) => `${i + 1}.${shortReason(g.reason, 40)} ${g.count}单（前日${g.prev} ↑${g.delta}单）`).join('\n')
     : '（无明显增长）';
 
-  // —— 新增失败 Top5 ——
-  const newFails = failB.filter(f => !f.prev_count || f.prev_count === 0)
+  const newFails = failBYest.filter(f => !f.prev_count || f.prev_count === 0)
     .sort((a, b) => b.count - a.count)
     .slice(0, 5);
   const newText = newFails.length
     ? newFails.map((f, i) => `${i + 1}.${shortReason(f.reason, 45)}`).join('\n')
     : '（无新增）';
 
-  // —— 拼日报 ——
-  const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(today + 'T00:00:00').getDay()];
+  // —— 拼日报（标题用核心数据日，注明数据范围）——
+  const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(dataToday + 'T00:00:00').getDay()];
   const arrow = (v, suffix) => v > 0 ? `↑${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : (v < 0 ? `↓${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : '持平');
-  return `📊 出票日报 | ${today}（${weekday}）
+  const calToday = getCalendarToday();
+  const isPartial = (calToday === dataToday);  // 日历今天=数据最新日 → 当天部分数据
+  const dataRange = isPartial ? '（0:00-17:00 部分）' : '';
+  return `📊 出票日报 | ${dataToday}（${weekday}）${dataRange}
 
 【核心数据】（当日 / 昨日 / 月均 / 目标）
 单量 ${total.toLocaleString()}（昨${yTotal.toLocaleString()} ${arrow(totalDelta, '%')}）
@@ -5890,13 +5922,13 @@ B 转人工 ${B}（${bR}%）
 C 政策人工 ${C}（${cR}%）
 D 异常 ${D}（${dR}%）
 
-【昨日优化 → 效果】
+【昨日优化 → 效果】（基于 ${yOptDate} 数据）
 ${yOptText}
 
-【今日优化】
+【今日优化】（${optToday} 录入，基于昨日数据）
 ${tOptText}
 
-【⚠今日重点】
+【⚠今日重点】（基于 ${yOptDate} 昨日数据）
 增长Top3：
 ${growthText}
 新增失败：
@@ -5915,12 +5947,14 @@ async function openReportPanel() {
   ensureReportModal();
   const modal = document.getElementById('reportModal');
   modal.style.display = 'flex';
-  const today = getTodayDateStr();
+  const dataToday = getDataTodayStr();
+  const optToday = getCalendarToday();
+  const yOptDate = getYestOptDateStr();
   const dateTag = document.getElementById('reportModalDate');
-  if (dateTag) dateTag.textContent = today ? `数据日期：${today}` : '';
-  // 先渲染列表（同步，立即看到）
+  if (dateTag) {
+    dateTag.textContent = `数据：${dataToday || '—'} | 今日优化：${optToday} | 昨日数据：${yOptDate || '—'}`;
+  }
   renderOptLists();
-  // 下拉 + 预览异步加载
   await loadOptReasons();
   await refreshReportPreview();
 }
