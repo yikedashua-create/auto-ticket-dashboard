@@ -5715,6 +5715,16 @@ function getOptActions() {
 function saveOptActions(obj) {
   localStorage.setItem(OPT_LS_KEY, JSON.stringify(obj));
 }
+
+// —— 核心数据快照（每日生成日报时存一份，次日同时段对比，避免盘中vs完整失真）——
+// key: ticket_core_snap_<date>，值：{total, cov, succ, B, ts}
+function getCoreSnapshot(date) {
+  try { return JSON.parse(localStorage.getItem('ticket_core_snap_' + date) || 'null') || null; }
+  catch (e) { return null; }
+}
+function saveCoreSnapshot(date, data) {
+  try { localStorage.setItem('ticket_core_snap_' + date, JSON.stringify(data)); } catch (e) {}
+}
 // 数据最新日（daily 最后一条，可能当天部分数据）
 function getDataTodayStr() {
   const m = DATA.months[CURRENT_MONTH];
@@ -5864,24 +5874,29 @@ async function buildDailyReportText() {
   const dToday = m.daily.find(d => d.date === dataToday);
   if (!dToday) return '今日数据缺失';
 
-  // —— 核心数据：当日=dataToday，昨日对比=dataYest（不是 yOptDate）——
+  // —— 核心数据：当日=dataToday，昨日对比优先用"昨日同时段快照"（盘中vs盘中公平），无快照才 fallback daily 完整版 ——
   const mYest = dataYest ? DATA.months[dataYest.substring(0, 7)] : null;
   const dYest = mYest ? mYest.daily.find(d => d.date === dataYest) : null;
+  const ySnap = dataYest ? getCoreSnapshot(dataYest) : null;  // 昨日同时段快照
+  const useSnap = !!ySnap;  // 有快照→同时段对比（公平，不标盘中）；无快照→完整版对比（标盘中）
 
   const total = dToday.total;
-  const yTotal = dYest ? dYest.total : 0;
+  const yTotal = ySnap ? ySnap.total : (dYest ? dYest.total : 0);
   const totalDelta = yTotal ? ((total - yTotal) / yTotal * 100) : 0;
   const cov = dToday.auto_coverage_rate;
-  const yCov = dYest ? dYest.auto_coverage_rate : 0;
+  const yCov = ySnap ? ySnap.cov : (dYest ? dYest.auto_coverage_rate : 0);
   const succ = dToday.auto_succ_rate;
-  const ySucc = dYest ? dYest.auto_succ_rate : 0;
+  const ySucc = ySnap ? ySnap.succ : (dYest ? dYest.auto_succ_rate : 0);
   const succDelta = succ - ySucc;
   const B = dToday.B;
-  const yB = dYest ? dYest.B : 0;
+  const yB = ySnap ? ySnap.B : (dYest ? dYest.B : 0);
   const bDelta = yB ? ((B - yB) / yB * 100) : 0;
   const mSuccAvg = (m.summary && m.summary.auto_succ_rate) ? m.summary.auto_succ_rate.toFixed(2) : '—';
   const mCovAvg = (m.summary && m.summary.auto_coverage_rate) ? m.summary.auto_coverage_rate.toFixed(2) : '—';
   const target = getMonthTarget(dataToday.substring(0, 7));
+
+  // 存当日核心数据快照（供次日同时段对比）
+  saveCoreSnapshot(dataToday, { total, cov, succ, B, ts: Date.now() });
 
   // —— 4路径（核心数据日）——
   const A = dToday.A, C = dToday.C, D = dToday.D;
@@ -5937,8 +5952,9 @@ async function buildDailyReportText() {
   // —— 拼日报 ——
   const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][new Date(optToday + 'T00:00:00').getDay()];
   const arrow = (v, suffix) => v > 0 ? `↑${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : (v < 0 ? `↓${Math.abs(v).toFixed(v % 1 ? 1 : 0)}${suffix}` : '持平');
-  // 日历今天=数据最新日 → 今天数据已更新（17:10 盘中快照，约95%完整），标题标注避免误读环比
-  const isPartial = (optToday === dataToday);
+  // 盘中标识：当日是盘中(optToday===dataToday) 且 无昨日同时段快照(用完整版对比会失真) → 才标"盘中快照"
+  // 有昨日同时段快照 → 盘中vs盘中公平对比，不标
+  const isPartial = (optToday === dataToday) && !useSnap;
   const partialTag = isPartial ? ' · 盘中快照' : '';
   return `📊 出票日报 | ${optToday}（${weekday}）${partialTag}
 
