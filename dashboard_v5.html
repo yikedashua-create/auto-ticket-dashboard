@@ -6037,6 +6037,27 @@ function colorInline(s) {
 async function openReportPanel() {
   ensureReportModal();
   const modal = document.getElementById('reportModal');
+  // iframe 里 position:fixed 的 height:100% 可能=文档高度(8000px)而非视口高度，
+  // 用 window.innerHeight 确保遮罩只覆盖可视区域，内容居中在当前视口
+  const syncViewport = () => {
+    modal.style.width = window.innerWidth + 'px';
+    modal.style.height = window.innerHeight + 'px';
+    // 兜底：某些 iframe 里 fixed 不跟随滚动，用 scrollY 校正 top
+    modal.style.top = (window.scrollY || window.pageYOffset || 0) + 'px';
+  };
+  syncViewport();
+  modal._syncVP = syncViewport;  // 存引用供关闭时移除
+  if (!window._reportScrollBound) {
+    window.addEventListener('scroll', () => {
+      const m = document.getElementById('reportModal');
+      if (m && m.style.display !== 'none' && m._syncVP) m._syncVP();
+    }, { passive: true });
+    window.addEventListener('resize', () => {
+      const m = document.getElementById('reportModal');
+      if (m && m.style.display !== 'none' && m._syncVP) m._syncVP();
+    }, { passive: true });
+    window._reportScrollBound = true;
+  }
   modal.style.display = 'flex';
   const dataToday = getDataTodayStr();
   const optToday = getCalendarToday();
@@ -6056,8 +6077,9 @@ function ensureReportModal() {
   const modal = document.createElement('div');
   modal.id = 'reportModal';
   modal.className = 'report-modal';
-  // 内联样式兜底：确保 position:fixed 一定生效（防 CSS 加载顺序/缓存异常）
-  modal.style.position = 'fixed';
+  // 内联样式：position:absolute + JS 动态 top:scrollY 模拟 fixed，
+  // 解决 Streamlit iframe(8000px) 里 fixed 失效 / height:100%=文档高度的问题
+  modal.style.position = 'absolute';
   modal.style.zIndex = '9999';
   modal.style.left = '0';
   modal.style.top = '0';
