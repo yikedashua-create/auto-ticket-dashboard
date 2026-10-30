@@ -1303,7 +1303,7 @@
         <select id="daySelect">
           <option value="all">全月</option>
         </select>
-        <button id="optGenBtn" class="opt-btn opt-gen" title="打开日报面板：录入优化 + 生成日报">📋 日报</button>
+        <button id="optGenBtn" class="opt-btn opt-gen" title="打开日报面板：录入优化 + 生成日报" onclick="openReportPanel()">📋 日报</button>
         <div class="month-info" id="monthInfo"></div>
       </div>
       <div id="mainArea">
@@ -6037,25 +6037,33 @@ function colorInline(s) {
 async function openReportPanel() {
   ensureReportModal();
   const modal = document.getElementById('reportModal');
-  // iframe 里 position:fixed 的 height:100% 可能=文档高度(8000px)而非视口高度，
-  // 用 window.innerHeight 确保遮罩只覆盖可视区域，内容居中在当前视口
+  // iframe(Streamlit 8000px) 里 window.innerHeight/scrollY 都是 iframe 自身的，
+  // 不是浏览器视口的。优先取父窗口(Streamlit 页面)的值，跨域 fallback 到自身
+  const getParent = (prop, fallback) => {
+    try { return window.parent[prop] || fallback; } catch(e) { return fallback; }
+  };
   const syncViewport = () => {
-    modal.style.width = window.innerWidth + 'px';
-    modal.style.height = window.innerHeight + 'px';
-    // 兜底：某些 iframe 里 fixed 不跟随滚动，用 scrollY 校正 top
-    modal.style.top = (window.scrollY || window.pageYOffset || 0) + 'px';
+    modal.style.width = getParent('innerWidth', window.innerWidth) + 'px';
+    modal.style.height = getParent('innerHeight', window.innerHeight) + 'px';
+    // top = 父窗口滚动位置（iframe 内 scrollY 通常=0，不代表页面滚动）
+    modal.style.top = getParent('scrollY', window.scrollY || 0) + 'px';
   };
   syncViewport();
-  modal._syncVP = syncViewport;  // 存引用供关闭时移除
+  modal._syncVP = syncViewport;
   if (!window._reportScrollBound) {
-    window.addEventListener('scroll', () => {
-      const m = document.getElementById('reportModal');
-      if (m && m.style.display !== 'none' && m._syncVP) m._syncVP();
-    }, { passive: true });
-    window.addEventListener('resize', () => {
-      const m = document.getElementById('reportModal');
-      if (m && m.style.display !== 'none' && m._syncVP) m._syncVP();
-    }, { passive: true });
+    // 监听自身 + 父窗口的 scroll/resize
+    const targets = [window];
+    try { if (window.parent && window.parent !== window) targets.push(window.parent); } catch(e) {}
+    targets.forEach(t => {
+      t.addEventListener('scroll', () => {
+        const m = document.getElementById('reportModal');
+        if (m && m.style.display !== 'none' && m._syncVP) m._syncVP();
+      }, { passive: true });
+      t.addEventListener('resize', () => {
+        const m = document.getElementById('reportModal');
+        if (m && m.style.display !== 'none' && m._syncVP) m._syncVP();
+      }, { passive: true });
+    });
     window._reportScrollBound = true;
   }
   modal.style.display = 'flex';
