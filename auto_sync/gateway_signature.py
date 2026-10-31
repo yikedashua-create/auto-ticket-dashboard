@@ -149,6 +149,9 @@ def ensure_registered(force: bool = False) -> dict:
     """确保有未过期的 clientId（浏览器逻辑：expiresAt > now+30s 才复用）"""
     st = _load_state()
     if not force:
+        # 已知网关签名端点停用 → 直接返回，signed_headers 会跳过签名改用 token 直连
+        if st.get('enabled') is False:
+            return st
         cid = st.get('clientId')
         if isinstance(cid, str) and '.' in cid and st.get('expiresAt', 0) > time.time() * 1000 + 30_000:
             return st
@@ -159,15 +162,25 @@ def ensure_registered(force: bool = False) -> dict:
 
 def _register_flow(st: dict) -> dict:
     status = requests.get(STATUS_URL, headers={'Accept': 'application/json'}, timeout=TIMEOUT).json()
-    if status.get('enabled') is False:
+    # 网关已停用浏览器签名端点（HTTP 410 LOCAL_ENDPOINT_RETIRED）：签名层整体报废，
+    # 但业务接口已不再强制要求签名（实测不带签名仅返回业务 JSON 而非 SIGNATURE_REQUIRED）。
+    # 标记 enabled=False，让 signed_headers 跳过签名、改用 token 直连。
+    # 若将来端点恢复（STATUS 返回 enabled:true），下方正常分支会重新注册，自动恢复签名。
+    if status.get('code') == 'LOCAL_ENDPOINT_RETIRED' or status.get('enabled') is False:
         st['clientId'] = None
         st['enabled'] = False
         _save_state(st)
+        print('[gateway_signature] 警告：签名端点已停用(LOCAL_ENDPOINT_RETIRED)，后续请求跳过签名改用 token 直连')
         return st
 
     pub = _pub_jwk(st['priv_jwk'])
-    ch = requests.post(CHALLENGE_URL, json={'publicKey': pub}, timeout=TIMEOUT).json()
-    if ch.get('enabled') is False:
+    ch_resp = requests.post(CHALLENGE_URL, json={'publicKey': pub}, timeout=TIMEOUT)
+    ch = ch_resp.json()
+    if ch_resp.status_code == 410 or ch.get('code') == 'LOCAL_ENDPOINT_RETIRED' or ch.get('enabled') is False:
+        st['clientId'] = None
+        st['enabled'] = False
+        _save_state(st)
+        print('[gateway_signature] 警告：签名端点已停用(LOCAL_ENDPOINT_RETIRED)，后续请求跳过签名改用 token 直连')
         return st
     work_nonce = _solve_pow(ch)
     reg = requests.post(REGISTER_URL, json={
