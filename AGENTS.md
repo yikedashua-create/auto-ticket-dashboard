@@ -106,10 +106,23 @@ const COMMIT = "xxxxxxx";   // 约 1120 行
   - 状态：`python -m auto_sync status`，日志 `auto_sync/data/auto_sync.log`
 - 计划任务（由 `register_startup_admin.bat` 注册，**SYSTEM 级**）：
   - `auto_ticket_dashboard_sync`：开机自启 daemon
-  - `auto_ticket_dashboard_sync_fetch`：每日 08:35 主拉数 `fetch --days 2 --trigger`（2026-09-25 新增）
+  - `auto_ticket_dashboard_sync_fetch`：每日 08:35 主拉数 `fetch --days 2 --force --trigger`
+    （2026-11-03 加 `--force`：eod 任务拉过今日盘中版后，昨日文件已存在会导致次日主任务
+    SKIP→不 gen→完整终值永不上线，11-03 实证）
   - `auto_ticket_dashboard_sync_30min`：每 2 小时兜底 `fetch --yesterday`（存在即跳过、不 force；
     2026-10-02 由 30 分钟降频并改为 pythonw + silent_task.pyw 无窗口运行——原 cmd /c 形式每半小时闪黑框；
     新文件落地由 daemon watcher 触发 gen，避免空跑）
+  - `auto_ticket_dashboard_sync_eod`：每日 17:10 盘中数据更新 `fetch --days 1 --today --force --trigger`
+    （2026-10-30 新增，用户级任务；⚠️ 11-02 排查发现 gen 在聚合段静默死亡（4 天败 3 次），
+    报错曾全被 devnull 吞掉——silent_task.pyw v2（11-02）已改为落盘 `auto_sync/data/task_fetch.log`，
+    任务已加失败重试 2 次/间隔 5 分钟）
+  - `auto_ticket_dashboard_sync_watchdog`：**每 30 分钟数据链路自愈看门狗**（2026-11-03 新增，
+    `python -m auto_sync watchdog`）：
+    ① 数据文件改了没提交 → 自动 commit+push+锚点（兜"gen 完成但 trigger 未提交"）
+    ② 锚点漂移 → 自动补锚点
+    ③ 本地领先 origin → 自动补推送（push 失败 rebase 重试）
+    ④ dashboard_data.json 未覆盖到昨天且已过 09:30 → 自动 `fetch --days 2 --force --trigger`
+    gen 运行中（gen.lock 新鲜）整轮跳过；自愈动作状态翻转去重推钉钉。
   - ⚠️ **历史教训（2026-09-17~09-24 断更根因）**：9/16 迁移 D 盘时 30 分钟任务被注册成裸 `trigger`
     （从不 fetch），watcher 等不到新文件 → 数据停在 9/16；9/22 重装电脑又把任务/凭据/Chrome 全清了。
     任何重新注册都必须包含 fetch 路径。

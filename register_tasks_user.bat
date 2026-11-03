@@ -30,14 +30,22 @@ schtasks /Create /TN "auto_ticket_dashboard_sync" /SC ONLOGON /F ^
 if %errorLevel% neq 0 echo [warn] on-logon task failed
 
 echo [2/4] register daily 08:35 fetch task...
+REM 2026-11-03: 加 --force —— eod 任务(17:10)拉过今日盘中版后，次日 08:35
+REM 若无 force 会因"文件已存在"跳过拉取→不 gen→昨天完整终值永不上线（11-03 实证）
 schtasks /Create /TN "auto_ticket_dashboard_sync_fetch" /SC DAILY /ST 08:35 /F ^
-    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --days 2 --trigger"
+    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --days 2 --force --trigger"
 if %errorLevel% neq 0 echo [warn] daily fetch task failed
 
 echo [3/4] register 2-hour fallback task (hidden, skip if exists)...
 schtasks /Create /TN "auto_ticket_dashboard_sync_30min" /SC MINUTE /MO 120 /F ^
     /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" fetch --yesterday"
 if %errorLevel% neq 0 echo [warn] fallback task failed
+
+echo [3.5/4] register watchdog task (every 30 min, self-heal + alert)...
+REM 2026-11-03 新增：数据链路自愈看门狗（补提交/补锚点/补推送/数据新鲜度）
+schtasks /Create /TN "auto_ticket_dashboard_sync_watchdog" /SC MINUTE /MO 30 /F ^
+    /TR "\"%PYW%\" \"%PROJ%\silent_task.pyw\" watchdog"
+if %errorLevel% neq 0 echo [warn] watchdog task failed
 
 echo [4/4] start daemon now...
 cd /d "%PROJ%"
