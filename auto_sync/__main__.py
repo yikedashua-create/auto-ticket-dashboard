@@ -514,6 +514,10 @@ def main():
     p_token.add_argument("--no-alert", action="store_true", help="只检查恢复，不推送告警")
     p_token.set_defaults(func=cmd_token_check)
 
+    # watchdog（2026-11-03 新增：数据链路自愈看门狗，计划任务每 30 分钟调用）
+    p_watchdog = subparsers.add_parser("watchdog", help="数据链路自愈看门狗（补提交/补锚点/补推送/数据新鲜度）")
+    p_watchdog.set_defaults(func=cmd_watchdog)
+
     # ai-rules（2026-09-03 新增：AI 语义归因结果 → 建议采纳为规则，人工审批）
     p_airules = subparsers.add_parser("ai-rules", help="查看 AI 语义归因结果，产出可采纳为正则规则的建议")
     p_airules.add_argument("--limit", type=int, default=30, help="展示条数（默认 30）")
@@ -739,6 +743,12 @@ def cmd_token_check(args):
     icon = '✅' if state == 'ok' else ('⚠️' if state == 'NO_ACCESS' else 'ℹ️')
     print(f"{icon} token 状态: {state}" + (f"（{detail}）" if detail else ""))
     return 0 if state == 'ok' else 1
+
+
+def cmd_watchdog(args):
+    """数据链路自愈看门狗（补提交/补锚点/补推送/数据新鲜度，详见 watchdog.py docstring）"""
+    from .watchdog import run_watchdog
+    return run_watchdog()
 
 
 def cmd_fetch(args):

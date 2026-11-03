@@ -113,11 +113,51 @@ def _run(cmd: List[str], cwd: Optional[str] = None, timeout: int = 600) -> StepR
 def run_gen(gen_script: str, cwd: str) -> StepResult:
     """跑 gen_dashboard_data.py
 
-    timeout 3600s：2026-10-26 从 1800s 调大——2bf6faf 全量 drill 版 gen 在
+    timeout 7200s：2026-10-26 从 1800s 调大——2bf6faf 全量 drill 版 gen 在
     1800s 内跑不完（10-25 18:01 实测被杀，孤儿进程也未能写出文件），数据量
     涨后只会更慢。60 分钟留足余量，宁可慢不可杀。
+    2026-11-03 再调到 7200s：10-28 08:35 实测 gen 跑过 60 分钟被掐（聚合前
+    被杀 → dashboard_data.json 没写 → 看板停更一天）。数据量持续上涨，
+    120 分钟保平安。
     """
-    return _run(["python", gen_script, "--month", "all"], cwd=cwd, timeout=3600)
+    return _run(["python", gen_script, "--month", "all"], cwd=cwd, timeout=7200)
+
+
+def git_push_with_rebase(repo_dir: str, git_remote: str, git_branch: str) -> StepResult:
+    """push（失败自动 rebase 重试一次）——2026-11-03 新增
+
+    背景：两次互踩事故（2026-10-18 协作者直推 main 与生产机管道撞车、
+    更早 E/D 双副本血案）。push 被拒（non-fast-forward）时旧逻辑直接失败，
+    trigger 整体报错且无重试，数据卡到人工介入（10-18 卡了 4 小时）。
+    数据文件与代码几乎不冲突，pull --rebase 后重试基本必成。
+    """
+    push_step = git_push(repo_dir, git_remote, git_branch)
+    if push_step.success:
+        return push_step
+    t0 = time.time()
+    rebase_step = _run(["git", "pull", "--rebase", git_remote, git_branch],
+                       cwd=repo_dir, timeout=300)
+    if not rebase_step.success:
+        return StepResult(
+            name="git_push_with_rebase",
+            success=False,
+            duration=time.time() - t0,
+            error=f"push 失败且 rebase 也失败: push_err={push_step.error[:150]} | rebase_err={rebase_step.error[:200]}",
+        )
+    push_step2 = git_push(repo_dir, git_remote, git_branch)
+    if push_step2.success:
+        return StepResult(
+            name="git_push_with_rebase",
+            success=True,
+            duration=time.time() - t0,
+            output=f"push 被拒后 rebase 重试成功 ({rebase_step.output[:100]})",
+        )
+    return StepResult(
+        name="git_push_with_rebase",
+        success=False,
+        duration=time.time() - t0,
+        error=f"push 失败, rebase 后重试仍失败: {push_step2.error[:200]}",
+    )
 
 
 def git_add(repo_dir: str) -> StepResult:
@@ -249,16 +289,14 @@ def sync_html_commit(repo_dir: str, git_remote: str, git_branch: str) -> StepRes
     # 背景：直连 GitHub 的 SSH 握手偶发超时（10/7、10/14 早上均发生），
     # 数据 commit 的 push 有 300s 都成功了，唯独锚点这步 60s 超时；
     # 且锚点失败后次日任务走"无变更→跳过"分支不会自愈，看板会一直停在旧数据。
-    push_step = _run(["git", "push", git_remote, git_branch], cwd=repo_dir, timeout=300)
-    if not push_step.success:
-        time.sleep(15)
-        push_step = _run(["git", "push", git_remote, git_branch], cwd=repo_dir, timeout=300)
+    # 2026-11-03 升级：git_push_with_rebase（push 被拒 → pull --rebase → 重试）
+    push_step = git_push_with_rebase(repo_dir, git_remote, git_branch)
     if not push_step.success:
         return StepResult(
             name="sync_html_commit",
             success=False,
             duration=time.time() - t0,
-            error=f"git push 失败（已重试一次）: {push_step.error[:200]}",
+            error=f"git push 失败（含 rebase 重试）: {push_step.error[:200]}",
         )
     return StepResult(
         name="sync_html_commit",
@@ -345,9 +383,9 @@ def execute_trigger(
             error=f"git commit 失败: {commit_step.error[:200]}",
         )
 
-    # Step 5: git push（可选）
+    # Step 5: git push（可选，失败自动 rebase 重试）
     if push_enabled:
-        push_step = git_push(script_dir, git_remote, git_branch)
+        push_step = git_push_with_rebase(script_dir, git_remote, git_branch)
         steps.append(push_step)
         if not push_step.success:
             return TriggerResult(
