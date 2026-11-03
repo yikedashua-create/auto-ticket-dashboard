@@ -2418,7 +2418,8 @@ def _acquire_gen_lock(max_age_sec: int = 2400) -> bool:
                 old_pid = int(f.read().strip().split("|")[0])
             r = _sp.run(["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
                         capture_output=True, text=True,
-                        encoding="utf-8", errors="replace")
+                        encoding="utf-8", errors="replace",
+                        creationflags=getattr(_sp, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0)
             age = time.time() - os.path.getmtime(lock_path)
             if str(old_pid) in (r.stdout or "") and age < max_age_sec:
                 print(f"[锁] 另一个 gen 正在运行 (PID {old_pid}, age {age/60:.0f}min)，本次跳过")

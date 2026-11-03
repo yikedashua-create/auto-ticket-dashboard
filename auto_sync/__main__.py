@@ -167,6 +167,7 @@ def cmd_status(args):
                 ["tasklist", "/FI", f"PID eq {daemon_pid}", "/NH"],
                 capture_output=True, text=True,
                 encoding="utf-8", errors="replace",  # tasklist 输出 GBK
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0,
             )
             daemon_alive = (str(daemon_pid) in (r.stdout or ""))
         except Exception:
@@ -271,6 +272,7 @@ def cmd_daemon(args):
                 ["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
                 capture_output=True, text=True,
                 encoding="utf-8", errors="replace",  # tasklist 输出 GBK
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0,
             )
             if str(old_pid) in (r.stdout or ""):
                 print(f"[OK] auto_sync daemon 已在运行 (PID {old_pid})，跳过本次启动")
@@ -353,6 +355,7 @@ def cmd_stop(args):
         result = subprocess.run(
             ["taskkill", "/F", "/T", "/PID", str(pid)],
             capture_output=True, text=True,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0,
         )
         if result.returncode == 0:
             print(f"✅ 已停止 (PID {pid})")

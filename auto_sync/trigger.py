@@ -96,6 +96,9 @@ def _run(cmd: List[str], cwd: Optional[str] = None, timeout: int = 600) -> StepR
             errors="replace",
             timeout=timeout,
             shell=False,  # 安全：用 list 不用 shell=True
+            # 2026-11-03: pythonw 计划任务场景下，git/python 等控制台子进程
+            # 会各弹一个黑窗（gen 更是一弹 40 分钟），统一压掉
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0,
         )
         return StepResult(
             name=name,

@@ -110,6 +110,7 @@ class AutoSyncManager:
                     ["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
                     capture_output=True, text=True,
                     encoding="utf-8", errors="replace",  # tasklist 输出 GBK，防 UTF-8 环境解码崩
+                    creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0,
                 )
                 if str(old_pid) in (r.stdout or ""):
                     log.warning(f"daemon.lock 被 PID {old_pid} 持有且进程存活，拒绝启动")

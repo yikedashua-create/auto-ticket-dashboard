@@ -96,7 +96,8 @@ def run_cmd(cmd, cwd=None, timeout=None):
             cmd, shell=True, cwd=cwd,
             capture_output=True, text=True,
             encoding="utf-8", errors="replace",
-            timeout=timeout
+            timeout=timeout,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0,
         )
         return result.returncode, result.stdout, result.stderr
     except subprocess.TimeoutExpired:

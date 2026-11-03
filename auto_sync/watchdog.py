@@ -58,7 +58,8 @@ def _run(cmd, timeout=600, cwd=_REPO):
         cmd[0] = candidate if os.path.exists(candidate) else sys_executable()
     try:
         r = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
-                           encoding="utf-8", errors="replace", timeout=timeout)
+                           encoding="utf-8", errors="replace", timeout=timeout,
+                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0)
         return r.returncode == 0, (r.stdout or ""), (r.stderr or ""), r.returncode
     except subprocess.TimeoutExpired:
         return False, "", f"超时 ({timeout}s)", -1
@@ -81,7 +82,8 @@ def gen_running():
             pid = f.read().strip().split("|")[0]
         r = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"],
                            capture_output=True, text=True,
-                           encoding="utf-8", errors="replace")
+                           encoding="utf-8", errors="replace",
+                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0)
         return str(pid) in (r.stdout or "") and age < 50 * 60
     except (OSError, ValueError):
         return False
