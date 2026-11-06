@@ -170,11 +170,20 @@ def check_unpushed(actions):
 
 
 def check_freshness(actions):
-    """4) dashboard_data.json 未覆盖到昨天 → force 补拉补算（兜住故障 A/D）"""
+    """4) dashboard_data.json 覆盖不达标 → force 补拉补算（兜住故障 A/D）
+
+    覆盖要求（2026-11-03 修 off-by-one）：
+      - 09:30~17:40 之间：要求覆盖到"昨天"（08:35 主任务 --force 的职责）
+      - 17:40 之后：要求覆盖到"今天"（17:10 eod 盘中版的职责）
+    旧逻辑全天只要求"昨天"→ eod 失败当晚（数据恰好覆盖到昨天）误判为
+    新鲜，11-04 晚连续 12 轮"全部检查通过"没自愈，11-04 数据迟到半天。
+    """
     now = _now_bj()
     if now.hour < 9 or (now.hour == 9 and now.minute < 30):
         return  # 08:35 正常流程可能还在跑，别抢
+    today = now.strftime("%Y-%m-%d")
     yest = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+    required = today if (now.hour > 17 or (now.hour == 17 and now.minute >= 40)) else yest
     dd = os.path.join(_REPO, "dashboard_data.json")
     try:
         with open(dd, encoding="utf-8") as f:
@@ -189,10 +198,10 @@ def check_freshness(actions):
     except Exception as e:
         actions.append(("数据新鲜度", False, f"dashboard_data.json 解析失败: {e}"))
         return
-    if latest_date >= yest:
-        return  # 覆盖到昨天，新鲜
+    if latest_date >= required:
+        return  # 覆盖达标，新鲜
     actions.append(("数据新鲜度", False,
-                    f"数据只到 {latest_date or gen_at}，未覆盖到昨天 {yest} → 自动补拉补算（约40分钟）"))
+                    f"数据只到 {latest_date or gen_at}，未覆盖到 {required} → 自动补拉补算（约40分钟）"))
     ok, out, err, rc = _run(
         ["python", "-m", "auto_sync", "fetch", "--days", "2", "--force", "--trigger"],
         timeout=9000)

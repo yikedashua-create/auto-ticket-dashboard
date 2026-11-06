@@ -76,14 +76,9 @@ def _run(cmd: List[str], cwd: Optional[str] = None, timeout: int = 600) -> StepR
     """
     cmd = list(cmd)
     if cmd[0] == "python":
-        # 取 sys.executable 所在目录的 python.exe（不是 pythonw.exe）
-        py_dir = os.path.dirname(sys.executable)
-        candidate = os.path.join(py_dir, "python.exe")
-        if os.path.exists(candidate):
-            cmd[0] = candidate
-        else:
-            # fallback：用 sys.executable 本身（venv 没 python.exe 时）
-            cmd[0] = sys.executable
+        # 2026-11-03：改用 _python_exe()（优先 VIRTUAL_ENV）——
+        # 旧解析在部分 venv 布局下落到全局 Python312（11-04 崩溃事件实锤）
+        cmd[0] = _python_exe()
     name = " ".join([os.path.basename(c) for c in cmd[:3]])
     t0 = time.time()
     try:
@@ -113,17 +108,80 @@ def _run(cmd: List[str], cwd: Optional[str] = None, timeout: int = 600) -> StepR
         return StepResult(name=name, success=False, duration=time.time() - t0, error=str(e))
 
 
-def run_gen(gen_script: str, cwd: str) -> StepResult:
-    """跑 gen_dashboard_data.py
+def _python_exe() -> str:
+    """解析当前应使用的 python.exe（2026-11-03 修正）
 
-    timeout 7200s：2026-10-26 从 1800s 调大——2bf6faf 全量 drill 版 gen 在
-    1800s 内跑不完（10-25 18:01 实测被杀，孤儿进程也未能写出文件），数据量
-    涨后只会更慢。60 分钟留足余量，宁可慢不可杀。
-    2026-11-03 再调到 7200s：10-28 08:35 实测 gen 跑过 60 分钟被掐（聚合前
-    被杀 → dashboard_data.json 没写 → 看板停更一天）。数据量持续上涨，
-    120 分钟保平安。
+    优先级：VIRTUAL_ENV\\Scripts\\python.exe > sys.executable 同目录 python.exe
+    > sys.executable 本身。
+    背景：11-04 崩溃事件显示 gen 实际跑在全局 Python312 解释器上（虽然加载了
+    venv 的 numpy）——venv pythonw 的 sys.executable 在部分布局下指向 base
+    解释器，导致 _run 的旧解析落到全局 python.exe，运行环境漂移不稳定。
     """
-    return _run(["python", gen_script, "--month", "all"], cwd=cwd, timeout=7200)
+    venv = os.environ.get("VIRTUAL_ENV")
+    if venv:
+        cand = os.path.join(venv, "Scripts", "python.exe")
+        if os.path.exists(cand):
+            return cand
+    py_dir = os.path.dirname(sys.executable)
+    cand = os.path.join(py_dir, "python.exe")
+    if os.path.exists(cand):
+        return cand
+    return sys.executable
+
+
+def run_gen(gen_script: str, cwd: str) -> StepResult:
+    """跑 gen_dashboard_data.py（最多两次，原生崩溃自动重试）
+
+    - timeout 7200s（2026-11-03 从 3600s 上调，10-28 被 60 分钟掐死教训）
+    - 2026-11-03：gen 在聚合段被 numpy 原生层 0xc0000005 崩溃杀死
+      （11-04 17:25 APPCRASH _multiarray_umath 实锤，10-15 的 BLAS setdefault
+      修复未根治）。原生崩溃有随机性，失败后等 60s 自动重试一次；
+      完整 stderr 落盘 auto_sync/data/gen_last_stderr.log（此前只留末尾 500 字
+      被 openpyxl 警告噪音淹没，真实错误无法取证）。
+    """
+    import sys as _sys
+    exe = _python_exe()
+    dump_path = os.path.join(cwd, "auto_sync", "data", "gen_last_stderr.log")
+    last_err = ""
+    for attempt in (1, 2):
+        if attempt == 2:
+            time.sleep(60)
+        t0 = time.time()
+        try:
+            r = subprocess.run(
+                [exe, gen_script, "--month", "all"], cwd=cwd,
+                capture_output=True, text=True, encoding="utf-8",
+                errors="replace", timeout=7200,
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0) if os.name == "nt" else 0,
+            )
+            # 完整 stderr/stdout 落盘（覆盖写，只保留最近一次）
+            try:
+                os.makedirs(os.path.dirname(dump_path), exist_ok=True)
+                with open(dump_path, "w", encoding="utf-8", errors="replace") as f:
+                    f.write(f"=== attempt {attempt} {_sys.platform} rc={r.returncode} "
+                            f"{time.strftime('%Y-%m-%d %H:%M:%S')} ===\n")
+                    f.write(f"--- stderr ---\n{r.stderr or ''}\n")
+                    f.write(f"--- stdout 末尾 2000 字 ---\n{(r.stdout or '')[-2000:]}\n")
+            except OSError:
+                pass
+            if r.returncode == 0:
+                return StepResult(
+                    name="gen_dashboard_data.py",
+                    success=True,
+                    duration=time.time() - t0,
+                    output=(r.stdout or "")[-1000:],
+                )
+            last_err = f"rc={r.returncode}: {(r.stderr or '')[-300:]}"
+        except subprocess.TimeoutExpired:
+            last_err = f"超时 (7200s), attempt={attempt}"
+        except Exception as e:
+            last_err = str(e)
+    return StepResult(
+        name="gen_dashboard_data.py",
+        success=False,
+        duration=7200 * 2,
+        error=last_err,
+    )
 
 
 def git_push_with_rebase(repo_dir: str, git_remote: str, git_branch: str) -> StepResult:
