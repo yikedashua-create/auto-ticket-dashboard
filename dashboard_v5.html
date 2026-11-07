@@ -1291,8 +1291,6 @@
 
     <div class="main">
       <div class="month-switcher" id="monthSwitcher" style="display:none">
-        <label>📅 年份</label>
-        <select id="yearSelect"></select>
         <label>📅 月份</label>
         <select id="monthSelect"></select>
         <label>📊 周</label>
@@ -1427,50 +1425,27 @@ async function loadData() {
 }
 
 function initMonthSwitcher() {
-  const yearSel = document.getElementById("yearSelect");
   const monthSel = document.getElementById("monthSelect");
   const sw = document.getElementById("monthSwitcher");
   sw.style.display = "flex";
 
-  // 1. 年份下拉: 从 available_months 提取所有年份 (降序)
-  const yearSet = [...new Set(
-    DATA.available_months.filter(m => m !== "all").map(m => m.substring(0, 4))
-  )].sort().reverse();
-  yearSel.innerHTML = '<option value="all">全部</option>' +
-    yearSet.map(y => `<option value="${y}">${y}</option>`).join("");
-
-  // 2. 月份下拉: 按选中年份过滤
-  function fillMonths(year) {
-    const months = year === "all"
-      ? DATA.available_months
-      : DATA.available_months.filter(m => m === "all" || m.startsWith(year));
-    monthSel.innerHTML = months.map(m => {
-      const label = m === "all" ? "全部" : m.substring(5);
-      return `<option value="${m}">${label}</option>`;
-    }).join("");
-    // 默认选 current_month, 如果不在过滤结果里就选第一个
-    if (months.includes(DATA.current_month)) {
-      monthSel.value = DATA.current_month;
-    } else {
-      monthSel.value = months[0] || "all";
-    }
+  // v11.9.14b：去掉固定年下拉——月份平铺所有可用月份（跨年直接可见）。
+  // 自由区间筛选（起/止日期）已覆盖"全部数据"与跨年查询需求，
+  // 月份下拉只保留真实有数据的月份（原「全部」选项会命中不存在的 months.all 空态）。
+  const months = (DATA.available_months || []).filter(m => m !== "all").sort();
+  monthSel.innerHTML = months.map(m => `<option value="${m}">${m}</option>`).join("");
+  if (months.includes(DATA.current_month)) {
+    monthSel.value = DATA.current_month;
+  } else {
+    monthSel.value = months[months.length - 1] || "";
   }
 
-  // 默认选 current_month 所在年份
-  const currentYear = DATA.current_month !== "all"
-    ? DATA.current_month.substring(0, 4)
-    : (yearSet[0] || "all");
-  yearSel.value = currentYear;
-  fillMonths(currentYear);
-
-  // 3. 联动: 选年 → 重置月/周/日（v11.9.14：选择器变化即退出区间模式）
-  yearSel.addEventListener("change", e => {
+  monthSel.addEventListener("change", e => {
     clearRange();
-    fillMonths(e.target.value);
     CURRENT_WEEK = "all";
-    updateWeekOptions(monthSel.value);
-    updateDayOptions(monthSel.value, "all");
-    switchPeriod(monthSel.value, "all", "all");
+    updateWeekOptions(e.target.value);
+    updateDayOptions(e.target.value, "all");
+    switchPeriod(e.target.value, "all", "all");
   });
 
   monthSel.addEventListener("change", e => {
