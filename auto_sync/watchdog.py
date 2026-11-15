@@ -177,6 +177,11 @@ def check_freshness(actions):
       - 17:40 之后：要求覆盖到"今天"（17:10 eod 盘中版的职责）
     旧逻辑全天只要求"昨天"→ eod 失败当晚（数据恰好覆盖到昨天）误判为
     新鲜，11-04 晚连续 12 轮"全部检查通过"没自愈，11-04 数据迟到半天。
+
+    2026-11-15 再修盲区：日期达标 ≠ 数据完整。11-15 晨 gen 原生崩溃两次，
+    看板的 11-14 一直是昨天 17:56 的盘中版，日期检查通过、连续 8 轮误报
+    "通过"。新增规则：09:30 后若 generated_at 早于今天 00:00（今晨的
+    重算没落盘），同样触发补拉补算——这样盘中版/完整版差异也能兜住。
     """
     now = _now_bj()
     if now.hour < 9 or (now.hour == 9 and now.minute < 30):
@@ -198,10 +203,15 @@ def check_freshness(actions):
     except Exception as e:
         actions.append(("数据新鲜度", False, f"dashboard_data.json 解析失败: {e}"))
         return
-    if latest_date >= required:
+    stale_reason = None
+    if latest_date < required:
+        stale_reason = f"数据只到 {latest_date or gen_at}，未覆盖到 {required}"
+    elif gen_at and gen_at[:10] < today:
+        stale_reason = (f"日期覆盖达标但 generated_at={gen_at} 是昨天及更早的版本"
+                        f"（今晨重算未落盘，昨天数据仍是盘中版）")
+    if not stale_reason:
         return  # 覆盖达标，新鲜
-    actions.append(("数据新鲜度", False,
-                    f"数据只到 {latest_date or gen_at}，未覆盖到 {required} → 自动补拉补算（约40分钟）"))
+    actions.append(("数据新鲜度", False, f"{stale_reason} → 自动补拉补算（约40分钟）"))
     ok, out, err, rc = _run(
         ["python", "-m", "auto_sync", "fetch", "--days", "2", "--force", "--trigger"],
         timeout=9000)
