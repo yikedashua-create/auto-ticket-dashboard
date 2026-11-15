@@ -252,8 +252,15 @@ def git_push(repo_dir: str, remote: str, branch: str) -> StepResult:
 
 
 def git_has_changes(repo_dir: str) -> bool:
-    """检查 git 是否有未 commit 的变更"""
-    result = _run(["git", "status", "--porcelain"], cwd=repo_dir, timeout=30)
+    """检查 git 是否有未 commit 的变更（只看已跟踪文件）
+
+    2026-11-15 修复：加 --untracked-files=no。仓库根目录的未跟踪交付文件
+    （导出的 xlsx/docx 等）会让 --porcelain 恒为非空 → gen 被跳过时
+    （并发 gen 拿锁，exit 0 空跑）也会走到 commit → "nothing to commit"
+    → 触发误报失败。只看已跟踪文件的修改即可。
+    """
+    result = _run(["git", "status", "--porcelain", "--untracked-files=no"],
+                  cwd=repo_dir, timeout=30)
     return result.success and bool(result.output.strip())
 
 
