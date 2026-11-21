@@ -63,10 +63,10 @@ D 盘那一侧抢先推成功、占据远程历史，E 盘自此每次 push 都�
 | `dashboard_v5.html` | 主页面（Alpine.js），内含 `const COMMIT` 数据锚点 |
 | `gen_dashboard_data.py` | 数据生成（xlsx/parquet → dashboard_data.json） |
 | `update_data.py` | 手工一键更新（gen + git commit + push） |
-| `dashboard_data.json` | 主数据（约 4MB，已剥离 daily_detail） |
+| `dashboard_data.json` | 主数据（v12.0 起 months 只保留最近 3 个月，约 2MB；历史月见 litesum） |
 | `auto_sync/` | 自动同步（监控目录 / 守护进程 / 触发 / 状态库） |
 | `raw/*.parquet` | 按日中间数据（gitignore，不提交） |
-| `monthly/*.json` | 月度明细（提交） |
+| `monthly/*.json` | 月度明细（提交）；`monthly/{ym}_litesum.json` 为历史月轻量聚合（~600KB，前端按需懒加载） |
 | `targets.json` | 月度目标值（提交） |
 | `register_startup_admin.bat` | 注册/迁移计划任务（**需右键以管理员运行**） |
 | `start_auto_sync.bat` / `stop_auto_sync.bat` | 手动启停守护进程 |
@@ -82,7 +82,8 @@ E:\Work\Data\订单\出票总订单数据\YYYY-MM-DD.xlsx   ← 源数据，每�
   → gen_dashboard_data.py --month all
        ├─ raw/YYYY-MM-DD.parquet   （按日中间数据）
        ├─ monthly/YYYY-MM.json     （月度明细）
-       └─ dashboard_data.json      （聚合结果）
+       └─ dashboard_data.json      （聚合结果；v12.0 起 months 只留最近 3 个月，
+                                     更早月份 → monthly/{ym}_litesum.json，前端按需懒加载）
   → git commit + push
   → Streamlit Cloud 自动重新部署
   → 前端 dashboard_v5.html 从 jsDelivr 拉数据
