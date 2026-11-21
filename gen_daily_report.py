@@ -911,6 +911,12 @@ def main():
     with open(out, "w", encoding="utf-8") as f:
         f.write(content)
 
+    # 看板「📊 数据汇报」入口指向固定文件名，始终代表最新一次生成的汇报
+    latest = os.path.join(BASE, "output", "自动化数据汇报.html")
+    if os.path.abspath(latest) != os.path.abspath(out):
+        with open(latest, "w", encoding="utf-8") as f:
+            f.write(content)
+
     print(f"数据日期 : {d}（{weekday_cn(d)}）")
     print(f"数据源   : {source}（更新于 {generated_at[:16]}）")
     print(f"订单/航段: {num(s['total_orders'])} / {num(s['total_segments'])}")
@@ -921,6 +927,7 @@ def main():
     print(f"报错数据  : 每日环节 {len(ctx['daily_stage'])} 天 / 小时环节 {len(ctx['hourly_stage'])} 桶 / 原因 {len(ctx['fail_b'])+len(ctx['fail_d'])} 条")
     print(f"目标值   : {pct(ctx['target'], 0)}")
     print(f"输出文件 : {out}  ({len(content.encode('utf-8')) / 1024:.1f} KB)")
+    print(f"看板入口 : {latest}")
     return out
 
 

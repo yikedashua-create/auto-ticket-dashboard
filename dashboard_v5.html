@@ -533,6 +533,21 @@
   }
   .report-modal-close:hover { color: #ff4757; }
 
+  /* v11.11 数据汇报入口按钮 */
+  .report-header-actions { display: flex; align-items: center; gap: 8px; }
+  .report-link-btn {
+    background: rgba(0, 229, 255, 0.14);
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    color: #00e5ff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .report-link-btn:hover { background: rgba(0, 229, 255, 0.3); }
+
   /* 录入区 + 历史（上半，左右分栏，尽量压缩高度留给预览） */
   .report-modal-mid {
     display: flex;
@@ -1307,7 +1322,8 @@
         <label>止</label>
         <input type="date" id="rangeEnd" class="range-date-input" style="color-scheme:dark">
         <button id="rangeClearBtn" style="display:none;background:#3a1a24;border:1px solid #ff6b81;color:#ff6b81;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:12px" onclick="clearRange(true)" title="退出区间模式，回到月份视图">✕ 区间</button>
-        <button id="optGenBtn" class="opt-btn opt-gen" title="打开日报面板：录入优化 + 生成日报" onclick="openReportPanel()">📋 日报</button>
+        <button id="dataReportBtn" class="opt-btn opt-gen" title="打开自动化数据汇报（可直接下载 HTML）" onclick="openDataReport()">📊 数据汇报</button>
+        <button id="optGenBtn" class="opt-btn" title="日报录入：优化记录 + 生成日报文本" onclick="openReportPanel()">📋 日报</button>
         <div class="month-info" id="monthInfo"></div>
       </div>
       <div id="mainArea">
@@ -6451,6 +6467,39 @@ async function openReportPanel() {
   await refreshReportPreview();
 }
 
+/* ============== v11.11 自动化数据汇报入口 ==============
+   固定文件名 output/自动化数据汇报.html 由 gen_daily_report.py 每次生成时刷新。
+   本地打开看板 -> 相对路径；线上（jsDelivr 按 COMMIT 加载）-> 走 @main 绝对地址，
+   避免页面 COMMIT 锚点还指向旧提交时相对路径 404。 */
+const DATA_REPORT_NAME = '自动化数据汇报.html';
+const DATA_REPORT_FILE = encodeURIComponent(DATA_REPORT_NAME);
+function dataReportUrl(online) {
+  const CDN = 'https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@main/output/' + DATA_REPORT_FILE;
+  const isLocal = location.protocol === 'file:' ||
+                  ['localhost', '127.0.0.1'].indexOf(location.hostname) >= 0;
+  return (online || !isLocal) ? CDN : './output/' + DATA_REPORT_NAME;
+}
+function openDataReport(online) {
+  window.open(dataReportUrl(!!online), '_blank', 'noopener');
+}
+function downloadDataReport() {
+  const url = dataReportUrl(false);
+  const save = (href, revoke) => {
+    const a = document.createElement('a');
+    a.href = href;
+    a.download = '自动化数据汇报.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    if (revoke) setTimeout(() => URL.revokeObjectURL(href), 2000);
+  };
+  if (location.protocol === 'file:') { save(url, false); return; }
+  fetch(url)
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
+    .then(b => save(URL.createObjectURL(b), true))
+    .catch(() => openDataReport(true));
+}
+
 // 构建弹窗 DOM（三区结构：录入+历史 / 预览）
 function ensureReportModal() {
   if (document.getElementById('reportModal')) return;
@@ -6472,7 +6521,11 @@ function ensureReportModal() {
     '<div class="report-modal-content">' +
       '<div class="report-modal-header">' +
         '<span>📋 出票日报面板<span class="date-tag" id="reportModalDate"></span></span>' +
-        '<button class="report-modal-close" id="reportModalClose">✕</button>' +
+        '<div class="report-header-actions">' +
+          '<button class="report-link-btn" id="reportOpenHtml">📊 打开数据汇报</button>' +
+          '<button class="report-link-btn" id="reportDownloadHtml">⬇️ 下载 HTML</button>' +
+          '<button class="report-modal-close" id="reportModalClose">✕</button>' +
+        '</div>' +
       '</div>' +
       '<div class="report-modal-mid">' +
         '<div class="report-section">' +
@@ -6499,6 +6552,8 @@ function ensureReportModal() {
   document.getElementById('reportModalClose').addEventListener('click', () => modal.style.display = 'none');
   document.getElementById('optAddBtn').addEventListener('click', addOptAction);
   document.getElementById('reportCopyBtn').addEventListener('click', copyReport);
+  document.getElementById('reportOpenHtml').addEventListener('click', () => openDataReport(false));
+  document.getElementById('reportDownloadHtml').addEventListener('click', downloadDataReport);
 }
 
 function copyReport(ev) {
