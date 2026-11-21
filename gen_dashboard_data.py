@@ -2692,11 +2692,31 @@ def _main_inner(args):
           f" + AI {ai_stats['ai_orders']:,}（{ai_stats.get('ai_cover_pct', 0)}%）"
           f" + 兜底 {ai_stats['fallback_orders']:,}（{ai_stats.get('fallback_pct', 0)}%）")
 
+    # v12.0（2026-11-21）：主文件瘦身——months 只保留最近 KEEP_MONTHS_MAIN 个月，
+    # 被移除的历史月写成轻量聚合文件 monthly/{ym}_litesum.json（~600KB/月）。
+    # 背景：dashboard_data.json 随月份累积无限膨胀（7 个月 5.75MB，其中历史月
+    # months 占 4.2MB），前端每次打开全量下载，越用越慢。
+    # 前端配套：dashboard_v5.html ensureMonthData() 切换历史月时按需拉 litesum，
+    # available_months / monthly_index 保留完整（月切换器与日明细下钻不受影响）。
+    KEEP_MONTHS_MAIN = 3
+    month_summary_index = {}
+    _all_ms = sorted(months_top.keys())
+    _drop_ms = _all_ms[:-KEEP_MONTHS_MAIN] if len(_all_ms) > KEEP_MONTHS_MAIN else []
+    for ym in _drop_ms:
+        atomic_write_json(os.path.join(OUT_DIR, "monthly", f"{ym}_litesum.json"), months_top[ym])
+        month_summary_index[ym] = f"monthly/{ym}_litesum.json"
+    if _drop_ms:
+        for ym in _drop_ms:
+            del months_top[ym]
+        print(f"[瘦身] 主文件保留最近 {KEEP_MONTHS_MAIN} 个月 {sorted(months_top.keys())}；"
+              f"{len(_drop_ms)} 个历史月 {_drop_ms} → monthly/*_litesum.json")
+
     final = {
         "generated_at": generated_at,
         "available_months": available_months,
         "current_month": target_months[-1],
         "monthly_index": monthly_index,
+        "month_summary_index": month_summary_index,
         "ai_attribution": ai_stats,
         "months": months_top,
         # 兼容旧版（顶层还有默认月数据，前端可平滑切换；同样剥离 daily_detail）

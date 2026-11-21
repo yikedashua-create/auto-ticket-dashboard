@@ -1535,7 +1535,11 @@ async function applyRange() {
   const needMonths = new Set();
   _buildRangeDateList(start, end).forEach(d => needMonths.add(d.substring(0, 7)));
   if (prev) _buildRangeDateList(prev.start, prev.end).forEach(d => needMonths.add(d.substring(0, 7)));
-  await Promise.all([...needMonths].map(ym => ensureMonthDetail(ym)).filter(Boolean));
+  await Promise.all([...needMonths].map(async ym => {
+    // v12.0：历史月先拉聚合（litesum），再挂日明细
+    await ensureMonthData(ym);
+    return ensureMonthDetail(ym);
+  }));
   if (_token !== _switchToken) return;  // 已被更新的切换请求取代
 
   CURRENT_RANGE = { start, end };
@@ -2300,6 +2304,33 @@ function aggregateDayToMonthShape(monthData, dayRow) {  return {
    拉取失败时 getDayData 自动降级为 daily 单行聚合，页面不会挂。 */
 let _switchToken = 0;
 const MONTH_DD_PROMISES = {};
+/* ============== v12.0 历史月聚合懒加载 ==============
+   gen v12.0 起主文件 months 只保留最近 3 个月，更早月份存于
+   monthly/{ym}_litesum.json（~600KB/月，month_summary_index 索引）。
+   切换历史月 / 跨月区间 / 月环比对比时先拉 litesum 补入 DATA.months[ym]，
+   再走 ensureMonthDetail 挂日明细。失败不缓存，下次切换重试。 */
+async function ensureMonthData(ym) {
+  if (!ym || ym === "all" || DATA.months[ym]) return;
+  const idx = DATA.month_summary_index || {};
+  const rel = idx[ym] || `monthly/${ym}_litesum.json`;
+  const urls = [
+    "./" + rel,
+    `https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@${COMMIT}/${rel}`,
+  ];
+  for (const u of urls) {
+    try {
+      const r = await fetch(u);
+      if (!r.ok) continue;
+      const md = await r.json();
+      if (md && md.summary) {
+        DATA.months[ym] = md;
+        console.log("[month_litesum] 历史月聚合加载成功", ym, u);
+        return;
+      }
+    } catch (e) { /* 试下一个 URL */ }
+  }
+  console.warn("[month_litesum] 历史月聚合加载失败:", ym, "（该月视图将显示无数据）");
+}
 function ensureMonthDetail(ym) {
   const m = DATA.months && DATA.months[ym];
   if (!m) return Promise.resolve();
@@ -2349,8 +2380,24 @@ async function switchPeriod(month, day, week) {
   // 算对比基准
   const comparePeriod = getComparePeriod(month, day, week);
 
-  // v10.16：需要的月份先懒加载 daily_detail（日/周视图 + 对比周期都要用）
+  // v12.0：历史月聚合先就位（主文件只保留近 3 个月）——
+  // 目标月 + 相邻前一月（getComparePeriod 同步读 DATA.months 判定环比/MTD）
   const _token = ++_switchToken;
+  const _baseM = (month && month !== "all") ? month
+    : (week && week !== "all" && String(week).includes("|") ? String(week).split("|")[0] : null);
+  const _msSorted = () => (DATA.available_months || []).filter(x => x !== "all").sort();
+  const _toEnsure = new Set();
+  if (_baseM) {
+    _toEnsure.add(_baseM);
+    const _i = _msSorted().indexOf(_baseM);
+    if (_i > 0) _toEnsure.add(_msSorted()[_i - 1]);
+  } else if (month === "all") {
+    const _ms = _msSorted();
+    [_ms[_ms.length - 1], _ms[_ms.length - 2]].forEach(m => m && _toEnsure.add(m));
+  }
+  await Promise.all([..._toEnsure].map(ensureMonthData));
+
+  // v10.16：需要的月份先懒加载 daily_detail（日/周视图 + 对比周期都要用）
   const need = new Set();
   const addNeed = ym => { if (ym && ym !== "all" && DATA.months[ym]) need.add(ym); };
   addNeed(month);
