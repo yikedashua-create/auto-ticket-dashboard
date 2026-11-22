@@ -6479,8 +6479,27 @@ function dataReportUrl(online) {
                   ['localhost', '127.0.0.1'].indexOf(location.hostname) >= 0;
   return (online || !isLocal) ? CDN : './output/' + DATA_REPORT_NAME;
 }
-function openDataReport(online) {
-  window.open(dataReportUrl(!!online), '_blank', 'noopener');
+async function openDataReport(online) {
+  const url = dataReportUrl(!!online);
+  // jsDelivr 对仓库里的 .html 返回 text/plain，直接打开只会显示源码。
+  // 线上把内容抓取下来用 Blob 以 text/html 打开，浏览器才会真正渲染报告。
+  if (/^https?:/i.test(url)) {
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const html = await resp.text();
+      if (!/^\s*<!doctype html/i.test(html)) throw new Error('not html');
+      const blobUrl = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
+      const win = window.open(blobUrl, '_blank');
+      if (!win) window.location.href = blobUrl;
+      if (win) win.opener = null;
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+      return;
+    } catch (e) {
+      // 跨域受限时退回直接打开
+    }
+  }
+  window.open(url, '_blank', 'noopener');
 }
 function downloadDataReport() {
   const url = dataReportUrl(false);
