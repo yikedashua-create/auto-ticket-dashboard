@@ -548,6 +548,36 @@
   }
   .report-link-btn:hover { background: rgba(0, 229, 255, 0.3); }
 
+  /* 数据汇报全屏查看器：iframe srcdoc 直接渲染，不经 blob / 系统应用 */
+  .report-viewer {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(6, 10, 20, 0.92);
+    backdrop-filter: blur(4px);
+  }
+  .report-viewer-bar {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: linear-gradient(135deg, rgba(15, 22, 38, 0.99), rgba(10, 14, 26, 0.99));
+    border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+    box-sizing: border-box;
+  }
+  .report-viewer-bar .rv-title { color: #00e5ff; font-weight: 700; font-size: 15px; }
+  .report-viewer-bar .rv-actions { display: flex; align-items: center; gap: 8px; }
+  .report-viewer-frame {
+    width: 100%;
+    height: calc(100vh - 52px);
+    border: 0;
+    background: #F4F6F9;
+    display: block;
+  }
+
   /* 录入区 + 历史（上半，左右分栏，尽量压缩高度留给预览） */
   .report-modal-mid {
     display: flex;
@@ -6481,25 +6511,55 @@ function dataReportUrl(online) {
 }
 async function openDataReport(online) {
   const url = dataReportUrl(!!online);
-  // jsDelivr 对仓库里的 .html 返回 text/plain，直接打开只会显示源码。
-  // 线上把内容抓取下来用 Blob 以 text/html 打开，浏览器才会真正渲染报告。
+  // jsDelivr 对仓库里的 .html 返回 text/plain，直接开链接或 blob 都可能只显示源码 / 触发系统应用。
+  // 统一：抓取报告 HTML 后写进本页 iframe 的 srcdoc，由浏览器按 HTML 直接渲染，不依赖外部应用。
+  const show = (html) => {
+    let viewer = document.getElementById('reportViewer');
+    if (!viewer) {
+      viewer = document.createElement('div');
+      viewer.id = 'reportViewer';
+      viewer.className = 'report-viewer';
+      viewer.innerHTML =
+        '<div class="report-viewer-bar">' +
+          '<span class="rv-title">📊 自动化数据汇报</span>' +
+          '<span class="rv-actions">' +
+            '<button class="report-link-btn" id="rvDownload">⬇️ 下载 HTML</button>' +
+            '<button class="report-link-btn" id="rvClose">✕ 关闭</button>' +
+          '</span>' +
+        '</div>' +
+        '<iframe class="report-viewer-frame" id="reportViewerFrame" sandbox="allow-scripts allow-same-origin"></iframe>';
+      document.body.appendChild(viewer);
+      viewer.querySelector('#rvClose').addEventListener('click', () => {
+        viewer.style.display = 'none';
+        const f = document.getElementById('reportViewerFrame');
+        if (f) f.srcdoc = '';
+      });
+      viewer.querySelector('#rvDownload').addEventListener('click', () => downloadDataReport());
+    }
+    const frame = viewer.querySelector('#reportViewerFrame');
+    frame.srcdoc = html;
+    viewer.style.display = 'block';
+  };
   if (/^https?:/i.test(url)) {
     try {
       const resp = await fetch(url, { cache: 'no-store' });
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       const html = await resp.text();
       if (!/^\s*<!doctype html/i.test(html)) throw new Error('not html');
-      const blobUrl = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
-      const win = window.open(blobUrl, '_blank');
-      if (!win) window.location.href = blobUrl;
-      if (win) win.opener = null;
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+      show(html);
       return;
     } catch (e) {
-      // 跨域受限时退回直接打开
+      // 抓取失败时退回新窗口（本地 file 场景走下面分支）
     }
   }
-  window.open(url, '_blank', 'noopener');
+  // 本地 file:// 场景：iframe 直接指向相对路径即可正常渲染
+  const localViewer = document.getElementById('reportViewer');
+  if (localViewer) {
+    localViewer.querySelector('#reportViewerFrame').src = url;
+    localViewer.style.display = 'block';
+  } else {
+    window.open(url, '_blank');
+  }
 }
 function downloadDataReport() {
   const url = dataReportUrl(false);
