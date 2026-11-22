@@ -2269,7 +2269,8 @@ def build_month_data(df, month_label, is_daily=False):
     stage_path_counter = Counter() # (阶段, path) -> 单数
     daily_stage = defaultdict(Counter)  # date -> {阶段 -> 单数}
     daily_sub = defaultdict(Counter)    # date -> {子类 -> 单数}
-    hourly_stage = defaultdict(Counter)  # 2026-11-21 新增: hour -> {8 大环节 -> 单数}，供日报 24h×环节交叉
+    hourly_stage = defaultdict(Counter)  # 2026-11-21 新增: hour -> {8 大环节 -> 单数}，供日报 24h×环节交叉（B+D 合计）
+    hourly_stage_B = defaultdict(Counter)  # 2026-11-22 新增: 同上但仅 B（全自动失败），供日报 06 章与看板 B 口径一致
 
     for _, r in df.iterrows():
         if r["path"] not in ("B", "D"):
@@ -2288,6 +2289,9 @@ def build_month_data(df, month_label, is_daily=False):
         if pd.notna(ht):
             fam8 = get_stage_only(family_reason(get_root_reason(r)))
             hourly_stage[int(ht.hour)][fam8] += 1
+            # 2026-11-22: 纯 B 口径（全自动失败），与看板「失败原因排行 占比(B路径)」一致
+            if r["path"] == "B":
+                hourly_stage_B[int(ht.hour)][fam8] += 1
 
     # 阶段汇总（按定义顺序）
     stage_list = ["预定", "支付", "取票", "回填", "验真", "未走完"]
@@ -2345,13 +2349,20 @@ def build_month_data(df, month_label, is_daily=False):
     hourly_stage_list = []
     stage8_order = ["人工环节", "系统环节", "预定环节", "支付环节",
                     "取票环节", "验真环节", "回填环节", "平台环节", "其他环节"]
+    hourly_stage_B_list = []  # 2026-11-22: 纯 B 口径（全自动失败），供日报 06 章与看板一致
     for h in range(24):
         row = {"hour": h}
         for st in stage8_order:
             row[st] = hourly_stage[h].get(st, 0)
         row["total"] = sum(hourly_stage[h].values())
         hourly_stage_list.append(row)
+        row_b = {"hour": h}
+        for st in stage8_order:
+            row_b[st] = hourly_stage_B[h].get(st, 0)
+        row_b["total"] = sum(hourly_stage_B[h].values())
+        hourly_stage_B_list.append(row_b)
     out["hourly_stage"] = hourly_stage_list
+    out["hourly_stage_B"] = hourly_stage_B_list
 
     out["stage_distribution"] = stage_distribution
     out["stage_subcategory"] = sub_list
