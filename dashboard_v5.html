@@ -6518,7 +6518,10 @@ async function openReportPanel() {
    避免页面 COMMIT 锚点还指向旧提交时相对路径 404。 */
 const DATA_REPORT_NAME = '自动化数据汇报.html';
 const DATA_REPORT_FILE = encodeURIComponent(DATA_REPORT_NAME);
-const REPORT_BASE = 'https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@main/output/';
+// 报告走独立锚点：auto_sync 维护的 COMMIT 指向数据提交（不含 output/ 报告），
+// 必须用包含报告的 commit hash，否则报告/索引 404。每次推报告后同步更新此值。
+const REPORT_COMMIT = '6aaf43d';
+const REPORT_BASE = 'https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@' + REPORT_COMMIT + '/output/';
 let REPORT_INDEX_DATA = null;      // 由 report_index.js 或 CDN 加载
 let REPORT_PICKED_FILE = '';       // 当前下拉选中的报告文件名，空=固定名(最新)
 
