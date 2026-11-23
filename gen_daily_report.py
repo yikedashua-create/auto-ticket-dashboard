@@ -21,6 +21,7 @@ import argparse
 import html as _html
 import json
 import os
+import re
 import subprocess
 from datetime import datetime
 
@@ -49,6 +50,51 @@ def pct(v, d=2):
 def load_json(path):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+# 看板「日期下拉」索引：扫描 output/ 下已生成的日期报告，写成 JS 全局（file:// 下 script src 无跨域问题）
+REPORT_INDEX_JS = "report_index.js"
+REPORT_NAME_RE = re.compile(r"^自动化数据汇报_(.+)\.html$")
+
+
+def build_report_index(outdir):
+    """扫描 output 下的日期汇报 HTML，生成 report_index.js。
+    排除固定名（自动化数据汇报.html）与各类预览版；按日期倒序。
+    文件名形如 自动化数据汇报_2026-11-20.html / _2026-11-18_2026-11-20.html（区间）。
+    """
+    items = []
+    try:
+        names = os.listdir(outdir)
+    except OSError:
+        names = []
+    for name in names:
+        m = REPORT_NAME_RE.match(name)
+        if not m:
+            continue
+        tag = m.group(1)
+        # 排除预览/验证类非正式报告
+        if any(k in tag for k in ("预览", "验证", "精修", "改版")):
+            continue
+        parts = tag.split("_")
+        if not all(re.fullmatch(r"\d{4}-\d{2}-\d{2}", p) for p in parts):
+            continue
+        try:
+            size = os.path.getsize(os.path.join(outdir, name))
+        except OSError:
+            size = 0
+        label = tag if len(parts) == 1 else f"{parts[0]}~{parts[-1]}（{len(parts)}天）"
+        items.append({"tag": tag, "label": label, "file": name, "size": size,
+                      "sort": tag.replace("_", "")})
+    items.sort(key=lambda x: x["sort"], reverse=True)
+    payload = {
+        "updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "reports": items,
+    }
+    js = "window.REPORT_INDEX = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n"
+    path = os.path.join(outdir, REPORT_INDEX_JS)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(js)
+    return path, len(items)
 
 
 def weekday_cn(date_str):
@@ -1225,6 +1271,9 @@ def main():
         with open(latest, "w", encoding="utf-8") as f:
             f.write(content)
 
+    # 维护日期下拉索引（扫描 output 下所有正式日期报告）
+    idx_path, idx_n = build_report_index(os.path.dirname(os.path.abspath(out)))
+
     date_label = d if is_range else f"{d}（{weekday_cn(d)}）"
     print(f"数据日期 : {date_label}")
     print(f"数据源   : {source}（更新于 {generated_at[:16]}）")
@@ -1237,6 +1286,7 @@ def main():
     print(f"目标值   : {pct(ctx['target'], 0)}")
     print(f"输出文件 : {out}  ({len(content.encode('utf-8')) / 1024:.1f} KB)")
     print(f"看板入口 : {latest}")
+    print(f"日期索引 : {idx_path}（{idx_n} 份报告）")
     return out
 
 

@@ -570,6 +570,20 @@
   }
   .report-viewer-bar .rv-title { color: #00e5ff; font-weight: 700; font-size: 15px; }
   .report-viewer-bar .rv-actions { display: flex; align-items: center; gap: 8px; }
+  .report-viewer-bar .rv-date-select {
+    background: rgba(0, 229, 255, 0.08);
+    color: #00e5ff;
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    border-radius: 7px;
+    padding: 6px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    max-width: 260px;
+  }
+  .report-viewer-bar .rv-date-select:hover { background: rgba(0, 229, 255, 0.16); }
+  .report-viewer-bar .rv-date-select option { background: #0f1626; color: #d7e3f4; }
   .report-viewer-frame {
     width: 100%;
     height: calc(100vh - 52px);
@@ -1352,7 +1366,7 @@
         <label>止</label>
         <input type="date" id="rangeEnd" class="range-date-input" style="color-scheme:dark">
         <button id="rangeClearBtn" style="display:none;background:#3a1a24;border:1px solid #ff6b81;color:#ff6b81;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:12px" onclick="clearRange(true)" title="退出区间模式，回到月份视图">✕ 区间</button>
-        <button id="dataReportBtn" class="opt-btn opt-gen" title="打开自动化数据汇报（可直接下载 HTML）" onclick="openDataReport()">📊 数据汇报</button>
+        <button id="dataReportBtn" class="opt-btn opt-gen" title="打开自动化数据汇报（查看器内可选日期）" onclick="openDataReport()">📊 数据汇报</button>
         <button id="optGenBtn" class="opt-btn" title="日报录入：优化记录 + 生成日报文本" onclick="openReportPanel()">📋 日报</button>
         <div class="month-info" id="monthInfo"></div>
       </div>
@@ -1460,6 +1474,7 @@ async function loadData() {
     // 初始化月份切换器
     initMonthSwitcher();
     await loadTargets();  // v11.4：月度目标先于首屏渲染加载
+    loadReportIndex();    // v12.x：加载数据汇报日期下拉（失败静默降级）
     switchPeriod(DATA.current_month, "all");
     // v10.16：预取当月 daily_detail（后台加载，首次点日视图无等待）
     ensureMonthDetail(DATA.current_month);
@@ -6503,70 +6518,143 @@ async function openReportPanel() {
    避免页面 COMMIT 锚点还指向旧提交时相对路径 404。 */
 const DATA_REPORT_NAME = '自动化数据汇报.html';
 const DATA_REPORT_FILE = encodeURIComponent(DATA_REPORT_NAME);
-function dataReportUrl(online) {
-  const CDN = 'https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@main/output/' + DATA_REPORT_FILE;
-  const isLocal = location.protocol === 'file:' ||
-                  ['localhost', '127.0.0.1'].indexOf(location.hostname) >= 0;
-  return (online || !isLocal) ? CDN : './output/' + DATA_REPORT_NAME;
+const REPORT_BASE = 'https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@main/output/';
+let REPORT_INDEX_DATA = null;      // 由 report_index.js 或 CDN 加载
+let REPORT_PICKED_FILE = '';       // 当前下拉选中的报告文件名，空=固定名(最新)
+
+function isLocalPage() {
+  return location.protocol === 'file:' ||
+         ['localhost', '127.0.0.1'].indexOf(location.hostname) >= 0;
 }
-async function openDataReport(online) {
-  const url = dataReportUrl(!!online);
-  // jsDelivr 对仓库里的 .html 返回 text/plain，直接开链接或 blob 都可能只显示源码 / 触发系统应用。
-  // 统一：抓取报告 HTML 后写进本页 iframe 的 srcdoc，由浏览器按 HTML 直接渲染，不依赖外部应用。
-  const show = (html) => {
-    let viewer = document.getElementById('reportViewer');
-    if (!viewer) {
-      viewer = document.createElement('div');
-      viewer.id = 'reportViewer';
-      viewer.className = 'report-viewer';
-      viewer.innerHTML =
-        '<div class="report-viewer-bar">' +
-          '<span class="rv-title">📊 自动化数据汇报</span>' +
-          '<span class="rv-actions">' +
-            '<button class="report-link-btn" id="rvDownload">⬇️ 下载 HTML</button>' +
-            '<button class="report-link-btn" id="rvClose">✕ 关闭</button>' +
-          '</span>' +
-        '</div>' +
-        '<iframe class="report-viewer-frame" id="reportViewerFrame" sandbox="allow-scripts allow-same-origin"></iframe>';
-      document.body.appendChild(viewer);
-      viewer.querySelector('#rvClose').addEventListener('click', () => {
-        viewer.style.display = 'none';
-        const f = document.getElementById('reportViewerFrame');
-        if (f) f.srcdoc = '';
-      });
-      viewer.querySelector('#rvDownload').addEventListener('click', () => downloadDataReport());
-    }
-    const frame = viewer.querySelector('#reportViewerFrame');
-    frame.srcdoc = html;
-    viewer.style.display = 'block';
-  };
+function dataReportUrl(online) {
+  const name = REPORT_PICKED_FILE || DATA_REPORT_NAME;
+  const CDN = REPORT_BASE + encodeURIComponent(name);
+  return (online || !isLocalPage()) ? CDN : './output/' + name;
+}
+
+function REPORT_INDEX_JS_NAME() { return 'report_index.js'; }
+
+/* 加载 report_index.js：只取数据到 REPORT_INDEX_DATA，不碰 DOM。
+   本地用 script src（file:// 无跨域问题），线上 fetch CDN；失败静默降级（查看器只显示最新）。 */
+async function loadReportIndex() {
+  if (REPORT_INDEX_DATA) return REPORT_INDEX_DATA;
+  if (isLocalPage()) {
+    if (window.REPORT_INDEX) { REPORT_INDEX_DATA = window.REPORT_INDEX; return REPORT_INDEX_DATA; }
+    await new Promise(resolve => {
+      const s = document.createElement('script');
+      s.src = './output/' + REPORT_INDEX_JS_NAME();
+      s.onload = () => { REPORT_INDEX_DATA = window.REPORT_INDEX || null; resolve(); };
+      s.onerror = () => resolve();
+      document.head.appendChild(s);
+    });
+  } else {
+    try {
+      const resp = await fetch(REPORT_BASE + REPORT_INDEX_JS_NAME(), { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const txt = await resp.text();
+      const m = txt.match(/window\.REPORT_INDEX\s*=\s*(\{[\s\S]*\})\s*;?\s*$/);
+      if (!m) throw new Error('bad index');
+      REPORT_INDEX_DATA = JSON.parse(m[1]);
+    } catch (e) { REPORT_INDEX_DATA = null; }
+  }
+  return REPORT_INDEX_DATA;
+}
+
+// 用索引填充查看器顶栏的日期下拉（选中项跟随 REPORT_PICKED_FILE）
+function fillViewerDateSelect() {
+  const viewer = document.getElementById('reportViewer');
+  if (!viewer) return;
+  const sel = viewer.querySelector('#rvDateSelect');
+  if (!sel) return;
+  const reports = (REPORT_INDEX_DATA && REPORT_INDEX_DATA.reports) || [];
+  sel.innerHTML = '<option value="">📊 最新汇报</option>';
+  reports.forEach(r => {
+    const o = document.createElement('option');
+    o.value = r.file;
+    o.textContent = r.label;
+    sel.appendChild(o);
+  });
+  sel.value = REPORT_PICKED_FILE;
+  sel.title = (REPORT_INDEX_DATA && REPORT_INDEX_DATA.updated)
+    ? ('可选日期 · 索引更新于 ' + REPORT_INDEX_DATA.updated) : '选择数据汇报日期';
+}
+
+/* 创建查看器（只建一次）：顶栏含日期下拉 + 下载 + 关闭 */
+function ensureReportViewer() {
+  let viewer = document.getElementById('reportViewer');
+  if (viewer) return viewer;
+  viewer = document.createElement('div');
+  viewer.id = 'reportViewer';
+  viewer.className = 'report-viewer';
+  viewer.innerHTML =
+    '<div class="report-viewer-bar">' +
+      '<span class="rv-title">📊 自动化数据汇报</span>' +
+      '<select class="rv-date-select" id="rvDateSelect" title="选择数据汇报日期">' +
+        '<option value="">📊 最新汇报</option>' +
+      '</select>' +
+      '<span class="rv-actions">' +
+        '<button class="report-link-btn" id="rvDownload">⬇️ 下载 HTML</button>' +
+        '<button class="report-link-btn" id="rvClose">✕ 关闭</button>' +
+      '</span>' +
+    '</div>' +
+    '<iframe class="report-viewer-frame" id="reportViewerFrame" sandbox="allow-scripts allow-same-origin"></iframe>';
+  document.body.appendChild(viewer);
+  viewer.querySelector('#rvClose').addEventListener('click', () => {
+    viewer.style.display = 'none';
+    const f = document.getElementById('reportViewerFrame');
+    if (f) { f.srcdoc = ''; f.src = 'about:blank'; }
+  });
+  viewer.querySelector('#rvDownload').addEventListener('click', () => downloadDataReport());
+  // 切换日期：更新选中文件并重新加载报告
+  viewer.querySelector('#rvDateSelect').addEventListener('change', (e) => {
+    REPORT_PICKED_FILE = e.target.value || '';
+    renderReportIntoViewer();
+  });
+  return viewer;
+}
+
+/* 把当前选中（REPORT_PICKED_FILE，空=最新）的报告渲染进查看器 */
+async function renderReportIntoViewer(forceOnline) {
+  const viewer = ensureReportViewer();
+  const frame = viewer.querySelector('#reportViewerFrame');
+  const url = dataReportUrl(!!forceOnline);
+  // 标题跟随选择
+  const titleEl = viewer.querySelector('.rv-title');
+  const pick = (REPORT_INDEX_DATA && (REPORT_INDEX_DATA.reports || []).find(r => r.file === REPORT_PICKED_FILE));
+  if (titleEl) titleEl.textContent = pick ? ('📊 数据汇报 · ' + pick.label) : '📊 自动化数据汇报（最新）';
+  // jsDelivr 对仓库 .html 返回 text/plain → 必须 fetch 后写 iframe srcdoc 才会按 HTML 渲染
   if (/^https?:/i.test(url)) {
     try {
       const resp = await fetch(url, { cache: 'no-store' });
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       const html = await resp.text();
       if (!/^\s*<!doctype html/i.test(html)) throw new Error('not html');
-      show(html);
+      frame.srcdoc = html;
+      viewer.style.display = 'block';
       return;
-    } catch (e) {
-      // 抓取失败时退回新窗口（本地 file 场景走下面分支）
-    }
+    } catch (e) { /* 线上抓取失败，下面兜底 */ }
   }
-  // 本地 file:// 场景：iframe 直接指向相对路径即可正常渲染
-  const localViewer = document.getElementById('reportViewer');
-  if (localViewer) {
-    localViewer.querySelector('#reportViewerFrame').src = url;
-    localViewer.style.display = 'block';
-  } else {
-    window.open(url, '_blank');
-  }
+  // 本地 file:// 场景：iframe 直接指相对路径即可渲染
+  frame.srcdoc = '';
+  frame.src = url;
+  viewer.style.display = 'block';
+}
+
+async function openDataReport(online) {
+  const viewer = ensureReportViewer();
+  viewer.style.display = 'block';
+  // 索引异步加载，回调里回填下拉（首次打开时可能还没加载完）
+  await loadReportIndex();
+  fillViewerDateSelect();
+  await renderReportIntoViewer(!!online);
 }
 function downloadDataReport() {
   const url = dataReportUrl(false);
+  const dlName = REPORT_PICKED_FILE || DATA_REPORT_NAME;
   const save = (href, revoke) => {
     const a = document.createElement('a');
     a.href = href;
-    a.download = '自动化数据汇报.html';
+    a.download = dlName;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
