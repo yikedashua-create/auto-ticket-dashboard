@@ -1430,6 +1430,24 @@ async function loadTargets() {
 // ⚠️ auto_sync/trigger.py 的 sync_html_commit 按正则替换本行，格式勿改
 const COMMIT = "18c050a";
 
+/* v14：全自动成功率 = A / (A+B+C+D)（全天单量）。
+   数据管道产出的 auto_succ_rate 是旧口径 A/(A+B)，且生产机尚未重算，
+   故在数据入口统一按 ABCD 口径重算一遍，所有直接读字段的地方自动生效。
+   只重算含 A/B/C/D 四键的对象，幂等（生产机重算后结果一致）。 */
+function recalcSuccABCD(node) {
+  if (!node || typeof node !== "object") return;
+  if (Array.isArray(node)) { node.forEach(recalcSuccABCD); return; }
+  if ("A" in node && "B" in node && "C" in node && "D" in node && "auto_succ_rate" in node) {
+    const a = Number(node.A) || 0, b = Number(node.B) || 0,
+          c = Number(node.C) || 0, d = Number(node.D) || 0, den = a + b + c + d;
+    node.auto_succ_rate = den ? a / den * 100 : 0;
+  }
+  for (const k in node) {
+    if (k === "auto_succ_rate") continue;
+    recalcSuccABCD(node[k]);
+  }
+}
+
 async function loadData() {
   try {
     // 优先从 window.__DASHBOARD_DATA__ 读取（Streamlit 部署用）
@@ -1463,6 +1481,7 @@ async function loadData() {
       }
     }
     DATA = data;
+    recalcSuccABCD(DATA);   // v14：统一重算全自动成功率为 ABCD 口径
 
     // 兼容旧版：如果 JSON 没有 months 字段，包装一下
     if (!DATA.months) {
@@ -2022,7 +2041,7 @@ function getWeekData(weekKey) {
       C_ratio: total ? C / total * 100 : 0,
       D_ratio: total ? D / total * 100 : 0,
       auto_coverage_rate: total ? auto / total * 100 : 0,
-      auto_succ_rate: auto ? A / auto * 100 : 0,
+      auto_succ_rate: total ? A / total * 100 : 0,
       B_to_manual_rate: total ? B / total * 100 : 0,
       total_profit: profit_sum,
       avg_profit: total ? profit_sum / total : 0,
@@ -2127,7 +2146,7 @@ function buildRangeData(start, end, rangeLabel) {
     C_ratio: sTotal ? sC / sTotal * 100 : 0,
     D_ratio: sTotal ? sD / sTotal * 100 : 0,
     auto_coverage_rate: sTotal ? auto / sTotal * 100 : 0,
-    auto_succ_rate: auto ? sA / auto * 100 : 0,
+    auto_succ_rate: sTotal ? sA / sTotal * 100 : 0,
     B_to_manual_rate: sTotal ? sB / sTotal * 100 : 0,
     total_profit: sProfit,
     avg_profit: sTotal ? sProfit / sTotal : 0,
@@ -2142,7 +2161,7 @@ function buildRangeData(start, end, rangeLabel) {
   const rerate = (e) => {
     e.avg_profit = e.total ? e.profit_sum / e.total : 0;
     e.auto_coverage_rate = e.total ? (e.A + e.B) / e.total * 100 : 0;
-    e.auto_succ_rate = (e.A + e.B) ? e.A / (e.A + e.B) * 100 : 0;
+    e.auto_succ_rate = e.total ? e.A / e.total * 100 : 0;
     e.B_ratio = e.total ? e.B / e.total * 100 : 0;
     e.D_ratio = e.total ? e.D / e.total * 100 : 0;
   };
@@ -2167,7 +2186,7 @@ function buildRangeData(start, end, rangeLabel) {
   const channel = [...chanM.values()].map(e => {
     e.avg_profit = e.total ? e.profit_sum / e.total : 0;
     e.auto_coverage_rate = e.total ? (e.A + e.B) / e.total * 100 : 0;
-    e.auto_succ_rate = (e.A + e.B) ? e.A / (e.A + e.B) * 100 : 0;
+    e.auto_succ_rate = e.total ? e.A / e.total * 100 : 0;
     e.channel = e._key;
     e.ticket_time = {};
     return e;
@@ -2303,7 +2322,7 @@ function buildCompareMTD(ym, nDays) {
     summary: {
       month: ym + " 同期", total_days: rows.length, total_orders: sum.total,
       A: sum.A, B: sum.B, C: sum.C, D: sum.D,
-      auto_succ_rate: auto ? sum.A / auto * 100 : 0,
+      auto_succ_rate: sum.total ? sum.A / sum.total * 100 : 0,
       auto_coverage_rate: sum.total ? auto / sum.total * 100 : 0,
       total_profit: sum.profit_sum, profit_pos: sum.profit_pos,
     },
@@ -2315,7 +2334,7 @@ function buildCompareMTD(ym, nDays) {
       const auto = t.A + t.B;
       return { ...t, avg_profit: t.total ? t.profit_sum / t.total : 0,
         auto_coverage_rate: t.total ? auto / t.total * 100 : 0,
-        auto_succ_rate: auto ? t.A / auto * 100 : 0 };
+        auto_succ_rate: t.total ? t.A / t.total * 100 : 0 };
     }).sort((a, b) => b.total - a.total),
     staff: Object.values(staffAgg).map(t => ({
       name: t.name, total: t.total, B: t.B, C: t.C, D: t.D,
@@ -2410,6 +2429,7 @@ function ensureMonthDetail(ym) {
         const md = await r.json();
         if (md && md.daily_detail) {
           m.daily_detail = md.daily_detail;
+          recalcSuccABCD(m.daily_detail);   // v14：日明细也统一重算为 ABCD 口径
           // v11.9.13：gen 已把历史月的全量 fail_drill 从主文件剥离，
           // 这里从 monthly json 一并合入（当月/旧数据自带非空 drill 时不覆盖）
           if (md.fail_drill_B && md.fail_drill_B.length && !(m.fail_drill_B || []).length) {
@@ -2781,7 +2801,7 @@ function renderOverview() {
         <div class="kpi ${kpiCls(s.auto_succ_rate, cs && cs.auto_succ_rate, 'good')}">
           <div class="kpi-label">🎯 全自动成功率</div>
           <div class="kpi-value" data-count="${s.auto_succ_rate}" data-count-dec="2" data-count-suf="%">${fmt.pct(s.auto_succ_rate)}</div>
-          <div class="kpi-sub">A / (A+B)</div>
+          <div class="kpi-sub">A / (A+B+C+D)</div>
           <div class="kpi-sub-row">${cs ? cmpBadge(s.auto_succ_rate, cs.auto_succ_rate, "rate", true) : ""}</div>
         </div>
       </div>
@@ -2979,7 +2999,7 @@ function renderHourly() {
     return {
       hour: h, total, A, B, C, D,
       auto_coverage_rate: total ? (auto / total * 100) : 0,
-      auto_succ_rate: auto ? (A / auto * 100) : 0,
+      auto_succ_rate: total ? (A / total * 100) : 0,
     };
   });
 
@@ -3011,7 +3031,7 @@ function renderHourly() {
   // 表格行（25 行，0-24；改法 A: 0:00 = 跨天 hour 23 显示成 "00:00(跨天)"，24:00 显示成 "24:00"）
   const tableRows = fullData.map(r => {
     const auto = r.A + r.B;
-    const succ = auto > 0 ? (r.A / auto * 100).toFixed(1) : "—";
+    const succ = r.total > 0 ? (r.A / r.total * 100).toFixed(1) : "—";
     const label = r.hour === 24 ? "24:00" : `${String(r.hour).padStart(2, "0")}:00`;
     return `<tr>
       <td><b>${label}</b></td>
@@ -3129,7 +3149,7 @@ function renderHourly() {
           html += `<br><span style="color:#ffa502">C</span> ${fmt.num(d.C)} 单 (${d.total ? (d.C / d.total * 100).toFixed(1) : 0}%)`;
           html += ` | <span style="color:#a0b4cc">D</span> ${fmt.num(d.D)} 单 (${d.total ? (d.D / d.total * 100).toFixed(1) : 0}%)`;
           html += `<br>───────────`;
-          html += `<br>成功率 <b style="color:#00ff88">${auto ? (d.A / auto * 100).toFixed(1) : "—"}%</b>`;
+          html += `<br>成功率 <b style="color:#00ff88">${d.total ? (d.A / d.total * 100).toFixed(1) : "—"}%</b>`;
           html += ` · 覆盖率 ${d.total ? (auto / d.total * 100).toFixed(1) : "—"}%`;
           return html;
         }
@@ -6519,7 +6539,7 @@ async function openReportPanel() {
 const DATA_REPORT_NAME = '自动化数据汇报.html';
 // 渲染引擎资源锚点：auto_sync 维护的 COMMIT 只指向数据提交，不含 output/ 资源；
 // 用独立锚点指向包含 report_render.js 的提交。每次改渲染脚本后同步更新此值。
-const REPORT_COMMIT = 'f1a8892';
+const REPORT_COMMIT = '4d31723';
 const REPORT_BASE = 'https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@' + REPORT_COMMIT + '/output/';
 let REPORT_RENDER_READY = false;       // report_render.js 是否已加载
 let REPORT_PICK = '';                  // 当前选择：YYYY-MM-DD 或 YYYY-MM-DD~YYYY-MM-DD（区间）

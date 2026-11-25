@@ -547,7 +547,7 @@ def snapshot_summary(df_snap):
         total = int(len(g))
         out[str(m)] = {
             "total_orders": total, "A": A, "B": B, "C": C, "D": D,
-            "auto_succ_rate": round(A / (A + B) * 100, 2) if A + B else 0,
+            "auto_succ_rate": round(A / total * 100, 2) if total else 0,
             "auto_coverage_rate": round((A + B) / total * 100, 2) if total else 0,
         }
     return out
@@ -1634,7 +1634,7 @@ def build_month_data(df, month_label, is_daily=False):
         "C_ratio": round(C/n*100, 2),
         "D_ratio": round(D/n*100, 2),
         "auto_coverage_rate": round((A+B)/n*100, 2),
-        "auto_succ_rate": round(A/(A+B)*100, 2) if (A+B) else 0,
+        "auto_succ_rate": round(A/n*100, 2) if n else 0,
         "B_to_manual_rate": round(B/n*100, 2),
         "total_profit": round(float(profit_all.sum()), 2),
         "avg_profit": round(float(profit_all.mean()), 2) if len(profit_all) else 0,
@@ -1668,7 +1668,7 @@ def build_month_data(df, month_label, is_daily=False):
                 "total": nh,
                 "A": Ah, "B": Bh, "C": Ch, "D": Dh,
                 "auto_coverage_rate": round(auto_h / nh * 100, 2) if nh > 0 else 0,
-                "auto_succ_rate": round(Ah / auto_h * 100, 2) if auto_h > 0 else 0,
+                "auto_succ_rate": round(Ah / nh * 100, 2) if nh > 0 else 0,
             })
         out["summary"]["hourly_today"] = {
             "date": str(last_date),
@@ -1706,7 +1706,7 @@ def build_month_data(df, month_label, is_daily=False):
             "total": int(n), "A": a, "B": b, "C": c, "D": d,
             "total_segments": seg_sum,  # 2026-07-20 新增：单日航段总数
             "auto_coverage_rate": round((a+b)/n*100, 2) if n else 0,
-            "auto_succ_rate": round(a/(a+b)*100, 2) if (a+b) else 0,
+            "auto_succ_rate": round(a/n*100, 2) if n else 0,
             "B_ratio": round(b/n*100, 2) if n else 0,
             "C_ratio": round(c/n*100, 2) if n else 0,
             "D_ratio": round(d/n*100, 2) if n else 0,
@@ -1748,7 +1748,7 @@ def build_month_data(df, month_label, is_daily=False):
                 "days": w["days"],
                 "total": w["total"], "A": w["A"], "B": w["B"], "C": w["C"], "D": w["D"],
                 "auto_coverage_rate": round(auto / w["total"] * 100, 2) if w["total"] else 0,
-                "auto_succ_rate": round(w["A"] / auto * 100, 2) if auto else 0,
+                "auto_succ_rate": round(w["A"] / w["total"] * 100, 2) if w["total"] else 0,
                 "A_ratio": round(w["A"] / w["total"] * 100, 2) if w["total"] else 0,
                 "B_ratio": round(w["B"] / w["total"] * 100, 2) if w["total"] else 0,
                 "profit_sum": round(w["profit_sum"], 2),
@@ -1775,7 +1775,7 @@ def build_month_data(df, month_label, is_daily=False):
             "date_range": f"{min(w['days'])}~{max(w['days'])}",
             "total": w["total"], "A": w["A"], "B": w["B"], "C": w["C"], "D": w["D"],
             "auto_coverage_rate": round((w["A"]+w["B"])/w["total"]*100, 2),
-            "auto_succ_rate": round(w["A"]/(w["A"]+w["B"])*100, 2) if (w["A"]+w["B"]) else 0,
+            "auto_succ_rate": round(w["A"]/w["total"]*100, 2) if w["total"] else 0,
             "A_ratio": round(w["A"]/w["total"]*100, 2),
             "B_ratio": round(w["B"]/w["total"]*100, 2),
             "profit_sum": round(w["profit_sum"], 2),
@@ -1815,7 +1815,7 @@ def build_month_data(df, month_label, is_daily=False):
                 "name": AIRLINE_NAME.get(air, air),
                 "total": n, "A": a, "B": b, "C": c, "D": d,
                 "auto_coverage_rate": round((a+b)/n*100, 2) if n else 0,
-                "auto_succ_rate": round(a/(a+b)*100, 2) if (a+b) else 0,
+                "auto_succ_rate": round(a/n*100, 2) if n else 0,
                 "B_ratio": round(b/n*100, 2) if n else 0,
                 "D_ratio": round(d/n*100, 2) if n else 0,
                 "profit_sum": round(psum, 2),
@@ -1851,7 +1851,7 @@ def build_month_data(df, month_label, is_daily=False):
                 "platform": pf, "total": n,
                 "A": a, "B": b, "C": c, "D": d,
                 "auto_coverage_rate": round((a+b)/n*100, 2) if n else 0,
-                "auto_succ_rate": round(a/(a+b)*100, 2) if (a+b) else 0,
+                "auto_succ_rate": round(a/n*100, 2) if n else 0,
                 "profit_sum": round(psum, 2),
                 "avg_profit": round(pavg, 2),
             })
@@ -1899,7 +1899,7 @@ def build_month_data(df, month_label, is_daily=False):
                 "channel": ch, "total": n,
                 "A": a, "B": b, "C": c, "D": d,
                 "auto_coverage_rate": round((a+b)/n*100, 2) if n else 0,
-                "auto_succ_rate": round(a/(a+b)*100, 2) if (a+b) else 0,
+                "auto_succ_rate": round(a/n*100, 2) if n else 0,
                 "profit_sum": round(psum, 2),
                 "avg_profit": round(pavg, 2),
                 "ticket_time": tt,

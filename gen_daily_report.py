@@ -184,7 +184,7 @@ def merge_days(days, start, end):
         "A_ratio": _safe_div(A, tot), "B_ratio": _safe_div(B, tot),
         "C_ratio": _safe_div(C, tot), "D_ratio": _safe_div(D, tot),
         "auto_coverage_rate": _safe_div(auto, tot),
-        "auto_succ_rate": _safe_div(A, auto),
+        "auto_succ_rate": _safe_div(A, tot),
         "B_to_manual_rate": _safe_div(B, auto),
         "total_profit": round(profit, 2),
         "avg_profit": round(profit / tot, 2) if tot else 0.0,
@@ -206,7 +206,7 @@ def merge_days(days, start, end):
         r = hour_map[h]
         a, b, t = r["A"], r["B"], r["total"]
         r["auto_coverage_rate"] = _safe_div(a + b, t)
-        r["auto_succ_rate"] = _safe_div(a, a + b)
+        r["auto_succ_rate"] = _safe_div(a, t)
         hourly_data.append(r)
     summary["hourly_today"] = {"date": f"{start}~{end}", "data": hourly_data}
 
@@ -234,7 +234,7 @@ def merge_days(days, start, end):
         for name, agg in mp.items():
             agg[label] = name
             a, b, t = agg["A"], agg["B"], agg["total"]
-            agg["auto_succ_rate"] = _safe_div(a, a + b)
+            agg["auto_succ_rate"] = _safe_div(a, t)
             agg["auto_coverage_rate"] = _safe_div(a + b, t)
             agg["avg_profit"] = round(agg["profit_sum"] / t, 2) if t else 0.0
             agg["profit_sum"] = round(agg["profit_sum"], 2)
@@ -1052,7 +1052,7 @@ HOUR_JS = r"""
       '<div class="tr"><span>'+dot('#DC2626')+'B 全自动失败</span><b>'+f(B)+' 单 ('+p(auto?B/auto*100:0)+')</b></div>'+
       '<div class="tr"><span>'+dot('#EA580C')+'C 订单转人工</span><b>'+f(C)+' 单 ('+p(t?C/t*100:0)+')</b></div>'+
       '<div class="tr"><span>'+dot('#94A3B8')+'D 订单处理中</span><b>'+f(D)+' 单 ('+p(t?D/t*100:0)+')</b></div>'+
-      '<div class="sep"></div><div class="sum">成功率 <b>'+p(auto?A/auto*100:0)+'</b> · 覆盖率 '+p(t?auto/t*100:0)+'</div>';
+      '<div class="sep"></div><div class="sum">成功率 <b>'+p(t?A/t*100:0)+'</b> · 覆盖率 '+p(t?auto/t*100:0)+'</div>';
     tip.style.display='block';
     var br=box.getBoundingClientRect();
     var x=e.clientX-br.left+14, y=e.clientY-br.top+10;
@@ -1238,6 +1238,17 @@ def main():
     for k in ("total_orders", "total_segments", "A", "B", "C", "D", "auto_succ_rate"):
         if k not in s or s[k] is None:
             s[k] = row.get("total" if k == "total_orders" else k, 0)
+
+    # v14：全自动成功率分母统一为 A+B+C+D（全天单量），不依赖数据管道是否已重算。
+    def _rate_abcd(o):
+        den = sum(int(o.get(k) or 0) for k in ("A", "B", "C", "D"))
+        o["auto_succ_rate"] = _safe_div(int(o.get("A") or 0), den)
+
+    _rate_abcd(s)
+    for _key in ("platform", "airline", "channel"):
+        for _o in (day.get(_key) or []):
+            if isinstance(_o, dict):
+                _rate_abcd(_o)
 
     hourly = sorted((s.get("hourly_today") or {}).get("data") or [],
                     key=lambda r: int(r.get("hour") or 0))
