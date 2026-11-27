@@ -21,7 +21,7 @@ auto_sync 看门狗 v1（2026-11-03）—— 数据同步链路自愈 + 告警
      → push(rebase重试)                                        ← 兜住 C 残留
   4. 数据新鲜度：dashboard_data.json 未覆盖到"昨天"
      且当前已过 09:30（给 08:35 正常流程留时间）
-     → 自动 fetch --days 2 --force --trigger 补拉补算          ← 兜住 A/D
+     → 自动 fetch --days N --force --trigger 补拉补算（N=缺口+1，上限7天）  ← 兜住 A/D
 每次自愈动作汇总推钉钉（状态翻转去重，同一状态连续出现只报一次）。
 """
 import json
@@ -212,11 +212,23 @@ def check_freshness(actions):
     if not stale_reason:
         return  # 覆盖达标，新鲜
     actions.append(("数据新鲜度", False, f"{stale_reason} → 自动补拉补算（约40分钟）"))
+    # 2026-11-27 改进：按实际缺口动态计算补拉天数（此前固定 2 天，
+    # 断档超过 2 天时最早的日子会永久漏拉，如 11-24~11-26 三日 503 断档）。
+    try:
+        from datetime import date as _date
+        y, m, dd = map(int, required.split("-"))
+        ly, lm, ldd = (map(int, latest_date.split("-")) if latest_date
+                       else (y, m, dd))
+        gap = max((_date(y, m, dd) - _date(ly, lm, ldd)).days, 1)
+    except Exception:
+        gap = 2
+    days = min(gap + 1, 7)
     ok, out, err, rc = _run(
-        ["python", "-m", "auto_sync", "fetch", "--days", "2", "--force", "--trigger"],
+        ["python", "-m", "auto_sync", "fetch", f"--days", str(days),
+         "--force", "--trigger"],
         timeout=9000)
     actions.append(("补拉补算", ok,
-                    f"fetch --days 2 --force --trigger 退出码 {rc}；{(out or err)[-300:]}"))
+                    f"fetch --days {days} --force --trigger 退出码 {rc}；{(out or err)[-300:]}"))
 
 
 # ---------- 告警 ----------
