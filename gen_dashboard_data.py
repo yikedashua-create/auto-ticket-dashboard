@@ -510,12 +510,21 @@ def final_status_label(row) -> str:
 
 
 def dedup_master_orders(df):
-    """v11.2（2026-09-05）：主单去重——同订单号跨天快照/拆分行只算一张主单。
+    """主单去重：同订单号跨天快照 + 同日拆分父子行，最终只算一张主单。
 
     用户拍板（2026-09-05，主口径切换 B 方案）：
       - 归属日 = 订单首次出现日（下单日）→ 日/月聚合自然无重复
-      - 最终状态 = 最新一天快照的行（含 path/平台状态/锁定人/平台/航司）
+      - 最终状态 = 最新一天快照的行（含平台状态/锁定人/平台/航司）
       - 失败原因 = 最早非空快照回填（保住"第一次失败"语义）
+    拆单修正（2026-11-27，11-26 数据实证）：
+      - 拆单物理行序是"子行在前、父行在最后"，旧 tail(1) 100% 取到父行；
+        父行锁定人/失败原因几乎全空 → 子行的转人工痕迹被整行丢弃。
+      - 修正：同一天内先按订单号聚合父子行——
+          * 最后锁定人：任一子行非空即非空（曾转人工优先）
+          * 第一次失败原因 / 失败原因：取全组最早非空（C 路径信号不丢）
+          * 平台状态 / 订单状态.1 等代表字段：取父行（订单拆分=1，无父行取组内末行）
+      - 聚合后再按"最新一天快照"取代表行（保留跨天口径），归属日仍为首次出现日。
+      - 聚合后 path 需要重算：把重算逻辑交给调用方（见 _main_inner：dedup 后再 classify）。
     副作用（口径说明）：航司/平台分布按主单归属行计，拆分单不再按航段重复计。
     """
     if "订单号" not in df.columns:
@@ -523,15 +532,55 @@ def dedup_master_orders(df):
     df = df.copy()
     df["_oid"] = df["订单号"].astype(str).str.strip()
     df = df.sort_values(["_oid", "_file_date"], kind="mergesort")
+
+    def _first_nonempty(s):
+        s = s.fillna("").astype(str).str.strip()
+        s = s[s != ""]
+        return s.iloc[0] if len(s) else ""
+
+    # --- 拆单修正：同一天(订单号, _file_date)内先把父子行聚合成一行 ---
+    if "订单拆分号" in df.columns:
+        # 子行 = 订单拆分≠1（含 0 与 NaN），父行 = 订单拆分==1
+        # 用 key 标记：父行排在组内最前，保证代表字段优先取父行
+        split_flag = df["订单拆分"].fillna(0).astype(str).str.strip() if "订单拆分" in df.columns else pd.Series("0", index=df.index)
+        is_parent = split_flag.isin(["1", "1.0"])
+        df["_parent_rank"] = (~is_parent).astype(int)  # 父行=0 排前
+
+        # 锁定人 OR：组内任一非空即非空
+        lock = df["最后锁定人"].fillna("").astype(str).str.strip() if "最后锁定人" in df.columns else pd.Series("", index=df.index)
+        df["_lock_v"] = lock
+        # 失败原因取最早非空（组内，按物理行序）
+        for col in ("第一次失败原因", "失败原因"):
+            if col in df.columns:
+                s = df[col].fillna("").astype(str).str.strip()
+                s = s.where(s != "", None)
+                df[col] = s.groupby([df["_oid"], df["_file_date"]]).transform(_first_nonempty)
+
+        # 代表行 = 组内父行优先（_parent_rank=0 的第一行），其余字段沿用该行
+        df = df.sort_values(["_oid", "_file_date", "_parent_rank"], kind="mergesort")
+        grp = df.groupby(["_oid", "_file_date"], sort=False)
+        rep_idx = grp.head(1).index
+        rep = df.loc[rep_idx].copy()
+        # 锁定人：OR 覆盖（先回填到每个代表行）
+        lock_or = df.groupby(["_oid", "_file_date"])["_lock_v"].transform(
+            lambda s: next((x for x in s if x != ""), "")
+        )
+        rep["最后锁定人"] = lock_or.loc[rep_idx].values
+        df = rep
+    else:
+        # 老数据没有拆分号列：沿用旧的失败原因最早非空回填
+        for col in ("第一次失败原因", "失败原因"):
+            if col in df.columns:
+                s = df[col].fillna("").astype(str).str.strip()
+                s = s.where(s != "", None)
+                df[col] = s.groupby(df["_oid"]).transform(_first_nonempty)
+
+    # --- 跨天：按订单号取最新一天的代表行；归属日 = 首次出现日 ---
     first_date = df.groupby("_oid")["_file_date"].transform("first")
-    for col in ("第一次失败原因", "失败原因"):
-        if col in df.columns:
-            s = df[col].fillna("").astype(str).str.strip()
-            df.loc[s == "", col] = None
-            df[col] = df[col].fillna(df.groupby("_oid")[col].transform("first"))
     dedup = df.groupby("_oid").tail(1).copy()
     dedup["_file_date"] = first_date.loc[dedup.index]
-    return (dedup.drop(columns=["_oid"])
+    drop_cols = [c for c in ("_oid", "_parent_rank", "_lock_v") if c in dedup.columns]
+    return (dedup.drop(columns=drop_cols)
             .sort_values("_file_date", kind="mergesort")
             .reset_index(drop=True))
 
@@ -2517,6 +2566,9 @@ def _main_inner(args):
     # 快照口径（旧口径）并行保留在 summary.snapshot，供双口径对照。
     df_snap = df_all
     df_all = dedup_master_orders(df_all)
+    # 2026-11-27：拆单聚合改写了锁定人/失败原因，path 必须按聚合后的字段重判
+    # （否则沿用父行的空锁定人 → 拆单仍被判 A）
+    df_all = classify(df_all)
     df_snap = df_snap.copy()
     df_snap["_month"] = df_snap["_file_date"].str[:7]
     snap_sum = snapshot_summary(df_snap)
