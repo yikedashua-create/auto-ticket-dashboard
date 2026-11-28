@@ -3307,7 +3307,8 @@ function renderAirline() {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
       formatter: p => {
-        const a = top[p.dataIndex];
+        // y轴/series 都做了 reverse，dataIndex 是反转后的下标，需映射回 top 原数组
+        const a = top[top.length - 1 - p.dataIndex];
         return `<b>${a.airline}</b> <span style="color:#a0b4cc">(${tierLabel(a.tier)})</span><br>${fmt.num(a.total)} 单<br>利润: <span style="color:${a.profit_sum>=0?'#00ff88':'#ff4757'}">${a.profit_sum>=0?'+':''}¥${fmt.money(a.profit_sum)}</span>`;
       } },
     grid: { left: 50, right: 60, top: 20, bottom: 20 },
@@ -3608,7 +3609,8 @@ function renderChannel() {
     ...baseEchartsOpt,
     tooltip: { ...baseEchartsOpt.tooltip, trigger: "item",
       formatter: p => {
-        const c = ttByP90[p.dataIndex];
+        // y轴/两个 series 都做了 reverse，dataIndex 需映射回原数组
+        const c = ttByP90[ttByP90.length - 1 - p.dataIndex];
         const tt = c.tt;
         return `<b>${c.channel}</b><br>` +
           `A 路径订单: ${fmt.num(c.A)}<br>出票样本: ${tt.n}<br>` +
@@ -6539,7 +6541,7 @@ async function openReportPanel() {
 const DATA_REPORT_NAME = '自动化数据汇报.html';
 // 渲染引擎资源锚点：auto_sync 维护的 COMMIT 只指向数据提交，不含 output/ 资源；
 // 用独立锚点指向包含 report_render.js 的提交。每次改渲染脚本后同步更新此值。
-const REPORT_COMMIT = '4d31723';
+const REPORT_COMMIT = '9329051';
 const REPORT_BASE = 'https://cdn.jsdelivr.net/gh/yikedashua-create/auto-ticket-dashboard@' + REPORT_COMMIT + '/output/';
 let REPORT_RENDER_READY = false;       // report_render.js 是否已加载
 let REPORT_PICK = '';                  // 当前选择：YYYY-MM-DD 或 YYYY-MM-DD~YYYY-MM-DD（区间）

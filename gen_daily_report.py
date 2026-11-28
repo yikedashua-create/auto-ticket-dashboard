@@ -780,7 +780,7 @@ STAGE_TREND_JS = r"""
   function show(i,e){
     var r=rows[i]; if(!r) return;
     var html='<div class="th">'+String(i).padStart(2,'0')+':00 – '+String(i+1).padStart(2,'0')+':00</div>'+
-      '<div class="tt">报错合计 <b>'+f(r.total)+'</b> 单</div>';
+      '<div class="tt">总计 <b>'+f(r.all)+'</b> 单 · 报错合计 <b>'+f(r.total)+'</b> 单</div>';
     series.forEach(function(s){
       html+='<div class="tr"><span><i style="background:'+(colors[s]||'#94A3B8')+'"></i>'+s+'</span><b>'+f(r[s]||0)+' 单</b></div>';
     });
@@ -829,14 +829,14 @@ def build_hourly_stage_section(ctx):
         for r in hours:
             h = int(r.get("hour") or 0)
             src = by_hour.get(h, {})
-            row = {"hour": h}
+            row = {"hour": h, "all": int(r.get("total") or 0)}
             for s in series:
                 row[s] = int(src.get(s) or 0)
             row["total"] = sum(row[s] for s in series)
             data.append(row)
     else:
         for r in hours:
-            row = {"hour": int(r.get("hour") or 0),
+            row = {"hour": int(r.get("hour") or 0), "all": int(r.get("total") or 0),
                    FB_B: int(r.get("B") or 0), FB_D: int(r.get("D") or 0)}
             row["total"] = row[FB_B] + row[FB_D]
             data.append(row)
